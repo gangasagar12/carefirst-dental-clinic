@@ -1,0 +1,62 @@
+/* About Section Styles */
+.bg-gray-50 {
+    background-color: var(--gray-50);
+}
+
+.about-image-wrapper .trust-badge {
+    bottom: -20px;
+    right: -20px;
+    z-index: 10;
+    max-width: 290px;
+    border-color: var(--gray-100) !important;
+}
+
+@media (max-width: 991.98px) {
+    .about-image-wrapper .trust-badge {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .about-image-wrapper img {
+        height: 400px !important;
+    }
+}
+
+.value-block {
+    transition: var(--transition);
+}
+
+.value-block:hover .value-icon {
+    transform: scale(1.1);
+}
+
+.value-icon {
+    transition: var(--transition-fast);
+    width: 24px;
+    text-align: center;
+}
+
+.doctor-trust-card {
+    transition: var(--transition);
+    border-color: var(--gray-200) !important;
+}
+
+.doctor-trust-card:hover {
+    box-shadow: var(--shadow-md) !important;
+    border-color: transparent !important;
+}
+
+.btn-outline-custom {
+    border: 1px solid var(--gray-200);
+    transition: var(--transition);
+}
+
+.btn-outline-custom:hover {
+    background-color: var(--gray-50) !important;
+    border-color: var(--primary-blue);
+    color: var(--primary-blue) !important;
+}
+
+.hover-underline:hover {
+    text-decoration: underline !important;
+}

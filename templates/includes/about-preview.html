@@ -1,0 +1,118 @@
+{% load static %}
+<section id="about-carefirst" aria-labelledby="about-carefirst-heading" class="py-5 bg-gray-50">
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            
+            <!-- Left: Image & Badge -->
+            <div class="col-lg-5">
+                <div class="about-image-wrapper position-relative">
+                    <!-- Placeholder image matching the required style, falls back to a solid color if not found -->
+                    <img src="{% static 'images/clinic-environment.jpg' %}" alt="CareFirst Dental Clinic Environment in Kathmandu" class="img-fluid w-100 object-fit-cover shadow-md" style="height: 600px; border-radius: var(--radius-lg); background-color: var(--gray-200);" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNEQ0U3RUQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NDc0OEIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5DbGluaWMgSW1hZ2U8L3RleHQ+PC9zdmc+'">
+                    
+                    <!-- Floating Trust Badge -->
+                    <div class="trust-badge position-absolute bg-white p-3 rounded-md shadow-md d-flex align-items-center gap-3 border">
+                        <div class="badge-icon bg-primary-light text-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+                            <i class="fa-solid fa-shield-heart fs-5"></i>
+                        </div>
+                        <div>
+                            <h5 class="h6 mb-1 text-navy fw-bold">Patient-First Care</h5>
+                            <p class="mb-0 text-secondary-brand small lh-sm">Professional care with your comfort in mind.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Content -->
+            <div class="col-lg-7 ps-lg-5">
+                <span class="badge bg-primary-light text-primary px-3 py-2 rounded-pill mb-3 fw-semibold">ABOUT CAREFIRST</span>
+                
+                <h2 id="about-carefirst-heading" class="display-6 fw-bold text-navy mb-4" style="line-height: 1.2;">
+                    Comprehensive Dental Care,<br>
+                    <span class="text-primary">Built Around You.</span>
+                </h2>
+                
+                <p class="text-secondary-brand mb-3" style="font-size: 1.05rem;">
+                    CareFirst Dental Clinic is a multispecialty dental practice in Shankhamul, Kathmandu, dedicated to providing patient-focused, ethical, and comprehensive oral healthcare.
+                </p>
+                <p class="text-secondary-brand mb-5" style="font-size: 1.05rem;">
+                    Led by Dr. Subash Banjade, Dental Surgeon, and supported by a team of senior consultant doctors, our clinic brings together professional expertise and a patient-first approach to help you and your family achieve and maintain healthy smiles.
+                </p>
+
+                <!-- 3 Trust Values -->
+                <div class="row g-4 mb-5">
+                    <div class="col-12">
+                        <div class="d-flex align-items-start gap-3 value-block">
+                            <div class="value-icon text-primary mt-1">
+                                <i class="fa-solid fa-user-check fs-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="h6 fw-bold text-navy mb-1 text-uppercase tracking-wide" style="letter-spacing: 0.5px; font-size: 0.9rem;">01. Patient-Focused Care</h4>
+                                <p class="text-secondary-brand small mb-0">Every treatment begins with understanding your needs, concerns, and expectations.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-start gap-3 value-block">
+                            <div class="value-icon text-primary mt-1">
+                                <i class="fa-solid fa-tooth fs-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="h6 fw-bold text-navy mb-1 text-uppercase tracking-wide" style="letter-spacing: 0.5px; font-size: 0.9rem;">02. Multispecialty Dental Care</h4>
+                                <p class="text-secondary-brand small mb-0">Comprehensive dental care designed to address a wide range of oral health needs in one place.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-start gap-3 value-block">
+                            <div class="value-icon text-primary mt-1">
+                                <i class="fa-solid fa-hand-holding-medical fs-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="h6 fw-bold text-navy mb-1 text-uppercase tracking-wide" style="letter-spacing: 0.5px; font-size: 0.9rem;">03. Ethical & Professional Care</h4>
+                                <p class="text-secondary-brand small mb-0">Clear communication and responsible treatment recommendations with your wellbeing at the center.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor Trust Card -->
+                <div class="doctor-trust-card bg-white p-3 p-md-4 rounded-md shadow-sm border mb-4 d-flex align-items-center flex-wrap gap-4">
+                    <div class="doctor-avatar bg-gray-100 rounded-circle overflow-hidden flex-shrink-0 border" style="width: 75px; height: 75px;">
+                        <img src="{% static 'images/dr-subash.jpg' %}" alt="Dr. Subash Banjade" class="w-100 h-100 object-fit-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NSIgaGVpZ2h0PSI3NSIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NDc0OEIiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjAgMjF2LTJhNCA0IDAgMCAwLTQtNEg4YTQgNCAwIDAgMC00IDR2MiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iNyIgcj0iNCIvPjwvc3ZnPg=='">
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="text-navy fw-bold mb-1">Dr. Subash Banjade</h5>
+                        <p class="text-primary fw-medium small mb-2">Dental Surgeon</p>
+                        <p class="text-secondary-brand small mb-2 fst-italic lh-sm">"Leading CareFirst Dental Clinic with a patient-focused approach to comprehensive oral healthcare."</p>
+                        <a href="{% url 'doctors' %}" class="text-primary fw-semibold small text-decoration-none hover-underline">Meet Our Dental Team &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Clinic Info Strip -->
+                <div class="clinic-info-strip d-flex flex-wrap column-gap-4 row-gap-2 py-3 border-top border-bottom mb-4">
+                    <div class="info-item d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-location-dot text-primary"></i>
+                        <span class="small fw-medium text-navy">Shankhamul-31, Kathmandu</span>
+                    </div>
+                    <div class="info-item d-flex align-items-center gap-2">
+                        <i class="fa-regular fa-clock text-primary"></i>
+                        <span class="small fw-medium text-navy">Open Daily: 7:30 AM – 7:30 PM</span>
+                    </div>
+                    <div class="info-item d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-phone text-primary"></i>
+                        <span class="small fw-medium text-navy">+977 980-7464136</span>
+                    </div>
+                </div>
+
+                <!-- CTAs -->
+                <div class="d-flex flex-column flex-sm-row gap-3">
+                    <a href="{% url 'appointment' %}" class="btn btn-primary shadow-sm" style="padding: 12px 28px; border-radius: var(--radius-md);">Book an Appointment</a>
+                    <a href="tel:+9779807464136" class="btn btn-outline-custom bg-white text-navy" style="padding: 12px 28px; border-radius: var(--radius-md); font-weight: 600;">
+                        <i class="fa-solid fa-phone me-2 text-primary"></i> Call +977 980-7464136
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
