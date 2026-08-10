@@ -29,3 +29,6 @@ def appointment(request):
 
 def media(request):
     return render(request, 'pages/media.html')
+
+def pricing(request):
+    return render(request, 'pages/pricing.html')

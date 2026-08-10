@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pricing & Packages | CareFirst Dental Clinic{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-gray-50 text-center">
+    <div class="container py-5">
+        <h1 class="display-5 fw-bold text-navy mb-3">Transparent Pricing</h1>
+        <p class="lead text-secondary-brand">Affordable, high-quality dental care with no hidden fees.</p>
+        
+        <div class="row mt-5 justify-content-center">
+            <div class="col-md-8">
+                <div class="bg-white p-5 rounded-4 shadow-sm border">
+                    <h3 class="h4 fw-bold text-navy mb-4">Pricing Packages Coming Soon</h3>
+                    <p class="text-secondary-brand mb-0">Please contact our clinic directly or book an appointment for an accurate treatment estimate based on your specific needs.</p>
+                    <a href="{% url 'appointment' %}" class="btn btn-primary mt-4">Book a Consultation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
