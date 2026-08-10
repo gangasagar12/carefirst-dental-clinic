@@ -4,7 +4,7 @@
         
         <!-- Logo -->
         <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'images/logo.png' %}" alt="CareFirst Dental Clinic Logo" onerror="this.outerHTML='<span style=\'font-weight: 700; color: var(--navy); font-size: 1.6rem; letter-spacing: -0.5px;\'>Care<span style=\'color: var(--primary-blue);\'>First</span></span>'">
+            <img src="{% static 'images/logo.png' %}" alt="CareFirst Dental Clinic Logo" height="45" style="object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight: 700; color: var(--navy); font-size: 1.6rem; letter-spacing: -0.5px;\'>Care<span style=\'color: var(--primary-blue);\'>First</span></span>'">
         </a>
 
         <!-- Mobile Toggle Button -->
@@ -65,7 +65,9 @@
                 <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}" href="{% url 'gallery' %}">Smile Gallery</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'media' %}active{% endif %}" href="{% url 'media' %}">Media/Video</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'blog' %}active{% endif %}" href="{% url 'blog' %}">Blog</a>
                 </li>

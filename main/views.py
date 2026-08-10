@@ -26,3 +26,6 @@ def contact(request):
 
 def appointment(request):
     return render(request, 'pages/appointment.html')
+
+def media(request):
+    return render(request, 'pages/media.html')
