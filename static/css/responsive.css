@@ -1,0 +1,149 @@
+/* Mobile Styles */
+@media (max-width: 991.98px) {
+    .top-bar {
+        display: none; /* Hide top bar on mobile for a cleaner look */
+    }
+
+    .navbar-collapse {
+        background-color: var(--white);
+        padding: 15px 20px 25px;
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
+        box-shadow: var(--shadow-md);
+        margin-top: 15px;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 100%;
+        border-top: 1px solid var(--gray-100);
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 14px 0 !important;
+        border-bottom: 1px solid var(--gray-100);
+        font-size: 1.05rem;
+        color: var(--navy);
+    }
+
+    .navbar-nav .nav-link::after {
+        display: none; /* Remove hover underline on mobile */
+    }
+
+    .navbar-nav .nav-item:last-child .nav-link {
+        border-bottom: none;
+    }
+
+    .mobile-actions {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .mobile-actions .btn {
+        width: 100%;
+        text-align: center;
+        padding: 14px;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .btn-outline-whatsapp {
+        border: 1px solid var(--success);
+        color: var(--success);
+        background: transparent;
+    }
+    
+    .btn-outline-whatsapp:hover {
+        background: var(--success);
+        color: var(--white);
+    }
+    
+    .btn-outline-phone {
+        border: 1px solid var(--primary-blue);
+        color: var(--primary-blue);
+        background: transparent;
+    }
+    
+    .btn-outline-phone:hover {
+        background: var(--primary-blue);
+        color: var(--white);
+    }
+
+    /* Mobile Bottom Action Bar */
+    .mobile-bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: 0 -4px 20px rgba(16, 42, 67, 0.08);
+        display: flex;
+        justify-content: space-around;
+        padding: 12px 5px 25px; /* Extra padding for iOS home indicator */
+        z-index: 1040;
+        border-top: 1px solid var(--gray-100);
+    }
+
+    .mobile-bottom-bar a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+        gap: 6px;
+        flex: 1;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .mobile-bottom-bar a i {
+        font-size: 1.3rem;
+    }
+
+    .mobile-bottom-bar .book-action {
+        color: var(--primary-blue);
+    }
+    
+    .mobile-bottom-bar .call-action {
+        color: var(--navy);
+    }
+    
+    .mobile-bottom-bar .whatsapp-action {
+        color: var(--success);
+    }
+
+    /* Adjust body padding for mobile bottom bar */
+    body {
+        padding-bottom: 80px;
+    }
+    
+    /* Hide desktop CTA area on mobile */
+    .desktop-cta {
+        display: none !important;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .navbar-toggler:focus {
+        box-shadow: none;
+    }
+}
+
+/* Hide mobile bottom bar and actions on desktop */
+@media (min-width: 992px) {
+    .mobile-bottom-bar {
+        display: none !important;
+    }
+    .mobile-actions {
+        display: none !important;
+    }
+}
