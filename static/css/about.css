@@ -60,3 +60,40 @@
 .hover-underline:hover {
     text-decoration: underline !important;
 }
+
+/* New About Page Styles */
+
+.philosophy-card {
+    transition: var(--transition);
+    border-color: var(--gray-100) !important;
+}
+
+.philosophy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md) !important;
+    border-color: var(--primary-blue-light) !important;
+}
+
+.philosophy-card .icon-circle {
+    transition: var(--transition);
+}
+
+.philosophy-card:hover .icon-circle {
+    background-color: var(--primary-blue) !important;
+    color: var(--white) !important;
+}
+
+.btn-outline-navy {
+    color: var(--navy);
+    border: 1px solid var(--navy);
+    transition: var(--transition);
+}
+
+.btn-outline-navy:hover {
+    background-color: var(--navy);
+    color: var(--white);
+}
+
+.tracking-wide {
+    letter-spacing: 0.5px;
+}
