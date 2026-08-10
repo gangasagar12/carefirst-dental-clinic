@@ -65,9 +65,7 @@
                 <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}" href="{% url 'gallery' %}">Smile Gallery</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'reviews' %}active{% endif %}" href="{% url 'reviews' %}">Patient Stories</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'blog' %}active{% endif %}" href="{% url 'blog' %}">Blog</a>
                 </li>
@@ -76,15 +74,7 @@
                 </li>
             </ul>
 
-            <!-- Right side CTA (Desktop) -->
-            <div class="d-none d-lg-flex align-items-center desktop-cta">
-                <a href="tel:+1234567890" class="phone-icon-link text-navy text-decoration-none fw-semibold me-4 d-flex align-items-center gap-2">
-                    <span class="d-none d-xl-inline">Call Clinic</span>
-                </a>
-                <a href="{% url 'appointment' %}" class="nav-cta-btn">
-                    Book Appointment
-                </a>
-            </div>
+
 
             <!-- Mobile actions (Inside the collapse menu) -->
             <div class="mobile-actions d-lg-none mt-4">
