@@ -50,4 +50,10 @@
         letter-spacing: 0.5px;
         padding-left: 0;
     }
+    
+    .w-20px {
+        width: 20px;
+        text-align: center;
+        display: inline-block;
+    }
 }
