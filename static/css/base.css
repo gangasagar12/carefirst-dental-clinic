@@ -60,3 +60,23 @@ a:hover {
 .text-secondary-brand {
     color: var(--text-secondary);
 }
+
+/* Treatment Card Styles */
+.treatment-card {
+    transition: var(--transition);
+}
+
+.treatment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: transparent !important;
+}
+
+.treatment-card .icon-box {
+    transition: var(--transition);
+}
+
+.treatment-card:hover .icon-box {
+    background-color: var(--primary-blue) !important;
+    color: var(--white) !important;
+}
