@@ -1,0 +1,53 @@
+/* Mega Menu Styles */
+.mega-dropdown {
+    position: static !important;
+}
+
+.mega-menu-container {
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 0;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    box-shadow: 0 10px 40px rgba(16, 42, 67, 0.08) !important;
+    border: 1px solid var(--gray-100);
+    border-top: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: block; /* Override bootstrap */
+    pointer-events: none;
+}
+
+@media (min-width: 992px) {
+    .mega-dropdown:hover .mega-menu-container,
+    .mega-dropdown .nav-link.show + .mega-menu-container {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    
+    .mega-menu-container .dropdown-item {
+        padding: 8px 0;
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: var(--transition-fast);
+        background: transparent;
+    }
+    
+    .mega-menu-container .dropdown-item:hover {
+        color: var(--primary-blue);
+        transform: translateX(4px);
+        background: transparent;
+    }
+    
+    .mega-menu-container .dropdown-header {
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+        padding-left: 0;
+    }
+}

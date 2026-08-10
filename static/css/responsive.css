@@ -4,35 +4,7 @@
         display: none; /* Hide top bar on mobile for a cleaner look */
     }
 
-    .navbar-collapse {
-        background-color: var(--white);
-        padding: 15px 20px 25px;
-        border-radius: 0 0 var(--radius-md) var(--radius-md);
-        box-shadow: var(--shadow-md);
-        margin-top: 15px;
-        position: absolute;
-        width: 100%;
-        left: 0;
-        top: 100%;
-        border-top: 1px solid var(--gray-100);
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
-    }
-
-    .navbar-nav .nav-link {
-        padding: 14px 0 !important;
-        border-bottom: 1px solid var(--gray-100);
-        font-size: 1.05rem;
-        color: var(--navy);
-    }
-
-    .navbar-nav .nav-link::after {
-        display: none; /* Remove hover underline on mobile */
-    }
-
-    .navbar-nav .nav-item:last-child .nav-link {
-        border-bottom: none;
-    }
+    /* Navbar base styles moved to mobile-nav.css */
 
     .mobile-actions {
         margin-top: 20px;

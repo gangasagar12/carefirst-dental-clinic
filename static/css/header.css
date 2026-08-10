@@ -1,41 +1,35 @@
-/* Top Information Bar */
-.top-bar {
+/* Utility Bar (Level 1) */
+.utility-bar {
     background-color: var(--navy);
     color: var(--white);
     font-size: 0.85rem;
-    padding: 8px 0;
-    font-weight: 400;
+    padding: 10px 0;
+    font-weight: 500;
     letter-spacing: 0.3px;
+    height: 42px;
 }
 
-.top-bar a {
+.utility-bar a {
     color: var(--white);
     transition: var(--transition);
-    margin-left: 20px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    text-decoration: none;
 }
 
-.top-bar a:hover {
+.utility-bar a:hover {
     color: var(--primary-blue-light);
 }
 
-.top-bar i {
+.utility-bar i {
     color: var(--primary-blue);
 }
 
-.top-info-left {
+.utility-left {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.top-info-left i {
-    color: var(--primary-blue);
-}
-
-/* Main Navbar */
+/* Main Navbar (Level 2) */
 .main-header {
     background-color: var(--white);
     box-shadow: var(--shadow-sm);
@@ -99,8 +93,8 @@
 .nav-cta-btn {
     background-color: var(--primary-blue);
     color: var(--white);
-    border-radius: var(--radius-pill);
-    padding: 12px 24px;
+    border-radius: var(--radius-md); /* Premium medium rounded corners */
+    padding: 10px 22px;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
@@ -108,6 +102,7 @@
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
     font-size: 0.95rem;
+    text-decoration: none;
 }
 
 .nav-cta-btn:hover {
