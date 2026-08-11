@@ -124,15 +124,15 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'treatments' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
         <li class="breadcrumb-item active text-warning">Digital Dental X-Ray</li>
       </ol>
     </nav>
     <h1><i class="bi bi-camera me-3 text-warning"></i>Digital Dental X-Ray</h1>
     <p class="hero-sub mx-auto">Advanced low-radiation imaging for precise diagnosis, enabling us to see beyond the surface.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Book a Consultation</a>
+      <a href="{% url 'contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Book a Consultation</a>
     </div>
   </div>
 </section>
@@ -378,7 +378,7 @@
               <p class="small text-muted mb-4 fst-italic">
                 * Note: The number and type of X-rays required will be determined by the dentist after a thorough clinical evaluation to ensure accurate diagnosis.
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Book Appointment</a>
+              <a href="{% url 'contact' %}#book" class="btn btn-primary w-100">Book Appointment</a>
             </div>
 
           </div>

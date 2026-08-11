@@ -131,15 +131,15 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'treatments' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
         <li class="breadcrumb-item active text-warning">Dentures</li>
       </ol>
     </nav>
     <h1><i class="bi bi-layers me-3 text-warning"></i>Dentures</h1>
     <p class="hero-sub mx-auto">Custom-crafted partial and complete dentures to restore your smile and confidence.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Restore Your Smile Today</a>
+      <a href="{% url 'contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Restore Your Smile Today</a>
     </div>
   </div>
 </section>
@@ -377,7 +377,7 @@
               <p class="small text-muted mb-4 fst-italic">
                 * Note: The final treatment cost depends heavily on the patient's oral condition, the number of teeth being replaced, and the specific material chosen.
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Schedule Consultation</a>
+              <a href="{% url 'contact' %}#book" class="btn btn-primary w-100">Schedule Consultation</a>
             </div>
 
           </div>

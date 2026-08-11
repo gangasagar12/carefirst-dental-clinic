@@ -175,15 +175,15 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'treatments' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
         <li class="breadcrumb-item active text-warning">Root Canal Treatment</li>
       </ol>
     </nav>
     <h1><i class="bi bi-droplet-half me-3 text-warning"></i>Root Canal Treatment</h1>
     <p class="hero-sub mx-auto">Eliminate severe toothache and save your natural tooth with our comfortable, painless endodontic therapy.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Stop the Pain Today</a>
+      <a href="{% url 'contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Stop the Pain Today</a>
     </div>
   </div>
 </section>
@@ -508,7 +508,7 @@
               <p class="small text-muted mb-4 fst-italic">
                 * Note: The prices above reflect the root canal procedure and core filling. Because a root canal treated tooth becomes brittle, a Dental Crown is highly recommended to protect it. <strong>Crown charges are separate.</strong>
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Schedule Assessment</a>
+              <a href="{% url 'contact' %}#book" class="btn btn-primary w-100">Schedule Assessment</a>
             </div>
 
           </div>

@@ -89,15 +89,15 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'treatments' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
         <li class="breadcrumb-item active text-warning">Scaling & Polishing</li>
       </ol>
     </nav>
     <h1><i class="bi bi-stars me-3 text-warning"></i>Scaling & Polishing</h1>
     <p class="hero-sub mx-auto">Professional deep cleaning to remove plaque, tartar, and surface stains.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Book a Professional Clean from {{ service.starting_price }}</a>
+      <a href="{% url 'contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Book a Professional Clean from {{ service.starting_price }}</a>
     </div>
   </div>
 </section>
@@ -250,7 +250,7 @@
                 * Note: If severe gum disease is detected during evaluation, additional Deep Periodontal Treatment (Root Planing) may be recommended at varying costs.
               </li>
             </ul>
-            <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Schedule Your Cleaning</a>
+            <a href="{% url 'contact' %}#book" class="btn btn-primary w-100">Schedule Your Cleaning</a>
           </div>
         </div>
       </div>
@@ -402,7 +402,7 @@
     <p>Experience the incredibly smooth, clean feeling of professionally polished teeth.</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
       <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>Book Your Cleaning Now</a>
-      <a href="{% url 'main:smile_transformations' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
+      <a href="{% url 'smile_transformations' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
         <i class="bi bi-images"></i>View Smile Gallery
       </a>
     </div>

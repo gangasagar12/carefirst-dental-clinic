@@ -292,15 +292,15 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'treatments' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
         <li class="breadcrumb-item active text-warning">Orthodontics (Braces)</li>
       </ol>
     </nav>
     <h1><i class="bi bi-magnet me-3 text-warning"></i>Orthodontics & Braces</h1>
     <p class="hero-sub mx-auto">Transform your smile with expertly planned, precision-guided orthodontic treatments.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Start Your Smile Journey</a>
+      <a href="{% url 'contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Start Your Smile Journey</a>
     </div>
   </div>
 </section>
@@ -788,7 +788,7 @@
               <p class="small text-muted mb-4 fst-italic">
                 * Note: Prices shown represent the base cost for a full upper and lower arch treatment. Final costs may vary depending on case complexity, duration, and if extractions are needed.
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Schedule Assessment</a>
+              <a href="{% url 'contact' %}#book" class="btn btn-primary w-100">Schedule Assessment</a>
             </div>
 
           </div>

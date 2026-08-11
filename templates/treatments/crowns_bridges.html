@@ -284,15 +284,15 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'treatments' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
         <li class="breadcrumb-item active text-warning">Crowns & Bridges</li>
       </ol>
     </nav>
     <h1><i class="bi bi-shield-check me-3 text-warning"></i>Crowns & Bridges</h1>
     <p class="hero-sub mx-auto">Restore the strength, function, and aesthetics of damaged or missing teeth.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Restore Your Smile</a>
+      <a href="{% url 'contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Restore Your Smile</a>
     </div>
   </div>
 </section>
@@ -627,7 +627,7 @@
               <p class="small text-muted mb-4 fst-italic">
                 * Note: Prices are per unit (per tooth). A 3-tooth bridge made of PFM would be NPR 6,000 x 3 = NPR 18,000. Final costs depend on clinical evaluation.
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Schedule Consultation</a>
+              <a href="{% url 'contact' %}#book" class="btn btn-primary w-100">Schedule Consultation</a>
             </div>
 
           </div>

@@ -118,15 +118,15 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'treatments' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
         <li class="breadcrumb-item active text-warning">Tooth Extraction</li>
       </ol>
     </nav>
     <h1><i class="bi bi-scissors me-3 text-warning"></i>Tooth Extraction</h1>
     <p class="hero-sub mx-auto">Safe, painless removal of severely damaged or problematic teeth.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Get Immediate Relief</a>
+      <a href="{% url 'contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Get Immediate Relief</a>
     </div>
   </div>
 </section>
@@ -351,7 +351,7 @@
               <p class="small text-muted mb-4 fst-italic">
                 * Note: The final treatment cost depends on the complexity of the case (e.g., angle of impaction) and clinical evaluation.
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Schedule Consultation</a>
+              <a href="{% url 'contact' %}#book" class="btn btn-primary w-100">Schedule Consultation</a>
             </div>
 
           </div>
