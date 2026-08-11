@@ -12,6 +12,9 @@ def treatments(request):
 def general_dentistry(request):
     return render(request, 'treatments/general_dentistry.html')
 
+def root_canal(request):
+    return render(request, 'treatments/root_canal.html')
+
 def doctors(request):
     return render(request, 'pages/doctors.html')
 
