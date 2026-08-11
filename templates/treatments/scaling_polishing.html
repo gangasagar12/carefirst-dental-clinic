@@ -1,0 +1,413 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static  i18n %}
+
+{% block title %}Scaling & Polishing — Niko Dental & Aesthetics{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}">
+<meta name="description" content="Professional teeth cleaning (scaling and polishing) at Niko Dental & Aesthetics. Remove plaque, tartar, and surface stains for healthy gums and a brighter smile.">
+<style>
+  .sp-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid rgba(14,90,79,0.08);
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .sp-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(14,90,79,0.08);
+  }
+  .sp-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    background: var(--nd-green-tint);
+    color: var(--nd-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+  }
+  .sp-gallery-img {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .sp-gallery-img img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+  .sp-tip-card {
+    border-left: 4px solid var(--nd-gold);
+    background: #fff;
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 15px;
+  }
+  .pricing-table {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(14,90,79,0.1);
+    border: 1px solid rgba(14,90,79,0.1);
+  }
+  .pricing-header {
+    background: var(--nd-green-dark);
+    color: #fff;
+    padding: 24px;
+    text-align: center;
+  }
+  .pricing-body {
+    padding: 30px 40px;
+  }
+  .price-amount {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--nd-green-dark);
+    margin-bottom: 5px;
+    font-family: var(--nd-font-head);
+  }
+  .price-currency {
+    font-size: 1.2rem;
+    color: var(--nd-gold-dark);
+    vertical-align: super;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- 1. HERO BANNER -->
+<section class="service-hero text-center" style="background-image: url('{% static 'images/scalling_hero.jpg' %}')">
+  <div class="hero-inner container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
+        <li class="breadcrumb-item active text-warning">Scaling & Polishing</li>
+      </ol>
+    </nav>
+    <h1><i class="bi bi-stars me-3 text-warning"></i>Scaling & Polishing</h1>
+    <p class="hero-sub mx-auto">{% trans "Professional deep cleaning to remove plaque, tartar, and surface stains." %}</p>
+    <div class="mt-4">
+      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Book a Professional Clean from {{ service.starting_price }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. INTRODUCTION & IMPORTANCE -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6">
+        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
+        <h2 class="section-heading mb-4">{% trans "What is" %} <span class="accent">Scaling & Polishing?</span></h2>
+        <p class="text-muted" style="line-height:1.85;">
+          {% blocktrans %}Scaling and polishing (often referred to simply as a \"dental cleaning\") is a professional procedure designed to thoroughly clean the teeth and gums. Even with the best at-home brushing and flossing routine, plaque can accumulate in hard-to-reach areas and harden into tartar (calculus)—a substance so tough it can only be removed by a dental professional.{% endblocktrans %}
+        </p>
+        
+        <h4 class="fw-bold mt-4 mb-3" style="color:var(--nd-green-dark);">{% trans "Why It Is Important" %}</h4>
+        <p class="text-muted" style="line-height:1.85;">
+          {% trans "Left untreated, plaque and tartar harbor bacteria that irritate the gums, leading to gingivitis and eventually advanced periodontal (gum) disease. Professional cleaning is the single most effective way to prevent these issues, halt bone loss, and keep your natural teeth for a lifetime." %}
+        </p>
+        
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Prevents Gum Disease" %}</span>
+          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Removes Stubborn Stains" %}</span>
+          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Cures Bad Breath" %}</span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img loading="lazy" src="{% static 'images/scalling_intro.jpg' %}" alt="Professional Teeth Cleaning" class="img-fluid rounded-4 shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. SIGNS YOU NEED IT & BENEFITS -->
+<section class="section-py" style="background:var(--nd-gray-bg);">
+  <div class="container">
+    <div class="row g-5">
+      <!-- Signs -->
+      <div class="col-lg-5">
+        <div class="nd-eyebrow">{% trans "When To Visit" %}</div>
+        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Signs You Need a Cleaning" %}</h3>
+        <p class="text-muted mb-4">{% trans "You should schedule a scaling and polishing session if you notice any of these common warning signs:" %}</p>
+        <ul class="symptom-list mb-0">
+          <li><i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i> <span>{% trans "Gums that bleed easily when brushing or flossing." %}</span></li>
+          <li><i class="bi bi-record-circle text-warning fs-5"></i> <span>{% trans "Yellow or brown hard deposits along the gumline." %}</span></li>
+          <li><i class="bi bi-wind text-info fs-5"></i> <span>{% blocktrans %}Persistent bad breath that won't go away.{% endblocktrans %}</span></li>
+          <li><i class="bi bi-cup-hot text-dark fs-5"></i> <span>{% trans "Visible tea, coffee, or tobacco stains on the teeth." %}</span></li>
+          <li><i class="bi bi-calendar-check text-success fs-5"></i> <span>{% trans "It has been more than 6 months since your last cleaning." %}</span></li>
+        </ul>
+      </div>
+      <!-- Benefits -->
+      <div class="col-lg-7">
+        <div class="bg-white p-5 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
+          <h4 class="fw-bold mb-4" style="color:var(--nd-green-dark);">Benefits of Scaling & Polishing</h4>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="sp-card border-0 shadow-none p-0 bg-transparent">
+                <div class="sp-icon-wrapper"><i class="bi bi-flower1"></i></div>
+                <h6 class="fw-bold">{% trans "Healthy Gums" %}</h6>
+                <p class="small text-muted mb-0">{% trans "Reverses early-stage gingivitis and prevents advanced gum disease." %}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="sp-card border-0 shadow-none p-0 bg-transparent">
+                <div class="sp-icon-wrapper"><i class="bi bi-sparkles"></i></div>
+                <h6 class="fw-bold">{% trans "Brighter Smile" %}</h6>
+                <p class="small text-muted mb-0">{% trans "Effectively removes unsightly surface stains caused by food and drinks." %}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="sp-card border-0 shadow-none p-0 bg-transparent">
+                <div class="sp-icon-wrapper"><i class="bi bi-wind"></i></div>
+                <h6 class="fw-bold">{% trans "Fresh Breath" %}</h6>
+                <p class="small text-muted mb-0">{% trans "Eliminates the plaque and bacteria that are the primary cause of halitosis." %}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="sp-card border-0 shadow-none p-0 bg-transparent">
+                <div class="sp-icon-wrapper"><i class="bi bi-heart-pulse"></i></div>
+                <h6 class="fw-bold">{% trans "Systemic Health" %}</h6>
+                <p class="small text-muted mb-0">{% trans "Reduces oral inflammation, which is linked to heart disease and diabetes." %}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. TREATMENT PROCESS & PRICING -->
+<section class="section-py" style="background:var(--nd-green-dark); color:#fff;">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <!-- Process -->
+      <div class="col-lg-7">
+        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "Step-by-step" %}</div>
+        <h2 class="section-heading text-white mb-5">{% trans "Our Treatment" %} <span class="text-warning">{% trans "Process" %}</span></h2>
+        
+        <div class="d-flex mb-4 position-relative">
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
+          <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">{% trans "Assessment" %}</h5>
+            <p class="text-white-50 mb-0">{% trans "A quick physical examination of your entire mouth to check for signs of gingivitis or severe tartar buildup." %}</p>
+          </div>
+        </div>
+        <div class="d-flex mb-4 position-relative">
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
+          <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">{% trans "Ultrasonic Scaling" %}</h5>
+            <p class="text-white-50 mb-0">{% trans "We use an advanced ultrasonic scaler that gently vibrates with water to break down and flush away hard tartar from above and below the gumline." %}</p>
+          </div>
+        </div>
+        <div class="d-flex mb-4 position-relative">
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
+          <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">{% trans "Professional Polishing" %}</h5>
+            <p class="text-white-50 mb-0">{% trans "A high-powered electric brush and specialized gritty toothpaste are used to remove deep surface stains and leave the enamel perfectly smooth." %}</p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">{% trans "Expert Flossing" %}</h5>
+            <p class="text-white-50 mb-0">{% trans "We finish by expertly flossing between your teeth to ensure no plaque or polishing paste is left behind." %}</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Pricing Card -->
+      <div class="col-lg-5">
+        <div class="pricing-table">
+          <div class="pricing-header">
+            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
+            <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing</p>
+          </div>
+          <div class="pricing-body text-center">
+            <p class="text-muted mb-1 text-uppercase fw-bold small tracking-wide">{% trans "Starting From" %}</p>
+            <div class="price-amount"><span class="price-currency">{% trans "NPR" %}</span> {{ dynamic_prices.scaling_polishing|default:"2,000" }}</div>
+            <p class="text-muted fw-bold mb-4">For Standard Scaling & Polishing</p>
+            
+            <ul class="text-start text-muted small mb-4 px-3" style="list-style:none; padding:0;">
+              <li class="mb-2"><i class="bi bi-check text-success fs-5 align-middle me-1"></i> {% trans "Full mouth ultrasonic scaling" %}</li>
+              <li class="mb-2"><i class="bi bi-check text-success fs-5 align-middle me-1"></i> {% trans "Stain-removing paste polish" %}</li>
+              <li class="mb-2"><i class="bi bi-check text-success fs-5 align-middle me-1"></i> {% trans "Post-treatment oral hygiene instruction" %}</li>
+              <li class="mt-4 fst-italic text-center text-danger" style="font-size: 0.8rem; border-top: 1px dashed #ccc; padding-top: 15px;">
+                {% trans "* Note: If severe gum disease is detected during evaluation, additional Deep Periodontal Treatment (Root Planing) may be recommended at varying costs." %}
+              </li>
+            </ul>
+            <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Your Cleaning" %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4.5. GALLERY SECTION -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="text-center mb-5 mx-auto" style="max-width: 600px;">
+      <div class="nd-eyebrow">{% trans "Our Work" %}</div>
+      <h2 class="section-heading mb-3">{% trans "Treatment Gallery" %}</h2>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="rounded-4 overflow-hidden shadow-sm" style="height: 250px;">
+          <img loading="lazy" src="{% static 'images/scaling_gallery_1.png' %}" alt="Scaling Procedure" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="rounded-4 overflow-hidden shadow-sm" style="height: 250px;">
+          <img loading="lazy" src="{% static 'images/scaling_gallery_2.png' %}" alt="Clean Smile" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="rounded-4 overflow-hidden shadow-sm" style="height: 250px;">
+          <img loading="lazy" src="{% static '/promos/scaling_3d.png' %}" alt="Treatment Result" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. BEFORE & AFTER, AFTERCARE, FAQ -->
+<section class="section-py bg-light">
+  <div class="container">
+    <div class="row g-5">
+      
+      <!-- Left Column: Before & After + Tips -->
+      <div class="col-lg-5">
+        <!-- Before & After -->
+        <div class="mb-5">
+          <div class="nd-eyebrow">{% trans "Results" %}</div>
+          <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">Before & After Treatment</h3>
+          <div class="d-flex flex-column gap-3">
+            <div class="sp-gallery-img">
+              <img loading="lazy" src="{% static 'images/scaling_before.png' %}" alt="Teeth Before Scaling">
+              <div class="position-absolute bottom-0 start-0 w-100 p-2 bg-dark bg-opacity-75 text-white text-center small fw-bold">Before: Tartar & Stains</div>
+            </div>
+            <div class="sp-gallery-img">
+              <img loading="lazy" src="{% static 'images/scaling_after.png' %}" alt="Teeth After Polishing">
+              <div class="position-absolute bottom-0 start-0 w-100 p-2 bg-success bg-opacity-75 text-white text-center small fw-bold">After: Clean & Polished</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aftercare Tips -->
+        <div>
+          <h4 class="fw-bold mb-3" style="color:var(--nd-green-dark);">{% trans "Aftercare Tips" %}</h4>
+          <div class="sp-tip-card">
+            <h6 class="fw-bold"><i class="bi bi-info-circle-fill text-gold me-2"></i> {% trans "Mild Sensitivity is Normal" %}</h6>
+            <p class="small text-muted mb-0">{% trans "Your teeth may feel slightly sensitive for a day or two, especially if you had heavy tartar buildup. Use a sensitivity toothpaste if needed." %}</p>
+          </div>
+          <div class="sp-tip-card">
+            <h6 class="fw-bold"><i class="bi bi-info-circle-fill text-gold me-2"></i> {% trans "Avoid Staining Foods" %}</h6>
+            <p class="small text-muted mb-0">{% trans "Try to avoid dark coffee, tea, red wine, and smoking for at least 24 hours to let the freshly polished enamel settle." %}</p>
+          </div>
+          <div class="sp-tip-card border-success">
+            <h6 class="fw-bold"><i class="bi bi-info-circle-fill text-success me-2"></i> {% trans "Maintain the Routine" %}</h6>
+            <p class="small text-muted mb-0">{% trans "Brush twice daily and floss once a day to prevent the tartar from returning quickly." %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: FAQ & Related -->
+      <div class="col-lg-7">
+        <div class="nd-eyebrow">{% trans "FAQ" %}</div>
+        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Frequently Asked Questions" %}</h3>
+        <div class="accordion nd-accordion mb-5" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                {% trans "Will scaling make my teeth weak or loose?" %}
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                {% trans "No, this is a very common myth. Scaling only removes the hard tartar (calculus) that is actively destroying the bone holding your teeth in place. Removing it actually stops the bone loss and strengthens the foundation of your teeth." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                {% trans "Does professional teeth cleaning hurt?" %}
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                {% trans "For most patients, scaling is completely painless and feels like a light vibration or tickling sensation. If your gums are highly inflamed or your teeth are very sensitive, we can apply a topical numbing gel to ensure your comfort." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                {% trans "Is scaling the same as teeth whitening?" %}
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                {% trans "No. Scaling and polishing removes surface stains (like tea/coffee) and restores your teeth to their natural color. Teeth whitening uses bleaching agents to change the internal color of the tooth to a significantly lighter shade." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                {% trans "How often should I get my teeth cleaned?" %}
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                {% trans "The standard recommendation is every 6 months. However, patients with a history of gum disease, smokers, or those with heavy plaque buildup may be advised to visit every 3 to 4 months." %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- RELATED SERVICES -->
+<section class="section-py" style="background: #f8f9fa;">
+  <div class="container">
+    {% include 'components/related_services_row.html' %}
+  </div>
+</section>
+
+<!-- 6. CTA STRIP -->
+<div class="nd-cta-strip" id="book">
+  <div class="cta-inner container">
+    <h2>{% trans "Give Your Smile a Fresh Start" %}</h2>
+    <p>{% trans "Experience the incredibly smooth, clean feeling of professionally polished teeth." %}</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Your Cleaning Now" %}</a>
+      <a href="{% url 'main:smile_transformations' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-images"></i>{% trans "View Smile Gallery" %}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% include 'components/google_reviews.html' %}
+
+{% endblock %}
