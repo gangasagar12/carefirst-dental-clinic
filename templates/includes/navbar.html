@@ -4,7 +4,7 @@
         
         <!-- Logo -->
         <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
-            <img src="{% static 'images/logo.png' %}" alt="CareFirst Dental Clinic Logo" height="40" style="object-fit: contain;">
+            <img src="{% static 'images/logo.jpeg' %}" alt="CareFirst Dental Clinic Logo" height="40" style="object-fit: contain;">
             <span class="fw-bold ms-2" style="color: var(--navy); font-size: 1.5rem; letter-spacing: -0.5px;">Care<span style="color: var(--primary-blue);">First</span></span>
         </a>
 
@@ -67,7 +67,7 @@
                     <a class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}" href="{% url 'gallery' %}">Smile Gallery</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'media' %}active{% endif %}" href="{% url 'media' %}">Media/Video</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'media' %}active{% endif %}" href="{% url 'media' %}">Video</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'pricing' %}active{% endif %}" href="{% url 'pricing' %}">Pricing</a>
