@@ -1,0 +1,78 @@
+{% load static %}
+<!-- Signature Treatment 1: Root Canal -->
+<section class="signature-treatment py-5 bg-white overflow-hidden" id="specialized">
+    <div class="container py-5 my-lg-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 hover-zoom-img rounded-4 overflow-hidden fade-up">
+                <img src="{% static 'serices-image/rct_feat_tech.png' %}" alt="Root Canal Treatment" class="img-fluid w-100 object-fit-cover aspect-4-5" style="border-radius: 24px;">
+            </div>
+            <div class="col-lg-6 fade-up" style="animation-delay: 0.2s;">
+                <div class="ps-lg-5">
+                    <h2 class="editorial-heading display-4 text-navy mb-4">
+                        Save Your Natural <strong class="text-gradient-primary">Tooth</strong>
+                    </h2>
+                    
+                    <div class="bg-primary-light p-4 rounded-4 mb-4 border-start border-primary border-4">
+                        <p class="fst-italic text-navy mb-0 fs-5">“Preserving your natural tooth whenever possible.”</p>
+                    </div>
+                    
+                    <p class="text-secondary-brand mb-5 fs-5" style="line-height: 1.7; font-weight: 300;">
+                        Our advanced endodontic therapy removes infection from deep within the tooth, relieving pain and preventing extraction. With modern rotary technology and expert anesthesia, this procedure is as comfortable as a routine filling.
+                    </p>
+                    
+                    <a href="{% url 'appointment' %}" class="btn btn-primary px-5 py-3 rounded-pill fw-bold transition-smooth hover-lift">Book Consultation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Signature Treatment 2: Dental Implants -->
+<section class="signature-treatment py-5 overflow-hidden" style="background-color: #F8FAFC;" id="advanced">
+    <div class="container py-5 my-lg-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 order-2 order-lg-1 fade-up" style="animation-delay: 0.2s;">
+                <div class="pe-lg-5">
+                    <h2 class="editorial-heading display-4 text-navy mb-4">
+                        Replace Missing Teeth with <strong class="text-gradient-primary">Confidence</strong>
+                    </h2>
+                    
+                    <div class="bg-white shadow-sm p-4 rounded-4 mb-4">
+                        <p class="text-secondary-brand mb-0 fs-5" style="line-height: 1.7; font-weight: 300;">
+                            Dental implants are the absolute gold standard for tooth replacement. They act as artificial roots, providing a permanent foundation for custom crowns that look, feel, and function exactly like natural teeth.
+                        </p>
+                    </div>
+                    
+                    <a href="{% url 'treatments' %}" class="btn text-white px-5 py-3 rounded-pill fw-bold transition-smooth hover-lift" style="background-color: #0F172A;">Explore Implants</a>
+                </div>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2 hover-zoom-img rounded-4 overflow-hidden fade-up">
+                <img src="{% static 'serices-image/implant-case1.png' %}" alt="Dental Implants" class="img-fluid w-100 object-fit-cover aspect-4-5" style="border-radius: 24px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Signature Treatment 3: Teeth Whitening -->
+<section class="signature-treatment py-5 overflow-hidden" style="background: linear-gradient(135deg, #F0F7FF 0%, #FFFFFF 100%);" id="general">
+    <div class="container py-5 my-lg-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 hover-zoom-img rounded-4 overflow-hidden fade-up">
+                <img src="{% static 'serices-image/after_smile.png' %}" alt="Teeth Whitening" class="img-fluid w-100 object-fit-cover aspect-4-5" style="border-radius: 24px;">
+            </div>
+            <div class="col-lg-6 fade-up" style="animation-delay: 0.2s;">
+                <div class="ps-lg-5">
+                    <h2 class="editorial-heading display-4 text-navy mb-4">
+                        A Brighter Smile Starts <strong class="text-gradient-primary">Today</strong>
+                    </h2>
+                    
+                    <p class="text-secondary-brand mb-5 fs-5" style="line-height: 1.7; font-weight: 300;">
+                        Reverse years of staining from coffee, tea, and aging in just one visit. Our professional whitening treatments are safe for your enamel and deliver dramatically vibrant, long-lasting results that boost your self-confidence immediately.
+                    </p>
+                    
+                    <a href="{% url 'treatments' %}" class="btn bg-white text-primary border border-primary px-5 py-3 rounded-pill fw-bold transition-smooth hover-lift shadow-sm">Explore Whitening</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
