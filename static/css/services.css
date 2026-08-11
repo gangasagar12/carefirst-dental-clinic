@@ -1,0 +1,282 @@
+/* Unified Services & Treatments CSS for CareFirst Theme */
+
+/* General Section Adjustments */
+.section-heading {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+}
+.section-heading .accent {
+    color: var(--primary-blue);
+    background: linear-gradient(135deg, var(--navy), var(--primary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.nd-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.nd-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-blue);
+}
+
+/* Base Cards (RCT/Features) */
+.rct-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(0,0,0,0.05);
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+.rct-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+.rct-icon-wrapper {
+    width: 65px;
+    height: 65px;
+    background: rgba(21, 155, 211, 0.1);
+    color: var(--primary-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+}
+
+/* Compare Card */
+.compare-card {
+    border-left: 4px solid var(--primary-blue);
+    background: var(--white);
+    padding: 24px;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+/* Pricing Table */
+.pricing-table {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.pricing-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 30px 24px;
+    text-align: center;
+}
+.pricing-body {
+    padding: 0;
+}
+.pricing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.pricing-row:last-child {
+    border-bottom: none;
+}
+.pricing-row .title {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 1.15rem;
+    margin: 0;
+}
+.pricing-row .price {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+}
+.pricing-row .currency {
+    font-size: 0.9rem;
+    vertical-align: super;
+    color: var(--text-muted);
+}
+
+/* Vertical Feature Card (Fixing the layout overlap) */
+.vertical-feature-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    border-top: 5px solid var(--primary-blue);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-left: 1px solid rgba(0,0,0,0.05);
+    border-right: 1px solid rgba(0,0,0,0.05);
+}
+.vertical-feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+}
+.vfc-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block; /* Fix image bleeding */
+}
+.vfc-content {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.vfc-title {
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+.vfc-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+.vfc-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.vfc-highlights span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.vfc-highlights span i {
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+}
+
+/* Gallery/Lightbox */
+.rct-gallery-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+.rct-gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.rct-gallery-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.rct-gallery-item:hover img { 
+    transform: scale(1.08); 
+}
+.rct-gallery-item:hover .rct-gallery-overlay { 
+    opacity: 1; 
+}
+
+/* Symptom List */
+.symptom-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.symptom-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background: var(--white);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+.symptom-list li i {
+    margin-top: 2px;
+}
+.symptom-list li span {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+.symptom-list li span strong {
+    color: var(--navy);
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* Fix Hero Background Image Overlap */
+.service-hero {
+    position: relative;
+    padding: 8rem 0 6rem 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
+}
+.service-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 100%);
+    z-index: 1;
+}
+.hero-inner {
+    position: relative;
+    z-index: 2;
+}
+.service-hero h1 {
+    color: var(--white);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+.service-hero .hero-sub {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.2rem;
+    max-width: 700px;
+}
+
+/* Clean up stray nd-cta-strip */
+.nd-cta-strip {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--primary-blue) 100%);
+    padding: 5rem 0;
+    text-align: center;
+    color: var(--white);
+}
+.nd-cta-strip h2 {
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
