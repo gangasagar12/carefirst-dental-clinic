@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}treatments | CareFirst{% endblock %}
+{% load static %}
+
+{% block title %}Our Treatments | CareFirst Dental Clinic{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/treatments.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class='container py-5 text-center' style='margin-top: 100px;'><h1>treatments Page</h1><p>Placeholder content for the treatments page.</p></div>
+    {% include 'pages/treatments_partials/treatments_hero.html' %}
 {% endblock %}
