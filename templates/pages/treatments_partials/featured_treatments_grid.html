@@ -1,95 +1,289 @@
 {% load static %}
 <section class="featured-treatments py-5 bg-white">
     <div class="container py-5 my-lg-4">
-        <div class="mb-5 fade-up">
+        <div class="mb-5 fade-up text-center">
             <h1 class="editorial-heading h2 text-navy">
                 Featured <strong class="text-primary">Treatments</strong>
             </h1>
+            <p class="text-secondary-brand mt-3">Comprehensive care tailored to your unique smile.</p>
         </div>
         
-        <div class="row g-2">
-            <!-- Grid Item 1 -->
+        <div class="row g-4 justify-content-center">
+            <!-- Card 1: Endodontics -->
             <div class="col-lg-4 col-md-6 fade-up" style="animation-delay: 0.1s;">
-                <a href="{% url 'treatments' %}" class="d-block position-relative rounded-4 overflow-hidden featured-grid-item">
-                    <img src="{% static 'serices-image/rct_hero.avif' %}" alt="Root Canal Treatment" class="img-fluid w-100 object-fit-cover" style="height: 240px;">
-                    <div class="featured-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4">
-                        <div class="content-reveal">
-                            <h3 class="h4 text-white fw-bold mb-2">Root Canal Treatment</h3>
-                            <p class="text-white-50 mb-3 small">Comfortable, technology-driven endodontic care.</p>
-                            <span class="text-white fw-bold small text-uppercase tracking-wide border-bottom pb-1">Learn More</span>
+                <div class="bg-white rounded-4 border border-light shadow-sm h-100 d-flex flex-column treatment-service-card transition-smooth">
+                    <!-- Image Section -->
+                    <div class="position-relative">
+                        <img src="{% static 'serices-image/rct_hero.avif' %}" alt="Root Canal Treatment" class="img-fluid w-100 object-fit-cover rounded-top-4" style="height: 220px;">
+                        <!-- Floating Icon Badge -->
+                        <div class="position-absolute d-flex align-items-center justify-content-center rounded-circle border border-white border-2 shadow-sm" style="width: 45px; height: 45px; background-color: #1a4d46; bottom: -22px; right: 24px; z-index: 5;">
+                            <i class="fa-solid fa-tooth text-white small"></i>
                         </div>
                     </div>
-                </a>
+                    
+                    <!-- Content Section -->
+                    <div class="p-4 flex-grow-1 pt-4 mt-2">
+                        <!-- Category Pill -->
+                        <div class="mb-3">
+                            <span class="badge rounded-pill fw-bold" style="background-color: #F0F4F4; color: #5a706b; letter-spacing: 0.5px; font-size: 0.7rem; padding: 0.5rem 0.8rem;">ENDODONTICS</span>
+                        </div>
+                        
+                        <!-- Title -->
+                        <h3 class="editorial-heading h4 text-navy fw-bold mb-3">Root Canal Treatment</h3>
+                        
+                        <!-- Bullet Points -->
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Pain-free procedure
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Save your natural tooth
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Advanced rotary technology
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Footer / Price Section -->
+                    <div class="p-4 border-top border-light d-flex justify-content-between align-items-end mt-auto bg-white rounded-bottom-4">
+                        <div>
+                            <span class="text-secondary-brand d-block mb-1" style="font-size: 0.75rem;">Starting From</span>
+                            <span class="fw-bold fs-5 text-dark">NPR 5,000</span>
+                        </div>
+                        <div>
+                            <a href="{% url 'treatments' %}" class="text-decoration-none fw-bold" style="color: #c49a45; font-size: 0.85rem;">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <!-- Grid Item 2 -->
+            <!-- Card 2: Implantology -->
             <div class="col-lg-4 col-md-6 fade-up" style="animation-delay: 0.2s;">
-                <a href="{% url 'treatments' %}" class="d-block position-relative rounded-4 overflow-hidden featured-grid-item">
-                    <img src="{% static 'serices-image/dental-implant-hero.jpg' %}" alt="Dental Implants" class="img-fluid w-100 object-fit-cover" style="height: 240px;">
-                    <div class="featured-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4">
-                        <div class="content-reveal">
-                            <h3 class="h4 text-white fw-bold mb-2">Dental Implants</h3>
-                            <p class="text-white-50 mb-3 small">Permanent solutions for missing teeth.</p>
-                            <span class="text-white fw-bold small text-uppercase tracking-wide border-bottom pb-1">Learn More</span>
+                <div class="bg-white rounded-4 border border-light shadow-sm h-100 d-flex flex-column treatment-service-card transition-smooth">
+                    <div class="position-relative">
+                        <img src="{% static 'serices-image/dental-implant-hero.jpg' %}" alt="Dental Implants" class="img-fluid w-100 object-fit-cover rounded-top-4" style="height: 220px;">
+                        <div class="position-absolute d-flex align-items-center justify-content-center rounded-circle border border-white border-2 shadow-sm" style="width: 45px; height: 45px; background-color: #1a4d46; bottom: -22px; right: 24px; z-index: 5;">
+                            <i class="fa-solid fa-tooth text-white small"></i>
                         </div>
                     </div>
-                </a>
+                    
+                    <div class="p-4 flex-grow-1 pt-4 mt-2">
+                        <div class="mb-3">
+                            <span class="badge rounded-pill fw-bold" style="background-color: #F0F4F4; color: #5a706b; letter-spacing: 0.5px; font-size: 0.7rem; padding: 0.5rem 0.8rem;">IMPLANTOLOGY</span>
+                        </div>
+                        
+                        <h3 class="editorial-heading h4 text-navy fw-bold mb-3">Dental Implants</h3>
+                        
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Permanent tooth replacement
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Restores chewing function
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Natural look and feel
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 border-top border-light d-flex justify-content-between align-items-end mt-auto bg-white rounded-bottom-4">
+                        <div>
+                            <span class="text-secondary-brand d-block mb-1" style="font-size: 0.75rem;">Starting From</span>
+                            <span class="fw-bold fs-5 text-dark">NPR 50,000</span>
+                        </div>
+                        <div>
+                            <a href="{% url 'treatments' %}" class="text-decoration-none fw-bold" style="color: #c49a45; font-size: 0.85rem;">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <!-- Grid Item 3 -->
+            <!-- Card 3: Cosmetic -->
             <div class="col-lg-4 col-md-6 fade-up" style="animation-delay: 0.3s;">
-                <a href="{% url 'treatments' %}" class="d-block position-relative rounded-4 overflow-hidden featured-grid-item">
-                    <img src="{% static 'serices-image/after_smile.png' %}" alt="Teeth Whitening" class="img-fluid w-100 object-fit-cover" style="height: 240px;">
-                    <div class="featured-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4">
-                        <div class="content-reveal">
-                            <h3 class="h4 text-white fw-bold mb-2">Teeth Whitening</h3>
-                            <p class="text-white-50 mb-3 small">Professional, lasting cosmetic brightening.</p>
-                            <span class="text-white fw-bold small text-uppercase tracking-wide border-bottom pb-1">Learn More</span>
+                <div class="bg-white rounded-4 border border-light shadow-sm h-100 d-flex flex-column treatment-service-card transition-smooth">
+                    <div class="position-relative">
+                        <img src="{% static 'serices-image/after_smile.png' %}" alt="Teeth Whitening" class="img-fluid w-100 object-fit-cover rounded-top-4" style="height: 220px;">
+                        <div class="position-absolute d-flex align-items-center justify-content-center rounded-circle border border-white border-2 shadow-sm" style="width: 45px; height: 45px; background-color: #1a4d46; bottom: -22px; right: 24px; z-index: 5;">
+                            <i class="fa-solid fa-tooth text-white small"></i>
                         </div>
                     </div>
-                </a>
+                    
+                    <div class="p-4 flex-grow-1 pt-4 mt-2">
+                        <div class="mb-3">
+                            <span class="badge rounded-pill fw-bold" style="background-color: #F0F4F4; color: #5a706b; letter-spacing: 0.5px; font-size: 0.7rem; padding: 0.5rem 0.8rem;">COSMETIC</span>
+                        </div>
+                        
+                        <h3 class="editorial-heading h4 text-navy fw-bold mb-3">Teeth Whitening</h3>
+                        
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Remove stubborn stains
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Safe for your enamel
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Instant, bright results
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 border-top border-light d-flex justify-content-between align-items-end mt-auto bg-white rounded-bottom-4">
+                        <div>
+                            <span class="text-secondary-brand d-block mb-1" style="font-size: 0.75rem;">Starting From</span>
+                            <span class="fw-bold fs-5 text-dark">NPR 10,000</span>
+                        </div>
+                        <div>
+                            <a href="{% url 'treatments' %}" class="text-decoration-none fw-bold" style="color: #c49a45; font-size: 0.85rem;">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <!-- Grid Item 4 -->
+            <!-- Card 4: Restorative -->
             <div class="col-lg-4 col-md-6 fade-up" style="animation-delay: 0.1s;">
-                <a href="{% url 'treatments' %}" class="d-block position-relative rounded-4 overflow-hidden featured-grid-item">
-                    <img src="{% static 'serices-image/zirconia-crown.jpg' %}" alt="Crowns & Bridges" class="img-fluid w-100 object-fit-cover" style="height: 240px;">
-                    <div class="featured-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4">
-                        <div class="content-reveal">
-                            <h3 class="h4 text-white fw-bold mb-2">Crowns & Bridges</h3>
-                            <p class="text-white-50 mb-3 small">High-quality, durable smile restorations.</p>
-                            <span class="text-white fw-bold small text-uppercase tracking-wide border-bottom pb-1">Learn More</span>
+                <div class="bg-white rounded-4 border border-light shadow-sm h-100 d-flex flex-column treatment-service-card transition-smooth">
+                    <div class="position-relative">
+                        <img src="{% static 'serices-image/zirconia-crown.jpg' %}" alt="Crowns & Bridges" class="img-fluid w-100 object-fit-cover rounded-top-4" style="height: 220px;">
+                        <div class="position-absolute d-flex align-items-center justify-content-center rounded-circle border border-white border-2 shadow-sm" style="width: 45px; height: 45px; background-color: #1a4d46; bottom: -22px; right: 24px; z-index: 5;">
+                            <i class="fa-solid fa-tooth text-white small"></i>
                         </div>
                     </div>
-                </a>
+                    
+                    <div class="p-4 flex-grow-1 pt-4 mt-2">
+                        <div class="mb-3">
+                            <span class="badge rounded-pill fw-bold" style="background-color: #F0F4F4; color: #5a706b; letter-spacing: 0.5px; font-size: 0.7rem; padding: 0.5rem 0.8rem;">RESTORATIVE</span>
+                        </div>
+                        
+                        <h3 class="editorial-heading h4 text-navy fw-bold mb-3">Crowns & Bridges</h3>
+                        
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Strong & durable crowns
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Natural aesthetics
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Restore function fully
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 border-top border-light d-flex justify-content-between align-items-end mt-auto bg-white rounded-bottom-4">
+                        <div>
+                            <span class="text-secondary-brand d-block mb-1" style="font-size: 0.75rem;">Starting From</span>
+                            <span class="fw-bold fs-5 text-dark">NPR 12,000</span>
+                        </div>
+                        <div>
+                            <a href="{% url 'treatments' %}" class="text-decoration-none fw-bold" style="color: #c49a45; font-size: 0.85rem;">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <!-- Grid Item 5 -->
+            <!-- Card 5: Oral Surgery -->
             <div class="col-lg-4 col-md-6 fade-up" style="animation-delay: 0.2s;">
-                <a href="{% url 'treatments' %}" class="d-block position-relative rounded-4 overflow-hidden featured-grid-item">
-                    <img src="{% static 'serices-image/toothextraction-hero.jpg' %}" alt="Wisdom Tooth Care" class="img-fluid w-100 object-fit-cover" style="height: 240px;">
-                    <div class="featured-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4">
-                        <div class="content-reveal">
-                            <h3 class="h4 text-white fw-bold mb-2">Wisdom Tooth Care</h3>
-                            <p class="text-white-50 mb-3 small">Safe extractions with expert pain management.</p>
-                            <span class="text-white fw-bold small text-uppercase tracking-wide border-bottom pb-1">Learn More</span>
+                <div class="bg-white rounded-4 border border-light shadow-sm h-100 d-flex flex-column treatment-service-card transition-smooth">
+                    <div class="position-relative">
+                        <img src="{% static 'serices-image/toothextraction-hero.jpg' %}" alt="Wisdom Tooth Care" class="img-fluid w-100 object-fit-cover rounded-top-4" style="height: 220px;">
+                        <div class="position-absolute d-flex align-items-center justify-content-center rounded-circle border border-white border-2 shadow-sm" style="width: 45px; height: 45px; background-color: #1a4d46; bottom: -22px; right: 24px; z-index: 5;">
+                            <i class="fa-solid fa-tooth text-white small"></i>
                         </div>
                     </div>
-                </a>
+                    
+                    <div class="p-4 flex-grow-1 pt-4 mt-2">
+                        <div class="mb-3">
+                            <span class="badge rounded-pill fw-bold" style="background-color: #F0F4F4; color: #5a706b; letter-spacing: 0.5px; font-size: 0.7rem; padding: 0.5rem 0.8rem;">ORAL SURGERY</span>
+                        </div>
+                        
+                        <h3 class="editorial-heading h4 text-navy fw-bold mb-3">Wisdom Tooth Care</h3>
+                        
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Safe, expert extractions
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Expert pain management
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Prevent alignment shifts
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 border-top border-light d-flex justify-content-between align-items-end mt-auto bg-white rounded-bottom-4">
+                        <div>
+                            <span class="text-secondary-brand d-block mb-1" style="font-size: 0.75rem;">Starting From</span>
+                            <span class="fw-bold fs-5 text-dark">NPR 3,000</span>
+                        </div>
+                        <div>
+                            <a href="{% url 'treatments' %}" class="text-decoration-none fw-bold" style="color: #c49a45; font-size: 0.85rem;">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <!-- Grid Item 6 -->
+            <!-- Card 6: Diagnostic -->
             <div class="col-lg-4 col-md-6 fade-up" style="animation-delay: 0.3s;">
-                <a href="{% url 'treatments' %}" class="d-block position-relative rounded-4 overflow-hidden featured-grid-item">
-                    <img src="{% static 'serices-image/services1.avif' %}" alt="General Checkup" class="img-fluid w-100 object-fit-cover" style="height: 240px;">
-                    <div class="featured-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4">
-                        <div class="content-reveal">
-                            <h3 class="h4 text-white fw-bold mb-2">General Checkup</h3>
-                            <p class="text-white-50 mb-3 small">Routine examinations for lifelong health.</p>
-                            <span class="text-white fw-bold small text-uppercase tracking-wide border-bottom pb-1">Learn More</span>
+                <div class="bg-white rounded-4 border border-light shadow-sm h-100 d-flex flex-column treatment-service-card transition-smooth">
+                    <div class="position-relative">
+                        <img src="{% static 'serices-image/services1.avif' %}" alt="General Checkup" class="img-fluid w-100 object-fit-cover rounded-top-4" style="height: 220px;">
+                        <div class="position-absolute d-flex align-items-center justify-content-center rounded-circle border border-white border-2 shadow-sm" style="width: 45px; height: 45px; background-color: #1a4d46; bottom: -22px; right: 24px; z-index: 5;">
+                            <i class="fa-solid fa-tooth text-white small"></i>
                         </div>
                     </div>
-                </a>
+                    
+                    <div class="p-4 flex-grow-1 pt-4 mt-2">
+                        <div class="mb-3">
+                            <span class="badge rounded-pill fw-bold" style="background-color: #F0F4F4; color: #5a706b; letter-spacing: 0.5px; font-size: 0.7rem; padding: 0.5rem 0.8rem;">DIAGNOSTIC</span>
+                        </div>
+                        
+                        <h3 class="editorial-heading h4 text-navy fw-bold mb-3">General Checkup</h3>
+                        
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Routine dental exams
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Digital X-Rays
+                            </li>
+                            <li class="mb-2 text-secondary-brand small d-flex align-items-start">
+                                <span class="rounded-circle d-inline-block mt-1 me-3" style="width: 6px; height: 6px; background-color: #4CAF50; flex-shrink: 0;"></span>
+                                Preventive cleaning
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 border-top border-light d-flex justify-content-between align-items-end mt-auto bg-white rounded-bottom-4">
+                        <div>
+                            <span class="text-secondary-brand d-block mb-1" style="font-size: 0.75rem;">Starting From</span>
+                            <span class="fw-bold fs-5 text-dark">NPR 500</span>
+                        </div>
+                        <div>
+                            <a href="{% url 'treatments' %}" class="text-decoration-none fw-bold" style="color: #c49a45; font-size: 0.85rem;">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
         </div>
