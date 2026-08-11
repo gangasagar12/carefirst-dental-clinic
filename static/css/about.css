@@ -149,6 +149,9 @@
     color: var(--white) !important;
     transform: scale(1.1);
 }
+.service-glow-card:hover .service-img-wrapper img {
+    transform: scale(1.1);
+}
 
 /* Timeline Journey */
 .timeline-step .timeline-circle {
