@@ -3,110 +3,294 @@
     <div class="container py-5 my-lg-4">
         <div class="text-center mb-5 fade-up">
             <h2 class="display-6 fw-bold text-navy mb-3">Our Premium Dental Services</h2>
-            <p class="lead text-secondary-brand mx-auto" style="max-width: 600px;">Comprehensive dental care designed around your smile.</p>
+            <p class="lead text-secondary-brand mx-auto" style="max-width: 600px;">Comprehensive dental care designed around your smile, featuring advanced technology and expert care.</p>
         </div>
         
         <div class="row g-4 mb-5">
             <!-- Service 1 -->
             <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.1s;">
-                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light">
-                    <div class="service-img-wrapper" style="height: 180px; overflow: hidden;">
+                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light position-relative">
+                    <div class="service-img-wrapper position-relative" style="height: 180px; overflow: hidden;">
                         <img src="{% static 'serices-image/services1.avif' %}" alt="General Dental Checkup" class="w-100 h-100 object-fit-cover transition-all" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNEQ0U3RUQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NDc0OEIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TZXJ2aWNlPC90ZXh0Pjwvc3ZnPg=='">
+                        <div class="position-absolute bottom-0 start-0 w-100 h-50" style="background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
                     </div>
                     <div class="p-4 d-flex flex-column flex-grow-1">
-                        <h3 class="h5 fw-bold text-navy mb-2">General Dental Checkup</h3>
-                        <p class="text-secondary-brand mb-0 small flex-grow-1">Routine examinations to maintain lifelong oral health.</p>
+                        <span class="badge bg-primary-light text-primary mb-3 align-self-start px-3 py-2 rounded-pill fw-bold" style="font-size: 0.75rem; letter-spacing: 0.5px;">PREVENTIVE CARE</span>
+                        <h3 class="h5 fw-bold text-navy mb-3">General Dental Checkup</h3>
+                        <p class="text-secondary-brand small mb-4" style="line-height: 1.6;">Comprehensive routine examinations and professional cleanings to maintain your lifelong oral health.</p>
+                        
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Digital X-rays & diagnostics</span>
+                            </li>
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Professional teeth cleaning</span>
+                            </li>
+                            <li class="small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Early cavity detection</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-auto pt-3 border-top border-light">
+                            <a href="{% url 'treatments' %}" class="text-primary fw-bold small text-decoration-none d-inline-flex align-items-center hover-underline">
+                                Explore Treatment <i class="fa-solid fa-arrow-right ms-2 fs-7"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Service 2 -->
             <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.2s;">
-                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light">
-                    <div class="service-img-wrapper" style="height: 180px; overflow: hidden;">
+                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light position-relative">
+                    <div class="service-img-wrapper position-relative" style="height: 180px; overflow: hidden;">
                         <img src="{% static 'serices-image/rct_hero.avif' %}" alt="Root Canal Treatment" class="w-100 h-100 object-fit-cover transition-all" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNEQ0U3RUQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NDc0OEIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TZXJ2aWNlPC90ZXh0Pjwvc3ZnPg=='">
+                        <div class="position-absolute bottom-0 start-0 w-100 h-50" style="background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
                     </div>
                     <div class="p-4 d-flex flex-column flex-grow-1">
-                        <h3 class="h5 fw-bold text-navy mb-2">Root Canal Treatment</h3>
-                        <p class="text-secondary-brand mb-0 small flex-grow-1">Expert endodontic care to save infected teeth comfortably.</p>
+                        <span class="badge bg-primary-light text-primary mb-3 align-self-start px-3 py-2 rounded-pill fw-bold" style="font-size: 0.75rem; letter-spacing: 0.5px;">ENDODONTICS</span>
+                        <h3 class="h5 fw-bold text-navy mb-3">Root Canal Treatment</h3>
+                        <p class="text-secondary-brand small mb-4" style="line-height: 1.6;">Expert endodontic care using advanced technology to comfortably save severely infected teeth.</p>
+                        
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Pain-free procedure</span>
+                            </li>
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Preserves natural tooth</span>
+                            </li>
+                            <li class="small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Advanced rotary technology</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-auto pt-3 border-top border-light">
+                            <a href="{% url 'treatments' %}" class="text-primary fw-bold small text-decoration-none d-inline-flex align-items-center hover-underline">
+                                Explore Treatment <i class="fa-solid fa-arrow-right ms-2 fs-7"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Service 3 -->
             <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.3s;">
-                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light">
-                    <div class="service-img-wrapper" style="height: 180px; overflow: hidden;">
+                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light position-relative">
+                    <div class="service-img-wrapper position-relative" style="height: 180px; overflow: hidden;">
                         <img src="{% static 'serices-image/dental-implant-hero.jpg' %}" alt="Dental Implants" class="w-100 h-100 object-fit-cover transition-all" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNEQ0U3RUQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NDc0OEIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TZXJ2aWNlPC90ZXh0Pjwvc3ZnPg=='">
+                        <div class="position-absolute bottom-0 start-0 w-100 h-50" style="background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
                     </div>
                     <div class="p-4 d-flex flex-column flex-grow-1">
-                        <h3 class="h5 fw-bold text-navy mb-2">Dental Implants</h3>
-                        <p class="text-secondary-brand mb-0 small flex-grow-1">Permanent, natural-looking solutions for missing teeth.</p>
+                        <span class="badge bg-primary-light text-primary mb-3 align-self-start px-3 py-2 rounded-pill fw-bold" style="font-size: 0.75rem; letter-spacing: 0.5px;">RESTORATIVE</span>
+                        <h3 class="h5 fw-bold text-navy mb-3">Dental Implants</h3>
+                        <p class="text-secondary-brand small mb-4" style="line-height: 1.6;">The gold standard for replacing missing teeth with permanent, functional solutions.</p>
+                        
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Natural look and feel</span>
+                            </li>
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Prevents bone loss</span>
+                            </li>
+                            <li class="small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Lifetime durability</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-auto pt-3 border-top border-light">
+                            <a href="{% url 'treatments' %}" class="text-primary fw-bold small text-decoration-none d-inline-flex align-items-center hover-underline">
+                                Explore Treatment <i class="fa-solid fa-arrow-right ms-2 fs-7"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Service 4 -->
-            <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.1s;">
-                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light">
-                    <div class="service-img-wrapper" style="height: 180px; overflow: hidden;">
+            <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.4s;">
+                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light position-relative">
+                    <div class="service-img-wrapper position-relative" style="height: 180px; overflow: hidden;">
                         <img src="{% static 'serices-image/zirconia-crown.jpg' %}" alt="Crowns & Bridges" class="w-100 h-100 object-fit-cover transition-all" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNEQ0U3RUQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NDc0OEIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TZXJ2aWNlPC90ZXh0Pjwvc3ZnPg=='">
+                        <div class="position-absolute bottom-0 start-0 w-100 h-50" style="background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
                     </div>
                     <div class="p-4 d-flex flex-column flex-grow-1">
-                        <h3 class="h5 fw-bold text-navy mb-2">Crowns & Bridges</h3>
-                        <p class="text-secondary-brand mb-0 small flex-grow-1">Durable restorations to protect and restore your smile.</p>
+                        <span class="badge bg-primary-light text-primary mb-3 align-self-start px-3 py-2 rounded-pill fw-bold" style="font-size: 0.75rem; letter-spacing: 0.5px;">RESTORATIVE</span>
+                        <h3 class="h5 fw-bold text-navy mb-3">Crowns & Bridges</h3>
+                        <p class="text-secondary-brand small mb-4" style="line-height: 1.6;">High-quality, custom-crafted restorations to protect weakened teeth and restore your smile.</p>
+                        
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Zirconia & E-max options</span>
+                            </li>
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Perfect color matching</span>
+                            </li>
+                            <li class="small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Restores chewing function</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-auto pt-3 border-top border-light">
+                            <a href="{% url 'treatments' %}" class="text-primary fw-bold small text-decoration-none d-inline-flex align-items-center hover-underline">
+                                Explore Treatment <i class="fa-solid fa-arrow-right ms-2 fs-7"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Service 5 -->
-            <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.2s;">
-                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light">
-                    <div class="service-img-wrapper" style="height: 180px; overflow: hidden;">
+            <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.1s;">
+                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light position-relative">
+                    <div class="service-img-wrapper position-relative" style="height: 180px; overflow: hidden;">
                         <img src="{% static 'serices-image/hero_bg.png' %}" alt="Teeth Whitening" class="w-100 h-100 object-fit-cover transition-all" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNEQ0U3RUQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NDc0OEIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TZXJ2aWNlPC90ZXh0Pjwvc3ZnPg=='">
+                        <div class="position-absolute bottom-0 start-0 w-100 h-50" style="background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
                     </div>
                     <div class="p-4 d-flex flex-column flex-grow-1">
-                        <h3 class="h5 fw-bold text-navy mb-2">Teeth Whitening</h3>
-                        <p class="text-secondary-brand mb-0 small flex-grow-1">Professional treatments for a brighter, more confident smile.</p>
+                        <span class="badge bg-primary-light text-primary mb-3 align-self-start px-3 py-2 rounded-pill fw-bold" style="font-size: 0.75rem; letter-spacing: 0.5px;">COSMETIC</span>
+                        <h3 class="h5 fw-bold text-navy mb-3">Teeth Whitening</h3>
+                        <p class="text-secondary-brand small mb-4" style="line-height: 1.6;">Professional whitening treatments to safely remove stains and reveal a brighter smile.</p>
+                        
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Immediate visible results</span>
+                            </li>
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Safe for tooth enamel</span>
+                            </li>
+                            <li class="small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Long-lasting brightness</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-auto pt-3 border-top border-light">
+                            <a href="{% url 'treatments' %}" class="text-primary fw-bold small text-decoration-none d-inline-flex align-items-center hover-underline">
+                                Explore Treatment <i class="fa-solid fa-arrow-right ms-2 fs-7"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Service 6 -->
-            <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.3s;">
-                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light">
-                    <div class="service-img-wrapper" style="height: 180px; overflow: hidden;">
+            <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.2s;">
+                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light position-relative">
+                    <div class="service-img-wrapper position-relative" style="height: 180px; overflow: hidden;">
                         <img src="{% static 'serices-image/toothextraction-hero.jpg' %}" alt="Wisdom Tooth Care" class="w-100 h-100 object-fit-cover transition-all" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNEQ0U3RUQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NDc0OEIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TZXJ2aWNlPC90ZXh0Pjwvc3ZnPg=='">
+                        <div class="position-absolute bottom-0 start-0 w-100 h-50" style="background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
                     </div>
                     <div class="p-4 d-flex flex-column flex-grow-1">
-                        <h3 class="h5 fw-bold text-navy mb-2">Wisdom Tooth Care</h3>
-                        <p class="text-secondary-brand mb-0 small flex-grow-1">Safe extractions and pain management by skilled professionals.</p>
+                        <span class="badge bg-primary-light text-primary mb-3 align-self-start px-3 py-2 rounded-pill fw-bold" style="font-size: 0.75rem; letter-spacing: 0.5px;">ORAL SURGERY</span>
+                        <h3 class="h5 fw-bold text-navy mb-3">Wisdom Tooth Care</h3>
+                        <p class="text-secondary-brand small mb-4" style="line-height: 1.6;">Safe and comfortable extractions with expert pain management by our skilled surgeons.</p>
+                        
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Minimally invasive approach</span>
+                            </li>
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Sedation options available</span>
+                            </li>
+                            <li class="small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Rapid recovery guidance</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-auto pt-3 border-top border-light">
+                            <a href="{% url 'treatments' %}" class="text-primary fw-bold small text-decoration-none d-inline-flex align-items-center hover-underline">
+                                Explore Treatment <i class="fa-solid fa-arrow-right ms-2 fs-7"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Service 7 -->
-            <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.1s;">
-                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light">
-                    <div class="service-img-wrapper" style="height: 180px; overflow: hidden;">
+            <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.3s;">
+                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light position-relative">
+                    <div class="service-img-wrapper position-relative" style="height: 180px; overflow: hidden;">
                         <img src="{% static 'serices-image/dental2_x-ray.jpg' %}" alt="Pediatric Dentistry" class="w-100 h-100 object-fit-cover transition-all" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNEQ0U3RUQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NDc0OEIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TZXJ2aWNlPC90ZXh0Pjwvc3ZnPg=='">
+                        <div class="position-absolute bottom-0 start-0 w-100 h-50" style="background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
                     </div>
                     <div class="p-4 d-flex flex-column flex-grow-1">
-                        <h3 class="h5 fw-bold text-navy mb-2">Pediatric Dentistry</h3>
-                        <p class="text-secondary-brand mb-0 small flex-grow-1">Gentle, friendly dental care specialized for children.</p>
+                        <span class="badge bg-primary-light text-primary mb-3 align-self-start px-3 py-2 rounded-pill fw-bold" style="font-size: 0.75rem; letter-spacing: 0.5px;">KIDS DENTAL</span>
+                        <h3 class="h5 fw-bold text-navy mb-3">Pediatric Dentistry</h3>
+                        <p class="text-secondary-brand small mb-4" style="line-height: 1.6;">Gentle, friendly, and engaging dental care specialized for children in a stress-free environment.</p>
+                        
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Cavity prevention</span>
+                            </li>
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Habit counseling</span>
+                            </li>
+                            <li class="small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Fun, welcoming atmosphere</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-auto pt-3 border-top border-light">
+                            <a href="{% url 'treatments' %}" class="text-primary fw-bold small text-decoration-none d-inline-flex align-items-center hover-underline">
+                                Explore Treatment <i class="fa-solid fa-arrow-right ms-2 fs-7"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Service 8 -->
-            <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.2s;">
-                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light">
-                    <div class="service-img-wrapper" style="height: 180px; overflow: hidden;">
+            <div class="col-lg-3 col-md-6 fade-up" style="animation-delay: 0.4s;">
+                <div class="service-glow-card bg-white rounded-4 shadow-sm h-100 d-flex flex-column overflow-hidden border border-light position-relative">
+                    <div class="service-img-wrapper position-relative" style="height: 180px; overflow: hidden;">
                         <img src="{% static 'serices-image/after_smile.png' %}" alt="Smile Makeover" class="w-100 h-100 object-fit-cover transition-all" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNEQ0U3RUQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NDc0OEIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TZXJ2aWNlPC90ZXh0Pjwvc3ZnPg=='">
+                        <div class="position-absolute bottom-0 start-0 w-100 h-50" style="background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
                     </div>
                     <div class="p-4 d-flex flex-column flex-grow-1">
-                        <h3 class="h5 fw-bold text-navy mb-2">Smile Makeover</h3>
-                        <p class="text-secondary-brand mb-0 small flex-grow-1">Comprehensive cosmetic treatments customized to you.</p>
+                        <span class="badge bg-primary-light text-primary mb-3 align-self-start px-3 py-2 rounded-pill fw-bold" style="font-size: 0.75rem; letter-spacing: 0.5px;">COSMETIC</span>
+                        <h3 class="h5 fw-bold text-navy mb-3">Smile Makeover</h3>
+                        <p class="text-secondary-brand small mb-4" style="line-height: 1.6;">A comprehensive cosmetic treatment plan customized specifically to achieve your dream smile.</p>
+                        
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Personalized digital design</span>
+                            </li>
+                            <li class="mb-2 small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Veneers & contouring</span>
+                            </li>
+                            <li class="small d-flex align-items-start">
+                                <i class="fa-solid fa-circle-check text-primary mt-1 me-2"></i>
+                                <span class="text-dark fw-medium">Complete smile harmony</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-auto pt-3 border-top border-light">
+                            <a href="{% url 'treatments' %}" class="text-primary fw-bold small text-decoration-none d-inline-flex align-items-center hover-underline">
+                                Explore Treatment <i class="fa-solid fa-arrow-right ms-2 fs-7"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="text-center fade-up" style="animation-delay: 0.4s;">
-            <a href="{% url 'treatments' %}" class="btn text-primary fw-bold hover-scale d-inline-flex align-items-center">
+        <div class="text-center fade-up" style="animation-delay: 0.5s;">
+            <a href="{% url 'treatments' %}" class="btn btn-primary px-5 py-3 rounded-pill fw-bold hover-lift shadow-sm d-inline-flex align-items-center">
                 View All Treatments <i class="fa-solid fa-arrow-right ms-2"></i>
             </a>
         </div>
