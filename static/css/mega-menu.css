@@ -21,7 +21,21 @@
     pointer-events: none;
 }
 
+/* Invisible bridge to prevent hover loss when moving mouse down */
+.mega-dropdown::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    bottom: -20px;
+    left: 0;
+    z-index: 10;
+    display: none;
+}
 @media (min-width: 992px) {
+    .mega-dropdown:hover::before {
+        display: block;
+    }
     .mega-dropdown:hover .mega-menu-container,
     .mega-dropdown .nav-link.show + .mega-menu-container {
         opacity: 1;
