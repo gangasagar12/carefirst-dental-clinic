@@ -21,8 +21,8 @@
   .den-icon-wrapper {
     width: 60px;
     height: 60px;
-    background: var(--nd-green-tint);
-    color: var(--nd-green);
+    background: rgba(21,155,211,0.05);
+    color: var(--primary-blue);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -43,7 +43,7 @@
     object-fit: cover;
   }
   .den-tip-card {
-    border-left: 4px solid var(--nd-gold);
+    border-left: 4px solid #159BD3;
     background: #fff;
     padding: 20px;
     border-radius: 0 8px 8px 0;
@@ -60,7 +60,7 @@
     border: 1px solid rgba(14,90,79,0.1);
   }
   .pricing-header {
-    background: var(--nd-green-dark);
+    background: var(--navy);
     color: #fff;
     padding: 24px;
     text-align: center;
@@ -80,15 +80,15 @@
   }
   .pricing-row .title {
     font-weight: 700;
-    color: var(--nd-green-dark);
+    color: var(--navy);
     font-size: 1.1rem;
     margin: 0;
   }
   .pricing-row .price {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--nd-gold-dark);
-    font-family: var(--nd-font-head);
+    color: var(--primary-blue);
+    font-family: inherit;
   }
   .pricing-row .currency {
     font-size: 0.9rem;
@@ -125,21 +125,21 @@
 
 {% block content %}
 
-{% load i18n %}
+
 <!-- 1. HERO BANNER -->
 <section class="service-hero text-center" style="background-image: url('{% static "/images/dentures-hero.jpeg" %}');">
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
-        <li class="breadcrumb-item active text-warning">{% trans "Dentures" %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item active text-warning">Dentures</li>
       </ol>
     </nav>
-    <h1><i class="bi bi-layers me-3 text-warning"></i>{% trans "Dentures" %}</h1>
-    <p class="hero-sub mx-auto">{% trans "Custom-crafted partial and complete dentures to restore your smile and confidence." %}</p>
+    <h1><i class="bi bi-layers me-3 text-warning"></i>Dentures</h1>
+    <p class="hero-sub mx-auto">Custom-crafted partial and complete dentures to restore your smile and confidence.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Restore Your Smile Today" %}</a>
+      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Restore Your Smile Today</a>
     </div>
   </div>
 </section>
@@ -149,20 +149,20 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What Are" %} <span class="accent">{% trans "Dentures?" %}</span></h2>
+        <div class="nd-eyebrow">Introduction</div>
+        <h2 class="section-heading mb-4">What Are <span class="accent">Dentures?</span></h2>
         <p class="text-muted" style="line-height:1.85;">
-          {% trans "Dentures are custom-made, removable dental appliances designed to replace missing teeth and surrounding tissues. When you lose teeth due to severe decay, periodontal disease, or trauma, your facial muscles can sag, making you look older. Dentures fill out the appearance of your face and profile." %}
+          Dentures are custom-made, removable dental appliances designed to replace missing teeth and surrounding tissues. When you lose teeth due to severe decay, periodontal disease, or trauma, your facial muscles can sag, making you look older. Dentures fill out the appearance of your face and profile.
         </p>
         <p class="text-muted" style="line-height:1.85;">
           At Niko Dental & Aesthetics, we craft modern dentures that are comfortable, functional, and look incredibly natural. Whether you are missing a few teeth or an entire arch, we provide personalized solutions to help you eat, speak, and smile with confidence again.
         </p>
         
-        <h5 class="fw-bold mt-4 mb-3" style="color:var(--nd-green-dark);">{% trans "Who Needs Dentures?" %}</h5>
+        <h5 class="fw-bold mt-4 mb-3" style="color:var(--navy);">Who Needs Dentures?</h5>
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>{% trans "Patients who have lost several or all of their teeth." %}</span></li>
-          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>{% trans "Individuals seeking an affordable alternative to dental implants." %}</span></li>
-          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>{% trans "Those who have experienced significant jaw bone loss and cannot support implants." %}</span></li>
+          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>Patients who have lost several or all of their teeth.</span></li>
+          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>Individuals seeking an affordable alternative to dental implants.</span></li>
+          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>Those who have experienced significant jaw bone loss and cannot support implants.</span></li>
         </ul>
       </div>
       <div class="col-lg-6">
@@ -173,12 +173,12 @@
 </section>
 
 <!-- 3. TYPES OF DENTURES -->
-<section class="section-py" style="background:var(--nd-gray-bg);">
+<section class="section-py" style="background:#F8FAFC;">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Custom Solutions" %}</div>
-      <h2 class="section-heading">{% trans "Types of" %} <span class="accent">{% trans "Dentures" %}</span></h2>
-      <p class="text-muted mx-auto mt-3" style="max-width: 700px;">{% trans "We offer different types of dentures depending on how many teeth you need replaced. Our team will help you choose the best option during your consultation." %}</p>
+      <div class="nd-eyebrow justify-content-center">Custom Solutions</div>
+      <h2 class="section-heading">Types of <span class="accent">Dentures</span></h2>
+      <p class="text-muted mx-auto mt-3" style="max-width: 700px;">We offer different types of dentures depending on how many teeth you need replaced. Our team will help you choose the best option during your consultation.</p>
     </div>
     
     <div class="row g-5">
@@ -187,12 +187,12 @@
         <div class="den-type-card shadow-sm">
           <img loading="lazy" src="{% static '/images/removable-denture.jpg' %}" alt="Partial Denture" class="den-type-img">
           <div class="p-4">
-            <h4 class="fw-bold mb-3" style="color:var(--nd-green-dark);">{% trans "Removable Partial Denture (RPD)" %}</h4>
-            <p class="text-muted small mb-3">{% trans "Designed for patients who still have some healthy natural teeth remaining in their upper or lower jaw." %}</p>
+            <h4 class="fw-bold mb-3" style="color:var(--navy);">Removable Partial Denture (RPD)</h4>
+            <p class="text-muted small mb-3">Designed for patients who still have some healthy natural teeth remaining in their upper or lower jaw.</p>
             <ul class="text-muted small ps-3 mb-0">
-              <li class="mb-2">{% trans "Fills in the spaces created by missing teeth." %}</li>
-              <li class="mb-2">{% trans "Prevents other teeth from shifting out of position." %}</li>
-              <li>{% trans "Often features a metal framework or flexible acrylic base with clasps that attach to your natural teeth for stability." %}</li>
+              <li class="mb-2">Fills in the spaces created by missing teeth.</li>
+              <li class="mb-2">Prevents other teeth from shifting out of position.</li>
+              <li>Often features a metal framework or flexible acrylic base with clasps that attach to your natural teeth for stability.</li>
             </ul>
           </div>
         </div>
@@ -203,12 +203,12 @@
         <div class="den-type-card shadow-sm">
           <img loading="lazy" src="{% static '/images/complete-denture.jpg' %}" alt="Complete Denture" class="den-type-img">
           <div class="p-4">
-            <h4 class="fw-bold mb-3" style="color:var(--nd-green-dark);">{% trans "Complete Denture (CD)" %}</h4>
-            <p class="text-muted small mb-3">{% trans "Designed for patients who have lost all of their teeth in a full dental arch (upper, lower, or both)." %}</p>
+            <h4 class="fw-bold mb-3" style="color:var(--navy);">Complete Denture (CD)</h4>
+            <p class="text-muted small mb-3">Designed for patients who have lost all of their teeth in a full dental arch (upper, lower, or both).</p>
             <ul class="text-muted small ps-3 mb-0">
-              <li class="mb-2">{% trans "Restores the entire smile and facial structure." %}</li>
-              <li class="mb-2">{% trans "Custom-fitted acrylic base rests directly on the gums." %}</li>
-              <li>{% trans "Upper dentures cover the roof of the mouth for suction, while lower dentures are shaped like a horseshoe to accommodate the tongue." %}</li>
+              <li class="mb-2">Restores the entire smile and facial structure.</li>
+              <li class="mb-2">Custom-fitted acrylic base rests directly on the gums.</li>
+              <li>Upper dentures cover the roof of the mouth for suction, while lower dentures are shaped like a horseshoe to accommodate the tongue.</li>
             </ul>
           </div>
         </div>
@@ -223,35 +223,35 @@
     <div class="row g-5">
       <!-- Benefits -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "Advantages" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Benefits of Dentures" %}</h3>
+        <div class="nd-eyebrow">Advantages</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Benefits of Dentures</h3>
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="den-card">
               <div class="den-icon-wrapper"><i class="bi bi-emoji-smile"></i></div>
-              <h6 class="fw-bold">{% trans "Restored Appearance" %}</h6>
-              <p class="small text-muted mb-0">{% blocktrans %}Maintains the shape of your face, preventing the \"sunken\" look associated with missing teeth.{% endblocktrans %}</p>
+              <h6 class="fw-bold">Restored Appearance</h6>
+              <p class="small text-muted mb-0">Maintains the shape of your face, preventing the \"sunken\" look associated with missing teeth.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="den-card">
               <div class="den-icon-wrapper"><i class="bi bi-basket"></i></div>
-              <h6 class="fw-bold">{% trans "Improved Function" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Allows you to chew food properly, improving digestion and nutrition." %}</p>
+              <h6 class="fw-bold">Improved Function</h6>
+              <p class="small text-muted mb-0">Allows you to chew food properly, improving digestion and nutrition.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="den-card">
               <div class="den-icon-wrapper"><i class="bi bi-chat-quote"></i></div>
-              <h6 class="fw-bold">{% trans "Clearer Speech" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Missing teeth can cause lisps or slurring. Dentures restore your ability to speak clearly." %}</p>
+              <h6 class="fw-bold">Clearer Speech</h6>
+              <p class="small text-muted mb-0">Missing teeth can cause lisps or slurring. Dentures restore your ability to speak clearly.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="den-card">
               <div class="den-icon-wrapper"><i class="bi bi-wallet2"></i></div>
-              <h6 class="fw-bold">{% trans "Cost-Effective" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Dentures are typically more affordable than full-mouth dental implants or large bridges." %}</p>
+              <h6 class="fw-bold">Cost-Effective</h6>
+              <p class="small text-muted mb-0">Dentures are typically more affordable than full-mouth dental implants or large bridges.</p>
             </div>
           </div>
         </div>
@@ -259,14 +259,14 @@
       
       <!-- Why Niko -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Why Us?" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Why Choose Niko Dental?" %}</h3>
-        <p class="text-muted mb-4">{% trans "Creating comfortable, natural-looking dentures is an art. Here is why our patients love our prosthetics:" %}</p>
+        <div class="nd-eyebrow">Why Us?</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Why Choose Niko Dental?</h3>
+        <p class="text-muted mb-4">Creating comfortable, natural-looking dentures is an art. Here is why our patients love our prosthetics:</p>
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Precision Fitting:" %}</strong> {% trans "We take multiple detailed impressions to ensure your denture fits snugly without irritating your gums." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Premium Materials:" %}</strong> {% trans "We use high-quality acrylics and ceramics that mimic the translucency of natural teeth." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Custom Aesthetics:" %}</strong> {% trans "You get to choose the shade and shape of the teeth to match your original smile." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Adjustment Period:" %}</strong> {% trans "We provide comprehensive follow-up visits to adjust the fit as your mouth gets used to the new appliance." %}</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Precision Fitting:</strong> We take multiple detailed impressions to ensure your denture fits snugly without irritating your gums.</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Premium Materials:</strong> We use high-quality acrylics and ceramics that mimic the translucency of natural teeth.</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Custom Aesthetics:</strong> You get to choose the shade and shape of the teeth to match your original smile.</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Adjustment Period:</strong> We provide comprehensive follow-up visits to adjust the fit as your mouth gets used to the new appliance.</span></li>
         </ul>
       </div>
     </div>
@@ -274,52 +274,52 @@
 </section>
 
 <!-- 5. PROCESS & PRICING -->
-<section class="section-py" style="background:var(--nd-green-dark); color:#fff;">
+<section class="section-py" style="background:var(--navy); color:#fff;">
   <div class="container">
     <div class="row g-5 align-items-center">
       
       <!-- Step-by-Step -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Our Denture" %} <span class="text-warning">{% trans "Treatment Process" %}</span></h2>
+        <div class="nd-eyebrow justify-content-start text-white-50 border-white">The Procedure</div>
+        <h2 class="section-heading text-white mb-5">Our Denture <span class="text-warning">Treatment Process</span></h2>
         
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
             <h5 class="fw-bold text-white mb-1">Consultation & Impressions</h5>
-            <p class="text-white-50 mb-0">{% trans "We evaluate your gums, take initial molds of your mouth, and discuss which type of denture is best for you." %}</p>
+            <p class="text-white-50 mb-0">We evaluate your gums, take initial molds of your mouth, and discuss which type of denture is best for you.</p>
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Bite Registration" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "We measure how your upper and lower jaws relate to each other to ensure your new teeth will meet correctly when chewing." %}</p>
+            <h5 class="fw-bold text-white mb-1">Bite Registration</h5>
+            <p class="text-white-50 mb-0">We measure how your upper and lower jaws relate to each other to ensure your new teeth will meet correctly when chewing.</p>
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Wax Try-In" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "You will try on a wax mockup of the denture. We check the fit, color, and shape, making any necessary aesthetic adjustments before final casting." %}</p>
+            <h5 class="fw-bold text-white mb-1">Wax Try-In</h5>
+            <p class="text-white-50 mb-0">You will try on a wax mockup of the denture. We check the fit, color, and shape, making any necessary aesthetic adjustments before final casting.</p>
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Final Delivery" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "You receive your finished, custom-crafted dentures. We insert them and make minor adjustments for optimal comfort." %}</p>
+            <h5 class="fw-bold text-white mb-1">Final Delivery</h5>
+            <p class="text-white-50 mb-0">You receive your finished, custom-crafted dentures. We insert them and make minor adjustments for optimal comfort.</p>
           </div>
         </div>
         <div class="d-flex">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-5-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-5-circle-fill"></i></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Follow-up Adjustments" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "As you get used to wearing them, we schedule follow-ups to relieve any sore spots and fine-tune the fit." %}</p>
+            <h5 class="fw-bold text-white mb-1">Follow-up Adjustments</h5>
+            <p class="text-white-50 mb-0">As you get used to wearing them, we schedule follow-ups to relieve any sore spots and fine-tune the fit.</p>
           </div>
         </div>
       </div>
@@ -328,56 +328,56 @@
       <div class="col-lg-5">
         <div class="pricing-table">
           <div class="pricing-header">
-            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
+            <h3 class="fw-bold mb-0">Treatment Charges</h3>
             <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing</p>
           </div>
           <div class="pricing-body">
             
             <div class="pricing-row">
               <div>
-                <p class="title">{% trans "Partial Denture (RPD)" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Acrylic (Per Tooth Base)" %}</p>
+                <p class="title">Partial Denture (RPD)</p>
+                <p class="text-muted small mb-0 mt-1">Acrylic (Per Tooth Base)</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.partial_denture_rpd|default:"2,500" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.partial_denture_rpd|default:"2,500" }}</span>
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--nd-green-tint);">
+            <div class="pricing-row" style="background-color: rgba(21,155,211,0.05);">
               <div>
-                <p class="title">{% trans "Flexible Partial (Valplast)" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Metal-free, highly aesthetic" %}</p>
+                <p class="title">Flexible Partial (Valplast)</p>
+                <p class="text-muted small mb-0 mt-1">Metal-free, highly aesthetic</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.flexible_partial_valplast|default:"15,000" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.flexible_partial_valplast|default:"15,000" }}</span>
               </div>
             </div>
             
             <div class="pricing-row">
               <div>
-                <p class="title">{% trans "Complete Denture (CD)" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Standard Acrylic (Single Arch)" %}</p>
+                <p class="title">Complete Denture (CD)</p>
+                <p class="text-muted small mb-0 mt-1">Standard Acrylic (Single Arch)</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.complete_denture_cd|default:"15,000" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.complete_denture_cd|default:"15,000" }}</span>
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--nd-green-tint);">
+            <div class="pricing-row" style="background-color: rgba(21,155,211,0.05);">
               <div>
-                <p class="title">{% trans "Premium Denture" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "High-impact BPS (Single Arch)" %}</p>
+                <p class="title">Premium Denture</p>
+                <p class="text-muted small mb-0 mt-1">High-impact BPS (Single Arch)</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.premium_denture|default:"25,000" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.premium_denture|default:"25,000" }}</span>
               </div>
             </div>
 
             <div class="p-4 text-center">
               <p class="small text-muted mb-4 fst-italic">
-                {% blocktrans %}* Note: The final treatment cost depends heavily on the patient's oral condition, the number of teeth being replaced, and the specific material chosen.{% endblocktrans %}
+                * Note: The final treatment cost depends heavily on the patient's oral condition, the number of teeth being replaced, and the specific material chosen.
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Consultation" %}</a>
+              <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Schedule Consultation</a>
             </div>
 
           </div>
@@ -391,31 +391,31 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Our Work" %}</div>
-      <h2 class="section-heading">{% trans "Denture" %} <span class="accent">{% trans "Treatment Gallery" %}</span></h2>
-      <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "See how a well-crafted set of dentures can completely transform a smile and restore facial proportions." %}</p>
+      <div class="nd-eyebrow justify-content-center">Our Work</div>
+      <h2 class="section-heading">Denture <span class="accent">Treatment Gallery</span></h2>
+      <p class="text-muted mx-auto mt-3" style="max-width: 600px;">See how a well-crafted set of dentures can completely transform a smile and restore facial proportions.</p>
     </div>
     
     <div class="row g-4">
       <div class="col-md-4">
         <div class="den-gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/denture_before.png' %}'">
           <img loading="lazy" src="{% static 'images/denture_before.png' %}" alt="Missing Teeth Before">
-          <div class="den-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">{% trans "Before: Missing Teeth" %}</div>
+          <div class="den-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">Before: Missing Teeth</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="den-gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/denture_during.png' %}'">
           <img loading="lazy" src="{% static 'images/denture_during.png' %}" alt="Denture Wax Try In">
-          <div class="den-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">{% trans "During: Denture Wax Try-in" %}</div>
+          <div class="den-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">During: Denture Wax Try-in</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="den-gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/denture_after.png' %}'">
           <img loading="lazy" src="{% static 'images/denture_after.png' %}" alt="Smile After Dentures">
-          <div class="den-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">{% trans "After: Complete Smile Restoration" %}</div>
+          <div class="den-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">After: Complete Smile Restoration</div>
         </div>
       </div>
     </div>
@@ -441,24 +441,24 @@
       
       <!-- Care Tips -->
       <div class="col-lg-4">
-        <div class="nd-eyebrow">{% trans "Maintenance" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Denture Care Tips" %}</h3>
+        <div class="nd-eyebrow">Maintenance</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Denture Care Tips</h3>
         
         <div class="den-tip-card border-success">
-          <h6 class="fw-bold"><i class="bi bi-brush text-success me-2"></i> {% trans "Clean Daily" %}</h6>
-          <p class="small text-muted mb-0">{% trans "Brush your dentures daily with a soft-bristled brush and non-abrasive denture cleanser (not regular toothpaste) to remove food and plaque." %}</p>
+          <h6 class="fw-bold"><i class="bi bi-brush text-success me-2"></i> Clean Daily</h6>
+          <p class="small text-muted mb-0">Brush your dentures daily with a soft-bristled brush and non-abrasive denture cleanser (not regular toothpaste) to remove food and plaque.</p>
         </div>
         <div class="den-tip-card border-primary">
-          <h6 class="fw-bold"><i class="bi bi-moon-stars text-primary me-2"></i> {% trans "Remove at Night" %}</h6>
-          <p class="small text-muted mb-0">{% trans "Always remove your dentures before sleeping to give your gums a chance to rest and prevent fungal infections." %}</p>
+          <h6 class="fw-bold"><i class="bi bi-moon-stars text-primary me-2"></i> Remove at Night</h6>
+          <p class="small text-muted mb-0">Always remove your dentures before sleeping to give your gums a chance to rest and prevent fungal infections.</p>
         </div>
         <div class="den-tip-card border-info">
-          <h6 class="fw-bold"><i class="bi bi-droplet text-info me-2"></i> {% trans "Keep Them Moist" %}</h6>
-          <p class="small text-muted mb-0">{% blocktrans %}When not wearing them, store your dentures in water or a mild denture-soaking solution so they don't dry out and lose their shape.{% endblocktrans %}</p>
+          <h6 class="fw-bold"><i class="bi bi-droplet text-info me-2"></i> Keep Them Moist</h6>
+          <p class="small text-muted mb-0">When not wearing them, store your dentures in water or a mild denture-soaking solution so they don't dry out and lose their shape.</p>
         </div>
         <div class="den-tip-card border-danger">
-          <h6 class="fw-bold"><i class="bi bi-exclamation-triangle text-danger me-2"></i> {% trans "Handle with Care" %}</h6>
-          <p class="small text-muted mb-0">{% trans "Dentures are delicate and can break if dropped. Always clean them over a folded towel or a basin of water." %}</p>
+          <h6 class="fw-bold"><i class="bi bi-exclamation-triangle text-danger me-2"></i> Handle with Care</h6>
+          <p class="small text-muted mb-0">Dentures are delicate and can break if dropped. Always clean them over a folded towel or a basin of water.</p>
         </div>
       </div>
 
@@ -466,42 +466,42 @@
       <div class="col-lg-8">
         
         <div class="mb-5">
-          <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-          <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Frequently Asked Questions" %}</h3>
+          <div class="nd-eyebrow">FAQ</div>
+          <h3 class="fw-bold mb-4" style="color:var(--navy);">Frequently Asked Questions</h3>
           <div class="accordion nd-accordion" id="faqAccordion">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  {% trans "How long will it take to get used to my new dentures?" %}
+                  How long will it take to get used to my new dentures?
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                  {% trans "It is completely normal for new dentures to feel slightly awkward or loose for the first few weeks. Your cheek and tongue muscles need time to learn to keep them in place. You may also experience minor soreness or increased saliva flow temporarily." %}
+                  It is completely normal for new dentures to feel slightly awkward or loose for the first few weeks. Your cheek and tongue muscles need time to learn to keep them in place. You may also experience minor soreness or increased saliva flow temporarily.
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  {% trans "Can I eat normally with dentures?" %}
+                  Can I eat normally with dentures?
                 </button>
               </h2>
               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                  {% trans "Eating will take a little practice. Start with soft foods cut into small pieces. Chew slowly using both sides of your mouth at the same time to prevent the dentures from tipping. As you get used to them, you can return to a normal diet, though extremely sticky or hard foods should be approached with caution." %}
+                  Eating will take a little practice. Start with soft foods cut into small pieces. Chew slowly using both sides of your mouth at the same time to prevent the dentures from tipping. As you get used to them, you can return to a normal diet, though extremely sticky or hard foods should be approached with caution.
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  {% trans "Will my dentures need to be replaced?" %}
+                  Will my dentures need to be replaced?
                 </button>
               </h2>
               <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                  {% trans "Yes, over time, your mouth naturally changes shape (bone and gums recede). This means your dentures will eventually need to be relined, remade, or rebased to fit properly. Typically, a well-made denture lasts 5 to 7 years." %}
+                  Yes, over time, your mouth naturally changes shape (bone and gums recede). This means your dentures will eventually need to be relined, remade, or rebased to fit properly. Typically, a well-made denture lasts 5 to 7 years.
                 </div>
               </div>
             </div>
@@ -516,12 +516,12 @@
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
           </div>
-          <p class="fst-italic text-muted mb-3 position-relative z-1">{% blocktrans %}\"I was so embarrassed about losing my teeth, but the team at Niko Dental was incredibly kind. My new complete dentures look just like my natural teeth used to, and I can finally eat comfortably again. Highly recommended!\"{% endblocktrans %}</p>
+          <p class="fst-italic text-muted mb-3 position-relative z-1">\"I was so embarrassed about losing my teeth, but the team at Niko Dental was incredibly kind. My new complete dentures look just like my natural teeth used to, and I can finally eat comfortably again. Highly recommended!\"</p>
           <div class="d-flex align-items-center gap-3">
-            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px;">{% trans "R.S." %}</div>
+            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px;">R.S.</div>
             <div>
-              <h6 class="fw-bold mb-0">{% trans "Ram S." %}</h6>
-              <p class="small text-muted mb-0">{% trans "Complete Denture Patient" %}</p>
+              <h6 class="fw-bold mb-0">Ram S.</h6>
+              <p class="small text-muted mb-0">Complete Denture Patient</p>
             </div>
           </div>
         </div>
@@ -537,24 +537,24 @@
 <!-- RELATED SERVICES -->
 <section class="section-py" style="background: #f8f9fa;">
   <div class="container">
-    {% include 'components/related_services_row.html' %}
+    
   </div>
 </section>
 
 <!-- 9. CTA STRIP -->
 <div class="nd-cta-strip" id="book">
   <div class="cta-inner container">
-    <h2>{% trans "Ready to Smile With Confidence?" %}</h2>
-    <p>{% trans "Schedule a consultation today to discuss your tooth replacement options and find the perfect fit." %}</p>
+    <h2>Ready to Smile With Confidence?</h2>
+    <p>Schedule a consultation today to discuss your tooth replacement options and find the perfect fit.</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Consultation" %}</a>
+      <a href="#" class="btn btn-primary"><i class="bi bi-calendar-check-fill me-2"></i>Book Consultation</a>
       <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+        <i class="bi bi-telephone-fill"></i>Call Now
       </a>
     </div>
   </div>
 </div>
 
-{% include 'components/google_reviews.html' %}
+
 
 {% endblock %}

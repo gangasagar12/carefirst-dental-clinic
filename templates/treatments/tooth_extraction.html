@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+
 {% load static  i18n %}
 
 {% block title %}Tooth Extraction — Niko Dental & Aesthetics{% endblock %}
@@ -22,8 +22,8 @@
   .ex-icon-wrapper {
     width: 50px;
     height: 50px;
-    background: var(--nd-green-tint);
-    color: var(--nd-green);
+    background: rgba(21,155,211,0.05);
+    color: var(--primary-blue);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -32,7 +32,7 @@
     margin-bottom: 16px;
   }
   .ex-tip-card {
-    border-left: 4px solid var(--nd-gold);
+    border-left: 4px solid #159BD3;
     background: #fff;
     padding: 20px;
     border-radius: 0 8px 8px 0;
@@ -47,7 +47,7 @@
     border: 1px solid rgba(14,90,79,0.1);
   }
   .pricing-header {
-    background: var(--nd-green-dark);
+    background: var(--navy);
     color: #fff;
     padding: 24px;
     text-align: center;
@@ -67,15 +67,15 @@
   }
   .pricing-row .title {
     font-weight: 700;
-    color: var(--nd-green-dark);
+    color: var(--navy);
     font-size: 1.1rem;
     margin: 0;
   }
   .pricing-row .price {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--nd-gold-dark);
-    font-family: var(--nd-font-head);
+    color: var(--primary-blue);
+    font-family: inherit;
   }
   .pricing-row .currency {
     font-size: 0.9rem;
@@ -117,15 +117,15 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
-        <li class="breadcrumb-item active text-warning">{% trans "Tooth Extraction" %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item active text-warning">Tooth Extraction</li>
       </ol>
     </nav>
-    <h1><i class="bi bi-scissors me-3 text-warning"></i>{% trans "Tooth Extraction" %}</h1>
-    <p class="hero-sub mx-auto">{% trans "Safe, painless removal of severely damaged or problematic teeth." %}</p>
+    <h1><i class="bi bi-scissors me-3 text-warning"></i>Tooth Extraction</h1>
+    <p class="hero-sub mx-auto">Safe, painless removal of severely damaged or problematic teeth.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Get Immediate Relief" %}</a>
+      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Get Immediate Relief</a>
     </div>
   </div>
 </section>
@@ -135,18 +135,18 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What is" %} <span class="accent">{% trans "Tooth Extraction?" %}</span></h2>
+        <div class="nd-eyebrow">Introduction</div>
+        <h2 class="section-heading mb-4">What is <span class="accent">Tooth Extraction?</span></h2>
         <p class="text-muted" style="line-height:1.85;">
-          {% trans "A tooth extraction is the removal of a tooth from its socket in the bone. At Niko Dental & Aesthetics, our primary goal is always to save your natural teeth. However, when a tooth is too severely damaged to be repaired with a filling or root canal, extraction becomes necessary to protect your overall oral health." %}
+          A tooth extraction is the removal of a tooth from its socket in the bone. At Niko Dental & Aesthetics, our primary goal is always to save your natural teeth. However, when a tooth is too severely damaged to be repaired with a filling or root canal, extraction becomes necessary to protect your overall oral health.
         </p>
         <p class="text-muted" style="line-height:1.85;">
-          {% trans "Many patients feel anxious about having a tooth pulled. We understand this, which is why we use advanced numbing techniques and a gentle approach to ensure your extraction is as comfortable, swift, and stress-free as possible." %}
+          Many patients feel anxious about having a tooth pulled. We understand this, which is why we use advanced numbing techniques and a gentle approach to ensure your extraction is as comfortable, swift, and stress-free as possible.
         </p>
         <div class="d-flex flex-wrap gap-3 mt-4">
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Profound Anesthesia" %}</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Gentle Technique" %}</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Fast Recovery" %}</span>
+          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> Profound Anesthesia</span>
+          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> Gentle Technique</span>
+          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> Fast Recovery</span>
         </div>
       </div>
       <div class="col-lg-6">
@@ -157,24 +157,24 @@
 </section>
 
 <!-- 3. REASONS & TYPES OF EXTRACTION -->
-<section class="section-py" style="background:var(--nd-gray-bg);">
+<section class="section-py" style="background:#F8FAFC;">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Understanding the Need" %}</div>
-      <h2 class="section-heading">{% trans "When is Extraction" %} <span class="accent">{% trans "Required?" %}</span></h2>
+      <div class="nd-eyebrow justify-content-center">Understanding the Need</div>
+      <h2 class="section-heading">When is Extraction <span class="accent">Required?</span></h2>
     </div>
     
     <div class="row g-5">
       <!-- Reasons & Symptoms -->
       <div class="col-lg-6">
         <div class="bg-white p-4 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
-          <h4 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Reasons & Symptoms" %}</h4>
+          <h4 class="fw-bold mb-4" style="color:var(--navy);">Reasons & Symptoms</h4>
           <ul class="symptom-list">
-            <li><i class="bi bi-x-circle text-danger fs-5"></i> <span><strong>{% trans "Severe Decay:" %}</strong> {% trans "A cavity so deep that the tooth cannot be saved by a root canal." %}</span></li>
-            <li><i class="bi bi-shield-x text-danger fs-5"></i> <span><strong>{% trans "Advanced Gum Disease:" %}</strong> {% trans "Periodontitis has destroyed the bone supporting the tooth, making it loose." %}</span></li>
-            <li><i class="bi bi-bezier2 text-warning fs-5"></i> <span><strong>{% trans "Orthodontic Crowding:" %}</strong> {% trans "Removing a tooth to create space for braces to align the remaining teeth." %}</span></li>
-            <li><i class="bi bi-cone-striped text-warning fs-5"></i> <span><strong>{% trans "Impacted Wisdom Teeth:" %}</strong> {% trans "Third molars that are stuck under the gums, causing pain and infection." %}</span></li>
-            <li><i class="bi bi-lightning text-danger fs-5"></i> <span><strong>{% trans "Severe Trauma:" %}</strong> {% trans "A tooth fractured below the gumline." %}</span></li>
+            <li><i class="bi bi-x-circle text-danger fs-5"></i> <span><strong>Severe Decay:</strong> A cavity so deep that the tooth cannot be saved by a root canal.</span></li>
+            <li><i class="bi bi-shield-x text-danger fs-5"></i> <span><strong>Advanced Gum Disease:</strong> Periodontitis has destroyed the bone supporting the tooth, making it loose.</span></li>
+            <li><i class="bi bi-bezier2 text-warning fs-5"></i> <span><strong>Orthodontic Crowding:</strong> Removing a tooth to create space for braces to align the remaining teeth.</span></li>
+            <li><i class="bi bi-cone-striped text-warning fs-5"></i> <span><strong>Impacted Wisdom Teeth:</strong> Third molars that are stuck under the gums, causing pain and infection.</span></li>
+            <li><i class="bi bi-lightning text-danger fs-5"></i> <span><strong>Severe Trauma:</strong> A tooth fractured below the gumline.</span></li>
           </ul>
         </div>
       </div>
@@ -182,16 +182,16 @@
       <!-- Types of Extraction -->
       <div class="col-lg-6">
         <div class="bg-white p-4 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
-          <h4 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Types of Extractions" %}</h4>
+          <h4 class="fw-bold mb-4" style="color:var(--navy);">Types of Extractions</h4>
           
           <div class="mb-4">
-            <h6 class="fw-bold text-success"><i class="bi bi-tooth me-2"></i> {% trans "Simple Extraction" %}</h6>
-            <p class="small text-muted mb-0">{% trans "Performed on a tooth that can be seen in the mouth. We loosen the tooth with an instrument called an elevator and remove it with dental forceps. It is very quick and requires only local anesthesia." %}</p>
+            <h6 class="fw-bold text-success"><i class="bi bi-tooth me-2"></i> Simple Extraction</h6>
+            <p class="small text-muted mb-0">Performed on a tooth that can be seen in the mouth. We loosen the tooth with an instrument called an elevator and remove it with dental forceps. It is very quick and requires only local anesthesia.</p>
           </div>
           
           <div>
-            <h6 class="fw-bold text-danger"><i class="bi bi-bandaid me-2"></i> {% trans "Surgical Extraction" %}</h6>
-            <p class="small text-muted mb-0">{% trans "Required for a tooth that has broken off at the gum line or has not erupted yet (like a wisdom tooth). A small incision is made in the gum to access and carefully remove the tooth. Stitches may be placed afterward." %}</p>
+            <h6 class="fw-bold text-danger"><i class="bi bi-bandaid me-2"></i> Surgical Extraction</h6>
+            <p class="small text-muted mb-0">Required for a tooth that has broken off at the gum line or has not erupted yet (like a wisdom tooth). A small incision is made in the gum to access and carefully remove the tooth. Stitches may be placed afterward.</p>
           </div>
         </div>
       </div>
@@ -205,35 +205,35 @@
     <div class="row g-5">
       <!-- Benefits -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "The Bright Side" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Benefits of Timely Extraction" %}</h3>
+        <div class="nd-eyebrow">The Bright Side</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Benefits of Timely Extraction</h3>
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="ex-card">
               <div class="ex-icon-wrapper"><i class="bi bi-emoji-smile"></i></div>
-              <h6 class="fw-bold">{% trans "Immediate Relief" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Removes the source of severe pain and swelling instantly." %}</p>
+              <h6 class="fw-bold">Immediate Relief</h6>
+              <p class="small text-muted mb-0">Removes the source of severe pain and swelling instantly.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="ex-card">
               <div class="ex-icon-wrapper"><i class="bi bi-shield-plus"></i></div>
-              <h6 class="fw-bold">{% trans "Prevents Spread" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Stops the infection from spreading to neighboring healthy teeth and bone." %}</p>
+              <h6 class="fw-bold">Prevents Spread</h6>
+              <p class="small text-muted mb-0">Stops the infection from spreading to neighboring healthy teeth and bone.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="ex-card">
               <div class="ex-icon-wrapper"><i class="bi bi-grid-3x3-gap"></i></div>
-              <h6 class="fw-bold">{% trans "Creates Space" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Crucial for orthodontic patients who have severe overcrowding." %}</p>
+              <h6 class="fw-bold">Creates Space</h6>
+              <p class="small text-muted mb-0">Crucial for orthodontic patients who have severe overcrowding.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="ex-card">
               <div class="ex-icon-wrapper"><i class="bi bi-heart-pulse"></i></div>
-              <h6 class="fw-bold">{% trans "Protects Overall Health" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Untreated dental infections can lead to serious systemic health issues." %}</p>
+              <h6 class="fw-bold">Protects Overall Health</h6>
+              <p class="small text-muted mb-0">Untreated dental infections can lead to serious systemic health issues.</p>
             </div>
           </div>
         </div>
@@ -241,13 +241,13 @@
       
       <!-- Why Niko -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Why Us?" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Why Choose Niko Dental?" %}</h3>
+        <div class="nd-eyebrow">Why Us?</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Why Choose Niko Dental?</h3>
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Comfort First:" %}</strong> {% trans "We ensure absolute numbness before beginning." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "3D Imaging (CBCT):" %}</strong> {% trans "For complex wisdom teeth, we use 3D scans to see exact nerve locations and prevent nerve damage." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Bone Preservation:" %}</strong> {% trans "We use gentle techniques that preserve the surrounding bone, making future implants easier." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Expert Aftercare:" %}</strong> {% trans "Comprehensive follow-up to ensure you heal quickly and safely." %}</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Comfort First:</strong> We ensure absolute numbness before beginning.</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>3D Imaging (CBCT):</strong> For complex wisdom teeth, we use 3D scans to see exact nerve locations and prevent nerve damage.</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Bone Preservation:</strong> We use gentle techniques that preserve the surrounding bone, making future implants easier.</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Expert Aftercare:</strong> Comprehensive follow-up to ensure you heal quickly and safely.</span></li>
         </ul>
       </div>
     </div>
@@ -255,44 +255,44 @@
 </section>
 
 <!-- 5. PROCESS & PRICING -->
-<section class="section-py" style="background:var(--nd-green-dark); color:#fff;">
+<section class="section-py" style="background:var(--navy); color:#fff;">
   <div class="container">
     <div class="row g-5 align-items-center">
       
       <!-- Step-by-Step -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Step-by-Step" %} <span class="text-warning">{% trans "Treatment Process" %}</span></h2>
+        <div class="nd-eyebrow justify-content-start text-white-50 border-white">The Procedure</div>
+        <h2 class="section-heading text-white mb-5">Step-by-Step <span class="text-warning">Treatment Process</span></h2>
         
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "X-Ray Assessment" %}</h5>
-            <p class="text-white-50 mb-0">{% blocktrans %}We take a digital X-ray to evaluate the tooth's roots, surrounding bone, and proximity to nerves.{% endblocktrans %}</p>
+            <h5 class="fw-bold text-white mb-1">X-Ray Assessment</h5>
+            <p class="text-white-50 mb-0">We take a digital X-ray to evaluate the tooth's roots, surrounding bone, and proximity to nerves.</p>
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Anesthesia" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "Strong local anesthesia is administered so you feel only pressure, not pain, during the procedure." %}</p>
+            <h5 class="fw-bold text-white mb-1">Anesthesia</h5>
+            <p class="text-white-50 mb-0">Strong local anesthesia is administered so you feel only pressure, not pain, during the procedure.</p>
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Extraction" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "The tooth is gently loosened with an elevator and carefully removed using forceps. If surgical, a small incision is made first." %}</p>
+            <h5 class="fw-bold text-white mb-1">Extraction</h5>
+            <p class="text-white-50 mb-0">The tooth is gently loosened with an elevator and carefully removed using forceps. If surgical, a small incision is made first.</p>
           </div>
         </div>
         <div class="d-flex">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Clot Formation" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "Gauze is placed over the socket. You will bite down to apply pressure, stopping the bleeding and helping a blood clot form." %}</p>
+            <h5 class="fw-bold text-white mb-1">Clot Formation</h5>
+            <p class="text-white-50 mb-0">Gauze is placed over the socket. You will bite down to apply pressure, stopping the bleeding and helping a blood clot form.</p>
           </div>
         </div>
       </div>
@@ -301,56 +301,56 @@
       <div class="col-lg-5">
         <div class="pricing-table">
           <div class="pricing-header">
-            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
-            <p class="text-white-50 small mb-0 mt-2">{% trans "Clear & Transparent Pricing" %}</p>
+            <h3 class="fw-bold mb-0">Treatment Charges</h3>
+            <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing</p>
           </div>
           <div class="pricing-body">
             
             <div class="pricing-row">
               <div>
-                <p class="title">{% trans "Child Extraction" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Loose milk teeth" %}</p>
+                <p class="title">Child Extraction</p>
+                <p class="text-muted small mb-0 mt-1">Loose milk teeth</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.child_extraction|default:"500" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.child_extraction|default:"500" }}</span>
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--nd-green-tint);">
+            <div class="pricing-row" style="background-color: rgba(21,155,211,0.05);">
               <div>
-                <p class="title">{% trans "Adult Extraction" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Routine simple extraction" %}</p>
+                <p class="title">Adult Extraction</p>
+                <p class="text-muted small mb-0 mt-1">Routine simple extraction</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.adult_extraction|default:"1,500" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.adult_extraction|default:"1,500" }}</span>
               </div>
             </div>
             
             <div class="pricing-row">
               <div>
-                <p class="title">{% trans "Wisdom Tooth" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Erupted third molar" %}</p>
+                <p class="title">Wisdom Tooth</p>
+                <p class="text-muted small mb-0 mt-1">Erupted third molar</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.wisdom_tooth|default:"3,000" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.wisdom_tooth|default:"3,000" }}</span>
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--nd-green-tint);">
+            <div class="pricing-row" style="background-color: rgba(21,155,211,0.05);">
               <div>
-                <p class="title">{% trans "Surgical Extraction" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Impacted / complex cases" %}</p>
+                <p class="title">Surgical Extraction</p>
+                <p class="text-muted small mb-0 mt-1">Impacted / complex cases</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.surgical_extraction_impaction|default:"8,000" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.surgical_extraction_impaction|default:"8,000" }}</span>
               </div>
             </div>
 
             <div class="p-4 text-center">
               <p class="small text-muted mb-4 fst-italic">
-                {% trans "* Note: The final treatment cost depends on the complexity of the case (e.g., angle of impaction) and clinical evaluation." %}
+                * Note: The final treatment cost depends on the complexity of the case (e.g., angle of impaction) and clinical evaluation.
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Consultation" %}</a>
+              <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Schedule Consultation</a>
             </div>
 
           </div>
@@ -364,31 +364,31 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Real Results" %}</div>
-      <h2 class="section-heading">{% trans "Clinical" %} <span class="accent">{% trans "Gallery" %}</span></h2>
-      <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "See the safe and precise approach we take for tooth extractions." %}</p>
+      <div class="nd-eyebrow justify-content-center">Real Results</div>
+      <h2 class="section-heading">Clinical <span class="accent">Gallery</span></h2>
+      <p class="text-muted mx-auto mt-3" style="max-width: 600px;">See the safe and precise approach we take for tooth extractions.</p>
     </div>
     
     <div class="row g-4">
       <div class="col-md-4">
         <div class="ex-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/dental2_x-ray.jpg' %}'">
           <img loading="lazy" src="{% static 'images/dental2_x-ray.jpg' %}" alt="Accurate Diagnosis">
-          <div class="ex-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Accurate Diagnosis" %}</div>
+          <div class="ex-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">Accurate Diagnosis</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="ex-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/toothextraction-hero.jpg' %}'">
           <img loading="lazy" src="{% static 'images/toothextraction-hero.jpg' %}" alt="Painless Procedure">
-          <div class="ex-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Painless Procedure" %}</div>
+          <div class="ex-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">Painless Procedure</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="ex-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/rct_feat_safety.png' %}'">
           <img loading="lazy" src="{% static 'images/rct_feat_safety.png' %}" alt="Strict Sterilization">
-          <div class="ex-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Strict Sterilization" %}</div>
+          <div class="ex-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">Strict Sterilization</div>
         </div>
       </div>
     </div>
@@ -414,78 +414,78 @@
       
       <!-- Recovery Tips -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Healing" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Recovery & Aftercare" %}</h3>
-        <p class="text-muted mb-4">{% blocktrans %}Proper aftercare is critical for a fast recovery and to prevent complications like 'dry socket'.{% endblocktrans %}</p>
+        <div class="nd-eyebrow">Healing</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Recovery & Aftercare</h3>
+        <p class="text-muted mb-4">Proper aftercare is critical for a fast recovery and to prevent complications like 'dry socket'.</p>
         
         <div class="ex-tip-card border-success">
-          <h6 class="fw-bold"><i class="bi bi-bandaid-fill text-success me-2"></i> {% trans "Bite on Gauze" %}</h6>
-          <p class="small text-muted mb-0">{% trans "Keep steady pressure on the gauze pad for 30-45 minutes immediately after the procedure to allow the blood clot to form." %}</p>
+          <h6 class="fw-bold"><i class="bi bi-bandaid-fill text-success me-2"></i> Bite on Gauze</h6>
+          <p class="small text-muted mb-0">Keep steady pressure on the gauze pad for 30-45 minutes immediately after the procedure to allow the blood clot to form.</p>
         </div>
         <div class="ex-tip-card border-danger">
-          <h6 class="fw-bold"><i class="bi bi-slash-circle text-danger me-2"></i> {% trans "Do NOT Spit or Use a Straw" %}</h6>
-          <p class="small text-muted mb-0">{% trans "For the first 24 hours, avoid aggressive rinsing, spitting, or drinking through a straw. The suction can dislodge the blood clot." %}</p>
+          <h6 class="fw-bold"><i class="bi bi-slash-circle text-danger me-2"></i> Do NOT Spit or Use a Straw</h6>
+          <p class="small text-muted mb-0">For the first 24 hours, avoid aggressive rinsing, spitting, or drinking through a straw. The suction can dislodge the blood clot.</p>
         </div>
         <div class="ex-tip-card">
-          <h6 class="fw-bold"><i class="bi bi-snow text-primary me-2"></i> {% trans "Apply Ice" %}</h6>
-          <p class="small text-muted mb-0">{% trans "Apply an ice pack to your cheek in 15-minute intervals to minimize swelling, especially after a surgical extraction." %}</p>
+          <h6 class="fw-bold"><i class="bi bi-snow text-primary me-2"></i> Apply Ice</h6>
+          <p class="small text-muted mb-0">Apply an ice pack to your cheek in 15-minute intervals to minimize swelling, especially after a surgical extraction.</p>
         </div>
         <div class="ex-tip-card border-warning">
-          <h6 class="fw-bold"><i class="bi bi-cup-hot text-warning me-2"></i> {% trans "Eat Soft Foods" %}</h6>
-          <p class="small text-muted mb-0">{% trans "Stick to soft foods (yogurt, soup, mashed potatoes) and avoid hot liquids on the first day." %}</p>
+          <h6 class="fw-bold"><i class="bi bi-cup-hot text-warning me-2"></i> Eat Soft Foods</h6>
+          <p class="small text-muted mb-0">Stick to soft foods (yogurt, soup, mashed potatoes) and avoid hot liquids on the first day.</p>
         </div>
       </div>
 
       <!-- FAQ & Related -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Frequently Asked Questions" %}</h3>
+        <div class="nd-eyebrow">FAQ</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Frequently Asked Questions</h3>
         <div class="accordion nd-accordion mb-5" id="faqAccordion">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                {% trans "Will the extraction be painful?" %}
+                Will the extraction be painful?
               </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "We make sure you are completely numb before we begin. You will feel pressure during the procedure, but you should not feel any sharp pain. We also provide excellent pain management strategies for your recovery at home." %}
+                We make sure you are completely numb before we begin. You will feel pressure during the procedure, but you should not feel any sharp pain. We also provide excellent pain management strategies for your recovery at home.
               </div>
             </div>
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                {% blocktrans %}What is a \"dry socket\"?{% endblocktrans %}
+                What is a \"dry socket\"?
               </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "A dry socket occurs if the blood clot that forms in the socket is dislodged prematurely, exposing the underlying bone and nerves. This is very painful. You can prevent it by not smoking, using straws, or spitting forcefully for the first few days." %}
+                A dry socket occurs if the blood clot that forms in the socket is dislodged prematurely, exposing the underlying bone and nerves. This is very painful. You can prevent it by not smoking, using straws, or spitting forcefully for the first few days.
               </div>
             </div>
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                {% trans "Do I need to replace the extracted tooth?" %}
+                Do I need to replace the extracted tooth?
               </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "Except for wisdom teeth, it is highly recommended to replace an extracted tooth with an implant, bridge, or denture. Leaving a gap will cause your other teeth to shift, affecting your bite and appearance over time." %}
+                Except for wisdom teeth, it is highly recommended to replace an extracted tooth with an implant, bridge, or denture. Leaving a gap will cause your other teeth to shift, affecting your bite and appearance over time.
               </div>
             </div>
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingFour">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                {% trans "How long does it take to heal?" %}
+                How long does it take to heal?
               </button>
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "The initial healing period takes about 1 to 2 weeks, during which new gum tissue will grow over the socket. Complete bone healing takes several months." %}
+                The initial healing period takes about 1 to 2 weeks, during which new gum tissue will grow over the socket. Complete bone healing takes several months.
               </div>
             </div>
           </div>
@@ -501,24 +501,24 @@
 <!-- RELATED SERVICES -->
 <section class="section-py" style="background: #f8f9fa;">
   <div class="container">
-    {% include 'components/related_services_row.html' %}
+    
   </div>
 </section>
 
 <!-- 7. CTA STRIP -->
 <div class="nd-cta-strip" id="book">
   <div class="cta-inner container">
-    <h2>{% trans "Need a Tooth Removed?" %}</h2>
-    <p>{% trans "Our expert team ensures a safe, painless extraction with exceptional aftercare." %}</p>
+    <h2>Need a Tooth Removed?</h2>
+    <p>Our expert team ensures a safe, painless extraction with exceptional aftercare.</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Evaluation" %}</a>
+      <a href="#" class="btn btn-primary"><i class="bi bi-calendar-check-fill me-2"></i>Book Evaluation</a>
       <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+        <i class="bi bi-telephone-fill"></i>Call Now
       </a>
     </div>
   </div>
 </div>
 
-{% include 'components/google_reviews.html' %}
+
 
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+
 {% load static  i18n %}
 
 {% block title %}Digital Dental X-Ray — Niko Dental & Aesthetics{% endblock %}
@@ -23,8 +23,8 @@
   .xray-icon-wrapper {
     width: 60px;
     height: 60px;
-    background: var(--nd-green-tint);
-    color: var(--nd-green);
+    background: rgba(21,155,211,0.05);
+    color: var(--primary-blue);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -35,7 +35,7 @@
 
   /* Compare Card */
   .compare-card {
-    border-left: 4px solid var(--nd-gold);
+    border-left: 4px solid #159BD3;
     background: #fff;
     padding: 24px;
     border-radius: 0 12px 12px 0;
@@ -52,7 +52,7 @@
     border: 1px solid rgba(14,90,79,0.1);
   }
   .pricing-header {
-    background: var(--nd-green-dark);
+    background: var(--navy);
     color: #fff;
     padding: 24px;
     text-align: center;
@@ -72,15 +72,15 @@
   }
   .pricing-row .title {
     font-weight: 700;
-    color: var(--nd-green-dark);
+    color: var(--navy);
     font-size: 1.1rem;
     margin: 0;
   }
   .pricing-row .price {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--nd-gold-dark);
-    font-family: var(--nd-font-head);
+    color: var(--primary-blue);
+    font-family: inherit;
   }
   .pricing-row .currency {
     font-size: 0.9rem;
@@ -123,15 +123,15 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
-        <li class="breadcrumb-item active text-warning">{% trans "Digital Dental X-Ray" %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item active text-warning">Digital Dental X-Ray</li>
       </ol>
     </nav>
-    <h1><i class="bi bi-camera me-3 text-warning"></i>{% trans "Digital Dental X-Ray" %}</h1>
-    <p class="hero-sub mx-auto">{% trans "Advanced low-radiation imaging for precise diagnosis, enabling us to see beyond the surface." %}</p>
+    <h1><i class="bi bi-camera me-3 text-warning"></i>Digital Dental X-Ray</h1>
+    <p class="hero-sub mx-auto">Advanced low-radiation imaging for precise diagnosis, enabling us to see beyond the surface.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Book a Consultation" %}</a>
+      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Book a Consultation</a>
     </div>
   </div>
 </section>
@@ -141,15 +141,15 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What is a" %} <span class="accent">{% trans "Digital Dental X-Ray?" %}</span></h2>
+        <div class="nd-eyebrow">Introduction</div>
+        <h2 class="section-heading mb-4">What is a <span class="accent">Digital Dental X-Ray?</span></h2>
         <p class="text-muted" style="line-height:1.85;">
-          {% trans "A digital dental X-ray is an advanced imaging technique that uses electronic sensors instead of traditional photographic film to capture images of your teeth, roots, and jawbone. These images are instantly projected onto a computer screen, allowing our dentists to diagnose oral problems with incredible precision." %}
+          A digital dental X-ray is an advanced imaging technique that uses electronic sensors instead of traditional photographic film to capture images of your teeth, roots, and jawbone. These images are instantly projected onto a computer screen, allowing our dentists to diagnose oral problems with incredible precision.
         </p>
         
-        <h4 class="fw-bold mt-5 mb-4" style="color:var(--nd-green-dark);">{% trans "Why is a Dental X-Ray Important?" %}</h4>
+        <h4 class="fw-bold mt-5 mb-4" style="color:var(--navy);">Why is a Dental X-Ray Important?</h4>
         <div class="ms-3 border-start border-success border-3 ps-4">
-          <p class="text-muted small">{% trans "Many dental issues—like infections in the root, bone loss, or cavities between teeth—are entirely invisible to the naked eye during a routine clinical exam. X-rays are the only way to accurately diagnose these hidden problems early, preventing them from developing into severe emergencies." %}</p>
+          <p class="text-muted small">Many dental issues—like infections in the root, bone loss, or cavities between teeth—are entirely invisible to the naked eye during a routine clinical exam. X-rays are the only way to accurately diagnose these hidden problems early, preventing them from developing into severe emergencies.</p>
         </div>
       </div>
       <div class="col-lg-6">
@@ -160,50 +160,50 @@
 </section>
 
 <!-- 3. WHEN & WHAT IT DETECTS -->
-<section class="section-py" style="background:var(--nd-gray-bg);">
+<section class="section-py" style="background:#F8FAFC;">
   <div class="container">
     <div class="row g-5">
       <!-- When do you need one -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Indications" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "When Do You Need an X-Ray?" %}</h3>
-        <p class="text-muted mb-4">{% trans "We rely on digital imaging for various treatments and diagnostics, including:" %}</p>
+        <div class="nd-eyebrow">Indications</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">When Do You Need an X-Ray?</h3>
+        <p class="text-muted mb-4">We rely on digital imaging for various treatments and diagnostics, including:</p>
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-search text-primary fs-5"></i> <span><strong>{% trans "Routine Check-ups:" %}</strong> {% trans "To monitor ongoing oral health." %}</span></li>
-          <li><i class="bi bi-lightning text-danger fs-5"></i> <span><strong>{% trans "Tooth Pain:" %}</strong> {% trans "Identifying the hidden source of discomfort." %}</span></li>
-          <li><i class="bi bi-heart text-success fs-5"></i> <span><strong>Root Canal & Extractions:</strong> {% trans "Assessing root structure beforehand." %}</span></li>
-          <li><i class="bi bi-gear text-secondary fs-5"></i> <span><strong>Implants & Orthodontics:</strong> {% trans "Detailed planning for complex treatments." %}</span></li>
+          <li><i class="bi bi-search text-primary fs-5"></i> <span><strong>Routine Check-ups:</strong> To monitor ongoing oral health.</span></li>
+          <li><i class="bi bi-lightning text-danger fs-5"></i> <span><strong>Tooth Pain:</strong> Identifying the hidden source of discomfort.</span></li>
+          <li><i class="bi bi-heart text-success fs-5"></i> <span><strong>Root Canal & Extractions:</strong> Assessing root structure beforehand.</span></li>
+          <li><i class="bi bi-gear text-secondary fs-5"></i> <span><strong>Implants & Orthodontics:</strong> Detailed planning for complex treatments.</span></li>
         </ul>
       </div>
       
       <!-- What it detects -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "Diagnostic Power" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "What Can a Digital X-Ray Detect?" %}</h3>
+        <div class="nd-eyebrow">Diagnostic Power</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">What Can a Digital X-Ray Detect?</h3>
         
         <div class="row g-3">
           <div class="col-sm-6">
             <div class="bg-white p-3 rounded-3 shadow-sm h-100 border-start border-4 border-warning">
-              <h6 class="fw-bold mb-1"><i class="bi bi-circle-half me-2"></i>{% trans "Hidden Cavities" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Decay forming between tight teeth." %}</p>
+              <h6 class="fw-bold mb-1"><i class="bi bi-circle-half me-2"></i>Hidden Cavities</h6>
+              <p class="small text-muted mb-0">Decay forming between tight teeth.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="bg-white p-3 rounded-3 shadow-sm h-100 border-start border-4 border-danger">
-              <h6 class="fw-bold mb-1"><i class="bi bi-droplet me-2"></i>{% trans "Tooth Infection (Abscess)" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Infections at the tip of the tooth root." %}</p>
+              <h6 class="fw-bold mb-1"><i class="bi bi-droplet me-2"></i>Tooth Infection (Abscess)</h6>
+              <p class="small text-muted mb-0">Infections at the tip of the tooth root.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="bg-white p-3 rounded-3 shadow-sm h-100 border-start border-4 border-primary">
-              <h6 class="fw-bold mb-1"><i class="bi bi-bar-chart me-2"></i>{% trans "Bone Loss" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Assessing damage caused by gum disease." %}</p>
+              <h6 class="fw-bold mb-1"><i class="bi bi-bar-chart me-2"></i>Bone Loss</h6>
+              <p class="small text-muted mb-0">Assessing damage caused by gum disease.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="bg-white p-3 rounded-3 shadow-sm h-100 border-start border-4 border-secondary">
-              <h6 class="fw-bold mb-1"><i class="bi bi-lock me-2"></i>{% trans "Impacted Teeth" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Locating wisdom teeth trapped in the jaw." %}</p>
+              <h6 class="fw-bold mb-1"><i class="bi bi-lock me-2"></i>Impacted Teeth</h6>
+              <p class="small text-muted mb-0">Locating wisdom teeth trapped in the jaw.</p>
             </div>
           </div>
         </div>
@@ -218,56 +218,56 @@
     <div class="row g-5">
       <!-- Types of X-Rays -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Imaging Types" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Types of Digital X-Rays" %}</h3>
+        <div class="nd-eyebrow">Imaging Types</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Types of Digital X-Rays</h3>
         
         <div class="compare-card border-success">
-          <h5 class="fw-bold text-success mb-2"><i class="bi bi-record-circle me-2"></i> {% trans "Periapical (PA) X-Ray" %}</h5>
-          <p class="text-muted small mb-0">{% trans "Captures the entire tooth from the crown down to the very tip of the root and surrounding bone. Crucial for root canals and deep infections." %}</p>
+          <h5 class="fw-bold text-success mb-2"><i class="bi bi-record-circle me-2"></i> Periapical (PA) X-Ray</h5>
+          <p class="text-muted small mb-0">Captures the entire tooth from the crown down to the very tip of the root and surrounding bone. Crucial for root canals and deep infections.</p>
         </div>
         
         <div class="compare-card border-primary">
-          <h5 class="fw-bold text-primary mb-2"><i class="bi bi-view-list me-2"></i> {% trans "Bitewing X-Ray" %}</h5>
-          <p class="text-muted small mb-0">{% trans "Shows details of the upper and lower teeth in one area. Perfect for detecting cavities forming between the back teeth." %}</p>
+          <h5 class="fw-bold text-primary mb-2"><i class="bi bi-view-list me-2"></i> Bitewing X-Ray</h5>
+          <p class="text-muted small mb-0">Shows details of the upper and lower teeth in one area. Perfect for detecting cavities forming between the back teeth.</p>
         </div>
         
         <div class="compare-card border-warning">
-          <h5 class="fw-bold text-warning mb-2" style="color:var(--nd-gold-dark)!important;"><i class="bi bi-aspect-ratio me-2"></i> {% trans "Panoramic X-Ray" %}</h5>
-          <p class="text-muted small mb-0">{% trans "Provides a wide, complete view of your entire mouth, jaw, and teeth in a single image. Used for orthodontics and implant planning." %}</p>
+          <h5 class="fw-bold text-warning mb-2" style="color:var(--primary-blue)!important;"><i class="bi bi-aspect-ratio me-2"></i> Panoramic X-Ray</h5>
+          <p class="text-muted small mb-0">Provides a wide, complete view of your entire mouth, jaw, and teeth in a single image. Used for orthodontics and implant planning.</p>
         </div>
       </div>
 
       <!-- Benefits & Safety -->
       <div class="col-lg-7">
         <div class="nd-eyebrow">Advantages & Safety</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">Benefits & Radiation Safety</h3>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Benefits & Radiation Safety</h3>
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="xray-card">
               <div class="xray-icon-wrapper"><i class="bi bi-shield-plus"></i></div>
-              <h6 class="fw-bold">{% trans "Ultra-Low Radiation" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Digital sensors require up to 90% less radiation than traditional film X-rays, making them incredibly safe." %}</p>
+              <h6 class="fw-bold">Ultra-Low Radiation</h6>
+              <p class="small text-muted mb-0">Digital sensors require up to 90% less radiation than traditional film X-rays, making them incredibly safe.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="xray-card">
               <div class="xray-icon-wrapper"><i class="bi bi-clock-history"></i></div>
-              <h6 class="fw-bold">{% trans "Instant Results" %}</h6>
-              <p class="small text-muted mb-0">{% trans "No waiting for film to develop. High-resolution images appear on our monitors instantly." %}</p>
+              <h6 class="fw-bold">Instant Results</h6>
+              <p class="small text-muted mb-0">No waiting for film to develop. High-resolution images appear on our monitors instantly.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="xray-card">
               <div class="xray-icon-wrapper"><i class="bi bi-zoom-in"></i></div>
-              <h6 class="fw-bold">{% trans "Enhanced Image Quality" %}</h6>
-              <p class="small text-muted mb-0">{% trans "We can zoom in, adjust contrast, and colorize the images to detect the tiniest of cavities." %}</p>
+              <h6 class="fw-bold">Enhanced Image Quality</h6>
+              <p class="small text-muted mb-0">We can zoom in, adjust contrast, and colorize the images to detect the tiniest of cavities.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="xray-card">
               <div class="xray-icon-wrapper"><i class="bi bi-person-check"></i></div>
-              <h6 class="fw-bold">{% trans "Protective Measures" %}</h6>
-              <p class="small text-muted mb-0">{% trans "We always provide lead aprons and thyroid collars to ensure zero unnecessary exposure." %}</p>
+              <h6 class="fw-bold">Protective Measures</h6>
+              <p class="small text-muted mb-0">We always provide lead aprons and thyroid collars to ensure zero unnecessary exposure.</p>
             </div>
           </div>
         </div>
@@ -277,22 +277,22 @@
 </section>
 
 <!-- 5. PROCESS & PRICING -->
-<section class="section-py" style="background:var(--nd-green-dark); color:#fff;">
+<section class="section-py" style="background:var(--navy); color:#fff;">
   <div class="container">
     <div class="row g-5 align-items-center">
       
       <!-- Patient Care Process -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Our Digital X-Ray" %} <span class="text-warning">{% trans "Process" %}</span></h2>
+        <div class="nd-eyebrow justify-content-start text-white-50 border-white">The Procedure</div>
+        <h2 class="section-heading text-white mb-5">Our Digital X-Ray <span class="text-warning">Process</span></h2>
         
         <div class="row g-4">
           <div class="col-md-6">
             <div class="d-flex">
               <div class="fs-3 text-warning me-3"><i class="bi bi-clipboard"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "1. Registration" %}</h6>
-                <p class="text-white-50 small">{% trans "Updating your medical history." %}</p>
+                <h6 class="fw-bold mb-1">1. Registration</h6>
+                <p class="text-white-50 small">Updating your medical history.</p>
               </div>
             </div>
           </div>
@@ -300,8 +300,8 @@
             <div class="d-flex">
               <div class="fs-3 text-warning me-3"><i class="bi bi-search"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "2. Clinical Evaluation" %}</h6>
-                <p class="text-white-50 small">{% trans "Determining which X-rays are needed." %}</p>
+                <h6 class="fw-bold mb-1">2. Clinical Evaluation</h6>
+                <p class="text-white-50 small">Determining which X-rays are needed.</p>
               </div>
             </div>
           </div>
@@ -309,8 +309,8 @@
             <div class="d-flex">
               <div class="fs-3 text-warning me-3"><i class="bi bi-camera"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "3. Digital Imaging" %}</h6>
-                <p class="text-white-50 small">{% trans "Safe, fast capture using our sensors." %}</p>
+                <h6 class="fw-bold mb-1">3. Digital Imaging</h6>
+                <p class="text-white-50 small">Safe, fast capture using our sensors.</p>
               </div>
             </div>
           </div>
@@ -318,8 +318,8 @@
             <div class="d-flex">
               <div class="fs-3 text-warning me-3"><i class="bi bi-display"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "4. Image Review" %}</h6>
-                <p class="text-white-50 small">{% trans "Instant display on our clinic monitors." %}</p>
+                <h6 class="fw-bold mb-1">4. Image Review</h6>
+                <p class="text-white-50 small">Instant display on our clinic monitors.</p>
               </div>
             </div>
           </div>
@@ -327,8 +327,8 @@
             <div class="d-flex">
               <div class="fs-3 text-warning me-3"><i class="bi bi-check2-circle"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "5. Diagnosis" %}</h6>
-                <p class="text-white-50 small">{% trans "Precise identification of the problem." %}</p>
+                <h6 class="fw-bold mb-1">5. Diagnosis</h6>
+                <p class="text-white-50 small">Precise identification of the problem.</p>
               </div>
             </div>
           </div>
@@ -336,8 +336,8 @@
             <div class="d-flex">
               <div class="fs-3 text-warning me-3"><i class="bi bi-list-check"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "6. Treatment Planning" %}</h6>
-                <p class="text-white-50 small">{% trans "Mapping out the exact procedure required." %}</p>
+                <h6 class="fw-bold mb-1">6. Treatment Planning</h6>
+                <p class="text-white-50 small">Mapping out the exact procedure required.</p>
               </div>
             </div>
           </div>
@@ -348,36 +348,36 @@
       <div class="col-lg-5">
         <div class="pricing-table">
           <div class="pricing-header">
-            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
+            <h3 class="fw-bold mb-0">Treatment Charges</h3>
             <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing</p>
           </div>
           <div class="pricing-body">
             
             <div class="pricing-row">
               <div>
-                <p class="title">{% trans "Intraoral Digital X-Ray" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Periapical (PA) or Bitewing" %}</p>
+                <p class="title">Intraoral Digital X-Ray</p>
+                <p class="text-muted small mb-0 mt-1">Periapical (PA) or Bitewing</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.intraoral_digital_x_ray|default:"800" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.intraoral_digital_x_ray|default:"800" }}</span>
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--nd-green-tint);">
+            <div class="pricing-row" style="background-color: rgba(21,155,211,0.05);">
               <div>
-                <p class="title">{% trans "Panoramic X-Ray (OPG)" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Full mouth diagnostic scan" %}</p>
+                <p class="title">Panoramic X-Ray (OPG)</p>
+                <p class="text-muted small mb-0 mt-1">Full mouth diagnostic scan</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.panoramic_x_ray_opg|default:"2,500" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.panoramic_x_ray_opg|default:"2,500" }}</span>
               </div>
             </div>
 
             <div class="p-4 text-center">
               <p class="small text-muted mb-4 fst-italic">
-                {% trans "* Note: The number and type of X-rays required will be determined by the dentist after a thorough clinical evaluation to ensure accurate diagnosis." %}
+                * Note: The number and type of X-rays required will be determined by the dentist after a thorough clinical evaluation to ensure accurate diagnosis.
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Book Appointment" %}</a>
+              <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Book Appointment</a>
             </div>
 
           </div>
@@ -391,31 +391,31 @@
 <section class="section-py bg-light">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Advanced Technology" %}</div>
-      <h2 class="section-heading">{% trans "Diagnostic" %} <span class="accent">{% trans "Gallery" %}</span></h2>
-      <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "Explore the modern diagnostic technology we use to ensure your treatments are safe and accurate." %}</p>
+      <div class="nd-eyebrow justify-content-center">Advanced Technology</div>
+      <h2 class="section-heading">Diagnostic <span class="accent">Gallery</span></h2>
+      <p class="text-muted mx-auto mt-3" style="max-width: 600px;">Explore the modern diagnostic technology we use to ensure your treatments are safe and accurate.</p>
     </div>
     
     <div class="row g-4">
       <div class="col-md-4">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/Dental1-X-Rays.jpeg' %}'">
           <img loading="lazy" src="{% static 'images/Dental1-X-Rays.jpeg' %}" alt="Reviewing X-Ray">
-          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Instant Image Review" %}</div>
+          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">Instant Image Review</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/dental2_x-ray.jpg' %}'">
           <img loading="lazy" src="{% static 'images/dental2_x-ray.jpg' %}" alt="Modern Clinic Equipment">
-          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Modern Diagnostic Area" %}</div>
+          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">Modern Diagnostic Area</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/dental3_x-ray.jpg' %}'">
           <img loading="lazy" src="{% static 'images/dental3_x-ray.jpg' %}" alt="Consultation">
-          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Accurate Treatment Planning" %}</div>
+          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">Accurate Treatment Planning</div>
         </div>
       </div>
     </div>
@@ -441,18 +441,18 @@
       
       <!-- Testimonials -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Patient Stories" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">Safe & Comfortable Care</h3>
+        <div class="nd-eyebrow">Patient Stories</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Safe & Comfortable Care</h3>
         
         <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative mb-4">
           <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
           <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-          <p class="fst-italic text-muted small position-relative z-1">{% blocktrans %}"I had a terrible toothache but couldn't see any cavity. The dentist took a quick digital X-ray and immediately spotted an infection near the root. The process was completely painless, incredibly fast, and helped save my tooth."{% endblocktrans %}</p>
+          <p class="fst-italic text-muted small position-relative z-1">"I had a terrible toothache but couldn't see any cavity. The dentist took a quick digital X-ray and immediately spotted an infection near the root. The process was completely painless, incredibly fast, and helped save my tooth."</p>
           <div class="d-flex align-items-center gap-3 mt-3">
-            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px; font-size: 0.8rem;">{% trans "P.T." %}</div>
+            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px; font-size: 0.8rem;">P.T.</div>
             <div>
-              <h6 class="fw-bold mb-0" style="font-size: 0.9rem;">{% trans "Pradeep T." %}</h6>
-              <p class="small text-muted mb-0" style="font-size: 0.75rem;">{% trans "Root Canal Patient" %}</p>
+              <h6 class="fw-bold mb-0" style="font-size: 0.9rem;">Pradeep T.</h6>
+              <p class="small text-muted mb-0" style="font-size: 0.75rem;">Root Canal Patient</p>
             </div>
           </div>
         </div>
@@ -460,42 +460,42 @@
 
       <!-- FAQ -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Frequently Asked Questions" %}</h3>
+        <div class="nd-eyebrow">FAQ</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Frequently Asked Questions</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                {% trans "Are digital dental X-rays safe?" %}
+                Are digital dental X-rays safe?
               </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "Absolutely. Digital X-rays produce up to 90% less radiation than traditional film X-rays. In fact, a routine set of dental X-rays exposes you to less radiation than a short airplane flight. We also provide lead aprons for additional safety." %}
+                Absolutely. Digital X-rays produce up to 90% less radiation than traditional film X-rays. In fact, a routine set of dental X-rays exposes you to less radiation than a short airplane flight. We also provide lead aprons for additional safety.
               </div>
             </div>
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                {% trans "Can I have a dental X-ray while pregnant?" %}
+                Can I have a dental X-ray while pregnant?
               </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "While digital X-rays are extremely low in radiation, it is standard practice to avoid any unnecessary X-rays during pregnancy. However, if a dental emergency occurs, X-rays can be taken safely using double lead apron shielding." %}
+                While digital X-rays are extremely low in radiation, it is standard practice to avoid any unnecessary X-rays during pregnancy. However, if a dental emergency occurs, X-rays can be taken safely using double lead apron shielding.
               </div>
             </div>
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                {% trans "How often do I need dental X-rays?" %}
+                How often do I need dental X-rays?
               </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "This depends on your individual oral health. For most adults, we recommend bitewing X-rays once a year to check for new cavities between teeth. Patients with higher risks of decay or gum disease may need them more frequently." %}
+                This depends on your individual oral health. For most adults, we recommend bitewing X-rays once a year to check for new cavities between teeth. Patients with higher risks of decay or gum disease may need them more frequently.
               </div>
             </div>
           </div>
@@ -512,24 +512,24 @@
 <!-- RELATED SERVICES -->
 <section class="section-py" style="background: #f8f9fa;">
   <div class="container">
-    {% include 'components/related_services_row.html' %}
+    
   </div>
 </section>
 
 <!-- 9. CTA STRIP -->
 <div class="nd-cta-strip" id="book">
   <div class="cta-inner container">
-    <h2>{% trans "Accurate Diagnosis Leads to Better Care" %}</h2>
-    <p>{% trans "Experiencing tooth pain or need a comprehensive check-up? Book an appointment today for a precise digital evaluation." %}</p>
+    <h2>Accurate Diagnosis Leads to Better Care</h2>
+    <p>Experiencing tooth pain or need a comprehensive check-up? Book an appointment today for a precise digital evaluation.</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Consultation" %}</a>
+      <a href="#" class="btn btn-primary"><i class="bi bi-calendar-check-fill me-2"></i>Book Consultation</a>
       <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+        <i class="bi bi-telephone-fill"></i>Call Now
       </a>
     </div>
   </div>
 </div>
 
-{% include 'components/google_reviews.html' %}
+
 
 {% endblock %}

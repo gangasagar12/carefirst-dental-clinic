@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+
 {% load static  i18n %}
 
 {% block title %}Crowns & Bridges — Niko Dental & Aesthetics{% endblock %}
@@ -22,8 +22,8 @@
   .cb-icon-wrapper {
     width: 60px;
     height: 60px;
-    background: var(--nd-green-tint);
-    color: var(--nd-green);
+    background: rgba(21,155,211,0.05);
+    color: var(--primary-blue);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -40,10 +40,10 @@
     transition: border-color 0.3s ease;
   }
   .cb-type-card:hover {
-    border-color: var(--nd-green);
+    border-color: var(--primary-blue);
   }
   .cb-tip-card {
-    border-left: 4px solid var(--nd-gold);
+    border-left: 4px solid #159BD3;
     background: #fff;
     padding: 20px;
     border-radius: 0 8px 8px 0;
@@ -60,7 +60,7 @@
     border: 1px solid rgba(14,90,79,0.1);
   }
   .pricing-header {
-    background: var(--nd-green-dark);
+    background: var(--navy);
     color: #fff;
     padding: 24px;
     text-align: center;
@@ -80,15 +80,15 @@
   }
   .pricing-row .title {
     font-weight: 700;
-    color: var(--nd-green-dark);
+    color: var(--navy);
     font-size: 1.1rem;
     margin: 0;
   }
   .pricing-row .price {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--nd-gold-dark);
-    font-family: var(--nd-font-head);
+    color: var(--primary-blue);
+    font-family: inherit;
   }
   .pricing-row .currency {
     font-size: 0.9rem;
@@ -141,7 +141,7 @@
   }
   .cgc-top-bar {
     height: 16px;
-    background: var(--nd-green-dark);
+    background: var(--navy);
     border-radius: 15px 15px 0 0;
   }
   .cgc-icon {
@@ -162,13 +162,13 @@
   }
   .cgc-icon i {
     font-size: 2rem;
-    color: var(--nd-green-dark);
+    color: var(--navy);
   }
   .cgc-header {
     text-align: center;
     padding: 25px 15px 15px;
     font-weight: 800;
-    color: var(--nd-green-dark);
+    color: var(--navy);
     font-size: 1.15rem;
     letter-spacing: 0.5px;
   }
@@ -204,7 +204,7 @@
     align-items: flex-start;
   }
   .cgc-features li i {
-    color: var(--nd-green-dark);
+    color: var(--navy);
     margin-right: 8px;
     font-size: 0.95rem;
     margin-top: 1px;
@@ -237,7 +237,7 @@
     letter-spacing: 0.5px;
   }
   .cgc-info-banner {
-    background: var(--nd-green-dark);
+    background: var(--navy);
     color: #fff;
     border-radius: 12px;
     padding: 20px 30px;
@@ -254,7 +254,7 @@
   }
   .cgc-info-text i {
     font-size: 2rem;
-    color: var(--nd-gold);
+    color: #159BD3;
   }
   .cgc-info-text p {
     margin: 0;
@@ -283,15 +283,15 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
         <li class="breadcrumb-item active text-warning">Crowns & Bridges</li>
       </ol>
     </nav>
     <h1><i class="bi bi-shield-check me-3 text-warning"></i>Crowns & Bridges</h1>
-    <p class="hero-sub mx-auto">{% trans "Restore the strength, function, and aesthetics of damaged or missing teeth." %}</p>
+    <p class="hero-sub mx-auto">Restore the strength, function, and aesthetics of damaged or missing teeth.</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Restore Your Smile" %}</a>
+      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Restore Your Smile</a>
     </div>
   </div>
 </section>
@@ -301,36 +301,36 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What Are" %} <span class="accent">Crowns & Bridges?</span></h2>
+        <div class="nd-eyebrow">Introduction</div>
+        <h2 class="section-heading mb-4">What Are <span class="accent">Crowns & Bridges?</span></h2>
         <p class="text-muted" style="line-height:1.85;">
-          {% trans "Crowns and bridges are fixed prosthetic devices cemented onto existing teeth or implants. Unlike dentures, which you can take out and clean daily, crowns and bridges can only be removed by a dentist." %}
+          Crowns and bridges are fixed prosthetic devices cemented onto existing teeth or implants. Unlike dentures, which you can take out and clean daily, crowns and bridges can only be removed by a dentist.
         </p>
         
         <div class="mt-4">
-          <h5 class="fw-bold text-success"><i class="bi bi-shield-shaded me-2"></i> {% trans "Dental Crowns" %}</h5>
-          <p class="text-muted small">{% blocktrans %}A crown (or \"cap\") completely covers a damaged, weak, or severely decayed tooth to restore its original shape, size, strength, and appearance. It is typically used after a root canal or when a large cavity threatens the health of the tooth.{% endblocktrans %}</p>
+          <h5 class="fw-bold text-success"><i class="bi bi-shield-shaded me-2"></i> Dental Crowns</h5>
+          <p class="text-muted small">A crown (or \"cap\") completely covers a damaged, weak, or severely decayed tooth to restore its original shape, size, strength, and appearance. It is typically used after a root canal or when a large cavity threatens the health of the tooth.</p>
         </div>
         
         <div class="mt-4">
-          <h5 class="fw-bold text-primary"><i class="bi bi-bezier2 me-2"></i> {% trans "Dental Bridges" %}</h5>
-          <p class="text-muted small">{% trans "A bridge is used to replace one or more missing teeth. It consists of an artificial tooth (pontic) anchored between two crowns placed on the healthy teeth (abutments) on either side of the gap." %}</p>
+          <h5 class="fw-bold text-primary"><i class="bi bi-bezier2 me-2"></i> Dental Bridges</h5>
+          <p class="text-muted small">A bridge is used to replace one or more missing teeth. It consists of an artificial tooth (pontic) anchored between two crowns placed on the healthy teeth (abutments) on either side of the gap.</p>
         </div>
       </div>
       <div class="col-lg-6">
-        <img loading="lazy" src="{% static 'images/hero_bg.png' %}" alt="Crowns and Bridges Model" class="img-fluid rounded-4 shadow-lg">
+        <img loading="lazy" src="{% static 'serices-image/hero_bg.png' %}" alt="Crowns and Bridges Model" class="img-fluid rounded-4 shadow-lg">
       </div>
     </div>
   </div>
 </section>
 
 <!-- 3. WHEN NEEDED & TYPES -->
-<section class="section-py" style="background:var(--nd-gray-bg);">
+<section class="section-py" style="background:#F8FAFC;">
   <div class="container">
     <div class="text-center mb-5 pb-3">
-      <div class="nd-eyebrow justify-content-center">{% trans "Custom Solutions" %}</div>
-      <h2 class="section-heading" style="color: var(--nd-green-dark);">{% trans "Types of" %} <span style="color: var(--nd-gold);">{% trans "Crowns" %}</span></h2>
-      <p class="text-muted mx-auto mt-2 fs-5">{% trans "High-quality materials. Natural results. Long-lasting smiles." %}</p>
+      <div class="nd-eyebrow justify-content-center">Custom Solutions</div>
+      <h2 class="section-heading" style="color: var(--navy);">Types of <span style="color: #159BD3;">Crowns</span></h2>
+      <p class="text-muted mx-auto mt-2 fs-5">High-quality materials. Natural results. Long-lasting smiles.</p>
     </div>
     
     <div class="row g-4">
@@ -340,21 +340,21 @@
         <div class="crown-grid-card">
           <div class="cgc-top-bar"></div>
           <div class="cgc-icon"><i class="bi bi-shield-shaded"></i></div>
-          <div class="cgc-header">{% trans "METAL CROWN" %}</div>
+          <div class="cgc-header">METAL CROWN</div>
           <img loading="lazy" src="{% static 'images/metal-crown.jpg' %}" alt="Metal Crown" class="cgc-image">
           <div class="cgc-body">
-            <p class="cgc-desc">{% trans "Extremely durable and long-lasting. Ideal for back teeth that handle heavy chewing forces." %}</p>
+            <p class="cgc-desc">Extremely durable and long-lasting. Ideal for back teeth that handle heavy chewing forces.</p>
             <ul class="cgc-features">
-              <li><i class="bi bi-check-circle-fill"></i> {% trans "Highly durable" %}</li>
-              <li><i class="bi bi-check-circle-fill"></i> {% trans "Resistant to wear and fracture" %}</li>
-              <li><i class="bi bi-check-circle-fill"></i> {% trans "Ideal for back molars" %}</li>
-              <li><i class="bi bi-check-circle-fill"></i> {% trans "Cost-effective" %}</li>
+              <li><i class="bi bi-check-circle-fill"></i> Highly durable</li>
+              <li><i class="bi bi-check-circle-fill"></i> Resistant to wear and fracture</li>
+              <li><i class="bi bi-check-circle-fill"></i> Ideal for back molars</li>
+              <li><i class="bi bi-check-circle-fill"></i> Cost-effective</li>
             </ul>
             <div class="cgc-ideal">
               <div class="cgc-ideal-icon"><i class="bi bi-tooth"></i></div>
               <div class="cgc-ideal-text">
-                <strong>{% trans "IDEAL FOR:" %}</strong>
-                {% trans "Back teeth and molars where strength is the top priority." %}
+                <strong>IDEAL FOR:</strong>
+                Back teeth and molars where strength is the top priority.
               </div>
             </div>
           </div>
@@ -364,23 +364,23 @@
       <!-- 2. PFM Crown -->
       <div class="col-lg-3 col-md-6">
         <div class="crown-grid-card">
-          <div class="cgc-top-bar" style="background: var(--nd-gold);"></div>
-          <div class="cgc-icon"><i class="bi bi-palette" style="color: var(--nd-gold);"></i></div>
-          <div class="cgc-header" style="color: var(--nd-gold-dark);">{% trans "PFM CROWN" %}</div>
+          <div class="cgc-top-bar" style="background: #159BD3;"></div>
+          <div class="cgc-icon"><i class="bi bi-palette" style="color: #159BD3;"></i></div>
+          <div class="cgc-header" style="color: var(--primary-blue);">PFM CROWN</div>
           <img loading="lazy" src="{% static 'images/pfm-crown.jpg' %}" alt="PFM Crown" class="cgc-image">
           <div class="cgc-body">
-            <p class="cgc-desc">{% trans "Porcelain fused to metal for strength and natural appearance. A perfect balance of durability and aesthetics." %}</p>
+            <p class="cgc-desc">Porcelain fused to metal for strength and natural appearance. A perfect balance of durability and aesthetics.</p>
             <ul class="cgc-features">
-              <li><i class="bi bi-check-circle-fill" style="color: var(--nd-gold);"></i> {% trans "Strong and durable" %}</li>
-              <li><i class="bi bi-check-circle-fill" style="color: var(--nd-gold);"></i> {% trans "Natural tooth-colored appearance" %}</li>
-              <li><i class="bi bi-check-circle-fill" style="color: var(--nd-gold);"></i> {% trans "Good for front and back teeth" %}</li>
-              <li><i class="bi bi-check-circle-fill" style="color: var(--nd-gold);"></i> {% trans "More affordable than all-ceramic" %}</li>
+              <li><i class="bi bi-check-circle-fill" style="color: #159BD3;"></i> Strong and durable</li>
+              <li><i class="bi bi-check-circle-fill" style="color: #159BD3;"></i> Natural tooth-colored appearance</li>
+              <li><i class="bi bi-check-circle-fill" style="color: #159BD3;"></i> Good for front and back teeth</li>
+              <li><i class="bi bi-check-circle-fill" style="color: #159BD3;"></i> More affordable than all-ceramic</li>
             </ul>
             <div class="cgc-ideal">
               <div class="cgc-ideal-icon"><i class="bi bi-tooth"></i></div>
               <div class="cgc-ideal-text">
-                <strong>{% trans "IDEAL FOR:" %}</strong>
-                {% trans "Front and back teeth where strength and aesthetics are needed." %}
+                <strong>IDEAL FOR:</strong>
+                Front and back teeth where strength and aesthetics are needed.
               </div>
             </div>
           </div>
@@ -392,21 +392,21 @@
         <div class="crown-grid-card">
           <div class="cgc-top-bar"></div>
           <div class="cgc-icon"><i class="bi bi-gem"></i></div>
-          <div class="cgc-header">{% trans "ZIRCONIA CROWN" %}</div>
+          <div class="cgc-header">ZIRCONIA CROWN</div>
           <img loading="lazy" src="{% static 'images/zirconia-crown.jpg' %}" alt="Zirconia Crown" class="cgc-image">
           <div class="cgc-body">
-            <p class="cgc-desc">{% trans "Made from high-strength zirconia ceramic. Extremely durable with excellent natural appearance." %}</p>
+            <p class="cgc-desc">Made from high-strength zirconia ceramic. Extremely durable with excellent natural appearance.</p>
             <ul class="cgc-features">
-              <li><i class="bi bi-check-circle-fill"></i> {% trans "Exceptional strength" %}</li>
-              <li><i class="bi bi-check-circle-fill"></i> {% trans "Highly aesthetic" %}</li>
+              <li><i class="bi bi-check-circle-fill"></i> Exceptional strength</li>
+              <li><i class="bi bi-check-circle-fill"></i> Highly aesthetic</li>
               <li><i class="bi bi-check-circle-fill"></i> Biocompatible & metal-free</li>
-              <li><i class="bi bi-check-circle-fill"></i> {% trans "Ideal for all teeth" %}</li>
+              <li><i class="bi bi-check-circle-fill"></i> Ideal for all teeth</li>
             </ul>
             <div class="cgc-ideal">
               <div class="cgc-ideal-icon"><i class="bi bi-tooth"></i></div>
               <div class="cgc-ideal-text">
-                <strong>{% trans "IDEAL FOR:" %}</strong>
-                {% trans "Both front and back teeth. Best all-round performance." %}
+                <strong>IDEAL FOR:</strong>
+                Both front and back teeth. Best all-round performance.
               </div>
             </div>
           </div>
@@ -416,23 +416,23 @@
       <!-- 4. E-max Crown -->
       <div class="col-lg-3 col-md-6">
         <div class="crown-grid-card">
-          <div class="cgc-top-bar" style="background: var(--nd-gold);"></div>
-          <div class="cgc-icon"><i class="bi bi-stars" style="color: var(--nd-gold);"></i></div>
-          <div class="cgc-header" style="color: var(--nd-gold-dark);">{% trans "E-MAX CROWN" %}</div>
+          <div class="cgc-top-bar" style="background: #159BD3;"></div>
+          <div class="cgc-icon"><i class="bi bi-stars" style="color: #159BD3;"></i></div>
+          <div class="cgc-header" style="color: var(--primary-blue);">E-MAX CROWN</div>
           <img loading="lazy" src="{% static 'images/e-max-crown.jpg' %}" alt="E-max Crown" class="cgc-image">
           <div class="cgc-body">
-            <p class="cgc-desc">{% trans "Premium all-ceramic crown known for its lifelike translucency and beautiful aesthetics." %}</p>
+            <p class="cgc-desc">Premium all-ceramic crown known for its lifelike translucency and beautiful aesthetics.</p>
             <ul class="cgc-features">
-              <li><i class="bi bi-check-circle-fill" style="color: var(--nd-gold);"></i> {% trans "Superior aesthetics" %}</li>
-              <li><i class="bi bi-check-circle-fill" style="color: var(--nd-gold);"></i> {% trans "Natural translucency" %}</li>
-              <li><i class="bi bi-check-circle-fill" style="color: var(--nd-gold);"></i> Metal-free & biocompatible</li>
-              <li><i class="bi bi-check-circle-fill" style="color: var(--nd-gold);"></i> {% trans "Perfect for front teeth" %}</li>
+              <li><i class="bi bi-check-circle-fill" style="color: #159BD3;"></i> Superior aesthetics</li>
+              <li><i class="bi bi-check-circle-fill" style="color: #159BD3;"></i> Natural translucency</li>
+              <li><i class="bi bi-check-circle-fill" style="color: #159BD3;"></i> Metal-free & biocompatible</li>
+              <li><i class="bi bi-check-circle-fill" style="color: #159BD3;"></i> Perfect for front teeth</li>
             </ul>
             <div class="cgc-ideal">
               <div class="cgc-ideal-icon"><i class="bi bi-tooth"></i></div>
               <div class="cgc-ideal-text">
-                <strong>{% trans "IDEAL FOR:" %}</strong>
-                {% trans "Front teeth and visible areas for the best aesthetics." %}
+                <strong>IDEAL FOR:</strong>
+                Front teeth and visible areas for the best aesthetics.
               </div>
             </div>
           </div>
@@ -445,10 +445,10 @@
     <div class="cgc-info-banner">
       <div class="cgc-info-text">
         <i class="bi bi-tooth"></i>
-        <p>{% blocktrans %}\"Our dentists will recommend the most suitable crown material based on your oral condition, tooth location, functional needs, aesthetic expectations, and budget.\"{% endblocktrans %}</p>
+        <p>\"Our dentists will recommend the most suitable crown material based on your oral condition, tooth location, functional needs, aesthetic expectations, and budget.\"</p>
       </div>
       <div class="cgc-info-logo">
-        <h5 class="fw-bold mb-0 text-white" style="font-family: var(--nd-font-head);"><i class="bi bi-shield-check text-warning me-2"></i>{% trans "NIKO DENTAL" %}</h5>
+        <h5 class="fw-bold mb-0 text-white" style="font-family: inherit;"><i class="bi bi-shield-check text-warning me-2"></i>NIKO DENTAL</h5>
       </div>
     </div>
     
@@ -458,15 +458,15 @@
     <!-- Problems Solved -->
     <div class="bg-white p-5 rounded-4 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
       <div class="row align-items-center">
-          <h3 class="fw-bold mb-3" style="color:var(--nd-green-dark);">{% trans "When Are They Needed?" %}</h3>
-          <p class="text-muted mb-0">{% trans "Crowns and bridges solve a wide variety of dental issues, preventing further decay and restoring functionality." %}</p>
+          <h3 class="fw-bold mb-3" style="color:var(--navy);">When Are They Needed?</h3>
+          <p class="text-muted mb-0">Crowns and bridges solve a wide variety of dental issues, preventing further decay and restoring functionality.</p>
         </div>
         <div class="col-lg-7">
           <ul class="symptom-list mb-0">
-            <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>{% trans "To protect a weak tooth from fracturing after a root canal." %}</span></li>
-            <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>{% trans "To cover a dental implant." %}</span></li>
-            <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>{% blocktrans %}To replace a large filling when there isn't enough tooth remaining.{% endblocktrans %}</span></li>
-            <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>{% trans "To fill the gap of a missing tooth (Bridge) to stop teeth from shifting." %}</span></li>
+            <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>To protect a weak tooth from fracturing after a root canal.</span></li>
+            <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>To cover a dental implant.</span></li>
+            <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>To replace a large filling when there isn't enough tooth remaining.</span></li>
+            <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>To fill the gap of a missing tooth (Bridge) to stop teeth from shifting.</span></li>
           </ul>
         </div>
       </div>
@@ -481,35 +481,35 @@
     <div class="row g-5">
       <!-- Benefits -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "Advantages" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">Benefits of Crowns & Bridges</h3>
+        <div class="nd-eyebrow">Advantages</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Benefits of Crowns & Bridges</h3>
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="cb-card">
               <div class="cb-icon-wrapper"><i class="bi bi-emoji-smile"></i></div>
-              <h6 class="fw-bold">{% trans "Aesthetic Restoration" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Custom-shaded to match your surrounding teeth perfectly." %}</p>
+              <h6 class="fw-bold">Aesthetic Restoration</h6>
+              <p class="small text-muted mb-0">Custom-shaded to match your surrounding teeth perfectly.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="cb-card">
               <div class="cb-icon-wrapper"><i class="bi bi-shield-check"></i></div>
-              <h6 class="fw-bold">{% trans "Tooth Protection" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Provides a protective shield for brittle or root-canal treated teeth." %}</p>
+              <h6 class="fw-bold">Tooth Protection</h6>
+              <p class="small text-muted mb-0">Provides a protective shield for brittle or root-canal treated teeth.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="cb-card">
               <div class="cb-icon-wrapper"><i class="bi bi-grid-1x2"></i></div>
-              <h6 class="fw-bold">{% trans "Prevents Shifting" %}</h6>
-              <p class="small text-muted mb-0">{% blocktrans %}Bridges fill gaps so adjacent teeth don't drift out of alignment.{% endblocktrans %}</p>
+              <h6 class="fw-bold">Prevents Shifting</h6>
+              <p class="small text-muted mb-0">Bridges fill gaps so adjacent teeth don't drift out of alignment.</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="cb-card">
               <div class="cb-icon-wrapper"><i class="bi bi-apple"></i></div>
-              <h6 class="fw-bold">{% trans "Restores Chewing" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Allows you to eat your favorite foods without pain or hesitation." %}</p>
+              <h6 class="fw-bold">Restores Chewing</h6>
+              <p class="small text-muted mb-0">Allows you to eat your favorite foods without pain or hesitation.</p>
             </div>
           </div>
         </div>
@@ -517,13 +517,13 @@
       
       <!-- Why Niko -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Why Us?" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Why Choose Niko Dental?" %}</h3>
+        <div class="nd-eyebrow">Why Us?</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Why Choose Niko Dental?</h3>
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Digital Impressions:" %}</strong> {% trans "We use precise 3D scanners instead of messy, uncomfortable putty to mold your teeth." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Top-tier Labs:" %}</strong> {% trans "Our crowns are milled by expert technicians ensuring a perfect, micro-precise fit." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Aesthetic Matching:" %}</strong> {% trans "We take lighting and natural translucency into account for an invisible restoration." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Warranty:" %}</strong> {% trans "We stand by the quality of our premium Zirconia and E-max crowns." %}</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Digital Impressions:</strong> We use precise 3D scanners instead of messy, uncomfortable putty to mold your teeth.</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Top-tier Labs:</strong> Our crowns are milled by expert technicians ensuring a perfect, micro-precise fit.</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Aesthetic Matching:</strong> We take lighting and natural translucency into account for an invisible restoration.</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>Warranty:</strong> We stand by the quality of our premium Zirconia and E-max crowns.</span></li>
         </ul>
       </div>
     </div>
@@ -531,44 +531,44 @@
 </section>
 
 <!-- 5. PROCESS & PRICING -->
-<section class="section-py" style="background:var(--nd-green-dark); color:#fff;">
+<section class="section-py" style="background:var(--navy); color:#fff;">
   <div class="container">
     <div class="row g-5 align-items-center">
       
       <!-- Step-by-Step -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Our Treatment" %} <span class="text-warning">{% trans "Process" %}</span></h2>
+        <div class="nd-eyebrow justify-content-start text-white-50 border-white">The Procedure</div>
+        <h2 class="section-heading text-white mb-5">Our Treatment <span class="text-warning">Process</span></h2>
         
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Preparation" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "The tooth is numbed, and a thin layer of enamel is shaved off to make room for the crown to fit over it perfectly." %}</p>
+            <h5 class="fw-bold text-white mb-1">Preparation</h5>
+            <p class="text-white-50 mb-0">The tooth is numbed, and a thin layer of enamel is shaved off to make room for the crown to fit over it perfectly.</p>
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Digital Impressions" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "We take a precise 3D scan of your mouth and send the data to our dental lab to custom-mill your crown or bridge." %}</p>
+            <h5 class="fw-bold text-white mb-1">Digital Impressions</h5>
+            <p class="text-white-50 mb-0">We take a precise 3D scan of your mouth and send the data to our dental lab to custom-mill your crown or bridge.</p>
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Temporary Placement" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "While your permanent crown is being made (usually takes a few days), we place a temporary acrylic crown to protect your tooth." %}</p>
+            <h5 class="fw-bold text-white mb-1">Temporary Placement</h5>
+            <p class="text-white-50 mb-0">While your permanent crown is being made (usually takes a few days), we place a temporary acrylic crown to protect your tooth.</p>
           </div>
         </div>
         <div class="d-flex">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
+          <div class="fs-3 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
           <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Final Cementation" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "On your second visit, we remove the temporary, check the fit and color of the permanent crown, and cement it permanently in place." %}</p>
+            <h5 class="fw-bold text-white mb-1">Final Cementation</h5>
+            <p class="text-white-50 mb-0">On your second visit, we remove the temporary, check the fit and color of the permanent crown, and cement it permanently in place.</p>
           </div>
         </div>
       </div>
@@ -577,56 +577,56 @@
       <div class="col-lg-5">
         <div class="pricing-table">
           <div class="pricing-header">
-            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
+            <h3 class="fw-bold mb-0">Treatment Charges</h3>
             <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing (Per Unit)</p>
           </div>
           <div class="pricing-body">
             
             <div class="pricing-row">
               <div>
-                <p class="title">{% trans "Metal Crown" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Durable, non-aesthetic" %}</p>
+                <p class="title">Metal Crown</p>
+                <p class="text-muted small mb-0 mt-1">Durable, non-aesthetic</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.metal_crown|default:"3,000" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.metal_crown|default:"3,000" }}</span>
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--nd-green-tint);">
+            <div class="pricing-row" style="background-color: rgba(21,155,211,0.05);">
               <div>
-                <p class="title">{% trans "PFM Crown" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Porcelain Fused to Metal" %}</p>
+                <p class="title">PFM Crown</p>
+                <p class="text-muted small mb-0 mt-1">Porcelain Fused to Metal</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.pfm_crown|default:"6,000" }}</span>
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.pfm_crown|default:"6,000" }}</span>
               </div>
             </div>
             
             <div class="pricing-row">
               <div>
-                <p class="title text-success">{% trans "Zirconia Crown" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "High strength, aesthetic" %}</p>
+                <p class="title text-success">Zirconia Crown</p>
+                <p class="text-muted small mb-0 mt-1">High strength, aesthetic</p>
               </div>
               <div class="text-end">
-                <span class="price text-success"><span class="currency">{% trans "NPR" %}</span> 12,000</span>
+                <span class="price text-success"><span class="currency">NPR</span> 12,000</span>
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--nd-green-tint);">
+            <div class="pricing-row" style="background-color: rgba(21,155,211,0.05);">
               <div>
-                <p class="title text-primary">{% trans "E-max Crown" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Premium All-Ceramic" %}</p>
+                <p class="title text-primary">E-max Crown</p>
+                <p class="text-muted small mb-0 mt-1">Premium All-Ceramic</p>
               </div>
               <div class="text-end">
-                <span class="price text-primary"><span class="currency">{% trans "NPR" %}</span> 18,000</span>
+                <span class="price text-primary"><span class="currency">NPR</span> 18,000</span>
               </div>
             </div>
 
             <div class="p-4 text-center">
               <p class="small text-muted mb-4 fst-italic">
-                {% trans "* Note: Prices are per unit (per tooth). A 3-tooth bridge made of PFM would be NPR 6,000 x 3 = NPR 18,000. Final costs depend on clinical evaluation." %}
+                * Note: Prices are per unit (per tooth). A 3-tooth bridge made of PFM would be NPR 6,000 x 3 = NPR 18,000. Final costs depend on clinical evaluation.
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Consultation" %}</a>
+              <a href="{% url 'main:contact' %}#book" class="btn btn-primary w-100">Schedule Consultation</a>
             </div>
 
           </div>
@@ -640,31 +640,31 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Results" %}</div>
-      <h2 class="section-heading">{% trans "Smile" %} <span class="accent">{% trans "Restorations" %}</span></h2>
-      <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "See the seamless, natural-looking results achievable with our premium Zirconia and E-max crowns." %}</p>
+      <div class="nd-eyebrow justify-content-center">Results</div>
+      <h2 class="section-heading">Smile <span class="accent">Restorations</span></h2>
+      <p class="text-muted mx-auto mt-3" style="max-width: 600px;">See the seamless, natural-looking results achievable with our premium Zirconia and E-max crowns.</p>
     </div>
     
     <div class="row g-4">
       <div class="col-md-4">
         <div class="cb-gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/crown_before.png' %}'">
           <img loading="lazy" src="{% static 'images/crown_before.png' %}" alt="Decayed Tooth Before">
-          <div class="cb-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">{% trans "Before: Severely Decayed Tooth" %}</div>
+          <div class="cb-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">Before: Severely Decayed Tooth</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="cb-gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/crown_during.png' %}'">
           <img loading="lazy" src="{% static 'images/crown_during.png' %}" alt="Crown Preparation">
-          <div class="cb-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">{% trans "During: Tooth Preparation" %}</div>
+          <div class="cb-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">During: Tooth Preparation</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="cb-gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/crown_after.png' %}'">
           <img loading="lazy" src="{% static 'images/crown_after.png' %}" alt="Zirconia Crown After">
-          <div class="cb-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">{% trans "After: Zirconia Crown Placed" %}</div>
+          <div class="cb-gallery-overlay"><i class="bi bi-zoom-in text-white fs-3"></i></div>
+          <div class="p-3 bg-light text-center small fw-bold text-dark border-top">After: Zirconia Crown Placed</div>
         </div>
       </div>
     </div>
@@ -690,20 +690,20 @@
       
       <!-- Care Tips -->
       <div class="col-lg-4">
-        <div class="nd-eyebrow">{% trans "Maintenance" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Aftercare Tips" %}</h3>
+        <div class="nd-eyebrow">Maintenance</div>
+        <h3 class="fw-bold mb-4" style="color:var(--navy);">Aftercare Tips</h3>
         
         <div class="cb-tip-card border-success">
-          <h6 class="fw-bold"><i class="bi bi-brush text-success me-2"></i> {% trans "Normal Hygiene" %}</h6>
-          <p class="small text-muted mb-0">{% trans "Brush and floss your crowned teeth exactly like natural teeth to prevent decay at the gum line." %}</p>
+          <h6 class="fw-bold"><i class="bi bi-brush text-success me-2"></i> Normal Hygiene</h6>
+          <p class="small text-muted mb-0">Brush and floss your crowned teeth exactly like natural teeth to prevent decay at the gum line.</p>
         </div>
         <div class="cb-tip-card border-primary">
-          <h6 class="fw-bold"><i class="bi bi-bezier2 text-primary me-2"></i> {% trans "Flossing Bridges" %}</h6>
-          <p class="small text-muted mb-0">{% trans "Use special floss threaders or a water flosser to clean underneath the artificial tooth of a bridge." %}</p>
+          <h6 class="fw-bold"><i class="bi bi-bezier2 text-primary me-2"></i> Flossing Bridges</h6>
+          <p class="small text-muted mb-0">Use special floss threaders or a water flosser to clean underneath the artificial tooth of a bridge.</p>
         </div>
         <div class="cb-tip-card border-warning">
-          <h6 class="fw-bold"><i class="bi bi-shield-x text-warning me-2"></i> {% trans "Avoid Hard Foods" %}</h6>
-          <p class="small text-muted mb-0">{% trans "Avoid chewing ice, hard candies, or using your teeth to open packages, which can chip porcelain." %}</p>
+          <h6 class="fw-bold"><i class="bi bi-shield-x text-warning me-2"></i> Avoid Hard Foods</h6>
+          <p class="small text-muted mb-0">Avoid chewing ice, hard candies, or using your teeth to open packages, which can chip porcelain.</p>
         </div>
       </div>
 
@@ -711,42 +711,42 @@
       <div class="col-lg-8">
         
         <div class="mb-5">
-          <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-          <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">{% trans "Frequently Asked Questions" %}</h3>
+          <div class="nd-eyebrow">FAQ</div>
+          <h3 class="fw-bold mb-4" style="color:var(--navy);">Frequently Asked Questions</h3>
           <div class="accordion nd-accordion" id="faqAccordion">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  {% trans "How long do crowns and bridges last?" %}
+                  How long do crowns and bridges last?
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                  {% trans "With proper oral hygiene and regular dental checkups, a high-quality Zirconia or PFM crown can last anywhere from 10 to 15 years, and often much longer." %}
+                  With proper oral hygiene and regular dental checkups, a high-quality Zirconia or PFM crown can last anywhere from 10 to 15 years, and often much longer.
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  {% trans "Does getting a crown hurt?" %}
+                  Does getting a crown hurt?
                 </button>
               </h2>
               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                  {% blocktrans %}No. We use local anesthesia during the tooth preparation process so you won't feel any pain. You may experience some mild sensitivity for a few days after the procedure, which is normal.{% endblocktrans %}
+                  No. We use local anesthesia during the tooth preparation process so you won't feel any pain. You may experience some mild sensitivity for a few days after the procedure, which is normal.
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  {% trans "What is the difference between Zirconia and E-max?" %}
+                  What is the difference between Zirconia and E-max?
                 </button>
               </h2>
               <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                  {% trans "Zirconia is incredibly strong and durable, making it excellent for back teeth (molars) that withstand heavy chewing. E-max is slightly less strong but offers superior translucency and aesthetics, making it the preferred choice for highly visible front teeth." %}
+                  Zirconia is incredibly strong and durable, making it excellent for back teeth (molars) that withstand heavy chewing. E-max is slightly less strong but offers superior translucency and aesthetics, making it the preferred choice for highly visible front teeth.
                 </div>
               </div>
             </div>
@@ -761,12 +761,12 @@
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
           </div>
-          <p class="fst-italic text-muted mb-3 position-relative z-1">{% blocktrans %}\"I had a large gap from a missing tooth and was always self-conscious. The Zirconia bridge Dr. Niko placed looks exactly like my real teeth. The color match is perfect, and I can finally chew on that side again!\"{% endblocktrans %}</p>
+          <p class="fst-italic text-muted mb-3 position-relative z-1">\"I had a large gap from a missing tooth and was always self-conscious. The Zirconia bridge Dr. Niko placed looks exactly like my real teeth. The color match is perfect, and I can finally chew on that side again!\"</p>
           <div class="d-flex align-items-center gap-3">
-            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px;">{% trans "S.M." %}</div>
+            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px;">S.M.</div>
             <div>
-              <h6 class="fw-bold mb-0">{% trans "Sunita M." %}</h6>
-              <p class="small text-muted mb-0">{% trans "Zirconia Bridge Patient" %}</p>
+              <h6 class="fw-bold mb-0">Sunita M.</h6>
+              <p class="small text-muted mb-0">Zirconia Bridge Patient</p>
             </div>
           </div>
         </div>
@@ -782,24 +782,24 @@
 <!-- RELATED SERVICES -->
 <section class="section-py" style="background: #f8f9fa;">
   <div class="container">
-    {% include 'components/related_services_row.html' %}
+    
   </div>
 </section>
 
 <!-- 9. CTA STRIP -->
 <div class="nd-cta-strip" id="book">
   <div class="cta-inner container">
-    <h2>{% trans "Strengthen Your Smile Today" %}</h2>
-    <p>{% blocktrans %}Don't let a weak or missing tooth hold you back. Book a consultation for premium crowns and bridges.{% endblocktrans %}</p>
+    <h2>Strengthen Your Smile Today</h2>
+    <p>Don't let a weak or missing tooth hold you back. Book a consultation for premium crowns and bridges.</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Consultation" %}</a>
+      <a href="#" class="btn btn-primary"><i class="bi bi-calendar-check-fill me-2"></i>Book Consultation</a>
       <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+        <i class="bi bi-telephone-fill"></i>Call Now
       </a>
     </div>
   </div>
 </div>
 
-{% include 'components/google_reviews.html' %}
+
 
 {% endblock %}
