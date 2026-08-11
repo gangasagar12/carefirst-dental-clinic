@@ -16,6 +16,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.text-teal { color: #0D9488 !important; }
+.text-purple { color: #7C3AED !important; }
+.text-orange { color: #EA580C !important; }
 
 /* Animations & Transitions */
 .transition-smooth {
