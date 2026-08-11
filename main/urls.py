@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.index, name='home'), # Changed to 'home' instead of 'index' for better naming
     path('about/', views.about, name='about'),
     path('treatments/', views.treatments, name='treatments'),
+    path('treatments/general-dentistry/', views.general_dentistry, name='general_dentistry'),
     path('doctors/', views.doctors, name='doctors'),
     path('gallery/', views.gallery, name='gallery'),
     path('reviews/', views.reviews, name='reviews'),

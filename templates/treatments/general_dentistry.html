@@ -1,0 +1,369 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}General Dentistry | CareFirst Dental Clinic{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/general-dentistry.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="general-dentistry-page pt-5 mt-5">
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section py-5">
+        <div class="container py-lg-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 fade-up">
+                    <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary px-3 py-2 mb-4 fw-bold tracking-wide" style="font-size: 0.85rem;">
+                        GENERAL DENTISTRY
+                    </span>
+                    <h1 class="editorial-heading h1 text-navy mb-4 fw-bold" style="line-height: 1.2;">
+                        Healthy Teeth Start with <br><strong class="text-primary" style="background: linear-gradient(to right, #0F172A, #159BD3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Regular Care</strong>
+                    </h1>
+                    <p class="text-secondary-brand mb-5 h5 fw-light" style="line-height: 1.6; max-width: 90%;">
+                        Preventive and routine dental care designed to help you maintain healthy teeth, healthy gums, and long-term oral health with confidence.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{% url 'appointment' %}" class="btn btn-primary px-5 py-3 rounded-pill fw-bold hover-lift transition-smooth">Book Appointment</a>
+                        <a href="tel:+9779807464136" class="btn btn-outline-navy bg-white px-5 py-3 rounded-pill fw-bold hover-lift transition-smooth border-2">Call Clinic</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-up" style="animation-delay: 0.2s;">
+                    <div class="position-relative rounded-4 overflow-hidden shadow-lg">
+                        <img src="{% static 'serices-image/scalling_hero.jpg' %}" alt="General Dentistry Care" class="img-fluid w-100 object-fit-cover" style="height: 500px; border-radius: 24px;">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4" style="background: linear-gradient(to top, rgba(15,23,42,0.9) 0%, transparent 100%);">
+                            <h3 class="text-white mb-0 fw-bold h4">Gentle Care for Every Visit</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. WHAT IS GENERAL DENTISTRY -->
+    <section class="py-5 bg-white">
+        <div class="container py-lg-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 order-2 order-lg-1 hover-zoom-img rounded-4 overflow-hidden fade-up">
+                    <img src="{% static 'serices-image/dental_x-ray.jpg' %}" alt="Everyday Dental Care" class="img-fluid w-100 object-fit-cover shadow-sm" style="height: 450px; border-radius: 24px;">
+                </div>
+                <div class="col-lg-7 order-1 order-lg-2 fade-up" style="animation-delay: 0.2s;">
+                    <div class="ps-lg-5">
+                        <h2 class="editorial-heading h2 text-navy mb-4 fw-bold">
+                            Everyday Dental Care for a <strong class="text-primary">Healthier Smile</strong>
+                        </h2>
+                        <div class="text-secondary-brand fs-5 fw-light" style="line-height: 1.8; max-width: 600px;">
+                            <p class="mb-4">
+                                General dentistry focuses on the foundation of your oral health—prevention, early detection, routine maintenance, and preserving your natural teeth and gums.
+                            </p>
+                            <p class="mb-0">
+                                Regular dental visits allow our team to identify minor concerns before they become more serious, ensuring your smile remains strong, functional, and comfortable for years to come.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. EVERYDAY DENTAL CARE CARDS -->
+    <section class="py-5 bg-gray-50" style="background-color: #F8FAFC;">
+        <div class="container py-lg-5">
+            <div class="text-center mb-5 pb-lg-3 fade-up">
+                <h1 class="editorial-heading h2 text-navy mb-3 fw-bold">
+                    Care That Supports Your <strong class="text-primary">Daily Oral Health</strong>
+                </h1>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <!-- Card 1 -->
+                <div class="col-lg-6 fade-up">
+                    <div class="bg-white rounded-4 shadow-sm overflow-hidden h-100 treatment-card-feature position-relative">
+                        <img src="{% static 'serices-image/services1.avif' %}" class="w-100 object-fit-cover" style="height: 280px;" alt="Checkup">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4 pb-4 bg-gradient-dark">
+                            <h3 class="h4 text-white fw-bold mb-2">General Dental Checkup</h3>
+                            <p class="text-white-50 mb-3 small">Routine examination to monitor teeth and gum health.</p>
+                            <a href="{% url 'appointment' %}" class="text-white fw-bold small text-decoration-none border-bottom border-white pb-1">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-lg-6 fade-up" style="animation-delay: 0.1s;">
+                    <div class="bg-white rounded-4 shadow-sm overflow-hidden h-100 treatment-card-feature position-relative">
+                        <img src="{% static 'serices-image/filling_hero.png' %}" class="w-100 object-fit-cover" style="height: 280px;" alt="Filling">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4 pb-4 bg-gradient-dark">
+                            <h3 class="h4 text-white fw-bold mb-2">Dental Filling</h3>
+                            <p class="text-white-50 mb-3 small">Conservative treatment to restore teeth affected by decay.</p>
+                            <a href="{% url 'appointment' %}" class="text-white fw-bold small text-decoration-none border-bottom border-white pb-1">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-lg-6 fade-up">
+                    <div class="bg-white rounded-4 shadow-sm overflow-hidden h-100 treatment-card-feature position-relative">
+                        <img src="{% static 'serices-image/dental2_x-ray.jpg' %}" class="w-100 object-fit-cover" style="height: 280px;" alt="X-Ray">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4 pb-4 bg-gradient-dark">
+                            <h3 class="h4 text-white fw-bold mb-2">Digital Dental X-Ray</h3>
+                            <p class="text-white-50 mb-3 small">Diagnostic imaging that supports accurate assessment.</p>
+                            <a href="{% url 'appointment' %}" class="text-white fw-bold small text-decoration-none border-bottom border-white pb-1">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col-lg-6 fade-up" style="animation-delay: 0.1s;">
+                    <div class="bg-white rounded-4 shadow-sm overflow-hidden h-100 treatment-card-feature position-relative">
+                        <img src="{% static 'serices-image/scaling_before.png' %}" class="w-100 object-fit-cover" style="height: 280px;" alt="Scaling">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4 pb-4 bg-gradient-dark">
+                            <h3 class="h4 text-white fw-bold mb-2">Scaling & Polishing</h3>
+                            <p class="text-white-50 mb-3 small">Professional cleaning to maintain gum health and freshness.</p>
+                            <a href="{% url 'appointment' %}" class="text-white fw-bold small text-decoration-none border-bottom border-white pb-1">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. WHO SHOULD VISIT -->
+    <section class="py-5 bg-white">
+        <div class="container py-lg-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 fade-up">
+                    <h2 class="editorial-heading h2 text-navy mb-4 fw-bold">
+                        General Dentistry Is for <strong class="text-teal">Everyone</strong>
+                    </h2>
+                    <div class="d-flex flex-column gap-3 mt-4">
+                        <div class="p-4 rounded-4 bg-teal-soft">
+                            <h4 class="h6 mb-0 text-navy fw-bold">Children beginning routine dental care</h4>
+                        </div>
+                        <div class="p-4 rounded-4 bg-teal-soft">
+                            <h4 class="h6 mb-0 text-navy fw-bold">Adults maintaining healthy teeth and gums</h4>
+                        </div>
+                        <div class="p-4 rounded-4 bg-teal-soft">
+                            <h4 class="h6 mb-0 text-navy fw-bold">Patients with sensitivity, decay, or discomfort</h4>
+                        </div>
+                        <div class="p-4 rounded-4 bg-teal-soft">
+                            <h4 class="h6 mb-0 text-navy fw-bold">Individuals returning after a long gap in dental visits</h4>
+                        </div>
+                        <div class="p-4 rounded-4 bg-teal-soft">
+                            <h4 class="h6 mb-0 text-navy fw-bold">Families seeking regular preventive care</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-up" style="animation-delay: 0.2s;">
+                    <div class="hover-zoom-img rounded-4 overflow-hidden shadow-sm">
+                        <img src="{% static 'serices-image/filling_intro.png' %}" alt="Who should visit" class="img-fluid w-100 object-fit-cover" style="height: 550px; border-radius: 24px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TIMELINE -->
+    <section class="py-5" style="background-color: #F8FAFC;">
+        <div class="container py-lg-5">
+            <div class="text-center mb-5 pb-lg-4 fade-up">
+                <h1 class="editorial-heading h2 text-navy mb-3 fw-bold">
+                    What to Expect During Your <strong class="text-purple">Appointment</strong>
+                </h1>
+            </div>
+            
+            <div class="row justify-content-center fade-up">
+                <div class="col-lg-8">
+                    <div class="timeline-container px-4">
+                        
+                        <div class="timeline-step">
+                            <h4 class="h5 fw-bold text-secondary-brand mb-2 transition-smooth">Consultation</h4>
+                            <p class="text-secondary-brand mb-0 small">We listen to your concerns.</p>
+                        </div>
+                        
+                        <div class="timeline-step">
+                            <h4 class="h5 fw-bold text-secondary-brand mb-2 transition-smooth">Examination</h4>
+                            <p class="text-secondary-brand mb-0 small">Teeth and gums are carefully assessed.</p>
+                        </div>
+                        
+                        <div class="timeline-step">
+                            <h4 class="h5 fw-bold text-secondary-brand mb-2 transition-smooth">Discussion</h4>
+                            <p class="text-secondary-brand mb-0 small">Findings are explained clearly.</p>
+                        </div>
+                        
+                        <div class="timeline-step">
+                            <h4 class="h5 fw-bold text-secondary-brand mb-2 transition-smooth">Personalized Advice</h4>
+                            <p class="text-secondary-brand mb-0 small">Recommendations are tailored to you.</p>
+                        </div>
+                        
+                        <div class="timeline-step">
+                            <h4 class="h5 fw-bold text-secondary-brand mb-2 transition-smooth">Follow-Up</h4>
+                            <p class="text-secondary-brand mb-0 small">Ongoing care guidance is provided.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. WHY CAREFIRST -->
+    <section class="py-5" style="background-color: #F0F7FF;">
+        <div class="container py-lg-5">
+            <div class="text-center mb-5 pb-lg-4 fade-up">
+                <h1 class="editorial-heading h2 text-navy mb-3 fw-bold">
+                    Trusted Care in the Heart of <strong class="text-primary">Kathmandu</strong>
+                </h1>
+            </div>
+            
+            <div class="row g-5">
+                <div class="col-lg-4 fade-up">
+                    <h3 class="h4 text-navy fw-bold mb-3">Patient-Focused Care</h3>
+                    <p class="text-secondary-brand" style="line-height: 1.7;">
+                        Every visit is centered on comfort, communication, and individual needs.
+                    </p>
+                </div>
+                <div class="col-lg-4 fade-up" style="animation-delay: 0.1s;">
+                    <h3 class="h4 text-navy fw-bold mb-3">Ethical Recommendations</h3>
+                    <p class="text-secondary-brand" style="line-height: 1.7;">
+                        Treatment decisions are explained clearly and thoughtfully.
+                    </p>
+                </div>
+                <div class="col-lg-4 fade-up" style="animation-delay: 0.2s;">
+                    <h3 class="h4 text-navy fw-bold mb-3">Multispecialty Support</h3>
+                    <p class="text-secondary-brand" style="line-height: 1.7;">
+                        A coordinated dental team provides comprehensive care in one location.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. COMFORTABLE EXPERIENCE BANNER -->
+    <section class="gd-overlay-banner position-relative d-flex align-items-center py-5">
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(15, 23, 42, 0.75); z-index: 1;"></div>
+        <div class="container position-relative text-center py-5 fade-up" style="z-index: 2;">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="editorial-heading h2 text-white mb-4 fw-bold">
+                        Dental Visits Should Feel <br><strong class="text-white" style="text-decoration: underline; text-underline-offset: 8px; text-decoration-color: #159BD3;">Calm and Comfortable</strong>
+                    </h1>
+                    <p class="text-white-50 h5 fw-light mx-auto" style="line-height: 1.7; max-width: 700px;">
+                        At CareFirst Dental Clinic, we aim to create a welcoming environment where patients feel respected, informed, and at ease throughout their visit.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FAQ -->
+    <section class="py-5 bg-white">
+        <div class="container py-lg-5">
+            <div class="text-center mb-5 pb-lg-3 fade-up">
+                <h1 class="editorial-heading h2 text-navy mb-3 fw-bold">
+                    Frequently Asked <strong class="text-primary">Questions</strong>
+                </h1>
+            </div>
+            
+            <div class="row justify-content-center fade-up">
+                <div class="col-lg-8">
+                    <div class="accordion custom-accordion" id="faqAccordion">
+                        <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm overflow-hidden">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed py-4 px-4 fw-bold text-navy bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    How often should I visit for a dental checkup?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-4 pb-4 pt-0 text-secondary-brand">
+                                    We typically recommend visiting every 6 months for a routine checkup and cleaning to maintain optimal oral health.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm overflow-hidden">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed py-4 px-4 fw-bold text-navy bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    What is included in a general dental examination?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-4 pb-4 pt-0 text-secondary-brand">
+                                    A thorough visual inspection of teeth and gums, oral cancer screening, and digital X-rays if needed to check for underlying issues.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm overflow-hidden">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed py-4 px-4 fw-bold text-navy bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Is professional cleaning necessary even if I brush regularly?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-4 pb-4 pt-0 text-secondary-brand">
+                                    Yes. Professional scaling removes hardened plaque (tartar) that regular brushing and flossing cannot eliminate.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm overflow-hidden">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed py-4 px-4 fw-bold text-navy bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Are digital dental X-rays safe?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-4 pb-4 pt-0 text-secondary-brand">
+                                    Absolutely. Digital X-rays use significantly less radiation than traditional film and provide immediate, precise diagnostic imaging.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm overflow-hidden">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed py-4 px-4 fw-bold text-navy bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    Can children receive general dental care at CareFirst?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-4 pb-4 pt-0 text-secondary-brand">
+                                    Yes, we provide gentle, accommodating care for patients of all ages, including children starting their dental journey.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm overflow-hidden">
+                            <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed py-4 px-4 fw-bold text-navy bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    Do I need an appointment before visiting?
+                                </button>
+                            </h2>
+                            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-4 pb-4 pt-0 text-secondary-brand">
+                                    While we accept walk-ins for emergencies, we highly recommend booking an appointment to ensure you receive timely, dedicated care.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. CTA -->
+    <section class="py-5 text-center" style="background: linear-gradient(135deg, #F0F7FF 0%, #E0F2FE 100%);">
+        <div class="container py-lg-5 fade-up">
+            <h1 class="editorial-heading h2 text-navy mb-4 fw-bold">
+                Ready for Your Next <strong class="text-primary">Dental Checkup?</strong>
+            </h1>
+            <p class="text-secondary-brand mb-5 mx-auto fs-5 fw-light" style="max-width: 700px; line-height: 1.7;">
+                Schedule a consultation with CareFirst Dental Clinic and receive gentle, patient-focused general dental care in Shankhamul, Kathmandu.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="{% url 'appointment' %}" class="btn btn-primary px-5 py-3 rounded-pill fw-bold hover-lift transition-smooth shadow-sm">Book Appointment</a>
+                <a href="tel:+9779807464136" class="btn btn-navy px-5 py-3 rounded-pill fw-bold hover-lift transition-smooth shadow-sm" style="background-color: #0F172A; color: white;">Call +977 980-7464136</a>
+                <a href="https://wa.me/9779807464136" target="_blank" class="btn text-white px-5 py-3 rounded-pill fw-bold hover-lift transition-smooth shadow-sm" style="background-color: #25D366;">WhatsApp Us</a>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

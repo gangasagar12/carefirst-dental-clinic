@@ -9,6 +9,9 @@ def about(request):
 def treatments(request):
     return render(request, 'pages/treatments.html')
 
+def general_dentistry(request):
+    return render(request, 'treatments/general_dentistry.html')
+
 def doctors(request):
     return render(request, 'pages/doctors.html')
 
