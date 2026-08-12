@@ -37,7 +37,7 @@
 <div class="bg-gray-50 py-2 border-b border-gray-100">
     <div class="container mx-auto px-4 max-w-[1200px]">
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0 text-[13px] text-gray-500 font-medium">
+            <ol class="breadcrumb mb-0 text-[15px] text-gray-500 font-medium">
                 <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-gray-400 no-underline hover:text-[#4285F4] transition-colors">Home</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'treatments' %}" class="text-gray-400 no-underline hover:text-[#4285F4] transition-colors">Treatments</a></li>
                 <li class="breadcrumb-item active text-gray-500" aria-current="page">Dental Filling</li>
@@ -61,7 +61,7 @@
                 <h1 class="text-[36px] md:text-[42px] lg:text-[46px] font-extrabold text-[#102A43] leading-[1.15] mb-5 tracking-tight">
                     Restore Your Tooth with a <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-navy">Natural-Looking Filling</span>
                 </h1>
-                <p class="text-[13px] text-gray-500 mb-8 leading-relaxed">
+                <p class="text-[15px] text-gray-500 mb-8 leading-relaxed">
                     Modern tooth-colored fillings help repair cavities, chips, and worn teeth while preserving your natural smile and restoring comfortable function.
                 </p>
                 <div class="flex flex-wrap gap-4">
@@ -81,7 +81,7 @@
                 <!-- Overlay Card -->
                 <div class="absolute -bottom-6 -left-6 bg-white py-3 px-6 rounded-2xl shadow-xl flex items-center gap-3 border border-gray-100">
                     <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    <span class="font-bold text-[#102A43] text-[13px]">Strong • Natural • Comfortable</span>
+                    <span class="font-bold text-[#102A43] text-[15px]">Strong • Natural • Comfortable</span>
                 </div>
             </div>
             
@@ -114,29 +114,35 @@
 </section>
 
 <!-- 4. When Do You Need a Filling? -->
-<section class="py-16 lg:py-24 bg-light-blue">
-    <div class="container mx-auto px-4 max-w-[1200px]">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-[24px] md:text-[28px] font-bold text-[#102A43] mb-4 tracking-tight">
-                When Might You Need a <span class="text-[#4285F4]">Filling?</span>
-            </h2>
-        </div>
+<section class="py-16 lg:py-24 bg-white">
+    <div class="container mx-auto px-4 max-w-[800px]">
+        <h2 class="text-[24px] md:text-[28px] font-bold text-[#102A43] mb-8">
+            When Do You Need a Filling?
+        </h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <!-- Card 1 -->
-            <div class="bg-white p-8 rounded-[20px] shadow-[0_4px_20px_rgba(16,42,67,0.04)] border-t-4 border-t-primary hover:-translate-y-1 transition-transform duration-300">
-                <h3 class="text-[16px] font-bold text-[#102A43] mb-3">Tooth Decay</h3>
-                <p class="text-gray-500 leading-relaxed m-0">Repairing cavities and sealing the tooth to prevent harmful bacteria from reaching the sensitive inner nerve.</p>
+        <div class="border-l-[3px] border-[#3c8751] pl-6 md:pl-8 space-y-8">
+            <!-- Item 1 -->
+            <div class="flex items-start gap-4">
+                <i class="fa-solid fa-circle-half-stroke text-gray-500 text-[20px] mt-1 shrink-0"></i>
+                <div class="text-[16px] text-gray-700 leading-relaxed">
+                    <strong class="text-[#102A43]">Tooth Decay & Cavities:</strong> Stopping decay before it reaches the nerve.
+                </div>
             </div>
-            <!-- Card 2 -->
-            <div class="bg-white p-8 rounded-[20px] shadow-[0_4px_20px_rgba(16,42,67,0.04)] border-t-4 border-t-primary hover:-translate-y-1 transition-transform duration-300">
-                <h3 class="text-[16px] font-bold text-[#102A43] mb-3">Chipped or Cracked Teeth</h3>
-                <p class="text-gray-500 leading-relaxed m-0">Restoring minor structural damage caused by trauma or biting on hard objects, protecting the tooth from further stress.</p>
+            
+            <!-- Item 2 -->
+            <div class="flex items-start gap-4">
+                <i class="fa-solid fa-bolt-lightning text-gray-400 text-[20px] mt-1 shrink-0"></i>
+                <div class="text-[16px] text-gray-700 leading-relaxed">
+                    <strong class="text-[#102A43]">Chipped or Cracked Teeth:</strong> Repairing minor physical damage.
+                </div>
             </div>
-            <!-- Card 3 -->
-            <div class="bg-white p-8 rounded-[20px] shadow-[0_4px_20px_rgba(16,42,67,0.04)] border-t-4 border-t-primary hover:-translate-y-1 transition-transform duration-300">
-                <h3 class="text-[16px] font-bold text-[#102A43] mb-3">Worn Teeth</h3>
-                <p class="text-gray-500 leading-relaxed m-0">Rebuilding areas of the tooth enamel that have been worn away by chronic teeth grinding (bruxism) or acid erosion.</p>
+            
+            <!-- Item 3 -->
+            <div class="flex items-start gap-4">
+                <i class="fa-solid fa-arrow-down text-gray-400 text-[20px] mt-1 shrink-0"></i>
+                <div class="text-[16px] text-gray-700 leading-relaxed">
+                    <strong class="text-[#102A43]">Worn Teeth:</strong> Restoring enamel worn down by teeth grinding or acid.
+                </div>
             </div>
         </div>
     </div>
@@ -154,38 +160,38 @@
                     <span class="text-[#d4af37] text-[11px] font-bold uppercase tracking-[0.2em]">WATCH FOR THESE</span>
                 </div>
                 <h2 class="text-[24px] md:text-[28px] font-bold text-[#102A43] mb-4">Signs & Symptoms</h2>
-                <p class="text-[13px] text-gray-500 mb-8 leading-relaxed">
+                <p class="text-[15px] text-gray-500 mb-8 leading-relaxed">
                     Cavities don't always cause pain immediately. Look out for these warning signs:
                 </p>
                 
                 <ul class="space-y-6">
                     <li class="flex items-start gap-4">
-                        <i class="fa-solid fa-snowflake text-blue-500 text-[13px] mt-1 w-6 text-center"></i>
-                        <div class="text-[13px] text-gray-500 leading-relaxed">
+                        <i class="fa-solid fa-snowflake text-blue-500 text-[15px] mt-1 w-6 text-center"></i>
+                        <div class="text-[15px] text-gray-500 leading-relaxed">
                             <strong class="text-[#102A43]">Tooth Sensitivity:</strong> Pain when eating sweet, hot, or cold foods.
                         </div>
                     </li>
                     <li class="flex items-start gap-4">
-                        <i class="fa-solid fa-bolt text-red-500 text-[13px] mt-1 w-6 text-center"></i>
-                        <div class="text-[13px] text-gray-500 leading-relaxed">
+                        <i class="fa-solid fa-bolt text-red-500 text-[15px] mt-1 w-6 text-center"></i>
+                        <div class="text-[15px] text-gray-500 leading-relaxed">
                             <strong class="text-[#102A43]">Pain While Eating:</strong> A sharp ache when you bite down.
                         </div>
                     </li>
                     <li class="flex items-start gap-4">
-                        <i class="fa-regular fa-circle text-yellow-500 text-[13px] mt-1 w-6 text-center"></i>
-                        <div class="text-[13px] text-gray-500 leading-relaxed">
+                        <i class="fa-regular fa-circle text-yellow-500 text-[15px] mt-1 w-6 text-center"></i>
+                        <div class="text-[15px] text-gray-500 leading-relaxed">
                             <strong class="text-[#102A43]">Visible Holes:</strong> Pits or holes you can see or feel with your tongue.
                         </div>
                     </li>
                     <li class="flex items-start gap-4">
-                        <i class="fa-solid fa-circle text-gray-800 text-[13px] mt-1 w-6 text-center"></i>
-                        <div class="text-[13px] text-gray-500 leading-relaxed">
+                        <i class="fa-solid fa-circle text-gray-800 text-[15px] mt-1 w-6 text-center"></i>
+                        <div class="text-[15px] text-gray-500 leading-relaxed">
                             <strong class="text-[#102A43]">Dark Spots:</strong> Black, brown, or white staining on the tooth surface.
                         </div>
                     </li>
                     <li class="flex items-start gap-4">
-                        <i class="fa-solid fa-magnet text-gray-400 text-[13px] mt-1 w-6 text-center"></i>
-                        <div class="text-[13px] text-gray-500 leading-relaxed">
+                        <i class="fa-solid fa-magnet text-gray-400 text-[15px] mt-1 w-6 text-center"></i>
+                        <div class="text-[15px] text-gray-500 leading-relaxed">
                             <strong class="text-[#102A43]">Food Traps:</strong> Food constantly getting stuck in the exact same spot.
                         </div>
                     </li>
@@ -199,38 +205,38 @@
                     <span class="text-[#d4af37] text-[11px] font-bold uppercase tracking-[0.2em]">THE ROOT OF THE PROBLEM</span>
                 </div>
                 <h2 class="text-[24px] md:text-[28px] font-bold text-[#102A43] mb-4">Causes of Tooth Decay</h2>
-                <p class="text-[13px] text-gray-500 mb-8 leading-relaxed">
+                <p class="text-[15px] text-gray-500 mb-8 leading-relaxed">
                     Decay is a process that happens over time. Common culprits include:
                 </p>
                 
                 <ul class="space-y-6">
                     <li class="flex items-start gap-4">
-                        <i class="fa-solid fa-tooth text-gray-400 text-[13px] mt-1 w-6 text-center"></i>
-                        <div class="text-[13px] text-gray-500 leading-relaxed">
+                        <i class="fa-solid fa-tooth text-gray-400 text-[15px] mt-1 w-6 text-center"></i>
+                        <div class="text-[15px] text-gray-500 leading-relaxed">
                             <strong class="text-[#102A43]">Poor Oral Hygiene:</strong> Inadequate brushing leaves plaque behind.
                         </div>
                     </li>
                     <li class="flex items-start gap-4">
-                        <i class="fa-solid fa-bug text-red-500 text-[13px] mt-1 w-6 text-center"></i>
-                        <div class="text-[13px] text-gray-500 leading-relaxed">
+                        <i class="fa-solid fa-bug text-red-500 text-[15px] mt-1 w-6 text-center"></i>
+                        <div class="text-[15px] text-gray-500 leading-relaxed">
                             <strong class="text-[#102A43]">Plaque & Bacteria:</strong> Bacteria convert sugars into enamel-destroying acid.
                         </div>
                     </li>
                     <li class="flex items-start gap-4">
-                        <i class="fa-solid fa-glass-water text-yellow-500 text-[13px] mt-1 w-6 text-center"></i>
-                        <div class="text-[13px] text-gray-500 leading-relaxed">
+                        <i class="fa-solid fa-glass-water text-yellow-500 text-[15px] mt-1 w-6 text-center"></i>
+                        <div class="text-[15px] text-gray-500 leading-relaxed">
                             <strong class="text-[#102A43]">Sugary Drinks & Foods:</strong> Frequent snacking fuels acid production.
                         </div>
                     </li>
                     <li class="flex items-start gap-4">
-                        <i class="fa-solid fa-mug-hot text-yellow-600 text-[13px] mt-1 w-6 text-center"></i>
-                        <div class="text-[13px] text-gray-500 leading-relaxed">
+                        <i class="fa-solid fa-mug-hot text-yellow-600 text-[15px] mt-1 w-6 text-center"></i>
+                        <div class="text-[15px] text-gray-500 leading-relaxed">
                             <strong class="text-[#102A43]">Acidic Foods:</strong> Citrus and sodas actively erode protective enamel.
                         </div>
                     </li>
                     <li class="flex items-start gap-4">
-                        <i class="fa-regular fa-calendar-xmark text-gray-500 text-[13px] mt-1 w-6 text-center"></i>
-                        <div class="text-[13px] text-gray-500 leading-relaxed">
+                        <i class="fa-regular fa-calendar-xmark text-gray-500 text-[15px] mt-1 w-6 text-center"></i>
+                        <div class="text-[15px] text-gray-500 leading-relaxed">
                             <strong class="text-[#102A43]">Skipping Check-ups:</strong> Missing professional cleanings allows plaque to harden into tartar.
                         </div>
                     </li>
@@ -256,17 +262,17 @@
                 <img src="{% static 'serices-image/fill_composite.png' %}" alt="Composite Filling" class="w-full h-56 object-cover">
                 <div class="p-6 flex-grow flex flex-col">
                     <h3 class="text-[16px] font-bold text-[#3c8751] mb-3">Composite (Tooth-Colored)</h3>
-                    <p class="text-[13px] text-gray-500 mb-6 leading-relaxed flex-grow">
+                    <p class="text-[15px] text-gray-500 mb-6 leading-relaxed flex-grow">
                         The most popular choice. Made from a resin that perfectly matches the color of your natural teeth. Ideal for visible areas and front teeth.
                     </p>
                     <ul class="space-y-2 mt-auto">
-                        <li class="flex items-center text-[13px] text-[#3c8751] font-medium gap-2">
+                        <li class="flex items-center text-[15px] text-[#3c8751] font-medium gap-2">
                             <i class="fa-regular fa-circle-check"></i> Natural appearance
                         </li>
-                        <li class="flex items-center text-[13px] text-[#3c8751] font-medium gap-2">
+                        <li class="flex items-center text-[15px] text-[#3c8751] font-medium gap-2">
                             <i class="fa-regular fa-circle-check"></i> Strong & durable
                         </li>
-                        <li class="flex items-center text-[13px] text-[#3c8751] font-medium gap-2">
+                        <li class="flex items-center text-[15px] text-[#3c8751] font-medium gap-2">
                             <i class="fa-regular fa-circle-check"></i> Mercury-free
                         </li>
                     </ul>
@@ -278,17 +284,17 @@
                 <img src="{% static 'serices-image/fill_glass.png' %}" alt="Glass Ionomer Filling" class="w-full h-56 object-cover">
                 <div class="p-6 flex-grow flex flex-col">
                     <h3 class="text-[16px] font-bold text-[#4285F4] mb-3">Glass Ionomer</h3>
-                    <p class="text-[13px] text-gray-500 mb-6 leading-relaxed flex-grow">
+                    <p class="text-[15px] text-gray-500 mb-6 leading-relaxed flex-grow">
                         Releases fluoride to help protect the tooth from further decay. Commonly used for cavities near the gum line or for children's teeth.
                     </p>
                     <ul class="space-y-2 mt-auto">
-                        <li class="flex items-center text-[13px] text-[#4285F4] font-medium gap-2">
+                        <li class="flex items-center text-[15px] text-[#4285F4] font-medium gap-2">
                             <i class="fa-regular fa-circle-check"></i> Fluoride releasing
                         </li>
-                        <li class="flex items-center text-[13px] text-[#4285F4] font-medium gap-2">
+                        <li class="flex items-center text-[15px] text-[#4285F4] font-medium gap-2">
                             <i class="fa-regular fa-circle-check"></i> Good for gum line
                         </li>
-                        <li class="flex items-center text-[13px] text-[#4285F4] font-medium gap-2">
+                        <li class="flex items-center text-[15px] text-[#4285F4] font-medium gap-2">
                             <i class="fa-regular fa-circle-check"></i> Ideal for kids
                         </li>
                     </ul>
@@ -300,17 +306,17 @@
                 <img src="{% static 'serices-image/fill_amalgam.png' %}" alt="Amalgam Filling" class="w-full h-56 object-cover">
                 <div class="p-6 flex-grow flex flex-col">
                     <h3 class="text-[16px] font-bold text-[#5f6368] mb-3">Amalgam (Silver)</h3>
-                    <p class="text-[13px] text-gray-500 mb-6 leading-relaxed flex-grow">
+                    <p class="text-[15px] text-gray-500 mb-6 leading-relaxed flex-grow">
                         Highly durable but very noticeable. Often used for back molars that endure heavy chewing forces (Available upon request/clinical need).
                     </p>
                     <ul class="space-y-2 mt-auto">
-                        <li class="flex items-center text-[13px] text-[#5f6368] font-medium gap-2">
+                        <li class="flex items-center text-[15px] text-[#5f6368] font-medium gap-2">
                             <i class="fa-regular fa-circle-check"></i> Extremely durable
                         </li>
-                        <li class="flex items-center text-[13px] text-[#5f6368] font-medium gap-2">
+                        <li class="flex items-center text-[15px] text-[#5f6368] font-medium gap-2">
                             <i class="fa-regular fa-circle-check"></i> Long-lasting
                         </li>
-                        <li class="flex items-center text-[13px] text-[#5f6368] font-medium gap-2">
+                        <li class="flex items-center text-[15px] text-[#5f6368] font-medium gap-2">
                             <i class="fa-regular fa-circle-check"></i> Ideal for back teeth
                         </li>
                     </ul>
@@ -336,7 +342,7 @@
                 </div>
                 <div>
                     <h3 class="text-[16px] font-bold text-[#102A43] mb-2">Prevents Further Decay</h3>
-                    <p class="text-[13px] text-gray-500 m-0 leading-relaxed">Effectively seals the cavity and protects the vulnerable inner layers of the tooth from harmful bacteria.</p>
+                    <p class="text-[15px] text-gray-500 m-0 leading-relaxed">Effectively seals the cavity and protects the vulnerable inner layers of the tooth from harmful bacteria.</p>
                 </div>
             </div>
             
@@ -346,7 +352,7 @@
                 </div>
                 <div>
                     <h3 class="text-[16px] font-bold text-[#102A43] mb-2">Relieves Sensitivity</h3>
-                    <p class="text-[13px] text-gray-500 m-0 leading-relaxed">Significantly reduces or eliminates sharp pain and discomfort experienced during eating and drinking.</p>
+                    <p class="text-[15px] text-gray-500 m-0 leading-relaxed">Significantly reduces or eliminates sharp pain and discomfort experienced during eating and drinking.</p>
                 </div>
             </div>
             
@@ -356,7 +362,7 @@
                 </div>
                 <div>
                     <h3 class="text-[16px] font-bold text-[#102A43] mb-2">Preserves Natural Teeth</h3>
-                    <p class="text-[13px] text-gray-500 m-0 leading-relaxed">Stops decay in its tracks, helping you avoid more extensive treatments like root canals or extractions later.</p>
+                    <p class="text-[15px] text-gray-500 m-0 leading-relaxed">Stops decay in its tracks, helping you avoid more extensive treatments like root canals or extractions later.</p>
                 </div>
             </div>
             
@@ -366,7 +372,7 @@
                 </div>
                 <div>
                     <h3 class="text-[16px] font-bold text-[#102A43] mb-2">Improves Appearance</h3>
-                    <p class="text-[13px] text-gray-500 m-0 leading-relaxed">Modern tooth-colored composite fillings blend completely naturally with the exact shade of your smile.</p>
+                    <p class="text-[15px] text-gray-500 m-0 leading-relaxed">Modern tooth-colored composite fillings blend completely naturally with the exact shade of your smile.</p>
                 </div>
             </div>
         </div>
@@ -375,47 +381,77 @@
 
 <!-- 9. Our Filling Treatment Process -->
 <section class="py-16 lg:py-24">
-    <div class="container mx-auto px-4 max-w-[1200px]">
+    <div class="container mx-auto px-4 max-w-[800px]">
         <div class="text-center mb-16">
             <h2 class="text-[24px] md:text-[28px] font-bold text-[#102A43] mb-4 tracking-tight">
                 Your Filling Appointment, Step by <span class="text-[#4285F4]">Step</span>
             </h2>
         </div>
         
-        <div class="flex flex-col lg:flex-row justify-between items-start relative">
-            <!-- Connecting Line (Desktop) -->
-            <div class="hidden lg:block absolute top-8 left-10 right-10 h-1 bg-gray-200 z-0"></div>
+        <div class="relative pl-4 md:pl-0">
+            <!-- Vertical Line -->
+            <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-gray-100 -ml-[2px] z-0"></div>
             
             <!-- Step 1 -->
-            <div class="relative z-10 flex flex-col items-center text-center w-full lg:w-1/5 mb-8 lg:mb-0 px-2">
-                <div class="w-12 h-12 rounded-full bg-[#102A43] text-white flex items-center justify-center text-[16px] font-bold mb-4 shadow-lg border-4 border-white">1</div>
-                <h4 class="font-bold text-[#102A43] mb-2">Examination</h4>
-                <p class="text-[13px] text-gray-500 m-0">Digital X-rays determine the extent of decay.</p>
+            <div class="relative z-10 flex flex-col md:flex-row items-center mb-10 group">
+                <div class="md:w-1/2 flex justify-start md:justify-end pr-0 md:pr-12 w-full pl-16 md:pl-0">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:text-right w-full hover:-translate-y-1 transition-transform duration-300">
+                        <h4 class="font-bold text-[#102A43] mb-2 text-[16px]">Examination</h4>
+                        <p class="text-[15px] text-gray-500 m-0 leading-relaxed">Digital X-rays determine the extent of decay.</p>
+                    </div>
+                </div>
+                <div class="absolute left-0 md:left-1/2 w-12 h-12 rounded-full bg-[#102A43] text-white flex items-center justify-center text-[16px] font-bold border-4 border-white shadow-lg -ml-[24px]">1</div>
+                <div class="md:w-1/2 hidden md:block"></div>
             </div>
+            
             <!-- Step 2 -->
-            <div class="relative z-10 flex flex-col items-center text-center w-full lg:w-1/5 mb-8 lg:mb-0 px-2">
-                <div class="w-12 h-12 rounded-full bg-[#4285F4] text-white flex items-center justify-center text-[16px] font-bold mb-4 shadow-lg border-4 border-white">2</div>
-                <h4 class="font-bold text-[#102A43] mb-2">Anesthesia</h4>
-                <p class="text-[13px] text-gray-500 m-0">Local anesthetic ensures a completely painless experience.</p>
+            <div class="relative z-10 flex flex-col md:flex-row items-center mb-10 group">
+                <div class="md:w-1/2 hidden md:block"></div>
+                <div class="absolute left-0 md:left-1/2 w-12 h-12 rounded-full bg-[#4285F4] text-white flex items-center justify-center text-[16px] font-bold border-4 border-white shadow-lg -ml-[24px]">2</div>
+                <div class="md:w-1/2 flex justify-start pl-16 md:pl-12 w-full">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 w-full hover:-translate-y-1 transition-transform duration-300">
+                        <h4 class="font-bold text-[#102A43] mb-2 text-[16px]">Anesthesia</h4>
+                        <p class="text-[15px] text-gray-500 m-0 leading-relaxed">Local anesthetic ensures a completely painless experience.</p>
+                    </div>
+                </div>
             </div>
+            
             <!-- Step 3 -->
-            <div class="relative z-10 flex flex-col items-center text-center w-full lg:w-1/5 mb-8 lg:mb-0 px-2">
-                <div class="w-12 h-12 rounded-full bg-[#102A43] text-white flex items-center justify-center text-[16px] font-bold mb-4 shadow-lg border-4 border-white">3</div>
-                <h4 class="font-bold text-[#102A43] mb-2">Decay Removal</h4>
-                <p class="text-[13px] text-gray-500 m-0">The damaged tooth structure is carefully cleared away.</p>
+            <div class="relative z-10 flex flex-col md:flex-row items-center mb-10 group">
+                <div class="md:w-1/2 flex justify-start md:justify-end pr-0 md:pr-12 w-full pl-16 md:pl-0">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:text-right w-full hover:-translate-y-1 transition-transform duration-300">
+                        <h4 class="font-bold text-[#102A43] mb-2 text-[16px]">Decay Removal</h4>
+                        <p class="text-[15px] text-gray-500 m-0 leading-relaxed">The damaged tooth structure is carefully cleared away.</p>
+                    </div>
+                </div>
+                <div class="absolute left-0 md:left-1/2 w-12 h-12 rounded-full bg-[#102A43] text-white flex items-center justify-center text-[16px] font-bold border-4 border-white shadow-lg -ml-[24px]">3</div>
+                <div class="md:w-1/2 hidden md:block"></div>
             </div>
+            
             <!-- Step 4 -->
-            <div class="relative z-10 flex flex-col items-center text-center w-full lg:w-1/5 mb-8 lg:mb-0 px-2">
-                <div class="w-12 h-12 rounded-full bg-[#4285F4] text-white flex items-center justify-center text-[16px] font-bold mb-4 shadow-lg border-4 border-white">4</div>
-                <h4 class="font-bold text-[#102A43] mb-2">Preparation & Filling</h4>
-                <p class="text-[13px] text-gray-500 m-0">The space is cleaned and filled with premium material.</p>
+            <div class="relative z-10 flex flex-col md:flex-row items-center mb-10 group">
+                <div class="md:w-1/2 hidden md:block"></div>
+                <div class="absolute left-0 md:left-1/2 w-12 h-12 rounded-full bg-[#4285F4] text-white flex items-center justify-center text-[16px] font-bold border-4 border-white shadow-lg -ml-[24px]">4</div>
+                <div class="md:w-1/2 flex justify-start pl-16 md:pl-12 w-full">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 w-full hover:-translate-y-1 transition-transform duration-300">
+                        <h4 class="font-bold text-[#102A43] mb-2 text-[16px]">Preparation & Filling</h4>
+                        <p class="text-[15px] text-gray-500 m-0 leading-relaxed">The space is cleaned and filled with premium material.</p>
+                    </div>
+                </div>
             </div>
+            
             <!-- Step 5 -->
-            <div class="relative z-10 flex flex-col items-center text-center w-full lg:w-1/5 px-2">
-                <div class="w-12 h-12 rounded-full bg-[#102A43] text-white flex items-center justify-center text-[16px] font-bold mb-4 shadow-lg border-4 border-white">5</div>
-                <h4 class="font-bold text-[#102A43] mb-2">Polishing</h4>
-                <p class="text-[13px] text-gray-500 m-0">The filling is shaped and polished to match your natural bite.</p>
+            <div class="relative z-10 flex flex-col md:flex-row items-center group">
+                <div class="md:w-1/2 flex justify-start md:justify-end pr-0 md:pr-12 w-full pl-16 md:pl-0">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:text-right w-full hover:-translate-y-1 transition-transform duration-300">
+                        <h4 class="font-bold text-[#102A43] mb-2 text-[16px]">Polishing</h4>
+                        <p class="text-[15px] text-gray-500 m-0 leading-relaxed">The filling is shaped and polished to match your natural bite.</p>
+                    </div>
+                </div>
+                <div class="absolute left-0 md:left-1/2 w-12 h-12 rounded-full bg-[#102A43] text-white flex items-center justify-center text-[16px] font-bold border-4 border-white shadow-lg -ml-[24px]">5</div>
+                <div class="md:w-1/2 hidden md:block"></div>
             </div>
+            
         </div>
     </div>
 </section>
@@ -427,7 +463,7 @@
             <h2 class="text-[24px] md:text-[28px] font-bold text-[#102A43] mb-4 tracking-tight">
                 Before & <span class="text-[#4285F4]">After Results</span>
             </h2>
-            <p class="text-gray-500 text-[13px]">See how restorative treatment can improve both function and appearance.</p>
+            <p class="text-gray-500 text-[15px]">See how restorative treatment can improve both function and appearance.</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
@@ -446,7 +482,7 @@
                 </div>
                 <div class="p-6">
                     <h3 class="text-[16px] font-bold text-[#102A43] mb-2">Composite Resin Filling</h3>
-                    <p class="text-gray-500 text-[13px] m-0">Seamless replacement of an old failing filling with a modern, tooth-colored composite restoration.</p>
+                    <p class="text-gray-500 text-[15px] m-0">Seamless replacement of an old failing filling with a modern, tooth-colored composite restoration.</p>
                 </div>
             </div>
             
@@ -465,7 +501,7 @@
                 </div>
                 <div class="p-6">
                     <h3 class="text-[16px] font-bold text-[#102A43] mb-2">Front Tooth Restoration</h3>
-                    <p class="text-gray-500 text-[13px] m-0">Aesthetic repair of a chipped anterior tooth, perfectly color-matched to the patient's natural enamel.</p>
+                    <p class="text-gray-500 text-[15px] m-0">Aesthetic repair of a chipped anterior tooth, perfectly color-matched to the patient's natural enamel.</p>
                 </div>
             </div>
         </div>
@@ -486,24 +522,24 @@
         </div>
         
         <div class="bg-white rounded-[24px] shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-[#102A43] px-8 py-4 flex justify-between items-center text-white font-bold">
+            <div class="bg-[#102A43] px-8 !py-4 flex justify-between items-center text-white font-bold">
                 <div class="w-2/3">Treatment Description</div>
                 <div class="w-1/3 text-right">Starting Price</div>
             </div>
             
             <div class="divide-y divide-gray-100">
                 {% for price in treatment.prices.all %}
-                <div class="px-8 py-5 flex flex-col md:flex-row md:items-center justify-between hover:bg-gray-50 transition-colors">
+                <div class="px-8 !py-5 flex flex-col md:flex-row md:items-center justify-between hover:bg-gray-50 transition-colors">
                     <div class="w-full md:w-2/3 mb-2 md:mb-0 pr-4">
-                        <h4 class="font-bold text-[#102A43] text-[13px]">{{ price.name }}</h4>
-                        <p class="text-gray-500 text-[13px] m-0">{{ price.notes }}</p>
+                        <h4 class="font-bold text-[#102A43] text-[16px] mb-1">{{ price.name }}</h4>
+                        <p class="text-gray-500 text-[15px] m-0">{{ price.notes }}</p>
                     </div>
                     <div class="w-full md:w-1/3 md:text-right font-extrabold text-[#4285F4] text-[16px]">
                         NPR {{ price.price }}
                     </div>
                 </div>
                 {% empty %}
-                <div class="px-8 py-5 text-center text-gray-500">
+                <div class="px-8 !py-5 text-center text-gray-500">
                     Pricing information is currently being updated.
                 </div>
                 {% endfor %}
@@ -529,17 +565,17 @@
             <div class="bg-white p-6 lg:p-8 rounded-[20px] shadow-sm border border-gray-100 flex flex-col hover:-translate-y-1 transition-transform duration-300">
                 <i class="fa-regular fa-clock text-[#4285F4] text-[24px] mb-4"></i>
                 <h3 class="text-[16px] font-bold text-[#102A43] mb-2">Wait Until Numbness Wears Off</h3>
-                <p class="text-[13px] text-gray-500 m-0 leading-relaxed">Avoid chewing on the numb side of your mouth to prevent accidentally biting your lip, cheek, or tongue.</p>
+                <p class="text-[15px] text-gray-500 m-0 leading-relaxed">Avoid chewing on the numb side of your mouth to prevent accidentally biting your lip, cheek, or tongue.</p>
             </div>
             <div class="bg-white p-6 lg:p-8 rounded-[20px] shadow-sm border border-gray-100 flex flex-col hover:-translate-y-1 transition-transform duration-300">
                 <i class="fa-solid fa-temperature-half text-[#4285F4] text-[24px] mb-4"></i>
                 <h3 class="text-[16px] font-bold text-[#102A43] mb-2">Mild Sensitivity Is Normal</h3>
-                <p class="text-[13px] text-gray-500 m-0 leading-relaxed">Temporary sensitivity to hot or cold foods may occur for a few days but should gradually subside.</p>
+                <p class="text-[15px] text-gray-500 m-0 leading-relaxed">Temporary sensitivity to hot or cold foods may occur for a few days but should gradually subside.</p>
             </div>
             <div class="bg-white p-6 lg:p-8 rounded-[20px] shadow-sm border border-gray-100 flex flex-col hover:-translate-y-1 transition-transform duration-300">
                 <i class="fa-solid fa-pump-soap text-[#4285F4] text-[24px] mb-4"></i>
                 <h3 class="text-[16px] font-bold text-[#102A43] mb-2">Keep the Tooth Clean</h3>
-                <p class="text-[13px] text-gray-500 m-0 leading-relaxed">Brush and floss normally around the new filling to maintain its longevity and prevent future decay.</p>
+                <p class="text-[15px] text-gray-500 m-0 leading-relaxed">Brush and floss normally around the new filling to maintain its longevity and prevent future decay.</p>
             </div>
         </div>
     </div>
@@ -557,15 +593,15 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {% for review in testimonials %}
             <div class="bg-white p-8 rounded-[24px] shadow-lg border border-gray-100 relative">
-                <div class="text-yellow-400 text-[13px] mb-4 flex gap-1">
+                <div class="text-yellow-400 text-[15px] mb-4 flex gap-1">
                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
-                <blockquote class="text-gray-500 text-[13px] italic mb-6 leading-relaxed">
+                <blockquote class="text-gray-500 text-[15px] italic mb-6 leading-relaxed">
                     “{{ review.text }}”
                 </blockquote>
                 <div>
-                    <h4 class="font-bold text-[#102A43] text-[13px] m-0">{{ review.name }}</h4>
-                    <span class="text-[#4285F4] text-[13px] font-semibold uppercase tracking-wider">{{ review.treatment }}</span>
+                    <h4 class="font-bold text-[#102A43] text-[15px] m-0">{{ review.name }}</h4>
+                    <span class="text-[#4285F4] text-[15px] font-semibold uppercase tracking-wider">{{ review.treatment }}</span>
                 </div>
                 <!-- Decorative Quote Icon -->
                 <i class="fa-solid fa-quote-right absolute bottom-8 right-8 text-5xl text-gray-100 opacity-50 pointer-events-none"></i>
@@ -578,8 +614,14 @@
 </section>
 
 <!-- 14. Frequently Asked Questions -->
-<section class="py-16 lg:py-24 bg-gray-50">
-    <div class="container mx-auto px-4 max-w-[800px]">
+<section class="py-16 lg:py-24 relative overflow-hidden">
+    <!-- Background Image with Soft Overlay -->
+    <div class="absolute inset-0 z-0">
+        <img src="{% static 'serices-image/hero_bg.png' %}" alt="" class="w-full h-full object-cover opacity-60">
+        <div class="absolute inset-0 bg-gradient-to-b from-gray-50/70 to-white/80"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 max-w-[800px] relative z-10">
         <div class="text-center mb-12">
             <h2 class="text-[24px] md:text-[28px] font-bold text-[#102A43] mb-4 tracking-tight">
                 Frequently Asked <span class="text-[#4285F4]">Questions</span>
@@ -590,12 +632,12 @@
             
             <div class="accordion-item bg-white border-0 mb-4 rounded-2xl shadow-sm overflow-hidden">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed text-[16px]" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
                         Does getting a filling hurt?
                     </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-gray-500 border-t border-gray-100">
+                    <div class="accordion-body text-gray-500 border-t border-gray-100 text-[15px] leading-relaxed">
                         Not at all. We use local anesthesia to completely numb the tooth and surrounding area before beginning any work, ensuring a comfortable and painless experience.
                     </div>
                 </div>
@@ -603,12 +645,12 @@
             
             <div class="accordion-item bg-white border-0 mb-4 rounded-2xl shadow-sm overflow-hidden">
                 <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed text-[16px]" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
                         How long do dental fillings last?
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-gray-500 border-t border-gray-100">
+                    <div class="accordion-body text-gray-500 border-t border-gray-100 text-[15px] leading-relaxed">
                         With proper care, composite fillings typically last 7 to 10 years, while amalgam fillings can last 10 to 15 years. Maintaining excellent oral hygiene and attending regular check-ups helps maximize their lifespan.
                     </div>
                 </div>
@@ -616,12 +658,12 @@
             
             <div class="accordion-item bg-white border-0 mb-4 rounded-2xl shadow-sm overflow-hidden">
                 <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed text-[16px]" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
                         Can I replace old silver fillings with white fillings?
                     </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-gray-500 border-t border-gray-100">
+                    <div class="accordion-body text-gray-500 border-t border-gray-100 text-[15px] leading-relaxed">
                         Yes. Many patients choose to replace old, dark amalgam fillings with aesthetic tooth-colored composite resin for a more natural-looking smile. We can assess your old fillings during a consultation.
                     </div>
                 </div>
@@ -629,12 +671,12 @@
             
             <div class="accordion-item bg-white border-0 mb-4 rounded-2xl shadow-sm overflow-hidden">
                 <h2 class="accordion-header" id="headingFour">
-                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed text-[16px]" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
                         Can I eat immediately after treatment?
                     </button>
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-gray-500 border-t border-gray-100">
+                    <div class="accordion-body text-gray-500 border-t border-gray-100 text-[15px] leading-relaxed">
                         Composite (white) fillings harden immediately under a special curing light, so you can eat right away. However, we recommend waiting until the numbness wears off to avoid accidentally biting your cheek or tongue.
                     </div>
                 </div>
@@ -642,12 +684,12 @@
             
             <div class="accordion-item bg-white border-0 mb-4 rounded-2xl shadow-sm overflow-hidden">
                 <h2 class="accordion-header" id="headingFive">
-                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed text-[16px]" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
                         Will the filling match my natural tooth color?
                     </button>
                 </h2>
                 <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-gray-500 border-t border-gray-100">
+                    <div class="accordion-body text-gray-500 border-t border-gray-100 text-[15px] leading-relaxed">
                         Yes! We carefully select the shade of composite resin to exactly match the surrounding natural enamel, making the restoration virtually invisible.
                     </div>
                 </div>
@@ -655,17 +697,17 @@
             
             <div class="accordion-item bg-white border-0 mb-4 rounded-2xl shadow-sm overflow-hidden">
                 <h2 class="accordion-header" id="headingSix">
-                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                    <button class="accordion-button bg-white text-[#102A43] font-bold shadow-none collapsed text-[16px]" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
                         What happens if I delay treatment?
                     </button>
                 </h2>
                 <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-gray-500 border-t border-gray-100">
+                    <div class="accordion-body text-gray-500 border-t border-gray-100 text-[15px] leading-relaxed">
                         Tooth decay will not heal on its own. Delaying treatment allows the decay to spread deeper into the tooth, eventually reaching the nerve, which causes severe pain and typically requires a more complex root canal or extraction.
                     </div>
                 </div>
             </div>
-
+            
         </div>
     </div>
 </section>
@@ -685,7 +727,7 @@
                 </div>
                 <div class="p-6">
                     <h3 class="text-[16px] font-bold text-[#102A43] mb-2">{{ related.name }}</h3>
-                    <p class="text-gray-500 text-[13px] mb-6 line-clamp-2">{{ related.desc }}</p>
+                    <p class="text-gray-500 text-[15px] mb-6 line-clamp-2">{{ related.desc }}</p>
                     <a href="{{ related.url }}" class="inline-block text-[#4285F4] font-bold hover:text-[#102A43] transition-colors no-underline">
                         View Treatment &rarr;
                     </a>
@@ -705,14 +747,14 @@
             <h2 class="text-[20px] md:text-[24px] font-bold text-[#102A43] mb-4">
                 Restore Your Smile with Confidence
             </h2>
-            <p class="text-[13px] text-gray-500 max-w-2xl mx-auto mb-8 leading-relaxed">
+            <p class="text-[15px] text-gray-500 max-w-2xl mx-auto mb-8 leading-relaxed">
                 Experiencing tooth sensitivity, a cavity, or a chipped tooth? Book a consultation at CareFirst Dental Clinic for a comfortable and natural-looking restoration.
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="{% url 'appointment' %}" class="w-full sm:w-auto bg-[#4285F4] text-white font-bold text-[13px] py-3 px-8 rounded-full hover:bg-blue-600 transition-all duration-300 no-underline shadow-sm">
+                <a href="{% url 'appointment' %}" class="w-full sm:w-auto bg-[#4285F4] text-white font-bold text-[15px] py-3 px-8 rounded-full hover:bg-blue-600 transition-all duration-300 no-underline shadow-sm">
                     Book Appointment
                 </a>
-                <a href="tel:+9779807464136" class="w-full sm:w-auto bg-white border border-gray-200 text-[#102A43] font-bold text-[13px] py-3 px-8 rounded-full hover:bg-gray-50 transition-all duration-300 no-underline shadow-sm">
+                <a href="tel:+9779807464136" class="w-full sm:w-auto bg-white border border-gray-200 text-[#102A43] font-bold text-[15px] py-3 px-8 rounded-full hover:bg-gray-50 transition-all duration-300 no-underline shadow-sm">
                     Call +977 980-7464136
                 </a>
             </div>
