@@ -1,0 +1,496 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}General Dentistry | CareFirst Dental Clinic{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/general-dentistry.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- 1. Breadcrumb -->
+<div class="bg-light py-2">
+    <div class="gd-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0" style="font-size: 13px;">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-muted text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'treatments' %}" class="text-muted text-decoration-none">Treatments</a></li>
+                <li class="breadcrumb-item active text-secondary" aria-current="page">General Dentistry</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- 2. Compact Hero Section -->
+<section class="gd-hero">
+    <div class="gd-container px-3 px-lg-0">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="gd-label">General Dentistry</span>
+                <h1 class="gd-h1">Healthy Teeth Start with Regular Care</h1>
+                <p class="gd-subtitle">Preventive and routine dental care for patients of all ages, ensuring your smile remains strong, healthy, and beautiful for life.</p>
+                <div class="d-flex gap-3 mt-4">
+                    <a href="{% url 'appointment' %}" class="btn btn-primary rounded-pill px-4 py-2 fw-bold">Book Appointment</a>
+                    <a href="tel:+9779807464136" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-phone"></i> Call Clinic
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="gd-hero-img-wrapper">
+                    <img src="{% static 'serices-image/scalling_hero.jpg' %}" alt="Patient receiving dental care" class="gd-hero-img">
+                    <div class="gd-hero-overlay d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-check-circle text-primary"></i>
+                        <span>Gentle Care for Every Visit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. What is General Dentistry? -->
+<section class="gd-section">
+    <div class="gd-container px-3 px-lg-0">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5 order-2 order-lg-1">
+                <img src="{% static 'serices-image/dental_x-ray.jpg' %}" alt="General Dentistry Examination" class="gd-content-img">
+            </div>
+            <div class="col-lg-7 order-1 order-lg-2 ps-lg-5">
+                <h2 class="gd-h2">What is <span class="gd-highlight">General Dentistry?</span></h2>
+                <p class="text-muted mb-4" style="font-size: 17px; line-height: 1.7;">
+                    General dentistry involves the prevention, diagnosis, and treatment of a wide variety of conditions, disorders, and diseases affecting the teeth, gums, and maxillofacial region of the body. It serves as your first line of defense against oral health issues.
+                </p>
+                <p class="text-muted" style="font-size: 17px; line-height: 1.7;">
+                    At CareFirst Dental Clinic, we focus heavily on preventive care—helping you maintain optimal oral health before problems arise. From routine cleanings and digital X-rays to restorative fillings and personalized hygiene advice, our goal is to ensure your natural teeth remain healthy and pain-free for a lifetime.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Why Regular Check-ups Matter -->
+<section class="gd-section gd-section-light-blue">
+    <div class="gd-container px-3 px-lg-0">
+        <div class="text-center mb-5">
+            <h2 class="gd-h2">Why <span class="gd-highlight">Regular Check-ups</span> Matter</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="gd-info-card">
+                    <h3 class="gd-h3">Early Detection</h3>
+                    <p class="text-muted mb-0">Identify dental concerns, such as hidden cavities or early signs of gum disease, before they become serious and require complex treatment.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gd-info-card">
+                    <h3 class="gd-h3">Preventive Care</h3>
+                    <p class="text-muted mb-0">Maintain healthy teeth and gums through routine professional cleanings, removing stubborn plaque and tartar that daily brushing misses.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gd-info-card">
+                    <h3 class="gd-h3">Long-Term Savings</h3>
+                    <p class="text-muted mb-0">Addressing oral health problems early often reduces the need for extensive, expensive, and time-consuming future dental treatments.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Who Should Visit? -->
+<section class="gd-section">
+    <div class="gd-container px-3 px-lg-0">
+        <h2 class="gd-h2 mb-4">Who Should Visit?</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="gd-text-block">Children beginning routine dental care</div>
+            </div>
+            <div class="col-md-6">
+                <div class="gd-text-block">Adults maintaining long-term oral health</div>
+            </div>
+            <div class="col-md-6">
+                <div class="gd-text-block">Patients experiencing sensitivity or discomfort</div>
+            </div>
+            <div class="col-md-6">
+                <div class="gd-text-block">Individuals returning to care after a long gap</div>
+            </div>
+            <div class="col-md-6">
+                <div class="gd-text-block">Families seeking comprehensive preventive care</div>
+            </div>
+            <div class="col-md-6">
+                <div class="gd-text-block">Anyone wanting to achieve a healthier, brighter smile</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. Common Problems We Treat -->
+<section class="gd-section bg-light">
+    <div class="gd-container px-3 px-lg-0">
+        <h2 class="gd-h2 mb-5 text-center">Common Problems We Treat</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="gd-problem-card">
+                    <h3 class="gd-h3">Tooth Decay</h3>
+                    <p class="text-muted mb-0">Treating cavities safely and restoring the structural integrity of your natural tooth.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gd-problem-card">
+                    <h3 class="gd-h3">Gum Inflammation</h3>
+                    <p class="text-muted mb-0">Addressing red, swollen, or bleeding gums to halt the progression of periodontal disease.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gd-problem-card">
+                    <h3 class="gd-h3">Tooth Sensitivity</h3>
+                    <p class="text-muted mb-0">Diagnosing and treating sharp pain caused by hot, cold, or sweet foods and beverages.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gd-problem-card">
+                    <h3 class="gd-h3">Plaque & Tartar Build-up</h3>
+                    <p class="text-muted mb-0">Professional removal of hardened deposits to prevent bad breath and gum disease.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gd-problem-card">
+                    <h3 class="gd-h3">Stained Teeth</h3>
+                    <p class="text-muted mb-0">Removing surface stains through professional polishing to reveal a cleaner, brighter smile.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gd-problem-card">
+                    <h3 class="gd-h3">Early Cavities</h3>
+                    <p class="text-muted mb-0">Detecting micro-cavities with digital imaging and treating them before they cause pain.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. Before & After Gallery -->
+<section class="gd-section">
+    <div class="gd-container px-3 px-lg-0">
+        <div class="text-center mb-5">
+            <h2 class="gd-h2">Before & <span class="gd-highlight">After Results</span></h2>
+            <p class="gd-subtitle">See how professional dental care can improve oral health and appearance.</p>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="gd-gallery-card">
+                    <div class="gd-gallery-images">
+                        <img src="{% static 'serices-image/scaling_before.png' %}" alt="Before scaling" class="gd-gallery-img">
+                        <div class="gd-gallery-divider"></div>
+                        <img src="{% static 'serices-image/scaling_after.png' %}" alt="After scaling" class="gd-gallery-img">
+                        <span class="gd-gallery-label before">BEFORE</span>
+                        <span class="gd-gallery-label after">AFTER</span>
+                    </div>
+                    <div class="gd-gallery-content">
+                        <span class="gd-label">Scaling & Polishing</span>
+                        <p class="text-muted mb-0">Removal of heavy calculus build-up and surface stains, instantly improving gum health and appearance.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="gd-gallery-card">
+                    <div class="gd-gallery-images">
+                        <img src="{% static 'serices-image/fill_gallery_2.png' %}" alt="Before filling" class="gd-gallery-img">
+                        <div class="gd-gallery-divider"></div>
+                        <img src="{% static 'serices-image/fill_gallery_3.png' %}" alt="After filling" class="gd-gallery-img">
+                        <span class="gd-gallery-label before">BEFORE</span>
+                        <span class="gd-gallery-label after">AFTER</span>
+                    </div>
+                    <div class="gd-gallery-content">
+                        <span class="gd-label">Dental Filling</span>
+                        <p class="text-muted mb-0">Restoration of a decayed tooth using a high-quality, tooth-colored composite resin material.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <small class="text-muted fst-italic">Actual patient results vary. Images used with permission.</small>
+        </div>
+    </div>
+</section>
+
+<!-- 8. General Dentistry Services We Offer -->
+<section class="gd-section bg-light">
+    <div class="gd-container px-3 px-lg-0">
+        <h2 class="gd-h2 mb-4">General Dentistry Services We Offer</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="gd-service-list-card">
+                    <h3 class="gd-h3">General Dental Checkup</h3>
+                    <p class="text-muted mb-0">Comprehensive examination of teeth, gums, and oral tissues.</p>
+                    <a href="{% url 'appointment' %}" class="gd-service-link">Learn More &rarr;</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="gd-service-list-card">
+                    <h3 class="gd-h3">Dental Filling</h3>
+                    <p class="text-muted mb-0">Safe, aesthetic composite restorations for cavities and minor damage.</p>
+                    <a href="{% url 'appointment' %}" class="gd-service-link">Learn More &rarr;</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="gd-service-list-card">
+                    <h3 class="gd-h3">Digital Dental X-Ray</h3>
+                    <p class="text-muted mb-0">High-resolution, low-radiation imaging for accurate diagnosis.</p>
+                    <a href="{% url 'appointment' %}" class="gd-service-link">Learn More &rarr;</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="gd-service-list-card">
+                    <h3 class="gd-h3">Scaling & Polishing</h3>
+                    <p class="text-muted mb-0">Professional cleaning to remove plaque, tartar, and surface stains.</p>
+                    <a href="{% url 'appointment' %}" class="gd-service-link">Learn More &rarr;</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="gd-service-list-card">
+                    <h3 class="gd-h3">Preventive Dental Advice</h3>
+                    <p class="text-muted mb-0">Personalized guidance on brushing, flossing, and diet for oral health.</p>
+                    <a href="{% url 'appointment' %}" class="gd-service-link">Learn More &rarr;</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="gd-service-list-card">
+                    <h3 class="gd-h3">Routine Oral Examination</h3>
+                    <p class="text-muted mb-0">Regular monitoring to ensure long-term stability and health.</p>
+                    <a href="{% url 'appointment' %}" class="gd-service-link">Learn More &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 9. Why Choose CareFirst Dental Clinic? -->
+<section class="gd-section gd-section-light-blue">
+    <div class="gd-container px-3 px-lg-0">
+        <div class="text-center mb-5">
+            <h2 class="gd-h2">Why Choose <span class="gd-highlight">CareFirst Dental Clinic?</span></h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="gd-editorial-col">
+                    <h3 class="gd-h3">Patient-Focused Care</h3>
+                    <p class="text-muted mb-0">We prioritize your comfort, transparent communication, and individualized attention during every visit.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gd-editorial-col">
+                    <h3 class="gd-h3">Ethical Recommendations</h3>
+                    <p class="text-muted mb-0">We provide clear, honest treatment guidance, only recommending procedures that are clinically necessary.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gd-editorial-col">
+                    <h3 class="gd-h3">Multispecialty Support</h3>
+                    <p class="text-muted mb-0">Experience comprehensive dental care from routine cleanings to advanced procedures in one convenient location.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 10. Treatment Charges (DYNAMIC SECTION) -->
+<section class="gd-section">
+    <div class="gd-container px-3 px-lg-0">
+        <h2 class="gd-h2 mb-4">General Dentistry Treatment <span class="gd-highlight">Charges</span></h2>
+        
+        <div class="gd-pricing-table">
+            <!-- Dynamic loop from Django context -->
+            {% for price in treatment.prices.all %}
+            <div class="gd-pricing-row">
+                <div>
+                    <h4 class="gd-pricing-title">{{ price.name }}</h4>
+                    <p class="gd-pricing-note">{{ price.notes }}</p>
+                </div>
+                <div class="gd-pricing-price">
+                    NPR {{ price.price }}
+                </div>
+            </div>
+            {% empty %}
+            <div class="gd-pricing-row">
+                <p class="text-muted w-100 text-center mb-0">Pricing information is currently being updated.</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="mt-3">
+            <small class="text-muted fst-italic">*Final treatment cost may vary depending on individual clinical requirements.</small>
+        </div>
+    </div>
+</section>
+
+<!-- 11. What Our Patients Say (DYNAMIC TESTIMONIALS) -->
+<section class="gd-section bg-light">
+    <div class="gd-container px-3 px-lg-0">
+        <div class="text-center mb-5">
+            <h2 class="gd-h2">What Our <span class="gd-highlight">Patients Say</span></h2>
+        </div>
+        <div class="row g-4">
+            <!-- Dynamic loop from Django context -->
+            {% for review in testimonials %}
+            <div class="col-md-4">
+                <div class="gd-testimonial-card">
+                    <div class="gd-testimonial-rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="gd-testimonial-text">"{{ review.text }}"</p>
+                    <h4 class="gd-testimonial-author">{{ review.name }}</h4>
+                    <p class="gd-testimonial-treatment">{{ review.treatment }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">No testimonials available at this time.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- 12. Frequently Asked Questions -->
+<section class="gd-section">
+    <div class="gd-container px-3 px-lg-0" style="max-width: 800px;">
+        <div class="text-center mb-5">
+            <h2 class="gd-h2">Frequently Asked <span class="gd-highlight">Questions</span></h2>
+        </div>
+        <div class="accordion gd-accordion" id="faqAccordion">
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How often should I visit for a check-up?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We recommend scheduling a routine dental check-up and professional cleaning every six months. Patients with specific oral health conditions or a history of gum disease may need to visit more frequently.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        What is included in a dental examination?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        A comprehensive examination includes a visual inspection of your teeth and gums, digital X-rays if necessary, an oral cancer screening, and an evaluation of your bite and jaw alignment.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Is professional cleaning necessary?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, professional scaling and polishing are essential. While daily brushing removes plaque, it cannot remove hardened tartar (calculus) which can cause gum disease and bad breath if left untreated.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Are dental X-rays safe?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Absolutely. We use modern digital X-ray technology which reduces radiation exposure by up to 90% compared to traditional film X-rays, making them incredibly safe and vital for accurate diagnosis.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Can children receive general dental care?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes! We provide gentle, friendly dental care for patients of all ages, including children. Early dental visits help establish good oral hygiene habits and prevent future complications.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Do I need an appointment before visiting?
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        While we try to accommodate walk-in emergencies, we highly recommend booking an appointment in advance to ensure you receive timely care without long waiting periods.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 13. Related Dental Services (DYNAMIC) -->
+<section class="gd-section bg-light">
+    <div class="gd-container px-3 px-lg-0">
+        <h2 class="gd-h2 mb-4">Related Dental <span class="gd-highlight">Services</span></h2>
+        <div class="row g-4">
+            <!-- Dynamic loop from Django context -->
+            {% for related in related_services %}
+            <div class="col-md-4">
+                <div class="gd-related-card">
+                    <img src="{% static 'serices-image/' %}{{ related.image }}" alt="{{ related.name }}" class="gd-related-img">
+                    <div class="gd-related-content">
+                        <h3 class="gd-h3">{{ related.name }}</h3>
+                        <p class="text-muted mb-0" style="font-size: 15px;">{{ related.desc }}</p>
+                        <a href="{{ related.url }}" class="gd-related-btn">View Treatment &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-muted">No related services found.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- 14. Final Appointment CTA -->
+<section class="gd-section pb-5">
+    <div class="gd-container px-3 px-lg-0">
+        <div class="gd-cta-banner">
+            <h2>Ready for Your Next <span class="gd-highlight">Dental Check-up?</span></h2>
+            <p>Book a consultation with CareFirst Dental Clinic and receive gentle, patient-focused dental care in Shankhamul, Kathmandu.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="{% url 'appointment' %}" class="btn btn-primary rounded-pill px-4 py-3 fw-bold">Book Appointment</a>
+                <a href="tel:+9779807464136" class="btn btn-outline-light rounded-pill px-4 py-3 fw-bold d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-phone"></i> Call +977 980-7464136
+                </a>
+                <a href="https://wa.me/9779807464136" target="_blank" class="btn btn-success rounded-pill px-4 py-3 fw-bold d-flex align-items-center gap-2 border-0" style="background-color: #25D366;">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
