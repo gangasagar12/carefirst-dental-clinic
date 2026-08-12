@@ -142,70 +142,101 @@
     </div>
 </section>
 
-<!-- 5. Watch for These Signs -->
-<section class="py-16 lg:py-24">
-    <div class="container mx-auto px-4 max-w-[1200px]">
-        <div class="text-center mb-14">
-            <h2 class="text-2xl md:text-3xl font-bold text-navy mb-4 tracking-tight">
-                Signs You Shouldn’t <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-navy">Ignore</span>
-            </h2>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
-            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex items-center gap-4">
-                <div class="w-2 h-10 bg-primary rounded-full"></div>
-                <p class="text-navy font-semibold text-lg m-0">Tooth sensitivity to hot, cold, or sweet foods</p>
-            </div>
-            
-            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex items-center gap-4">
-                <div class="w-2 h-10 bg-primary rounded-full"></div>
-                <p class="text-navy font-semibold text-lg m-0">Sharp pain when biting down or chewing</p>
-            </div>
-            
-            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex items-center gap-4">
-                <div class="w-2 h-10 bg-primary rounded-full"></div>
-                <p class="text-navy font-semibold text-lg m-0">Visible holes, dark pits, or chipping on a tooth</p>
-            </div>
-            
-            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex items-center gap-4">
-                <div class="w-2 h-10 bg-primary rounded-full"></div>
-                <p class="text-navy font-semibold text-lg m-0">Dark brown or black spots and unnatural staining</p>
-            </div>
-            
-            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex items-center gap-4 md:col-span-2 lg:col-span-1 lg:col-start-1 lg:ml-auto lg:mr-auto lg:w-full">
-                <div class="w-2 h-10 bg-primary rounded-full"></div>
-                <p class="text-navy font-semibold text-lg m-0">Food repeatedly getting trapped in the same area</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 6. What Causes Tooth Decay? -->
+<!-- 5 & 6. Signs & Causes (Dual Cards Layout matching reference) -->
 <section class="py-16 lg:py-24 bg-gray-50">
     <div class="container mx-auto px-4 max-w-[1200px]">
-        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <div class="lg:w-1/2">
-                <img src="{% static 'serices-image/dental2_x-ray.jpg' %}" alt="X-ray showing tooth decay" class="w-full rounded-[24px] shadow-lg max-h-[420px] object-cover">
-            </div>
-            <div class="lg:w-1/2">
-                <h2 class="text-2xl md:text-3xl font-bold text-navy mb-6 tracking-tight">
-                    Understanding the <span class="text-primary">Cause</span>
-                </h2>
-                <div class="space-y-4 text-gray-600 text-[17px] leading-relaxed mb-8">
-                    <p>
-                        Tooth decay occurs when sticky dental plaque—a film of bacteria—forms on your teeth. When you consume sugary or highly acidic foods, these bacteria produce acids that gradually attack and dissolve the hard outer enamel of your tooth.
-                    </p>
-                    <p>
-                        Poor oral hygiene, frequent snacking, and missed routine dental check-ups accelerate this process, allowing the decay to penetrate deeper into the tooth structure, creating a cavity.
-                    </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            
+            <!-- Card 1: Signs & Symptoms -->
+            <div class="bg-white rounded-[24px] p-8 lg:p-10 shadow-lg border-t-2 border-[#d4af37]">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="w-10 h-[1px] bg-[#d4af37]"></div>
+                    <span class="text-[#d4af37] text-[11px] font-bold uppercase tracking-[0.2em]">WATCH FOR THESE</span>
                 </div>
+                <h2 class="text-[24px] md:text-[28px] font-bold text-[#102A43] mb-4">Signs & Symptoms</h2>
+                <p class="text-[13px] text-gray-500 mb-8 leading-relaxed">
+                    Cavities don't always cause pain immediately. Look out for these warning signs:
+                </p>
                 
-                <div class="bg-white border-l-4 border-primary p-6 rounded-r-2xl shadow-sm">
-                    <p class="text-navy font-bold text-xl m-0 italic">
-                        “Early treatment is often the simplest treatment.”
-                    </p>
-                </div>
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-snowflake text-blue-500 text-lg mt-1 w-6 text-center"></i>
+                        <div class="text-[13px] text-gray-600 leading-relaxed">
+                            <strong class="text-[#102A43]">Tooth Sensitivity:</strong> Pain when eating sweet, hot, or cold foods.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-bolt text-red-500 text-lg mt-1 w-6 text-center"></i>
+                        <div class="text-[13px] text-gray-600 leading-relaxed">
+                            <strong class="text-[#102A43]">Pain While Eating:</strong> A sharp ache when you bite down.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fa-regular fa-circle text-yellow-500 text-lg mt-1 w-6 text-center"></i>
+                        <div class="text-[13px] text-gray-600 leading-relaxed">
+                            <strong class="text-[#102A43]">Visible Holes:</strong> Pits or holes you can see or feel with your tongue.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-circle text-gray-800 text-lg mt-1 w-6 text-center"></i>
+                        <div class="text-[13px] text-gray-600 leading-relaxed">
+                            <strong class="text-[#102A43]">Dark Spots:</strong> Black, brown, or white staining on the tooth surface.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-magnet text-gray-400 text-lg mt-1 w-6 text-center"></i>
+                        <div class="text-[13px] text-gray-600 leading-relaxed">
+                            <strong class="text-[#102A43]">Food Traps:</strong> Food constantly getting stuck in the exact same spot.
+                        </div>
+                    </li>
+                </ul>
             </div>
+            
+            <!-- Card 2: Causes of Tooth Decay -->
+            <div class="bg-white rounded-[24px] p-8 lg:p-10 shadow-lg border-t-2 border-[#d4af37]">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="w-10 h-[1px] bg-[#d4af37]"></div>
+                    <span class="text-[#d4af37] text-[11px] font-bold uppercase tracking-[0.2em]">THE ROOT OF THE PROBLEM</span>
+                </div>
+                <h2 class="text-[24px] md:text-[28px] font-bold text-[#102A43] mb-4">Causes of Tooth Decay</h2>
+                <p class="text-[13px] text-gray-500 mb-8 leading-relaxed">
+                    Decay is a process that happens over time. Common culprits include:
+                </p>
+                
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-tooth text-gray-400 text-lg mt-1 w-6 text-center"></i>
+                        <div class="text-[13px] text-gray-600 leading-relaxed">
+                            <strong class="text-[#102A43]">Poor Oral Hygiene:</strong> Inadequate brushing leaves plaque behind.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-bug text-red-500 text-lg mt-1 w-6 text-center"></i>
+                        <div class="text-[13px] text-gray-600 leading-relaxed">
+                            <strong class="text-[#102A43]">Plaque & Bacteria:</strong> Bacteria convert sugars into enamel-destroying acid.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-glass-water text-yellow-500 text-lg mt-1 w-6 text-center"></i>
+                        <div class="text-[13px] text-gray-600 leading-relaxed">
+                            <strong class="text-[#102A43]">Sugary Drinks & Foods:</strong> Frequent snacking fuels acid production.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-mug-hot text-yellow-600 text-lg mt-1 w-6 text-center"></i>
+                        <div class="text-[13px] text-gray-600 leading-relaxed">
+                            <strong class="text-[#102A43]">Acidic Foods:</strong> Citrus and sodas actively erode protective enamel.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fa-regular fa-calendar-xmark text-gray-500 text-lg mt-1 w-6 text-center"></i>
+                        <div class="text-[13px] text-gray-600 leading-relaxed">
+                            <strong class="text-[#102A43]">Skipping Check-ups:</strong> Missing professional cleanings allows plaque to harden into tartar.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
         </div>
     </div>
 </section>
