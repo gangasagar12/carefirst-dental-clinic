@@ -27,7 +27,7 @@ body {
 
 /* ── Headings ───────────────────────────────────────────── */
 h1, .gd-h1 {
-    font-size: clamp(32px, 4vw, 44px); /* 40-48px */
+    font-size: clamp(28px, 3.5vw, 36px); /* Decreased from 40-48px */
     font-weight: 800;
     color: var(--navy);
     letter-spacing: -0.5px;
@@ -36,7 +36,7 @@ h1, .gd-h1 {
 }
 
 h2, .gd-h2 {
-    font-size: clamp(26px, 3vw, 32px); /* 28-34px */
+    font-size: clamp(24px, 2.5vw, 28px); /* Decreased from 28-34px */
     font-weight: 700;
     color: var(--navy);
     letter-spacing: -0.3px;
@@ -45,7 +45,7 @@ h2, .gd-h2 {
 }
 
 h3, .gd-h3 {
-    font-size: clamp(18px, 2vw, 22px); /* 20-24px */
+    font-size: clamp(18px, 2vw, 20px); /* Decreased from 20-24px */
     font-weight: 600;
     color: var(--navy);
     margin-bottom: 12px;
