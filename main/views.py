@@ -34,6 +34,70 @@ def general_dentistry(request):
     }
     return render(request, 'treatments/general_dentistry.html', context)
 
+def dental_filling(request):
+    # Mock data for Treatment Charges
+    class MockPrice:
+        def __init__(self, name, notes, price):
+            self.name = name
+            self.notes = notes
+            self.price = price
+
+    class MockTreatment:
+        class Prices:
+            @staticmethod
+            def all():
+                return [
+                    MockPrice("Composite Filling (Small)", "One surface, tooth-colored restoration", "1,500"),
+                    MockPrice("Composite Filling (Large)", "Multi-surface, complex tooth-colored restoration", "2,500"),
+                    MockPrice("Glass Ionomer Filling", "Fluoride-releasing restoration", "1,200")
+                ]
+        prices = Prices()
+
+    treatment = MockTreatment()
+
+    # Mock data for Testimonials
+    testimonials = [
+        {
+            'name': 'Anil Sharma',
+            'treatment': 'Dental Filling',
+            'text': 'I was worried my front tooth filling would look noticeable, but the tooth-colored restoration blends perfectly with my natural smile. Highly recommend CareFirst!'
+        },
+        {
+            'name': 'Priya Gurung',
+            'treatment': 'Dental Filling',
+            'text': 'The procedure was completely painless. Dr. Subash explained everything clearly, and the result is fantastic.'
+        }
+    ]
+
+    # Mock data for Related Services
+    related_services = [
+        {
+            'name': 'General Dentistry',
+            'desc': 'Comprehensive checkups and preventive care for a healthy smile.',
+            'url': '/treatments/general-dentistry/',
+            'image': 'scalling_hero.jpg'
+        },
+        {
+            'name': 'Root Canal Treatment',
+            'desc': 'Save your natural tooth with painless endodontic therapy.',
+            'url': '/treatments/root-canal/',
+            'image': 'rct_hero.avif'
+        },
+        {
+            'name': 'Scaling & Polishing',
+            'desc': 'Professional cleaning to remove plaque and brighten teeth.',
+            'url': '/treatments/scaling/',
+            'image': 'scaling_before.png'
+        }
+    ]
+
+    context = {
+        'treatment': treatment,
+        'testimonials': testimonials,
+        'related_services': related_services
+    }
+    return render(request, 'treatments/dental_filling.html', context)
+
 def doctors(request):
     return render(request, 'pages/doctors.html')
 
