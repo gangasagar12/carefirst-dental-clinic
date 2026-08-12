@@ -98,6 +98,18 @@ def dental_filling(request):
     }
     return render(request, 'treatments/dental_filling.html', context)
 
+def crowns_bridges(request):
+    dynamic_prices = {
+        'metal_crown': '3,000',
+        'pfm_crown': '6,000',
+        'zirconia_crown': '12,000',
+        'emax_crown': '18,000'
+    }
+    context = {
+        'dynamic_prices': dynamic_prices
+    }
+    return render(request, 'treatments/crowns_bridges.html', context)
+
 def doctors(request):
     return render(request, 'pages/doctors.html')
 

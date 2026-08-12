@@ -1,0 +1,713 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Crowns & Bridges — CareFirst Dental Clinic{% endblock %}
+{% block extra_head %}
+<meta name="description" content="Restore damaged or missing teeth with premium Crowns & Bridges at CareFirst Dental Clinic. Zirconia, E-max, and PFM crowns available.">
+<style>
+  .cb-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid rgba(16,42,67,0.08);
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cb-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(16,42,67,0.08);
+  }
+  .cb-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: #f0f7ff;
+    color: #4285F4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+  .cb-type-card {
+    border: 1px solid rgba(16,42,67,0.1);
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+    height: 100%;
+    transition: border-color 0.3s ease;
+  }
+  .cb-type-card:hover {
+    border-color: #4285F4;
+  }
+  .cb-tip-card {
+    border-left: 4px solid #4285F4;
+    background: #fff;
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 15px;
+  }
+  
+  /* Pricing Table */
+  .pricing-table {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(16,42,67,0.1);
+    border: 1px solid rgba(16,42,67,0.1);
+  }
+  .pricing-header {
+    background: #102A43;
+    color: #fff;
+    padding: 24px;
+    text-align: center;
+  }
+  .pricing-body {
+    padding: 0;
+  }
+  .pricing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .pricing-row:last-child {
+    border-bottom: none;
+  }
+  .pricing-row .title {
+    font-weight: 700;
+    color: #102A43;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .pricing-row .price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #4285F4;
+  }
+  .pricing-row .currency {
+    font-size: 0.9rem;
+    vertical-align: super;
+  }
+
+  /* Gallery */
+  .cb-gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .cb-gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .cb-gallery-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(16,42,67,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .cb-gallery-item:hover img { transform: scale(1.05); }
+  .cb-gallery-item:hover .cb-gallery-overlay { opacity: 1; }
+
+  /* 4-column custom grid layout for crowns */
+  .crown-grid-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e9ecef;
+    overflow: visible;
+    position: relative;
+    margin-top: 50px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .crown-grid-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  }
+  .cgc-top-bar {
+    height: 16px;
+    background: #102A43;
+    border-radius: 15px 15px 0 0;
+  }
+  .cgc-icon {
+    width: 70px;
+    height: 70px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #fff;
+    overflow: hidden;
+  }
+  .cgc-icon i {
+    font-size: 2rem;
+    color: #102A43;
+  }
+  .cgc-header {
+    text-align: center;
+    padding: 25px 15px 15px;
+    font-weight: 800;
+    color: #102A43;
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+  }
+  .cgc-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top: 1px solid #f1f3f5;
+    border-bottom: 1px solid #f1f3f5;
+  }
+  .cgc-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .cgc-desc {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .cgc-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+  .cgc-features li {
+    font-size: 0.85rem;
+    color: #333;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+  }
+  .cgc-features li i {
+    color: #102A43;
+    margin-right: 8px;
+    font-size: 0.95rem;
+    margin-top: 1px;
+  }
+  .cgc-ideal {
+    margin-top: auto;
+    background: #fdfdfd;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border: 1px solid #f1f3f5;
+  }
+  .cgc-ideal-icon i {
+    font-size: 2rem;
+    color: #adb5bd;
+    line-height: 1;
+  }
+  .cgc-ideal-text {
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.4;
+  }
+  .cgc-ideal-text strong {
+    color: #212529;
+    display: block;
+    margin-bottom: 3px;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+  }
+  .cgc-info-banner {
+    background: #102A43;
+    color: #fff;
+    border-radius: 12px;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+  }
+  .cgc-info-text {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+  }
+  .cgc-info-text i {
+    font-size: 2rem;
+    color: #4285F4;
+  }
+  .cgc-info-text p {
+    margin: 0;
+    font-size: 1.05rem;
+    max-width: 900px;
+  }
+  .cgc-info-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-left: 1px solid rgba(255,255,255,0.2);
+    padding-left: 30px;
+    margin-left: 20px;
+  }
+  @media (max-width: 992px) {
+    .cgc-info-banner { flex-direction: column; text-align: center; gap: 20px; }
+    .cgc-info-logo { border-left: none; padding-left: 0; margin-left: 0; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; }
+  }
+  
+  /* Additional overrides for CareFirst theme */
+  .section-py {
+      padding: 80px 0;
+  }
+  .nd-eyebrow {
+      color: #4285F4;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+  }
+  .section-heading {
+      font-weight: 800;
+      color: #102A43;
+  }
+  .accent {
+      color: #4285F4;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- 1. HERO BANNER -->
+<section class="service-hero text-center py-5" style="background-image: url('{% static 'serices-image/hero_bg.png' %}'); background-size: cover; background-position: center; position: relative;">
+  <div class="position-absolute w-100 h-100 top-0 start-0" style="background: rgba(16,42,67,0.8);"></div>
+  <div class="hero-inner container position-relative z-1 py-5">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'treatments' %}" class="text-white text-decoration-none opacity-75">Services</a></li>
+        <li class="breadcrumb-item active" style="color: #4285F4;">Crowns & Bridges</li>
+      </ol>
+    </nav>
+    <h1 class="text-white fw-bold display-4 mb-3"><i class="fa-solid fa-shield-halved me-3" style="color: #4285F4;"></i>Crowns & Bridges</h1>
+    <p class="hero-sub mx-auto text-white fs-5 mb-4 opacity-75">Restore the strength, function, and aesthetics of damaged or missing teeth.</p>
+    <div class="mt-4">
+      <a href="{% url 'contact' %}" class="btn px-4 py-2 rounded-pill fw-bold" style="background: #4285F4; color: white;">Restore Your Smile</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. INTRODUCTION & WHAT ARE THEY -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6">
+        <div class="nd-eyebrow">Introduction</div>
+        <h2 class="section-heading mb-4">What Are <span class="accent">Crowns & Bridges?</span></h2>
+        <p class="text-muted" style="line-height:1.85;">
+          Crowns and bridges are fixed prosthetic devices cemented onto existing teeth or implants. Unlike dentures, which you can take out and clean daily, crowns and bridges can only be removed by a dentist.
+        </p>
+        
+        <div class="mt-4">
+          <h5 class="fw-bold" style="color: #102A43;"><i class="fa-solid fa-tooth me-2 text-primary"></i> Dental Crowns</h5>
+          <p class="text-muted small">A crown (or "cap") completely covers a damaged, weak, or severely decayed tooth to restore its original shape, size, strength, and appearance. It is typically used after a root canal or when a large cavity threatens the health of the tooth.</p>
+        </div>
+        
+        <div class="mt-4">
+          <h5 class="fw-bold" style="color: #102A43;"><i class="fa-solid fa-bridge me-2 text-primary"></i> Dental Bridges</h5>
+          <p class="text-muted small">A bridge is used to replace one or more missing teeth. It consists of an artificial tooth (pontic) anchored between two crowns placed on the healthy teeth (abutments) on either side of the gap.</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img loading="lazy" src="{% static 'serices-image/gallery_filling_1.png' %}" alt="Crowns and Bridges Model" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 400px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. WHEN NEEDED & TYPES -->
+<section class="section-py" style="background: #f8f9fa;">
+  <div class="container">
+    <div class="text-center mb-5 pb-3">
+      <div class="nd-eyebrow justify-content-center">Custom Solutions</div>
+      <h2 class="section-heading" style="color: #102A43;">Types of <span style="color: #4285F4;">Crowns</span></h2>
+      <p class="text-muted mx-auto mt-2 fs-5">High-quality materials. Natural results. Long-lasting smiles.</p>
+    </div>
+    
+    <div class="row g-4">
+      
+      <!-- 1. Metal Crown -->
+      <div class="col-lg-3 col-md-6">
+        <div class="crown-grid-card">
+          <div class="cgc-top-bar"></div>
+          <div class="cgc-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="cgc-header">METAL CROWN</div>
+          <!-- Placeholder image -->
+          <div class="cgc-image bg-light d-flex align-items-center justify-content-center"><i class="fa-solid fa-tooth text-muted fs-1 opacity-25"></i></div>
+          <div class="cgc-body">
+            <p class="cgc-desc">Extremely durable and long-lasting. Ideal for back teeth that handle heavy chewing forces.</p>
+            <ul class="cgc-features">
+              <li><i class="fa-solid fa-check-circle"></i> Highly durable</li>
+              <li><i class="fa-solid fa-check-circle"></i> Resistant to wear and fracture</li>
+              <li><i class="fa-solid fa-check-circle"></i> Ideal for back molars</li>
+              <li><i class="fa-solid fa-check-circle"></i> Cost-effective</li>
+            </ul>
+            <div class="cgc-ideal">
+              <div class="cgc-ideal-icon"><i class="fa-solid fa-tooth"></i></div>
+              <div class="cgc-ideal-text">
+                <strong>IDEAL FOR:</strong>
+                Back teeth and molars where strength is the top priority.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. PFM Crown -->
+      <div class="col-lg-3 col-md-6">
+        <div class="crown-grid-card">
+          <div class="cgc-top-bar" style="background: #4285F4;"></div>
+          <div class="cgc-icon"><i class="fa-solid fa-palette" style="color: #4285F4;"></i></div>
+          <div class="cgc-header" style="color: #4285F4;">PFM CROWN</div>
+          <!-- Placeholder image -->
+          <div class="cgc-image bg-light d-flex align-items-center justify-content-center"><i class="fa-solid fa-tooth text-muted fs-1 opacity-25"></i></div>
+          <div class="cgc-body">
+            <p class="cgc-desc">Porcelain fused to metal for strength and natural appearance. A perfect balance of durability and aesthetics.</p>
+            <ul class="cgc-features">
+              <li><i class="fa-solid fa-check-circle" style="color: #4285F4;"></i> Strong and durable</li>
+              <li><i class="fa-solid fa-check-circle" style="color: #4285F4;"></i> Natural tooth-colored appearance</li>
+              <li><i class="fa-solid fa-check-circle" style="color: #4285F4;"></i> Good for front and back teeth</li>
+              <li><i class="fa-solid fa-check-circle" style="color: #4285F4;"></i> More affordable than all-ceramic</li>
+            </ul>
+            <div class="cgc-ideal">
+              <div class="cgc-ideal-icon"><i class="fa-solid fa-tooth"></i></div>
+              <div class="cgc-ideal-text">
+                <strong>IDEAL FOR:</strong>
+                Front and back teeth where strength and aesthetics are needed.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Zirconia Crown -->
+      <div class="col-lg-3 col-md-6">
+        <div class="crown-grid-card">
+          <div class="cgc-top-bar"></div>
+          <div class="cgc-icon"><i class="fa-regular fa-gem"></i></div>
+          <div class="cgc-header">ZIRCONIA CROWN</div>
+          <!-- Placeholder image -->
+          <div class="cgc-image bg-light d-flex align-items-center justify-content-center"><i class="fa-solid fa-tooth text-muted fs-1 opacity-25"></i></div>
+          <div class="cgc-body">
+            <p class="cgc-desc">Made from high-strength zirconia ceramic. Extremely durable with excellent natural appearance.</p>
+            <ul class="cgc-features">
+              <li><i class="fa-solid fa-check-circle"></i> Exceptional strength</li>
+              <li><i class="fa-solid fa-check-circle"></i> Highly aesthetic</li>
+              <li><i class="fa-solid fa-check-circle"></i> Biocompatible & metal-free</li>
+              <li><i class="fa-solid fa-check-circle"></i> Ideal for all teeth</li>
+            </ul>
+            <div class="cgc-ideal">
+              <div class="cgc-ideal-icon"><i class="fa-solid fa-tooth"></i></div>
+              <div class="cgc-ideal-text">
+                <strong>IDEAL FOR:</strong>
+                Both front and back teeth. Best all-round performance.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. E-max Crown -->
+      <div class="col-lg-3 col-md-6">
+        <div class="crown-grid-card">
+          <div class="cgc-top-bar" style="background: #4285F4;"></div>
+          <div class="cgc-icon"><i class="fa-solid fa-wand-magic-sparkles" style="color: #4285F4;"></i></div>
+          <div class="cgc-header" style="color: #4285F4;">E-MAX CROWN</div>
+          <!-- Placeholder image -->
+          <div class="cgc-image bg-light d-flex align-items-center justify-content-center"><i class="fa-solid fa-tooth text-muted fs-1 opacity-25"></i></div>
+          <div class="cgc-body">
+            <p class="cgc-desc">Premium all-ceramic crown known for its lifelike translucency and beautiful aesthetics.</p>
+            <ul class="cgc-features">
+              <li><i class="fa-solid fa-check-circle" style="color: #4285F4;"></i> Superior aesthetics</li>
+              <li><i class="fa-solid fa-check-circle" style="color: #4285F4;"></i> Natural translucency</li>
+              <li><i class="fa-solid fa-check-circle" style="color: #4285F4;"></i> Metal-free & biocompatible</li>
+              <li><i class="fa-solid fa-check-circle" style="color: #4285F4;"></i> Perfect for front teeth</li>
+            </ul>
+            <div class="cgc-ideal">
+              <div class="cgc-ideal-icon"><i class="fa-solid fa-tooth"></i></div>
+              <div class="cgc-ideal-text">
+                <strong>IDEAL FOR:</strong>
+                Front teeth and visible areas for the best aesthetics.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Info Banner at Bottom -->
+    <div class="cgc-info-banner">
+      <div class="cgc-info-text">
+        <i class="fa-solid fa-tooth"></i>
+        <p>"Our dentists will recommend the most suitable crown material based on your oral condition, tooth location, functional needs, aesthetic expectations, and budget."</p>
+      </div>
+      <div class="cgc-info-logo">
+        <h5 class="fw-bold mb-0 text-white"><i class="fa-solid fa-shield-halved text-primary me-2"></i>CAREFIRST DENTAL</h5>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- 4. BENEFITS & WHY CHOOSE US -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row g-5">
+      <!-- Benefits -->
+      <div class="col-lg-7">
+        <div class="nd-eyebrow">Advantages</div>
+        <h3 class="fw-bold mb-4" style="color:#102A43;">Benefits of Crowns & Bridges</h3>
+        <div class="row g-4 mt-1">
+          <div class="col-sm-6">
+            <div class="cb-card">
+              <div class="cb-icon-wrapper"><i class="fa-regular fa-face-smile"></i></div>
+              <h6 class="fw-bold">Aesthetic Restoration</h6>
+              <p class="small text-muted mb-0">Custom-shaded to match your surrounding teeth perfectly.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="cb-card">
+              <div class="cb-icon-wrapper"><i class="fa-solid fa-shield-check"></i></div>
+              <h6 class="fw-bold">Tooth Protection</h6>
+              <p class="small text-muted mb-0">Provides a protective shield for brittle or root-canal treated teeth.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="cb-card">
+              <div class="cb-icon-wrapper"><i class="fa-solid fa-grip"></i></div>
+              <h6 class="fw-bold">Prevents Shifting</h6>
+              <p class="small text-muted mb-0">Bridges fill gaps so adjacent teeth don't drift out of alignment.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="cb-card">
+              <div class="cb-icon-wrapper"><i class="fa-solid fa-apple-whole"></i></div>
+              <h6 class="fw-bold">Restores Chewing</h6>
+              <p class="small text-muted mb-0">Allows you to eat your favorite foods without pain or hesitation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Why CareFirst -->
+      <div class="col-lg-5">
+        <div class="nd-eyebrow">Why Us?</div>
+        <h3 class="fw-bold mb-4" style="color:#102A43;">Why Choose CareFirst?</h3>
+        <ul class="list-unstyled mb-0 space-y-4">
+          <li class="d-flex mb-3"><i class="fa-solid fa-check-circle text-primary fs-5 me-3"></i> <span><strong>Digital Impressions:</strong> We use precise 3D scanners instead of messy, uncomfortable putty to mold your teeth.</span></li>
+          <li class="d-flex mb-3"><i class="fa-solid fa-check-circle text-primary fs-5 me-3"></i> <span><strong>Top-tier Labs:</strong> Our crowns are milled by expert technicians ensuring a perfect, micro-precise fit.</span></li>
+          <li class="d-flex mb-3"><i class="fa-solid fa-check-circle text-primary fs-5 me-3"></i> <span><strong>Aesthetic Matching:</strong> We take lighting and natural translucency into account for an invisible restoration.</span></li>
+          <li class="d-flex mb-3"><i class="fa-solid fa-check-circle text-primary fs-5 me-3"></i> <span><strong>Warranty:</strong> We stand by the quality of our premium Zirconia and E-max crowns.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PROCESS & PRICING -->
+<section class="section-py" style="background:#102A43; color:#fff;">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      
+      <!-- Step-by-Step -->
+      <div class="col-lg-7">
+        <div class="nd-eyebrow justify-content-start text-white-50 border-white">The Procedure</div>
+        <h2 class="section-heading text-white mb-5">Our Treatment <span style="color: #4285F4;">Process</span></h2>
+        
+        <div class="d-flex mb-4 position-relative">
+          <div class="fs-2 me-4 bg-transparent z-1" style="color: #4285F4;"><i class="fa-solid fa-circle-1"></i></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">Preparation</h5>
+            <p class="text-white-50 mb-0">The tooth is numbed, and a thin layer of enamel is shaved off to make room for the crown to fit over it perfectly.</p>
+          </div>
+        </div>
+        <div class="d-flex mb-4 position-relative">
+          <div class="fs-2 me-4 bg-transparent z-1" style="color: #4285F4;"><i class="fa-solid fa-circle-2"></i></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">Digital Impressions</h5>
+            <p class="text-white-50 mb-0">We take a precise 3D scan of your mouth and send the data to our dental lab to custom-mill your crown or bridge.</p>
+          </div>
+        </div>
+        <div class="d-flex mb-4 position-relative">
+          <div class="fs-2 me-4 bg-transparent z-1" style="color: #4285F4;"><i class="fa-solid fa-circle-3"></i></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">Temporary Placement</h5>
+            <p class="text-white-50 mb-0">While your permanent crown is being made (usually takes a few days), we place a temporary acrylic crown to protect your tooth.</p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="fs-2 me-4 bg-transparent z-1" style="color: #4285F4;"><i class="fa-solid fa-circle-4"></i></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">Final Cementation</h5>
+            <p class="text-white-50 mb-0">On your second visit, we remove the temporary, check the fit and color of the permanent crown, and cement it permanently in place.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- PRICING TABLE -->
+      <div class="col-lg-5">
+        <div class="pricing-table">
+          <div class="pricing-header">
+            <h3 class="fw-bold mb-0">Treatment Charges</h3>
+            <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing (Per Unit)</p>
+          </div>
+          <div class="pricing-body">
+            
+            <div class="pricing-row">
+              <div>
+                <p class="title">Metal Crown</p>
+                <p class="text-muted small mb-0 mt-1">Durable, non-aesthetic</p>
+              </div>
+              <div class="text-end">
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.metal_crown|default:"3,000" }}</span>
+              </div>
+            </div>
+            
+            <div class="pricing-row" style="background-color: #f0f7ff;">
+              <div>
+                <p class="title">PFM Crown</p>
+                <p class="text-muted small mb-0 mt-1">Porcelain Fused to Metal</p>
+              </div>
+              <div class="text-end">
+                <span class="price"><span class="currency">NPR</span> {{ dynamic_prices.pfm_crown|default:"6,000" }}</span>
+              </div>
+            </div>
+            
+            <div class="pricing-row">
+              <div>
+                <p class="title text-success">Zirconia Crown</p>
+                <p class="text-muted small mb-0 mt-1">High strength, aesthetic</p>
+              </div>
+              <div class="text-end">
+                <span class="price text-success"><span class="currency">NPR</span> 12,000</span>
+              </div>
+            </div>
+            
+            <div class="pricing-row" style="background-color: #f0f7ff;">
+              <div>
+                <p class="title text-primary">E-max Crown</p>
+                <p class="text-muted small mb-0 mt-1">Premium All-Ceramic</p>
+              </div>
+              <div class="text-end">
+                <span class="price text-primary"><span class="currency">NPR</span> 18,000</span>
+              </div>
+            </div>
+
+            <div class="p-4 text-center">
+              <p class="small text-muted mb-4 fst-italic">
+                * Note: Prices are per unit (per tooth). A 3-tooth bridge made of PFM would be NPR 6,000 x 3 = NPR 18,000. Final costs depend on clinical evaluation.
+              </p>
+              <a href="{% url 'contact' %}" class="btn w-100 fw-bold" style="background: #4285F4; color: white;">Schedule Consultation</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. AFTERCARE & FAQ -->
+<section class="section-py bg-light">
+  <div class="container">
+    <div class="row g-5">
+      
+      <!-- Care Tips -->
+      <div class="col-lg-4">
+        <div class="nd-eyebrow">Maintenance</div>
+        <h3 class="fw-bold mb-4" style="color:#102A43;">Aftercare Tips</h3>
+        
+        <div class="cb-tip-card border-success">
+          <h6 class="fw-bold"><i class="fa-solid fa-brush text-success me-2"></i> Normal Hygiene</h6>
+          <p class="small text-muted mb-0">Brush and floss your crowned teeth exactly like natural teeth to prevent decay at the gum line.</p>
+        </div>
+        <div class="cb-tip-card border-primary">
+          <h6 class="fw-bold"><i class="fa-solid fa-teeth text-primary me-2"></i> Flossing Bridges</h6>
+          <p class="small text-muted mb-0">Use special floss threaders or a water flosser to clean underneath the artificial tooth of a bridge.</p>
+        </div>
+        <div class="cb-tip-card border-warning">
+          <h6 class="fw-bold"><i class="fa-solid fa-shield-halved text-warning me-2"></i> Avoid Hard Foods</h6>
+          <p class="small text-muted mb-0">Avoid chewing ice, hard candies, or using your teeth to open packages, which can chip porcelain.</p>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="col-lg-8">
+        
+        <div class="mb-5">
+          <div class="nd-eyebrow">FAQ</div>
+          <h3 class="fw-bold mb-4" style="color:#102A43;">Frequently Asked Questions</h3>
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item mb-3 border-0 rounded shadow-sm">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button bg-white fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color: #102A43;">
+                  How long do crowns and bridges last?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted">
+                  With proper oral hygiene and regular dental checkups, a high-quality Zirconia or PFM crown can last anywhere from 10 to 15 years, and often much longer.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item mb-3 border-0 rounded shadow-sm">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed bg-white fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: #102A43;">
+                  Does getting a crown hurt?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted">
+                  No. We use local anesthesia during the tooth preparation process so you won't feel any pain. You may experience some mild sensitivity for a few days after the procedure, which is normal.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item mb-3 border-0 rounded shadow-sm">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed bg-white fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="color: #102A43;">
+                  What is the difference between Zirconia and E-max?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted">
+                  Zirconia is incredibly strong and durable, making it excellent for back teeth (molars) that withstand heavy chewing. E-max is slightly less strong but offers superior translucency and aesthetics, making it the preferred choice for highly visible front teeth.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
