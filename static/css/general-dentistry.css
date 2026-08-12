@@ -53,7 +53,14 @@ h3, .gd-h3 {
 
 /* Highlighted Text */
 .gd-highlight {
-    color: var(--primary-blue);
+    color: var(--primary-blue) !important;
+}
+
+.gd-highlight-gradient {
+    background: linear-gradient(90deg, var(--primary-blue) 0%, var(--navy) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .gd-subtitle {
@@ -70,6 +77,30 @@ h3, .gd-h3 {
     color: var(--primary-blue);
     margin-bottom: 12px;
     display: inline-block;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+.btn-gd-primary {
+    background: linear-gradient(135deg, var(--primary-blue), var(--navy));
+    color: #fff;
+    border: none;
+    transition: all 0.3s ease;
+}
+.btn-gd-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(21, 155, 211, 0.3);
+    color: #fff;
+}
+
+.btn-gd-outline {
+    background: transparent;
+    color: var(--navy);
+    border: 2px solid var(--navy);
+    transition: all 0.3s ease;
+}
+.btn-gd-outline:hover {
+    background: var(--navy);
+    color: #fff;
 }
 
 /* ── 2. Compact Hero Section ────────────────────────────── */
