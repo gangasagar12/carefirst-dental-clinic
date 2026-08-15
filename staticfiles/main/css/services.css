@@ -4,45 +4,44 @@
    ========================================================= */
 
 /* ── Hero Banner ─────────────────────────────────────────── */
-.service-hero {
+.service-hero,
+.services-hero-banner {
   position: relative;
-  min-height: 480px;
+  min-height: 380px;
   display: flex;
   align-items: center;
-  background: var(--cf-navy, #0B2545);
-  background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%);
-  padding: 120px 0 80px;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(8, 28, 51, 0.88) 0%, rgba(11, 37, 69, 0.84) 60%, rgba(3, 105, 161, 0.78) 100%), url('/static/main/img/hero_bg.jpeg') center/cover no-repeat;
+  padding: 85px 0 65px;
   overflow: hidden;
 }
 
-.service-hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(2, 132, 199, 0.25), transparent 60%);
-  z-index: 1;
-}
-
-.service-hero .hero-inner {
+.service-hero .hero-inner,
+.services-hero-banner .container {
   position: relative;
   z-index: 3;
   width: 100%;
 }
 
-.service-hero h1 {
+.service-hero h1,
+.services-hero-banner h1 {
   font-family: var(--cf-font-head, 'Outfit', sans-serif);
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-size: clamp(2.2rem, 4vw, 3rem);
   font-weight: 800;
-  color: #fff;
-  margin-bottom: 15px;
+  color: #FFFFFF;
+  margin-bottom: 12px;
   letter-spacing: -0.02em;
 }
 
-.service-hero .hero-sub {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1.15rem;
+.service-hero .hero-sub,
+.services-hero-banner .hero-sub {
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.1rem;
   max-width: 600px;
-  font-weight: 400;
+  margin: 0 auto;
+  font-weight: 500;
+  line-height: 1.7;
 }
 
 /* ── Section Utilities ───────────────────────────────────── */

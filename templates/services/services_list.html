@@ -2,68 +2,533 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}Our Services — Carefirst Dental Clinic{% endblock %}
+{% block title %}Our Dental Treatments & Services — CareFirst Dental Clinic{% endblock %}
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
-<meta name="description" content="Explore our comprehensive range of premium dental services, from general check-ups to full smile makeovers and dental implants at Carefirst Dental Clinic.">
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=4.0">
+<meta name="description" content="Explore comprehensive dental treatments at CareFirst Dental Clinic in Shankhamul, Kathmandu. From routine checkups to root canal, dental implants, braces, and cosmetic dentistry.">
+<style>
+  /* ── Hero Banner with Background Image ─────────────────── */
+  .services-hero-banner {
+    position: relative !important;
+    min-height: 380px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, rgba(8, 28, 51, 0.88) 0%, rgba(11, 37, 69, 0.84) 60%, rgba(3, 105, 161, 0.78) 100%), url('/static/main/img/hero_bg.jpeg') center/cover no-repeat !important;
+    overflow: hidden !important;
+    padding: 85px 0 65px !important;
+  }
 
+  .services-hero-banner h1 {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: clamp(2.2rem, 4vw, 3rem) !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 12px !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .services-hero-banner .hero-sub {
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    line-height: 1.7 !important;
+  }
+
+  /* ── Eyebrow Badge ─────────────────────────────────────── */
+  .cf-eyebrow-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(2, 132, 199, 0.1) !important;
+    color: #0284C7 !important;
+    padding: 6px 16px !important;
+    border-radius: 50px !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.825rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    border: 1px solid rgba(2, 132, 199, 0.25) !important;
+    margin-bottom: 16px !important;
+  }
+
+  .cf-section-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: clamp(2rem, 3.2vw, 2.65rem) !important;
+    font-weight: 800 !important;
+    color: #0B2545 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .cf-gradient-title-accent {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: #0284C7 !important;
+    display: inline-block !important;
+  }
+
+  /* ── Filter Buttons ────────────────────────────────────── */
+  .service-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid #E2E8F0;
+    background: #FFFFFF;
+    border-radius: 50px;
+    padding: 10px 22px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    border-color: #0284C7 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 8px 22px rgba(2, 132, 199, 0.35) !important;
+    transform: translateY(-2px);
+  }
+
+  /* ── Service Card Premium (Tinted Description Card) ───── */
+  .service-card-premium {
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.08);
+    border: 1.5px solid #E2E8F0;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .service-card-premium:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px -5px rgba(2, 132, 199, 0.28);
+    border-color: #0284C7;
+  }
+
+  .sc-img-wrap {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .service-card-premium:hover .sc-img {
+    transform: scale(1.06);
+  }
+
+  .sc-popular-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: linear-gradient(135deg, #0B2545 0%, #0369A1 100%);
+    color: #FFFFFF;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    z-index: 5;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 12px rgba(11, 37, 69, 0.3);
+  }
+
+  .sc-icon {
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+    z-index: 4;
+    border: 2px solid #FFFFFF;
+  }
+
+  /* Description Body with Soft Medical Azure Tint */
+  .sc-body {
+    padding: 24px 22px 20px;
+    background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%);
+    border-top: 2px solid rgba(2, 132, 199, 0.15);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sc-category {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #0284C7;
+    background: #FFFFFF;
+    padding: 3px 10px;
+    border-radius: 50px;
+    border: 1px solid rgba(2, 132, 199, 0.25);
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.08);
+    margin-bottom: 10px;
+  }
+
+  .sc-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0B2545;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .sc-features {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #334155;
+    margin-bottom: 0;
+    margin-top: auto;
+  }
+
+  .sc-features li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  .sc-footer {
+    padding: 16px 22px;
+    background: #FFFFFF;
+    border-top: 1px solid #E2E8F0;
+  }
+
+  .sc-price-box small {
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748B;
+  }
+
+  .sc-price-box strong {
+    font-size: 1.05rem;
+    color: #0284C7;
+    font-weight: 800;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+  }
+
+  .sc-learn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #0284C7;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .sc-learn-more:hover {
+    color: #0369A1;
+    transform: translateX(4px);
+  }
+
+  /* ── Recommendation Pathways Section ──────────────────── */
+  .recommend-section {
+    background: #FFFFFF;
+    padding: 90px 0;
+    border-top: 1px solid #E2E8F0;
+  }
+
+  .recommend-card {
+    background: linear-gradient(180deg, #F8FAFC 0%, #F0F9FF 100%);
+    border: 1.5px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 32px 26px;
+    height: 100%;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .recommend-card:hover {
+    transform: translateY(-6px);
+    border-color: #0284C7;
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.16);
+  }
+
+  .recommend-icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.3);
+  }
+
+  .recommend-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #0B2545;
+    margin-bottom: 12px;
+  }
+
+  .recommend-desc {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.925rem;
+    font-weight: 500;
+    color: #475569;
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .recommend-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    flex-grow: 1;
+  }
+
+  .recommend-list li {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .recommend-list li i {
+    color: #0284C7;
+    font-size: 0.95rem;
+  }
+
+  /* Consultation Doctor Banner */
+  .doctor-consult-banner {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%);
+    border-radius: 24px;
+    padding: 40px 36px;
+    color: #FFFFFF;
+    box-shadow: 0 16px 40px rgba(11, 37, 69, 0.2);
+    margin-top: 60px;
+  }
+</style>
 {% endblock %}
 
 {% block content %}
 
-<!-- HEADER SECTION -->
-<div class="text-center py-5" style="background-color: #fafafa;">
-  <div class="container">
-    <div class="nd-eyebrow justify-content-center text-uppercase text-gold fw-bold mb-2" style="letter-spacing: 2px;">{% trans "What We Do" %}</div>
-    <h1 class="section-heading mb-3 text-dark" style="font-family: var(--cf-font-head); font-weight: 800;">{% blocktrans %}Expert Care for <span class="text-gold">Every Smile</span>{% endblocktrans %}</h1>
-    <p class="text-muted mx-auto" style="max-width: 600px; font-size: 1.1rem;">
-      {% blocktrans %}Comprehensive dental care using advanced technology and a gentle approach.<br>
-      Your smile is our priority.{% endblocktrans %}
+<!-- 1. HERO SECTION WITH BACKGROUND IMAGE -->
+<section class="services-hero-banner text-center">
+  <div class="container position-relative z-2">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item active text-info fw-bold">{% trans "Treatments" %}</li>
+      </ol>
+    </nav>
+    <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
+      <i class="bi bi-patch-check-fill text-info"></i> {% trans "COMPREHENSIVE DENTAL CARE" %}
+    </div>
+    <h1>{% blocktrans %}Expert Care for <span class="text-info">Every Smile</span>{% endblocktrans %}</h1>
+    <p class="hero-sub">
+      {% blocktrans %}Advanced technology, gentle clinical techniques, and personalized treatment plans in Shankhamul, Kathmandu.{% endblocktrans %}
     </p>
   </div>
-</div>
+</section>
 
-<!-- SERVICES GRID SECTION -->
-<section class="py-5" style="background: #fafafa;">
+<!-- 2. SERVICES GRID SECTION -->
+<section class="py-5" style="background: #F8FAFC;">
   <div class="container-fluid px-4 px-lg-5">
     
     <!-- Filters -->
     <div class="service-filters" id="serviceFilters">
       <button class="filter-btn active" data-filter="*"><i class="bi bi-grid-fill"></i> {% trans "All Services" %}</button>
-      <button class="filter-btn" data-filter=".general"><i class="bi bi-tooth"></i> {% trans "General" %}</button>
+      <button class="filter-btn" data-filter=".general"><i class="bi bi-heart-pulse"></i> {% trans "General" %}</button>
       <button class="filter-btn" data-filter=".preventive"><i class="bi bi-shield-check"></i> {% trans "Preventive" %}</button>
-      <button class="filter-btn" data-filter=".restorative"><i class="bi bi-puzzle"></i> {% trans "Restorative" %}</button>
+      <button class="filter-btn" data-filter=".restorative"><i class="bi bi-bandaid-fill"></i> {% trans "Restorative" %}</button>
       <button class="filter-btn" data-filter=".cosmetic"><i class="bi bi-stars"></i> {% trans "Cosmetic" %}</button>
       <button class="filter-btn" data-filter=".orthodontics"><i class="bi bi-bezier2"></i> {% trans "Orthodontics" %}</button>
       <button class="filter-btn" data-filter=".implants"><i class="bi bi-gear-wide-connected"></i> {% trans "Implants" %}</button>
     </div>
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4" id="servicesGrid">
+    <!-- Grid -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-3" id="servicesGrid">
       {% for service in services %}
       <div class="col service-item {{ service.category }}">
         {% include 'components/service_card.html' with service=service %}
       </div>
       {% endfor %}
     </div>
+
   </div>
 </section>
 
+<!-- 3. TREATMENT RECOMMENDATION PATHWAYS SECTION -->
+<section class="recommend-section">
+  <div class="container">
+    
+    <div class="text-center mx-auto mb-5" style="max-width: 700px;">
+      <div class="cf-eyebrow-badge">
+        <i class="bi bi-compass-fill"></i>
+        {% trans "TREATMENT RECOMMENDATIONS" %}
+      </div>
+      <h2 class="cf-section-title mb-3">{% trans "Not Sure Where to Start?" %}</h2>
+      <p class="fs-5 text-muted mb-0" style="line-height: 1.7; font-weight: 500;">
+        {% trans "We guide you to the exact treatment pathway tailored to your symptoms and oral health goals." %}
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Pathway 1 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="recommend-card">
+          <div class="recommend-icon-box">
+            <i class="bi bi-shield-check"></i>
+          </div>
+          <h3 class="recommend-title">{% trans "Routine & Preventive" %}</h3>
+          <p class="recommend-desc">
+            {% trans "Best for regular checkups, bad breath, mild sensitivity, or plaque buildup before complications develop." %}
+          </p>
+          <ul class="recommend-list">
+            <li><i class="bi bi-check2-circle"></i> {% trans "Scaling & Polishing" %}</li>
+            <li><i class="bi bi-check2-circle"></i> {% trans "Comprehensive Dental Examination" %}</li>
+            <li><i class="bi bi-check2-circle"></i> {% trans "Composite Tooth Fillings" %}</li>
+          </ul>
+          <a href="{% url 'main:contact' %}#appointment" class="btn btn-outline-primary rounded-pill fw-bold py-2 mt-auto">
+            {% trans "Book Checkup" %} &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Pathway 2 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="recommend-card">
+          <div class="recommend-icon-box">
+            <i class="bi bi-bandaid-fill"></i>
+          </div>
+          <h3 class="recommend-title">{% trans "Pain Relief & Restorative" %}</h3>
+          <p class="recommend-desc">
+            {% trans "Best for severe toothache, broken/cracked teeth, missing molars, or deep decay requiring immediate relief." %}
+          </p>
+          <ul class="recommend-list">
+            <li><i class="bi bi-check2-circle"></i> {% trans "Root Canal Treatment (RCT)" %}</li>
+            <li><i class="bi bi-check2-circle"></i> {% trans "Crowns & Bridges" %}</li>
+            <li><i class="bi bi-check2-circle"></i> {% trans "Wisdom Tooth Extractions" %}</li>
+          </ul>
+          <a href="{% url 'main:contact' %}#appointment" class="btn btn-outline-primary rounded-pill fw-bold py-2 mt-auto">
+            {% trans "Relieve Tooth Pain" %} &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Pathway 3 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="recommend-card">
+          <div class="recommend-icon-box">
+            <i class="bi bi-stars"></i>
+          </div>
+          <h3 class="recommend-title">{% trans "Cosmetic & Alignment" %}</h3>
+          <p class="recommend-desc">
+            {% trans "Best for crooked teeth, yellow or stained enamel, gaps, or complete smile aesthetic transformations." %}
+          </p>
+          <ul class="recommend-list">
+            <li><i class="bi bi-check2-circle"></i> {% trans "Orthodontics & Braces" %}</li>
+            <li><i class="bi bi-check2-circle"></i> {% trans "Professional Teeth Whitening" %}</li>
+            <li><i class="bi bi-check2-circle"></i> {% trans "Dental Implants & Dentures" %}</li>
+          </ul>
+          <a href="{% url 'main:smile_transformations' %}" class="btn btn-outline-primary rounded-pill fw-bold py-2 mt-auto">
+            {% trans "Explore Smile Gallery" %} &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Doctor Consultation Banner -->
+    <div class="doctor-consult-banner">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <div class="d-flex align-items-center gap-2 text-info fw-bold text-uppercase small mb-2">
+            <i class="bi bi-award-fill"></i> {% trans "EXPERT CLINICAL ASSESSMENT" %}
+          </div>
+          <h3 class="fw-bold mb-2 text-white">{% trans "Get a Personalized Treatment Plan" %}</h3>
+          <p class="text-white-50 mb-0" style="font-size: 1.02rem; line-height: 1.7;">
+            {% trans "Led by Dr. Subash Banjade and our senior consultant team, we discuss all available options, steps, and exact costs before starting any procedure." %}
+          </p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-3 fw-bold text-dark shadow">
+            <i class="bi bi-calendar2-check-fill text-primary me-2"></i>{% trans "Book Consultation" %}
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 4. FAQ SECTION -->
 {% include 'components/faq.html' with faq_type='services' %}
 
 {% endblock %}
 
 {% block extra_scripts %}
 <script>
-  // Simple filter logic
+  // Filter logic
   document.addEventListener('DOMContentLoaded', function() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const items = document.querySelectorAll('.service-item');
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Remove active class from all
         filterBtns.forEach(b => b.classList.remove('active'));
-        // Add to clicked
         btn.classList.add('active');
 
         const filterValue = btn.getAttribute('data-filter');
@@ -80,5 +545,4 @@
   });
 </script>
 {% include 'components/google_reviews.html' %}
-
 {% endblock %}
