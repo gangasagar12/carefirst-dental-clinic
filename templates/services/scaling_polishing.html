@@ -94,7 +94,7 @@
         <li class="breadcrumb-item active text-warning">Scaling & Polishing</li>
       </ol>
     </nav>
-    <h1><i class="bi bi-stars me-3 text-warning"></i>Scaling & Polishing</h1>
+    <h1 class="fw-bold"><i class="bi bi-stars me-3 text-warning"></i>Scaling & Polishing</h1>
     <p class="hero-sub mx-auto">{% trans "Professional deep cleaning to remove plaque, tartar, and surface stains." %}</p>
     <div class="mt-4">
       <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Book a Professional Clean from {{ service.starting_price }}</a>
@@ -107,8 +107,8 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What is" %} <span class="accent">Scaling & Polishing?</span></h2>
+        <div class="cf-eyebrow-badge justify-content-start"><i class="bi bi-info-circle"></i> {% trans "Introduction" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "What is" %} <span class="text-primary" style="color: #0284C7 !important;">Scaling & Polishing?</span></h2>
         <p class="text-muted" style="line-height:1.85;">
           {% blocktrans %}Scaling and polishing (often referred to simply as a \"dental cleaning\") is a professional procedure designed to thoroughly clean the teeth and gums. Even with the best at-home brushing and flossing routine, plaque can accumulate in hard-to-reach areas and harden into tartar (calculus)—a substance so tough it can only be removed by a dental professional.{% endblocktrans %}
         </p>
@@ -137,8 +137,8 @@
     <div class="row g-5">
       <!-- Signs -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "When To Visit" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Signs You Need a Cleaning" %}</h3>
+        <div class="cf-eyebrow-badge justify-content-start"><i class="bi bi-calendar-check"></i> {% trans "When To Visit" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Signs You Need a Cleaning" %}</h3>
         <p class="text-muted mb-4">{% trans "You should schedule a scaling and polishing session if you notice any of these common warning signs:" %}</p>
         <ul class="symptom-list mb-0">
           <li><i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i> <span>{% trans "Gums that bleed easily when brushing or flossing." %}</span></li>
@@ -189,13 +189,13 @@
 </section>
 
 <!-- 4. TREATMENT PROCESS & PRICING -->
-<section class="section-py" style="background:var(--cf-primary-dark); color:#fff;">
+<section class="section-py" style="background: #0B2545; color:#fff;">
   <div class="container">
     <div class="row g-5 align-items-center">
       <!-- Process -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "Step-by-step" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Our Treatment" %} <span class="text-warning">{% trans "Process" %}</span></h2>
+        <div class="cf-eyebrow-badge justify-content-start border-white text-white" style="background: rgba(255,255,255,0.1);"><i class="bi bi-list-ol"></i> {% trans "Step-by-step" %}</div>
+        <h2 class="cf-section-title text-white mb-5">{% trans "Our Treatment" %} <span class="text-warning">{% trans "Process" %}</span></h2>
         
         <div class="d-flex mb-4 position-relative">
           <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
@@ -232,25 +232,25 @@
       
       <!-- Pricing Card -->
       <div class="col-lg-5">
-        <div class="pricing-table">
-          <div class="pricing-header">
-            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
+        <div class="cf-pricing-card h-100 shadow-lg">
+          <div class="cf-pricing-header text-center">
+            <h3 class="fw-bold text-white mb-0">{% trans "Treatment Charges" %}</h3>
             <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing</p>
           </div>
-          <div class="pricing-body text-center">
+          <div class="cf-pricing-body text-center p-4">
             <p class="text-muted mb-1 text-uppercase fw-bold small tracking-wide">{% trans "Starting From" %}</p>
-            <div class="price-amount"><span class="price-currency">{% trans "NPR" %}</span> {{ dynamic_prices.scaling_polishing|default:"2,000" }}</div>
+            <div class="price-amount" style="color: #0B2545; font-weight: 800; font-size: 3rem;"><span class="price-currency" style="font-size: 1.2rem; vertical-align: super; color: #0284C7;">{% trans "NPR" %}</span> {{ dynamic_prices.scaling_polishing|default:"2,000" }}</div>
             <p class="text-muted fw-bold mb-4">For Standard Scaling & Polishing</p>
             
             <ul class="text-start text-muted small mb-4 px-3" style="list-style:none; padding:0;">
-              <li class="mb-2"><i class="bi bi-check text-success fs-5 align-middle me-1"></i> {% trans "Full mouth ultrasonic scaling" %}</li>
-              <li class="mb-2"><i class="bi bi-check text-success fs-5 align-middle me-1"></i> {% trans "Stain-removing paste polish" %}</li>
-              <li class="mb-2"><i class="bi bi-check text-success fs-5 align-middle me-1"></i> {% trans "Post-treatment oral hygiene instruction" %}</li>
-              <li class="mt-4 fst-italic text-center text-danger" style="font-size: 0.8rem; border-top: 1px dashed #ccc; padding-top: 15px;">
-                {% trans "* Note: If severe gum disease is detected during evaluation, additional Deep Periodontal Treatment (Root Planing) may be recommended at varying costs." %}
+              <li class="mb-3"><i class="bi bi-check-circle-fill text-primary fs-5 align-middle me-2" style="color: #0284C7 !important;"></i> {% trans "Full mouth ultrasonic scaling" %}</li>
+              <li class="mb-3"><i class="bi bi-check-circle-fill text-primary fs-5 align-middle me-2" style="color: #0284C7 !important;"></i> {% trans "Stain-removing paste polish" %}</li>
+              <li class="mb-3"><i class="bi bi-check-circle-fill text-primary fs-5 align-middle me-2" style="color: #0284C7 !important;"></i> {% trans "Post-treatment oral hygiene instruction" %}</li>
+              <li class="mt-4 fst-italic text-center text-danger" style="font-size: 0.8rem; border-top: 1px dashed #E2E8F0; padding-top: 15px;">
+                {% trans "* Note: If severe gum disease is detected, Deep Periodontal Treatment may be recommended." %}
               </li>
             </ul>
-            <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Your Cleaning" %}</a>
+            <a href="{% url 'main:contact' %}#book" class="cf-btn-primary w-100 rounded-pill py-3 fw-bold">{% trans "Schedule Your Cleaning" %}</a>
           </div>
         </div>
       </div>
@@ -262,8 +262,8 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5 mx-auto" style="max-width: 600px;">
-      <div class="nd-eyebrow">{% trans "Our Work" %}</div>
-      <h2 class="section-heading mb-3">{% trans "Treatment Gallery" %}</h2>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-images"></i> {% trans "Our Work" %}</div>
+      <h2 class="cf-section-title mb-3">{% trans "Treatment Gallery" %}</h2>
     </div>
     <div class="row g-4 justify-content-center">
       <div class="col-md-4">
@@ -294,8 +294,8 @@
       <div class="col-lg-5">
         <!-- Before & After -->
         <div class="mb-5">
-          <div class="nd-eyebrow">{% trans "Results" %}</div>
-          <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">Before & After Treatment</h3>
+          <div class="cf-eyebrow-badge justify-content-start"><i class="bi bi-magic"></i> {% trans "Results" %}</div>
+          <h3 class="cf-section-title mb-4">Before & After Treatment</h3>
           <div class="d-flex flex-column gap-3">
             <div class="sp-gallery-img">
               <img loading="lazy" src="{% static 'images/scaling_before.png' %}" alt="Teeth Before Scaling">
@@ -310,7 +310,7 @@
 
         <!-- Aftercare Tips -->
         <div>
-          <h4 class="fw-bold mb-3" style="color:var(--cf-primary-dark);">{% trans "Aftercare Tips" %}</h4>
+          <h4 class="cf-section-title mb-3">{% trans "Aftercare Tips" %}</h4>
           <div class="sp-tip-card">
             <h6 class="fw-bold"><i class="bi bi-info-circle-fill text-gold me-2"></i> {% trans "Mild Sensitivity is Normal" %}</h6>
             <p class="small text-muted mb-0">{% trans "Your teeth may feel slightly sensitive for a day or two, especially if you had heavy tartar buildup. Use a sensitivity toothpaste if needed." %}</p>
@@ -328,8 +328,8 @@
 
       <!-- Right Column: FAQ & Related -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Frequently Asked Questions" %}</h3>
+        <div class="cf-eyebrow-badge justify-content-start"><i class="bi bi-patch-question"></i> {% trans "FAQ" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion mb-5" id="faqAccordion">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -389,7 +389,7 @@
 
 
 <!-- RELATED SERVICES -->
-<section class="section-py" style="background: #f8f9fa;">
+<section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     {% include 'components/related_services_row.html' %}
   </div>
