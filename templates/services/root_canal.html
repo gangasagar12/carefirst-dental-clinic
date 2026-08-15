@@ -88,6 +88,23 @@
   }
 
   /* Gallery/Lightbox */
+  .cf-pricing-card {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 12px 36px rgba(11, 37, 69, 0.12) !important;
+    border: 1.5px solid #E2E8F0 !important;
+  }
+  .cf-pricing-header {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    padding: 28px 24px !important;
+    text-align: center !important;
+  }
+  .cf-pricing-body {
+    padding: 30px 24px !important;
+    background: #FFFFFF !important;
+  }
   .rct-gallery-item {
     position: relative;
     border-radius: 12px;
@@ -392,7 +409,7 @@
 </section>
 
 <!-- 5. PROCESS, RECOVERY & PRICING -->
-<section class="section-py" style="background: #0B2545; color:#fff;">
+<section class="section-py" style="background: #3B6997; color:#fff;">
   <div class="container">
     <div class="row g-5 align-items-center">
       
@@ -404,10 +421,10 @@
         <div class="row g-4 mb-5">
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-camera"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-camera"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">1. X-Ray & Diagnosis</h6>
-                <p class="text-white-50 small">{% trans "Mapping the shape of the root canals." %}</p>
+                <h6 class="fw-bold mb-1 text-info">1. X-Ray & Diagnosis</h6>
+                <p class="text-white small opacity-75">{% trans "Mapping the shape of the root canals." %}</p>
               </div>
             </div>
           </div>
@@ -415,44 +432,44 @@
             <div class="d-flex">
               <div class="fs-3 text-warning me-3"><i class="bi bi-bandaid"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "2. Local Anesthesia" %}</h6>
-                <p class="text-white-50 small">{% trans "Numbing the tooth completely." %}</p>
+                <h6 class="fw-bold mb-1 text-warning">{% trans "2. Local Anesthesia" %}</h6>
+                <p class="text-white small opacity-75">{% trans "Numbing the tooth completely." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-eraser"></i></div>
+              <div class="fs-3 text-success me-3"><i class="bi bi-eraser"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">3. Cleaning & Disinfection</h6>
-                <p class="text-white-50 small">{% trans "Removing the infected nerve tissue." %}</p>
+                <h6 class="fw-bold mb-1 text-success">3. Cleaning & Disinfection</h6>
+                <p class="text-white small opacity-75">{% trans "Removing the infected nerve tissue." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-box"></i></div>
+              <div class="fs-3 text-danger me-3"><i class="bi bi-box"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "4. Root Canal Filling" %}</h6>
-                <p class="text-white-50 small">{% trans "Sealing the roots with gutta-percha." %}</p>
+                <h6 class="fw-bold mb-1 text-danger">{% trans "4. Root Canal Filling" %}</h6>
+                <p class="text-white small opacity-75">{% trans "Sealing the roots with gutta-percha." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-shield-plus"></i></div>
+              <div class="fs-3 text-light me-3"><i class="bi bi-shield-plus"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "5. Tooth Restoration" %}</h6>
-                <p class="text-white-50 small">{% trans "Placing a core build-up filling." %}</p>
+                <h6 class="fw-bold mb-1 text-light">{% trans "5. Tooth Restoration" %}</h6>
+                <p class="text-white small opacity-75">{% trans "Placing a core build-up filling." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-shield-check"></i></div>
+              <div class="fs-3 me-3" style="color: #FBBF24;"><i class="bi bi-shield-check"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "6. Crown Placement" %}</h6>
-                <p class="text-white-50 small">{% trans "Protecting the tooth from future fracture." %}</p>
+                <h6 class="fw-bold mb-1" style="color: #FBBF24;">{% trans "6. Crown Placement" %}</h6>
+                <p class="text-white small opacity-75">{% trans "Protecting the tooth from future fracture." %}</p>
               </div>
             </div>
           </div>
