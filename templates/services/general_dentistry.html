@@ -1,128 +1,247 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 
-
-{% block title %}General Dentistry — Carefirst Dental Clinic{% endblock %}
+{% block title %}General Dentistry — CareFirst Dental Clinic{% endblock %}
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'main/css/services.css' %}">
-<link rel="stylesheet" href="{% static 'main/css/gallery.css' %}">
-<meta name="description" content="Comprehensive General Dentistry at Carefirst Dental Clinic. Regular check-ups, preventive care, and expert advice for a lifetime of healthy smiles.">
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=4.0">
+<link rel="stylesheet" href="{% static 'main/css/gallery.css' %}?v=4.0">
+<meta name="description" content="Comprehensive General Dentistry at CareFirst Dental Clinic in Shankhamul, Kathmandu. Routine check-ups, tooth decay prevention, professional cleaning, and expert oral health care.">
 <style>
-  /* Base Cards */
+  /* CareFirst Global Design System Overrides */
+  .service-hero {
+    position: relative !important;
+    min-height: 380px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, rgba(8, 28, 51, 0.88) 0%, rgba(11, 37, 69, 0.84) 60%, rgba(3, 105, 161, 0.78) 100%), url('{% static 'images/services1.avif' %}') center/cover no-repeat !important;
+    overflow: hidden !important;
+    padding: 85px 0 65px !important;
+  }
+
+  .service-hero h1 {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: clamp(2.2rem, 4vw, 3rem) !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 12px !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .service-hero .hero-sub {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    max-width: 620px !important;
+    margin: 0 auto !important;
+    line-height: 1.7 !important;
+  }
+
+  /* Eyebrow & Titles */
+  .cf-eyebrow-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(2, 132, 199, 0.1) !important;
+    color: #0284C7 !important;
+    padding: 6px 16px !important;
+    border-radius: 50px !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.825rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    border: 1px solid rgba(2, 132, 199, 0.25) !important;
+    margin-bottom: 16px !important;
+  }
+
+  .cf-section-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: clamp(2rem, 3.2vw, 2.65rem) !important;
+    font-weight: 800 !important;
+    color: #0B2545 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .cf-body-text {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 1.02rem !important;
+    font-weight: 500 !important;
+    color: #1E293B !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Primary & Secondary Pill Buttons */
+  .cf-btn-primary {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 12px 28px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    transition: all 0.25s ease !important;
+  }
+  .cf-btn-primary:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%) !important;
+    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.5) !important;
+    transform: translateY(-2px) !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Base Service Cards */
   .gen-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    border: 1px solid rgba(14,90,79,0.08);
-    height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #FFFFFF !important;
+    border-radius: 18px !important;
+    padding: 26px !important;
+    border: 1.5px solid #E2E8F0 !important;
+    height: 100% !important;
+    box-shadow: 0 8px 24px rgba(11, 37, 69, 0.06) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
   }
   .gen-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(14,90,79,0.08);
+    transform: translateY(-6px) !important;
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.16) !important;
+    border-color: #0284C7 !important;
   }
   .gen-icon-wrapper {
-    width: 60px;
-    height: 60px;
-    background: var(--cf-primary-tint);
-    color: var(--cf-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    margin-bottom: 20px;
+    width: 56px !important;
+    height: 56px !important;
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 18px !important;
+    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.3) !important;
   }
 
-  /* Pricing Table */
+  /* Pricing Table Modernized */
   .pricing-table {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(14,90,79,0.1);
-    border: 1px solid rgba(14,90,79,0.1);
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 12px 36px rgba(11, 37, 69, 0.12) !important;
+    border: 1.5px solid #E2E8F0 !important;
   }
   .pricing-header {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    padding: 24px;
-    text-align: center;
-  }
-  .pricing-body {
-    padding: 0;
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    padding: 28px 24px !important;
+    text-align: center !important;
   }
   .pricing-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 20px 28px !important;
+    border-bottom: 1px solid #E2E8F0 !important;
   }
   .pricing-row:last-child {
-    border-bottom: none;
+    border-bottom: none !important;
   }
   .pricing-row .title {
-    font-weight: 700;
-    color: var(--cf-primary-dark);
-    font-size: 1.1rem;
-    margin: 0;
+    font-weight: 700 !important;
+    color: #0B2545 !important;
+    font-size: 1.05rem !important;
+    margin: 0 !important;
   }
   .pricing-row .price {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--cf-accent-dark);
-    font-family: var(--cf-font-head);
-  }
-  .pricing-row .currency {
-    font-size: 0.9rem;
-    vertical-align: super;
+    font-size: 1.45rem !important;
+    font-weight: 800 !important;
+    color: #0284C7 !important;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
   }
 
-  /* Gallery/Lightbox */
-  .gen-gallery-item {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
+  /* Before / After Cards */
+  .ba-card {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.08) !important;
+    border: 1.5px solid #E2E8F0 !important;
+    transition: all 0.35s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
   }
-  .gen-gallery-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform 0.4s ease;
+  .ba-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 20px 45px -5px rgba(2, 132, 199, 0.25) !important;
+    border-color: #0284C7 !important;
   }
-  .gen-gallery-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(14,90,79,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  .ba-body {
+    padding: 20px 22px !important;
+    background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%) !important;
+    border-top: 2px solid rgba(2, 132, 199, 0.18) !important;
+    flex-grow: 1 !important;
   }
-  .gen-gallery-item:hover img { transform: scale(1.05); }
-  .gen-gallery-item:hover .gen-gallery-overlay { opacity: 1; }
-
+  .ba-body .ba-treatment {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    color: #0284C7 !important;
+    background: #FFFFFF !important;
+    padding: 3px 10px !important;
+    border-radius: 50px !important;
+    border: 1px solid rgba(2, 132, 199, 0.25) !important;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.08) !important;
+    margin-bottom: 8px !important;
+  }
+  .ba-body .ba-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    color: #0B2545 !important;
+    margin-bottom: 6px !important;
+  }
+  .ba-body .ba-desc {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    color: #334155 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 0 !important;
+  }
 </style>
 {% endblock %}
 
 {% block content %}
 
-<!-- 1. HERO BANNER -->
-<section class="service-hero text-center" style="background-image: url('{% static 'images/services1.avif' %}');">
-  <div class="hero-inner container">
+<!-- 1. HERO BANNER (Kept Original Background Image with Clean Navy-Azure Gradient Overlay) -->
+<section class="service-hero text-center">
+  <div class="hero-inner container position-relative z-2">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
         <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
-        <li class="breadcrumb-item active text-warning">{% trans "General Dentistry" %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Treatments" %}</a></li>
+        <li class="breadcrumb-item active text-info fw-bold">{% trans "General Dentistry" %}</li>
       </ol>
     </nav>
-    <h1><i class="bi bi-heart-pulse me-3 text-warning"></i>{% trans "General Dentistry" %}</h1>
-    <p class="hero-sub mx-auto">{% trans "Comprehensive check-ups, preventive care, and expert advice to maintain your lifelong oral health." %}</p>
+    <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
+      <i class="bi bi-heart-pulse-fill text-info"></i> {% trans "ESSENTIAL ORAL HEALTHCARE" %}
+    </div>
+    <h1>{% trans "General Dentistry & Routine Checkups" %}</h1>
+    <p class="hero-sub mx-auto">{% trans "Comprehensive clinical check-ups, early cavity detection, and preventive care to protect your lifelong natural smile in Shankhamul, Kathmandu." %}</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Book a Check-up" %}</a>
+      <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary">
+        <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book a Routine Check-up" %}
+      </a>
     </div>
   </div>
 </section>
@@ -132,68 +251,107 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What is" %} <span class="accent">{% trans "General Dentistry?" %}</span></h2>
-        <p class="text-muted" style="line-height:1.85;">
-          {% trans "General dentistry is the foundation of a healthy smile. It encompasses a wide array of routine dental care, diagnostics, and preventative treatments designed to keep your teeth, gums, and mouth in optimal condition over your lifetime." %}
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-info-circle-fill"></i> {% trans "FOUNDATION OF DENTAL HEALTH" %}
+        </div>
+        <h2 class="cf-section-title mb-4">{% trans "What is" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "General Dentistry?" %}</span></h2>
+        <p class="cf-body-text mb-4">
+          {% blocktrans %}General dentistry is the core pillar of lifelong oral wellness. It encompasses routine diagnostics, professional dental cleaning, cavity detection, and preventative care designed to keep your teeth and gums healthy and functional.{% endblocktrans %}
         </p>
         
-        <h4 class="fw-bold mt-5 mb-4" style="color:var(--cf-primary-dark);">{% trans "Why Regular Check-ups Are Important" %}</h4>
-        <div class="ms-3 border-start border-success border-3 ps-4">
-          <p class="text-muted small">{% trans "Many serious dental issues, like gum disease and cavities, develop silently without any pain. Regular check-ups allow our dentists to catch these problems in their earliest stages, preventing the need for complex, costly, and invasive procedures down the road." %}</p>
+        <div class="p-4 rounded-4" style="background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%); border-left: 4px solid #0284C7; border: 1px solid rgba(2, 132, 199, 0.15); border-left-width: 4px;">
+          <h5 class="fw-bold mb-2" style="font-family: var(--cf-font-head); color: #0B2545;">
+            <i class="bi bi-shield-check text-primary me-2"></i>{% trans "Why Regular 6-Month Check-ups Matter" %}
+          </h5>
+          <p class="mb-0 text-muted" style="font-size: 0.925rem; line-height: 1.7; font-weight: 500;">
+            {% blocktrans %}Many serious dental issues like hidden tooth decay, gum recession, and early periodontal disease develop silently without pain. Routine visits allow our dentists to catch problems early, avoiding complex and costly treatments.{% endblocktrans %}
+          </p>
         </div>
       </div>
       <div class="col-lg-6">
-        <img loading="lazy" src="{% static 'images/services1.avif' %}" alt="Routine Dental Check-up" class="img-fluid rounded-4 shadow-lg">
+        <div class="position-relative rounded-4 overflow-hidden shadow-lg" style="height: 420px;">
+          <img loading="lazy" src="{% static 'images/services1.avif' %}" alt="Routine Dental Check-up" class="w-100 h-100 object-fit-cover" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="position-absolute bottom-0 start-0 m-3 p-3 text-white rounded-3" style="background: rgba(11, 37, 69, 0.88); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15);">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-patch-check-fill text-info fs-5"></i>
+              <div>
+                <strong class="d-block text-white small">{% trans "Pain-Free Diagnostics" %}</strong>
+                <small class="text-white-50" style="font-size: 0.75rem;">{% trans "Gentle Clinical Care" %}</small>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- 3. WHO & COMMON PROBLEMS -->
-<section class="section-py" style="background:var(--cf-bg-light);">
+<section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     <div class="row g-5">
       <!-- Who Should Visit -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Candidacy" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Who Should Visit?" %}</h3>
-        <p class="text-muted mb-4">{% trans "Everyone! However, you should definitely schedule an appointment if:" %}</p>
-        <ul class="symptom-list mb-0">
-          <li><i class="bi bi-calendar-x text-warning fs-5"></i> <span>{% trans "It has been more than 6 months since your last visit." %}</span></li>
-          <li><i class="bi bi-bandaid text-danger fs-5"></i> <span>{% trans "You are experiencing sensitivity, pain, or bleeding gums." %}</span></li>
-          <li><i class="bi bi-heart text-success fs-5"></i> <span>{% trans "You want to establish a baseline for your oral health." %}</span></li>
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-person-check-fill"></i> {% trans "CANDIDACY" %}
+        </div>
+        <h3 class="fw-bold mb-3" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Who Should Visit?" %}</h3>
+        <p class="text-muted mb-4" style="font-weight: 500; font-size: 0.95rem;">{% trans "Everyone! However, you should definitely schedule an appointment if:" %}</p>
+        <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+          <li class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm border border-light">
+            <i class="bi bi-calendar-x text-primary fs-5 mt-1"></i>
+            <div>
+              <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Overdue Check-up" %}</strong>
+              <small class="text-muted" style="font-weight: 500;">{% trans "It has been more than 6 months since your last professional dental examination." %}</small>
+            </div>
+          </li>
+          <li class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm border border-light">
+            <i class="bi bi-bandaid text-primary fs-5 mt-1"></i>
+            <div>
+              <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Pain or Sensitivity" %}</strong>
+              <small class="text-muted" style="font-weight: 500;">{% trans "You experience tooth sensitivity to hot/cold, mild toothache, or bleeding gums when brushing." %}</small>
+            </div>
+          </li>
+          <li class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm border border-light">
+            <i class="bi bi-shield-check text-primary fs-5 mt-1"></i>
+            <div>
+              <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Preventive Baseline" %}</strong>
+              <small class="text-muted" style="font-weight: 500;">{% trans "You want to protect your teeth against plaque and establish healthy oral habits." %}</small>
+            </div>
+          </li>
         </ul>
       </div>
       
       <!-- Common Problems -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "Diagnosis" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Common Problems We Treat" %}</h3>
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-clipboard2-pulse-fill"></i> {% trans "DIAGNOSIS & RELIEF" %}
+        </div>
+        <h3 class="fw-bold mb-3" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Common Problems We Treat" %}</h3>
         
         <div class="row g-3">
           <div class="col-sm-6">
-            <div class="bg-white p-3 rounded-3 shadow-sm h-100 border-start border-4 border-warning">
-              <h6 class="fw-bold mb-1"><i class="bi bi-circle-half me-2"></i>{% trans "Tooth Decay & Cavities" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Early detection and restoration." %}</p>
+            <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-primary">
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-circle-half text-primary me-2"></i>{% trans "Tooth Decay & Cavities" %}</h6>
+              <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Early detection and tooth-colored composite restorations before pain begins." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
-            <div class="bg-white p-3 rounded-3 shadow-sm h-100 border-start border-4 border-primary">
-              <h6 class="fw-bold mb-1"><i class="bi bi-snow me-2"></i>{% trans "Tooth Sensitivity" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Treating pain from hot or cold foods." %}</p>
+            <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-info">
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-snow text-info me-2"></i>{% trans "Tooth Sensitivity" %}</h6>
+              <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Treating sharp pain from sweet, hot, or cold foods through enamel desensitization." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
-            <div class="bg-white p-3 rounded-3 shadow-sm h-100 border-start border-4 border-danger">
-              <h6 class="fw-bold mb-1"><i class="bi bi-droplet me-2"></i>{% trans "Gum Problems" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Bleeding or inflamed gums (Gingivitis)." %}</p>
+            <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-primary">
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-droplet-half text-primary me-2"></i>{% trans "Gum Bleeding & Gingivitis" %}</h6>
+              <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Targeting early gum inflammation and bacterial tartar to restore healthy pink gums." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
-            <div class="bg-white p-3 rounded-3 shadow-sm h-100 border-start border-4 border-success">
-              <h6 class="fw-bold mb-1"><i class="bi bi-wind me-2"></i>{% trans "Bad Breath" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Identifying the root bacterial cause." %}</p>
+            <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-info">
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-wind text-info me-2"></i>{% trans "Halitosis (Bad Breath)" %}</h6>
+              <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Identifying underlying bacterial deposits and deep cleaning inaccessible pockets." %}</p>
             </div>
           </div>
         </div>
@@ -202,13 +360,15 @@
   </div>
 </section>
 
-<!-- BEFORE & AFTER RESULTS -->
+<!-- BEFORE & AFTER RESULTS (Soft Azure Tinted Cards) -->
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Real Patient Results" %}</div>
-      <h2 class="section-heading">Before & <span class="accent">{% trans "After" %}</span></h2>
-      <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "See the dramatic difference professional general dentistry can make for your oral health." %}</p>
+      <div class="cf-eyebrow-badge justify-content-center">
+        <i class="bi bi-stars"></i> {% trans "REAL CLINICAL OUTCOMES" %}
+      </div>
+      <h2 class="cf-section-title">{% trans "Before &" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "After Results" %}</span></h2>
+      <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "See how routine general dentistry restorations resolve decay and bring back healthy teeth." %}</p>
     </div>
     <div class="row g-4">
       
@@ -216,14 +376,14 @@
       <div class="col-md-6">
         <div class="ba-card">
           <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/cavity_before.png' %}" alt="Before cavity filling">
-            <img loading="lazy" src="{% static 'main/images/gallery/cavity_after.png' %}" alt="After cavity filling">
+            <img loading="lazy" src="{% static 'main/images/gallery/cavity_before.png' %}" alt="Before cavity filling" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+            <img loading="lazy" src="{% static 'main/images/gallery/cavity_after.png' %}" alt="After cavity filling" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
             <div class="ba-divider"><div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div></div>
             <span class="ba-label before">{% trans "Before" %}</span>
             <span class="ba-label after">{% trans "After" %}</span>
           </div>
           <div class="ba-body">
-            <div class="ba-treatment">{% trans "Restorative — Tooth-Colored Filling" %}</div>
+            <div class="ba-treatment">{% trans "Restorative — Composite Filling" %}</div>
             <div class="ba-title">{% trans "Seamless Decay Removal" %}</div>
             <p class="ba-desc">{% trans "A deep cavity was cleaned and perfectly restored using composite resin, halting decay and blending naturally with the tooth." %}</p>
           </div>
@@ -234,14 +394,14 @@
       <div class="col-md-6">
         <div class="ba-card">
           <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/teeth_cleaning_before.png' %}" alt="Before teeth cleaning">
-            <img loading="lazy" src="{% static 'main/images/gallery/teeth_cleaning_after.png' %}" alt="After teeth cleaning">
+            <img loading="lazy" src="{% static 'main/images/gallery/teeth_cleaning_before.png' %}" alt="Before teeth cleaning" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+            <img loading="lazy" src="{% static 'main/images/gallery/teeth_cleaning_after.png' %}" alt="After teeth cleaning" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
             <div class="ba-divider"><div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div></div>
             <span class="ba-label before">{% trans "Before" %}</span>
             <span class="ba-label after">{% trans "After" %}</span>
           </div>
           <div class="ba-body">
-            <div class="ba-treatment">Preventative — Scaling & Polishing</div>
+            <div class="ba-treatment">{% trans "Preventative — Scaling & Polishing" %}</div>
             <div class="ba-title">{% trans "Professional Deep Clean" %}</div>
             <p class="ba-desc">{% trans "Hardened tartar and plaque build-up were professionally removed to restore gum health and reveal a brighter, healthier smile." %}</p>
           </div>
@@ -252,42 +412,43 @@
   </div>
 </section>
 
-
 <!-- 4. SERVICES OFFERED & BENEFITS -->
-<section class="section-py bg-white">
+<section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     <div class="row g-5">
       <!-- Services Offered -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "What We Do" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "General Dentistry Services We Offer" %}</h3>
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-grid-3x3-gap-fill"></i> {% trans "WHAT WE DO" %}
+        </div>
+        <h3 class="fw-bold mb-4" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "General Dentistry Services We Offer" %}</h3>
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="gen-card">
               <div class="gen-icon-wrapper"><i class="bi bi-search"></i></div>
-              <h6 class="fw-bold">{% trans "Routine Check-up" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Comprehensive visual inspection of your teeth and oral tissues." %}</p>
+              <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Routine Check-up" %}</h5>
+              <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Comprehensive visual inspection of your teeth, gums, and oral tissues." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="gen-card">
               <div class="gen-icon-wrapper"><i class="bi bi-chat-dots"></i></div>
-              <h6 class="fw-bold">Consultation & Advice</h6>
-              <p class="small text-muted mb-0">{% trans "Discussing your concerns and providing expert oral hygiene instruction." %}</p>
+              <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Consultation & Advice" %}</h5>
+              <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Discussing your concerns and providing customized oral hygiene instruction." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="gen-card">
               <div class="gen-icon-wrapper"><i class="bi bi-camera"></i></div>
-              <h6 class="fw-bold">{% trans "Oral Examination" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Deep diagnostic checks, including digital X-rays if required." %}</p>
+              <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Digital Diagnostics" %}</h5>
+              <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "High-definition diagnostic checks, including low-radiation digital X-rays." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="gen-card">
               <div class="gen-icon-wrapper"><i class="bi bi-shield-check"></i></div>
-              <h6 class="fw-bold">{% trans "Preventive Care" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Fluoride treatments, sealants, and prophylactic planning." %}</p>
+              <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Preventive Care" %}</h5>
+              <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Fluoride treatments, dental sealants, and personalized oral hygiene planning." %}</p>
             </div>
           </div>
         </div>
@@ -295,18 +456,37 @@
 
       <!-- Benefits & Why Choose Niko -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "The Benefits" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
-        <ul class="symptom-list mb-5">
-          <li><i class="bi bi-person-badge text-success fs-5"></i> <span><strong>{% trans "Experienced Dentists:" %}</strong> {% trans "Highly trained professionals." %}</span></li>
-          <li><i class="bi bi-display text-success fs-5"></i> <span><strong>{% trans "Modern Equipment:" %}</strong> {% trans "Advanced diagnostic technology." %}</span></li>
-          <li><i class="bi bi-heart text-success fs-5"></i> <span><strong>Gentle & Comfortable Care:</strong> {% trans "Pain-free, anxiety-reducing environment." %}</span></li>
-          <li><i class="bi bi-people text-success fs-5"></i> <span><strong>{% trans "Patient-Centered Approach:" %}</strong> {% trans "We listen to your concerns first." %}</span></li>
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-award-fill"></i> {% trans "WHY CHOOSE US" %}
+        </div>
+        <h3 class="fw-bold mb-4" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "The CareFirst Difference" %}</h3>
+        <ul class="list-unstyled d-flex flex-column gap-3 mb-4">
+          <li class="d-flex align-items-start gap-3">
+            <i class="bi bi-person-badge-fill text-primary fs-5 mt-1"></i>
+            <div>
+              <strong class="d-block text-navy" style="color: #0B2545;">{% trans "Experienced Senior Dentists" %}</strong>
+              <small class="text-muted" style="font-weight: 500;">{% trans "Led by Dr. Subash Banjade and our senior clinical specialist team." %}</small>
+            </div>
+          </li>
+          <li class="d-flex align-items-start gap-3">
+            <i class="bi bi-display-fill text-primary fs-5 mt-1"></i>
+            <div>
+              <strong class="d-block text-navy" style="color: #0B2545;">{% trans "Modern Diagnostic Suite" %}</strong>
+              <small class="text-muted" style="font-weight: 500;">{% trans "Advanced digital imaging and computerized diagnostic equipment." %}</small>
+            </div>
+          </li>
+          <li class="d-flex align-items-start gap-3">
+            <i class="bi bi-heart-fill text-primary fs-5 mt-1"></i>
+            <div>
+              <strong class="d-block text-navy" style="color: #0B2545;">{% trans "Gentle & Comfortable Care" %}</strong>
+              <small class="text-muted" style="font-weight: 500;">{% trans "Pain-free procedures in a relaxing, anxiety-free medical clinic." %}</small>
+            </div>
+          </li>
         </ul>
 
-        <div class="bg-success bg-opacity-10 p-4 rounded-4 border border-success border-opacity-25">
-          <h6 class="fw-bold text-success mb-2"><i class="bi bi-shield-check me-2"></i>{% trans "Benefits of Regular Visits" %}</h6>
-          <p class="small text-muted mb-0">{% trans "Routine visits lower your lifetime dental costs, prevent sudden dental emergencies, and ensure you keep your natural teeth as you age." %}</p>
+        <div class="p-4 rounded-4" style="background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%); border: 1.5px solid rgba(2, 132, 199, 0.2);">
+          <h6 class="fw-bold mb-2 text-navy" style="color: #0B2545;"><i class="bi bi-shield-check text-primary me-2"></i>{% trans "Preserve Natural Teeth" %}</h6>
+          <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Routine visits lower your lifetime dental costs, prevent emergencies, and ensure you keep your natural teeth strong for life." %}</p>
         </div>
       </div>
     </div>
@@ -314,67 +494,69 @@
 </section>
 
 <!-- 5. TREATMENT PROCESS & PRICING -->
-<section class="section-py" style="background:var(--cf-primary-dark); color:#fff;">
+<section class="section-py" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%); color:#fff;">
   <div class="container">
     <div class="row g-5 align-items-center">
       
       <!-- Patient Care Process -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Our Patient" %} <span class="text-warning">{% trans "Care Process" %}</span></h2>
+        <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
+          <i class="bi bi-diagram-3-fill text-info"></i> {% trans "CLINICAL WORKFLOW" %}
+        </div>
+        <h2 class="cf-section-title text-white mb-4">{% trans "Our Patient" %} <span class="text-info">{% trans "Care Process" %}</span></h2>
         
         <div class="row g-4">
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-calendar2-check"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-calendar2-check-fill"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "1. Appointment Booking" %}</h6>
-                <p class="text-white-50 small">{% trans "Schedule a convenient time." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "1. Appointment Booking" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Schedule a convenient visit online or by phone." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-chat-text"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-chat-text-fill"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "2. Dental Consultation" %}</h6>
-                <p class="text-white-50 small">Discuss medical history & concerns.</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "2. Consultation" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Discuss symptoms, medical history & concerns." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-search"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-search"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "3. Oral Examination" %}</h6>
-                <p class="text-white-50 small">{% trans "Thorough visual and clinical check." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "3. Oral Examination" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Thorough visual and digital clinical check." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-clipboard-pulse"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-clipboard2-pulse-fill"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "4. Diagnosis" %}</h6>
-                <p class="text-white-50 small">{% trans "Identifying any underlying issues." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "4. Accurate Diagnosis" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Clear explanation of any underlying issues." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-list-check"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-list-check"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "5. Treatment Plan" %}</h6>
-                <p class="text-white-50 small">{% trans "Customized plan for needed care." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "5. Custom Plan" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Transparent plan with exact pricing options." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-arrow-repeat"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-arrow-repeat"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "6. Follow-up Care" %}</h6>
-                <p class="text-white-50 small">{% trans "Scheduling next routine visit." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "6. Follow-up Care" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Scheduling routine maintenance checks." %}</p>
               </div>
             </div>
           </div>
@@ -385,36 +567,38 @@
       <div class="col-lg-5">
         <div class="pricing-table">
           <div class="pricing-header">
-            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
-            <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing</p>
+            <h3 class="fw-bold mb-1" style="font-family: var(--cf-font-head);">{% trans "Treatment Pricing" %}</h3>
+            <p class="text-white-50 small mb-0">{% trans "Transparent, Ethical & Fair Rates" %}</p>
           </div>
           <div class="pricing-body">
             
             <div class="pricing-row">
               <div>
-                <p class="title">Registration & Check-up</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Includes initial file setup" %}</p>
+                <p class="title">{% trans "Registration & Basic Check-up" %}</p>
+                <p class="text-muted small mb-0 mt-1" style="font-weight: 500;">{% trans "Includes digital file setup & exam" %}</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.registration_check_up|default:"500" }}</span>
+                <span class="price"><span class="fs-6 fw-bold">NPR</span> {{ dynamic_prices.registration_check_up|default:"500" }}</span>
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--cf-primary-tint);">
+            <div class="pricing-row" style="background-color: #F0F7FD;">
               <div>
                 <p class="title">{% trans "Doctor Consultation" %}</p>
-                <p class="text-muted small mb-0 mt-1">Comprehensive discussion & advice</p>
+                <p class="text-muted small mb-0 mt-1" style="font-weight: 500;">{% trans "In-depth clinical discussion & advice" %}</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.specialist_consultation|default:"500" }}</span>
+                <span class="price"><span class="fs-6 fw-bold">NPR</span> {{ dynamic_prices.specialist_consultation|default:"500" }}</span>
               </div>
             </div>
 
-            <div class="p-4 text-center">
-              <p class="small text-muted mb-4 fst-italic">
-                {% trans "* Note: The prices listed above cover the basic examination. Additional investigations (like X-Rays) or treatments will be discussed and quoted after clinical evaluation." %}
+            <div class="p-4 text-center bg-white">
+              <p class="small text-muted mb-4 fst-italic" style="font-weight: 500;">
+                {% trans "* Note: Listed prices cover basic examination. Any additional procedures (e.g. X-rays, restorations) will be quoted upfront." %}
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Check-up" %}</a>
+              <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary w-100 justify-content-center">
+                <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Schedule Check-up" %}
+              </a>
             </div>
 
           </div>
@@ -424,37 +608,29 @@
   </div>
 </section>
 
-<!-- Gallery Modal -->
-<div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content bg-transparent border-0">
-      <div class="modal-body p-0 position-relative text-center">
-        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close"></button>
-        <img loading="lazy" id="modalImg" src="" class="img-fluid rounded shadow" alt="Treatment Preview" style="max-height: 85vh;">
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 7. FAQ & TESTIMONIALS -->
+<!-- 6. TESTIMONIALS & FAQ -->
 <section class="section-py bg-white">
   <div class="container">
     <div class="row g-5">
       
       <!-- Testimonials -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Patient Stories" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "What Our Patients Say" %}</h3>
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-chat-quote-fill"></i> {% trans "PATIENT REVIEWS" %}
+        </div>
+        <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "What Our Patients Say" %}</h3>
         
-        <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative mb-4">
-          <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
+        <div class="p-4 rounded-4 shadow-sm position-relative mb-4" style="background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%); border: 1.5px solid rgba(2, 132, 199, 0.2);">
+          <i class="bi bi-quote position-absolute text-primary opacity-10" style="font-size: 5rem; top: -10px; right: 20px;"></i>
           <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-          <p class="fst-italic text-muted small position-relative z-1">{% trans "\"I used to dread going to the dentist, but the team at Carefirst Dental Clinic is so gentle and reassuring. They take the time to explain everything during the check-up. I highly recommend them for all routine care!\"" %}</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
-            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px; font-size: 0.8rem;">{% trans "S.M." %}</div>
+          <p class="fst-italic text-muted position-relative z-1 mb-3" style="font-size: 0.95rem; line-height: 1.7; font-weight: 500;">
+            {% trans "\"I used to dread going to the dentist, but the team at CareFirst Dental Clinic is so gentle and reassuring. They take the time to explain everything during the check-up. Highly recommended!\"" %}
+          </p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white shadow-sm" style="width: 40px; height: 40px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 0.85rem;">S.M.</div>
             <div>
-              <h6 class="fw-bold mb-0" style="font-size: 0.9rem;">{% trans "Sita M." %}</h6>
-              <p class="small text-muted mb-0" style="font-size: 0.75rem;">{% trans "Regular Patient" %}</p>
+              <h6 class="fw-bold mb-0 text-navy" style="font-size: 0.95rem; color: #0B2545;">Sita M.</h6>
+              <p class="small text-muted mb-0" style="font-size: 0.8rem; font-weight: 500;">{% trans "Regular Patient — Shankhamul" %}</p>
             </div>
           </div>
         </div>
@@ -462,8 +638,10 @@
 
       <!-- FAQ -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Frequently Asked Questions" %}</h3>
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-question-circle-fill"></i> {% trans "COMMON QUESTIONS" %}
+        </div>
+        <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -473,7 +651,7 @@
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "We strongly recommend visiting us every 6 months. Regular check-ups allow us to catch early signs of decay or gum disease before they become painful or expensive to treat." %}
+                {% trans "We recommend visiting every 6 months. Regular check-ups allow us to catch early signs of decay or gum inflammation before they become painful or expensive to treat." %}
               </div>
             </div>
           </div>
@@ -485,7 +663,7 @@
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "Your dentist will examine your teeth, gums, and mouth for signs of decay or disease. We may also take X-rays if needed, and we will discuss your oral hygiene routine and any concerns you have." %}
+                {% trans "Your dentist examines your teeth, gums, and soft tissues for signs of cavities or gum disease. If needed, digital X-rays are taken to assess hidden root structures." %}
               </div>
             </div>
           </div>
@@ -497,7 +675,7 @@
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "Not at all. A routine examination is a completely painless visual and clinical inspection of your mouth." %}
+                {% trans "Not at all. A routine examination is a completely comfortable and painless clinical check of your oral health." %}
               </div>
             </div>
           </div>
@@ -508,24 +686,24 @@
   </div>
 </section>
 
-
-
 <!-- RELATED SERVICES -->
-<section class="section-py" style="background: #f8f9fa;">
+<section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     {% include 'components/related_services_row.html' %}
   </div>
 </section>
 
-<!-- 9. CTA STRIP -->
+<!-- 7. CTA STRIP -->
 <div class="nd-cta-strip" id="book">
   <div class="cta-inner container">
-    <h2>{% trans "Take Charge of Your Oral Health" %}</h2>
-    <p>{% blocktrans %}Don't wait for pain to appear. Schedule your routine check-up today and keep your smile bright and healthy.{% endblocktrans %}</p>
+    <h2 class="fw-bold mb-3 text-white">{% trans "Take Charge of Your Oral Health" %}</h2>
+    <p class="fs-5 text-white-50 mb-4">{% blocktrans %}Don't wait for pain to appear. Schedule your routine check-up today and keep your smile bright and healthy.{% endblocktrans %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Check-up" %}</a>
-      <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Check-up" %}
+      </a>
+      <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-telephone-fill"></i>{% trans "+977 980-7464136" %}
       </a>
     </div>
   </div>
@@ -534,12 +712,5 @@
 {% endblock %}
 
 {% block extra_scripts %}
-<script>
-  (function () {
-    'use strict';
-    /* ── Comparison Slider for Before & After cards (Drag functionality is optional for these specific cards since they just have a static divider, but if we want the slider to move, we can implement it. The smile_transformations page uses .ba-divider as static and #compareSlider as interactive. We will leave these as static side-by-side or simple hover dividers. The ba-card in gallery.css is designed to show half-half statically with ba-divider in the middle. We will keep it static for simplicity as per gallery.css standard ba-cards) ── */
-  })();
-</script>
 {% include 'components/google_reviews.html' %}
-
 {% endblock %}
