@@ -39,47 +39,52 @@
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     margin-bottom: 15px;
   }
-  .pricing-table {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(14,90,79,0.1);
-    border: 1px solid rgba(14,90,79,0.1);
+  /* Pricing Table */
+  .cf-pricing-card {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 16px 40px rgba(8, 28, 51, 0.15) !important;
+    border: 1.5px solid #E2E8F0 !important;
   }
-  .pricing-header {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    padding: 24px;
-    text-align: center;
+  .cf-pricing-header {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    padding: 28px 24px !important;
+    text-align: center !important;
   }
-  .pricing-body {
-    padding: 0;
+  .cf-pricing-body {
+    padding: 24px 20px !important;
+    background: #FFFFFF !important;
   }
   .pricing-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 16px 20px;
+    border-bottom: 1px solid #F1F5F9;
+    border-radius: 12px;
   }
   .pricing-row:last-child {
     border-bottom: none;
   }
   .pricing-row .title {
     font-weight: 700;
-    color: var(--cf-primary-dark);
-    font-size: 1.1rem;
+    color: #0F172A !important;
+    font-size: 1.05rem;
     margin: 0;
   }
   .pricing-row .price {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    color: var(--cf-accent-dark);
-    font-family: var(--cf-font-head);
+    color: #0284C7 !important;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
   }
   .pricing-row .currency {
-    font-size: 0.9rem;
-    vertical-align: super;
+    font-size: 0.85rem;
+    color: #64748B !important;
+    font-weight: 600;
+    margin-right: 4px;
   }
   
   /* Gallery/Lightbox */
@@ -299,15 +304,15 @@
       
       <!-- PRICING TABLE -->
       <div class="col-lg-5">
-        <div class="pricing-table">
-          <div class="pricing-header">
-            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
+        <div class="cf-pricing-card h-100 shadow-lg sticky-top" style="top: 100px;">
+          <div class="cf-pricing-header text-center">
+            <h3 class="fw-bold text-white mb-0">{% trans "Treatment Charges" %}</h3>
             <p class="text-white-50 small mb-0 mt-2">{% trans "Clear & Transparent Pricing" %}</p>
           </div>
-          <div class="pricing-body">
+          <div class="cf-pricing-body">
             
-            <div class="pricing-row">
-              <div>
+            <div class="pricing-row mb-2">
+              <div class="text-start">
                 <p class="title">{% trans "Child Extraction" %}</p>
                 <p class="text-muted small mb-0 mt-1">{% trans "Loose milk teeth" %}</p>
               </div>
@@ -316,8 +321,8 @@
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--cf-primary-tint);">
-              <div>
+            <div class="pricing-row mb-2" style="background-color: #F8FAFC !important;">
+              <div class="text-start">
                 <p class="title">{% trans "Adult Extraction" %}</p>
                 <p class="text-muted small mb-0 mt-1">{% trans "Routine simple extraction" %}</p>
               </div>
@@ -326,8 +331,8 @@
               </div>
             </div>
             
-            <div class="pricing-row">
-              <div>
+            <div class="pricing-row mb-2">
+              <div class="text-start">
                 <p class="title">{% trans "Wisdom Tooth" %}</p>
                 <p class="text-muted small mb-0 mt-1">{% trans "Erupted third molar" %}</p>
               </div>
@@ -336,8 +341,8 @@
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--cf-primary-tint);">
-              <div>
+            <div class="pricing-row mb-3" style="background-color: #F8FAFC !important;">
+              <div class="text-start">
                 <p class="title">{% trans "Surgical Extraction" %}</p>
                 <p class="text-muted small mb-0 mt-1">{% trans "Impacted / complex cases" %}</p>
               </div>
@@ -346,11 +351,11 @@
               </div>
             </div>
 
-            <div class="p-4 text-center">
+            <div class="p-3 text-center border-top">
               <p class="small text-muted mb-4 fst-italic">
                 {% trans "* Note: The final treatment cost depends on the complexity of the case (e.g., angle of impaction) and clinical evaluation." %}
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Consultation" %}</a>
+              <a href="{% url 'main:contact' %}#book" class="cf-btn-primary w-100 rounded-pill py-3 fw-bold d-inline-block text-center text-white text-decoration-none">{% trans "Schedule Consultation" %}</a>
             </div>
 
           </div>
