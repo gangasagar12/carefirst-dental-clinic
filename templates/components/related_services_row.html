@@ -1,38 +1,43 @@
 
-{% load i18n %}
+{% load i18n static %}
 
 <!-- RELATED SERVICES ROW -->
 <div class="related-services-wrapper mt-5 pt-4 border-top">
-  <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">
-    {% trans "Related Dental Services" %}
+  <div class="cf-eyebrow-badge mb-2">
+    <i class="bi bi-grid-fill"></i> {% trans "EXPLORE MORE" %}
+  </div>
+  <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: #0B2545; font-size: 1.45rem;">
+    {% trans "Related Dental Treatments" %}
   </h3>
   <div class="row g-4">
     {% for rel_service in related_services %}
     <div class="col-md-4">
       <a href="{% url 'main:service_detail' rel_service.slug %}" class="text-decoration-none h-100 d-block">
-        <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 related-service-card">
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 related-service-card" style="border: 1.5px solid #E2E8F0 !important;">
           {% if rel_service.image %}
-          <img loading="lazy" src="{{ rel_service.image.url }}" alt="{{ rel_service.title }}" class="card-img-top object-fit-cover" style="height: 200px;">
+          <img loading="lazy" src="{{ rel_service.image.url }}" alt="{{ rel_service.title }}" class="card-img-top object-fit-cover" style="height: 200px;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
           {% else %}
-          <div class="card-img-top w-100 d-flex align-items-center justify-content-center" style="background: rgba(14, 90, 79, 0.05); height: 200px;">
-            <i class="{{ rel_service.icon|default:'bi bi-heart-pulse' }} display-4" style="color: var(--nd-green-dark);"></i>
+          <div class="card-img-top w-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 100%); height: 200px;">
+            <i class="{{ rel_service.icon|default:'bi bi-heart-pulse' }} display-4 text-info"></i>
           </div>
           {% endif %}
-          <div class="card-body p-4 d-flex flex-column">
-            <h5 class="fw-bold mb-1" style="color: var(--nd-green-dark);">{{ rel_service.title }}</h5>
-            <p class="text-muted small mb-0">{{ rel_service.category_label|default:"Dental Service" }}</p>
+          <div class="card-body p-4 d-flex flex-column" style="background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%); border-top: 2px solid rgba(2, 132, 199, 0.15);">
+            <span class="badge bg-white text-primary border border-primary border-opacity-25 px-3 py-1 rounded-pill fw-bold text-uppercase align-self-start mb-2" style="font-size: 0.7rem; letter-spacing: 0.8px;">
+              {{ rel_service.category_label|default:"Dental Treatment" }}
+            </span>
+            <h5 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: #0B2545;">{{ rel_service.title }}</h5>
             
-            <div class="d-flex justify-content-between align-items-center border-top pt-3 mt-auto">
+            <div class="d-flex justify-content-between align-items-center border-top pt-3 mt-auto" style="border-color: rgba(2, 132, 199, 0.15) !important;">
               {% if rel_service.starting_price %}
-              <div class="fw-bold" style="color: var(--nd-gold-dark);">
-                <span class="text-muted d-block" style="font-size:0.75rem;">{% trans "Starting at" %}</span>
-                Rs. {{ rel_service.starting_price }}
+              <div class="fw-bold" style="color: #0284C7; font-family: var(--cf-font-head, 'Outfit', sans-serif);">
+                <span class="text-muted d-block text-uppercase" style="font-size:0.68rem; letter-spacing: 0.5px; font-weight: 700;">{% trans "Starting at" %}</span>
+                NPR {{ rel_service.starting_price }}
               </div>
               {% else %}
-              <div></div>
+              <div class="text-muted small fw-bold">{% trans "Consultation" %}</div>
               {% endif %}
-              <div class="small fw-bold text-uppercase d-flex align-items-center gap-1" style="color: var(--nd-green); letter-spacing: 0.5px; font-size: 0.8rem;">
-                {% trans "Learn More" %} <i class="bi bi-arrow-right ms-1 fs-5"></i>
+              <div class="small fw-bold text-uppercase d-flex align-items-center gap-1 text-primary" style="color: #0284C7 !important; letter-spacing: 0.5px; font-size: 0.825rem;">
+                <span>{% trans "Learn More" %}</span> <i class="bi bi-arrow-right"></i>
               </div>
             </div>
           </div>
@@ -49,12 +54,13 @@
 
 <style>
   .related-service-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     background: #fff;
   }
   .related-service-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 20px 45px -5px rgba(2, 132, 199, 0.25) !important;
+    border-color: #0284C7 !important;
   }
   .object-fit-cover {
     object-fit: cover;
