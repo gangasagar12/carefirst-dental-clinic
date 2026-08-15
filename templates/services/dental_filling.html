@@ -842,12 +842,102 @@
   </div>
 </section>
 
+<!-- TREATMENT GALLERY — 6 HD CLINICAL IMAGES -->
+<section class="section-py" style="background: #F8FAFC; border-top: 1px solid #E2E8F0;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="cf-eyebrow-badge justify-content-center">
+        <i class="bi bi-images"></i> {% trans "CLINICAL GALLERY" %}
+      </div>
+      <h2 class="cf-section-title">{% trans "Dental Filling" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Treatment Gallery" %}</span></h2>
+      <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "A visual overview of our composite filling procedures, shade-matching process, and patient results at CareFirst Dental Clinic." %}</p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Card 1: LED Curing Procedure -->
+      <div class="col-lg-4 col-md-6">
+        <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_procedure_curing.jpg' %}'">
+          <img loading="lazy" src="{% static 'images/fill_procedure_curing.jpg' %}" alt="Blue LED composite curing" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Blue LED Composite Curing" %}</div>
+        </div>
+      </div>
+
+      <!-- Card 2: Shade Matching -->
+      <div class="col-lg-4 col-md-6">
+        <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_tooth_shade_match.jpg' %}'">
+          <img loading="lazy" src="{% static 'images/fill_tooth_shade_match.jpg' %}" alt="Tooth color shade matching" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Natural Shade Selection" %}</div>
+        </div>
+      </div>
+
+      <!-- Card 3: Patient Smile Result -->
+      <div class="col-lg-4 col-md-6">
+        <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_smile_result.jpg' %}'">
+          <img loading="lazy" src="{% static 'images/fill_smile_result.jpg' %}" alt="Patient smile after filling" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Patient Smile — Post Restoration" %}</div>
+        </div>
+      </div>
+
+      <!-- Card 4: Gallery 1 (existing) -->
+      <div class="col-lg-4 col-md-6">
+        <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_gallery_1.png' %}'">
+          <img loading="lazy" src="{% static 'images/fill_gallery_1.png' %}" alt="Filling preparation" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Cavity Preparation" %}</div>
+        </div>
+      </div>
+
+      <!-- Card 5: Gallery 3 (existing) -->
+      <div class="col-lg-4 col-md-6">
+        <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_gallery_3.png' %}'">
+          <img loading="lazy" src="{% static 'images/fill_gallery_3.png' %}" alt="Composite placement" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Layered Composite Bonding" %}</div>
+        </div>
+      </div>
+
+      <!-- Card 6: Gallery 5 (existing) -->
+      <div class="col-lg-4 col-md-6">
+        <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_gallery_5.png' %}'">
+          <img loading="lazy" src="{% static 'images/fill_gallery_5.png' %}" alt="Final polished restoration" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Polished Final Restoration" %}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .xray-gallery-item { position: relative; }
+  .xray-gallery-item:hover img { transform: scale(1.05); }
+  .xray-gallery-item:hover .xray-gallery-overlay { opacity: 1 !important; }
+</style>
+
+<!-- Gallery Lightbox Modal -->
+<div class="modal fade" id="fillGalleryModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0 position-relative text-center">
+        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+        <img loading="lazy" id="fillModalImg" src="" class="img-fluid rounded-4 shadow-lg" alt="Treatment Preview" style="max-height: 85vh; object-fit: contain;">
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- RELATED SERVICES -->
 <section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     {% include 'components/related_services_row.html' %}
   </div>
 </section>
+
 
 <!-- 8. CTA STRIP -->
 <div class="nd-cta-strip" id="book">
