@@ -87,13 +87,13 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    border: 1.5px solid #E2E8F0;
+    border: 1.5px solid #CBD5E1;
     background: #FFFFFF;
     border-radius: 50px;
-    padding: 10px 22px;
+    padding: 9px 20px;
     font-size: 0.875rem;
     font-weight: 700;
-    color: #475569;
+    color: #334155;
     cursor: pointer;
     transition: all 0.25s ease;
     font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
@@ -202,7 +202,7 @@
     text-transform: uppercase;
     color: #0284C7;
     background: #FFFFFF;
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 50px;
     border: 1px solid rgba(2, 132, 199, 0.25);
     box-shadow: 0 2px 6px rgba(2, 132, 199, 0.08);
@@ -220,9 +220,9 @@
 
   .sc-features {
     font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
-    font-size: 0.9rem;
+    font-size: 0.925rem;
     font-weight: 500;
-    color: #334155;
+    color: #1E293B;
     margin-bottom: 0;
     margin-top: auto;
   }
@@ -321,10 +321,10 @@
 
   .recommend-desc {
     font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
-    font-size: 0.925rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: #475569;
-    line-height: 1.65;
+    line-height: 1.7;
     margin-bottom: 20px;
   }
 
@@ -337,10 +337,10 @@
 
   .recommend-list li {
     font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: #1E293B;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -348,14 +348,40 @@
 
   .recommend-list li i {
     color: #0284C7;
-    font-size: 0.95rem;
+    font-size: 1rem;
+  }
+
+  .recommend-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #FFFFFF;
+    color: #0284C7;
+    border: 1.5px solid #0284C7;
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: auto;
+    transition: all 0.25s ease;
+  }
+
+  .recommend-btn:hover {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF;
+    border-color: #0284C7;
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+    transform: translateY(-2px);
   }
 
   /* Consultation Doctor Banner */
   .doctor-consult-banner {
     background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%);
     border-radius: 24px;
-    padding: 40px 36px;
+    padding: 42px 38px;
     color: #FFFFFF;
     box-shadow: 0 16px 40px rgba(11, 37, 69, 0.2);
     margin-top: 60px;
@@ -442,8 +468,8 @@
             <li><i class="bi bi-check2-circle"></i> {% trans "Comprehensive Dental Examination" %}</li>
             <li><i class="bi bi-check2-circle"></i> {% trans "Composite Tooth Fillings" %}</li>
           </ul>
-          <a href="{% url 'main:contact' %}#appointment" class="btn btn-outline-primary rounded-pill fw-bold py-2 mt-auto">
-            {% trans "Book Checkup" %} &rarr;
+          <a href="{% url 'main:contact' %}#appointment" class="recommend-btn">
+            <span>{% trans "Book Checkup" %}</span> <i class="bi bi-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -463,8 +489,8 @@
             <li><i class="bi bi-check2-circle"></i> {% trans "Crowns & Bridges" %}</li>
             <li><i class="bi bi-check2-circle"></i> {% trans "Wisdom Tooth Extractions" %}</li>
           </ul>
-          <a href="{% url 'main:contact' %}#appointment" class="btn btn-outline-primary rounded-pill fw-bold py-2 mt-auto">
-            {% trans "Relieve Tooth Pain" %} &rarr;
+          <a href="{% url 'main:contact' %}#appointment" class="recommend-btn">
+            <span>{% trans "Relieve Tooth Pain" %}</span> <i class="bi bi-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -484,8 +510,8 @@
             <li><i class="bi bi-check2-circle"></i> {% trans "Professional Teeth Whitening" %}</li>
             <li><i class="bi bi-check2-circle"></i> {% trans "Dental Implants & Dentures" %}</li>
           </ul>
-          <a href="{% url 'main:smile_transformations' %}" class="btn btn-outline-primary rounded-pill fw-bold py-2 mt-auto">
-            {% trans "Explore Smile Gallery" %} &rarr;
+          <a href="{% url 'main:smile_transformations' %}" class="recommend-btn">
+            <span>{% trans "Explore Smile Gallery" %}</span> <i class="bi bi-arrow-right"></i>
           </a>
         </div>
       </div>
