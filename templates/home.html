@@ -804,9 +804,9 @@
             
             <div class="mb-3">
               <select name="doctor" class="form-select">
-                <option value="" selected>{% trans "Any Doctor" %}</option>
+                <option value="" {% if not request.GET.doctor %}selected{% endif %}>{% trans "Any Doctor" %}</option>
                 {% for doc in active_doctors %}
-                  <option value="{{ doc.id }}">{{ doc.name }}</option>
+                  <option value="{{ doc.id }}" {% if request.GET.doctor == doc.id|stringformat:"s" %}selected{% endif %}>{{ doc.name }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -1244,14 +1244,15 @@
 </section>
 
 <!-- 7. MEET OUR DOCTORS -->
-<section class="section-py bg-light">
+<section class="section-py" style="background: #F8FAFC;" id="doctors">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="nd-section-title">{% blocktrans %}Meet Our <span class="accent">Specialists</span>{% endblocktrans %}</h2>
-      <p class="text-muted nd-section-subtitle">{% trans "Highly qualified professionals dedicated to providing you with the best dental care." %}</p>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-person-badge"></i> {% trans "Clinical Leadership & Team" %}</div>
+      <h2 class="cf-section-title">{% trans "Meet Our" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Dental Specialists" %}</span></h2>
+      <p class="text-muted mx-auto mt-2" style="max-width: 620px; font-size: 1.05rem;">{% trans "Nepal Medical Council certified doctors and clinical specialists committed to precision, ethics, and pain-free dentistry." %}</p>
     </div>
 
-    <div class="row g-4">
+    <div class="row g-4 justify-content-center">
       {% for doc in doctors|slice:":3" %}
       <div class="col-md-6 col-lg-4">
         {% include 'components/doctor_card.html' with doc=doc %}
@@ -1264,8 +1265,8 @@
     </div>
 
     <div class="text-center mt-5">
-      <a href="{% url 'main:doctors' %}" class="btn nd-btn-primary px-4 py-2 fw-bold">
-        {% trans "View All Doctors" %}
+      <a href="{% url 'main:doctors' %}" class="cf-btn-primary px-5 py-3 rounded-pill fw-bold text-white text-decoration-none shadow">
+        <i class="bi bi-people-fill me-2"></i>{% trans "View All Doctors & Credentials" %}
       </a>
     </div>
   </div>
@@ -1704,9 +1705,9 @@
             <div class="col-md-6">
               <label class="form-label fw-semibold">{% trans "Preferred Doctor" %} <span class="text-muted fw-normal">({% trans "Optional" %})</span></label>
               <select name="doctor" class="form-select bg-light">
-                <option value="" selected>{% trans "Any Doctor" %}</option>
+                <option value="" {% if not request.GET.doctor %}selected{% endif %}>{% trans "Any Doctor" %}</option>
                 {% for doc in active_doctors %}
-                  <option value="{{ doc.id }}">{{ doc.name }}</option>
+                  <option value="{{ doc.id }}" {% if request.GET.doctor == doc.id|stringformat:"s" %}selected{% endif %}>{{ doc.name }}</option>
                 {% endfor %}
               </select>
             </div>

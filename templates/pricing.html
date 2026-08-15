@@ -1,244 +1,292 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load static i18n %}
 
-{% load static %}
+{% block title %}{% trans "Transparent Treatment Fees & Pricing" %} — Carefirst Dental Clinic{% endblock %}
+{% block meta_description %}{% trans "Explore transparent and competitive treatment fees at Carefirst Dental Clinic Kathmandu. View pricing in NPR and USD with no hidden costs." %}{% endblock %}
 
-{% block title %}Treatment Fees — Carefirst Dental Clinic{% endblock %}
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'main/css/services.css' %}">
-<meta name="description" content="Transparent and competitive treatment fees at Carefirst Dental Clinic. View our comprehensive pricing for all dental procedures.">
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'main/css/pricing_table.css' %}?v=3.0">
 <style>
-  /* Pricing Page Specific Styles */
-  .pricing-hero {
-    position: relative;
-    background: linear-gradient(rgba(14, 90, 79, 0.85), rgba(14, 90, 79, 0.85)), url('{% static "images/dental-implant-hero.jpg" %}');
-    background-size: cover;
-    background-position: center;
-    padding: 220px 0 140px;
-    color: #fff;
-    text-align: center;
+  /* ── Pricing Page Enhancements ── */
+  .cf-currency-switch-box {
+    background: #FFFFFF;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 50px;
+    padding: 5px;
+    box-shadow: 0 4px 14px rgba(8, 28, 51, 0.05);
+    display: inline-flex;
+    align-items: center;
   }
-  .pricing-hero h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-    font-family: var(--cf-font-head);
+
+  .cf-curr-btn {
+    border: none;
+    border-radius: 50px;
+    padding: 8px 22px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    background: transparent;
+    color: #64748B;
   }
-  .pricing-intro {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    opacity: 0.9;
+
+  .cf-curr-btn.active {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
   }
 
   /* Info Cards */
-  .info-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 30px;
+  .cf-tourism-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 32px 24px;
     height: 100%;
-    border: 1px solid rgba(14,90,79,0.08);
-    transition: transform 0.3s ease;
+    border: 1.5px solid #E2E8F0;
+    box-shadow: 0 10px 30px rgba(8, 28, 51, 0.06);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
     text-align: center;
   }
-  .info-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  }
-  .info-icon {
-    font-size: 2.5rem;
-    color: var(--cf-accent);
-    margin-bottom: 20px;
+
+  .cf-tourism-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(2, 132, 199, 0.14);
+    border-color: #BAE6FD;
   }
 
-  /* Includes Section */
-  .includes-box {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    border-radius: 16px;
-    padding: 50px;
+  .cf-tourism-icon-wrap {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 20px auto;
+  }
+
+  /* Includes Box */
+  .cf-includes-banner {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%);
+    color: #FFFFFF;
+    border-radius: 24px;
+    padding: 45px 40px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 15px 40px rgba(8, 28, 51, 0.18);
   }
-  .includes-box::after {
+
+  .cf-includes-banner::after {
     content: '\F5CC';
     font-family: 'bootstrap-icons';
     position: absolute;
     right: -20px;
     bottom: -20px;
-    font-size: 15rem;
-    opacity: 0.05;
-    color: #fff;
-  }
-
-  @media (max-width: 768px) {
-    .price-list-table th, .price-list-table td {
-      padding: 15px;
-    }
+    font-size: 14rem;
+    opacity: 0.06;
+    color: #FFFFFF;
+    pointer-events: none;
   }
 </style>
-<link rel="stylesheet" href="{% static 'main/css/pricing_table.css' %}?v=2.1">
 {% endblock %}
 
 {% block content %}
 
 <!-- 1. HERO BANNER -->
-<section class="pricing-hero">
-  <div class="container position-relative z-1">
-    <div class="mb-3">
-      <span class="badge bg-light text-dark px-3 py-2 rounded-pill shadow-sm" style="font-size: 0.85rem; font-weight: 700;">
-        <i class="bi bi-airplane-fill me-1" style="color: var(--cf-accent);"></i> {% trans "DENTAL TOURISM NEPAL" %}
-      </span>
+<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.60) 0%, rgba(11,37,69,0.50) 60%, rgba(3,105,161,0.40) 100%), url('{% static "main/img/hero_bg.jpeg" %}') center/cover no-repeat;">
+  <div class="hero-inner container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
+        <li class="breadcrumb-item active text-warning fw-bold">{% trans "Treatment Fees" %}</li>
+      </ol>
+    </nav>
+    <div class="cf-eyebrow-badge justify-content-center mb-3 text-white border-white-50 bg-white-10">
+      <i class="bi bi-airplane-fill text-warning"></i> {% trans "TRANSPARENT PRICING & DENTAL TOURISM" %}
     </div>
-    <h1 class="mb-4">{% trans "Transparent Treatment Fees" %}</h1>
-    <p class="pricing-intro mb-5">{% trans "World-class dentistry at a fraction of international costs. Discover our transparent pricing with no hidden fees, designed perfectly for international patients visiting Kathmandu." %}</p>
-    
-    <!-- Trust Badges -->
-    <div class="row justify-content-center g-3 mt-2">
-      <div class="col-auto">
-        <div class="d-flex align-items-center bg-white bg-opacity-10 rounded-pill px-4 py-2 border border-light border-opacity-25" style="backdrop-filter: blur(5px);">
-          <i class="bi bi-shield-check fs-4 me-2" style="color: var(--cf-accent);"></i>
-          <span class="fw-semibold text-white small">{% trans "Transparent Fees" %}</span>
-        </div>
+    <h1 class="display-4 fw-bold text-white mb-3">
+      {% trans "Transparent Treatment Fees" %}
+    </h1>
+    <p class="hero-sub mx-auto text-white opacity-75" style="font-size: 1.15rem; max-width: 780px;">
+      {% trans "World-class dentistry at a fraction of international costs. Experience transparent estimates with zero hidden fees, tailored for local and international patients visiting Kathmandu." %}
+    </p>
+
+    <!-- Trust Badges Strip -->
+    <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
+      <div class="d-flex align-items-center bg-white bg-opacity-10 rounded-pill px-4 py-2 border border-light border-opacity-25" style="backdrop-filter: blur(8px);">
+        <i class="bi bi-shield-check text-warning fs-5 me-2"></i>
+        <span class="fw-semibold text-white small">{% trans "Clear & Itemized Billing" %}</span>
       </div>
-      <div class="col-auto">
-        <div class="d-flex align-items-center bg-white bg-opacity-10 rounded-pill px-4 py-2 border border-light border-opacity-25" style="backdrop-filter: blur(5px);">
-          <i class="bi bi-globe fs-4 me-2" style="color: var(--cf-accent);"></i>
-          <span class="fw-semibold text-white small">{% trans "International Patients Welcome" %}</span>
-        </div>
+      <div class="d-flex align-items-center bg-white bg-opacity-10 rounded-pill px-4 py-2 border border-light border-opacity-25" style="backdrop-filter: blur(8px);">
+        <i class="bi bi-globe-americas text-warning fs-5 me-2"></i>
+        <span class="fw-semibold text-white small">{% trans "International Patients Welcome" %}</span>
       </div>
-      <div class="col-auto">
-        <div class="d-flex align-items-center bg-white bg-opacity-10 rounded-pill px-4 py-2 border border-light border-opacity-25" style="backdrop-filter: blur(5px);">
-          <i class="bi bi-currency-dollar fs-4 me-2" style="color: var(--cf-accent);"></i>
-          <span class="fw-semibold text-white small">{% trans "USD Estimates Available" %}</span>
-        </div>
+      <div class="d-flex align-items-center bg-white bg-opacity-10 rounded-pill px-4 py-2 border border-light border-opacity-25" style="backdrop-filter: blur(8px);">
+        <i class="bi bi-currency-dollar text-warning fs-5 me-2"></i>
+        <span class="fw-semibold text-white small">{% trans "USD & NPR Dual Currency" %}</span>
       </div>
     </div>
   </div>
-  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50 z-0"></div>
 </section>
 
-<!-- 2. PRICING LIST -->
-<section class="section-py" style="background-color: #f8f9fa;">
+<!-- 2. PRICING TABLE SECTION -->
+<section class="section-py" style="background-color: #F8FAFC;">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
         
-        <!-- Currency Toggle -->
+        <!-- Header & Currency Toggle -->
         <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mb-4 gap-3">
-          <h3 class="fw-bold mb-0" style="color: var(--cf-primary-dark); font-family: var(--cf-font-head);">{% trans "Treatment Fees" %}</h3>
-          <div class="currency-toggle bg-white border rounded-pill p-1 shadow-sm d-inline-flex align-items-center">
-            <button class="btn btn-sm rounded-pill px-4 py-2 fw-bold" id="btn-npr" style="color: var(--cf-primary-dark); background: rgba(14,90,79,0.1); transition: all 0.3s;">NPR (रु)</button>
-            <button class="btn btn-sm rounded-pill px-4 py-2 fw-bold text-muted" id="btn-usd" style="background: transparent; transition: all 0.3s;">USD ($)</button>
+          <div>
+            <h2 class="cf-section-title mb-1" style="font-size: 1.85rem;">{% trans "Complete" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Fee Schedule" %}</span></h2>
+            <p class="text-muted small mb-0">{% trans "Switch currency for international estimation" %}</p>
+          </div>
+          
+          <div class="cf-currency-switch-box">
+            <button class="cf-curr-btn active" id="btn-npr">NPR (रु)</button>
+            <button class="cf-curr-btn" id="btn-usd">USD ($)</button>
           </div>
         </div>
         
-        <div class="price-list-container shadow-lg border-0 rounded-4">
+        <!-- Price List Table -->
+        <div class="price-list-container">
           <table class="table price-list-table">
             <tbody>
               {% for category in categories %}
               <tr class="section-header">
-                <td colspan="3">{% if request.LANGUAGE_CODE == 'ne' and category.name_ne %}{{ category.name_ne }}{% else %}{{ category.name }}{% endif %}</td>
+                <td colspan="3">
+                  <i class="bi bi-folder-fill me-2 opacity-75"></i>{% if request.LANGUAGE_CODE == 'ne' and category.name_ne %}{{ category.name_ne }}{% else %}{{ category.name }}{% endif %}
+                </td>
               </tr>
               {% for item in category.items.all %}
               <tr>
                 <td class="num-col">{{ forloop.counter }}</td>
                 <td class="treatment-col">{% if request.LANGUAGE_CODE == 'ne' and item.name_ne %}{{ item.name_ne }}{% else %}{{ item.name }}{% endif %}</td>
-                <td class="price-col fw-semibold" data-raw-price="{{ item.price }}"><span class="price-display">{{ item.price }}</span></td>
+                <td class="price-col fw-bold" data-raw-price="{{ item.price }}"><span class="price-display">{{ item.price }}</span></td>
               </tr>
               {% endfor %}
               {% empty %}
               <tr>
-                <td colspan="3" class="text-center">{% trans "No pricing information available at the moment." %}</td>
+                <td colspan="3" class="text-center py-5 text-muted">{% trans "No pricing information available at the moment." %}</td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
 
+        <div class="alert alert-info mt-4 d-flex align-items-center rounded-3 border-0 shadow-sm" style="background: #F0F9FF; color: #0369A1;">
+          <i class="bi bi-info-circle-fill fs-5 me-3 flex-shrink-0"></i>
+          <span class="small">{% trans "Note: USD prices are approximate estimates based on current standard exchange rates. Final billing at the clinic is charged in Nepalese Rupees (NPR)." %}</span>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- 3. INCLUSIONS & PAYMENT INFO -->
+<!-- 3. INCLUSIONS & GUARANTEE -->
 <section class="section-py bg-white">
   <div class="container">
     
     <div class="row g-5 align-items-center mb-5 pb-5 border-bottom">
       <div class="col-lg-6">
-        <h2 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% blocktrans %}What's Included?{% endblocktrans %}</h2>
-        <p class="text-muted mb-4">{% trans "When you invest in your smile at Carefirst Dental Clinic, you are receiving comprehensive, holistic care. Most major treatment plans include:" %}</p>
-        <ul class="symptom-list" style="list-style:none; padding-left:0;">
-          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check2-circle text-success fs-5 me-3"></i> <span>{% trans "Thorough clinical examination" %}</span></li>
-          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check2-circle text-success fs-5 me-3"></i> <span>{% trans "Customized digital treatment planning" %}</span></li>
-          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check2-circle text-success fs-5 me-3"></i> <span>{% trans "Use of premium, globally recognized materials" %}</span></li>
-          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check2-circle text-success fs-5 me-3"></i> <span>{% trans "Standard post-operative follow-up visits" %}</span></li>
+        <div class="cf-eyebrow-badge"><i class="bi bi-shield-check"></i> {% trans "Value & Transparency" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "What's" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Included?" %}</span></h2>
+        <p class="text-muted" style="line-height: 1.85;">
+          {% trans "When you invest in your oral health at Carefirst Dental Clinic, you receive holistic, high-precision care. Standard treatments include:" %}
+        </p>
+        <ul class="symptom-list ps-0 mb-0" style="list-style: none;">
+          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success fs-5 me-3"></i> <span>{% trans "Comprehensive clinical diagnostic checkup & consultation" %}</span></li>
+          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success fs-5 me-3"></i> <span>{% trans "High-definition digital 3D treatment planning" %}</span></li>
+          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success fs-5 me-3"></i> <span>{% trans "Certified bio-compatible dental materials (Zirconia, Titanium)" %}</span></li>
+          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success fs-5 me-3"></i> <span>{% trans "Post-procedure follow-ups and aftercare instructions" %}</span></li>
         </ul>
       </div>
       <div class="col-lg-6">
-        <div class="includes-box shadow-lg">
-          <h4 class="fw-bold mb-3">{% trans "No Hidden Surprises" %}</h4>
-          <p class="mb-0 text-white-50">{% trans "We provide a complete cost breakdown during your consultation before any treatment begins, so you can make an informed decision with confidence." %}</p>
+        <div class="cf-includes-banner">
+          <h3 class="fw-bold mb-3 text-white">{% trans "Transparent Estimates, Zero Surprises" %}</h3>
+          <p class="text-white-50 mb-0" style="line-height: 1.75; font-size: 1.05rem;">
+            {% trans "Before any procedure begins, our doctors present an itemized treatment schedule with exact fees. You stay in full control of your care from day one." %}
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- Dental Tourism Info Strip -->
-    <div class="text-center mb-5 mt-5 pt-4">
-      <div class="nd-eyebrow justify-content-center">{% trans "Seamless Experience" %}</div>
-      <h2 class="section-heading">{% trans "Dental Tourism" %} <span class="accent">{% trans "Services" %}</span></h2>
+    <!-- Dental Tourism Services -->
+    <div class="text-center mb-5 mt-4">
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-airplane"></i> {% trans "Travel & Dental Care" %}</div>
+      <h2 class="cf-section-title">{% trans "Dental Tourism in" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Kathmandu, Nepal" %}</span></h2>
+      <p class="text-muted mx-auto mt-2" style="max-width: 640px;">{% trans "Enjoy huge savings on major restorative and cosmetic treatments while exploring the breathtaking beauty of Nepal." %}</p>
     </div>
 
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="info-card border-0 shadow-sm" style="background: rgba(14,90,79,0.03);">
-          <div class="info-icon"><i class="bi bi-airplane"></i></div>
-          <h5 class="fw-bold">{% trans "Airport Assistance" %}</h5>
-          <p class="small text-muted mb-0">{% trans "We offer coordinated airport pickups and hotel recommendations to make your stay in Kathmandu comfortable." %}</p>
+        <div class="cf-tourism-card">
+          <div class="cf-tourism-icon-wrap"><i class="bi bi-file-earmark-medical-fill"></i></div>
+          <h4 class="fw-bold mb-2" style="color: #081C33; font-size: 1.15rem;">{% trans "Pre-Travel Estimates" %}</h4>
+          <p class="small text-muted mb-0" style="line-height: 1.65;">{% trans "Send us your dental X-rays or photos via WhatsApp before flying to receive a preliminary clinical plan." %}</p>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="info-card border-0 shadow-sm" style="background: rgba(14,90,79,0.03);">
-          <div class="info-icon"><i class="bi bi-chat-dots"></i></div>
-          <h5 class="fw-bold">{% trans "English-Speaking Team" %}</h5>
-          <p class="small text-muted mb-0">{% trans "Our doctors and support staff are fluent in English, ensuring clear communication regarding your treatment." %}</p>
+        <div class="cf-tourism-card">
+          <div class="cf-tourism-icon-wrap"><i class="bi bi-translate"></i></div>
+          <h4 class="fw-bold mb-2" style="color: #081C33; font-size: 1.15rem;">{% trans "English-Fluent Specialists" %}</h4>
+          <p class="small text-muted mb-0" style="line-height: 1.65;">{% trans "Our doctors and clinical staff communicate fluently in English, ensuring every step of your procedure is clear." %}</p>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="info-card border-0 shadow-sm" style="background: rgba(14,90,79,0.03);">
-          <div class="info-icon"><i class="bi bi-file-earmark-medical"></i></div>
-          <h5 class="fw-bold">{% trans "Pre-Travel Estimates" %}</h5>
-          <p class="small text-muted mb-0">{% trans "Send us your X-rays or photos before traveling, and our specialists will provide a personalized estimate." %}</p>
+        <div class="cf-tourism-card">
+          <div class="cf-tourism-icon-wrap"><i class="bi bi-geo-alt-fill"></i></div>
+          <h4 class="fw-bold mb-2" style="color: #081C33; font-size: 1.15rem;">{% trans "Prime Central Location" %}</h4>
+          <p class="small text-muted mb-0" style="line-height: 1.65;">{% trans "Conveniently situated in Kathmandu with easy access to major hotels, airport transfers, and heritage sights." %}</p>
         </div>
       </div>
-    </div>
-    
-    <div class="alert alert-warning mt-5 text-center small rounded-3 border-0" style="background: rgba(255, 193, 7, 0.1); color: #856404;">
-      <i class="bi bi-info-circle-fill me-2"></i> {% trans "Please note: USD prices are approximate estimates based on current exchange rates. Final billing is always charged in Nepalese Rupees (NPR)." %}
     </div>
 
   </div>
 </section>
 
+<!-- 4. FAQ SECTION -->
 {% include 'components/faq.html' with faq_type='pricing' %}
 
 <!-- 5. CTA STRIP -->
 <div class="nd-cta-strip" id="book">
   <div class="cta-inner container text-center py-5">
-    <h2 class="mb-3 text-white fw-bold">{% trans "Visiting Nepal for Dental Treatment?" %}</h2>
-    <p class="text-white-50 mb-5 mx-auto" style="max-width: 700px; font-size: 1.1rem;">{% trans "Get a personalized treatment estimate in USD before you travel. Connect with our dedicated international patient coordinator today." %}</p>
+    <h2 class="mb-3 text-white fw-bold">{% trans "Planning Dental Treatment in Nepal?" %}</h2>
+    <p class="text-white-50 mb-4 mx-auto" style="max-width: 680px; font-size: 1.1rem;">
+      {% trans "Receive a personalized treatment estimate and timeline before you travel. Connect directly with our clinical coordinator." %}
+    </p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="https://wa.me/9779848631371" class="btn btn-lg rounded-pill px-5 fw-bold d-inline-flex align-items-center gap-2" style="background: #25D366; color: white; border: none; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
-        <i class="bi bi-whatsapp"></i> {% trans "WhatsApp Us" %}
+      <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success btn-lg rounded-pill px-5 fw-bold d-inline-flex align-items-center gap-2 shadow">
+        <i class="bi bi-whatsapp"></i> {% trans "WhatsApp Estimate" %}
       </a>
-      <a href="mailto:info@nikodental.com" class="btn btn-lg btn-outline-light rounded-pill px-5 fw-bold d-inline-flex align-items-center gap-2" style="transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
-        <i class="bi bi-envelope-fill"></i> {% trans "Email Inquiry" %}
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-5 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Consultation" %}
       </a>
     </div>
   </div>
 </div>
 
 <script src="{% static 'main/js/pricing_toggle.js' %}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const btnNpr = document.getElementById('btn-npr');
+    const btnUsd = document.getElementById('btn-usd');
+    if (btnNpr && btnUsd) {
+      btnNpr.addEventListener('click', function() {
+        btnNpr.classList.add('active');
+        btnUsd.classList.remove('active');
+      });
+      btnUsd.addEventListener('click', function() {
+        btnUsd.classList.add('active');
+        btnNpr.classList.remove('active');
+      });
+    }
+  });
+</script>
 
 {% endblock %}

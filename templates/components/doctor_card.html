@@ -1,63 +1,203 @@
-{% load i18n %}
+{% load static i18n %}
 
-<div class="nd-doctor-card">
-  <!-- Photo -->
-  <div class="doc-photo-wrap">
+<style>
+  /* ── CareFirst Doctor Card ── */
+  .cf-doctor-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(8, 28, 51, 0.08);
+    border: 1.5px solid #E2E8F0;
+    transition: all 0.35s ease;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .cf-doctor-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(2, 132, 199, 0.15);
+    border-color: #0284C7;
+  }
+  .cf-doc-photo-box {
+    position: relative;
+    height: 280px;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 100%);
+  }
+  .cf-doc-photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+  .cf-doctor-card:hover .cf-doc-photo-box img {
+    transform: scale(1.05);
+  }
+  .cf-doc-avatar-empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #081C33, #0284C7);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 5rem;
+  }
+  .cf-doc-spec-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(6px);
+    color: #0284C7;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    z-index: 2;
+  }
+  .cf-doc-nmc-pill {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(8, 28, 51, 0.92);
+    backdrop-filter: blur(6px);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 2;
+  }
+  .cf-doc-content {
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: #FFFFFF;
+  }
+  .cf-doc-name-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #081C33;
+    margin-bottom: 3px;
+  }
+  .cf-doc-role {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0284C7;
+    margin-bottom: 6px;
+  }
+  .cf-doc-quals-tag {
+    display: inline-block;
+    background: #F1F5F9;
+    color: #475569;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px solid #E2E8F0;
+    margin-bottom: 14px;
+    width: fit-content;
+  }
+  .cf-doc-exp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #0369A1;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+  }
+  /* Distinct Color Box for Description / Bio */
+  .cf-doc-bio-box {
+    background: #F0F9FF;
+    border: 1px solid #BAE6FD;
+    border-left: 4px solid #0284C7;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+  }
+  .cf-doc-bio-text {
+    font-size: 0.88rem;
+    color: #1E293B;
+    line-height: 1.65;
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+</style>
+
+<div class="cf-doctor-card h-100 d-flex flex-column">
+  <!-- Photo & Badges -->
+  <div class="cf-doc-photo-box">
     {% if doc.photo %}
-      <img loading="lazy" src="{{ doc.photo.url }}" alt="{{ doc.name }}">
+      <img loading="lazy" src="{{ doc.photo.url }}" alt="Dr. {{ doc.name }}">
+    {% elif "subash" in doc.name.lower %}
+      <img loading="lazy" src="{% static 'main/img/subash.jpeg' %}" alt="Dr. {{ doc.name }}">
     {% else %}
-      <i class="bi bi-person-circle doc-placeholder"></i>
+      <div class="cf-doc-avatar-empty">
+        <i class="bi bi-person-fill"></i>
+      </div>
     {% endif %}
+
+    <!-- Specialty Badge (Dynamic) -->
     {% if doc.get_specialty_display %}
-    <span class="doc-specialty-badge">{{ doc.get_specialty_display }}</span>
+    <span class="cf-doc-spec-badge">
+      <i class="bi bi-patch-check-fill me-1"></i>{{ doc.get_specialty_display }}
+    </span>
+    {% endif %}
+
+    <!-- NMC Badge (Dynamic) -->
+    {% if doc.nmc_number %}
+    <div class="cf-doc-nmc-pill">
+      <i class="bi bi-shield-check text-warning me-1"></i>NMC No: {{ doc.nmc_number }}
+    </div>
     {% endif %}
   </div>
 
-  <!-- Body -->
-  <div class="doc-body">
-    <div class="doc-name">{{ doc.name }}</div>
-    <div class="doc-designation">{{ doc.designation }}</div>
+  <!-- Body Content -->
+  <div class="cf-doc-content">
+    <!-- Name & Designation -->
+    <h3 class="cf-doc-name-title">Dr. {{ doc.name }}</h3>
+    <div class="cf-doc-role">{{ doc.designation }}</div>
 
+    <!-- Qualifications -->
     {% if doc.qualifications %}
-    <span class="doc-quals">{{ doc.qualifications }}</span>
-    {% endif %}
-
-    {% if doc.nmc_number %}
-    <div class="mt-1" style="font-size: 0.9rem; font-weight: 600; color: var(--nd-primary);">
-      NMC NO: {{ doc.nmc_number }}
+    <div class="cf-doc-quals-tag">
+      <i class="bi bi-mortarboard-fill me-1 text-primary"></i>{{ doc.qualifications }}
     </div>
     {% endif %}
 
-    {% if doc.experience_years %}
-    <div class="doc-exp">
-      <i class="bi bi-clock-fill"></i>
-      {{ doc.experience_years }}+ {% trans "years of clinical experience" %}
+    <!-- Experience (Dynamic) -->
+    {% if doc.experience_years and doc.experience_years > 0 %}
+    <div class="cf-doc-exp-badge">
+      <i class="bi bi-clock-history"></i>
+      <span>{{ doc.experience_years }}+ {% trans "Years Clinical Experience" %}</span>
     </div>
     {% endif %}
 
+    <!-- Description / Bio (Distinct Colored Box) -->
     {% if doc.bio %}
-    <p class="doc-bio">{{ doc.bio }}</p>
-    {% endif %}
-
-    {% if doc.get_certifications_list %}
-    <ul class="doc-certs">
-      {% for cert in doc.get_certifications_list %}
-      <li>{{ cert }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-
-    {% if doc.languages %}
-    <div class="doc-langs">
-      <i class="bi bi-translate"></i>{{ doc.languages }}
+    <div class="cf-doc-bio-box">
+      <p class="cf-doc-bio-text">
+        {{ doc.bio }}
+      </p>
     </div>
     {% endif %}
 
-    <div class="d-flex gap-2 flex-wrap align-items-center">
-      <a href="#" class="btn-nd-green btn btn-sm px-3">
-        <i class="bi bi-calendar-plus me-1"></i>{% trans "Book Consultation" %}</a>
+    <!-- Direct Booking CTA -->
+    <div class="d-flex gap-2 align-items-center mt-auto pt-2">
+      <a href="{% url 'main:contact' %}?doctor={{ doc.id }}#book" class="cf-btn-primary flex-grow-1 text-center py-2 px-3 rounded-pill fw-bold text-white text-decoration-none shadow-sm" style="font-size: 0.92rem;">
+        <i class="bi bi-calendar-check me-1"></i>{% trans "Book Consultation" %}
+      </a>
       {% if doc.linkedin %}
-      <a href="{{ doc.linkedin }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary rounded-circle" style="width:34px;height:34px;padding:0;display:inline-flex;align-items:center;justify-content:center;">
+      <a href="{{ doc.linkedin }}" target="_blank" rel="noopener" class="btn btn-outline-secondary rounded-circle d-inline-flex align-items-center justify-content-center" style="width:38px;height:38px;font-size:1rem;color:#0A66C2;" title="LinkedIn">
         <i class="bi bi-linkedin"></i>
       </a>
       {% endif %}

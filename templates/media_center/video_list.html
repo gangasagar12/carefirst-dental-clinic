@@ -1,224 +1,394 @@
 {% extends 'base.html' %}
-{% load i18n %}
 {% load static i18n %}
 
-{% block title %}{% trans "Video Library" %} — Carefirst Dental Clinic{% endblock %}
+{% block title %}{% trans "Video Library & Patient Education" %} — Carefirst Dental Clinic{% endblock %}
+{% block meta_description %}{% trans "Watch expert dental video guides, patient smile makeovers, dental implant procedures, and oral health tips from Carefirst Dental Clinic Kathmandu." %}{% endblock %}
 
-{% block content %}
-<!-- HEADER SECTION -->
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
 <style>
-  .video-hero-new {
-    background: linear-gradient(rgba(14, 90, 79, 0.85), rgba(14, 90, 79, 0.95)), url('{% static "images/periodontal-hero.jpg" %}');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
+  /* ── Video Library Styles ── */
+  .cf-video-filters-bar {
+    background: #FFFFFF;
+    border-bottom: 1px solid #E2E8F0;
+    box-shadow: 0 4px 20px rgba(8, 28, 51, 0.04);
+    position: sticky;
+    top: 75px;
+    z-index: 1020;
+    backdrop-filter: blur(12px);
+  }
+
+  .cf-filter-pill {
+    background: #F8FAFC;
+    color: #475569;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 50px;
+    padding: 9px 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .cf-filter-pill:hover {
+    background: #F1F5F9;
+    color: #0284C7;
+    border-color: #BAE6FD;
+    transform: translateY(-2px);
+  }
+
+  .cf-filter-pill.active {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    border-color: #0284C7 !important;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  }
+
+  .cf-video-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1.5px solid #E2E8F0;
+    box-shadow: 0 10px 30px rgba(8, 28, 51, 0.06);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none !important;
+  }
+
+  .cf-video-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(2, 132, 199, 0.16);
+    border-color: rgba(2, 132, 199, 0.4);
+  }
+
+  .cf-video-thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 100%);
+    overflow: hidden;
+  }
+
+  .cf-video-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    display: block;
+  }
+
+  .cf-video-card:hover .cf-video-thumb {
+    transform: scale(1.06);
+  }
+
+  .cf-video-play-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(8, 28, 51, 0.75) 0%, rgba(8, 28, 51, 0.2) 60%, rgba(8, 28, 51, 0) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    z-index: 2;
+  }
+
+  .cf-video-card:hover .cf-video-play-overlay {
+    background: rgba(8, 28, 51, 0.4);
+  }
+
+  .cf-play-btn-circle {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    color: #0284C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    padding-left: 4px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .cf-video-card:hover .cf-play-btn-circle {
+    transform: scale(1.15);
+    background: #0284C7;
+    color: #FFFFFF;
+    box-shadow: 0 10px 30px rgba(2, 132, 199, 0.45);
+  }
+
+  .cf-platform-pill {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 3;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    backdrop-filter: blur(8px);
+  }
+
+  .cf-platform-pill.youtube {
+    background: rgba(255, 0, 0, 0.9);
+    color: #FFFFFF;
+  }
+
+  .cf-platform-pill.instagram {
+    background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
+    color: #FFFFFF;
+  }
+
+  .cf-video-content {
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: #FFFFFF;
+  }
+
+  .cf-video-cat-badge {
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284C7;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+    width: fit-content;
+    margin-bottom: 12px;
+    border: 1px solid rgba(2, 132, 199, 0.15);
+  }
+
+  .cf-video-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #081C33;
+    line-height: 1.45;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s ease;
+  }
+
+  .cf-video-card:hover .cf-video-title {
+    color: #0284C7;
+  }
+
+  .cf-video-desc {
+    font-size: 0.88rem;
+    color: #64748B;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cf-video-footer {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid #F1F5F9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cf-watch-link {
+    color: #0284C7;
+    font-weight: 700;
+    font-size: 0.88rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cf-video-date {
+    color: #94A3B8;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* Custom horizontal scrollbar for filters */
+  .cf-filters-scroll {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .cf-filters-scroll::-webkit-scrollbar {
+    display: none;
   }
 </style>
-<section class="py-5 text-center video-hero-new" style="padding-top: 160px !important; padding-bottom: 80px !important;">
-  <div class="container" style="max-width: 900px;">
-    <div class="d-inline-block px-3 py-1 rounded-pill mb-3" style="background: rgba(255, 255, 255, 0.15); color: #C8A96A; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px);">
-      {% trans "VIDEO LIBRARY" %}
+{% endblock %}
+
+{% block content %}
+
+<!-- 1. HERO BANNER -->
+<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.60) 0%, rgba(11,37,69,0.50) 60%, rgba(3,105,161,0.40) 100%), url('{% static "main/img/hero_bg.jpeg" %}') center/cover no-repeat;">
+  <div class="hero-inner container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
+        <li class="breadcrumb-item active text-warning fw-bold">{% trans "Video Library" %}</li>
+      </ol>
+    </nav>
+    <div class="cf-eyebrow-badge justify-content-center mb-3 text-white border-white-50 bg-white-10">
+      <i class="bi bi-play-circle-fill text-warning"></i> {% trans "Patient Education & Video Guides" %}
     </div>
-    <h1 class="mb-4" style="color: #fff; font-family: var(--cf-font-head); font-weight: 800; font-size: 2.8rem; line-height: 1.2;">
-      {% trans "Learn About Dental Treatments Before You Visit Carefirst Dental Clinic Nepal" %}
+    <h1 class="display-4 fw-bold text-white mb-3">
+      {% trans "Watch & Learn Before Your Visit" %}
     </h1>
-    <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.15rem; line-height: 1.6;">
-      {% trans "Watch expert dental videos, patient stories, smile makeover explanations, implant education, and oral health tips from Carefirst Dental Clinic." %}
+    <p class="hero-sub mx-auto text-white opacity-75" style="font-size: 1.15rem; max-width: 720px;">
+      {% trans "Explore 3D treatment walk-throughs, patient smile transformations, dental implant guides, and oral hygiene tips from the CareFirst clinical team." %}
     </p>
   </div>
 </section>
 
-<!-- CATEGORY FILTERS -->
-<section class="py-4 sticky-top" style="background-color: #FAF8F3; top: 80px; z-index: 1020; border-bottom: 1px solid rgba(0,0,0,0.05);">
+<!-- 2. CATEGORY FILTERS (STICKY) -->
+<section class="cf-video-filters-bar py-3">
   <div class="container" style="max-width: 1280px;">
-    <div class="d-flex flex-nowrap overflow-auto gap-3 justify-content-lg-center py-2 custom-scrollbar" id="video-category-filters">
-      <button class="btn btn-filter active px-4 py-2 rounded-pill border" data-filter="all" style="white-space: nowrap; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; background-color: #111; color: #fff; border-color: #111 !important;">
-        {% trans "All Videos" %}
+    <div class="d-flex flex-nowrap gap-2 justify-content-lg-center cf-filters-scroll py-1" id="videoFilters">
+      <button class="cf-filter-pill active" data-filter="all">
+        <i class="bi bi-grid-fill me-1"></i>{% trans "All Videos" %}
       </button>
-      <button class="btn btn-filter px-4 py-2 rounded-pill border" data-filter="smile-makeover" style="white-space: nowrap; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; background-color: #fff; color: #333; border-color: #dee2e6 !important;">
-        {% trans "Smile Makeover" %}
+      {% for cat in categories %}
+      <button class="cf-filter-pill" data-filter="{{ cat.slug }}">
+        {{ cat.name }}
       </button>
-      <button class="btn btn-filter px-4 py-2 rounded-pill border" data-filter="dental-implants" style="white-space: nowrap; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; background-color: #fff; color: #333; border-color: #dee2e6 !important;">
-        {% trans "Dental Implants" %}
-      </button>
-      <button class="btn btn-filter px-4 py-2 rounded-pill border" data-filter="kids-dentistry" style="white-space: nowrap; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; background-color: #fff; color: #333; border-color: #dee2e6 !important;">
-        {% trans "Kids Dentistry" %}
-      </button>
-      <button class="btn btn-filter px-4 py-2 rounded-pill border" data-filter="crowns-veneers" style="white-space: nowrap; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; background-color: #fff; color: #333; border-color: #dee2e6 !important;">
-        {% trans "Crowns & Veneers" %}
-      </button>
-      <button class="btn btn-filter px-4 py-2 rounded-pill border" data-filter="patient-stories" style="white-space: nowrap; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; background-color: #fff; color: #333; border-color: #dee2e6 !important;">
-        {% trans "Patient Stories" %}
-      </button>
+      {% endfor %}
     </div>
   </div>
 </section>
 
-<!-- VIDEO GRID -->
-<section class="py-5" style="background: #FAF8F3;">
-  <div class="container" style="max-width: 1280px; margin: 0 auto;">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="video-grid">
+<!-- 3. VIDEO GRID -->
+<section class="section-py" style="background: #F8FAFC;">
+  <div class="container" style="max-width: 1280px;">
+    <div class="row g-4" id="videoGrid">
       {% for video in videos %}
-      <!-- Adding data-category attribute based on the video's category slug. If no category, default to 'uncategorized' -->
-      <div class="col video-item" data-category="{{ video.category.slug|default:'uncategorized' }}">
-        <article class="card h-100 nd-video-card border-0" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: all 0.4s ease; background-color: #1A1D27; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; width: 100%;" onclick="window.location.href='{% url 'media_center:video_detail' video.slug %}'">
-          
-          <!-- Top Area: Thumbnail (16:9 Aspect Ratio) -->
-          <div class="position-relative overflow-hidden w-100">
-            <!-- Play Button Overlay (Always slightly visible, pops on hover) -->
-            <div class="play-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(0, 0, 0, 0.2); transition: all 0.3s ease; z-index: 5;">
-              <div class="play-btn rounded-circle d-flex align-items-center justify-content-center shadow-lg" style="width: 60px; height: 60px; background: rgba(255,255,255,0.95); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
-                <i class="bi bi-play-fill" style="color: #FF0000; font-size: 2.2rem; margin-left: 4px;"></i>
-              </div>
-            </div>
-            {% if video.get_thumbnail %}
-              <img src="{{ video.get_thumbnail }}" class="w-100 video-thumb" alt="{{ video.title }}" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; transition: transform 0.7s ease; display: block;">
-            {% else %}
-              <div class="w-100 d-flex flex-column align-items-center justify-content-center" style="aspect-ratio: 16/9; background: linear-gradient(135deg, #1A1D27 0%, #0e5a4f 100%);">
-                <i class="bi bi-camera-video" style="font-size: 3rem; color: rgba(255,255,255,0.2);"></i>
-              </div>
+      <div class="col-md-6 col-lg-4 video-card-col" data-category="{{ video.category.slug|default:'all' }}">
+        <a href="{% url 'media_center:video_detail' video.slug %}" class="cf-video-card">
+          <!-- Thumbnail & Play Overlay -->
+          <div class="cf-video-thumb-wrap">
+            <!-- Platform Pill -->
+            {% if video.platform == 'youtube' %}
+            <span class="cf-platform-pill youtube">
+              <i class="bi bi-youtube me-1"></i> YouTube
+            </span>
+            {% elif video.platform == 'instagram' %}
+            <span class="cf-platform-pill instagram">
+              <i class="bi bi-instagram me-1"></i> Instagram
+            </span>
             {% endif %}
-          </div>
-          
-          <!-- Bottom Area: Content (Premium Black) -->
-          <div class="card-body p-4 d-flex flex-column" style="background-color: #1A1D27;">
-            <!-- Category & Platform Badges -->
-            <div class="mb-3 d-flex align-items-center gap-2">
-              {% if video.platform == 'youtube' %}
-                <span class="badge" style="background: rgba(255, 0, 0, 0.1); color: #FF5555; border: 1px solid rgba(255, 0, 0, 0.2); padding: 5px 10px; font-size: 0.75rem; letter-spacing: 0.5px; font-weight: 600;">
-                  <i class="bi bi-youtube me-1"></i> YOUTUBE
-                </span>
-              {% elif video.platform == 'instagram' %}
-                <span class="badge" style="background: rgba(225, 48, 108, 0.1); color: #FF7597; border: 1px solid rgba(225, 48, 108, 0.2); padding: 5px 10px; font-size: 0.75rem; letter-spacing: 0.5px; font-weight: 600;">
-                  <i class="bi bi-instagram me-1"></i> INSTAGRAM
-                </span>
-              {% endif %}
-              
-              <span class="badge rounded-pill" style="background-color: rgba(200, 169, 106, 0.15); color: #C8A96A; font-weight: 600; padding: 6px 12px; font-size: 0.75rem; border: 1px solid rgba(200, 169, 106, 0.3);">
-                {{ video.category.name|default:"General" }}
-              </span>
+
+            <!-- Play Button Overlay -->
+            <div class="cf-video-play-overlay">
+              <div class="cf-play-btn-circle">
+                <i class="bi bi-play-fill"></i>
+              </div>
             </div>
 
-            <!-- Title -->
-            <h3 class="card-title fw-bold mb-3" style="color: #ffffff; font-size: 1.15rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; font-family: var(--cf-font-head);">
-              {{ video.title }}
-            </h3>
-            
-            <!-- Description -->
-            {% if video.short_description %}
-            <p class="card-text mb-4" style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-              {{ video.short_description }}
-            </p>
+            <!-- Thumbnail Image -->
+            {% if video.get_thumbnail %}
+              <img loading="lazy" src="{{ video.get_thumbnail }}" alt="{{ video.title }}" class="cf-video-thumb">
+            {% else %}
+              <div class="w-100 h-100 d-flex align-items-center justify-content-center text-white-50">
+                <i class="bi bi-camera-video fs-1"></i>
+              </div>
             {% endif %}
-            
-            <!-- Footer Row -->
-            <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center" style="border-color: rgba(255,255,255,0.1) !important;">
-              <span class="text-decoration-none fw-bold" style="color: #C8A96A; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
-                <i class="bi bi-play-circle-fill"></i> {% trans "Watch video" %} 
+          </div>
+
+          <!-- Card Body -->
+          <div class="cf-video-content">
+            {% if video.category %}
+            <span class="cf-video-cat-badge">
+              <i class="bi bi-tag-fill me-1"></i>{{ video.category.name }}
+            </span>
+            {% endif %}
+
+            <h3 class="cf-video-title">{{ video.title }}</h3>
+
+            {% if video.short_description %}
+            <p class="cf-video-desc">{{ video.short_description }}</p>
+            {% endif %}
+
+            <div class="cf-video-footer">
+              <span class="cf-watch-link">
+                <i class="bi bi-play-circle-fill"></i> {% trans "Watch Video" %}
               </span>
-              <span style="color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; font-weight: 500;">{{ video.published_date|date:"F d, Y" }}</span>
+              <span class="cf-video-date">
+                <i class="bi bi-calendar3 me-1"></i>{{ video.published_date|date:"M d, Y" }}
+              </span>
             </div>
           </div>
-        </article>
+        </a>
       </div>
       {% empty %}
       <div class="col-12 text-center py-5">
-        <i class="bi bi-camera-video-off text-muted mb-3 d-block" style="font-size: 4rem; opacity: 0.5;"></i>
-        <h4 class="text-dark fw-bold">{% trans "No Videos Available" %}</h4>
-        <p class="text-muted">{% blocktrans %}We'll be adding new content soon. Please check back later.{% endblocktrans %}</p>
+        <div class="bg-white rounded-4 p-5 shadow-sm border mx-auto" style="max-width: 480px;">
+          <i class="bi bi-camera-video-off text-primary fs-1 mb-3 d-block"></i>
+          <h4 class="fw-bold mb-2">{% trans "No Videos Found" %}</h4>
+          <p class="text-muted small mb-0">{% trans "We are currently editing new treatment videos. Please check back shortly!" %}</p>
+        </div>
       </div>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<!-- CTA SECTION -->
-<section class="py-5 mb-5">
-  <div class="container" style="max-width: 900px;">
-    <div class="rounded-5 p-5 text-center text-white shadow-lg" style="background-color: #123B2F; background-image: radial-gradient(circle at top right, rgba(200, 169, 106, 0.15), transparent 60%);">
-      <h2 class="fw-bold mb-3" style="font-family: var(--cf-font-head); font-size: 2.2rem;">{% trans "Planning Dental Treatment in Nepal?" %}</h2>
-      <p class="mb-5 fs-5" style="opacity: 0.9; max-width: 650px; margin: 0 auto;">
-        {% trans "Send us your dental photos on WhatsApp and receive a treatment estimate before you travel." %}
-      </p>
-      <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
-        <a href="https://wa.me/9779848631371" class="btn rounded-pill fw-bold px-4 py-3" style="background-color: #25D366; color: #fff; font-size: 1.05rem; border: none; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);">
-          <i class="bi bi-whatsapp me-2"></i> {% trans "WhatsApp Consultation" %}
-        </a>
-        <a href="{% url 'main:contact' %}" class="btn rounded-pill fw-bold px-4 py-3" style="background-color: transparent; border: 2px solid rgba(255,255,255,0.3); color: #fff; font-size: 1.05rem; transition: all 0.3s;">
-          {% trans "Book Appointment" %}
-        </a>
-      </div>
+<!-- 4. CTA SECTION -->
+<div class="nd-cta-strip" id="consult">
+  <div class="cta-inner container">
+    <h2>{% trans "Have Questions About a Treatment?" %}</h2>
+    <p>{% trans "Our dental specialists are available to explain procedures and create custom treatment plans tailored for your smile." %}</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Consultation" %}
+      </a>
+      <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2 shadow">
+        <i class="bi bi-whatsapp"></i>{% trans "WhatsApp Inquiry" %}
+      </a>
     </div>
   </div>
-</section>
+</div>
 
-<style>
-  /* Filter scrollbar hiding */
-  .custom-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .custom-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  /* Card Hover Animations */
-  .nd-video-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(18, 59, 47, 0.12) !important;
-  }
-  .nd-video-card:hover .video-thumb {
-    transform: scale(1.05);
-  }
-  .nd-video-card:hover .play-overlay {
-    opacity: 1 !important;
-  }
-  .nd-video-card:hover .play-btn {
-    transform: scale(1.1) !important;
-  }
-  .nd-video-card:hover h3 {
-    color: #C8A96A !important;
-  }
-  
-  /* Outline button hover */
-  a[href*="appointments"]:hover {
-    background-color: #fff !important;
-    color: #123B2F !important;
-    border-color: #fff !important;
-  }
-</style>
+{% endblock %}
 
+{% block extra_scripts %}
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.btn-filter');
-    const videoItems = document.querySelectorAll('.video-item');
+    const filterPills = document.querySelectorAll('.cf-filter-pill');
+    const videoCols = document.querySelectorAll('.video-card-col');
 
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', function() {
-        // Update active styling
-        filterButtons.forEach(b => {
-          b.style.backgroundColor = '#fff';
-          b.style.color = '#495057';
-          b.style.borderColor = '#e9ecef';
-          b.classList.remove('active');
-        });
-        
-        this.style.backgroundColor = '#123B2F';
-        this.style.color = '#fff';
-        this.style.borderColor = '#123B2F';
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', function() {
+        filterPills.forEach(p => p.classList.remove('active'));
         this.classList.add('active');
 
-        const filterValue = this.getAttribute('data-filter');
+        const filter = this.getAttribute('data-filter');
 
-        // Filter items
-        videoItems.forEach(item => {
-          if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-            item.style.display = 'block';
-            // Slight animation for re-appearing
-            item.style.opacity = '0';
-            setTimeout(() => { item.style.opacity = '1'; }, 50);
+        videoCols.forEach(col => {
+          const colCat = col.getAttribute('data-category');
+          if (filter === 'all' || colCat === filter) {
+            col.style.display = 'block';
+            col.style.opacity = '0';
+            col.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+              col.style.transition = 'all 0.3s ease';
+              col.style.opacity = '1';
+              col.style.transform = 'translateY(0)';
+            }, 30);
           } else {
-            item.style.display = 'none';
+            col.style.display = 'none';
           }
         });
       });

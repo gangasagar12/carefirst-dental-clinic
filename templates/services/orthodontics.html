@@ -12,19 +12,19 @@
     background: #fff;
     border-radius: 12px;
     padding: 24px;
-    border: 1px solid rgba(14,90,79,0.08);
+    border: 1px solid #E2E8F0;
     height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .ortho-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(14,90,79,0.08);
+    box-shadow: 0 12px 30px rgba(8,28,51,0.10);
   }
   .ortho-icon-wrapper {
     width: 60px;
     height: 60px;
-    background: var(--cf-primary-tint);
-    color: var(--cf-primary);
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284C7;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -35,7 +35,7 @@
   
   /* Types of Braces Cards */
   .premium-brace-card {
-    border: 1px solid rgba(14,90,79,0.1);
+    border: 1px solid #E2E8F0;
     border-radius: 16px;
     background: #fff;
     overflow: hidden;
@@ -45,7 +45,7 @@
     flex-direction: column;
   }
   .premium-brace-card:hover {
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(8,28,51,0.12);
     transform: translateY(-5px);
   }
   .pbc-image-wrapper {
@@ -75,7 +75,7 @@
     margin-bottom: 10px;
   }
   .pbc-desc {
-    color: #6c757d;
+    color: #475569;
     font-size: 0.95rem;
     margin-bottom: 20px;
   }
@@ -86,8 +86,8 @@
     margin-bottom: 20px;
   }
   .pbc-badge {
-    background: var(--cf-bg-light);
-    color: var(--cf-primary-dark);
+    background: rgba(2, 132, 199, 0.06);
+    color: #0B2545;
     padding: 6px 12px;
     border-radius: 50px;
     font-size: 0.8rem;
@@ -104,7 +104,7 @@
     margin-bottom: 8px;
     font-size: 0.85rem;
   }
-  .pbc-rating-label { color: #6c757d; font-weight: 600; }
+  .pbc-rating-label { color: #64748B; font-weight: 600; }
   .pbc-rating-value { font-weight: 700; }
   
   /* Comparison Table */
@@ -112,8 +112,8 @@
     overflow-x: auto;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    border: 1px solid rgba(14,90,79,0.08);
+    box-shadow: 0 5px 20px rgba(8,28,51,0.08);
+    border: 1px solid #E2E8F0;
   }
   .compare-table {
     width: 100%;
@@ -126,15 +126,15 @@
     border-bottom: 1px solid rgba(0,0,0,0.05);
   }
   .compare-table th {
-    background: var(--cf-primary-dark);
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%);
     color: #fff;
     font-weight: 700;
   }
   .compare-table th:first-child, .compare-table td:first-child {
     text-align: left;
     font-weight: 700;
-    color: var(--cf-primary-dark);
-    background: rgba(14,90,79,0.02);
+    color: #0B2545;
+    background: rgba(2,132,199,0.03);
   }
   
   /* Recommendation Cards */
@@ -143,8 +143,8 @@
     border-radius: 16px;
     padding: 25px;
     height: 100%;
-    border-left: 5px solid var(--cf-primary);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 5px solid #0284C7;
+    box-shadow: 0 4px 15px rgba(8,28,51,0.06);
   }
   
   /* Horizontal Timeline */
@@ -166,7 +166,7 @@
     left: 40px;
     right: 40px;
     height: 3px;
-    background: rgba(14,90,79,0.1);
+    background: rgba(2,132,199,0.15);
     z-index: 1;
   }
   .th-step {
@@ -180,8 +180,8 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--cf-accent);
-    color: #1c1506;
+    background: #0284C7;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -194,7 +194,7 @@
   .th-title {
     font-weight: 700;
     font-size: 0.9rem;
-    color: var(--cf-primary-dark);
+    color: #0B2545;
   }
   
   /* Problems List */
@@ -202,58 +202,63 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--cf-primary-tint);
-    color: var(--cf-primary-dark);
+    background: rgba(2, 132, 199, 0.06);
+    color: #0B2545;
     padding: 10px 20px;
     border-radius: 50px;
     font-weight: 600;
     margin-bottom: 10px;
     margin-right: 10px;
-    border: 1px solid rgba(14,90,79,0.1);
+    border: 1px solid rgba(2,132,199,0.12);
   }
 
   /* Pricing Table */
-  .pricing-table {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(14,90,79,0.1);
-    border: 1px solid rgba(14,90,79,0.1);
+  /* CareFirst Pricing Card */
+  .cf-pricing-card {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 16px 40px rgba(8, 28, 51, 0.15) !important;
+    border: 1.5px solid #E2E8F0 !important;
   }
-  .pricing-header {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    padding: 24px;
-    text-align: center;
+  .cf-pricing-header {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    padding: 28px 24px !important;
+    text-align: center !important;
   }
-  .pricing-body {
-    padding: 0;
+  .cf-pricing-body {
+    padding: 24px 20px !important;
+    background: #FFFFFF !important;
   }
   .pricing-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 16px 20px;
+    border-bottom: 1px solid #F1F5F9;
+    border-radius: 12px;
   }
   .pricing-row:last-child {
     border-bottom: none;
   }
   .pricing-row .title {
     font-weight: 700;
-    color: var(--cf-primary-dark);
-    font-size: 1.1rem;
+    color: #0F172A !important;
+    font-size: 1.05rem;
     margin: 0;
   }
   .pricing-row .price {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    color: var(--cf-accent-dark);
-    font-family: var(--cf-font-head);
+    color: #0284C7 !important;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
   }
   .pricing-row .currency {
-    font-size: 0.9rem;
-    vertical-align: super;
+    font-size: 0.85rem;
+    color: #64748B !important;
+    font-weight: 600;
+    margin-right: 4px;
   }
 
   /* Gallery/Lightbox */
@@ -272,7 +277,7 @@
   .ortho-gallery-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(14,90,79,0.7);
+    background: rgba(8,28,51,0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -299,7 +304,7 @@
     <h1><i class="bi bi-magnet me-3 text-warning"></i>Orthodontics & Braces</h1>
     <p class="hero-sub mx-auto">{% trans "Transform your smile with expertly planned, precision-guided orthodontic treatments." %}</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Start Your Smile Journey" %}</a>
+      <a href="{% url 'main:contact' %}#book" class="cf-btn-primary py-3 px-5 rounded-pill fw-bold shadow-lg d-inline-block text-white text-decoration-none" style="font-size: 1.1rem;">{% trans "Start Your Smile Journey" %}</a>
     </div>
   </div>
 </section>
@@ -309,8 +314,8 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What is" %} <span class="accent">{% trans "Braces Treatment?" %}</span></h2>
+        <div class="cf-eyebrow-badge"><i class="bi bi-info-circle"></i> {% trans "Introduction" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "What is" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Braces Treatment?" %}</span></h2>
         <p class="text-muted" style="line-height:1.85;">
           {% trans "Orthodontics is a specialized branch of dentistry focused on diagnosing, preventing, and treating dental and facial irregularities. Braces treatment is the most common orthodontic method used to straighten crooked teeth, align the jaw, and correct an improper bite." %}
         </p>
@@ -335,8 +340,8 @@
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-lg-8">
-        <div class="nd-eyebrow justify-content-center">{% trans "Who Needs Braces?" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Common Problems We Treat" %}</h3>
+        <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-people"></i> {% trans "Who Needs Braces?" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Common Problems We Treat" %}</h3>
         <p class="text-muted mb-4">{% trans "Orthodontic treatment is suitable for teenagers and adults alike. We can correct a wide range of malocclusions (bad bites) including:" %}</p>
         
         <div class="mb-4 d-flex flex-wrap justify-content-center gap-2">
@@ -356,8 +361,8 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "TREATMENT OPTIONS" %}</div>
-      <h2 class="section-heading">{% trans "Types of" %} <span class="accent">{% trans "Braces Available" %}</span></h2>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-grid"></i> {% trans "TREATMENT OPTIONS" %}</div>
+      <h2 class="cf-section-title">{% trans "Types of" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Braces Available" %}</span></h2>
       <p class="text-muted mt-3 max-w-600 mx-auto">{% trans "We offer a variety of advanced orthodontic treatments tailored to your unique smile goals, lifestyle, and clinical needs." %}</p>
     </div>
     
@@ -471,7 +476,7 @@
 <section class="section-py" style="background:var(--cf-bg-light);">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="section-heading">{% trans "Compare" %} <span class="accent">{% trans "Braces Options" %}</span></h2>
+      <h2 class="cf-section-title">{% trans "Compare" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Braces Options" %}</span></h2>
     </div>
     
     <div class="compare-table-wrapper mx-auto">
@@ -552,7 +557,7 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="section-heading">{% trans "Which Braces Are" %} <span class="accent">{% trans "Right for You?" %}</span></h2>
+      <h2 class="cf-section-title">{% trans "Which Braces Are" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Right for You?" %}</span></h2>
     </div>
     <div class="row g-4">
       <div class="col-lg-3 col-md-6">
@@ -587,8 +592,8 @@
 <section class="section-py" style="background:var(--cf-bg-light);">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "OUR RESULTS" %}</div>
-      <h2 class="section-heading">{% trans "Smile Transformation" %} <span class="accent">{% trans "Gallery" %}</span></h2>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-camera"></i> {% trans "OUR RESULTS" %}</div>
+      <h2 class="cf-section-title">{% trans "Smile Transformation" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Gallery" %}</span></h2>
       <p class="text-muted mt-3 max-w-600 mx-auto">{% trans "See real before and after results from patients who have completed their orthodontic journey with us." %}</p>
     </div>
     <div class="row g-4">
@@ -624,7 +629,7 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="section-heading">{% trans "Our Orthodontic" %} <span class="accent">{% trans "Treatment Journey" %}</span></h2>
+      <h2 class="cf-section-title">{% trans "Our Orthodontic" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Treatment Journey" %}</span></h2>
     </div>
     
     <div class="timeline-horizontal-wrapper mt-5">
@@ -679,8 +684,8 @@
     <div class="row g-5">
       <!-- Benefits -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "Advantages" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Benefits of Orthodontic Treatment" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-star"></i> {% trans "Advantages" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Benefits of Orthodontic Treatment" %}</h3>
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="ortho-card">
@@ -715,8 +720,8 @@
       
       <!-- Why Niko -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Why Us?" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-award"></i> {% trans "Why Us?" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
         <p class="text-muted mb-4">{% trans "Moving teeth safely requires expertise. Here is why patients trust us for their orthodontic journey:" %}</p>
         <ul class="symptom-list mb-0">
           <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Experienced Orthodontists:" %}</strong> {% trans "Specialized experts managing your treatment plan." %}</span></li>
@@ -730,18 +735,18 @@
 </section>
 
 <!-- 5. TREATMENT JOURNEY & PRICING -->
-<section class="section-py" style="background:var(--cf-primary-dark); color:#fff;">
+<section class="section-py" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%); color:#fff;">
   <div class="container">
     <div class="row g-5">
       
       <!-- PRICING TABLE -->
       <div class="col-lg-8 mx-auto">
-        <div class="pricing-table sticky-top" style="top: 100px;">
-          <div class="pricing-header">
+        <div class="cf-pricing-card sticky-top" style="top: 100px;">
+          <div class="cf-pricing-header">
             <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
             <p class="text-white-50 small mb-0 mt-2">{% trans "Full Course Orthodontic Fees" %}</p>
           </div>
-          <div class="pricing-body">
+          <div class="cf-pricing-body">
             
             <div class="pricing-row">
               <div>
@@ -787,7 +792,7 @@
               <p class="small text-muted mb-4 fst-italic">
                 {% trans "* Note: Prices shown represent the base cost for a full upper and lower arch treatment. Final costs may vary depending on case complexity, duration, and if extractions are needed." %}
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Assessment" %}</a>
+              <a href="{% url 'main:contact' %}#book" class="cf-btn-primary w-100 rounded-pill py-3 fw-bold d-inline-block text-center text-white text-decoration-none">{% trans "Schedule Assessment" %}</a>
             </div>
 
           </div>
@@ -806,8 +811,8 @@
       
       <!-- Testimonials -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Patient Stories" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Life with Braces" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-chat-heart"></i> {% trans "Patient Stories" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Life with Braces" %}</h3>
         
         <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative mb-4">
           <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
@@ -838,8 +843,8 @@
 
       <!-- FAQ -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Frequently Asked Questions" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-question-circle"></i> {% trans "FAQ" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -917,8 +922,10 @@
     <h2>{% trans "Ready for a Perfect Smile?" %}</h2>
     <p>{% trans "Take the first step toward the beautiful, healthy, and straight smile you deserve. Book your orthodontic assessment today." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Assessment" %}</a>
-      <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Assessment" %}
+      </a>
+      <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
         <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
       </a>
     </div>

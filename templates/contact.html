@@ -498,9 +498,9 @@
                 <div class="col-md-6">
                   <label class="form-label">{% trans "Preferred Doctor" %} <span class="text-muted fw-normal" style="font-size: 0.85em;">({% trans "Optional" %})</span></label>
                   <select name="doctor" class="form-select">
-                    <option value="" selected>{% trans "Any Doctor" %}</option>
+                    <option value="" {% if not request.GET.doctor %}selected{% endif %}>{% trans "Any Doctor" %}</option>
                     {% for doc in active_doctors %}
-                      <option value="{{ doc.id }}">{{ doc.name }}</option>
+                      <option value="{{ doc.id }}" {% if request.GET.doctor == doc.id|stringformat:"s" %}selected{% endif %}>{{ doc.name }}</option>
                     {% endfor %}
                   </select>
                 </div>

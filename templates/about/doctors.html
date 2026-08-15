@@ -1,51 +1,114 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 
-
-{% block title %}Meet Our Doctors — Niko Dental & Aesthetics{% endblock %}
+{% block title %}Meet Our Doctors — Carefirst Dental Clinic{% endblock %}
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'main/css/about.css' %}?v=1.1">
-<meta name="description" content="Meet the expert team of dental specialists at Niko Dental & Aesthetics — experienced, certified, and passionate about your smile.">
+<link rel="stylesheet" href="{% static 'main/css/about.css' %}?v=2.0">
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
+<meta name="description" content="Meet the certified dental surgeons and specialists at Carefirst Dental Clinic, Kathmandu. NMC verified, experienced, and dedicated to pain-free, world-class dentistry.">
 {% endblock %}
 
 {% block content %}
 
-<!-- HERO -->
-<section class="about-hero text-center">
+<!-- 1. HERO BANNER -->
+<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.60) 0%, rgba(11,37,69,0.50) 60%, rgba(3,105,161,0.40) 100%), url('{% static "main/img/hero_bg.jpeg" %}') center/cover no-repeat;">
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
         <li class="breadcrumb-item"><a href="{% url 'main:about' %}" class="text-white text-decoration-none opacity-75">{% trans "About" %}</a></li>
-        <li class="breadcrumb-item active text-warning">{% trans "Meet Our Doctors" %}</li>
+        <li class="breadcrumb-item active text-warning fw-bold">{% trans "Meet Our Doctors" %}</li>
       </ol>
     </nav>
-    <h1>{% trans "Meet Our Doctors" %}</h1>
-    <p class="hero-sub mx-auto">{% trans "A dedicated team of certified specialists committed to your oral health and beautiful smile." %}</p>
+    <h1 class="display-4 fw-bold text-white mb-2"><i class="bi bi-people-fill me-3 text-warning"></i>{% trans "Meet Our Specialists" %}</h1>
+    <p class="hero-sub mx-auto text-white opacity-75" style="font-size: 1.15rem;">{% trans "Certified surgeons and dental specialists committed to ethical, precision-driven, and pain-free oral healthcare." %}</p>
   </div>
 </section>
 
-<!-- INTRO + STATS -->
-<section class="section-py-sm bg-white border-bottom">
+<!-- 2. INTRO & CLINICAL PILLARS -->
+<section class="section-py bg-white border-bottom">
   <div class="container">
-    <div class="row align-items-center g-4">
-      <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "Our Team" %}</div>
-        <h2 class="section-heading mb-3">{% trans "Qualified Specialists," %}<br><span class="accent">{% trans "Passionate About Smiles" %}</span></h2>
-        <p class="text-muted" style="line-height:1.85;max-width:580px;">{% trans "Every doctor at Niko Dental & Aesthetics holds internationally recognized qualifications and undergoes regular continuing education. Our team specializes across all major dental disciplines, ensuring you receive expert care under one roof." %}</p>
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="cf-eyebrow-badge"><i class="bi bi-shield-check"></i> {% trans "Clinical Excellence" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "Qualified Specialists," %}<br><span class="text-primary" style="color: #0284C7 !important;">{% trans "Dedicated to Your Smile" %}</span></h2>
+        <p class="text-muted" style="line-height:1.85;">
+          {% trans "At Carefirst Dental Clinic, every practitioner holds recognized medical qualifications, active Nepal Medical Council (NMC) registration, and continuous advanced training in international clinical protocols." %}
+        </p>
+        <p class="text-muted" style="line-height:1.85;">
+          {% trans "Under the leadership of Clinical Director Dr. Subash Banjade, our team collaborates across all dental disciplines—from digital smile makeovers and dental implants to painless root canals and orthodontics—delivering world-class care under one roof." %}
+        </p>
+
+        <!-- 4 Pillars Grid -->
+        <div class="row g-3 mt-2">
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-light border">
+              <i class="bi bi-patch-check-fill text-primary fs-3"></i>
+              <div>
+                <h6 class="fw-bold text-dark mb-1" style="font-size: 0.95rem;">{% trans "NMC Verified" %}</h6>
+                <p class="text-muted small mb-0">{% trans "Fully licensed and certified practitioners." %}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-light border">
+              <i class="bi bi-cpu-fill text-primary fs-3"></i>
+              <div>
+                <h6 class="fw-bold text-dark mb-1" style="font-size: 0.95rem;">{% trans "Digital Technology" %}</h6>
+                <p class="text-muted small mb-0">{% trans "3D scans and precision guided treatments." %}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-light border">
+              <i class="bi bi-heart-pulse-fill text-primary fs-3"></i>
+              <div>
+                <h6 class="fw-bold text-dark mb-1" style="font-size: 0.95rem;">{% trans "Painless Care" %}</h6>
+                <p class="text-muted small mb-0">{% trans "Gentle techniques tailored for comfort." %}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-light border">
+              <i class="bi bi-shield-shaded text-primary fs-3"></i>
+              <div>
+                <h6 class="fw-bold text-dark mb-1" style="font-size: 0.95rem;">{% trans "Hospital-Grade Safety" %}</h6>
+                <p class="text-muted small mb-0">{% trans "Class-B autoclave sterilization protocol." %}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="col-lg-5 text-center">
-        <img loading="lazy" src="{% static 'main/img/niko1.jpeg' %}" alt="Our Team at Niko Dental" class="img-fluid rounded shadow" style="object-fit: cover; width: 100%; max-height: 350px;">
+      <div class="col-lg-6 text-center">
+        <div class="position-relative p-2 bg-white rounded-4 shadow-lg border" style="border-color: #E2E8F0 !important;">
+          <img loading="lazy" src="{% static 'main/img/niko1.jpeg' %}" alt="CareFirst Dental Clinic Team" class="img-fluid rounded-4 w-100" style="object-fit: cover; max-height: 480px;">
+          <div class="position-absolute bottom-0 start-0 m-4 p-3 bg-white rounded-3 shadow-sm border text-start d-none d-sm-block">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-award-fill text-warning fs-3"></i>
+              <div>
+                <h6 class="fw-bold text-dark mb-0" style="font-size: 0.9rem;">{% trans "Expert Clinical Board" %}</h6>
+                <small class="text-muted">{% trans "Kathmandu, Nepal" %}</small>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DOCTOR CARDS (DYNAMIC) -->
-<section class="section-py" style="background:var(--nd-gray-bg);">
+<!-- 3. DOCTOR DIRECTORY CARDS (DYNAMIC) -->
+<section class="section-py" style="background: #F8FAFC;" id="team">
   <div class="container">
+    <div class="text-center mb-5">
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-person-lines-fill"></i> {% trans "Our Practitioners" %}</div>
+      <h2 class="cf-section-title">{% trans "Meet the" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Doctors" %}</span></h2>
+      <p class="text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "Select a specialist below to view their qualifications, clinical background, and book a direct consultation." %}</p>
+    </div>
+
     {% if doctors %}
-      <div class="row g-4">
+      <div class="row g-4 justify-content-center">
         {% for doc in doctors %}
         <div class="col-md-6 col-lg-4">
           {% include 'components/doctor_card.html' with doc=doc %}
@@ -54,30 +117,34 @@
       </div>
 
     {% else %}
-      <!-- No doctors in DB yet — friendly state -->
-      <div class="no-doctors">
-        <i class="bi bi-people text-muted"></i>
-        <h5 class="mb-2">{% trans "Doctor profiles coming soon" %}</h5>
-        <p class="text-muted">{% trans "Our team details are being set up. Please visit us or call to speak with our specialists." %}</p>
-        <a href="{% url 'main:about' %}" class="btn-nd-green btn mt-3">
-          <i class="bi bi-arrow-left me-2"></i>{% trans "Back to About Us" %}</a>
+      <!-- No doctors in DB fallback state -->
+      <div class="bg-white rounded-4 p-5 text-center shadow-sm border mx-auto" style="max-width: 500px;">
+        <i class="bi bi-people text-primary fs-1 mb-3 d-block"></i>
+        <h5 class="fw-bold mb-2">{% trans "Doctor profiles coming soon" %}</h5>
+        <p class="text-muted small">{% trans "Our team details are currently being updated. Please visit our clinic or call us to speak directly with a specialist." %}</p>
+        <a href="{% url 'main:about' %}" class="cf-btn-primary mt-3 px-4 py-2 rounded-pill fw-bold text-white text-decoration-none">
+          <i class="bi bi-arrow-left me-2"></i>{% trans "Back to About Us" %}
+        </a>
       </div>
     {% endif %}
   </div>
 </section>
 
-
-
-<!-- CTA -->
-<div class="nd-cta-strip">
+<!-- 4. CTA STRIP -->
+<div class="nd-cta-strip" id="book">
   <div class="cta-inner container">
-    <h2>{% trans "Ready to Meet Your Doctor?" %}</h2>
-    <p>{% trans "Book a consultation with one of our specialists today — no long waits, no surprises." %}</p>
+    <h2>{% trans "Ready to Consult with Our Specialists?" %}</h2>
+    <p>{% trans "Experience personalized dental care with transparent treatment plans and comfortable visits." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
-      <a href="{% url 'main:clinic' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold"><i class="bi bi-building me-2"></i>{% trans "View Our Clinic" %}</a>
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Consultation" %}
+      </a>
+      <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+      </a>
     </div>
   </div>
 </div>
 
 {% endblock %}
+

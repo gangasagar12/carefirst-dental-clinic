@@ -12,19 +12,19 @@
     background: #fff;
     border-radius: 12px;
     padding: 24px;
-    border: 1px solid rgba(14,90,79,0.08);
+    border: 1px solid #E2E8F0;
     height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .imp-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(14,90,79,0.08);
+    box-shadow: 0 12px 30px rgba(8,28,51,0.10);
   }
   .imp-icon-wrapper {
     width: 60px;
     height: 60px;
-    background: var(--cf-primary-tint);
-    color: var(--cf-primary);
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284C7;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -35,17 +35,17 @@
 
   /* Compare Card */
   .compare-card {
-    border-left: 4px solid var(--cf-accent);
+    border-left: 4px solid #0284C7;
     background: #fff;
     padding: 24px;
     border-radius: 0 12px 12px 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(8,28,51,0.06);
     margin-bottom: 20px;
   }
   
   /* Components Diagram text */
   .comp-label {
-    background: var(--cf-primary-dark);
+    background: linear-gradient(135deg, #081C33, #0369A1);
     color: #fff;
     padding: 10px 15px;
     border-radius: 8px;
@@ -54,48 +54,52 @@
     margin-bottom: 10px;
   }
 
-  /* Pricing Table */
-  .pricing-table {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(14,90,79,0.1);
-    border: 1px solid rgba(14,90,79,0.1);
+  /* CareFirst Pricing Card */
+  .cf-pricing-card {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 16px 40px rgba(8, 28, 51, 0.15) !important;
+    border: 1.5px solid #E2E8F0 !important;
   }
-  .pricing-header {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    padding: 24px;
-    text-align: center;
+  .cf-pricing-header {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    padding: 28px 24px !important;
+    text-align: center !important;
   }
-  .pricing-body {
-    padding: 0;
+  .cf-pricing-body {
+    padding: 24px 20px !important;
+    background: #FFFFFF !important;
   }
   .pricing-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 16px 20px;
+    border-bottom: 1px solid #F1F5F9;
+    border-radius: 12px;
   }
   .pricing-row:last-child {
     border-bottom: none;
   }
   .pricing-row .title {
     font-weight: 700;
-    color: var(--cf-primary-dark);
-    font-size: 1.1rem;
+    color: #0F172A !important;
+    font-size: 1.05rem;
     margin: 0;
   }
   .pricing-row .price {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    color: var(--cf-accent-dark);
-    font-family: var(--cf-font-head);
+    color: #0284C7 !important;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
   }
   .pricing-row .currency {
-    font-size: 0.9rem;
-    vertical-align: super;
+    font-size: 0.85rem;
+    color: #64748B !important;
+    font-weight: 600;
+    margin-right: 4px;
   }
 
   /* Transformation Cards */
@@ -103,12 +107,12 @@
     background: #fff;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border: 1px solid rgba(14,90,79,0.08);
+    box-shadow: 0 10px 30px rgba(8,28,51,0.08);
+    border: 1px solid #E2E8F0;
     margin-bottom: 40px;
   }
   .trans-card-header {
-    background: var(--cf-primary-dark);
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%);
     color: #fff;
     padding: 15px 30px;
     display: flex;
@@ -138,7 +142,7 @@
   .trans-step-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(14,90,79,0.5);
+    background: rgba(8,28,51,0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -151,7 +155,7 @@
   .trans-step-label {
     text-align: center;
     font-weight: 700;
-    color: var(--cf-primary-dark);
+    color: #0B2545;
   }
   
   /* Statistic Cards */
@@ -160,8 +164,8 @@
     border-radius: 16px;
     padding: 30px 20px;
     text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.04);
-    border-bottom: 5px solid var(--cf-accent);
+    box-shadow: 0 8px 25px rgba(8,28,51,0.06);
+    border-bottom: 5px solid #0284C7;
     height: 100%;
     transition: transform 0.3s ease;
   }
@@ -171,12 +175,12 @@
   .stat-value {
     font-size: 3rem;
     font-weight: 800;
-    color: var(--cf-primary-dark);
+    color: #0B2545;
     line-height: 1;
     margin-bottom: 10px;
   }
   .stat-label {
-    color: #6c757d;
+    color: #64748B;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.85rem;
@@ -202,7 +206,7 @@
     left: 40px;
     right: 40px;
     height: 3px;
-    background: rgba(14,90,79,0.1);
+    background: rgba(2,132,199,0.15);
     z-index: 1;
   }
   .th-step {
@@ -217,7 +221,7 @@
     height: 52px;
     border-radius: 50%;
     background: #fff;
-    color: var(--cf-accent-dark);
+    color: #0284C7;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -225,22 +229,22 @@
     font-size: 1.4rem;
     margin: 0 auto 15px auto;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    border: 3px solid var(--cf-accent);
+    border: 3px solid #0284C7;
     transition: all 0.3s ease;
   }
   .th-step:hover .th-dot {
-    background: var(--cf-accent);
+    background: #0284C7;
     color: #fff;
     transform: scale(1.1);
   }
   .th-title {
     font-weight: 700;
     font-size: 0.95rem;
-    color: var(--cf-primary-dark);
+    color: #0B2545;
   }
   .th-desc {
     font-size: 0.8rem;
-    color: #6c757d;
+    color: #64748B;
     margin-top: 5px;
   }
 </style>
@@ -261,7 +265,7 @@
     <h1><i class="bi bi-gear-wide-connected me-3 text-warning"></i>{% trans "Dental Implants" %}</h1>
     <p class="hero-sub mx-auto">{% trans "The most advanced, permanent, and natural-looking solution for replacing missing teeth." %}</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Schedule an Implant Consultation" %}</a>
+      <a href="{% url 'main:contact' %}#book" class="cf-btn-primary py-3 px-5 rounded-pill fw-bold shadow-lg d-inline-block text-white text-decoration-none" style="font-size: 1.1rem;">{% trans "Schedule an Implant Consultation" %}</a>
     </div>
   </div>
 </section>
@@ -271,8 +275,8 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "The Gold Standard" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What Are" %} <span class="accent">{% trans "Dental Implants?" %}</span></h2>
+        <div class="cf-eyebrow-badge"><i class="bi bi-award"></i> {% trans "The Gold Standard" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "What Are" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Dental Implants?" %}</span></h2>
         <p class="text-muted" style="line-height:1.85;">
           {% trans "A dental implant is a small, bio-compatible titanium post that is surgically placed into your jawbone beneath the gum line. It acts as an artificial tooth root, providing a permanent and incredibly strong foundation for a replacement tooth (crown) or a bridge." %}
         </p>
@@ -308,8 +312,8 @@
   <div class="container">
     <div class="row g-5">
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Candidacy" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Who Is a Good Candidate?" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-person-check"></i> {% trans "Candidacy" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Who Is a Good Candidate?" %}</h3>
         <p class="text-muted mb-4">{% trans "Most people who are healthy enough to undergo a routine dental extraction are good candidates for implants. You need:" %}</p>
         
         <ul class="symptom-list mb-0">
@@ -325,8 +329,8 @@
       
       <!-- Compared to others -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "Making the Choice" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Why Choose Implants Over Bridges or Dentures?" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-diagram-3"></i> {% trans "Making the Choice" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Why Choose Implants Over Bridges or Dentures?" %}</h3>
         
         <div class="compare-card border-success">
           <h5 class="fw-bold text-success mb-2"><i class="bi bi-shield-check me-2"></i> {% trans "Preserves Natural Teeth" %}</h5>
@@ -353,8 +357,8 @@
     <div class="row g-5">
       <!-- Types of Implants -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Solutions" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Types of Implant Solutions" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-grid"></i> {% trans "Solutions" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Types of Implant Solutions" %}</h3>
         
         <div class="mb-4">
           <h5 class="fw-bold"><i class="bi bi-1-circle text-secondary me-2"></i> {% trans "Single Tooth Implant" %}</h5>
@@ -372,8 +376,8 @@
 
       <!-- Benefits -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "Advantages" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Benefits of Dental Implants" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-star"></i> {% trans "Advantages" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Benefits of Dental Implants" %}</h3>
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="imp-card">
@@ -410,14 +414,14 @@
 </section>
 
 <!-- 5. TREATMENT JOURNEY & PRICING -->
-<section class="section-py" style="background:var(--cf-primary-dark); color:#fff;">
+<section class="section-py" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%); color:#fff;">
   <div class="container">
     <div class="row g-5">
       
       <!-- Timeline -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Our Implant" %} <span class="text-warning">{% trans "Treatment Process" %}</span></h2>
+        <div class="cf-eyebrow-badge text-white-50 border-white-50"><i class="bi bi-list-check"></i> {% trans "The Procedure" %}</div>
+        <h2 class="cf-section-title text-white mb-5" style="color: #fff !important;">{% trans "Our Implant" %} <span class="text-warning">{% trans "Treatment Process" %}</span></h2>
         
         <div class="timeline-wrapper">
           <div class="timeline-line"></div>
@@ -456,12 +460,12 @@
       
       <!-- PRICING TABLE -->
       <div class="col-lg-5">
-        <div class="pricing-table sticky-top" style="top: 100px;">
-          <div class="pricing-header">
+        <div class="cf-pricing-card sticky-top" style="top: 100px;">
+          <div class="cf-pricing-header">
             <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
             <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing (Per Tooth)</p>
           </div>
-          <div class="pricing-body">
+          <div class="cf-pricing-body">
             
             <div class="pricing-row">
               <div>
@@ -507,7 +511,7 @@
               <p class="small text-muted mb-4 fst-italic">
                 {% trans "* Note: Total cost = Implant Fixture + Crown. E.g., Standard Implant with PFM Crown = NPR 55,000. Additional procedures like Bone Grafting (if required) incur separate charges based on clinical evaluation." %}
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Implant Consult" %}</a>
+              <a href="{% url 'main:contact' %}#book" class="cf-btn-primary w-100 rounded-pill py-3 fw-bold d-inline-block text-center text-white text-decoration-none">{% trans "Schedule Implant Consult" %}</a>
             </div>
 
           </div>
@@ -521,8 +525,8 @@
 <section class="section-py bg-light">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Real Results" %}</div>
-      <h2 class="section-heading">Before & After <span class="accent">{% trans "Implant Cases" %}</span></h2>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-camera"></i> {% trans "Real Results" %}</div>
+      <h2 class="cf-section-title">Before & After <span class="text-primary" style="color: #0284C7 !important;">{% trans "Implant Cases" %}</span></h2>
       <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "Explore authentic patient journeys from missing teeth to perfectly restored smiles using our premium dental implant systems." %}</p>
     </div>
     
@@ -638,7 +642,7 @@
 <section class="section-py" style="background:var(--cf-bg-light);">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="section-heading">{% trans "Smile Transformation" %} <span class="accent">{% trans "Timeline" %}</span></h2>
+      <h2 class="cf-section-title">{% trans "Smile Transformation" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Timeline" %}</span></h2>
       <p class="text-muted mt-3 max-w-600 mx-auto">{% trans "Understanding the step-by-step journey of your dental implant treatment." %}</p>
     </div>
     
@@ -689,8 +693,8 @@
       
       <!-- Care Tips & Testimonials -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Recovery" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Aftercare Tips" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-shield-check"></i> {% trans "Recovery" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Aftercare Tips" %}</h3>
         <ul class="symptom-list mb-5">
           <li><i class="bi bi-snow text-primary fs-5"></i> <span><strong>{% trans "Ice Packs:" %}</strong> {% trans "Apply ice for the first 24 hours to reduce swelling." %}</span></li>
           <li><i class="bi bi-cup-hot text-warning fs-5"></i> <span><strong>{% trans "Soft Diet:" %}</strong> {% trans "Eat soft, cool foods for the first few days after surgery." %}</span></li>
@@ -700,7 +704,7 @@
         <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative">
           <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
           <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-          <p class="fst-italic text-muted small position-relative z-1">{% blocktrans %}\"I was terrified of the surgery, but Dr. Niko made the entire implant process completely painless. Now, a year later, I forget which tooth is the fake one! It feels just like my real teeth. Highly recommend.\"{% endblocktrans %}</p>
+          <p class="fst-italic text-muted small position-relative z-1">{% blocktrans %}\"I was terrified of the surgery, but Carefirst Dental Clinic made the entire implant process completely painless. Now, a year later, I forget which tooth is the fake one! It feels just like my real teeth. Highly recommend.\"{% endblocktrans %}</p>
           <div class="d-flex align-items-center gap-3 mt-3">
             <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px; font-size: 0.8rem;">{% trans "A.B." %}</div>
             <div>
@@ -713,8 +717,8 @@
 
       <!-- FAQ -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Frequently Asked Questions" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-question-circle"></i> {% trans "FAQ" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -792,8 +796,10 @@
     <h2>{% blocktrans %}Don't Settle For Missing Teeth{% endblocktrans %}</h2>
     <p>{% trans "Regain your ability to eat, speak, and smile with confidence. Schedule your personalized implant consultation today." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Consultation" %}</a>
-      <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Consultation" %}
+      </a>
+      <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
         <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
       </a>
     </div>

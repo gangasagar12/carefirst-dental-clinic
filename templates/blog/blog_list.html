@@ -1,346 +1,335 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load static i18n %}
 
-{% load static %}
-
-{% block title %}Blog — Carefirst Dental Clinic{% endblock %}
+{% block title %}{% trans "Dental Health Blog & Articles" %} — Carefirst Dental Clinic{% endblock %}
+{% block meta_description %}{% trans "Read expert articles on dental implants, orthodontics, teeth whitening, pain-free root canals, and oral hygiene tips from Carefirst Dental Clinic Kathmandu." %}{% endblock %}
 
 {% block extra_head %}
-<meta name="description" content="Read the latest articles on dental health, treatments, and tips from the experts at Carefirst Dental Clinic.">
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
 <style>
-  /* Section Styles */
-  .section-py {
-    padding: 80px 0;
-  }
-  .section-heading {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--cf-primary-dark, #0b4a41);
-    font-family: var(--cf-font-head);
-  }
-  .section-heading .accent {
-    color: var(--cf-accent, #c5a880);
-  }
-  .nd-eyebrow {
-    color: var(--cf-accent, #c5a880);
+  /* ── Blog List Styles ── */
+  .cf-blog-badge {
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284C7;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.85rem;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-  }
-  .nd-eyebrow::before {
-    content: '';
+    font-size: 0.8rem;
+    padding: 5px 14px;
+    border-radius: 50px;
+    border: 1px solid rgba(2, 132, 199, 0.2);
     display: inline-block;
-    width: 40px;
-    height: 2px;
-    background-color: var(--cf-accent, #c5a880);
-    margin-right: 15px;
+    width: fit-content;
+    text-decoration: none;
+    transition: all 0.2s ease;
   }
-  .nd-eyebrow.justify-content-center::after {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 2px;
-    background-color: var(--cf-accent, #c5a880);
-    margin-left: 15px;
+  .cf-blog-badge:hover {
+    background: #0284C7;
+    color: #FFFFFF;
   }
 
-  /* Hero Banner */
-  .blog-hero {
-    background: linear-gradient(rgba(14, 90, 79, 0.8), rgba(14, 90, 79, 0.9)), url('{% static "/images/footer_banner.png" %}');
-    background-size: cover;
-    background-position: center;
-    padding: 220px 0 140px;
-    color: #fff;
-    text-align: center;
-  }
-  .blog-hero h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-    font-family: var(--cf-font-head);
-  }
-  .blog-hero p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0.9;
-  }
-
-  /* Featured Article */
-  .featured-post-card {
-    background: #fff;
-    border-radius: 16px;
+  /* Featured Post Card */
+  .cf-featured-card {
+    background: #FFFFFF;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-    display: flex;
-    flex-direction: column;
+    box-shadow: 0 12px 35px rgba(8, 28, 51, 0.07);
+    border: 1.5px solid #E2E8F0;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     margin-bottom: 50px;
-    border: 1px solid rgba(0,0,0,0.05);
   }
-  @media (min-width: 992px) {
-    .featured-post-card {
-      flex-direction: row;
-    }
-    .featured-post-img {
-      width: 55%;
-      min-height: 400px;
-    }
-    .featured-post-content {
-      width: 45%;
-    }
+  .cf-featured-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 45px rgba(2, 132, 199, 0.15);
+    border-color: #BAE6FD;
   }
-  .featured-post-img {
-    background-size: cover;
-    background-position: center;
-    min-height: 250px;
+  .cf-featured-img {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
   }
-  .featured-post-content {
+  .cf-featured-card:hover .cf-featured-img {
+    transform: scale(1.04);
+  }
+  .cf-featured-content {
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .badge-category {
-    background-color: rgba(197, 168, 128, 0.2);
-    color: var(--cf-accent-dark);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-block;
-    margin-bottom: 15px;
-  }
-  .featured-post-title {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--cf-primary-dark);
-    margin-bottom: 15px;
-    line-height: 1.2;
+  .cf-featured-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    font-weight: 800;
+    color: #081C33;
+    line-height: 1.3;
+    margin: 14px 0 16px;
     text-decoration: none;
+    transition: color 0.2s ease;
   }
-  .featured-post-title:hover {
-    color: var(--cf-accent);
+  .cf-featured-title:hover {
+    color: #0284C7;
   }
-  
-  /* Blog Grid */
-  .blog-card {
-    background: #fff;
-    border-radius: 12px;
+
+  /* Standard Blog Card */
+  .cf-blog-card {
+    background: #FFFFFF;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(8, 28, 51, 0.05);
+    border: 1.5px solid #E2E8F0;
     height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.03);
     display: flex;
     flex-direction: column;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
   }
-  .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  .cf-blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(2, 132, 199, 0.14);
+    border-color: #BAE6FD;
   }
-  .blog-card-img-wrapper {
+  .cf-blog-thumb-wrap {
     height: 220px;
     overflow: hidden;
+    position: relative;
+    background: #081C33;
   }
-  .blog-card-img {
+  .cf-blog-thumb {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    display: block;
   }
-  .blog-card:hover .blog-card-img {
-    transform: scale(1.05);
+  .cf-blog-card:hover .cf-blog-thumb {
+    transform: scale(1.06);
   }
-  .blog-card-body {
-    padding: 25px;
-    flex-grow: 1;
+  .cf-blog-body {
+    padding: 24px;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
   }
-  .blog-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--cf-primary-dark);
-    margin: 15px 0;
+  .cf-blog-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #081C33;
+    margin: 12px 0 10px;
+    line-height: 1.45;
     text-decoration: none;
-    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s ease;
   }
-  .blog-title:hover {
-    color: var(--cf-accent);
+  .cf-blog-card:hover .cf-blog-title {
+    color: #0284C7;
   }
-  .blog-meta {
-    font-size: 0.85rem;
-    color: #6c757d;
+  .cf-blog-excerpt {
+    color: #64748B;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .cf-blog-meta {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid #F1F5F9;
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid #f0f0f0;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: #94A3B8;
+    font-weight: 600;
   }
-  
-  /* Sidebar */
-  .sidebar-widget {
-    background: #fff;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    margin-bottom: 30px;
-    border: 1px solid rgba(0,0,0,0.04);
+
+  /* Sidebar Widgets */
+  .cf-sidebar-widget {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 8px 25px rgba(8, 28, 51, 0.04);
+    border: 1.5px solid #E2E8F0;
+    margin-bottom: 28px;
   }
-  .sidebar-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--cf-primary-dark);
-    margin-bottom: 20px;
-    position: relative;
+  .cf-sidebar-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #081C33;
+    margin-bottom: 18px;
     padding-bottom: 10px;
+    border-bottom: 2px solid #F1F5F9;
+    position: relative;
   }
-  .sidebar-title::after {
+  .cf-sidebar-title::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
-    width: 50px;
-    height: 3px;
-    background: var(--cf-accent);
+    width: 35px;
+    height: 2px;
+    background: #0284C7;
   }
-  
-  /* Categories Filter */
-  .category-list {
+
+  /* Category pills in sidebar */
+  .cf-cat-pills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
   }
-  .category-list a {
+  .cf-cat-pill {
     display: inline-block;
-    padding: 8px 16px;
-    background: #f8f9fa;
-    color: #495057;
-    border-radius: 20px;
+    padding: 7px 16px;
+    background: #F8FAFC;
+    color: #475569;
+    border-radius: 50px;
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    border: 1px solid #e9ecef;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid #E2E8F0;
+    transition: all 0.2s ease;
   }
-  .category-list a:hover, .category-list a.active {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    border-color: var(--cf-primary-dark);
+  .cf-cat-pill:hover, .cf-cat-pill.active {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF;
+    border-color: #0284C7;
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
   }
 
-  /* Popular Posts list */
-  .popular-post-item {
+  /* Popular Post item */
+  .cf-pop-item {
     display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 14px;
+    margin-bottom: 16px;
+    align-items: center;
   }
-  .popular-post-item:last-child {
+  .cf-pop-item:last-child {
     margin-bottom: 0;
   }
-  .popular-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
+  .cf-pop-thumb {
+    width: 75px;
+    height: 75px;
+    border-radius: 12px;
     object-fit: cover;
+    flex-shrink: 0;
   }
-  .popular-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--cf-primary-dark);
+  .cf-pop-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #081C33;
+    line-height: 1.35;
     text-decoration: none;
-    line-height: 1.3;
-  }
-  .popular-title:hover {
-    color: var(--cf-accent);
-  }
-
-  /* Search */
-  .search-form .input-group {
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    border-radius: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
+    transition: color 0.2s ease;
   }
-  .search-form .form-control {
-    border: none;
-    padding: 12px 15px;
-  }
-  .search-form .btn {
-    background: var(--cf-accent);
-    color: white;
-    border: none;
-    padding: 0 20px;
-  }
-  .search-form .btn:hover {
-    background: var(--cf-accent-dark);
+  .cf-pop-title:hover {
+    color: #0284C7;
   }
 
-  /* Newsletter */
-  .newsletter-widget {
-    background: var(--cf-primary-dark);
-    color: #fff;
+  /* Newsletter Box */
+  .cf-newsletter-card {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%);
+    color: #FFFFFF;
+    border-radius: 20px;
+    padding: 30px 24px;
     text-align: center;
+    border: none;
   }
-  .newsletter-widget .sidebar-title {
-    color: #fff;
+  .cf-newsletter-card .cf-sidebar-title {
+    color: #FFFFFF;
+    border-bottom-color: rgba(255, 255, 255, 0.15);
   }
-  .newsletter-widget .sidebar-title::after {
+  .cf-newsletter-card .cf-sidebar-title::after {
+    background: #38BDF8;
     left: 50%;
     transform: translateX(-50%);
   }
-
 </style>
 {% endblock %}
 
 {% block content %}
 
 <!-- 1. HERO BANNER -->
-<section class="blog-hero">
-  <div class="container">
-    <h1>{% trans "Dental Health Blog" %}</h1>
-    <p>{% trans "Explore expert advice, latest clinic news, and comprehensive guides to help you maintain a perfect, healthy smile." %}</p>
+<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.60) 0%, rgba(11,37,69,0.50) 60%, rgba(3,105,161,0.40) 100%), url('{% static "main/img/hero_bg.jpeg" %}') center/cover no-repeat;">
+  <div class="hero-inner container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
+        <li class="breadcrumb-item active text-warning fw-bold">{% trans "Blog" %}</li>
+      </ol>
+    </nav>
+    <div class="cf-eyebrow-badge justify-content-center mb-3 text-white border-white-50 bg-white-10">
+      <i class="bi bi-journal-medical text-warning"></i> {% trans "CLINICAL ARTICLES & ORAL CARE GUIDES" %}
+    </div>
+    <h1 class="display-4 fw-bold text-white mb-3">
+      {% trans "Dental Health & Care Articles" %}
+    </h1>
+    <p class="hero-sub mx-auto text-white opacity-75" style="font-size: 1.15rem; max-width: 720px;">
+      {% trans "Expert clinical advice, treatment breakdowns, and oral hygiene tips written by the dental surgeons at CareFirst Dental Clinic." %}
+    </p>
   </div>
 </section>
 
-<section class="section-py bg-light" style="padding-top: 60px;">
+<!-- 2. BLOG CONTENT SECTION -->
+<section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     
     {% if search_query or active_category %}
-    <div class="mb-5 text-center">
-      <h3 class="fw-bold">
-        {% if search_query %}Search Results for "{{ search_query }}"{% endif %}
-        {% if active_category %}Category: {{ active_category.name }}{% endif %}
+    <div class="mb-5 text-center bg-white p-4 rounded-4 shadow-sm border">
+      <h3 class="fw-bold mb-2" style="color: #081C33;">
+        {% if search_query %}Search Results for <span class="text-primary">"{{ search_query }}"</span>{% endif %}
+        {% if active_category %}Category: <span class="text-primary">{{ active_category.name }}</span>{% endif %}
       </h3>
-      <a href="{% url 'blogs:blog_list' %}" class="btn btn-outline-secondary btn-sm mt-2">{% trans "Clear Filters" %}</a>
+      <a href="{% url 'blogs:blog_list' %}" class="btn btn-sm btn-outline-secondary rounded-pill px-4 mt-2">
+        <i class="bi bi-x-circle me-1"></i>{% trans "Clear Filters" %}
+      </a>
     </div>
     {% endif %}
 
-    <!-- 2. FEATURED ARTICLE -->
+    <!-- FEATURED ARTICLE -->
     {% if featured_post and not search_query and not active_category %}
-    <div class="featured-post-card">
-      <div class="featured-post-img" style="background-image: url('{% if featured_post.featured_image %}{{ featured_post.featured_image.url }}{% else %}{% static 'images/hero_bg.png' %}{% endif %}');"></div>
-      <div class="featured-post-content">
-        <div>
-          <span class="badge-category">{{ featured_post.category.name }}</span>
-          <a href="{% url 'blogs:post_detail' featured_post.slug %}" class="d-block featured-post-title">{{ featured_post.title }}</a>
-          <p class="text-muted mb-4">{{ featured_post.excerpt }}</p>
+    <div class="cf-featured-card">
+      <div class="row g-0 align-items-center">
+        <div class="col-lg-7 position-relative overflow-hidden" style="min-height: 360px;">
+          {% if featured_post.featured_image %}
+          <img loading="lazy" src="{{ featured_post.featured_image.url }}" alt="{{ featured_post.title }}" class="cf-featured-img">
+          {% else %}
+          <img loading="lazy" src="{% static 'main/img/niko1.jpeg' %}" alt="{{ featured_post.title }}" class="cf-featured-img">
+          {% endif %}
         </div>
-        <div class="d-flex align-items-center justify-content-between mt-auto pt-4 border-top">
-          <div class="d-flex align-items-center gap-3">
-            <i class="bi bi-person-circle fs-3 text-gold"></i>
-            <div>
-              <div class="fw-bold text-dark small">{{ featured_post.author }}</div>
-              <div class="text-muted small">{{ featured_post.published_date|date:"M d, Y" }} &bull; {{ featured_post.reading_time }}</div>
+        <div class="col-lg-5">
+          <div class="cf-featured-content">
+            <span class="cf-blog-badge">{{ featured_post.category.name }}</span>
+            <a href="{% url 'blogs:post_detail' featured_post.slug %}" class="cf-featured-title">{{ featured_post.title }}</a>
+            <p class="text-muted mb-4" style="line-height: 1.7; font-size: 0.95rem;">{{ featured_post.excerpt }}</p>
+            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-person-circle fs-4 text-primary"></i>
+                <div>
+                  <div class="fw-bold text-dark small">{{ featured_post.author }}</div>
+                  <div class="text-muted small">{{ featured_post.published_date|date:"M d, Y" }} &bull; {{ featured_post.reading_time }}</div>
+                </div>
+              </div>
+              <a href="{% url 'blogs:post_detail' featured_post.slug %}" class="cf-btn-primary py-2 px-3 rounded-pill text-white text-decoration-none fw-bold small">
+                {% trans "Read Article" %} <i class="bi bi-arrow-right ms-1"></i>
+              </a>
             </div>
           </div>
-          <a href="{% url 'blogs:post_detail' featured_post.slug %}" class="btn btn-nd-gold">{% trans "Read More" %}</a>
         </div>
       </div>
     </div>
@@ -348,41 +337,43 @@
 
     <div class="row g-5">
       
-      <!-- MAIN CONTENT: LATEST ARTICLES GRID -->
+      <!-- MAIN ARTICLES GRID -->
       <div class="col-lg-8">
         <div class="mb-4 d-flex justify-content-between align-items-center">
-          <h2 class="fw-bold mb-0">{% trans "Latest Articles" %}</h2>
+          <h2 class="cf-section-title mb-0" style="font-size: 1.85rem;">{% trans "Latest" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Articles" %}</span></h2>
         </div>
 
         <div class="row g-4">
           {% for post in latest_posts %}
           <div class="col-md-6">
-            <div class="blog-card">
-              <div class="blog-card-img-wrapper">
+            <article class="cf-blog-card">
+              <div class="cf-blog-thumb-wrap">
                 <a href="{% url 'blogs:post_detail' post.slug %}">
                   {% if post.featured_image %}
-                  <img loading="lazy" src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="blog-card-img">
+                  <img loading="lazy" src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="cf-blog-thumb">
                   {% else %}
-                  <img loading="lazy" src="{% static 'images/hero_bg.png' %}" alt="{{ post.title }}" class="blog-card-img">
+                  <img loading="lazy" src="{% static 'main/img/niko1.jpeg' %}" alt="{{ post.title }}" class="cf-blog-thumb">
                   {% endif %}
                 </a>
               </div>
-              <div class="blog-card-body">
-                <div>
-                  <span class="badge-category">{{ post.category.name }}</span>
-                  <a href="{% url 'blogs:post_detail' post.slug %}" class="d-block blog-title">{{ post.title }}</a>
-                  <p class="text-muted small mb-0">{{ post.excerpt|truncatewords:20 }}</p>
-                </div>
-                <div class="blog-meta">
-                  <span><i class="bi bi-calendar3 me-1"></i> {{ post.published_date|date:"M d, Y" }}</span>
-                  <span><i class="bi bi-clock me-1"></i> {{ post.reading_time }}</span>
+              <div class="cf-blog-body">
+                <span class="cf-blog-badge mb-2">{{ post.category.name }}</span>
+                <a href="{% url 'blogs:post_detail' post.slug %}" class="cf-blog-title">{{ post.title }}</a>
+                <p class="cf-blog-excerpt">{{ post.excerpt }}</p>
+                <div class="cf-blog-meta">
+                  <span><i class="bi bi-calendar3 me-1"></i>{{ post.published_date|date:"M d, Y" }}</span>
+                  <span><i class="bi bi-clock me-1"></i>{{ post.reading_time }}</span>
                 </div>
               </div>
-            </div>
+            </article>
           </div>
           {% empty %}
-          <div class="col-12">
-            <div class="alert alert-info">{% trans "No articles found matching your criteria." %}</div>
+          <div class="col-12 text-center py-5">
+            <div class="bg-white rounded-4 p-5 shadow-sm border mx-auto" style="max-width: 460px;">
+              <i class="bi bi-journal-x text-primary fs-1 mb-3 d-block"></i>
+              <h5 class="fw-bold mb-2">{% trans "No Articles Found" %}</h5>
+              <p class="text-muted small mb-0">{% trans "Try adjusting your search query or browsing another category." %}</p>
+            </div>
           </div>
           {% endfor %}
         </div>
@@ -391,58 +382,60 @@
       <!-- SIDEBAR -->
       <div class="col-lg-4">
         
-        <!-- Search -->
-        <div class="sidebar-widget">
-          <h4 class="sidebar-title">{% trans "Search" %}</h4>
-          <form action="{% url 'blogs:blog_list' %}" method="GET" class="search-form">
+        <!-- Search Widget -->
+        <div class="cf-sidebar-widget">
+          <h4 class="cf-sidebar-title">{% trans "Search Articles" %}</h4>
+          <form action="{% url 'blogs:blog_list' %}" method="GET">
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search articles..." value="{{ search_query|default:'' }}">
-              <button class="btn" type="submit"><i class="bi bi-search"></i></button>
+              <input type="text" name="q" class="form-control rounded-start-pill ps-3 border-end-0" placeholder="Search dental topics..." value="{{ search_query|default:'' }}" style="border-color: #E2E8F0; font-size: 0.9rem;">
+              <button class="btn btn-primary rounded-end-pill px-4" type="submit" style="background: #0284C7; border-color: #0284C7;">
+                <i class="bi bi-search"></i>
+              </button>
             </div>
           </form>
         </div>
 
-        <!-- Categories -->
-        <div class="sidebar-widget">
-          <h4 class="sidebar-title">{% trans "Categories" %}</h4>
-          <ul class="category-list">
-            <li><a href="{% url 'blogs:blog_list' %}" class="{% if not active_category %}active{% endif %}">All</a></li>
+        <!-- Categories Widget -->
+        <div class="cf-sidebar-widget">
+          <h4 class="cf-sidebar-title">{% trans "Categories" %}</h4>
+          <ul class="cf-cat-pills-list">
+            <li><a href="{% url 'blogs:blog_list' %}" class="cf-cat-pill {% if not active_category %}active{% endif %}">All</a></li>
             {% for cat in categories %}
-            <li><a href="?category={{ cat.slug }}" class="{% if active_category.id == cat.id %}active{% endif %}">{{ cat.name }}</a></li>
+            <li><a href="?category={{ cat.slug }}" class="cf-cat-pill {% if active_category.id == cat.id %}active{% endif %}">{{ cat.name }}</a></li>
             {% endfor %}
           </ul>
         </div>
 
-        <!-- Popular Posts -->
-        <div class="sidebar-widget">
-          <h4 class="sidebar-title">{% trans "Popular Articles" %}</h4>
+        <!-- Popular Posts Widget -->
+        <div class="cf-sidebar-widget">
+          <h4 class="cf-sidebar-title">{% trans "Popular Reads" %}</h4>
           {% for pop in popular_posts %}
-          <div class="popular-post-item">
+          <div class="cf-pop-item">
             <a href="{% url 'blogs:post_detail' pop.slug %}">
               {% if pop.featured_image %}
-              <img loading="lazy" src="{{ pop.featured_image.url }}" alt="{{ pop.title }}" class="popular-img">
+              <img loading="lazy" src="{{ pop.featured_image.url }}" alt="{{ pop.title }}" class="cf-pop-thumb">
               {% else %}
-              <img loading="lazy" src="{% static 'images/hero_bg.png' %}" alt="{{ pop.title }}" class="popular-img">
+              <img loading="lazy" src="{% static 'main/img/niko1.jpeg' %}" alt="{{ pop.title }}" class="cf-pop-thumb">
               {% endif %}
             </a>
             <div>
-              <a href="{% url 'blogs:post_detail' pop.slug %}" class="popular-title">{{ pop.title }}</a>
-              <div class="text-muted small mt-1">{{ pop.published_date|date:"M d, Y" }}</div>
+              <a href="{% url 'blogs:post_detail' pop.slug %}" class="cf-pop-title">{{ pop.title }}</a>
+              <div class="text-muted small mt-1" style="font-size: 0.8rem;"><i class="bi bi-calendar3 me-1"></i>{{ pop.published_date|date:"M d, Y" }}</div>
             </div>
           </div>
           {% empty %}
-          <p class="text-muted small">{% trans "No popular articles yet." %}</p>
+          <p class="text-muted small mb-0">{% trans "Check out our latest guides above." %}</p>
           {% endfor %}
         </div>
 
-        <!-- Newsletter -->
-        <div class="sidebar-widget newsletter-widget">
-          <h4 class="sidebar-title">{% trans "Join Our Newsletter" %}</h4>
-          <p class="small mb-4">{% trans "Get the latest dental tips, guides, and clinic offers delivered straight to your inbox." %}</p>
-          <form>
-            <input type="email" class="form-control mb-3 text-center" placeholder="Your Email Address" required>
-            <button type="submit" class="btn btn-outline-light w-100 fw-bold">{% trans "Subscribe Now" %}</button>
-          </form>
+        <!-- Newsletter Widget -->
+        <div class="cf-newsletter-card">
+          <i class="bi bi-envelope-open-heart fs-1 text-warning mb-2 d-block"></i>
+          <h4 class="cf-sidebar-title">{% trans "Oral Health Tips" %}</h4>
+          <p class="small text-white-50 mb-3" style="line-height: 1.6;">{% trans "Get seasonal dental health tips, special clinic offers, and oral hygiene guides." %}</p>
+          <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success rounded-pill w-100 fw-bold py-2 shadow">
+            <i class="bi bi-whatsapp me-1"></i> {% trans "Connect on WhatsApp" %}
+          </a>
         </div>
 
       </div>
@@ -450,46 +443,23 @@
   </div>
 </section>
 
-<!-- FAQ SECTION -->
-<section class="section-py bg-white">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="text-center mb-5">
-          <h2 class="section-heading">{% trans "Dental" %}<span class="accent">FAQ</span></h2>
-          <p class="text-muted">{% trans "Quick answers to common questions about oral health and visiting our clinic." %}</p>
-        </div>
-        
-        <div class="accordion nd-accordion" id="blogFaq">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="faqOne">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqOne" aria-expanded="true">{% trans "How often should I visit the dentist?" %}</button>
-            </h2>
-            <div id="collapseFaqOne" class="accordion-collapse collapse show" data-bs-parent="#blogFaq">
-              <div class="accordion-body">{% trans "We recommend visiting for a routine check-up and professional cleaning every 6 months. However, if you have ongoing oral health issues like gum disease, we may suggest more frequent visits." %}</div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="faqTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqTwo" aria-expanded="false">{% trans "What are the early signs of gum disease?" %}</button>
-            </h2>
-            <div id="collapseFaqTwo" class="accordion-collapse collapse" data-bs-parent="#blogFaq">
-              <div class="accordion-body">{% trans "Early signs include red, swollen, or tender gums that bleed easily when you brush or floss. If you notice persistent bad breath or receding gums, schedule a consultation immediately." %}</div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="faqThree">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqThree" aria-expanded="false">{% trans "Are dental X-rays safe?" %}</button>
-            </h2>
-            <div id="collapseFaqThree" class="accordion-collapse collapse" data-bs-parent="#blogFaq">
-              <div class="accordion-body">{% trans "Yes, especially at Carefirst Dental Clinic where we use advanced Digital X-Rays (RVG). Digital X-rays emit up to 90% less radiation than traditional film X-rays and provide instant, highly accurate diagnostics." %}</div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- 3. CTA STRIP -->
+<div class="nd-cta-strip" id="consult">
+  <div class="cta-inner container text-center py-5">
+    <h2 class="mb-3 text-white fw-bold">{% trans "Have Questions About Your Dental Health?" %}</h2>
+    <p class="text-white-50 mb-4 mx-auto" style="max-width: 680px; font-size: 1.1rem;">
+      {% trans "Schedule a personalized consultation with Dr. Subash Banjade and our certified specialist team." %}
+    </p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-5 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Consultation" %}
+      </a>
+      <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-5 fw-bold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-telephone-fill"></i>{% trans "Call Clinic" %}
+      </a>
     </div>
   </div>
-</section>
-
+</div>
 
 {% endblock %}
+

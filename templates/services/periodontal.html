@@ -12,19 +12,19 @@
     background: #fff;
     border-radius: 12px;
     padding: 24px;
-    border: 1px solid rgba(14,90,79,0.08);
+    border: 1px solid #E2E8F0;
     height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .perio-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(14,90,79,0.08);
+    box-shadow: 0 12px 30px rgba(8,28,51,0.10);
   }
   .perio-icon-wrapper {
     width: 60px;
     height: 60px;
-    background: var(--cf-primary-tint);
-    color: var(--cf-primary);
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284C7;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -42,53 +42,57 @@
     background: #fff;
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
   }
-  .stage-1 { border-color: var(--cf-primary); }
+  .stage-1 { border-color: #0284C7; }
   .stage-2 { border-color: #ffc107; }
   .stage-3 { border-color: #fd7e14; }
   .stage-4 { border-color: #dc3545; }
 
-  /* Pricing Table */
-  .pricing-table {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(14,90,79,0.1);
-    border: 1px solid rgba(14,90,79,0.1);
+  /* CareFirst Pricing Card */
+  .cf-pricing-card {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 16px 40px rgba(8, 28, 51, 0.15) !important;
+    border: 1.5px solid #E2E8F0 !important;
   }
-  .pricing-header {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    padding: 24px;
-    text-align: center;
+  .cf-pricing-header {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    padding: 28px 24px !important;
+    text-align: center !important;
   }
-  .pricing-body {
-    padding: 0;
+  .cf-pricing-body {
+    padding: 24px 20px !important;
+    background: #FFFFFF !important;
   }
   .pricing-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 16px 20px;
+    border-bottom: 1px solid #F1F5F9;
+    border-radius: 12px;
   }
   .pricing-row:last-child {
     border-bottom: none;
   }
   .pricing-row .title {
     font-weight: 700;
-    color: var(--cf-primary-dark);
-    font-size: 1.1rem;
+    color: #0F172A !important;
+    font-size: 1.05rem;
     margin: 0;
   }
   .pricing-row .price {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    color: var(--cf-accent-dark);
-    font-family: var(--cf-font-head);
+    color: #0284C7 !important;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
   }
   .pricing-row .currency {
-    font-size: 0.9rem;
-    vertical-align: super;
+    font-size: 0.85rem;
+    color: #64748B !important;
+    font-weight: 600;
+    margin-right: 4px;
   }
 
   /* Gallery/Lightbox */
@@ -107,7 +111,7 @@
   .perio-gallery-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(14,90,79,0.7);
+    background: rgba(8,28,51,0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,7 +139,7 @@
     <h1><i class="bi bi-heart-pulse me-3 text-warning"></i>{% trans "Periodontal (Gum) Treatment" %}</h1>
     <p class="hero-sub mx-auto">{% trans "Protect the foundation of your smile with expert, comprehensive gum care therapies." %}</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Restore Gum Health" %}</a>
+      <a href="{% url 'main:contact' %}#book" class="cf-btn-primary py-3 px-5 rounded-pill fw-bold shadow-lg d-inline-block text-white text-decoration-none" style="font-size: 1.1rem;">{% trans "Restore Gum Health" %}</a>
     </div>
   </div>
 </section>
@@ -145,8 +149,8 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What is" %} <span class="accent">{% trans "Gum Disease?" %}</span></h2>
+        <div class="cf-eyebrow-badge"><i class="bi bi-info-circle"></i> {% trans "Introduction" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "What is" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Gum Disease?" %}</span></h2>
         <p class="text-muted" style="line-height:1.85;">
           {% trans "Periodontal disease (gum disease) is an infection of the tissues that hold your teeth in place. It is typically caused by poor brushing and flossing habits that allow plaque—a sticky film of bacteria—to build up on the teeth and harden." %}
         </p>
@@ -176,8 +180,8 @@
       <!-- Signs & Symptoms -->
       <div class="col-lg-6">
         <div class="bg-white p-5 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
-          <div class="nd-eyebrow">{% trans "Watch For These" %}</div>
-          <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">Signs & Symptoms</h3>
+          <div class="cf-eyebrow-badge"><i class="bi bi-exclamation-triangle"></i> {% trans "Watch For These" %}</div>
+          <h3 class="cf-section-title mb-4">Signs & Symptoms</h3>
           <p class="text-muted mb-4 small">{% trans "Gum disease can progress painlessly, producing few obvious signs, even in the late stages. However, watch out for:" %}</p>
           <ul class="symptom-list mb-0">
             <li><i class="bi bi-droplet text-danger fs-5"></i> <span><strong>{% trans "Bleeding Gums:" %}</strong> {% trans "Especially during brushing or flossing." %}</span></li>
@@ -192,8 +196,8 @@
       <!-- Causes -->
       <div class="col-lg-6">
         <div class="bg-white p-5 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
-          <div class="nd-eyebrow">{% trans "The Root of the Problem" %}</div>
-          <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">Causes & Risk Factors</h3>
+          <div class="cf-eyebrow-badge"><i class="bi bi-search"></i> {% trans "The Root of the Problem" %}</div>
+          <h3 class="cf-section-title mb-4">Causes & Risk Factors</h3>
           <p class="text-muted mb-4 small">{% trans "While plaque is the primary cause, other factors can significantly increase your risk of developing severe gum disease." %}</p>
           <ul class="symptom-list mb-0">
             <li><i class="bi bi-brush text-secondary fs-5"></i> <span><strong>{% trans "Poor Oral Hygiene:" %}</strong> {% trans "Inadequate brushing and flossing." %}</span></li>
@@ -212,8 +216,8 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Disease Progression" %}</div>
-      <h2 class="section-heading">{% trans "Stages of" %} <span class="accent">{% trans "Gum Disease" %}</span></h2>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-graph-up"></i> {% trans "Disease Progression" %}</div>
+      <h2 class="cf-section-title">{% trans "Stages of" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Gum Disease" %}</span></h2>
       <p class="text-muted mx-auto mt-3" style="max-width: 700px;">{% trans "Catching gum disease early is critical to preventing irreversible bone and tooth loss." %}</p>
     </div>
 
@@ -247,8 +251,8 @@
       
       <!-- Treatments Offered -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "Solutions" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Periodontal Treatments We Offer" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-bandaid"></i> {% trans "Solutions" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Periodontal Treatments We Offer" %}</h3>
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="perio-card">
@@ -283,8 +287,8 @@
 
       <!-- Why Niko / Benefits -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "The Benefits" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-award"></i> {% trans "The Benefits" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
         <p class="text-muted mb-4">{% trans "Halting gum disease protects much more than just your teeth; it protects your overall systemic health." %}</p>
         <ul class="symptom-list mb-0">
           <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Prevents Tooth Loss:" %}</strong> {% trans "Save natural teeth from needing extraction." %}</span></li>
@@ -299,14 +303,14 @@
 </section>
 
 <!-- 6. TREATMENT PROCESS & PRICING -->
-<section class="section-py" style="background:var(--cf-primary-dark); color:#fff;">
+<section class="section-py" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%); color:#fff;">
   <div class="container">
     <div class="row g-5 align-items-center">
       
       <!-- Step-by-Step -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Our Treatment" %} <span class="text-warning">{% trans "Process" %}</span></h2>
+        <div class="cf-eyebrow-badge text-white-50 border-white-50"><i class="bi bi-list-check"></i> {% trans "The Procedure" %}</div>
+        <h2 class="cf-section-title text-white mb-5" style="color: #fff !important;">{% trans "Our Treatment" %} <span class="text-warning">{% trans "Process" %}</span></h2>
         
         <div class="d-flex mb-4 position-relative">
           <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
@@ -343,12 +347,12 @@
       
       <!-- PRICING TABLE -->
       <div class="col-lg-5">
-        <div class="pricing-table">
-          <div class="pricing-header">
+        <div class="cf-pricing-card">
+          <div class="cf-pricing-header">
             <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
             <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing</p>
           </div>
-          <div class="pricing-body">
+          <div class="cf-pricing-body">
             
             <div class="pricing-row">
               <div>
@@ -384,7 +388,7 @@
               <p class="small text-muted mb-4 fst-italic">
                 {% trans "* Note: The final treatment cost heavily depends on the severity of the gum condition and the number of quadrants requiring intervention." %}
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Examination" %}</a>
+              <a href="{% url 'main:contact' %}#book" class="cf-btn-primary w-100 rounded-pill py-3 fw-bold d-inline-block text-center text-white text-decoration-none">{% trans "Schedule Examination" %}</a>
             </div>
 
           </div>
@@ -398,8 +402,8 @@
 <section class="section-py bg-light">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Real Results" %}</div>
-      <h2 class="section-heading">{% trans "Treatment" %} <span class="accent">{% trans "Gallery" %}</span></h2>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-camera"></i> {% trans "Real Results" %}</div>
+      <h2 class="cf-section-title">{% trans "Treatment" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Gallery" %}</span></h2>
       <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "See the incredible difference our periodontal therapies can make in restoring gum health and aesthetics." %}</p>
     </div>
     
@@ -448,8 +452,8 @@
       
       <!-- Testimonials -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Patient Stories" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Life with Healthy Gums" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-chat-heart"></i> {% trans "Patient Stories" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Life with Healthy Gums" %}</h3>
         
         <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative mb-4">
           <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
@@ -467,8 +471,8 @@
 
       <!-- FAQ -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Frequently Asked Questions" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-question-circle"></i> {% trans "FAQ" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -529,8 +533,10 @@
     <h2>{% blocktrans %}Don't Ignore Bleeding Gums!{% endblocktrans %}</h2>
     <p>{% trans "Early intervention is the key to preventing tooth loss. Schedule a periodontal assessment today to protect your smile." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Assessment" %}</a>
-      <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Assessment" %}
+      </a>
+      <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
         <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
       </a>
     </div>

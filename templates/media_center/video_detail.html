@@ -14,18 +14,20 @@
 <script type="application/ld+json">
 {{ video_schema|safe }}
 </script>
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
 <style>
   .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio by default */
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     height: 0;
     overflow: hidden;
     max-width: 100%;
-    background: #000;
-    border-radius: 12px;
+    background: #081C33;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(8, 28, 51, 0.15);
   }
   .video-container.tiktok-container {
-    padding-bottom: 177.77%; /* 9:16 Aspect Ratio for TikTok/Shorts */
+    padding-bottom: 177.77%; /* 9:16 Aspect Ratio */
     max-width: 400px;
     margin: 0 auto;
   }
@@ -37,6 +39,17 @@
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 16px;
+  }
+  .sidebar-video-item {
+    transition: all 0.25s ease;
+    border: 1px solid transparent;
+  }
+  .sidebar-video-item:hover {
+    background-color: #FFFFFF !important;
+    border-color: #BAE6FD !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.1);
   }
 </style>
 {% endblock %}
@@ -47,70 +60,67 @@
     
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb" class="mb-4">
-      <ol class="breadcrumb small">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'media_center:video_list' %}">Videos</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ video.title }}</li>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-muted text-decoration-none">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'media_center:video_list' %}" class="text-muted text-decoration-none">Video Library</a></li>
+        <li class="breadcrumb-item active text-primary fw-bold" aria-current="page">{{ video.title|truncatewords:6 }}</li>
       </ol>
     </nav>
     
     <div class="row g-5">
       <div class="col-lg-8">
-        <h1 class="h2 fw-bold mb-3 text-dark" style="line-height: 1.3;">{{ video.title }}</h1>
-        <div class="d-flex align-items-center text-muted small mb-4 gap-3">
-          <span><i class="bi bi-calendar-event me-1"></i> {{ video.published_date|date:"F j, Y" }}</span>
+        <h1 class="h2 fw-bold mb-3 text-dark" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); line-height: 1.3;">{{ video.title }}</h1>
+        <div class="d-flex align-items-center text-muted small mb-4 gap-3 flex-wrap">
+          <span><i class="bi bi-calendar-event me-1 text-primary"></i> {{ video.published_date|date:"F j, Y" }}</span>
           {% if video.category %}
-            <span><i class="bi bi-tag me-1"></i> {{ video.category.name }}</span>
+            <span class="badge bg-light text-primary border"><i class="bi bi-tag me-1"></i> {{ video.category.name }}</span>
           {% endif %}
-          <span class="badge bg-secondary text-capitalize">{{ video.platform }}</span>
+          <span class="badge text-capitalize text-white" style="background: #0284C7;"><i class="bi bi-play-btn me-1"></i>{{ video.platform }}</span>
         </div>
         
-        <div class="video-container shadow-sm mb-4 {% if video.platform == 'tiktok' or video.platform == 'instagram' %}tiktok-container{% endif %}">
+        <div class="video-container shadow mb-4 {% if video.platform == 'tiktok' or video.platform == 'instagram' %}tiktok-container{% endif %}">
           {% if video.embed_code %}
             {{ video.embed_code|safe }}
           {% elif video.get_embed_url %}
             <iframe src="{{ video.get_embed_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           {% else %}
-            <!-- Fallback if only URL is provided and we can't embed (e.g. some FB/TikTok raw links) -->
             <a href="{{ video.video_url }}" target="_blank" class="d-flex align-items-center justify-content-center h-100 text-white text-decoration-none">
               <div class="text-center">
-                <i class="bi bi-play-circle fs-1 mb-2 d-block"></i>
-                {% trans "Watch Video (Opens in new tab)" %}
+                <i class="bi bi-play-circle fs-1 mb-2 d-block text-warning"></i>
+                {% trans "Watch Video on External Platform" %}
               </div>
             </a>
           {% endif %}
         </div>
         
-        <div class="video-description">
-          <p class="lead">{{ video.short_description }}</p>
+        <div class="video-description p-4 rounded-4 bg-light border mb-4">
+          <h5 class="fw-bold mb-2" style="color: #081C33;">{% trans "About This Video" %}</h5>
+          <p class="mb-0 text-muted" style="line-height: 1.75; font-size: 1.05rem;">{{ video.short_description }}</p>
         </div>
       </div>
       
       <div class="col-lg-4">
         {% if related_videos %}
-        <div class="card border-0 bg-light p-4 rounded-4 mb-4">
-          <h4 class="h5 fw-bold mb-3">{% trans "Related Videos" %}</h4>
+        <div class="card border-0 bg-light p-4 rounded-4 mb-4 border">
+          <h4 class="h5 fw-bold mb-3" style="color: #081C33;">{% trans "Related Videos" %}</h4>
           <div class="d-flex flex-column gap-3">
             {% for r_video in related_videos %}
-            <a href="{% url 'media_center:video_detail' r_video.slug %}" class="text-decoration-none text-dark d-flex gap-3 align-items-center sidebar-video-item rounded p-2" style="transition: background 0.2s ease;">
+            <a href="{% url 'media_center:video_detail' r_video.slug %}" class="text-decoration-none text-dark d-flex gap-3 align-items-center sidebar-video-item rounded-3 p-2">
               <img loading="lazy" src="{{ r_video.get_thumbnail }}" alt="{{ r_video.title }}" class="rounded shadow-sm" width="110" height="62" style="object-fit: cover; aspect-ratio: 16/9; flex-shrink: 0;">
-              <span class="small fw-semibold" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4;">{{ r_video.title }}</span>
+              <span class="small fw-bold text-dark" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4;">{{ r_video.title }}</span>
             </a>
             {% endfor %}
-            <style>
-              .sidebar-video-item:hover { background-color: #fff; }
-            </style>
           </div>
         </div>
         {% endif %}
         
         {% if video.related_service %}
-        <div class="card border-0 p-4 rounded-4 shadow-sm" style="background: linear-gradient(145deg, #fdfbf7 0%, #f6f0e3 100%);">
-          <h4 class="h5 fw-bold mb-3 text-dark">
-            <i class="bi bi-star-fill text-warning me-2"></i>{% trans "Related Service" %}
+        <div class="card border-0 p-4 rounded-4 shadow-sm" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 100%); color: #fff;">
+          <h4 class="h5 fw-bold mb-2 text-white">
+            <i class="bi bi-stars text-warning me-2"></i>{% trans "Related Dental Service" %}
           </h4>
-          <p class="small mb-4 text-muted" style="line-height: 1.5;">{% trans "Learn more about our expert service related to this video." %}</p>
-          <a href="{% url 'main:service_detail' video.related_service.slug %}" class="btn btn-sm w-100 fw-bold shadow-sm rounded-pill" style="background-color: var(--cf-accent); color: #000; padding: 10px 0;">
+          <p class="small mb-4 text-white-50" style="line-height: 1.5;">{% trans "Interested in this treatment? Explore detailed pricing, procedure steps, and clinic cases." %}</p>
+          <a href="{% url 'main:service_detail' video.related_service.slug %}" class="cf-btn-primary w-100 text-center py-2 px-3 rounded-pill fw-bold text-white text-decoration-none shadow">
             {{ video.related_service.title }} <i class="bi bi-arrow-right ms-1"></i>
           </a>
         </div>
@@ -119,4 +129,22 @@
     </div>
   </div>
 </section>
+
+<!-- CTA STRIP -->
+<div class="nd-cta-strip" id="book">
+  <div class="cta-inner container">
+    <h2>{% trans "Ready for Your Smile Consultation?" %}</h2>
+    <p>{% trans "Experience pain-free dental care with digital diagnostics and custom treatment plans." %}</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Consultation" %}
+      </a>
+      <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+      </a>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
+
