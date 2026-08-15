@@ -52,47 +52,51 @@
   }
   
   /* Pricing Table */
-  .pricing-table {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(14,90,79,0.1);
-    border: 1px solid rgba(14,90,79,0.1);
+  .cf-pricing-card {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 16px 40px rgba(8, 28, 51, 0.15) !important;
+    border: 1.5px solid #E2E8F0 !important;
   }
-  .pricing-header {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    padding: 24px;
-    text-align: center;
+  .cf-pricing-header {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    padding: 28px 24px !important;
+    text-align: center !important;
   }
-  .pricing-body {
-    padding: 0;
+  .cf-pricing-body {
+    padding: 24px 20px !important;
+    background: #FFFFFF !important;
   }
   .pricing-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 16px 20px;
+    border-bottom: 1px solid #F1F5F9;
+    border-radius: 12px;
   }
   .pricing-row:last-child {
     border-bottom: none;
   }
   .pricing-row .title {
     font-weight: 700;
-    color: var(--cf-primary-dark);
-    font-size: 1.1rem;
+    color: #0F172A !important;
+    font-size: 1.05rem;
     margin: 0;
   }
   .pricing-row .price {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    color: var(--cf-accent-dark);
-    font-family: var(--cf-font-head);
+    color: #0284C7 !important;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
   }
   .pricing-row .currency {
-    font-size: 0.9rem;
-    vertical-align: super;
+    font-size: 0.85rem;
+    color: #64748B !important;
+    font-weight: 600;
+    margin-right: 4px;
   }
 
   /* Gallery */
@@ -279,19 +283,19 @@
 {% block content %}
 
 <!-- 1. HERO BANNER -->
-<section class="service-hero text-center" style="background-image: url('{% static "/images/crown_during.png" %}');">
+<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.85) 0%, rgba(11,37,69,0.80) 60%, rgba(3,105,161,0.75) 100%), url('{% static "images/crown_during.png" %}') center/cover no-repeat;">
   <div class="hero-inner container">
-    <nav aria-label="breadcrumb" class="mb-3">
+    <nav aria-label="breadcrumb" class="mb-4">
       <ol class="breadcrumb justify-content-center mb-0">
         <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
         <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
-        <li class="breadcrumb-item active text-warning">Crowns & Bridges</li>
+        <li class="breadcrumb-item active text-warning fw-bold">{% trans "Crowns & Bridges" %}</li>
       </ol>
     </nav>
-    <h1><i class="bi bi-shield-check me-3 text-warning"></i>Crowns & Bridges</h1>
-    <p class="hero-sub mx-auto">{% trans "Restore the strength, function, and aesthetics of damaged or missing teeth." %}</p>
-    <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Restore Your Smile" %}</a>
+    <h1 class="display-4 fw-bold text-white mb-3"><i class="bi bi-shield-check me-3 text-warning"></i>{% trans "Crowns & Bridges" %}</h1>
+    <p class="hero-sub mx-auto text-white opacity-75 mb-4" style="font-size: 1.25rem;">{% trans "Restore the strength, function, and aesthetics of damaged or missing teeth." %}</p>
+    <div class="mt-5">
+      <a href="{% url 'main:contact' %}#book" class="cf-btn-primary py-3 px-5 rounded-pill fw-bold shadow-lg d-inline-block text-white text-decoration-none" style="font-size: 1.1rem;">{% trans "Restore Your Smile" %}</a>
     </div>
   </div>
 </section>
@@ -301,8 +305,8 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What Are" %} <span class="accent">Crowns & Bridges?</span></h2>
+        <div class="cf-eyebrow-badge"><i class="bi bi-info-circle"></i> {% trans "Introduction" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "What Are" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Crowns & Bridges?" %}</span></h2>
         <p class="text-muted" style="line-height:1.85;">
           {% trans "Crowns and bridges are fixed prosthetic devices cemented onto existing teeth or implants. Unlike dentures, which you can take out and clean daily, crowns and bridges can only be removed by a dentist." %}
         </p>
@@ -328,8 +332,8 @@
 <section class="section-py" style="background:var(--cf-bg-light);">
   <div class="container">
     <div class="text-center mb-5 pb-3">
-      <div class="nd-eyebrow justify-content-center">{% trans "Custom Solutions" %}</div>
-      <h2 class="section-heading" style="color: var(--cf-primary-dark);">{% trans "Types of" %} <span style="color: var(--cf-accent);">{% trans "Crowns" %}</span></h2>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-gem"></i> {% trans "Custom Solutions" %}</div>
+      <h2 class="cf-section-title">{% trans "Types of" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Crowns" %}</span></h2>
       <p class="text-muted mx-auto mt-2 fs-5">{% trans "High-quality materials. Natural results. Long-lasting smiles." %}</p>
     </div>
     
@@ -481,8 +485,8 @@
     <div class="row g-5">
       <!-- Benefits -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "Advantages" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">Benefits of Crowns & Bridges</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-stars"></i> {% trans "Advantages" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Benefits of Crowns & Bridges" %}</h3>
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="cb-card">
@@ -515,10 +519,10 @@
         </div>
       </div>
       
-      <!-- Why Niko -->
+      <!-- Why Us -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Why Us?" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-shield-check"></i> {% trans "Why Us?" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
         <ul class="symptom-list mb-0">
           <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Digital Impressions:" %}</strong> {% trans "We use precise 3D scanners instead of messy, uncomfortable putty to mold your teeth." %}</span></li>
           <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Top-tier Labs:" %}</strong> {% trans "Our crowns are milled by expert technicians ensuring a perfect, micro-precise fit." %}</span></li>
@@ -531,59 +535,66 @@
 </section>
 
 <!-- 5. PROCESS & PRICING -->
-<section class="section-py" style="background:var(--cf-primary-dark); color:#fff;">
+<section class="section-py" style="background: #3B6997; color:#fff;">
   <div class="container">
     <div class="row g-5 align-items-center">
       
       <!-- Step-by-Step -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Our Treatment" %} <span class="text-warning">{% trans "Process" %}</span></h2>
+        <div class="cf-eyebrow-badge justify-content-start border-white text-white" style="background: rgba(255,255,255,0.1);"><i class="bi bi-list-ol"></i> {% trans "The Procedure" %}</div>
+        <h2 class="cf-section-title text-white mb-5">{% trans "Our Treatment" %} <span class="text-warning">{% trans "Process" %}</span></h2>
         
-        <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
-          <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
-          <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Preparation" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "The tooth is numbed, and a thin layer of enamel is shaved off to make room for the crown to fit over it perfectly." %}</p>
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <div class="d-flex">
+              <div class="fs-3 text-info me-3"><i class="bi bi-1-circle-fill"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1 text-info">{% trans "1. Preparation" %}</h6>
+                <p class="text-white small opacity-75">{% trans "The tooth is numbed, and a thin layer of enamel is shaped to make room for the crown to fit over it perfectly." %}</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
-          <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
-          <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Digital Impressions" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "We take a precise 3D scan of your mouth and send the data to our dental lab to custom-mill your crown or bridge." %}</p>
+          <div class="col-md-6">
+            <div class="d-flex">
+              <div class="fs-3 text-warning me-3"><i class="bi bi-2-circle-fill"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1 text-warning">{% trans "2. Digital Impressions" %}</h6>
+                <p class="text-white small opacity-75">{% trans "We take a precise 3D scan of your mouth and send the data to our dental lab to custom-mill your crown or bridge." %}</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
-          <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
-          <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Temporary Placement" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "While your permanent crown is being made (usually takes a few days), we place a temporary acrylic crown to protect your tooth." %}</p>
+          <div class="col-md-6">
+            <div class="d-flex">
+              <div class="fs-3 text-success me-3"><i class="bi bi-3-circle-fill"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1 text-success">{% trans "3. Temporary Placement" %}</h6>
+                <p class="text-white small opacity-75">{% trans "While your permanent crown is being crafted, we place a temporary crown to protect your tooth." %}</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="d-flex">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
-          <div>
-            <h5 class="fw-bold text-white mb-1">{% trans "Final Cementation" %}</h5>
-            <p class="text-white-50 mb-0">{% trans "On your second visit, we remove the temporary, check the fit and color of the permanent crown, and cement it permanently in place." %}</p>
+          <div class="col-md-6">
+            <div class="d-flex">
+              <div class="fs-3 me-3" style="color: #FBBF24;"><i class="bi bi-4-circle-fill"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: #FBBF24;">{% trans "4. Final Cementation" %}</h6>
+                <p class="text-white small opacity-75">{% trans "On your return visit, we verify the fit, shade, and bite, then permanently bond the crown in place." %}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       
       <!-- PRICING TABLE -->
       <div class="col-lg-5">
-        <div class="pricing-table">
-          <div class="pricing-header">
-            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
-            <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing (Per Unit)</p>
+        <div class="cf-pricing-card h-100 shadow-lg sticky-top" style="top: 100px;">
+          <div class="cf-pricing-header text-center">
+            <h3 class="fw-bold text-white mb-0">{% trans "Treatment Charges" %}</h3>
+            <p class="text-white-50 small mb-0 mt-2">{% trans "Clear & Transparent Pricing (Per Unit)" %}</p>
           </div>
-          <div class="pricing-body">
+          <div class="cf-pricing-body">
             
-            <div class="pricing-row">
-              <div>
+            <div class="pricing-row mb-2">
+              <div class="text-start">
                 <p class="title">{% trans "Metal Crown" %}</p>
                 <p class="text-muted small mb-0 mt-1">{% trans "Durable, non-aesthetic" %}</p>
               </div>
@@ -592,8 +603,8 @@
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--cf-primary-tint);">
-              <div>
+            <div class="pricing-row mb-2" style="background-color: #F8FAFC !important;">
+              <div class="text-start">
                 <p class="title">{% trans "PFM Crown" %}</p>
                 <p class="text-muted small mb-0 mt-1">{% trans "Porcelain Fused to Metal" %}</p>
               </div>
@@ -602,31 +613,31 @@
               </div>
             </div>
             
-            <div class="pricing-row">
-              <div>
-                <p class="title text-success">{% trans "Zirconia Crown" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "High strength, aesthetic" %}</p>
+            <div class="pricing-row mb-2">
+              <div class="text-start">
+                <p class="title text-primary" style="color: #0284C7 !important;">{% trans "Zirconia Crown" %}</p>
+                <p class="text-muted small mb-0 mt-1">{% trans "High strength, natural aesthetic" %}</p>
               </div>
               <div class="text-end">
-                <span class="price text-success"><span class="currency">{% trans "NPR" %}</span> 12,000</span>
+                <span class="price"><span class="currency">{% trans "NPR" %}</span> 12,000</span>
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--cf-primary-tint);">
-              <div>
-                <p class="title text-primary">{% trans "E-max Crown" %}</p>
+            <div class="pricing-row mb-3" style="background-color: #F8FAFC !important;">
+              <div class="text-start">
+                <p class="title text-primary" style="color: #0284C7 !important;">{% trans "E-max Crown" %}</p>
                 <p class="text-muted small mb-0 mt-1">{% trans "Premium All-Ceramic" %}</p>
               </div>
               <div class="text-end">
-                <span class="price text-primary"><span class="currency">{% trans "NPR" %}</span> 18,000</span>
+                <span class="price"><span class="currency">{% trans "NPR" %}</span> 18,000</span>
               </div>
             </div>
 
-            <div class="p-4 text-center">
+            <div class="p-3 text-center border-top">
               <p class="small text-muted mb-4 fst-italic">
                 {% trans "* Note: Prices are per unit (per tooth). A 3-tooth bridge made of PFM would be NPR 6,000 x 3 = NPR 18,000. Final costs depend on clinical evaluation." %}
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Consultation" %}</a>
+              <a href="{% url 'main:contact' %}#book" class="cf-btn-primary w-100 rounded-pill py-3 fw-bold d-inline-block text-center text-white text-decoration-none">{% trans "Schedule Consultation" %}</a>
             </div>
 
           </div>
@@ -640,8 +651,8 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Results" %}</div>
-      <h2 class="section-heading">{% trans "Smile" %} <span class="accent">{% trans "Restorations" %}</span></h2>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-images"></i> {% trans "Results" %}</div>
+      <h2 class="cf-section-title">{% trans "Smile" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Restorations" %}</span></h2>
       <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "See the seamless, natural-looking results achievable with our premium Zirconia and E-max crowns." %}</p>
     </div>
     
@@ -690,8 +701,8 @@
       
       <!-- Care Tips -->
       <div class="col-lg-4">
-        <div class="nd-eyebrow">{% trans "Maintenance" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Aftercare Tips" %}</h3>
+        <div class="cf-eyebrow-badge"><i class="bi bi-heart-pulse"></i> {% trans "Maintenance" %}</div>
+        <h3 class="cf-section-title mb-4">{% trans "Aftercare Tips" %}</h3>
         
         <div class="cb-tip-card border-success">
           <h6 class="fw-bold"><i class="bi bi-brush text-success me-2"></i> {% trans "Normal Hygiene" %}</h6>
@@ -711,8 +722,8 @@
       <div class="col-lg-8">
         
         <div class="mb-5">
-          <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-          <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Frequently Asked Questions" %}</h3>
+          <div class="cf-eyebrow-badge"><i class="bi bi-question-circle"></i> {% trans "FAQ" %}</div>
+          <h3 class="cf-section-title mb-4">{% trans "Frequently Asked Questions" %}</h3>
           <div class="accordion nd-accordion" id="faqAccordion">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
@@ -761,7 +772,7 @@
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
           </div>
-          <p class="fst-italic text-muted mb-3 position-relative z-1">{% blocktrans %}\"I had a large gap from a missing tooth and was always self-conscious. The Zirconia bridge Dr. Niko placed looks exactly like my real teeth. The color match is perfect, and I can finally chew on that side again!\"{% endblocktrans %}</p>
+          <p class="fst-italic text-muted mb-3 position-relative z-1">{% blocktrans %}\"I had a large gap from a missing tooth and was always self-conscious. The Zirconia bridge Dr. Subash placed looks exactly like my real teeth. The color match is perfect, and I can finally chew on that side again!\"{% endblocktrans %}</p>
           <div class="d-flex align-items-center gap-3">
             <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px;">{% trans "S.M." %}</div>
             <div>
@@ -792,8 +803,10 @@
     <h2>{% trans "Strengthen Your Smile Today" %}</h2>
     <p>{% blocktrans %}Don't let a weak or missing tooth hold you back. Book a consultation for premium crowns and bridges.{% endblocktrans %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Consultation" %}</a>
-      <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Consultation" %}
+      </a>
+      <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
         <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
       </a>
     </div>
