@@ -396,10 +396,142 @@
   </div>
 </section>
 
+<!-- 1. TRUST STATS BAR -->
+<section class="py-4" style="background: #FFFFFF; border-bottom: 1px solid #E2E8F0; border-top: 1px solid #E2E8F0;">
+  <div class="container">
+    <div class="row g-4 text-center justify-content-center">
+      <div class="col-6 col-lg-3">
+        <div class="d-flex flex-column align-items-center">
+          <div class="display-6 fw-extrabold mb-1" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); font-weight: 800; color: #0284C7 !important;">5,000+</div>
+          <div class="fw-bold text-dark" style="font-size: 0.95rem;">{% trans "Smiles Restored" %}</div>
+          <small class="text-muted">{% trans "In Kathmandu" %}</small>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="d-flex flex-column align-items-center">
+          <div class="display-6 fw-extrabold mb-1" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); font-weight: 800; color: #0284C7 !important;">100%</div>
+          <div class="fw-bold text-dark" style="font-size: 0.95rem;">{% trans "Personalized Plans" %}</div>
+          <small class="text-muted">{% trans "Custom Smile Design" %}</small>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="d-flex flex-column align-items-center">
+          <div class="display-6 fw-extrabold mb-1" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); font-weight: 800; color: #0284C7 !important;">12+ Yrs</div>
+          <div class="fw-bold text-dark" style="font-size: 0.95rem;">{% trans "Senior Specialists" %}</div>
+          <small class="text-muted">{% trans "Consultant Surgeons" %}</small>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="d-flex flex-column align-items-center">
+          <div class="display-6 fw-extrabold mb-1" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); font-weight: 800; color: #0284C7 !important;">HD 3D</div>
+          <div class="fw-bold text-dark" style="font-size: 0.95rem;">{% trans "Digital Diagnostics" %}</div>
+          <small class="text-muted">{% trans "Smile Aesthetic Planning" %}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TREATMENT CATEGORY TABS + BEFORE/AFTER CARDS -->
 <section class="section-py" style="background:var(--cf-bg-light, #F8FAFC);">
   <div class="container">
         {% include 'gallery/components/smile_grid.html' %}
+  </div>
+</section>
+
+<!-- 2. HOW WE PLAN YOUR SMILE (3-Step Aesthetic Process) -->
+<section class="section-py bg-white" style="border-top: 1px solid #E2E8F0;">
+  <div class="container">
+    <div class="text-center mx-auto mb-5" style="max-width: 680px;">
+      <div class="cf-eyebrow-badge">
+        <i class="bi bi-stars"></i>
+        {% trans "AESTHETIC WORKFLOW" %}
+      </div>
+      <h2 class="cf-section-title mb-3">{% trans "How We Plan Your Smile" %}</h2>
+      <p class="cf-body-text text-muted mb-0">
+        {% trans "From initial shade mapping to the final polish, our predictable 3-step workflow ensures your dream smile looks natural, balanced, and radiant." %}
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Step 1 -->
+      <div class="col-lg-4">
+        <div class="card border-0 h-100 p-4 rounded-4 shadow-sm position-relative overflow-hidden" style="background: linear-gradient(180deg, #F8FAFC 0%, #F0F9FF 100%); border: 1.5px solid #E2E8F0 !important;">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 48px; height: 48px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.25rem;">
+              01
+            </div>
+            <span class="badge bg-white text-primary border border-primary border-opacity-25 px-3 py-2 rounded-pill fw-bold text-uppercase shadow-sm" style="font-size: 0.72rem; letter-spacing: 1px;">{% trans "Evaluation" %}</span>
+          </div>
+          <h4 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: #0B2545;">{% trans "Digital Consultation & Scan" %}</h4>
+          <p class="text-muted mb-0" style="font-size: 0.925rem; line-height: 1.7; font-weight: 500;">
+            {% trans "Comprehensive oral evaluation, digital high-definition intraoral photos, shade matching, and full smile symmetry analysis." %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="col-lg-4">
+        <div class="card border-0 h-100 p-4 rounded-4 shadow-sm position-relative overflow-hidden" style="background: linear-gradient(180deg, #F8FAFC 0%, #F0F9FF 100%); border: 1.5px solid #E2E8F0 !important;">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 48px; height: 48px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.25rem;">
+              02
+            </div>
+            <span class="badge bg-white text-primary border border-primary border-opacity-25 px-3 py-2 rounded-pill fw-bold text-uppercase shadow-sm" style="font-size: 0.72rem; letter-spacing: 1px;">{% trans "Smile Design" %}</span>
+          </div>
+          <h4 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: #0B2545;">{% trans "3D Smile Preview & Plan" %}</h4>
+          <p class="text-muted mb-0" style="font-size: 0.925rem; line-height: 1.7; font-weight: 500;">
+            {% trans "Review your customized smile design preview with your dentist. We align tooth proportions, shade, and contours to your facial features before starting." %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-lg-4">
+        <div class="card border-0 h-100 p-4 rounded-4 shadow-sm position-relative overflow-hidden" style="background: linear-gradient(180deg, #F8FAFC 0%, #F0F9FF 100%); border: 1.5px solid #E2E8F0 !important;">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 48px; height: 48px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.25rem;">
+              03
+            </div>
+            <span class="badge bg-white text-primary border border-primary border-opacity-25 px-3 py-2 rounded-pill fw-bold text-uppercase shadow-sm" style="font-size: 0.72rem; letter-spacing: 1px;">{% trans "Transformation" %}</span>
+          </div>
+          <h4 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: #0B2545;">{% trans "Gentle Treatment & Delivery" %}</h4>
+          <p class="text-muted mb-0" style="font-size: 0.925rem; line-height: 1.7; font-weight: 500;">
+            {% trans "Pain-free clinical execution with precision bonding, alignment, or veneer placement for durable, natural, and confidence-boosting results." %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. CLINICAL DIRECTOR CONSULTATION BOX -->
+<section class="py-5" style="background: #F8FAFC;">
+  <div class="container">
+    <div class="card border-0 rounded-4 overflow-hidden shadow-lg" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%); border: 1.5px solid rgba(255,255,255,0.15) !important;">
+      <div class="card-body p-4 p-md-5 text-white">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <div class="d-flex align-items-center gap-2 text-info fw-bold text-uppercase small mb-2">
+              <i class="bi bi-award-fill"></i> {% trans "CLINICAL DIRECTOR & LEAD SURGEON" %}
+            </div>
+            <h3 class="fw-bold mb-3 text-white" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">Dr. Subash Banjade & Specialist Team</h3>
+            <blockquote class="fs-5 text-white-50 fst-italic mb-3" style="line-height: 1.7; border-left: 3px solid #0284C7; padding-left: 16px;">
+              “{% trans "Every smile is unique. We focus on ethical, minimally invasive cosmetic dentistry that preserves your natural tooth structure while achieving optimal aesthetic harmony." %}”
+            </blockquote>
+            <p class="text-white-50 small mb-0">
+              <i class="bi bi-geo-alt-fill text-info me-1"></i> Pragatinagar Road, Shankhamul-31, Kathmandu &bull; <i class="bi bi-clock-fill text-info ms-2 me-1"></i> Daily 7:30 AM – 7:30 PM
+            </p>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-3 fw-bold text-dark shadow d-inline-flex align-items-center gap-2">
+              <i class="bi bi-calendar-check-fill text-primary"></i>
+              <span>{% trans "Book Smile Consultation" %}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
