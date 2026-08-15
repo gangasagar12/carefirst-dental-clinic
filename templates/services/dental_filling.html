@@ -1,244 +1,306 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 
-
-{% block title %}Dental Filling — Carefirst Dental Clinic{% endblock %}
+{% block title %}Dental Filling — CareFirst Dental Clinic{% endblock %}
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'main/css/services.css' %}">
-<meta name="description" content="Restore your damaged teeth with premium, tooth-colored Dental Fillings at Carefirst Dental Clinic. Prevent further decay and relieve tooth sensitivity today.">
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=4.0">
+<link rel="stylesheet" href="{% static 'main/css/gallery.css' %}?v=4.0">
+<meta name="description" content="Painless, tooth-colored composite dental fillings at CareFirst Dental Clinic in Shankhamul, Kathmandu. Halt tooth decay, repair chipped enamel, and restore natural tooth structure.">
 <style>
-  /* Base Cards */
+  /* CareFirst Global Design System Overrides */
+  .service-hero {
+    position: relative !important;
+    min-height: 380px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, rgba(8, 28, 51, 0.88) 0%, rgba(11, 37, 69, 0.84) 60%, rgba(3, 105, 161, 0.78) 100%), url('{% static 'images/filling_hero.png' %}') center/cover no-repeat !important;
+    overflow: hidden !important;
+    padding: 85px 0 65px !important;
+  }
+
+  .service-hero h1 {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: clamp(2.2rem, 4vw, 3rem) !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 12px !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .service-hero .hero-sub {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    max-width: 640px !important;
+    margin: 0 auto !important;
+    line-height: 1.7 !important;
+  }
+
+  /* Eyebrows & Titles */
+  .cf-eyebrow-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(2, 132, 199, 0.1) !important;
+    color: #0284C7 !important;
+    padding: 6px 16px !important;
+    border-radius: 50px !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.825rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    border: 1px solid rgba(2, 132, 199, 0.25) !important;
+    margin-bottom: 16px !important;
+  }
+
+  .cf-section-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: clamp(2rem, 3.2vw, 2.65rem) !important;
+    font-weight: 800 !important;
+    color: #0B2545 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .cf-body-text {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 1.02rem !important;
+    font-weight: 500 !important;
+    color: #1E293B !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Primary Pill Buttons */
+  .cf-btn-primary {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 12px 28px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    transition: all 0.25s ease !important;
+  }
+  .cf-btn-primary:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%) !important;
+    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.5) !important;
+    transform: translateY(-2px) !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Base Service Cards */
   .fill-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    border: 1px solid rgba(14,90,79,0.08);
-    height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #FFFFFF !important;
+    border-radius: 18px !important;
+    padding: 26px !important;
+    border: 1.5px solid #E2E8F0 !important;
+    height: 100% !important;
+    box-shadow: 0 8px 24px rgba(11, 37, 69, 0.06) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
   }
   .fill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(14,90,79,0.08);
+    transform: translateY(-6px) !important;
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.16) !important;
+    border-color: #0284C7 !important;
   }
   .fill-icon-wrapper {
-    width: 60px;
-    height: 60px;
-    background: var(--cf-primary-tint);
-    color: var(--cf-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    margin-bottom: 20px;
+    width: 56px !important;
+    height: 56px !important;
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 18px !important;
+    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.3) !important;
   }
 
-  /* Compare Card */
-  .compare-card {
-    border-left: 4px solid var(--cf-accent);
-    background: #fff;
-    padding: 24px;
-    border-radius: 0 12px 12px 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
-  }
-
-  /* Pricing Table */
-  .pricing-table {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(14,90,79,0.1);
-    border: 1px solid rgba(14,90,79,0.1);
-  }
-  .pricing-header {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    padding: 24px;
-    text-align: center;
-  }
-  .pricing-body {
-    padding: 0;
-  }
-  .pricing-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-  }
-  .pricing-row:last-child {
-    border-bottom: none;
-  }
-  .pricing-row .title {
-    font-weight: 700;
-    color: var(--cf-primary-dark);
-    font-size: 1.1rem;
-    margin: 0;
-  }
-  .pricing-row .price {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--cf-accent-dark);
-    font-family: var(--cf-font-head);
-  }
-  .pricing-row .currency {
-    font-size: 0.9rem;
-    vertical-align: super;
-  }
-
-  /* Gallery/Lightbox */
-  .fill-gallery-item {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .fill-gallery-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-  .fill-gallery-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(14,90,79,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .fill-gallery-item:hover img { transform: scale(1.05); }
-  .fill-gallery-item:hover .fill-gallery-overlay { opacity: 1; }
-
-  /* Vertical Feature Card */
+  /* Vertical Feature Card (Material Deck) */
   .vertical-feature-card {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    height: 100%;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    border-top: 5px solid var(--cf-primary-dark);
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    height: 100% !important;
+    box-shadow: 0 8px 25px rgba(11, 37, 69, 0.06) !important;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border: 1.5px solid #E2E8F0 !important;
   }
   .vertical-feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    transform: translateY(-6px) !important;
+    box-shadow: 0 20px 40px rgba(2, 132, 199, 0.18) !important;
+    border-color: #0284C7 !important;
   }
   .vfc-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+    border-bottom: 1px solid #E2E8F0 !important;
   }
   .vfc-content {
-    padding: 25px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 24px !important;
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
   }
   .vfc-title {
-    font-weight: 800;
-    font-family: var(--cf-font-head);
-    margin-bottom: 15px;
-    font-size: 1.2rem;
+    font-weight: 800 !important;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    margin-bottom: 12px !important;
+    font-size: 1.2rem !important;
+    color: #0B2545 !important;
   }
   .vfc-desc {
-    color: #6c757d;
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    flex-grow: 1;
+    color: #475569 !important;
+    font-size: 0.925rem !important;
+    margin-bottom: 18px !important;
+    flex-grow: 1 !important;
+    line-height: 1.65 !important;
+    font-weight: 500 !important;
   }
   .vfc-highlights {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
   }
   .vfc-highlights span {
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    color: #0284C7 !important;
   }
 
-  /* Transformation Cards */
-  .trans-card {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border: 1px solid rgba(14,90,79,0.08);
-    margin-bottom: 40px;
+  /* Pricing Table Modernized */
+  .pricing-table {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 12px 36px rgba(11, 37, 69, 0.12) !important;
+    border: 1.5px solid #E2E8F0 !important;
   }
-  .trans-card-header {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .pricing-header {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    padding: 28px 24px !important;
+    text-align: center !important;
   }
-  .trans-card-body {
-    padding: 30px;
+  .pricing-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 20px 28px !important;
+    border-bottom: 1px solid #E2E8F0 !important;
   }
-  .trans-step-img-wrapper {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    margin-bottom: 15px;
-    height: 220px;
+  .pricing-row:last-child {
+    border-bottom: none !important;
   }
-  .trans-step-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+  .pricing-row .title {
+    font-weight: 700 !important;
+    color: #0B2545 !important;
+    font-size: 1.05rem !important;
+    margin: 0 !important;
   }
-  .trans-step-img-wrapper:hover .trans-step-img {
-    transform: scale(1.1);
+  .pricing-row .price {
+    font-size: 1.45rem !important;
+    font-weight: 800 !important;
+    color: #0284C7 !important;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
   }
-  .trans-step-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(14,90,79,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+
+  /* Before / After Cards */
+  .ba-card {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.08) !important;
+    border: 1.5px solid #E2E8F0 !important;
+    transition: all 0.35s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
   }
-  .trans-step-img-wrapper:hover .trans-step-overlay {
-    opacity: 1;
+  .ba-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 20px 45px -5px rgba(2, 132, 199, 0.25) !important;
+    border-color: #0284C7 !important;
   }
-  .trans-step-label {
-    text-align: center;
-    font-weight: 700;
-    color: var(--cf-primary-dark);
+  .ba-body {
+    padding: 20px 22px !important;
+    background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%) !important;
+    border-top: 2px solid rgba(2, 132, 199, 0.18) !important;
+    flex-grow: 1 !important;
+  }
+  .ba-body .ba-treatment {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    color: #0284C7 !important;
+    background: #FFFFFF !important;
+    padding: 3px 10px !important;
+    border-radius: 50px !important;
+    border: 1px solid rgba(2, 132, 199, 0.25) !important;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.08) !important;
+    margin-bottom: 8px !important;
+  }
+  .ba-body .ba-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    color: #0B2545 !important;
+    margin-bottom: 6px !important;
+  }
+  .ba-body .ba-desc {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    color: #334155 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 0 !important;
   }
 </style>
 {% endblock %}
 
 {% block content %}
 
-<!-- 1. HERO BANNER -->
-<section class="service-hero text-center" style="background-image: url('{% static 'images/filling_hero.png' %}');">
-  <div class="hero-inner container">
+<!-- 1. HERO BANNER (Kept Original Background Image with Clean Navy-Azure Gradient Overlay) -->
+<section class="service-hero text-center">
+  <div class="hero-inner container position-relative z-2">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
         <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
-        <li class="breadcrumb-item active text-warning">{% trans "Dental Filling" %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Treatments" %}</a></li>
+        <li class="breadcrumb-item active text-info fw-bold">{% trans "Dental Filling" %}</li>
       </ol>
     </nav>
-    <h1><i class="bi bi-bandaid me-3 text-warning"></i>{% trans "Dental Filling" %}</h1>
-    <p class="hero-sub mx-auto">{% trans "Seamless, tooth-colored restorations to treat cavities and protect your natural teeth." %}</p>
+    <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
+      <i class="bi bi-bandaid-fill text-info"></i> {% trans "TOOTH-COLORED RESTORATIONS" %}
+    </div>
+    <h1>{% trans "Seamless Dental Fillings" %}</h1>
+    <p class="hero-sub mx-auto">{% trans "Invisible, durable composite restorations to stop tooth decay, relieve sensitivity, and preserve your natural tooth structure in Shankhamul, Kathmandu." %}</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Restore Your Tooth" %}</a>
+      <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary">
+        <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book a Tooth Restoration" %}
+      </a>
     </div>
   </div>
 </section>
@@ -248,61 +310,178 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What is a" %} <span class="accent">{% trans "Dental Filling?" %}</span></h2>
-        <p class="text-muted" style="line-height:1.85;">
-          {% blocktrans %}A dental filling is a restorative treatment used to repair minor to moderate tooth damage, typically caused by decay (cavities) or trauma. The decayed portion of the tooth is carefully removed, and the area is \"filled\" with a durable, biocompatible material, restoring the tooth back to its normal shape and function.{% endblocktrans %}
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-info-circle-fill"></i> {% trans "CONSERVATIVE RESTORATION" %}
+        </div>
+        <h2 class="cf-section-title mb-4">{% trans "What is a" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Dental Filling?" %}</span></h2>
+        <p class="cf-body-text mb-4">
+          {% blocktrans %}A dental filling is a minimally invasive restorative treatment used to repair tooth damage caused by decay, enamel chipping, or wear. The infected portion of the tooth is gently cleared, and the cavity is restored with biocompatible composite resin that matches the natural shade and strength of your enamel.{% endblocktrans %}
         </p>
         
-        <h4 class="fw-bold mt-5 mb-4" style="color:var(--cf-primary-dark);">{% trans "When Do You Need a Filling?" %}</h4>
-        <div class="ms-3 border-start border-success border-3 ps-4">
-          <ul class="symptom-list mb-0">
-            <li><i class="bi bi-circle-half text-secondary fs-5"></i> <span><strong>Tooth Decay & Cavities:</strong> {% trans "Stopping decay before it reaches the nerve." %}</span></li>
-            <li><i class="bi bi-lightning text-secondary fs-5"></i> <span><strong>{% trans "Chipped or Cracked Teeth:" %}</strong> {% trans "Repairing minor physical damage." %}</span></li>
-            <li><i class="bi bi-arrow-down text-secondary fs-5"></i> <span><strong>{% trans "Worn Teeth:" %}</strong> {% trans "Restoring enamel worn down by teeth grinding or acid." %}</span></li>
+        <div class="p-4 rounded-4" style="background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%); border-left: 4px solid #0284C7; border: 1px solid rgba(2, 132, 199, 0.15); border-left-width: 4px;">
+          <h5 class="fw-bold mb-2" style="font-family: var(--cf-font-head); color: #0B2545;">
+            <i class="bi bi-shield-check text-primary me-2"></i>{% trans "When is a Dental Filling Needed?" %}
+          </h5>
+          <ul class="list-unstyled mb-0 d-flex flex-column gap-2 text-muted" style="font-size: 0.925rem; font-weight: 500;">
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-primary"></i> {% trans "Treating active cavities before bacteria penetrate the nerve pulp." %}</li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-primary"></i> {% trans "Repairing minor chips or fractures from biting hard foods." %}</li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-primary"></i> {% trans "Replacing worn or leaking old silver amalgam fillings." %}</li>
           </ul>
         </div>
       </div>
       <div class="col-lg-6">
-        <img loading="lazy" src="{% static 'images/filling_intro.png' %}" alt="Smiling patient with beautiful teeth" class="img-fluid rounded-4 shadow-lg">
+        <div class="position-relative rounded-4 overflow-hidden shadow-lg" style="height: 420px;">
+          <img loading="lazy" src="{% static 'images/filling_intro.png' %}" alt="Painless tooth restoration" class="w-100 h-100 object-fit-cover" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="position-absolute bottom-0 start-0 m-3 p-3 text-white rounded-3" style="background: rgba(11, 37, 69, 0.88); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15);">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-patch-check-fill text-info fs-5"></i>
+              <div>
+                <strong class="d-block text-white small">{% trans "100% Invisible Shade Match" %}</strong>
+                <small class="text-white-50" style="font-size: 0.75rem;">{% trans "Mercury-Free Composite Resin" %}</small>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- BEFORE & AFTER RESULTS -->
+<section class="section-py" style="background: #F8FAFC;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="cf-eyebrow-badge justify-content-center">
+        <i class="bi bi-stars"></i> {% trans "REAL CLINICAL OUTCOMES" %}
+      </div>
+      <h2 class="cf-section-title">{% trans "Before &" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "After Filling Cases" %}</span></h2>
+      <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "See how composite resin restorations seamlessly replace decayed enamel and blend naturally." %}</p>
+    </div>
+    <div class="row g-4">
+      
+      <!-- Cavity Filling Card 1 -->
+      <div class="col-md-6">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/cavity_before.png' %}" alt="Before cavity filling" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+            <img loading="lazy" src="{% static 'main/images/gallery/cavity_after.png' %}" alt="After cavity filling" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+            <div class="ba-divider"><div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div></div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Molar Restoration — Tooth Colored" %}</div>
+            <div class="ba-title">{% trans "Deep Cavity Cleared & Sealed" %}</div>
+            <p class="ba-desc">{% trans "A deep occlusal cavity was carefully cleaned and restored with micro-hybrid composite, fully halting decay and rebuilding the chewing surface." %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cavity Filling Card 2 -->
+      <div class="col-md-6">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'images/fill_gallery_1.png' %}" alt="Decay preparation" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+            <img loading="lazy" src="{% static 'images/fill_gallery_2.png' %}" alt="Polished composite restoration" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+            <div class="ba-divider"><div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div></div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Aesthetic Restoration — Front Enamel" %}</div>
+            <div class="ba-title">{% trans "Natural Shade Integration" %}</div>
+            <p class="ba-desc">{% trans "Interdental decay was cleaned with microscopic precision and layered with multi-opacity resin for a virtually invisible finish." %}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- 3. SIGNS, SYMPTOMS & CAUSES -->
-<section class="section-py" style="background:var(--cf-bg-light);">
+<section class="section-py bg-white">
   <div class="container">
     <div class="row g-5">
       
       <!-- Signs & Symptoms -->
       <div class="col-lg-6">
-        <div class="bg-white p-5 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
-          <div class="nd-eyebrow">{% trans "Watch For These" %}</div>
-          <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Signs & Symptoms" %}</h3>
-          <p class="text-muted mb-4 small">{% blocktrans %}Cavities don't always cause pain immediately. Look out for these warning signs:{% endblocktrans %}</p>
-          <ul class="symptom-list mb-0">
-            <li><i class="bi bi-snow text-primary fs-5"></i> <span><strong>{% trans "Tooth Sensitivity:" %}</strong> {% trans "Pain when eating sweet, hot, or cold foods." %}</span></li>
-            <li><i class="bi bi-lightning text-danger fs-5"></i> <span><strong>{% trans "Pain While Eating:" %}</strong> {% trans "A sharp ache when you bite down." %}</span></li>
-            <li><i class="bi bi-record-circle text-warning fs-5"></i> <span><strong>{% trans "Visible Holes:" %}</strong> {% trans "Pits or holes you can see or feel with your tongue." %}</span></li>
-            <li><i class="bi bi-circle-fill text-dark fs-5"></i> <span><strong>{% trans "Dark Spots:" %}</strong> {% trans "Black, brown, or white staining on the tooth surface." %}</span></li>
-            <li><i class="bi bi-magnet text-secondary fs-5"></i> <span><strong>{% trans "Food Traps:" %}</strong> {% trans "Food constantly getting stuck in the exact same spot." %}</span></li>
+        <div class="bg-white p-4 p-md-5 rounded-4 h-100 shadow-sm border" style="border: 1.5px solid #E2E8F0 !important;">
+          <div class="cf-eyebrow-badge">
+            <i class="bi bi-exclamation-triangle-fill"></i> {% trans "WATCH FOR THESE" %}
+          </div>
+          <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Signs You Need a Filling" %}</h3>
+          <p class="text-muted mb-4 small" style="font-weight: 500;">{% blocktrans %}Early decay doesn't always cause constant throbbing. Look for these warning signs:{% endblocktrans %}</p>
+          <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+            <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
+              <i class="bi bi-snow text-primary fs-5 mt-1"></i>
+              <div>
+                <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Tooth Sensitivity" %}</strong>
+                <small class="text-muted" style="font-weight: 500;">{% trans "Sharp discomfort when drinking hot tea, cold water, or sweet foods." %}</small>
+              </div>
+            </li>
+            <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
+              <i class="bi bi-lightning-fill text-danger fs-5 mt-1"></i>
+              <div>
+                <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Pain When Biting" %}</strong>
+                <small class="text-muted" style="font-weight: 500;">{% trans "A sharp ache or pressure when chewing down on a specific tooth." %}</small>
+              </div>
+            </li>
+            <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
+              <i class="bi bi-record-circle text-warning fs-5 mt-1"></i>
+              <div>
+                <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Visible Holes or Dark Spots" %}</strong>
+                <small class="text-muted" style="font-weight: 500;">{% trans "Pits you can feel with your tongue or brown/black stains on enamel." %}</small>
+              </div>
+            </li>
+            <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
+              <i class="bi bi-magnet text-secondary fs-5 mt-1"></i>
+              <div>
+                <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Constant Food Traps" %}</strong>
+                <small class="text-muted" style="font-weight: 500;">{% trans "Food repeatedly catching in the exact same interdental pocket." %}</small>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
       
       <!-- Causes -->
       <div class="col-lg-6">
-        <div class="bg-white p-5 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
-          <div class="nd-eyebrow">{% trans "The Root of the Problem" %}</div>
-          <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Causes of Tooth Decay" %}</h3>
-          <p class="text-muted mb-4 small">{% trans "Decay is a process that happens over time. Common culprits include:" %}</p>
-          <ul class="symptom-list mb-0">
-            <li><i class="bi bi-brush text-secondary fs-5"></i> <span><strong>{% trans "Poor Oral Hygiene:" %}</strong> {% trans "Inadequate brushing leaves plaque behind." %}</span></li>
-            <li><i class="bi bi-bug text-danger fs-5"></i> <span>{% blocktrans %}<strong>Plaque & Bacteria:</strong>{% endblocktrans %} {% trans "Bacteria convert sugars into enamel-destroying acid." %}</span></li>
-            <li><i class="bi bi-cup-straw text-warning fs-5"></i> <span>{% blocktrans %}<strong>Sugary Drinks & Foods:</strong>{% endblocktrans %} {% trans "Frequent snacking fuels acid production." %}</span></li>
-            <li><i class="bi bi-cup-hot text-warning fs-5"></i> <span><strong>{% trans "Acidic Foods:" %}</strong> {% trans "Citrus and sodas actively erode protective enamel." %}</span></li>
-            <li><i class="bi bi-calendar-x text-secondary fs-5"></i> <span><strong>{% trans "Skipping Check-ups:" %}</strong> {% trans "Missing professional cleanings allows plaque to harden into tartar." %}</span></li>
+        <div class="bg-white p-4 p-md-5 rounded-4 h-100 shadow-sm border" style="border: 1.5px solid #E2E8F0 !important;">
+          <div class="cf-eyebrow-badge">
+            <i class="bi bi-bug-fill"></i> {% trans "PRIMARY CAUSES" %}
+          </div>
+          <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Why Cavities Form" %}</h3>
+          <p class="text-muted mb-4 small" style="font-weight: 500;">{% trans "Tooth decay is a progressive bacterial process. Common drivers include:" %}</p>
+          <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+            <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
+              <i class="bi bi-bacteria text-danger fs-5 mt-1"></i>
+              <div>
+                <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Plaque Acid Production" %}</strong>
+                <small class="text-muted" style="font-weight: 500;">{% trans "Mouth bacteria convert dietary sugars into enamel-dissolving acids." %}</small>
+              </div>
+            </li>
+            <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
+              <i class="bi bi-cup-straw text-primary fs-5 mt-1"></i>
+              <div>
+                <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Frequent Snacking & Sugars" %}</strong>
+                <small class="text-muted" style="font-weight: 500;">{% trans "Frequent exposure to sweet beverages prevents saliva from neutralizing acid." %}</small>
+              </div>
+            </li>
+            <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
+              <i class="bi bi-brush text-info fs-5 mt-1"></i>
+              <div>
+                <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Inadequate Interdental Flossing" %}</strong>
+                <small class="text-muted" style="font-weight: 500;">{% trans "Toothbrushes only clean 60% of tooth surfaces; tight gaps require flossing." %}</small>
+              </div>
+            </li>
+            <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
+              <i class="bi bi-calendar-x text-secondary fs-5 mt-1"></i>
+              <div>
+                <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Skipped 6-Month Check-ups" %}</strong>
+                <small class="text-muted" style="font-weight: 500;">{% trans "Allows microscopic enamel decay to expand into deeper dentin layers." %}</small>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -311,183 +490,135 @@
   </div>
 </section>
 
-<!-- 4. TYPES OF FILLING MATERIALS (PREMIUM REDESIGN) -->
-<section class="section-py bg-white">
+<!-- 4. TYPES OF FILLING MATERIALS -->
+<section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "TYPES OF FILLING MATERIALS" %}</div>
-      <h2 class="section-heading">{% trans "Types of" %} <span class="accent">{% trans "Dental Filling Materials" %}</span></h2>
-      <p class="text-muted mt-3 max-w-600 mx-auto">{% trans "We use high-quality, biocompatible filling materials to restore your teeth" %}<br>{% trans "with strength, function, and natural aesthetics." %}</p>
+      <div class="cf-eyebrow-badge justify-content-center">
+        <i class="bi bi-layers-fill"></i> {% trans "ADVANCED MATERIALS" %}
+      </div>
+      <h2 class="cf-section-title">{% trans "Types of Dental" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Filling Materials" %}</span></h2>
+      <p class="cf-body-text text-muted mt-2 max-w-600 mx-auto">{% trans "We use 100% biocompatible, mercury-free filling materials engineered for natural aesthetics and chewing longevity." %}</p>
     </div>
     
     <div class="row g-4 justify-content-center">
       
-        <!-- 1. Composite Card -->
-        <div class="col-lg-4 col-md-6">
-          <div class="vertical-feature-card" style="border-top-color: #198754;">
-            <img loading="lazy" src="{% static 'images/fill_composite.png' %}" alt="Composite Tooth-Colored Filling" class="vfc-image">
-            <div class="vfc-content">
-              <h4 class="vfc-title" style="color: #198754;">{% trans "Composite (Tooth-Colored)" %}</h4>
-              <p class="vfc-desc">{% trans "The most popular choice. Made from a resin that perfectly matches the color of your natural teeth. Ideal for visible areas and front teeth." %}</p>
-              <div class="vfc-highlights" style="color: #198754;">
-                <span><i class="bi bi-check-circle"></i> {% trans "Natural appearance" %}</span>
-                <span><i class="bi bi-check-circle"></i> {% trans "Strong & durable" %}</span>
-                <span><i class="bi bi-check-circle"></i> {% trans "Mercury-free" %}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Glass Ionomer Card -->
-        <div class="col-lg-4 col-md-6">
-          <div class="vertical-feature-card" style="border-top-color: #0d6efd;">
-            <img loading="lazy" src="{% static 'images/fill_glass.png' %}" alt="Glass Ionomer Filling" class="vfc-image">
-            <div class="vfc-content">
-              <h4 class="vfc-title" style="color: #0d6efd;">{% trans "Glass Ionomer" %}</h4>
-              <p class="vfc-desc">{% blocktrans %}Releases fluoride to help protect the tooth from further decay. Commonly used for cavities near the gum line or for children's teeth.{% endblocktrans %}</p>
-              <div class="vfc-highlights" style="color: #0d6efd;">
-                <span><i class="bi bi-check-circle"></i> {% trans "Fluoride releasing" %}</span>
-                <span><i class="bi bi-check-circle"></i> {% trans "Good for gum line" %}</span>
-                <span><i class="bi bi-check-circle"></i> {% trans "Ideal for kids" %}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. Amalgam Card -->
-        <div class="col-lg-4 col-md-6">
-          <div class="vertical-feature-card" style="border-top-color: #495057;">
-            <img loading="lazy" src="{% static 'images/fill_amalgam.png' %}" alt="Amalgam Silver Filling" class="vfc-image">
-            <div class="vfc-content">
-              <h4 class="vfc-title" style="color: #495057;">{% trans "Amalgam (Silver)" %}</h4>
-              <p class="vfc-desc">{% trans "Highly durable but very noticeable. Often used for back molars that endure heavy chewing forces (Available upon request/clinical need)." %}</p>
-              <div class="vfc-highlights" style="color: #495057;">
-                <span><i class="bi bi-check-circle"></i> {% trans "Extremely durable" %}</span>
-                <span><i class="bi bi-check-circle"></i> {% trans "Long-lasting" %}</span>
-                <span><i class="bi bi-check-circle"></i> {% trans "Ideal for back teeth" %}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Info Card -->
-        <div class="col-12 mt-4">
-          <div class="mlc-info-card rounded-4" style="border: 1px solid rgba(14,90,79,0.3); background-color: var(--cf-primary-dark); padding: 25px 30px; display: flex; align-items: center; gap: 20px;">
-            <i class="bi bi-info-circle fs-1 text-warning"></i>
-            <p class="text-white mb-0" style="font-size: 1.05rem; line-height: 1.6;">{% trans "Your dentist will recommend the best filling material based on your dental condition and treatment needs." %}</p>
-          </div>
-        </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- 4B. BENEFITS (Moved down) -->
-<section class="section-py" style="background:var(--cf-bg-light);">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="text-center mb-5">
-          <div class="nd-eyebrow justify-content-center">{% trans "Advantages" %}</div>
-          <h2 class="section-heading">{% trans "Benefits of" %} <span class="accent">{% trans "Dental Fillings" %}</span></h2>
-        </div>
-        <div class="row g-4">
-          <div class="col-md-6">
-            <div class="fill-card h-100">
-              <div class="fill-icon-wrapper"><i class="bi bi-shield-check"></i></div>
-              <h6 class="fw-bold">{% trans "Prevents Further Decay" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Seals off the tiny spaces where bacteria can enter, stopping decay in its tracks." %}</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="fill-card h-100">
-              <div class="fill-icon-wrapper"><i class="bi bi-emoji-smile"></i></div>
-              <h6 class="fw-bold">{% trans "Relieves Pain" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Eliminates the sharp pain and sensitivity caused by exposed dentin or nerve irritation." %}</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="fill-card h-100">
-              <div class="fill-icon-wrapper"><i class="bi bi-heart"></i></div>
-              <h6 class="fw-bold">{% trans "Preserves Natural Teeth" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Saves the tooth structure, preventing the need for root canals or extractions later." %}</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="fill-card h-100">
-              <div class="fill-icon-wrapper"><i class="bi bi-stars"></i></div>
-              <h6 class="fw-bold">{% trans "Improves Appearance" %}</h6>
-              <p class="small text-muted mb-0">{% trans "Composite fillings blend seamlessly, making your tooth look completely natural and undamaged." %}</p>
+      <!-- 1. Composite Card -->
+      <div class="col-lg-4 col-md-6">
+        <div class="vertical-feature-card">
+          <img loading="lazy" src="{% static 'images/fill_composite.png' %}" alt="Composite Tooth-Colored Filling" class="vfc-image" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="vfc-content">
+            <h4 class="vfc-title">{% trans "Composite (Tooth-Colored)" %}</h4>
+            <p class="vfc-desc">{% trans "Our most popular restoration. Formulated with ceramic-infused micro-hybrid resin that mimics natural tooth translucency and bonds directly to enamel." %}</p>
+            <div class="vfc-highlights">
+              <span><i class="bi bi-check-circle-fill"></i> {% trans "100% Natural Appearance" %}</span>
+              <span><i class="bi bi-check-circle-fill"></i> {% trans "Strong Enamel Bonding" %}</span>
+              <span><i class="bi bi-check-circle-fill"></i> {% trans "Mercury & BPA Free" %}</span>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- 2. Glass Ionomer Card -->
+      <div class="col-lg-4 col-md-6">
+        <div class="vertical-feature-card">
+          <img loading="lazy" src="{% static 'images/fill_glass.png' %}" alt="Glass Ionomer Filling" class="vfc-image" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="vfc-content">
+            <h4 class="vfc-title">{% trans "Glass Ionomer Cement" %}</h4>
+            <p class="vfc-desc">{% blocktrans %}Releases continuous fluoride into surrounding enamel to safeguard against recurring decay. Ideal for gumline cavities, root surfaces, and pediatric teeth.{% endblocktrans %}</p>
+            <div class="vfc-highlights">
+              <span><i class="bi bi-check-circle-fill"></i> {% trans "Continuous Fluoride Release" %}</span>
+              <span><i class="bi bi-check-circle-fill"></i> {% trans "Excellent Gumline Protection" %}</span>
+              <span><i class="bi bi-check-circle-fill"></i> {% trans "Ideal for Children's Teeth" %}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Inlay / Onlay Restoration -->
+      <div class="col-lg-4 col-md-6">
+        <div class="vertical-feature-card">
+          <img loading="lazy" src="{% static 'images/fill_amalgam.png' %}" alt="Ceramic Inlay and Onlay" class="vfc-image" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="vfc-content">
+            <h4 class="vfc-title">{% trans "Ceramic Inlays & Onlays" %}</h4>
+            <p class="vfc-desc">{% trans "Custom laboratory-milled porcelain restorations for extensively broken teeth that require more structural support than a standard direct filling." %}</p>
+            <div class="vfc-highlights">
+              <span><i class="bi bi-check-circle-fill"></i> {% trans "Exceptional Chewing Strength" %}</span>
+              <span><i class="bi bi-check-circle-fill"></i> {% trans "10+ Year Durability" %}</span>
+              <span><i class="bi bi-check-circle-fill"></i> {% trans "Preserves Healthy Cusps" %}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- 5. TREATMENT PROCESS & PRICING -->
-<section class="section-py" style="background:var(--cf-primary-dark); color:#fff;">
+<section class="section-py" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%); color:#fff;">
   <div class="container">
     <div class="row g-5 align-items-center">
       
       <!-- Patient Care Process -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Our Filling" %} <span class="text-warning">{% trans "Treatment Process" %}</span></h2>
+        <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
+          <i class="bi bi-diagram-3-fill text-info"></i> {% trans "CLINICAL WORKFLOW" %}
+        </div>
+        <h2 class="cf-section-title text-white mb-4">{% trans "Our Filling" %} <span class="text-info">{% trans "Treatment Process" %}</span></h2>
         
         <div class="row g-4">
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-search"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-search"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "1. Examination" %}</h6>
-                <p class="text-white-50 small">{% trans "Visual check & X-rays to assess decay depth." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "1. Examination & Scan" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Digital check to assess cavity depth." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-bandaid"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-bandaid-fill"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "2. Anesthesia" %}</h6>
-                <p class="text-white-50 small">{% trans "Local numbing for a pain-free experience." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "2. Gentle Numbing" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Comfortable local anesthetic for zero pain." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-eraser"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-shield-x"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "3. Decay Removal" %}</h6>
-                <p class="text-white-50 small">{% trans "Gently clearing out the infected tooth structure." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "3. Decay Removal" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Microscopic cleaning of infected dentin." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-magic"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-stars"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "4. Tooth Preparation" %}</h6>
-                <p class="text-white-50 small">{% trans "Cleaning and preparing the cavity for bonding." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "4. Enamel Bonding" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Etching and priming for maximum adhesion." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-layers"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-layers-fill"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "5. Filling Placement" %}</h6>
-                <p class="text-white-50 small">{% trans "Applying the filling material in layers." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "5. Layered Composite" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Applying resin cured with blue LED light." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-warning me-3"><i class="bi bi-arrow-repeat"></i></div>
+              <div class="fs-3 text-info me-3"><i class="bi bi-check2-circle"></i></div>
               <div>
-                <h6 class="fw-bold mb-1">{% trans "6. Polishing & Bite" %}</h6>
-                <p class="text-white-50 small">{% trans "Shaping the filling to match your natural bite perfectly." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "6. Occlusal Polish" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Shaping bite alignment and silky polish." %}</p>
               </div>
             </div>
           </div>
@@ -498,46 +629,48 @@
       <div class="col-lg-5">
         <div class="pricing-table">
           <div class="pricing-header">
-            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
-            <p class="text-white-50 small mb-0 mt-2">{% trans "Clear & Transparent Pricing" %}</p>
+            <h3 class="fw-bold mb-1" style="font-family: var(--cf-font-head);">{% trans "Filling Treatment Charges" %}</h3>
+            <p class="text-white-50 small mb-0">{% trans "Clear, Transparent & Fair Pricing" %}</p>
           </div>
           <div class="pricing-body">
             
             <div class="pricing-row">
               <div>
                 <p class="title">{% trans "Composite Filling (Small)" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Tooth-colored, minor cavity" %}</p>
+                <p class="text-muted small mb-0 mt-1" style="font-weight: 500;">{% trans "Tooth-colored, single-surface cavity" %}</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.composite_filling_small|default:"1,500" }}</span>
+                <span class="price"><span class="fs-6 fw-bold">NPR</span> {{ dynamic_prices.composite_filling_small|default:"1,500" }}</span>
               </div>
             </div>
             
-            <div class="pricing-row" style="background-color: var(--cf-primary-tint);">
+            <div class="pricing-row" style="background-color: #F0F7FD;">
               <div>
                 <p class="title">{% trans "Composite Filling (Large)" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Deep cavity, multi-surface" %}</p>
+                <p class="text-muted small mb-0 mt-1" style="font-weight: 500;">{% trans "Multi-surface, deep cuspal restoration" %}</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.composite_filling_large|default:"2,500" }}</span>
+                <span class="price"><span class="fs-6 fw-bold">NPR</span> {{ dynamic_prices.composite_filling_large|default:"2,500" }}</span>
               </div>
             </div>
             
             <div class="pricing-row">
               <div>
-                <p class="title">{% trans "Glass Ionomer Filling" %}</p>
-                <p class="text-muted small mb-0 mt-1">{% trans "Fluoride releasing (Per tooth)" %}</p>
+                <p class="title">{% trans "Glass Ionomer Restoration" %}</p>
+                <p class="text-muted small mb-0 mt-1" style="font-weight: 500;">{% trans "Fluoride releasing (Per tooth)" %}</p>
               </div>
               <div class="text-end">
-                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.glass_ionomer_filling|default:"1,000" }}</span>
+                <span class="price"><span class="fs-6 fw-bold">NPR</span> {{ dynamic_prices.glass_ionomer_filling|default:"1,000" }}</span>
               </div>
             </div>
 
-            <div class="p-4 text-center">
-              <p class="small text-muted mb-4 fst-italic">
-                {% trans "* Note: The final cost may vary slightly depending on the size of the cavity, the exact material selected, and the clinical complexity of the restoration." %}
+            <div class="p-4 text-center bg-white">
+              <p class="small text-muted mb-4 fst-italic" style="font-weight: 500;">
+                {% trans "* Note: The exact cost depends on cavity depth and material selected, quoted upfront with no hidden fees." %}
               </p>
-              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Filling" %}</a>
+              <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary w-100 justify-content-center">
+                <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Schedule Tooth Filling" %}
+              </a>
             </div>
 
           </div>
@@ -547,57 +680,101 @@
   </div>
 </section>
 
-<!-- 6. TREATMENT GALLERY -->
-<section class="section-py bg-light">
+<!-- PATIENT PREPARATION & CLINICAL NOTE -->
+<section class="section-py bg-white" style="border-top: 1px solid #E2E8F0;">
   <div class="container">
-    <div class="text-center mb-5 mx-auto" style="max-width: 600px;">
-      <div class="nd-eyebrow">{% trans "Our Work" %}</div>
-      <h2 class="section-heading mb-3">{% trans "Treatment Gallery" %}</h2>
-    </div>
-    <div class="row g-4 justify-content-center">
-      <div class="col-md-4">
-        <div class="rounded-4 overflow-hidden shadow-sm" style="height: 250px;">
-          <img loading="lazy" src="{% static 'images/fill_gallery_1.png' %}" alt="Filling Preparation" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <div class="row g-4 align-items-center">
+      
+      <!-- Recovery & Care Left -->
+      <div class="col-lg-7">
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-heart-pulse-fill"></i> {% trans "AFTERCARE & COMFORT" %}
+        </div>
+        <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: #0B2545;">
+          {% trans "What to Expect After Your Dental Filling" %}
+        </h3>
+        
+        <div class="d-flex flex-column gap-3">
+          <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
+            <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
+              <i class="bi bi-clock-fill"></i>
+            </div>
+            <div>
+              <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Wait Until Numbness Fades" %}</strong>
+              <small class="text-muted" style="font-weight: 500; line-height: 1.6;">{% trans "Avoid chewing hard foods or hot drinks until the local anesthetic completely wears off (approx. 1–2 hours) to avoid biting your lips or tongue." %}</small>
+            </div>
+          </div>
+
+          <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
+            <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <div>
+              <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Immediate Chewing Function" %}</strong>
+              <small class="text-muted" style="font-weight: 500; line-height: 1.6;">{% trans "Because composite resin is instantly cured with our blue LED light, it is 100% hardened before you leave the clinic chair." %}</small>
+            </div>
+          </div>
+
+          <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
+            <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
+              <i class="bi bi-emoji-smile-fill"></i>
+            </div>
+            <div>
+              <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Temporary Mild Sensitivity" %}</strong>
+              <small class="text-muted" style="font-weight: 500; line-height: 1.6;">{% trans "Mild sensitivity to extreme hot or cold is normal for a few days after deep restorations and resolves spontaneously." %}</small>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="rounded-4 overflow-hidden shadow-sm" style="height: 250px;">
-          <img loading="lazy" src="{% static 'images/fill_gallery_4.png' %}" alt="Filling Placement" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+
+      <!-- Lead Dentist Note Right -->
+      <div class="col-lg-5">
+        <div class="p-4 p-md-5 rounded-4 shadow-sm text-white position-relative overflow-hidden" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%); border: 1.5px solid rgba(255,255,255,0.15);">
+          <div class="d-flex align-items-center gap-2 text-info fw-bold text-uppercase small mb-3">
+            <i class="bi bi-award-fill"></i> {% trans "CLINICAL DIRECTOR'S PHILOSOPHY" %}
+          </div>
+          <blockquote class="fs-5 text-white-50 fst-italic mb-4" style="line-height: 1.7; border-left: 3px solid #0284C7; padding-left: 16px;">
+            “{% trans "Catching decay early with composite bonding is the most conservative way to preserve your natural smile. It prevents the need for invasive root canals or crowns." %}”
+          </blockquote>
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white shadow-sm" style="width: 46px; height: 46px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1rem;">
+              Dr.S
+            </div>
+            <div>
+              <h6 class="fw-bold mb-0 text-white">Dr. Subash Banjade</h6>
+              <small class="text-white-50">{% trans "Dental Surgeon & Clinical Director" %}</small>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="rounded-4 overflow-hidden shadow-sm" style="height: 250px;">
-          <img loading="lazy" src="{% static 'images/fill_gallery_2.png' %}" alt="Final Result" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
 
-<!-- 7. AFTERCARE, FAQ & TESTIMONIALS -->
-<section class="section-py bg-white">
+<!-- 7. FAQ & TESTIMONIALS -->
+<section class="section-py" style="background: #F8FAFC; border-top: 1px solid #E2E8F0;">
   <div class="container">
     <div class="row g-5">
       
-      <!-- Care Tips & Testimonials -->
+      <!-- Testimonials -->
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Recovery" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Aftercare Tips" %}</h3>
-        <ul class="symptom-list mb-5">
-          <li><i class="bi bi-clock text-primary fs-5"></i> <span><strong>{% trans "Wait to Eat:" %}</strong> {% trans "Avoid chewing on the numb side until the anesthesia wears off entirely to prevent biting your cheek." %}</span></li>
-          <li><i class="bi bi-snow text-warning fs-5"></i> <span><strong>{% trans "Sensitivity:" %}</strong> {% trans "Mild sensitivity to hot or cold is normal for a few days after a deep filling." %}</span></li>
-          <li><i class="bi bi-brush text-success fs-5"></i> <span><strong>{% trans "Hygiene:" %}</strong> {% trans "Brush and floss as normal! Fillings need to be kept clean just like natural teeth." %}</span></li>
-        </ul>
-
-        <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative">
-          <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-chat-quote-fill"></i> {% trans "PATIENT STORIES" %}
+        </div>
+        <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Invisible Restorations" %}</h3>
+        
+        <div class="p-4 rounded-4 shadow-sm position-relative mb-4 bg-white" style="border: 1.5px solid rgba(2, 132, 199, 0.2);">
+          <i class="bi bi-quote position-absolute text-primary opacity-10" style="font-size: 5rem; top: -10px; right: 20px;"></i>
           <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-          <p class="fst-italic text-muted small position-relative z-1">{% blocktrans %}\"I had a very deep cavity on my front tooth and was so worried it would look fake. Dr. Niko used a composite filling that matches my tooth color exactly. You can't even tell I had work done!\"{% endblocktrans %}</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
-            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px; font-size: 0.8rem;">{% trans "R.K." %}</div>
+          <p class="fst-italic text-muted position-relative z-1 mb-3" style="font-size: 0.95rem; line-height: 1.7; font-weight: 500;">
+            {% blocktrans %}"I had a visible cavity on my upper front tooth and was anxious it would look fake. The CareFirst dental team matched the composite shade so accurately you cannot even tell where the filling begins. Truly painless and flawless work!"{% endblocktrans %}
+          </p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white shadow-sm" style="width: 40px; height: 40px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 0.85rem;">R.K.</div>
             <div>
-              <h6 class="fw-bold mb-0" style="font-size: 0.9rem;">{% trans "Ramesh K." %}</h6>
-              <p class="small text-muted mb-0" style="font-size: 0.75rem;">{% trans "Aesthetic Filling Patient" %}</p>
+              <h6 class="fw-bold mb-0 text-navy" style="font-size: 0.95rem; color: #0B2545;">Ramesh K.</h6>
+              <p class="small text-muted mb-0" style="font-size: 0.8rem; font-weight: 500;">{% trans "Composite Filling Patient — New Baneshwor" %}</p>
             </div>
           </div>
         </div>
@@ -605,42 +782,56 @@
 
       <!-- FAQ -->
       <div class="col-lg-7">
-        <div class="nd-eyebrow">{% trans "FAQ" %}</div>
-        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Frequently Asked Questions" %}</h3>
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-question-circle-fill"></i> {% trans "COMMON QUESTIONS" %}
+        </div>
+        <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                {% trans "Does getting a filling hurt?" %}
+                {% trans "Does getting a dental filling hurt?" %}
               </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "Not at all. We use a local anesthetic to completely numb the area before beginning. You may feel some pressure or vibration, but you will not feel any sharp pain during the procedure." %}
+                {% trans "Not at all. We administer gentle local anesthesia before we begin, ensuring the entire tooth and surrounding gums are completely numb. You will feel light pressure and vibration, but no sharp discomfort." %}
               </div>
             </div>
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                {% trans "How long do dental fillings last?" %}
+                {% trans "How long do composite tooth-colored fillings last?" %}
               </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "With good oral hygiene (brushing, flossing, and regular check-ups), composite fillings typically last between 5 to 10 years. Avoiding incredibly hard foods (like ice) can help extend their lifespan." %}
+                {% trans "With regular oral hygiene (brushing, flossing, and 6-month checkups), high-grade composite fillings typically last 7 to 10+ years." %}
               </div>
             </div>
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                {% trans "Can I replace my old silver fillings with white ones?" %}
+                {% trans "Can I replace my old silver amalgam fillings with white composite?" %}
               </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {% trans "Yes! Many patients choose to replace old, dark amalgam fillings with aesthetic tooth-colored composite resin for a more natural-looking smile. We can evaluate your old fillings during a consultation." %}
+                {% trans "Yes! Many patients choose to replace dark silver amalgam fillings with aesthetic, tooth-colored composite resin for a brighter, mercury-free smile. We can safely remove old amalgams and bond composite in a single visit." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                {% trans "How long does a dental filling appointment take?" %}
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                {% trans "A standard single-tooth filling procedure takes approximately 30 to 45 minutes from numbing to final bite polishing." %}
               </div>
             </div>
           </div>
@@ -651,30 +842,31 @@
   </div>
 </section>
 
-
-
-
 <!-- RELATED SERVICES -->
-<section class="section-py" style="background: #f8f9fa;">
+<section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     {% include 'components/related_services_row.html' %}
   </div>
 </section>
 
-<!-- 9. CTA STRIP -->
+<!-- 8. CTA STRIP -->
 <div class="nd-cta-strip" id="book">
   <div class="cta-inner container">
-    <h2>{% blocktrans %}Don't Wait Until It Hurts{% endblocktrans %}</h2>
-    <p>{% trans "Early treatment stops decay and preserves your natural tooth. Book an appointment today for a painless, invisible filling." %}</p>
+    <h2 class="fw-bold mb-3 text-white">{% blocktrans %}Don't Wait Until Tooth Decay Reaches the Nerve{% endblocktrans %}</h2>
+    <p class="fs-5 text-white-50 mb-4">{% trans "Early conservative treatment stops decay and preserves your natural tooth. Schedule your appointment today for a painless, invisible filling." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
-      <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Tooth Restoration" %}
+      </a>
+      <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-telephone-fill"></i>{% trans "+977 980-7464136" %}
       </a>
     </div>
   </div>
 </div>
 
-{% include 'components/google_reviews.html' %}
+{% endblock %}
 
+{% block extra_scripts %}
+{% include 'components/google_reviews.html' %}
 {% endblock %}
