@@ -1,0 +1,204 @@
+{% load i18n %}
+
+<!-- PATIENT TESTIMONIALS (SWIPER) -->
+
+<style>
+  .testimonial-swiper-section {
+    background-color: #FAF8F3;
+    overflow: hidden;
+  }
+  
+  .testimonial-kicker {
+    color: #C8A04D;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  
+  .testimonial-swiper-title {
+    color: #173D35;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+  }
+
+  .ts-card {
+    background-color: #fff;
+    border-radius: 24px;
+    border: 1px solid #E8E5DC;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.02);
+    padding: 2rem;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .ts-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  }
+
+  .ts-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .ts-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #173D35;
+    color: #C8A04D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    overflow: hidden; /* Added to keep image inside circle */
+  }
+
+  .ts-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ts-name {
+    color: #173D35;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .ts-treatment {
+    color: #6c757d;
+    font-size: 0.85rem;
+    margin: 0;
+    margin-top: 2px;
+  }
+
+  .ts-stars {
+    color: #C8A04D;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 2px;
+  }
+
+  .ts-quote {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-style: italic;
+    /* Limit to 3 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ts-verified {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    color: #173D35;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .ts-verified i {
+    color: #198754;
+    font-size: 0.9rem;
+  }
+
+  /* Linear continuous scrolling animation override for Swiper */
+  .swiper-container-continuous .swiper-wrapper {
+    -webkit-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+  }
+</style>
+
+{% if not hide_wrapper %}
+<section class="section-py testimonial-swiper-section">
+{% endif %}
+  <div class="{% if not hide_wrapper %}container-fluid px-0{% endif %}">
+    
+    <div class="text-center mb-5 {% if hide_wrapper %}px-3{% endif %}">
+      <div class="testimonial-kicker mb-2">{% trans "PATIENT STORIES" %}</div>
+      <h2 class="testimonial-swiper-title">{% trans "Words From Our Happy Patients" %}</h2>
+    </div>
+
+    <!-- Swiper Container -->
+    <div class="swiper testimonialSwiper swiper-container-continuous" style="padding: 1rem 0 3rem 0; cursor: grab;">
+      <div class="swiper-wrapper">
+        {% for ts in testimonials %}
+        <div class="swiper-slide" style="height: auto;">
+          <div class="ts-card">
+            <div>
+              <div class="ts-header">
+                <div class="ts-avatar">
+                  {% if ts.photo %}
+                  <img src="{{ ts.photo.url }}" alt="{{ ts.patient_name }}">
+                  {% else %}
+                  {{ ts.patient_name|slice:":2"|upper }}
+                  {% endif %}
+                </div>
+                <div>
+                  <p class="ts-name">{{ ts.patient_name }}</p>
+                  <p class="ts-treatment">{{ ts.treatment }}</p>
+                </div>
+              </div>
+              <div class="ts-stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="ts-quote">"{{ ts.review }}"</p>
+            </div>
+            <div class="ts-verified"><i class="bi bi-check-circle-fill"></i> {% trans "Verified Patient" %}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+{% if not hide_wrapper %}
+</section>
+{% endif %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof Swiper !== 'undefined') {
+      const swiper = new Swiper('.testimonialSwiper', {
+        slidesPerView: 1.1,
+        spaceBetween: 20,
+        loop: true,
+        speed: 3500,
+        autoplay: {
+          delay: 0,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+        grabCursor: true,
+        breakpoints: {
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 24,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          }
+        }
+      });
+    }
+  });
+</script>

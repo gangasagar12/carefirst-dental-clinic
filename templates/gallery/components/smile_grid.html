@@ -1,0 +1,288 @@
+{% load i18n %}
+{% load static %}
+{% if not hide_title %}
+<div class="text-center mb-5">
+      <div class="nd-eyebrow justify-content-center">{% trans "Browse by Treatment" %}</div>
+      <h2 class="section-heading">{% trans "Treatment" %}<span class="accent">{% trans "Categories" %}</span></h2>
+</div>
+{% endif %}
+
+    <!-- Treatment Tab Buttons -->
+    <div class="treatment-tabs" id="treatmentTabs">
+      <button class="tt-tab active" data-treatment="all">
+        <i class="bi bi-grid-3x3-gap-fill"></i>{% trans "All Treatments" %}</button>
+      <button class="tt-tab" data-treatment="braces">
+        <i class="bi bi-bezier2"></i>{% trans "Braces & Aligners" %}</button>
+      <button class="tt-tab" data-treatment="veneers">
+        <i class="bi bi-gem"></i>{% trans "Veneers" %}</button>
+      <button class="tt-tab" data-treatment="whitening">
+        <i class="bi bi-brightness-high-fill"></i>{% trans "Whitening" %}</button>
+      <button class="tt-tab" data-treatment="implants">
+        <i class="bi bi-gear-wide-connected"></i>{% trans "Implants" %}</button>
+      <button class="tt-tab" data-treatment="makeover">
+        <i class="bi bi-stars"></i>{% trans "Smile Makeover" %}</button>
+      <button class="tt-tab" data-treatment="crowns">
+        <i class="bi bi-shield-fill-check"></i>{% trans "Crowns & Bridges" %}</button>
+      <button class="tt-tab" data-treatment="general">
+        <i class="bi bi-heart-pulse"></i>{% trans "General Care" %}</button>
+    </div>
+
+    <!-- Before / After Cards Grid -->
+    <div class="row g-3" id="baGrid">
+
+      <!-- Braces -->
+      <div class="col-md-6 col-lg-4" data-treatment="braces">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/braces_before.png' %}"
+              alt="Before braces">
+            <img loading="lazy" src="{% static 'main/images/gallery/braces_after.png' %}"
+              alt="After braces">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Orthodontics — Braces" %}</div>
+            <div class="ba-title">{% trans "Aligned Smile in 18 Months" %}</div>
+            <p class="ba-desc">{% blocktrans %}Crooked and crowded teeth corrected with metal braces, resulting in a perfectly aligned,
+              confident smile.{% endblocktrans %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Veneers -->
+      <div class="col-md-6 col-lg-4" data-treatment="veneers">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/veneers_before.png' %}"
+              alt="Before veneers">
+            <img loading="lazy" src="{% static 'main/images/gallery/veneers_after.png' %}"
+              alt="After veneers">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Cosmetic Dentistry — Veneers" %}</div>
+            <div class="ba-title">{% trans "Hollywood Smile with Porcelain Veneers" %}</div>
+            <p class="ba-desc">{% blocktrans %}8 ultra-thin porcelain veneers placed in 2 visits — transforming discoloured, chipped
+              teeth into a stunning Hollywood smile.{% endblocktrans %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Whitening -->
+      <div class="col-md-6 col-lg-4" data-treatment="whitening">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/whitening_before.png' %}"
+              alt="Before whitening">
+            <img loading="lazy" src="{% static 'main/images/gallery/whitening_after.png' %}"
+              alt="After whitening">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Cosmetic — Teeth Whitening" %}</div>
+            <div class="ba-title">{% trans "8 Shades Whiter in One Session" %}</div>
+            <p class="ba-desc">{% blocktrans %}Professional in-office Zoom! whitening delivered an 8-shade improvement in a single
+              90-minute appointment.{% endblocktrans %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Implants -->
+      <div class="col-md-6 col-lg-4" data-treatment="implants">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/implants_before.png' %}"
+              alt="Before implant">
+            <img loading="lazy" src="{% static 'main/images/gallery/implants_after.png' %}"
+              alt="After implant">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Restorative — Dental Implant" %}</div>
+            <div class="ba-title">{% trans "Natural-Looking Tooth Replacement" %}</div>
+            <p class="ba-desc">{% blocktrans %}Single dental implant with ceramic crown placed seamlessly to replace a missing molar —
+              indistinguishable from natural teeth.{% endblocktrans %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Smile Makeover -->
+      <div class="col-md-6 col-lg-4" data-treatment="makeover">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/makeover_before.png' %}"
+              alt="Before smile makeover">
+            <img loading="lazy" src="{% static 'main/images/gallery/makeover_after.png' %}"
+              alt="After smile makeover">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Full Smile Makeover" %}</div>
+            <div class="ba-title">{% trans "Complete Smile Transformation" %}</div>
+            <p class="ba-desc">{% blocktrans %}A comprehensive smile makeover combining gum contouring, whitening, and 6 veneers to
+              create a perfectly harmonious, magazine-worthy smile.{% endblocktrans %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crowns & Bridges -->
+      <div class="col-md-6 col-lg-4" data-treatment="crowns">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/crowns_before.png' %}"
+              alt="Before crowns">
+            <img loading="lazy" src="{% static 'main/images/gallery/crowns_after.png' %}"
+              alt="After crowns">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Restorative — Crowns & Bridge" %}</div>
+            <div class="ba-title">{% trans "Same-Day Ceramic Crown" %}</div>
+            <p class="ba-desc">{% blocktrans %}CAD/CAM same-day crown fabricated and placed in a single visit — perfectly matched,
+              strong, and beautiful.{% endblocktrans %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aligners -->
+      <div class="col-md-6 col-lg-4" data-treatment="braces">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/aligners_before.png' %}"
+              alt="Before aligners" >
+            <img loading="lazy" src="{% static 'main/images/gallery/aligners_after.png' %}"
+              alt="After aligners">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Orthodontics — Clear Aligners" %}</div>
+            <div class="ba-title">{% trans "Invisible Aligner Journey" %}</div>
+            <p class="ba-desc">{% blocktrans %}12 months of clear aligner treatment delivered a straight, beautiful smile — without a
+              single visible brace.{% endblocktrans %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Veneers 2 -->
+      <div class="col-md-6 col-lg-4" data-treatment="veneers">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/composite_veneers_before.png' %}"
+              alt="Before composite veneers" >
+            <img loading="lazy" src="{% static 'main/images/gallery/composite_veneers_after.png' %}"
+              alt="After composite veneers">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Cosmetic — Composite Veneers" %}</div>
+            <div class="ba-title">{% trans "Instant Smile Makeover — One Visit" %}</div>
+            <p class="ba-desc">{% blocktrans %}Composite resin veneers shaped and polished in a single appointment to close gaps and
+              perfect smile symmetry.{% endblocktrans %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Makeover 2 -->
+      <div class="col-md-6 col-lg-4" data-treatment="makeover">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/full_arch_before.png' %}"
+              alt="Before full arch" >
+            <img loading="lazy" src="{% static 'main/images/gallery/full_arch_after.png' %}"
+              alt="After full arch">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Full Arch Rehabilitation" %}</div>
+            <div class="ba-title">{% trans "Full-Mouth Reconstruction" %}</div>
+            <p class="ba-desc">{% blocktrans %}A complex full-arch case combining implants, crowns, and gum treatment — restoring both
+              function and a youthful, radiant smile.{% endblocktrans %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Dentistry - Cavity -->
+      <div class="col-md-6 col-lg-4" data-treatment="general">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/cavity_before.png' %}"
+              alt="Before cavity filling">
+            <img loading="lazy" src="{% static 'main/images/gallery/cavity_after.png' %}"
+              alt="After cavity filling">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Restorative — Tooth-Colored Filling" %}</div>
+            <div class="ba-title">{% trans "Seamless Decay Removal" %}</div>
+            <p class="ba-desc">{% trans "A deep cavity was cleaned and perfectly restored using composite resin, halting decay and blending naturally with the tooth." %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Dentistry - Cleaning -->
+      <div class="col-md-6 col-lg-4" data-treatment="general">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img loading="lazy" src="{% static 'main/images/gallery/teeth_cleaning_before.png' %}"
+              alt="Before teeth cleaning">
+            <img loading="lazy" src="{% static 'main/images/gallery/teeth_cleaning_after.png' %}"
+              alt="After teeth cleaning">
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
+            <span class="ba-label before">{% trans "Before" %}</span>
+            <span class="ba-label after">{% trans "After" %}</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-treatment">{% trans "Preventative — Scaling & Polishing" %}</div>
+            <div class="ba-title">{% trans "Professional Deep Clean" %}</div>
+            <p class="ba-desc">{% trans "Hardened tartar and plaque build-up were professionally removed to restore gum health and reveal a brighter, healthier smile." %}</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /row#baGrid -->
+  </div>
+</section>
+
+

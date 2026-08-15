@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+
+{% block title %}Meet Our Doctors — Niko Dental & Aesthetics{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'main/css/about.css' %}?v=1.1">
+<meta name="description" content="Meet the expert team of dental specialists at Niko Dental & Aesthetics — experienced, certified, and passionate about your smile.">
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="about-hero text-center">
+  <div class="hero-inner container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:about' %}" class="text-white text-decoration-none opacity-75">{% trans "About" %}</a></li>
+        <li class="breadcrumb-item active text-warning">{% trans "Meet Our Doctors" %}</li>
+      </ol>
+    </nav>
+    <h1>{% trans "Meet Our Doctors" %}</h1>
+    <p class="hero-sub mx-auto">{% trans "A dedicated team of certified specialists committed to your oral health and beautiful smile." %}</p>
+  </div>
+</section>
+
+<!-- INTRO + STATS -->
+<section class="section-py-sm bg-white border-bottom">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <div class="nd-eyebrow">{% trans "Our Team" %}</div>
+        <h2 class="section-heading mb-3">{% trans "Qualified Specialists," %}<br><span class="accent">{% trans "Passionate About Smiles" %}</span></h2>
+        <p class="text-muted" style="line-height:1.85;max-width:580px;">{% trans "Every doctor at Niko Dental & Aesthetics holds internationally recognized qualifications and undergoes regular continuing education. Our team specializes across all major dental disciplines, ensuring you receive expert care under one roof." %}</p>
+      </div>
+      <div class="col-lg-5 text-center">
+        <img loading="lazy" src="{% static 'main/img/niko1.jpeg' %}" alt="Our Team at Niko Dental" class="img-fluid rounded shadow" style="object-fit: cover; width: 100%; max-height: 350px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTOR CARDS (DYNAMIC) -->
+<section class="section-py" style="background:var(--nd-gray-bg);">
+  <div class="container">
+    {% if doctors %}
+      <div class="row g-4">
+        {% for doc in doctors %}
+        <div class="col-md-6 col-lg-4">
+          {% include 'components/doctor_card.html' with doc=doc %}
+        </div>
+        {% endfor %}
+      </div>
+
+    {% else %}
+      <!-- No doctors in DB yet — friendly state -->
+      <div class="no-doctors">
+        <i class="bi bi-people text-muted"></i>
+        <h5 class="mb-2">{% trans "Doctor profiles coming soon" %}</h5>
+        <p class="text-muted">{% trans "Our team details are being set up. Please visit us or call to speak with our specialists." %}</p>
+        <a href="{% url 'main:about' %}" class="btn-nd-green btn mt-3">
+          <i class="bi bi-arrow-left me-2"></i>{% trans "Back to About Us" %}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+
+
+<!-- CTA -->
+<div class="nd-cta-strip">
+  <div class="cta-inner container">
+    <h2>{% trans "Ready to Meet Your Doctor?" %}</h2>
+    <p>{% trans "Book a consultation with one of our specialists today — no long waits, no surprises." %}</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
+      <a href="{% url 'main:clinic' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold"><i class="bi bi-building me-2"></i>{% trans "View Our Clinic" %}</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

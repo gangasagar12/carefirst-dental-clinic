@@ -1,0 +1,112 @@
+/* ==========================================================================
+   CareFirst Dental Clinic - Pricing Table Styles
+   ========================================================================== */
+
+.price-list-container {
+  background: #ffffff;
+  border: 1px solid var(--cf-border, #E2E8F0);
+  border-radius: var(--cf-radius-lg, 16px);
+  box-shadow: 0 10px 30px rgba(11, 37, 69, 0.06);
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.price-list-container:hover {
+  box-shadow: 0 20px 50px rgba(2, 132, 199, 0.12);
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+.price-list-table {
+  width: 100%;
+  margin-bottom: 0;
+  background: transparent;
+  border-collapse: collapse;
+}
+
+.price-list-table th,
+.price-list-table td {
+  padding: 20px 26px;
+  vertical-align: middle;
+  border-bottom: 1px dashed #E2E8F0;
+  color: #1E293B;
+  font-size: 1rem;
+  transition: background 0.25s ease;
+}
+
+/* Hover effect on regular rows */
+.price-list-table tr:not(.section-header) {
+  transition: all 0.25s ease;
+}
+
+.price-list-table tr:not(.section-header):hover {
+  background: #F0F9FF;
+}
+
+.price-list-table tr:not(.section-header):hover td {
+  color: var(--cf-navy, #0B2545);
+}
+
+.price-list-table tr:last-child td {
+  border-bottom: none;
+}
+
+.price-list-table .num-col {
+  width: 70px;
+  color: var(--cf-primary, #0284C7);
+  font-weight: 700;
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+}
+
+.price-list-table .treatment-col {
+  font-weight: 500;
+  color: #1E293B;
+  font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+}
+
+.price-list-table .price-col {
+  text-align: right;
+  color: var(--cf-primary, #0284C7);
+  font-weight: 700;
+  font-size: 1.15rem;
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+}
+
+/* Section Header Rows */
+.price-list-table .section-header td {
+  background: linear-gradient(135deg, #0B2545 0%, #0F325E 100%);
+  font-weight: 700;
+  color: #FFFFFF;
+  font-size: 1.15rem;
+  padding: 20px 26px;
+  border-bottom: none;
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+  position: relative;
+}
+
+.price-list-table .section-header td::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--cf-primary, #0284C7);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .price-list-table th, .price-list-table td {
+    padding: 14px 12px;
+    font-size: 0.9rem;
+  }
+  .price-list-table .num-col {
+    width: 35px;
+    font-size: 0.95rem;
+  }
+  .price-list-table .section-header td {
+    padding: 16px 12px;
+    font-size: 1rem;
+  }
+}

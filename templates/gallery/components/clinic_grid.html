@@ -1,0 +1,26 @@
+{% load i18n %}
+{% if not hide_title %}
+<div class="text-center mb-5">
+  <div class="nd-eyebrow justify-content-center">{% trans "Photo Gallery" %}</div>
+  <h2 class="section-heading">{% trans "Browse Our" %} <span class="accent">{% trans "Clinic Spaces" %}</span></h2>
+</div>
+{% endif %}
+
+<!-- Filter Buttons -->
+<div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
+  <button class="gf-btn active" data-filter="all">{% trans "All" %}</button>
+  <button class="gf-btn" data-filter="reception">{% trans "Reception" %}</button>
+  <button class="gf-btn" data-filter="treatment">{% trans "Treatment Rooms" %}</button>
+  <button class="gf-btn" data-filter="equipment">{% trans "Equipment" %}</button>
+</div>
+
+<!-- Masonry Gallery -->
+<div class="gallery-grid" id="clinicGallery">
+  {% for image in gallery_images %}
+  <a class="g-item" data-caption="{{ image.caption }}" data-src="{{ image.image.url }}" data-filter="{{ image.category|default:'all' }}">
+    <img src="{{ image.image.url }}" alt="{{ image.caption }}" loading="lazy">
+  </a>
+  {% empty %}
+  <p class="text-center text-muted">{% trans "No images have been added to the gallery yet." %}</p>
+  {% endfor %}
+</div>

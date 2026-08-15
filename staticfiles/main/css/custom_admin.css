@@ -1,0 +1,27 @@
+/* Custom Carefirst Dental Clinic Theme for Django Unfold Admin */
+
+/* 1. DIFFERENT THEME IN LEFT SIDEBAR (Dark Green) */
+
+/* Make all text and icons in the sidebar white */
+
+/* Sidebar Hover & Active states */
+
+/* 2. DENTAL NAME (Gold) */
+
+/* 3. HEADINGS & SUBHEADINGS (Dark Green) */
+/* The main dashboard content headings */
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+    color: #0e5a4f !important;
+    font-weight: 700 !important;
+}
+
+/* Remove dark green from buttons so they don't get overwritten incorrectly */
+main button h1,
+main a h1 {
+    color: inherit !important;
+}

@@ -1,0 +1,206 @@
+{% extends "admin/base_site.html" %}
+
+
+{% block content %}
+<style>
+    .custom-header {
+        background-color: #1e293b;
+        color: #ffffff;
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    @media (max-width: 640px) {
+        .custom-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+    .custom-header-left { display: flex; align-items: center; gap: 1rem; }
+    .custom-header h1 { color: #ffffff !important; font-size: 1.5rem; font-weight: 700; margin: 0 0 0.25rem 0; }
+    .custom-header p { color: #94a3b8; font-size: 0.875rem; margin: 0; }
+    .custom-icon-box {
+        background-color: #ffffff; color: #0f172a; padding: 0.75rem; border-radius: 0.5rem; flex-shrink: 0;
+    }
+    .custom-btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem;
+        font-size: 0.875rem; font-weight: 500; color: #ffffff; text-decoration: none;
+        transition: background-color 0.2s;
+    }
+    .custom-btn:hover { background-color: rgba(255,255,255,0.1); }
+    
+    .custom-container { background-color: #ffffff; border-radius: 0.75rem; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); border: 1px solid #f1f5f9; overflow: hidden; }
+    
+    .custom-filter-bar {
+        display: flex; gap: 0.75rem; padding: 1rem; border-bottom: 1px solid #f1f5f9; background-color: #f8fafc;
+    }
+    @media (max-width: 640px) { .custom-filter-bar { flex-direction: column; } }
+    .custom-search { flex-grow: 1; }
+    .custom-input { width: 100%; padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 0.5rem; font-size: 0.875rem; outline: none; }
+    .custom-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
+    .custom-select-wrap { width: 12rem; }
+    @media (max-width: 640px) { .custom-select-wrap { width: 100%; } }
+    
+    .custom-filter-btn {
+        padding: 0.5rem 1.5rem; background-color: #2563eb; color: #ffffff; border: none; border-radius: 0.5rem;
+        font-size: 0.875rem; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; transition: background-color 0.2s;
+    }
+    .custom-filter-btn:hover { background-color: #1d4ed8; }
+    
+    .custom-table { width: 100%; text-align: left; border-collapse: collapse; }
+    .custom-table th { font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 600; padding: 1rem 1.5rem; border-bottom: 1px solid #f1f5f9; background-color: #ffffff; }
+    .custom-table td { padding: 1rem 1.5rem; border-bottom: 1px solid #f8fafc; }
+    .custom-table tr:hover td { background-color: #f8fafc; }
+    
+    .status-pill { display: inline-flex; align-items: center; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }
+    .status-pending { background-color: #eff6ff; color: #2563eb; }
+    .status-confirmed { background-color: #f0fdf4; color: #16a34a; }
+    .status-completed { background-color: #f1f5f9; color: #475569; }
+    .status-cancelled { background-color: #fef2f2; color: #dc2626; }
+    .status-source { background-color: #f1f5f9; color: #1e293b; }
+    
+    .action-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.375rem 1rem; border: 1px solid #e2e8f0; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 500; color: #334155; text-decoration: none; background-color: #ffffff; }
+    .action-btn:hover { background-color: #f8fafc; }
+</style>
+
+<div class="px-4 py-6 sm:px-6 lg:px-8 w-full max-w-full">
+    <!-- Header Card -->
+    <div class="custom-header">
+        <div class="custom-header-left">
+            <div class="custom-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+            </div>
+            <div>
+                <h1>Inquiries Management</h1>
+                <p>Track, review, and convert prospective patients and contacts</p>
+            </div>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+            <a href="{% url 'admin:index' %}" class="custom-btn" style="background-color: transparent; border: 1px solid rgba(255,255,255,0.3);">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" style="margin-right: 8px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to Admin
+            </a>
+            <a href="{% url 'admin:appointments_appointment_add' %}" class="custom-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" style="margin-right: 8px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Create Appointment
+            </a>
+        </div>
+    </div>
+
+    <!-- Filters and Table Container -->
+    <div class="custom-container">
+        <!-- Filter Bar -->
+        <form method="GET" class="custom-filter-bar">
+            <div class="custom-search">
+                <input type="text" name="q" value="{{ q }}" placeholder="Search by name, email, or phone..." class="custom-input">
+            </div>
+            <div class="custom-select-wrap">
+                <select name="status" class="custom-input">
+                    <option value="">All Statuses</option>
+                    <option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>Pending / New</option>
+                    <option value="confirmed" {% if status_filter == 'confirmed' %}selected{% endif %}>Confirmed</option>
+                    <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Completed / Read</option>
+                    <option value="cancelled" {% if status_filter == 'cancelled' %}selected{% endif %}>Cancelled</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit" class="custom-filter-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" style="margin-right: 8px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                    Filter
+                </button>
+            </div>
+        </form>
+
+        <!-- Data Table -->
+        <div style="overflow-x: auto;">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Details</th>
+                        <th>Date Received</th>
+                        <th>Source</th>
+                        <th>Status</th>
+                        <th style="text-align: right;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: #0f172a; font-size: 0.875rem;">{{ item.name }}</div>
+                            <div style="color: #64748b; font-size: 0.75rem; margin-top: 2px;"># {{ item.id_str }}</div>
+                            {% if item.email %}
+                            <div style="color: #94a3b8; font-size: 0.75rem; margin-top: 2px;">{{ item.email }}</div>
+                            {% endif %}
+                            {% if item.doctor or item.branch %}
+                            <div style="margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap;">
+                                {% if item.doctor %}
+                                <span style="font-size: 0.7rem; background-color: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #475569; display: inline-flex; align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16" style="margin-right:3px;"><path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/><path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492z"/></svg>{{ item.doctor }}</span>
+                                {% endif %}
+                                {% if item.branch %}
+                                <span style="font-size: 0.7rem; background-color: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #475569; display: inline-flex; align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16" style="margin-right:3px;"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>{{ item.branch }}</span>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div style="display: flex; align-items: center; color: #475569; font-size: 0.875rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" style="margin-right: 6px; color: #94a3b8;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                {{ item.date|date:"M d, Y" }}
+                            </div>
+                        </td>
+                        <td>
+                            <span class="status-pill status-source">{{ item.source }}</span>
+                        </td>
+                        <td>
+                            {% if item.status == 'pending' %}
+                                <span class="status-pill status-pending">New / Pending</span>
+                            {% elif item.status == 'confirmed' %}
+                                <span class="status-pill status-confirmed">Confirmed</span>
+                            {% elif item.status == 'completed' %}
+                                <span class="status-pill status-completed">Completed</span>
+                            {% elif item.status == 'cancelled' %}
+                                <span class="status-pill status-cancelled">Cancelled</span>
+                            {% endif %}
+                        </td>
+                        <td style="text-align: right; white-space: nowrap;">
+                            {% if item.phone %}
+                                <a href="https://wa.me/{{ item.phone|urlencode }}?text=Hello%20{{ item.name|urlencode }},%20this%20is%20Niko%20Dental%20%26%20Aesthetics%20regarding%20your%20appointment%20inquiry." target="_blank" rel="noopener noreferrer" class="action-btn" style="background-color: #25d366; color: white; border-color: #25d366; margin-right: 0.25rem;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16" style="margin-right: 4px;">
+                                      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                                    </svg>
+                                    WhatsApp
+                                </a>
+                            {% endif %}
+                            {% if item.type == 'appointment' %}
+                            <a href="{% url 'admin:appointments_appointment_change' item.obj_id %}" class="action-btn">View</a>
+                            {% else %}
+                            <a href="{% url 'admin:main_contactmessage_change' item.obj_id %}" class="action-btn">View</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 3rem 1rem; color: #64748b; font-size: 0.875rem;">
+                            No inquiries or appointments found.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,323 @@
+
+{% load static i18n %}
+<!-- FAQ SECTION -->
+<section class="section-py position-relative" id="faq-section" style="background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.85)), url('{% static "images/rct_feat_digital.png" %}'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="text-center mb-5">
+          <div class="nd-eyebrow justify-content-center fw-bolder text-dark">{% trans "Answers to Your Questions" %}</div>
+          <h2 class="section-heading fw-bolder text-dark">{% trans "Frequently Asked" %} <span class="accent">{% trans "Questions" %}</span></h2>
+          <p class="text-dark fw-semibold fs-5 mt-3">{% trans "Everything you need to know before your appointment." %}</p>
+        </div>
+        
+        <div class="accordion" id="nikoFaqGlobal">
+
+          {% if faq_type == 'pricing' %}
+          <!-- PRICING FAQ -->
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqPrice1">
+              <button class="accordion-button bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice1" aria-expanded="true">
+                <i class="bi bi-credit-card me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "What payment methods do you accept?" %}
+              </button>
+            </h2>
+            <div id="cPrice1" class="accordion-collapse collapse show" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "We accept Cash, major Credit/Debit Cards, Fonepay, eSewa, and Khalti." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqPrice1_a">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice1_a" aria-expanded="false">
+                <i class="bi bi-tag me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "How much does a dental implant cost in Nepal?" %}
+              </button>
+            </h2>
+            <div id="cPrice1_a" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "The cost of a dental implant in Nepal varies depending on the implant brand and the complexity of the case. Contact us for a detailed cost estimate during your consultation." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqPrice1_b">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice1_b" aria-expanded="false">
+                <i class="bi bi-tag me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "How much do braces cost in Nepal?" %}
+              </button>
+            </h2>
+            <div id="cPrice1_b" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "The cost of braces (orthodontic treatment) in Nepal depends on the type of braces you choose (metal, ceramic, or clear aligners) and the duration of the treatment. We offer easy EMI installment options." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqPrice2">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice2" aria-expanded="false">
+                <i class="bi bi-wallet2 me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Do you offer installment (EMI) options?" %}
+              </button>
+            </h2>
+            <div id="cPrice2" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "Yes, we offer flexible installment plans for major treatments like orthodontics (braces) and dental implants." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqPrice3">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice3" aria-expanded="false">
+                <i class="bi bi-shield-plus me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Do you accept dental insurance?" %}
+              </button>
+            </h2>
+            <div id="cPrice3" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "We accept select corporate dental insurance plans. We provide all necessary stamped billing and clinical documentation so you can easily claim reimbursement from your provider." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqPrice4">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice4" aria-expanded="false">
+                <i class="bi bi-person-badge me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Are consultation fees adjustable against treatment?" %}
+              </button>
+            </h2>
+            <div id="cPrice4" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "In many cases, if you proceed with a major treatment plan (like implants or braces) on the same day, the initial consultation fee may be waived or adjusted into the total treatment cost." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqPrice5">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice5" aria-expanded="false">
+                <i class="bi bi-info-circle me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Are there any hidden fees?" %}
+              </button>
+            </h2>
+            <div id="cPrice5" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "Not at all. We believe in transparent pricing. You will be given a clear cost estimate before any treatment begins." %}
+              </div>
+            </div>
+          </div>
+
+          {% elif faq_type == 'services' %}
+          <!-- SERVICES FAQ -->
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqServ1">
+              <button class="accordion-button bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cServ1" aria-expanded="true">
+                <i class="bi bi-shield-check me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Are your treatments really pain-free?" %}
+              </button>
+            </h2>
+            <div id="cServ1" class="accordion-collapse collapse show" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "Yes! We use the latest anesthesia techniques to ensure that even root canals or implants are as comfortable as possible." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqServ2">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cServ2" aria-expanded="false">
+                <i class="bi bi-clock-history me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "What happens during a consultation?" %}
+              </button>
+            </h2>
+            <div id="cServ2" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "Our specialists will thoroughly examine your teeth, take digital X-rays if necessary, and discuss a detailed treatment plan." %}
+              </div>
+            </div>
+          </div>
+
+          {% elif faq_type == 'gallery' %}
+          <!-- GALLERY FAQ -->
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqGal1">
+              <button class="accordion-button bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGal1" aria-expanded="true">
+                <i class="bi bi-stars me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "How long do cosmetic treatments take?" %}
+              </button>
+            </h2>
+            <div id="cGal1" class="accordion-collapse collapse show" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "Teeth whitening can be done in 1 hour. Veneers typically require 2-3 visits over a span of 1-2 weeks." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqGal2">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGal2" aria-expanded="false">
+                <i class="bi bi-calendar-heart me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "How long do the results last?" %}
+              </button>
+            </h2>
+            <div id="cGal2" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "With proper care, teeth whitening can last for months, while veneers and implants can last for many years or even a lifetime." %}
+              </div>
+            </div>
+          </div>
+
+          {% elif faq_type == 'contact' %}
+          <!-- CONTACT FAQ -->
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqCon1">
+              <button class="accordion-button bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cCon1" aria-expanded="true">
+                <i class="bi bi-calendar-check me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "How do I book an appointment?" %}
+              </button>
+            </h2>
+            <div id="cCon1" class="accordion-collapse collapse show" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "You can book an appointment by filling out our online form, calling us directly at +977 9848631371, or sending a WhatsApp message." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqCon2">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cCon2" aria-expanded="false">
+                <i class="bi bi-person-walking me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Do you accept walk-in patients?" %}
+              </button>
+            </h2>
+            <div id="cCon2" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "While we highly recommend booking an appointment to avoid waiting times, we do accept walk-in patients. Dental emergencies are always given the highest priority." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqCon3">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cCon3" aria-expanded="false">
+                <i class="bi bi-clock me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "What are your opening hours?" %}
+              </button>
+            </h2>
+            <div id="cCon3" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "We are open every day from 8 am to 8 pm." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqCon4">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cCon4" aria-expanded="false">
+                <i class="bi bi-file-earmark-medical me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "What should I bring to my first visit?" %}
+              </button>
+            </h2>
+            <div id="cCon4" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "Please bring a valid ID, any previous dental records or X-rays, and a list of medications you are currently taking." %}
+              </div>
+            </div>
+          </div>
+
+          {% else %}
+          <!-- GENERAL FAQ (Home Page, Default) -->
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqGen1">
+              <button class="accordion-button bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGen1" aria-expanded="true">
+                <i class="bi bi-calendar-check me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "How do I book an appointment?" %}
+              </button>
+            </h2>
+            <div id="cGen1" class="accordion-collapse collapse show" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "You can book an appointment by filling out our online form, calling us directly at +977 9848631371, or sending a WhatsApp message." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqGen2">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGen2" aria-expanded="false">
+                <i class="bi bi-shield-check me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Are your treatments really pain-free?" %}
+              </button>
+            </h2>
+            <div id="cGen2" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "Yes! We use the latest anesthesia techniques to ensure that even root canals or implants are as comfortable as possible." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqGen3">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGen3" aria-expanded="false">
+                <i class="bi bi-credit-card me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "What payment methods do you accept?" %}
+              </button>
+            </h2>
+            <div id="cGen3" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "We accept Cash, major Credit/Debit Cards, Fonepay, eSewa, and Khalti. We also provide flexible installment options (EMI) for major treatments." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqGen4">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGen4" aria-expanded="false">
+                <i class="bi bi-clock me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "What are your opening hours?" %}
+              </button>
+            </h2>
+            <div id="cGen4" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+                {% trans "We are open every day from 8 am to 8 pm." %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I book an appointment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can book an appointment by filling out our online form, calling us directly at +977 9848631371, or sending a WhatsApp message."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are your treatments really pain-free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! We use the latest anesthesia techniques to ensure that even root canals or implants are as comfortable as possible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What payment methods do you accept?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We accept Cash, major Credit/Debit Cards, Fonepay, eSewa, and Khalti. We also provide flexible installment options (EMI) for major treatments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your opening hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We are open every day from 8 am to 8 pm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a dental implant cost in Nepal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The cost of a dental implant in Nepal varies depending on the implant brand and the complexity of the case. Contact us for a detailed cost estimate during your consultation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do braces cost in Nepal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The cost of braces (orthodontic treatment) in Nepal depends on the type of braces you choose (metal, ceramic, or clear aligners) and the duration of the treatment. We offer easy EMI installment options."
+      }
+    }
+  ]
+}
+</script>

@@ -1,0 +1,102 @@
+/* ==========================================================================
+   CareFirst Dental Clinic - Utilities & Micro-Interactions
+   ========================================================================== */
+
+.py-6 { padding-top: 5rem; padding-bottom: 5rem; }
+@media (min-width: 992px) { .py-6 { padding-top: 6.5rem; padding-bottom: 6.5rem; } }
+
+.tracking-wide { letter-spacing: 0.12em; }
+.text-gold { color: var(--cf-accent-gold, #F59E0B) !important; }
+.text-azure { color: var(--cf-primary, #0284C7) !important; }
+.text-navy { color: var(--cf-navy, #0B2545) !important; }
+.bg-azure-tint { background-color: var(--cf-primary-light, #E0F2FE) !important; }
+.bg-subtle-tint { background-color: var(--cf-primary-subtle, #F0F9FF) !important; }
+
+.font-outfit { font-family: var(--cf-font-head, 'Outfit', sans-serif) !important; }
+.font-jakarta { font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important; }
+
+/* Components */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--cf-shadow-soft) !important;
+}
+
+.promo-card {
+  border-radius: var(--cf-radius-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--cf-border);
+}
+
+.promo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--cf-shadow-md);
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+/* Primary Button Styling */
+.cf-btn-primary,
+.nd-btn-primary {
+  background: var(--cf-primary, #0284C7);
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  color: #FFFFFF !important;
+  font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 10px 24px;
+  border-radius: var(--cf-radius-md, 12px);
+  border: 1px solid transparent;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: var(--cf-transition);
+}
+
+.cf-btn-primary:hover,
+.nd-btn-primary:hover {
+  background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4);
+  transform: translateY(-2px);
+}
+
+.cf-btn-secondary {
+  background: #FFFFFF;
+  color: var(--cf-navy, #0B2545) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 10px 22px;
+  border-radius: var(--cf-radius-md, 12px);
+  border: 1px solid var(--cf-border);
+  box-shadow: var(--cf-shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--cf-transition);
+}
+
+.cf-btn-secondary:hover {
+  background: var(--cf-primary-subtle);
+  border-color: var(--cf-primary);
+  color: var(--cf-primary) !important;
+  transform: translateY(-2px);
+}
+
+/* Animations */
+[data-animation] {
+  opacity: 0;
+}
+
+[data-animation="fade-right"] {
+  transform: translateX(-30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-animation="fade-left"] {
+  transform: translateX(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}

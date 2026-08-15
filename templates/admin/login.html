@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Carefirst Dental Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'main/css/variables.css' %}" />
+    <style>
+        body {
+            background-color: var(--cf-white);
+            font-family: var(--cf-font-nav);
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .login-wrapper {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            background: var(--cf-white);
+        }
+        .login-left {
+            flex: 1.2;
+            background: linear-gradient(135deg, rgba(9, 63, 55, 0.88), rgba(14, 90, 79, 0.95)), url("{% static 'images/services1.avif' %}") center/cover no-repeat;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--cf-white);
+            position: relative;
+        }
+        .login-left::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        .login-left-content {
+            position: relative;
+            z-index: 2;
+            max-width: 550px;
+            width: 100%;
+        }
+        .login-left h1 {
+            font-family: var(--cf-font-head);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        .login-left p {
+            font-size: 1.15rem;
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+        .login-right {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--cf-white);
+        }
+        .login-form-container {
+            width: 100%;
+            max-width: 440px;
+        }
+        .brand-logo {
+            font-family: var(--cf-font-head);
+            color: var(--cf-primary-dark);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-logo img {
+            height: 48px;
+        }
+        .form-control {
+            border: 2px solid #eaeaea;
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-size: 1rem;
+            transition: var(--cf-transition);
+            background: #fafafa;
+        }
+        .form-control:focus {
+            border-color: var(--cf-primary);
+            box-shadow: 0 0 0 4px var(--cf-primary-tint);
+            background: #fff;
+        }
+        .form-label {
+            font-weight: 600;
+            color: var(--cf-text-dark);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .btn-login {
+            background: linear-gradient(135deg, var(--cf-primary-dark), var(--cf-primary));
+            color: var(--cf-white);
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            width: 100%;
+            transition: var(--cf-transition);
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(14, 90, 79, 0.25);
+            color: white;
+        }
+        .form-error {
+            background: #fff3f3;
+            color: #dc3545;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #ffd0d0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+        @media (max-width: 991px) {
+            .login-left { display: none; }
+        }
+        @media (max-width: 576px) {
+            .login-right { padding: 40px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-wrapper">
+    <div class="login-left">
+        <div class="login-left-content">
+            <h1>Secure<br><span style="color: var(--cf-accent);">Administration</span></h1>
+            <p>Welcome to the Carefirst Dental Clinic portal. Manage your patients, content, and clinic operations securely.</p>
+            <div class="mt-5">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div style="width: 45px; height: 45px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-shield-lock-fill fs-5 text-warning"></i>
+                    </div>
+                    <span style="font-weight: 500;">Encrypted Connection</span>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div style="width: 45px; height: 45px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-person-badge-fill fs-5 text-warning"></i>
+                    </div>
+                    <span style="font-weight: 500;">Authorized Personnel Only</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-right">
+        <div class="login-form-container">
+            <div class="brand-logo">
+                <img loading="lazy" src="{% static 'main/images/logo.png' %}" alt="Carefirst Dental Clinic Logo" onerror="this.style.display='none'">
+                <div>Niko<span style="color: var(--cf-accent);">Dental</span></div>
+            </div>
+        
+        <h3 class="fw-bold mb-2" style="color: var(--cf-text-dark);">Sign In</h3>
+        <p class="text-muted mb-4">Please enter your admin credentials to continue.</p>
+
+        {% if form.errors and not form.non_field_errors %}
+        <div class="form-error">
+            <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+            <div>Please correct the errors below.</div>
+        </div>
+        {% endif %}
+
+        {% if form.non_field_errors %}
+        <div class="form-error">
+            <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+            <div>
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+        <div class="form-error" style="background: #e3f2fd; color: #0d6efd; border-color: #b6d4fe;">
+            <i class="bi bi-info-circle-fill fs-5"></i>
+            <div>You are authenticated as {{ username }}, but are not authorized to access this page. Would you like to login to a different account?</div>
+        </div>
+        {% endif %}
+
+        <form action="{{ app_path }}" method="post" id="login-form">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="id_username" class="form-label">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-end-0 text-muted" style="border-radius: 12px 0 0 12px; border: 2px solid #eaeaea;"><i class="bi bi-person-fill"></i></span>
+                    <input type="text" name="username" class="form-control border-start-0 ps-0" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username" placeholder="Enter username">
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label for="id_password" class="form-label mb-0">Password</label>
+                    <a href="/admin/password_reset/" class="text-decoration-none" style="color: var(--cf-accent-dark); font-weight: 600; font-size: 0.85rem;">Forgot password?</a>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-end-0 text-muted" style="border-radius: 12px 0 0 12px; border: 2px solid #eaeaea;"><i class="bi bi-lock-fill"></i></span>
+                    <input type="password" name="password" class="form-control border-start-0 border-end-0 px-0" autocomplete="current-password" required id="id_password" placeholder="Enter password">
+                    <button class="btn border-start-0 text-muted" type="button" id="togglePassword" style="border: 2px solid #eaeaea; border-radius: 0 12px 12px 0; background: #fafafa; transition: var(--cf-transition);" tabindex="-1">
+                        <i class="bi bi-eye-slash-fill" id="toggleIcon"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <input type="hidden" name="next" value="{{ next }}">
+            
+            <button type="submit" class="btn-login">
+                Sign In <i class="bi bi-arrow-right"></i>
+            </button>
+        </form>
+        
+            <div class="text-center mt-5 text-muted" style="font-size: 0.85rem; font-weight: 500;">
+                &copy; {% now "Y" %} Carefirst Dental Clinic.<br>All rights reserved.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Toggle input focus styles on the icon wrapper
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('focus', () => {
+            if (input.previousElementSibling) input.previousElementSibling.style.borderColor = 'var(--cf-primary)';
+            input.style.borderColor = 'var(--cf-primary)';
+            if (input.nextElementSibling) input.nextElementSibling.style.borderColor = 'var(--cf-primary)';
+            input.parentElement.style.boxShadow = '0 0 0 4px var(--cf-primary-tint)';
+            input.parentElement.style.borderRadius = '12px';
+        });
+        input.addEventListener('blur', () => {
+            if (input.previousElementSibling) input.previousElementSibling.style.borderColor = '#eaeaea';
+            input.style.borderColor = '#eaeaea';
+            if (input.nextElementSibling) input.nextElementSibling.style.borderColor = '#eaeaea';
+            input.parentElement.style.boxShadow = 'none';
+        });
+    });
+
+    // Password Show/Hide Toggle
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('id_password');
+    const toggleIcon = document.getElementById('toggleIcon');
+
+    if (togglePassword) {
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'password') {
+                toggleIcon.classList.remove('bi-eye-fill');
+                toggleIcon.classList.add('bi-eye-slash-fill');
+            } else {
+                toggleIcon.classList.remove('bi-eye-slash-fill');
+                toggleIcon.classList.add('bi-eye-fill');
+            }
+        });
+    }
+</script>
+</body>
+</html>

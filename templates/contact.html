@@ -1,0 +1,782 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% load static %}
+
+{% block title %}Contact Us —Care First Dental Clinic{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="Contact Carefirst Dental Clinic in Kathmandu. Book an appointment, find our clinic location, or reach out for emergency dental care.">
+<style>
+  /* Hero Section */
+  .contact-hero {
+    background: linear-gradient(rgba(14, 90, 79, 0.8), rgba(14, 90, 79, 0.9)), url('{% static "images/periodontal-hero.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    padding: 220px 0 140px;
+    color: #fff;
+    text-align: center;
+  }
+  .contact-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: var(--cf-font-head);
+  }
+  .contact-hero p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+
+  /* Info Cards Grid */
+  .contact-info-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    height: 100%;
+    border: 1px solid rgba(14, 90, 79, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+  }
+  .contact-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+  .contact-icon {
+    font-size: 2.5rem;
+    color: var(--cf-accent);
+    margin-bottom: 15px;
+  }
+  .contact-info-card h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cf-primary-dark);
+    margin-bottom: 10px;
+  }
+  .contact-info-card p, .contact-info-card a {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  /* Branch Location Tabs */
+  .branch-tab-nav {
+    display: flex;
+    gap: 0;
+    background: #f0f7f5;
+    border-radius: 14px;
+    padding: 6px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .branch-tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #6c757d;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .branch-tab-btn.active {
+    background: var(--cf-primary-dark);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(14, 90, 79, 0.3);
+  }
+  .branch-tab-btn .branch-badge {
+    font-size: 0.72rem;
+    background: var(--cf-accent);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .branch-tab-btn.active .branch-badge {
+    background: rgba(255,255,255,0.25);
+  }
+  .branch-panel {
+    display: none;
+    animation: fadeInUp 0.4s ease;
+  }
+  .branch-panel.active {
+    display: block;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .branch-info-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--cf-accent);
+    height: 100%;
+  }
+  .branch-info-card .branch-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(14, 90, 79, 0.08);
+    color: var(--cf-primary-dark);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .branch-info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .branch-info-row:last-of-type {
+    border-bottom: none;
+    margin-bottom: 24px;
+    padding-bottom: 0;
+  }
+  .branch-info-row .icon-wrap {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    background: rgba(197, 168, 128, 0.12);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    color: var(--cf-accent);
+  }
+  .branch-info-row h6 {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #444;
+    margin-bottom: 3px;
+  }
+  .branch-info-row p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Section Styles */
+  .section-py {
+    padding: 80px 0;
+  }
+  .section-heading {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--cf-primary-dark, #0b4a41);
+    font-family: var(--cf-font-head);
+  }
+  .section-heading .accent {
+    color: var(--cf-accent, #c5a880);
+  }
+  .nd-eyebrow {
+    color: var(--cf-accent, #c5a880);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  .nd-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background-color: var(--cf-accent, #c5a880);
+    margin-right: 15px;
+  }
+  .nd-eyebrow.justify-content-center::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background-color: var(--cf-accent, #c5a880);
+    margin-left: 15px;
+  }
+  .contact-info-card a:hover {
+    color: var(--cf-accent);
+  }
+
+  /* Forms Section */
+  .form-section {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  .form-header {
+    background: var(--cf-primary-dark);
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+  }
+  .form-body {
+    padding: 40px;
+  }
+  .form-control, .form-select {
+    border-radius: 8px;
+    padding: 12px 15px;
+    border: 1px solid #dee2e6;
+  }
+  .form-control:focus, .form-select:focus {
+    border-color: var(--cf-accent);
+    box-shadow: 0 0 0 0.2rem rgba(197, 168, 128, 0.25);
+  }
+  .btn-submit {
+    background: var(--cf-accent);
+    color: #fff;
+    font-weight: 700;
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    transition: background 0.3s ease;
+  }
+  .btn-submit:hover {
+    background: var(--cf-accent-dark);
+    color: #fff;
+  }
+
+  /* Emergency Banner */
+  .emergency-banner {
+    background: #dc3545;
+    color: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .emergency-icon {
+    font-size: 3rem;
+  }
+
+  /* Why Us Cards */
+  .feature-card {
+    text-align: left;
+    padding: 25px;
+    background: #fff;
+    border-radius: 12px;
+    border-left: 4px solid var(--cf-accent);
+    height: 100%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+  }
+  .feature-card i {
+    font-size: 2rem;
+    color: var(--cf-primary-dark);
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+  
+  /* Floating Widget */
+  .floating-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+  .float-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    position: relative;
+  }
+  .float-btn:hover {
+    transform: scale(1.1);
+    color: #fff;
+  }
+  .float-btn .tooltip-text {
+    position: absolute;
+    right: 75px;
+    background: #333;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .float-btn:hover .tooltip-text {
+    opacity: 1;
+  }
+  .btn-whatsapp { background: #25D366; }
+  .btn-call { background: var(--cf-primary-dark); }
+  .btn-book { background: var(--cf-accent); }
+  .btn-map { background: #4285F4; }
+
+  @media (max-width: 768px) {
+    .floating-widget {
+      bottom: 20px;
+      right: 20px;
+    }
+    .float-btn {
+      width: 50px;
+      height: 50px;
+      font-size: 1.25rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Floating Widget -->
+<div class="floating-widget">
+  <a href="https://wa.me/9779848631371" target="_blank" class="float-btn btn-whatsapp" aria-label="WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+    <span class="tooltip-text">{% trans "WhatsApp Us" %}</span>
+  </a>
+  <a href="tel:+9779848631371" class="float-btn btn-call" aria-label="Call Now">
+    <i class="bi bi-telephone-fill"></i>
+    <span class="tooltip-text">{% trans "Call Now" %}</span>
+  </a>
+  <a href="#book" class="float-btn btn-book" aria-label="Book Appointment">
+    <i class="bi bi-calendar-check"></i>
+    <span class="tooltip-text">{% trans "Book Visit" %}</span>
+  </a>
+  <a href="#location" class="float-btn btn-map" aria-label="Get Directions">
+    <i class="bi bi-geo-alt-fill"></i>
+    <span class="tooltip-text">{% trans "Directions" %}</span>
+  </a>
+</div>
+
+<!-- 1. HERO BANNER -->
+<section class="contact-hero">
+  <div class="container">
+    <h1>{% trans "Get in Touch" %}</h1>
+    <p>{% trans "Whether you need a routine check-up, an advanced cosmetic procedure, or emergency dental care, our team is ready to assist you. Contact us today!" %}</p>
+  </div>
+</section>
+
+<!-- 2. CONTACT INFO GRID -->
+<section class="section-py bg-light" style="margin-top: -60px; padding-top: 0;">
+  <div class="container relative z-index-1">
+    <div class="row g-4">
+      <!-- Location: Shankhamul / New Baneshwor -->
+      <div class="col-lg-4 col-md-6">
+        <div class="contact-info-card">
+          <div class="contact-icon"><i class="bi bi-geo-alt"></i></div>
+          <h4>{% trans "Clinic Location" %}</h4>
+          <p class="mb-1 fw-semibold" style="color: var(--cf-primary-dark); font-size:0.85rem;">{% trans "Shankhamul / New Baneshwor" %}</p>
+          <address class="mb-0" style="font-style:normal;" itemscope itemtype="https://schema.org/PostalAddress">
+            <span itemprop="streetAddress">{% trans "Pragatinagar Road, Shankhamul-31" %}</span>, <span itemprop="addressLocality">{% trans "Kathmandu 44600" %}</span>
+          </address>
+        </div>
+      </div>
+      <!-- Operating Hours -->
+      <div class="col-lg-4 col-md-6">
+        <div class="contact-info-card" style="border-top: 3px solid var(--cf-accent);">
+          <div class="contact-icon"><i class="bi bi-clock"></i></div>
+          <h4>{% trans "Operating Hours" %}</h4>
+          <p class="mb-1 fw-semibold" style="color: var(--cf-primary-dark); font-size:0.85rem;">{% trans "Open Daily (Mon – Sun)" %}</p>
+          <p class="mb-0">{% trans "7:30 AM to 7:30 PM" %}</p>
+        </div>
+      </div>
+      <!-- Contact & Email -->
+      <div class="col-lg-4 col-md-6">
+        <div class="contact-info-card">
+          <div class="contact-icon"><i class="bi bi-envelope"></i></div>
+          <h4>{% trans "Phone & Email" %}</h4>
+          <p class="mb-0">
+            <a href="tel:+9779807464136" class="fw-bold text-decoration-none" style="color: var(--cf-navy);">+977 980-7464136</a> / 
+            <a href="tel:015916886" class="fw-bold text-decoration-none" style="color: var(--cf-navy);">01-5916886</a><br>
+            <a href="mailto:carefirstdentalclinic@gmail.com" class="text-decoration-none" style="color: var(--cf-primary);">carefirstdentalclinic@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. FORMS SECTION -->
+<section class="section-py bg-white" id="book">
+  <div class="container">
+    {% if messages %}
+    <div class="row mb-4">
+      <div class="col-12">
+        {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    <div class="row g-5">
+      <!-- Book Appointment Form -->
+      <div class="col-lg-7">
+        <div class="form-section">
+          <div class="form-header">
+            <h3 class="mb-0 fw-bold">{% trans "Book an Appointment" %}</h3>
+            <p class="mb-0 small text-white-50">{% trans "Fill out the form below and we will confirm your visit." %}</p>
+          </div>
+          <div class="form-body">
+            <form action="{% url 'main:contact' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="form_type" value="appointment">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">{% trans "Full Name *" %}</label>
+                  <input type="text" name="full_name" class="form-control" required placeholder="{% trans "John Doe" %}">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">{% trans "Phone Number *" %}</label>
+                  <input type="tel" name="phone" class="form-control" required placeholder="{% trans "+977 98XXXXXXXX" %}">
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">{% trans "Email Address" %}</label>
+                  <input type="email" name="email" class="form-control" placeholder="john@example.com">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">{% trans "Preferred Date *" %}</label>
+                  <input type="date" name="preferred_date" class="form-control" placeholder="Select Preferred Date..." required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">{% trans "Preferred Time" %}</label>
+                  <select name="preferred_time" class="form-select">
+                    <option value="">{% trans "Any Time" %}</option>
+                    <option value="morning">{% trans "Morning (9AM - 12PM)" %}</option>
+                    <option value="afternoon">{% trans "Afternoon (12PM - 4PM)" %}</option>
+                    <option value="evening">{% trans "Evening (4PM - 7PM)" %}</option>
+                  </select>
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">{% trans "Select Treatment" %}</label>
+                  <select name="treatment" class="form-select">
+                    <option value="">{% trans "General Check-up & Consultation" %}</option>
+                    <option value="cleaning">{% trans "Scaling & Polishing" %}</option>
+                    <option value="filling">{% trans "Dental Filling" %}</option>
+                    <option value="rct">{% trans "Root Canal Treatment" %}</option>
+                    <option value="extraction">{% trans "Tooth Extraction" %}</option>
+                    <option value="implants">{% trans "Dental Implants" %}</option>
+                    <option value="braces">{% trans "Braces / Orthodontics" %}</option>
+                    <option value="other">{% trans "Other / Not Sure" %}</option>
+                  </select>
+                </div>
+                
+                {% load form_tags %}
+                {% get_active_doctors as active_doctors %}
+                {% get_active_branches as active_branches %}
+                
+                <div class="col-md-6">
+                  <label class="form-label">{% trans "Preferred Doctor" %} <span class="text-muted fw-normal" style="font-size: 0.85em;">({% trans "Optional" %})</span></label>
+                  <select name="doctor" class="form-select">
+                    <option value="" selected>{% trans "Any Doctor" %}</option>
+                    {% for doc in active_doctors %}
+                      <option value="{{ doc.id }}">{{ doc.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                
+                <div class="col-md-6">
+                  <label class="form-label">{% trans "Preferred Branch" %} <span class="text-muted fw-normal" style="font-size: 0.85em;">({% trans "Optional" %})</span></label>
+                  <select name="branch" class="form-select">
+                    <option value="" selected>{% trans "Any Branch" %}</option>
+                    {% for branch in active_branches %}
+                      <option value="{{ branch.id }}">{{ branch.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">{% trans "Message / Special Requirements" %}</label>
+                  <textarea name="message" class="form-control" rows="3" placeholder="{% trans "Tell us about your dental issue..." %}"></textarea>
+                </div>
+                <div class="col-md-12 mt-4">
+                  <button type="submit" class="btn-submit"><i class="bi bi-calendar-check me-2"></i>{% trans "Submit Appointment Request" %}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Send a Message Form -->
+      <div class="col-lg-5">
+        <div class="form-section h-100">
+          <div class="form-header" style="background: var(--cf-accent);">
+            <h3 class="mb-0 fw-bold">{% trans "Send a Message" %}</h3>
+            <p class="mb-0 small text-white-50">{% trans "Have a general question? Write to us." %}</p>
+          </div>
+          <div class="form-body">
+            <form action="{% url 'main:contact' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="form_type" value="contact">
+              <div class="mb-3">
+                <label class="form-label">{% trans "Name *" %}</label>
+                <input type="text" name="name" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">{% trans "Email Address *" %}</label>
+                <input type="email" name="email" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">{% trans "Subject" %}</label>
+                <input type="text" name="subject" class="form-control">
+              </div>
+              <div class="mb-4">
+                <label class="form-label">{% trans "Your Message *" %}</label>
+                <textarea name="message" class="form-control" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="btn-submit" style="background: var(--cf-primary-dark);"><i class="bi bi-send me-2"></i>{% trans "Send Message" %}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 5. LOCATION & MAP -->
+<section class="section-py bg-light" id="location">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="nd-eyebrow justify-content-center">{% trans "Find Us" %}</div>
+      <h2 class="section-heading">{% trans "Our" %} <span class="accent">{% trans "Branches" %}</span></h2>
+      <p class="text-muted mt-2" style="max-width:560px; margin: 0 auto;">{% trans "We serve patients in Kathmandu and Dhangadi, Kailali. Select your nearest branch." %}</p>
+    </div>
+
+    <!-- Branch Tab Switcher -->
+    <div class="branch-tab-nav" role="tablist">
+      <button class="branch-tab-btn active" onclick="switchBranch('koteshwor', this)" role="tab" aria-selected="true" id="tab-koteshwor">
+        <i class="bi bi-building"></i>
+        {% trans "Koteshwor, Kathmandu" %}
+      </button>
+      <button class="branch-tab-btn" onclick="switchBranch('dhangadi', this)" role="tab" aria-selected="false" id="tab-dhangadi">
+        <i class="bi bi-building"></i>
+        {% trans "Dhangadi, Kailali" %}
+      </button>
+    </div>
+
+    <!-- Branch Panel 1: Shankhamul -->
+    <div class="branch-panel active" id="panel-koteshwor">
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-4">
+          <div class="branch-info-card">
+            <div class="branch-label"><i class="bi bi-geo-alt-fill"></i> {% trans "Kathmandu Main Clinic" %}</div>
+            <h4 class="fw-bold text-dark mb-4" style="font-size:1.3rem;">{% trans "Carefirst Dental Clinic" %}</h4>
+
+            <div class="branch-info-row">
+              <div class="icon-wrap"><i class="bi bi-geo-alt-fill"></i></div>
+              <div>
+                <h6>{% trans "Address" %}</h6>
+                <p>{% trans "Pragatinagar Road, Shankhamul-31, Kathmandu 44600" %}<br><small class="text-muted">{% trans "Shankhamul / New Baneshwor Area" %}</small></p>
+              </div>
+            </div>
+
+            <div class="branch-info-row">
+              <div class="icon-wrap"><i class="bi bi-clock-fill"></i></div>
+              <div>
+                <h6>{% trans "Operating Hours" %}</h6>
+                <p>{% trans "Open daily (Monday to Sunday) from 7:30 AM to 7:30 PM" %}</p>
+              </div>
+            </div>
+
+            <div class="branch-info-row">
+              <div class="icon-wrap"><i class="bi bi-telephone-fill"></i></div>
+              <div>
+                <h6>{% trans "Phone" %}</h6>
+                <p><a href="tel:+9779807464136" style="color:var(--cf-primary-dark); font-weight:600;">+977 980-7464136</a><br><a href="tel:015916886" style="color:var(--cf-primary-dark); font-weight:600;">01-5916886</a></p>
+              </div>
+            </div>
+
+            <div class="branch-info-row">
+              <div class="icon-wrap"><i class="bi bi-envelope-fill"></i></div>
+              <div>
+                <h6>{% trans "Email" %}</h6>
+                <p><a href="mailto:carefirstdentalclinic@gmail.com" style="color:var(--cf-primary-dark); font-weight:600;">carefirstdentalclinic@gmail.com</a></p>
+              </div>
+            </div>
+
+            <div class="branch-info-row">
+              <div class="icon-wrap"><i class="bi bi-person-badge-fill"></i></div>
+              <div>
+                <h6>{% trans "Lead Dental Surgeon" %}</h6>
+                <p class="fw-semibold mb-0" style="color: var(--cf-navy);">Dr. Subash Banjade</p>
+                <small class="text-muted">{% trans "Supported by Senior Consultant Specialists" %}</small>
+              </div>
+            </div>
+
+            <a href="https://maps.google.com/?q=Pragatinagar+Road+Shankhamul+Kathmandu" target="_blank" class="btn btn-nd-gold w-100 rounded-pill mt-2">
+              <i class="bi bi-map me-2"></i>{% trans "Open in Google Maps" %}
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="rounded-4 overflow-hidden shadow-sm" style="height: 450px; border: 2px solid rgba(14,90,79,0.12);">
+            <iframe title="Google Maps Location for Carefirst Dental Clinic Kathmandu" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2227.078717719535!2d85.34571344401655!3d27.678798125992724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1900378fe595%3A0x3c6802526572aa66!2sNiko%20Dental%20And%20Aesthetics!5e0!3m2!1sen!2snp!4v1784277549493!5m2!1sen!2snp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Branch Panel 2: Dhangadi -->
+    <div class="branch-panel" id="panel-dhangadi">
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-4">
+          <div class="branch-info-card">
+            <div class="branch-label"><i class="bi bi-geo-alt-fill"></i> {% trans "Dhangadi Branch" %}</div>
+            <h4 class="fw-bold text-dark mb-4" style="font-size:1.3rem;">{% trans "Dhangadi Clinic" %}</h4>
+
+            <div class="branch-info-row">
+              <div class="icon-wrap"><i class="bi bi-geo-alt-fill"></i></div>
+              <div>
+                <h6>{% trans "Address" %}</h6>
+                <p>{% trans "Campus Chowk, Dhangadi, Kailali" %}</p>
+              </div>
+            </div>
+
+            <div class="branch-info-row">
+              <div class="icon-wrap"><i class="bi bi-signpost-2-fill"></i></div>
+              <div>
+                <h6>{% trans "Landmark" %}</h6>
+                <p>{% trans "Campus Chowk, Dhangadi — near the main market" %}</p>
+              </div>
+            </div>
+
+            <div class="branch-info-row">
+              <div class="icon-wrap"><i class="bi bi-telephone-fill"></i></div>
+              <div>
+                <h6>{% trans "Phone" %}</h6>
+                <p>
+                  <a href="tel:091591181" style="color:var(--cf-primary-dark); font-weight:600;">091-591181</a><br>
+                  <a href="tel:+9779812646607" style="color:var(--cf-primary-dark); font-weight:600;">+977 9812646607</a><br>
+                  <a href="tel:+9779848631371" style="color:var(--cf-primary-dark); font-weight:600;">+977 9848631371</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="branch-info-row">
+              <div class="icon-wrap"><i class="bi bi-car-front-fill"></i></div>
+              <div>
+                <h6>{% trans "Parking" %}</h6>
+                <p>{% trans "Free dedicated parking for all patients" %}</p>
+              </div>
+            </div>
+
+            <a href="https://www.google.com/maps/place/Niko+dental+Dhangadhi/@28.6989399,80.6003208,17z" target="_blank" class="btn btn-nd-gold w-100 rounded-pill mt-2">
+              <i class="bi bi-map me-2"></i>{% trans "Open in Google Maps" %}
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="rounded-4 overflow-hidden shadow-sm" style="height: 450px; border: 2px solid rgba(197,168,128,0.25);">
+            <iframe title="Google Maps Location for Carefirst Dental Clinic Dhangadi" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.6892806279657!2d80.60032087475425!3d28.698939981063305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a1ed0059e682c3%3A0xb49b86803050f53e!2sNiko%20dental%20Dhangadhi!5e0!3m2!1sen!2snp!4v1784280650771!5m2!1sen!2snp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function switchBranch(branchId, btn) {
+  // Remove active from all panels and tabs
+  document.querySelectorAll('.branch-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.branch-tab-btn').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-selected', 'false');
+  });
+  // Activate selected
+  document.getElementById('panel-' + branchId).classList.add('active');
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+}
+</script>
+
+<!-- 6. WHY VISIT US (FEATURES) -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-heading">{% trans "Why Visit" %}<span class="accent">{% trans "Carefirst Dental Clinic?" %}</span></h2>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <i class="bi bi-award-fill"></i>
+          <h5 class="fw-bold">{% trans "Experienced Specialists" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "Our team consists of highly qualified MDS specialists with years of clinical expertise." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <i class="bi bi-display"></i>
+          <h5 class="fw-bold">{% trans "Advanced Technology" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "Equipped with modern RVG, apex locators, and painless rotary endodontic systems." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <i class="bi bi-heart-pulse-fill"></i>
+          <h5 class="fw-bold">{% trans "Comfortable Environment" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "A luxury, anxiety-free clinic designed to make you feel relaxed during treatment." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <i class="bi bi-person-check-fill"></i>
+          <h5 class="fw-bold">{% trans "Personalized Care" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "We take time to listen to your concerns and tailor every treatment plan to your specific needs." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <i class="bi bi-shield-check"></i>
+          <h5 class="fw-bold">{% trans "Strict Sterilization" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "100% adherence to international protocols for hygiene, sanitization, and safety." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <i class="bi bi-tags-fill"></i>
+          <h5 class="fw-bold">{% trans "Transparent Pricing" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "No hidden fees. We provide clear, upfront cost estimates before starting any procedure." %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'components/google_reviews.html' %}
+
+{% include 'components/faq.html' with faq_type='contact' %}
+
+{% endblock %}

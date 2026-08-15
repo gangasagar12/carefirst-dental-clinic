@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /en/admin/
+Disallow: /ne/admin/
+
+Sitemap: https://nikodentistry.com/sitemap.xml

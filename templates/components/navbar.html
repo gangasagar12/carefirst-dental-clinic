@@ -1,0 +1,1018 @@
+{% load static i18n seo_tags %}
+
+<!-- Dedicated 3-Row Header Design System -->
+<style>
+  /* ==========================================================================
+     3-ROW HEADER STRUCTURE:
+     Row 1: Dedicated Full-Width Flowing Marquee Ticker Row
+     Row 2: Deep Navy Utility Contact & Action Bar (Timings, Phone, Email, Socials, CTA, Lang)
+     Row 3: Main Navbar (Logo on Left + Spacious Menu on Right)
+     ========================================================================== */
+
+  /* ===== ROW 1: Dedicated Marquee Announcement Ticker Row ===== */
+  .cf-header-row-marquee {
+    background-color: #07192F !important;
+    background: linear-gradient(90deg, #051426 0%, #081D36 50%, #051426 100%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 6px 0 !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.8rem !important;
+    color: #E2E8F0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    z-index: 1045 !important;
+  }
+
+  .cf-marquee-inner {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 14px !important;
+  }
+
+  .cf-marquee-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    white-space: nowrap !important;
+    padding: 2px 10px !important;
+    background: rgba(2, 132, 199, 0.25) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    border-radius: 20px !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.3px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .cf-marquee-badge i {
+    color: #F59E0B !important; /* Gold Star */
+  }
+
+  .cf-marquee-track-container {
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent) !important;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent) !important;
+  }
+
+  .cf-marquee-track {
+    display: inline-flex !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+    animation: cfMarqueeScroll3Row 32s linear infinite !important;
+    will-change: transform !important;
+  }
+
+  .cf-marquee-track-container:hover .cf-marquee-track {
+    animation-play-state: paused !important;
+  }
+
+  @keyframes cfMarqueeScroll3Row {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .cf-marquee-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+    font-size: 0.8125rem !important;
+    padding: 0 4px !important;
+    white-space: nowrap !important;
+  }
+
+  .cf-marquee-item i {
+    color: #38BDF8 !important;
+  }
+
+  .cf-marquee-dot {
+    display: inline-block !important;
+    padding: 0 14px !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    font-size: 0.75rem !important;
+  }
+
+
+  /* ===== ROW 2: Deep Navy Utility Contact & Action Bar ===== */
+  .cf-header-row-contact {
+    background-color: #0B2545 !important;
+    background: linear-gradient(90deg, #081C33 0%, #0B2545 50%, #0D315C 100%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    padding: 7px 0 !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.8125rem !important;
+    color: #FFFFFF !important;
+    position: relative !important;
+    z-index: 1040 !important;
+  }
+
+  .cf-contact-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
+  .cf-contact-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 18px !important;
+    white-space: nowrap !important;
+  }
+
+  .cf-contact-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    color: #FFFFFF !important;
+    font-size: 0.8125rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+  }
+
+  .cf-contact-item i {
+    color: #38BDF8 !important;
+    font-size: 0.9rem !important;
+  }
+
+  .cf-contact-item:hover {
+    color: #38BDF8 !important;
+  }
+
+  .cf-contact-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  /* Social icon links in Row 2 */
+  .cf-contact-socials {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding-right: 10px !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .cf-social-link {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #FFFFFF !important;
+    font-size: 0.85rem !important;
+    text-decoration: none !important;
+    transition: transform 0.2s ease, opacity 0.2s ease !important;
+  }
+
+  .cf-social-link:hover {
+    transform: translateY(-2px) !important;
+    color: #FFFFFF !important;
+  }
+
+  .cf-social-whatsapp { background: #25D366 !important; }
+  .cf-social-facebook { background: #1877F2 !important; }
+  .cf-social-instagram { background: linear-gradient(45deg, #F09433 0%, #E6683C 25%, #DC2743 50%, #CC2366 75%, #BC1888 100%) !important; }
+
+  /* Book Appointment CTA Pill */
+  .cf-row2-btn {
+    background: #0284C7 !important;
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    font-size: 0.8125rem !important;
+    padding: 6px 16px !important;
+    border-radius: 9999px !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4) !important;
+    transition: all 0.22s ease !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    white-space: nowrap !important;
+  }
+
+  .cf-row2-btn:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%) !important;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.6) !important;
+    transform: translateY(-1px) !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Translator in Row 2 */
+  .cf-row2-lang-wrapper {
+    background: rgba(255, 255, 255, 0.12) !important;
+    padding: 4px 8px !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .cf-row2-lang-wrapper:hover {
+    background: rgba(255, 255, 255, 0.22) !important;
+    border-color: #38BDF8 !important;
+  }
+
+  .cf-row2-lang-wrapper i.bi-globe2 {
+    font-size: 0.8rem !important;
+    color: #38BDF8 !important;
+  }
+
+  .cf-row2-lang-select {
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    cursor: pointer !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    padding-right: 12px !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+  }
+
+  .cf-row2-lang-select option {
+    background: #0B2545 !important;
+    color: #FFFFFF !important;
+  }
+
+  .cf-row2-lang-chevron {
+    position: absolute !important;
+    right: 6px !important;
+    font-size: 0.55rem !important;
+    color: #CBD5E1 !important;
+    pointer-events: none !important;
+  }
+
+  @media (max-width: 991.98px) {
+    .cf-header-row-contact {
+      padding: 6px 0 !important;
+    }
+    .cf-contact-left .d-hide-mob,
+    .cf-contact-right .cf-contact-socials {
+      display: none !important;
+    }
+    .cf-contact-inner {
+      justify-content: space-between !important;
+    }
+  }
+
+
+  /* ===== ROW 3: Main Navigation Bar ===== */
+  .cf-header-row-nav {
+    background-color: #F8FAFC !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F1F6F9 100%) !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1030 !important;
+    transition: all 0.3s ease !important;
+    border-bottom: 2px solid rgba(2, 132, 199, 0.14) !important;
+    box-shadow: 0 2px 10px rgba(11, 37, 69, 0.05) !important;
+  }
+
+  .cf-header-row-nav.is-sticky {
+    background: rgba(248, 250, 252, 0.98) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    box-shadow: 0 4px 25px -2px rgba(11, 37, 69, 0.1) !important;
+    border-bottom: 2px solid rgba(2, 132, 199, 0.2) !important;
+  }
+
+  .cf-navbar-inner {
+    height: 78px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    transition: height 0.3s ease !important;
+  }
+
+  .cf-header-row-nav.is-sticky .cf-navbar-inner {
+    height: 66px !important;
+  }
+
+  /* Logo */
+  .cf-logo {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-decoration: none !important;
+    flex-shrink: 0 !important;
+  }
+
+  .cf-logo-frame {
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    border: 2.5px solid #0284C7 !important;
+    box-shadow: 0 3px 12px rgba(2, 132, 199, 0.2) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #FFFFFF !important;
+    transition: all 0.3s ease !important;
+    flex-shrink: 0 !important;
+  }
+
+  .cf-header-row-nav.is-sticky .cf-logo-frame {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .cf-logo-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .cf-logo-text {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .cf-logo-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-weight: 800 !important;
+    font-size: 1.65rem !important;
+    color: #0B2545 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.03em !important;
+  }
+
+  .cf-header-row-nav.is-sticky .cf-logo-title {
+    font-size: 1.45rem !important;
+  }
+
+  .cf-logo-accent {
+    color: #0284C7 !important;
+  }
+
+  .cf-logo-subtitle {
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    color: #475569 !important;
+    margin-top: 2px !important;
+  }
+
+  /* Nav Links (Bold, Sharp, High Contrast) */
+  .cf-nav-menu {
+    display: flex !important;
+    align-items: center !important;
+    gap: 22px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .cf-nav-link {
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    color: #0B2545 !important;
+    text-decoration: none !important;
+    padding: 8px 4px !important;
+    position: relative !important;
+    transition: color 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    white-space: nowrap !important;
+  }
+
+  .cf-nav-link::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -6px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 0% !important;
+    height: 3px !important;
+    background: #0284C7 !important;
+    border-radius: 4px !important;
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .cf-nav-link:hover {
+    color: #0284C7 !important;
+  }
+
+  .cf-nav-link:hover::after {
+    width: 80% !important;
+  }
+
+  .cf-nav-link.active {
+    color: #0B2545 !important;
+    font-weight: 700 !important;
+  }
+
+  .cf-nav-link.active::after {
+    width: 22px !important;
+    background: #0284C7 !important;
+  }
+
+  .cf-nav-link i.bi-chevron-down {
+    font-size: 0.7rem !important;
+    margin-top: 1px !important;
+    transition: transform 0.25s ease, color 0.2s ease !important;
+    color: #64748B !important;
+  }
+
+  .cf-nav-item:hover .cf-nav-link i.bi-chevron-down {
+    transform: rotate(180deg) !important;
+    color: #0284C7 !important;
+  }
+
+  /* Treatments 2-Column Mega Menu */
+  .cf-mega-dropdown {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(12px) !important;
+    min-width: 580px !important;
+    background: #FFFFFF !important;
+    border-radius: 18px !important;
+    box-shadow: 0 20px 45px -4px rgba(11, 37, 69, 0.18), 0 6px 18px rgba(0, 0, 0, 0.04) !important;
+    padding: 16px !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s !important;
+    border: 1px solid #E2E8F0 !important;
+    z-index: 1050 !important;
+  }
+
+  .cf-nav-item:hover .cf-mega-dropdown {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(-50%) translateY(0) !important;
+  }
+
+  .cf-mega-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px 16px !important;
+  }
+
+  .cf-dropdown-menu-regular {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: -15px !important;
+    min-width: 270px !important;
+    background: #FFFFFF !important;
+    border-radius: 16px !important;
+    box-shadow: 0 16px 40px -4px rgba(11, 37, 69, 0.16), 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+    padding: 10px !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(12px) !important;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s !important;
+    border: 1px solid #E2E8F0 !important;
+    z-index: 1050 !important;
+  }
+
+  .cf-nav-item:hover .cf-dropdown-menu-regular {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+
+  .cf-menu-item-link {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 9px 12px !important;
+    color: #1E293B !important;
+    text-decoration: none !important;
+    border-radius: 10px !important;
+    transition: all 0.18s ease !important;
+  }
+
+  .cf-menu-item-link:hover {
+    background-color: #F0F9FF !important;
+    color: #0284C7 !important;
+    transform: translateX(3px) !important;
+  }
+
+  .cf-menu-item-icon {
+    font-size: 1.15rem !important;
+    color: #0284C7 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 28px !important;
+    flex-shrink: 0 !important;
+    transition: transform 0.2s ease !important;
+  }
+
+  .cf-menu-item-link:hover .cf-menu-item-icon {
+    transform: scale(1.15) !important;
+    color: #0369A1 !important;
+  }
+
+  .cf-menu-item-name {
+    font-weight: 600 !important;
+    font-size: 0.92rem !important;
+    color: #1E293B !important;
+    line-height: 1.3 !important;
+  }
+
+  .cf-menu-item-link:hover .cf-menu-item-name {
+    color: #0284C7 !important;
+    font-weight: 700 !important;
+  }
+
+  .cf-mega-footer {
+    grid-column: 1 / -1 !important;
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    border-top: 1px solid #F1F5F9 !important;
+  }
+
+  .cf-mega-footer-btn {
+    background: #F0F9FF !important;
+    color: #0284C7 !important;
+    border: 1px solid rgba(2, 132, 199, 0.2) !important;
+    border-radius: 10px !important;
+    padding: 8px 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    font-size: 0.885rem !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .cf-mega-footer-btn:hover {
+    background: #E0F2FE !important;
+    color: #0369A1 !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* Mobile Toggle */
+  .cf-mobile-toggle {
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 10px !important;
+    font-size: 1.4rem !important;
+    color: #0B2545 !important;
+    display: none !important;
+    cursor: pointer !important;
+    padding: 6px 10px !important;
+    line-height: 1 !important;
+    transition: all 0.2s ease !important;
+  }
+
+  @media (max-width: 991.98px) {
+    .cf-nav-menu {
+      display: none !important;
+    }
+    .cf-mobile-toggle {
+      display: block !important;
+    }
+  }
+
+  .cf-offcanvas {
+    background-color: #FFFFFF !important;
+    width: 320px !important;
+  }
+
+  .cf-offcanvas-header {
+    background: #0B2545 !important;
+    color: #FFFFFF !important;
+    padding: 16px 20px !important;
+  }
+
+  .cf-mobile-ticker {
+    background: #0D315C !important;
+  }
+
+  .cf-mobile-nav {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .cf-mobile-link {
+    display: block !important;
+    padding: 14px 20px !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: #1E293B !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid #F1F5F9 !important;
+  }
+
+  .cf-mobile-link:hover,
+  .cf-mobile-link.active {
+    background-color: #F0F9FF !important;
+    color: #0284C7 !important;
+  }
+
+  .cf-mobile-footer {
+    margin-top: auto !important;
+    padding: 18px 20px !important;
+    background-color: #F8FAFC !important;
+    border-top: 1px solid #E2E8F0 !important;
+  }
+
+  .cf-mobile-cta-btn {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 12px 20px !important;
+    border-radius: 9999px !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+</style>
+
+<!-- =========================================================================
+     ROW 1: Dedicated Full-Width Flowing Marquee Ticker Row
+     ========================================================================= -->
+<div class="cf-header-row-marquee">
+  <div class="container cf-marquee-inner">
+    <div class="cf-marquee-badge">
+      <i class="bi bi-star-fill"></i>
+      <span>{% trans "Announcements" %}</span>
+    </div>
+    <div class="cf-marquee-track-container" title="Clinic News">
+      <div class="cf-marquee-track">
+        <span class="cf-marquee-item"><i class="bi bi-geo-alt-fill"></i> {% trans "Pragatinagar Road, Shankhamul-31, Kathmandu (Shankhamul / New Baneshwor)" %}</span>
+        <span class="cf-marquee-dot">•</span>
+        <span class="cf-marquee-item"><i class="bi bi-clock-fill"></i> {% trans "Open Daily (Mon–Sun): 7:30 AM – 7:30 PM" %}</span>
+        <span class="cf-marquee-dot">•</span>
+        <span class="cf-marquee-item"><i class="bi bi-person-badge-fill"></i> {% trans "Led by Dr. Subash Banjade (Dental Surgeon) & Specialist Team" %}</span>
+        <span class="cf-marquee-dot">•</span>
+        <span class="cf-marquee-item"><i class="bi bi-shield-fill-check"></i> {% trans "Free Initial Oral Consultation for New Patients" %}</span>
+        <span class="cf-marquee-dot">•</span>
+        <span class="cf-marquee-item"><i class="bi bi-award-fill"></i> {% trans "Painless Root Canal & 3D Digital Dental Implants" %}</span>
+        <span class="cf-marquee-dot">•</span>
+        <!-- Duplicate Loop for Seamless Infinite Scroll -->
+        <span class="cf-marquee-item"><i class="bi bi-geo-alt-fill"></i> {% trans "Pragatinagar Road, Shankhamul-31, Kathmandu (Shankhamul / New Baneshwor)" %}</span>
+        <span class="cf-marquee-dot">•</span>
+        <span class="cf-marquee-item"><i class="bi bi-clock-fill"></i> {% trans "Open Daily (Mon–Sun): 7:30 AM – 7:30 PM" %}</span>
+        <span class="cf-marquee-dot">•</span>
+        <span class="cf-marquee-item"><i class="bi bi-person-badge-fill"></i> {% trans "Led by Dr. Subash Banjade (Dental Surgeon) & Specialist Team" %}</span>
+        <span class="cf-marquee-dot">•</span>
+        <span class="cf-marquee-item"><i class="bi bi-shield-fill-check"></i> {% trans "Free Initial Oral Consultation for New Patients" %}</span>
+        <span class="cf-marquee-dot">•</span>
+        <span class="cf-marquee-item"><i class="bi bi-award-fill"></i> {% trans "Painless Root Canal & 3D Digital Dental Implants" %}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================================
+     ROW 2: Deep Navy Utility Contact & Action Bar
+     ========================================================================= -->
+<div class="cf-header-row-contact">
+  <div class="container cf-contact-inner">
+    
+    <!-- Left: Timings, Emergency Phone, Email -->
+    <div class="cf-contact-left">
+      <div class="cf-contact-item">
+        <i class="bi bi-clock-history"></i>
+        <span>{% trans "Daily: 7:30 AM – 7:30 PM" %}</span>
+      </div>
+
+      <a href="tel:+9779807464136" class="cf-contact-item" aria-label="Call Clinic">
+        <i class="bi bi-telephone-fill"></i>
+        <span>+977 980-7464136 / 01-5916886</span>
+      </a>
+
+      <a href="mailto:carefirstdentalclinic@gmail.com" class="cf-contact-item d-hide-mob" aria-label="Email Clinic">
+        <i class="bi bi-envelope-fill"></i>
+        <span>carefirstdentalclinic@gmail.com</span>
+      </a>
+    </div>
+
+    <!-- Right: Socials (WhatsApp, FB, Insta), Book Appointment Pill & Language Switcher -->
+    <div class="cf-contact-right">
+      <div class="cf-contact-socials">
+        <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="cf-social-link cf-social-whatsapp" aria-label="WhatsApp">
+          <i class="bi bi-whatsapp"></i>
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener" class="cf-social-link cf-social-facebook" aria-label="Facebook">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="cf-social-link cf-social-instagram" aria-label="Instagram">
+          <i class="bi bi-instagram"></i>
+        </a>
+      </div>
+
+      <a href="{% url 'main:contact' %}#appointment" class="cf-row2-btn">
+        <i class="bi bi-calendar2-check-fill"></i>
+        <span>{% trans "Book Appointment" %}</span>
+      </a>
+
+      <form action="{% url 'set_language' %}" method="post" id="row2-lang-form" class="mb-0 d-none d-sm-block">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.path }}">
+        {% get_current_language as LANGUAGE_CODE %}
+        <div class="cf-row2-lang-wrapper position-relative">
+          <i class="bi bi-globe2"></i>
+          <select name="language" class="cf-row2-lang-select" onchange="document.getElementById('row2-lang-form').submit();" aria-label="Language Selector">
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+              <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                {% if language.code == 'en' %}EN{% elif language.code == 'ne' %}NE{% else %}{{ language.code|upper }}{% endif %}
+              </option>
+            {% endfor %}
+          </select>
+          <i class="bi bi-chevron-down cf-row2-lang-chevron"></i>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========================================================================
+     ROW 3: Main Navigation Bar (Logo on Left + Navigation Menu)
+     ========================================================================= -->
+<header class="cf-header-row-nav" id="cfHeaderNav">
+  <nav class="container cf-navbar-inner" aria-label="Primary Navigation">
+    
+    <!-- Logo on Far Left -->
+    <a href="{% url 'main:home' %}" class="cf-logo" aria-label="Carefirst Dental Clinic - Home">
+      <div class="cf-logo-frame">
+        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="Carefirst Dental Clinic" class="cf-logo-img">
+      </div>
+      <div class="cf-logo-text">
+        <span class="cf-logo-title">Care<span class="cf-logo-accent">First</span></span>
+        <span class="cf-logo-subtitle">Dental Clinic</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Menu -->
+    <ul class="cf-nav-menu d-none d-lg-flex">
+      <li>
+        <a href="{% url 'main:home' %}" class="cf-nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+          {% trans "Home" %}
+        </a>
+      </li>
+      
+      <!-- About Us (Single Direct Section Link) -->
+      <li>
+        <a href="{% url 'main:about' %}" class="cf-nav-link {% if request.resolver_match.url_name in 'about,clinic,why_choose' %}active{% endif %}">
+          {% trans "About Us" %}
+        </a>
+      </li>
+
+      <!-- Treatments 2-Column Mega Menu -->
+      <li class="cf-nav-item position-relative">
+        <a href="{% url 'main:services_list' %}" class="cf-nav-link {% if 'service' in request.resolver_match.url_name %}active{% endif %}">
+          {% trans "Treatments" %} <i class="bi bi-chevron-down"></i>
+        </a>
+        <div class="cf-mega-dropdown">
+          <div class="cf-mega-grid">
+            
+            <!-- Column 1 -->
+            <div class="d-flex flex-column gap-1">
+              <a href="{% url 'main:service_detail' 'general-dentistry' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-heart-pulse"></i></span>
+                <span class="cf-menu-item-name">{% trans "General Dentistry" %}</span>
+              </a>
+              <a href="{% url 'main:service_detail' 'dental-filling' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-bandaid"></i></span>
+                <span class="cf-menu-item-name">{% trans "Dental Filling" %}</span>
+              </a>
+              <a href="{% url 'main:service_detail' 'root-canal-treatment' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-droplet-half"></i></span>
+                <span class="cf-menu-item-name">{% trans "Root Canal Treatment" %}</span>
+              </a>
+              <a href="{% url 'main:service_detail' 'crowns-and-bridges' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-shield-check"></i></span>
+                <span class="cf-menu-item-name">{% trans "Crowns & Bridges" %}</span>
+              </a>
+              <a href="{% url 'main:service_detail' 'orthodontic-treatment-braces' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-bezier2"></i></span>
+                <span class="cf-menu-item-name">{% trans "Orthodontic Treatment (Braces)" %}</span>
+              </a>
+              <a href="{% url 'main:service_detail' 'dental-implants' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-gear-fill"></i></span>
+                <span class="cf-menu-item-name">{% trans "Dental Implants" %}</span>
+              </a>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="d-flex flex-column gap-1">
+              <a href="{% url 'main:service_detail' 'digital-dental-x-ray' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-camera-fill"></i></span>
+                <span class="cf-menu-item-name">{% trans "Digital Dental X-Ray" %}</span>
+              </a>
+              <a href="{% url 'main:service_detail' 'scaling-and-polishing' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-stars"></i></span>
+                <span class="cf-menu-item-name">{% trans "Scaling & Polishing" %}</span>
+              </a>
+              <a href="{% url 'main:service_detail' 'tooth-extraction' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-scissors"></i></span>
+                <span class="cf-menu-item-name">{% trans "Tooth Extraction" %}</span>
+              </a>
+              <a href="{% url 'main:service_detail' 'dentures' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-layers-fill"></i></span>
+                <span class="cf-menu-item-name">{% trans "Dentures" %}</span>
+              </a>
+              <a href="{% url 'main:service_detail' 'periodontal-treatment-gum' %}" class="cf-menu-item-link">
+                <span class="cf-menu-item-icon"><i class="bi bi-flower1"></i></span>
+                <span class="cf-menu-item-name">{% trans "Periodontal Treatment (Gum)" %}</span>
+              </a>
+            </div>
+
+            <!-- Full-Width Bottom Action -->
+            <div class="cf-mega-footer">
+              <a href="{% url 'main:services_list' %}" class="cf-mega-footer-btn">
+                <span><i class="bi bi-grid-fill me-2"></i>{% trans "View All Treatments & Pricing" %}</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+      <!-- Our Doctors -->
+      <li>
+        <a href="{% url 'main:doctors' %}" class="cf-nav-link {% if request.resolver_match.url_name == 'doctors' %}active{% endif %}">
+          {% trans "Our Doctors" %}
+        </a>
+      </li>
+
+      <!-- Smile Gallery Dropdown -->
+      <li class="cf-nav-item position-relative">
+        <a href="{% url 'main:clinic_gallery' %}" class="cf-nav-link {% if 'gallery' in request.resolver_match.url_name or 'transformation' in request.resolver_match.url_name %}active{% endif %}">
+          {% trans "Smile Gallery" %} <i class="bi bi-chevron-down"></i>
+        </a>
+        <div class="cf-dropdown-menu-regular">
+          <a href="{% url 'main:clinic_gallery' %}" class="cf-menu-item-link">
+            <span class="cf-menu-item-icon"><i class="bi bi-images"></i></span>
+            <span class="cf-menu-item-name">{% trans "Clinic Tour" %}</span>
+          </a>
+          <a href="{% url 'main:smile_transformations' %}" class="cf-menu-item-link">
+            <span class="cf-menu-item-icon"><i class="bi bi-magic"></i></span>
+            <span class="cf-menu-item-name">{% trans "Before & After" %}</span>
+          </a>
+        </div>
+      </li>
+
+      <!-- Videos -->
+      <li>
+        <a href="{% url 'media_center:video_list' %}" class="cf-nav-link {% if 'video' in request.resolver_match.url_name %}active{% endif %}">
+          {% trans "Video" %}
+        </a>
+      </li>
+
+      <!-- Pricing -->
+      <li>
+        <a href="{% url 'main:pricing' %}" class="cf-nav-link {% if request.resolver_match.url_name == 'pricing' %}active{% endif %}">
+          {% trans "Pricing" %}
+        </a>
+      </li>
+
+      <!-- Blog -->
+      <li>
+        <a href="{% url 'blogs:blog_list' %}" class="cf-nav-link {% if 'blog' in request.resolver_match.url_name %}active{% endif %}">
+          {% trans "Blog" %}
+        </a>
+      </li>
+
+      <!-- Contact -->
+      <li>
+        <a href="{% url 'main:contact' %}" class="cf-nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+          {% trans "Contact" %}
+        </a>
+      </li>
+    </ul>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="cf-mobile-toggle ms-auto d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#cfMobileMenu" aria-controls="cfMobileMenu" aria-label="Toggle navigation">
+      <i class="bi bi-list"></i>
+    </button>
+
+  </nav>
+</header>
+
+<!-- Mobile Drawer Offcanvas -->
+<div class="offcanvas offcanvas-end cf-offcanvas" tabindex="-1" id="cfMobileMenu" aria-labelledby="cfMobileMenuLabel">
+  <div class="cf-offcanvas-header d-flex justify-content-between align-items-center">
+    <a href="{% url 'main:home' %}" class="cf-logo text-decoration-none">
+      <div class="cf-logo-frame me-2" style="width:40px;height:40px;">
+        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="Carefirst Dental" class="cf-logo-img">
+      </div>
+      <div class="cf-logo-text">
+        <span class="cf-logo-title fs-5 text-white">Care<span class="text-info">First</span></span>
+      </div>
+    </a>
+    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="cf-offcanvas-body">
+    <div class="cf-mobile-ticker py-2 px-3">
+      <i class="bi bi-star-fill text-warning me-1"></i> <small class="text-white-50">{% trans "Your Smile, Our Priority" %}</small>
+    </div>
+
+    <ul class="cf-mobile-nav">
+      <li><a href="{% url 'main:home' %}" class="cf-mobile-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">{% trans "Home" %}</a></li>
+      
+      <li><a href="{% url 'main:about' %}" class="cf-mobile-link {% if request.resolver_match.url_name in 'about,clinic,why_choose' %}active{% endif %}"><i class="bi bi-info-circle text-primary me-2"></i>{% trans "About Us" %}</a></li>
+
+      <li>
+        <a class="cf-mobile-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#mobTreatments" role="button" aria-expanded="false" aria-controls="mobTreatments">
+          <span><i class="bi bi-heart-pulse text-danger me-2"></i>{% trans "Treatments" %}</span>
+          <i class="bi bi-chevron-down text-secondary" style="font-size: 0.8rem;"></i>
+        </a>
+        <div class="collapse" id="mobTreatments">
+          <div class="px-3 pb-2 bg-light">
+            <a href="{% url 'main:service_detail' 'general-dentistry' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "General Dentistry" %}</a>
+            <a href="{% url 'main:service_detail' 'dental-filling' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Dental Filling" %}</a>
+            <a href="{% url 'main:service_detail' 'root-canal-treatment' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Root Canal Treatment" %}</a>
+            <a href="{% url 'main:service_detail' 'crowns-and-bridges' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Crowns & Bridges" %}</a>
+            <a href="{% url 'main:service_detail' 'orthodontic-treatment-braces' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Orthodontic Treatment (Braces)" %}</a>
+            <a href="{% url 'main:service_detail' 'dental-implants' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Dental Implants" %}</a>
+            <a href="{% url 'main:service_detail' 'digital-dental-x-ray' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Digital Dental X-Ray" %}</a>
+            <a href="{% url 'main:service_detail' 'scaling-and-polishing' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Scaling & Polishing" %}</a>
+            <a href="{% url 'main:service_detail' 'tooth-extraction' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Tooth Extraction" %}</a>
+            <a href="{% url 'main:service_detail' 'dentures' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Dentures" %}</a>
+            <a href="{% url 'main:service_detail' 'periodontal-treatment-gum' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Periodontal Treatment (Gum)" %}</a>
+            <a href="{% url 'main:services_list' %}" class="cf-dropdown-link py-2 text-primary fw-bold">{% trans "View All Treatments" %} &rarr;</a>
+          </div>
+        </div>
+      </li>
+
+      <li><a href="{% url 'main:doctors' %}" class="cf-mobile-link {% if request.resolver_match.url_name == 'doctors' %}active{% endif %}"><i class="bi bi-person-badge text-purple me-2"></i>{% trans "Our Doctors" %}</a></li>
+      
+      <li>
+        <a class="cf-mobile-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#mobGallery" role="button" aria-expanded="false" aria-controls="mobGallery">
+          <span><i class="bi bi-images text-info me-2"></i>{% trans "Smile Gallery" %}</span>
+          <i class="bi bi-chevron-down text-secondary" style="font-size: 0.8rem;"></i>
+        </a>
+        <div class="collapse" id="mobGallery">
+          <div class="px-3 pb-2 bg-light">
+            <a href="{% url 'main:clinic_gallery' %}" class="cf-dropdown-link py-2 border-bottom">{% trans "Clinic Tour" %}</a>
+            <a href="{% url 'main:smile_transformations' %}" class="cf-dropdown-link py-2">{% trans "Before & After" %}</a>
+          </div>
+        </div>
+      </li>
+
+      <li><a href="{% url 'media_center:video_list' %}" class="cf-mobile-link {% if 'video' in request.resolver_match.url_name %}active{% endif %}"><i class="bi bi-play-circle text-danger me-2"></i>{% trans "Video" %}</a></li>
+      <li><a href="{% url 'main:pricing' %}" class="cf-mobile-link {% if request.resolver_match.url_name == 'pricing' %}active{% endif %}"><i class="bi bi-cash-stack text-success me-2"></i>{% trans "Pricing" %}</a></li>
+      <li><a href="{% url 'blogs:blog_list' %}" class="cf-mobile-link {% if 'blog' in request.resolver_match.url_name %}active{% endif %}"><i class="bi bi-newspaper text-warning me-2"></i>{% trans "Blog" %}</a></li>
+      <li><a href="{% url 'main:contact' %}" class="cf-mobile-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"><i class="bi bi-telephone text-primary me-2"></i>{% trans "Contact" %}</a></li>
+    </ul>
+    
+    <!-- Mobile Bottom CTA -->
+    <div class="cf-mobile-footer">
+      <a href="{% url 'main:contact' %}#appointment" class="cf-mobile-cta-btn mb-2">
+        <i class="bi bi-calendar2-check"></i> {% trans "Book Appointment" %}
+      </a>
+      <div class="d-flex gap-2">
+        <a href="tel:+9779807464136" class="btn btn-outline-secondary btn-sm flex-fill py-2">
+          <i class="bi bi-telephone-fill"></i> {% trans "Call Clinic" %}
+        </a>
+        <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-outline-success btn-sm flex-fill py-2">
+          <i class="bi bi-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sticky Navbar Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const headerNav = document.getElementById('cfHeaderNav');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 40) {
+            headerNav.classList.add('is-sticky');
+        } else {
+            headerNav.classList.remove('is-sticky');
+        }
+    });
+});
+</script>

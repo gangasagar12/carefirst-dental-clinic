@@ -1,0 +1,542 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+
+{% block title %}Periodontal (Gum) Treatment — Carefirst Dental Clinic{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}">
+<meta name="description" content="Expert Periodontal (Gum) Treatment at Carefirst Dental Clinic. Stop gum disease, prevent tooth loss, and restore your oral health with our advanced therapies.">
+<style>
+  /* Base Cards */
+  .perio-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid rgba(14,90,79,0.08);
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .perio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(14,90,79,0.08);
+  }
+  .perio-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: var(--cf-primary-tint);
+    color: var(--cf-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Stages Info */
+  .stage-box {
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 5px solid;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  }
+  .stage-1 { border-color: var(--cf-primary); }
+  .stage-2 { border-color: #ffc107; }
+  .stage-3 { border-color: #fd7e14; }
+  .stage-4 { border-color: #dc3545; }
+
+  /* Pricing Table */
+  .pricing-table {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(14,90,79,0.1);
+    border: 1px solid rgba(14,90,79,0.1);
+  }
+  .pricing-header {
+    background: var(--cf-primary-dark);
+    color: #fff;
+    padding: 24px;
+    text-align: center;
+  }
+  .pricing-body {
+    padding: 0;
+  }
+  .pricing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .pricing-row:last-child {
+    border-bottom: none;
+  }
+  .pricing-row .title {
+    font-weight: 700;
+    color: var(--cf-primary-dark);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .pricing-row .price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--cf-accent-dark);
+    font-family: var(--cf-font-head);
+  }
+  .pricing-row .currency {
+    font-size: 0.9rem;
+    vertical-align: super;
+  }
+
+  /* Gallery/Lightbox */
+  .perio-gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .perio-gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .perio-gallery-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(14,90,79,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .perio-gallery-item:hover img { transform: scale(1.05); }
+  .perio-gallery-item:hover .perio-gallery-overlay { opacity: 1; }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- 1. HERO BANNER -->
+<section class="service-hero text-center" style="background-image: url('/static/images/periodontal-hero.jpg');">
+  <div class="hero-inner container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
+        <li class="breadcrumb-item active text-warning">{% trans "Periodontal Treatment" %}</li>
+      </ol>
+    </nav>
+    <h1><i class="bi bi-heart-pulse me-3 text-warning"></i>{% trans "Periodontal (Gum) Treatment" %}</h1>
+    <p class="hero-sub mx-auto">{% trans "Protect the foundation of your smile with expert, comprehensive gum care therapies." %}</p>
+    <div class="mt-4">
+      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Restore Gum Health" %}</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. INTRODUCTION & WHAT IS GUM DISEASE -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6">
+        <div class="nd-eyebrow">{% trans "Introduction" %}</div>
+        <h2 class="section-heading mb-4">{% trans "What is" %} <span class="accent">{% trans "Gum Disease?" %}</span></h2>
+        <p class="text-muted" style="line-height:1.85;">
+          {% trans "Periodontal disease (gum disease) is an infection of the tissues that hold your teeth in place. It is typically caused by poor brushing and flossing habits that allow plaque—a sticky film of bacteria—to build up on the teeth and harden." %}
+        </p>
+        
+        <div class="mt-4">
+          <h5 class="fw-bold text-warning"><i class="bi bi-exclamation-triangle-fill me-2"></i> {% trans "Gingivitis (Early Stage)" %}</h5>
+          <p class="text-muted small">{% trans "The mildest form of gum disease. Gums become red, swollen, and bleed easily. Fortunately, it is entirely reversible with professional treatment and good home care." %}</p>
+        </div>
+        
+        <div class="mt-4">
+          <h5 class="fw-bold text-danger"><i class="bi bi-shield-x me-2"></i> {% trans "Periodontitis (Advanced Stage)" %}</h5>
+          <p class="text-muted small">{% trans "If left untreated, gingivitis advances to periodontitis. The inner layer of the gum and bone pull away from the teeth and form pockets that collect debris and become infected, eventually leading to tooth loss." %}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img loading="lazy" src="{% static 'images/periodontal.jpg' %}" alt="Healthy vs Unhealthy Gums" class="img-fluid rounded-4 shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. SIGNS & CAUSES -->
+<section class="section-py" style="background:var(--cf-bg-light);">
+  <div class="container">
+    
+    <div class="row g-5">
+      <!-- Signs & Symptoms -->
+      <div class="col-lg-6">
+        <div class="bg-white p-5 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
+          <div class="nd-eyebrow">{% trans "Watch For These" %}</div>
+          <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">Signs & Symptoms</h3>
+          <p class="text-muted mb-4 small">{% trans "Gum disease can progress painlessly, producing few obvious signs, even in the late stages. However, watch out for:" %}</p>
+          <ul class="symptom-list mb-0">
+            <li><i class="bi bi-droplet text-danger fs-5"></i> <span><strong>{% trans "Bleeding Gums:" %}</strong> {% trans "Especially during brushing or flossing." %}</span></li>
+            <li><i class="bi bi-circle-fill text-danger fs-5"></i> <span><strong>{% trans "Swollen or Red Gums:" %}</strong> {% trans "Healthy gums should be firm and pale pink." %}</span></li>
+            <li><i class="bi bi-wind text-warning fs-5"></i> <span><strong>{% trans "Persistent Bad Breath:" %}</strong> {% trans "Caused by bacteria trapped in deep gum pockets." %}</span></li>
+            <li><i class="bi bi-arrow-down-square text-warning fs-5"></i> <span><strong>{% trans "Gum Recession:" %}</strong> {% trans "Teeth look longer than they used to." %}</span></li>
+            <li><i class="bi bi-layers text-danger fs-5"></i> <span><strong>{% trans "Loose Teeth:" %}</strong> {% trans "Feeling wobbly or painful when chewing." %}</span></li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Causes -->
+      <div class="col-lg-6">
+        <div class="bg-white p-5 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
+          <div class="nd-eyebrow">{% trans "The Root of the Problem" %}</div>
+          <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">Causes & Risk Factors</h3>
+          <p class="text-muted mb-4 small">{% trans "While plaque is the primary cause, other factors can significantly increase your risk of developing severe gum disease." %}</p>
+          <ul class="symptom-list mb-0">
+            <li><i class="bi bi-brush text-secondary fs-5"></i> <span><strong>{% trans "Poor Oral Hygiene:" %}</strong> {% trans "Inadequate brushing and flossing." %}</span></li>
+            <li><i class="bi bi-fire text-secondary fs-5"></i> <span><strong>{% trans "Smoking:" %}</strong> {% trans "Interferes with the normal function of gum tissue cells." %}</span></li>
+            <li><i class="bi bi-activity text-secondary fs-5"></i> <span><strong>{% trans "Diabetes:" %}</strong> {% trans "Higher risk of developing infections, including gum disease." %}</span></li>
+            <li><i class="bi bi-gender-ambiguous text-secondary fs-5"></i> <span><strong>{% trans "Hormonal Changes:" %}</strong> {% trans "E.g., pregnancy can make gums more sensitive." %}</span></li>
+            <li><i class="bi bi-diagram-2 text-secondary fs-5"></i> <span><strong>{% trans "Genetics:" %}</strong> {% trans "Some people are just more prone to severe gum disease." %}</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. STAGES OF GUM DISEASE -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="nd-eyebrow justify-content-center">{% trans "Disease Progression" %}</div>
+      <h2 class="section-heading">{% trans "Stages of" %} <span class="accent">{% trans "Gum Disease" %}</span></h2>
+      <p class="text-muted mx-auto mt-3" style="max-width: 700px;">{% trans "Catching gum disease early is critical to preventing irreversible bone and tooth loss." %}</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="stage-box stage-1">
+          <h5 class="fw-bold text-success mb-2"><i class="bi bi-1-circle-fill me-2"></i>{% trans "Healthy Gums" %}</h5>
+          <p class="text-muted small mb-0">{% trans "Firm, pale pink gums that fit snugly around the teeth. No bleeding during brushing or flossing." %}</p>
+        </div>
+        <div class="stage-box stage-2">
+          <h5 class="fw-bold text-warning mb-2"><i class="bi bi-2-circle-fill me-2"></i>{% trans "Gingivitis" %}</h5>
+          <p class="text-muted small mb-0">{% trans "Plaque irritates the gums, causing them to become red, tender, and swollen. Bleeding occurs during brushing. Reversible with professional scaling." %}</p>
+        </div>
+        <div class="stage-box stage-3">
+          <h5 class="fw-bold text-orange" style="color: #fd7e14;"><i class="bi bi-3-circle-fill me-2"></i>{% trans "Early Periodontitis" %}</h5>
+          <p class="text-muted small mb-0">{% trans "Inflammation reaches the bone. Gums begin pulling away from the teeth, forming pockets that trap bacteria. Minor bone loss begins." %}</p>
+        </div>
+        <div class="stage-box stage-4">
+          <h5 class="fw-bold text-danger mb-2"><i class="bi bi-4-circle-fill me-2"></i>{% trans "Advanced Periodontitis" %}</h5>
+          <p class="text-muted small mb-0">{% trans "Severe bone loss and deep gum pockets. Teeth become loose, shift out of place, and may need to be extracted to halt the infection." %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. TREATMENTS & BENEFITS -->
+<section class="section-py" style="background:var(--cf-bg-light);">
+  <div class="container">
+    <div class="row g-5">
+      
+      <!-- Treatments Offered -->
+      <div class="col-lg-7">
+        <div class="nd-eyebrow">{% trans "Solutions" %}</div>
+        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Periodontal Treatments We Offer" %}</h3>
+        <div class="row g-4 mt-1">
+          <div class="col-sm-6">
+            <div class="perio-card">
+              <div class="perio-icon-wrapper"><i class="bi bi-magic"></i></div>
+              <h6 class="fw-bold">{% trans "Deep Cleaning" %}</h6>
+              <p class="small text-muted mb-0">{% trans "Subgingival scaling and root planing to remove tartar from deep below the gum line." %}</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="perio-card">
+              <div class="perio-icon-wrapper"><i class="bi bi-scissors"></i></div>
+              <h6 class="fw-bold">{% trans "Flap Surgery" %}</h6>
+              <p class="small text-muted mb-0">{% trans "For advanced cases. Gums are lifted back to remove deep tartar, then sutured tightly around the tooth." %}</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="perio-card">
+              <div class="perio-icon-wrapper"><i class="bi bi-link"></i></div>
+              <h6 class="fw-bold">{% trans "Splinting" %}</h6>
+              <p class="small text-muted mb-0">{% trans "A technique to stabilize loose teeth by attaching them to adjacent strong teeth." %}</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="perio-card">
+              <div class="perio-icon-wrapper"><i class="bi bi-shield-plus"></i></div>
+              <h6 class="fw-bold">{% trans "Bone Grafting" %}</h6>
+              <p class="small text-muted mb-0">{% trans "Rebuilding jawbone destroyed by periodontitis to save teeth or prepare for implants." %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Niko / Benefits -->
+      <div class="col-lg-5">
+        <div class="nd-eyebrow">{% trans "The Benefits" %}</div>
+        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
+        <p class="text-muted mb-4">{% trans "Halting gum disease protects much more than just your teeth; it protects your overall systemic health." %}</p>
+        <ul class="symptom-list mb-0">
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Prevents Tooth Loss:" %}</strong> {% trans "Save natural teeth from needing extraction." %}</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Fresher Breath:" %}</strong> {% trans "Eliminate the source of chronic halitosis." %}</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Systemic Health:" %}</strong> {% trans "Reduces risks linked to heart disease and diabetes complications." %}</span></li>
+          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Expert Care:" %}</strong> {% trans "Gentle, modern techniques utilizing ultrasonic scalers for a comfortable experience." %}</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 6. TREATMENT PROCESS & PRICING -->
+<section class="section-py" style="background:var(--cf-primary-dark); color:#fff;">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      
+      <!-- Step-by-Step -->
+      <div class="col-lg-7">
+        <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
+        <h2 class="section-heading text-white mb-5">{% trans "Our Treatment" %} <span class="text-warning">{% trans "Process" %}</span></h2>
+        
+        <div class="d-flex mb-4 position-relative">
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
+          <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">{% trans "Clinical Examination" %}</h5>
+            <p class="text-white-50 mb-0">{% trans "We measure the depth of the pockets around your teeth using a periodontal probe and take X-rays to assess bone loss." %}</p>
+          </div>
+        </div>
+        <div class="d-flex mb-4 position-relative">
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
+          <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">{% trans "Treatment Planning" %}</h5>
+            <p class="text-white-50 mb-0">{% trans "Based on the diagnosis, we create a personalized treatment plan, which may range from deep cleaning to surgical intervention." %}</p>
+          </div>
+        </div>
+        <div class="d-flex mb-4 position-relative">
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
+          <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">{% trans "The Procedure" %}</h5>
+            <p class="text-white-50 mb-0">{% trans "Using local anesthesia, we meticulously clean the teeth and roots, removing bacterial toxins and smoothing root surfaces." %}</p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
+          <div>
+            <h5 class="fw-bold text-white mb-1">{% trans "Follow-up Care" %}</h5>
+            <p class="text-white-50 mb-0">{% trans "Periodontal disease is chronic. We schedule frequent maintenance cleanings (every 3-4 months) to ensure the infection does not return." %}</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- PRICING TABLE -->
+      <div class="col-lg-5">
+        <div class="pricing-table">
+          <div class="pricing-header">
+            <h3 class="fw-bold mb-0">{% trans "Treatment Charges" %}</h3>
+            <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing</p>
+          </div>
+          <div class="pricing-body">
+            
+            <div class="pricing-row">
+              <div>
+                <p class="title">{% trans "Deep Cleaning" %}</p>
+                <p class="text-muted small mb-0 mt-1">{% trans "Subgingival Scaling (Per Quadrant)" %}</p>
+              </div>
+              <div class="text-end">
+                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.deep_cleaning_root_planing|default:"2,500" }}</span>
+              </div>
+            </div>
+            
+            <div class="pricing-row" style="background-color: var(--cf-primary-tint);">
+              <div>
+                <p class="title">{% trans "Flap Surgery" %}</p>
+                <p class="text-muted small mb-0 mt-1">{% trans "Advanced pocket reduction (Per Quadrant)" %}</p>
+              </div>
+              <div class="text-end">
+                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.flap_surgery|default:"8,000" }}</span>
+              </div>
+            </div>
+            
+            <div class="pricing-row">
+              <div>
+                <p class="title">{% trans "Tooth Splinting" %}</p>
+                <p class="text-muted small mb-0 mt-1">{% trans "Stabilize loose teeth (Per Arch)" %}</p>
+              </div>
+              <div class="text-end">
+                <span class="price"><span class="currency">{% trans "NPR" %}</span> {{ dynamic_prices.splinting|default:"5,000" }}</span>
+              </div>
+            </div>
+
+            <div class="p-4 text-center">
+              <p class="small text-muted mb-4 fst-italic">
+                {% trans "* Note: The final treatment cost heavily depends on the severity of the gum condition and the number of quadrants requiring intervention." %}
+              </p>
+              <a href="{% url 'main:contact' %}#book" class="btn btn-nd-gold w-100">{% trans "Schedule Examination" %}</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. TREATMENT GALLERY (LIGHTBOX) -->
+<section class="section-py bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="nd-eyebrow justify-content-center">{% trans "Real Results" %}</div>
+      <h2 class="section-heading">{% trans "Treatment" %} <span class="accent">{% trans "Gallery" %}</span></h2>
+      <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "See the incredible difference our periodontal therapies can make in restoring gum health and aesthetics." %}</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="perio-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/perio_before.png' %}'">
+          <img loading="lazy" src="{% static 'images/perio_before.png' %}" alt="Inflamed Gums Before">
+          <div class="perio-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Before: Severe Inflammation" %}</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="perio-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/perio_during.png' %}'">
+          <img loading="lazy" src="{% static 'images/perio_during.png' %}" alt="Deep Cleaning Treatment">
+          <div class="perio-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "During: Ultrasonic Deep Cleaning" %}</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="perio-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/perio_after.png' %}'">
+          <img loading="lazy" src="{% static 'images/perio_after.png' %}" alt="Healthy Gums After">
+          <div class="perio-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "After: Healthy, Firm Gums restored" %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Modal -->
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0 position-relative text-center">
+        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+        <img loading="lazy" id="modalImg" src="" class="img-fluid rounded shadow" alt="Treatment Preview" style="max-height: 85vh;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. FAQ & TESTIMONIALS -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row g-5">
+      
+      <!-- Testimonials -->
+      <div class="col-lg-5">
+        <div class="nd-eyebrow">{% trans "Patient Stories" %}</div>
+        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Life with Healthy Gums" %}</h3>
+        
+        <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative mb-4">
+          <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
+          <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="fst-italic text-muted small position-relative z-1">{% blocktrans %}\"My gums used to bleed every time I brushed, and several teeth felt loose. After deep cleaning and splinting at Carefirst Dental Clinic, my gums are firm again and my teeth are secure. They truly saved my smile.\"{% endblocktrans %}</p>
+          <div class="d-flex align-items-center gap-3 mt-3">
+            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px; font-size: 0.8rem;">{% trans "D.S." %}</div>
+            <div>
+              <h6 class="fw-bold mb-0" style="font-size: 0.9rem;">{% trans "Deepak S." %}</h6>
+              <p class="small text-muted mb-0" style="font-size: 0.75rem;">{% trans "Periodontal Patient" %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="col-lg-7">
+        <div class="nd-eyebrow">{% trans "FAQ" %}</div>
+        <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Frequently Asked Questions" %}</h3>
+        <div class="accordion nd-accordion" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                {% trans "Is deep cleaning painful?" %}
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                {% blocktrans %}We use a local anesthetic to numb your gums during the procedure, so you won't feel any pain. You may experience some mild soreness and tooth sensitivity for a few days afterward, which is normal and manageable.{% endblocktrans %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                {% trans "Can gum disease be cured entirely?" %}
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                {% blocktrans %}Gingivitis (the early stage) can be completely cured. However, periodontitis (advanced stage involving bone loss) cannot be \"cured\" but it can be managed and halted from progressing further with continuous professional care and excellent home hygiene.{% endblocktrans %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                {% trans "Are my loose teeth going to fall out?" %}
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                {% trans "Not necessarily. If we catch the disease in time, we can often save loose teeth using a combination of deep cleaning, infection control, and a procedure called splinting (which binds loose teeth to stronger adjacent teeth for support)." %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- RELATED SERVICES -->
+<section class="section-py" style="background: #f8f9fa;">
+  <div class="container">
+    {% include 'components/related_services_row.html' %}
+  </div>
+</section>
+
+<!-- 10. CTA STRIP -->
+<div class="nd-cta-strip" id="book">
+  <div class="cta-inner container">
+    <h2>{% blocktrans %}Don't Ignore Bleeding Gums!{% endblocktrans %}</h2>
+    <p>{% trans "Early intervention is the key to preventing tooth loss. Schedule a periodontal assessment today to protect your smile." %}</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="#" class="btn btn-nd-gold"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Assessment" %}</a>
+      <a href="tel:+9779800000000" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% include 'components/google_reviews.html' %}
+
+{% endblock %}

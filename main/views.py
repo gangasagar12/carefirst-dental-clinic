@@ -1,135 +1,262 @@
-from django.shortcuts import render
+import json
 
-def index(request):
-    return render(request, 'index.html')
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
+from django.templatetags.static import static
+from appointments.forms import AppointmentForm
+from .forms import ContactMessageForm
+from .models import Doctor, Service, PricingCategory, AboutPageSettings, Branch, CoreValue, Technology, Testimonial, ClinicGallery, FAQ, GoogleBusiness, GoogleReview
+from blogs.models import Post
 
-def about(request):
-    return render(request, 'pages/about.html')
+def custom_404(request, exception=None):
+    return render(request, '404.html', status=404)
 
-def treatments(request):
-    return render(request, 'pages/treatments.html')
 
-def general_dentistry(request):
+def send_notification_email(instance, form_type):
+    if not getattr(settings, 'EMAIL_HOST_USER', None) or settings.EMAIL_HOST_USER == 'your_clinic_email@gmail.com':
+        return
+        
+    try:
+        if form_type == 'appointment':
+            subject = f"New Appointment Request from {instance.full_name}"
+            message = (
+                f"You have a new appointment request!\n\n"
+                f"Name: {instance.full_name}\n"
+                f"Phone: {instance.phone}\n"
+                f"Email: {instance.email or 'N/A'}\n"
+                f"Preferred Date: {instance.preferred_date}\n"
+                f"Preferred Time: {instance.get_preferred_time_display() or 'Any'}\n"
+                f"Treatment: {instance.get_treatment_display() or 'Not Sure'}\n"
+                f"Message: {instance.message or 'N/A'}\n"
+            )
+        else:
+            subject = f"New Contact Message from {instance.name}"
+            message = (
+                f"You have a new contact message!\n\n"
+                f"Name: {instance.name}\n"
+                f"Email: {instance.email}\n"
+                f"Subject: {instance.subject}\n"
+                f"Message:\n{instance.message}\n"
+            )
+            
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [settings.NOTIFICATION_EMAIL],
+            fail_silently=True,
+        )
+    except Exception:
+        pass
+
+def home(request):
+    if request.method == 'POST':
+        form_type = request.POST.get('form_type')
+        if form_type == 'appointment':
+            form = AppointmentForm(request.POST)
+            if form.is_valid():
+                instance = form.save()
+                send_notification_email(instance, 'appointment')
+                from main.services.whatsapp import queue_whatsapp_confirmation
+                from main.services.email import queue_email_confirmation
+                queue_whatsapp_confirmation(instance.full_name, instance.phone, 'appointment', instance.id)
+                queue_email_confirmation(instance.full_name, instance.email, 'appointment', instance.id)
+                messages.success(request, 'Thank you! Your request has been received. We will contact you soon.')
+            else:
+                messages.error(request, 'There was an error in your appointment request. Please check the fields and try again.')
+            return redirect('main:home')
+
+    doctors_qs = Doctor.objects.filter(is_active=True)[:4]
+    latest_posts = Post.objects.filter(is_published=True).order_by('-published_date')[:3]
+    services = Service.objects.filter(is_active=True).order_by('order')[:6]
+    from .models import PricingItem
+    pricing_items = PricingItem.objects.all()[:5]
+    from media_center.models import Video
+        
+    latest_videos = Video.objects.filter(is_published=True).order_by('-published_date')[:4]
+    
+    from .models import ClinicGallery
+    clinic_gallery_images = ClinicGallery.objects.all()
+
+    google_business = GoogleBusiness.objects.order_by('-last_synced', '-updated_at').first()
+    google_reviews = []
+    google_reviews_schema = None
+
+    if google_business:
+        google_reviews = list(
+            GoogleReview.objects.filter(business=google_business, is_active=True)
+            .order_by('-publish_time', '-created_at')[:10]
+        )
+        google_reviews_schema = build_google_reviews_schema(request, google_business, google_reviews)
+    
+    testimonials = Testimonial.objects.filter(is_active=True)
+
     context = {
-        'treatment': {
-            'prices': {
-                'all': [
-                    {'name': 'Dental Checkup', 'price': '1,500', 'notes': 'Comprehensive exam & consultation'},
-                    {'name': 'Scaling & Polishing', 'price': '3,500', 'notes': 'Full mouth professional cleaning'},
-                    {'name': 'Dental Filling', 'price': '2,500', 'notes': 'Tooth-colored composite restoration'},
-                    {'name': 'Digital Dental X-Ray', 'price': '800', 'notes': 'Periapical high-res radiograph'},
-                ]
-            }
-        },
-        'testimonials': [
-            {'name': 'Ananya S.', 'text': 'The most gentle dental checkup I have ever had. Highly recommend!', 'rating': '5.0', 'treatment': 'General Checkup'},
-            {'name': 'Bikash M.', 'text': 'Very professional clinic. The scaling was completely painless.', 'rating': '4.9', 'treatment': 'Scaling & Polishing'},
-            {'name': 'Priya K.', 'text': 'My cavity was fixed in 20 minutes without any discomfort. Thank you CareFirst!', 'rating': '5.0', 'treatment': 'Dental Filling'}
-        ],
-        'related_services': [
-            {'name': 'Root Canal Treatment', 'desc': 'Save your natural tooth with painless endodontic care.', 'image': 'rct_feat_painfree.png', 'url': '#'},
-            {'name': 'Teeth Whitening', 'desc': 'Brighten your smile safely and effectively.', 'image': 'scalling_hero.jpg', 'url': '#'},
-            {'name': 'Scaling & Polishing', 'desc': 'Remove stubborn plaque and stains for healthy gums.', 'image': 'dental_x-ray.jpg', 'url': '#'}
-        ]
-    }
-    return render(request, 'treatments/general_dentistry.html', context)
-
-def dental_filling(request):
-    # Mock data for Treatment Charges
-    class MockPrice:
-        def __init__(self, name, notes, price):
-            self.name = name
-            self.notes = notes
-            self.price = price
-
-    class MockTreatment:
-        class Prices:
-            @staticmethod
-            def all():
-                return [
-                    MockPrice("Composite Filling (Small)", "One surface, tooth-colored restoration", "1,500"),
-                    MockPrice("Composite Filling (Large)", "Multi-surface, complex tooth-colored restoration", "2,500"),
-                    MockPrice("Glass Ionomer Filling", "Fluoride-releasing restoration", "1,200")
-                ]
-        prices = Prices()
-
-    treatment = MockTreatment()
-
-    # Mock data for Testimonials
-    testimonials = [
-        {
-            'name': 'Anil Sharma',
-            'treatment': 'Dental Filling',
-            'text': 'I was worried my front tooth filling would look noticeable, but the tooth-colored restoration blends perfectly with my natural smile. Highly recommend CareFirst!'
-        },
-        {
-            'name': 'Priya Gurung',
-            'treatment': 'Dental Filling',
-            'text': 'The procedure was completely painless. Dr. Subash explained everything clearly, and the result is fantastic.'
-        }
-    ]
-
-    # Mock data for Related Services
-    related_services = [
-        {
-            'name': 'General Dentistry',
-            'desc': 'Comprehensive checkups and preventive care for a healthy smile.',
-            'url': '/treatments/general-dentistry/',
-            'image': 'scalling_hero.jpg'
-        },
-        {
-            'name': 'Root Canal Treatment',
-            'desc': 'Save your natural tooth with painless endodontic therapy.',
-            'url': '/treatments/root-canal/',
-            'image': 'rct_hero.avif'
-        },
-        {
-            'name': 'Scaling & Polishing',
-            'desc': 'Professional cleaning to remove plaque and brighten teeth.',
-            'url': '/treatments/scaling/',
-            'image': 'scaling_before.png'
-        }
-    ]
-
-    context = {
-        'treatment': treatment,
+        'doctors': doctors_qs,
+        'latest_posts': latest_posts,
+        'services': services,
+        'pricing_items': pricing_items,
+        'latest_videos': latest_videos,
+        'google_business': google_business,
+        'google_reviews': google_reviews,
+        'google_reviews_schema': google_reviews_schema,
+        'clinic_gallery_images': clinic_gallery_images,
         'testimonials': testimonials,
-        'related_services': related_services
     }
-    return render(request, 'treatments/dental_filling.html', context)
+    return render(request, 'home.html', context)
 
-def crowns_bridges(request):
-    dynamic_prices = {
-        'metal_crown': '3,000',
-        'pfm_crown': '6,000',
-        'zirconia_crown': '12,000',
-        'emax_crown': '18,000'
+
+def build_google_reviews_schema(request, business, reviews):
+    logo_url = request.build_absolute_uri(static('main/img/logo.jpg'))
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "Dentist",
+        "name": business.business_name,
+        "image": logo_url,
+        "url": request.build_absolute_uri('/'),
+        "telephone": "+977-9848631371",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Koteshwor-32",
+            "addressLocality": "Kathmandu",
+            "addressRegion": "Bagmati",
+            "addressCountry": "NP",
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": str(business.google_rating),
+            "reviewCount": business.review_count,
+            "bestRating": "5",
+            "worstRating": "1",
+        },
     }
+    if reviews:
+        schema["review"] = [
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": review.author_name},
+                "datePublished": review.publish_time.date().isoformat() if review.publish_time else "",
+                "reviewBody": review.review_text,
+                "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": review.rating,
+                    "bestRating": "5",
+                    "worstRating": "1",
+                },
+            }
+            for review in reviews[:5]
+            if review.review_text
+        ]
+    return json.dumps(schema, ensure_ascii=False)
+
+
+# ── About Section ─────────────────────────────────────────────
+def about_us(request):
     context = {
-        'dynamic_prices': dynamic_prices
+        'settings': AboutPageSettings.objects.first(),
+        'branches': Branch.objects.all(),
+        'core_values': CoreValue.objects.all(),
+        'technologies': Technology.objects.all(),
+        'testimonials': Testimonial.objects.filter(is_active=True),
+        'gallery': ClinicGallery.objects.all()[:6],
+        'faqs': FAQ.objects.filter(is_active=True),
+        'doctors': Doctor.objects.filter(is_active=True),
+        'services': Service.objects.all()
     }
-    return render(request, 'treatments/crowns_bridges.html', context)
+    return render(request, 'about/about_us.html', context)
+
+
+def our_clinic(request):
+    return render(request, 'about/our_clinic.html')
+
 
 def doctors(request):
-    return render(request, 'pages/doctors.html')
+    doctors_qs = Doctor.objects.filter(is_active=True)
+    return render(request, 'about/doctors.html', {'doctors': doctors_qs})
 
-def gallery(request):
-    return render(request, 'pages/gallery.html')
 
-def reviews(request):
-    return render(request, 'pages/reviews.html')
+def why_choose(request):
+    return render(request, 'about/why_choose.html')
 
-def blog(request):
-    return render(request, 'pages/blog.html')
 
-def contact(request):
-    return render(request, 'pages/contact.html')
+def about(request):
+    return about_us(request)
 
-def appointment(request):
-    return render(request, 'pages/appointment.html')
 
-def media(request):
-    return render(request, 'pages/media.html')
+# ── Gallery Section ───────────────────────────────────────────
+def clinic_gallery(request):
+    from main.models import ClinicGallery
+    gallery_images = ClinicGallery.objects.all()
+    return render(request, 'gallery/clinic_gallery.html', {'gallery_images': gallery_images})
 
+
+def smile_transformations(request):
+    testimonials = Testimonial.objects.filter(is_active=True)
+    return render(request, 'gallery/smile_transformations.html', {'testimonials': testimonials})
+
+
+# ── Services Section ──────────────────────────────────────────
+from django.shortcuts import get_object_or_404
+from django.http import Http404
+
+def services_list(request):
+    services = Service.objects.filter(is_active=True).order_by('order')
+    return render(request, 'services/services_list.html', {'services': services})
+
+
+def service_detail(request, slug):
+    service = get_object_or_404(Service, slug=slug, is_active=True)
+    related_services = Service.objects.filter(is_active=True).exclude(id=service.id).order_by('?')[:3]
+    
+    from media_center.models import Video
+    related_videos = Video.objects.filter(is_published=True, related_service=service).order_by('-published_date')[:3]
+    
+    context = {
+        'service': service,
+        'related_services': related_services,
+        'related_videos': related_videos,
+    }
+    
+    if service.custom_template:
+        return render(request, service.custom_template, context)
+    
+    return render(request, 'services/generic_service_detail.html', context)
+
+# ── Pricing Section ───────────────────────────────────────────
 def pricing(request):
-    return render(request, 'pages/pricing.html')
+    categories = PricingCategory.objects.prefetch_related('items').order_by('order')
+    return render(request, 'pricing.html', {'categories': categories})
+
+# ── Contact Section ───────────────────────────────────────────
+def contact(request):
+    if request.method == 'POST':
+        form_type = request.POST.get('form_type')
+        if form_type == 'appointment':
+            form = AppointmentForm(request.POST)
+            if form.is_valid():
+                instance = form.save()
+                send_notification_email(instance, 'appointment')
+                from main.services.whatsapp import queue_whatsapp_confirmation
+                from main.services.email import queue_email_confirmation
+                queue_whatsapp_confirmation(instance.full_name, instance.phone, 'appointment', instance.id)
+                queue_email_confirmation(instance.full_name, instance.email, 'appointment', instance.id)
+                messages.success(request, 'Thank you! Your request has been received. We will contact you soon.')
+                return redirect('main:contact')
+            else:
+                messages.error(request, 'There was an error in your appointment request. Please check the fields and try again.')
+        elif form_type == 'contact':
+            form = ContactMessageForm(request.POST)
+            if form.is_valid():
+                instance = form.save()
+                send_notification_email(instance, 'contact')
+                from main.services.whatsapp import queue_whatsapp_confirmation
+                from main.services.email import queue_email_confirmation
+                queue_whatsapp_confirmation(instance.name, getattr(instance, 'phone', None), 'contact', instance.id)
+                queue_email_confirmation(instance.name, instance.email, 'contact', instance.id)
+                messages.success(request, 'Thank you! Your request has been received. We will contact you soon.')
+                return redirect('main:contact')
+            else:
+                messages.error(request, 'There was an error sending your message. Please check the fields and try again.')
+    return render(request, 'contact.html')

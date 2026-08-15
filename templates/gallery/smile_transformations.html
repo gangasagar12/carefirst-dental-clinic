@@ -1,0 +1,306 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Smile Transformations — Carefirst Dental Clinic{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'main/css/gallery.css' %}">
+<meta name="description"
+  content="See real patient smile transformations at Carefirst Dental Clinic — before & after results for veneers, braces, whitening, implants, and full smile makeovers.">
+<style>
+  /* Page-specific overrides for Before / After Cards */
+  .ba-card {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.08) !important;
+    border: 1.5px solid #E2E8F0 !important;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+  }
+
+  .ba-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 45px -5px rgba(2, 132, 199, 0.28) !important;
+    border-color: #0284C7 !important;
+  }
+
+  .ba-images {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    position: relative !important;
+    height: 230px !important;
+    overflow: hidden !important;
+  }
+
+  .ba-images img {
+    width: 100% !important;
+    height: 230px !important;
+    object-fit: cover !important;
+    display: block !important;
+    transition: transform 0.4s ease !important;
+  }
+
+  .ba-card:hover .ba-images img {
+    transform: scale(1.05) !important;
+  }
+
+  .ba-divider {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 3px !important;
+    background: #FFFFFF !important;
+    z-index: 2 !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .ba-divider-icon {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: #FFFFFF !important;
+    border: 2px solid #0284C7 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.9rem !important;
+    color: #0284C7 !important;
+    box-shadow: 0 4px 14px rgba(11, 37, 69, 0.25) !important;
+    z-index: 3 !important;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease !important;
+  }
+
+  .ba-card:hover .ba-divider-icon {
+    transform: translate(-50%, -50%) scale(1.12) !important;
+    background: #0284C7 !important;
+    color: #FFFFFF !important;
+  }
+
+  .ba-label {
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    padding: 4px 12px !important;
+    position: absolute !important;
+    bottom: 12px !important;
+    border-radius: 50px !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    z-index: 2 !important;
+  }
+
+  .ba-label.before {
+    left: 12px !important;
+    background: rgba(11, 37, 69, 0.88) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .ba-label.after {
+    right: 12px !important;
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  }
+
+  /* Distinct Description Section (Soft Luxury Azure Tint Background) */
+  .ba-body {
+    padding: 18px 18px 20px !important;
+    background: #F0F7FD !important;
+    background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%) !important;
+    border-top: 2px solid rgba(2, 132, 199, 0.18) !important;
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .ba-body .ba-treatment {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    align-self: flex-start !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    color: #0284C7 !important;
+    background: #FFFFFF !important;
+    padding: 3px 10px !important;
+    border-radius: 50px !important;
+    border: 1px solid rgba(2, 132, 199, 0.25) !important;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.08) !important;
+    margin-bottom: 8px !important;
+  }
+
+  .ba-body .ba-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    color: #0B2545 !important;
+    line-height: 1.35 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .ba-body .ba-desc {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    color: #334155 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 0 !important;
+    margin-top: auto !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="gallery-hero text-center">
+  <div class="hero-inner container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}"
+            class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:clinic_gallery' %}"
+            class="text-white text-decoration-none opacity-75">{% trans "Gallery" %}</a></li>
+        <li class="breadcrumb-item active text-warning">{% trans "Smile Transformations" %}</li>
+      </ol>
+    </nav>
+    <h1>{% trans "Smile Transformations" %}</h1>
+    <p class="hero-sub mx-auto">{% trans "Real patients. Real results. Discover what expert dentistry can do for your smile." %}</p>
+  </div>
+</section>
+
+
+
+<!-- INTRO -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="nd-eyebrow">{% trans "Before & After" %}</div>
+        <h2 class="section-heading mb-4">{% trans "Every Smile Has a" %} <span class="accent">{% trans "Story Worth Telling" %}</span></h2>
+        <p class="text-muted mb-3" style="line-height:1.85;">{% blocktrans %}Our gallery of smile transformations showcases the real results achieved for real patients. From subtle
+          whitening to complete smile makeovers, each case reflects our commitment to precision, artistry, and
+          personalized care.{% endblocktrans %}</p>
+        <p class="text-muted mb-4" style="line-height:1.85;">{% blocktrans %}Browse by treatment category and see how our specialists have helped patients across Kathmandu rediscover
+          their confidence, one smile at a time.{% endblocktrans %}</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="#" class="btn-nd-gold btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Start Your Journey" %}</a>
+          <a href="{% url 'main:why_choose' %}" class="btn-nd-green btn"><i class="bi bi-info-circle me-2"></i>{% blocktrans %}Why
+            Choose Us{% endblocktrans %}</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <!-- COMPARISON SLIDER -->
+        <div class="compare-slider-wrap" id="compareSlider">
+          <div class="compare-before">
+            <img loading="lazy" src="{% static 'images/after_smile.png' %}"
+              alt="After smile" >
+            <span class="compare-after-label">{% trans "After" %}</span>
+          </div>
+          <div class="compare-after" id="compareAfter">
+            <img loading="lazy" src="{% static 'images/before_smile.png' %}"
+              alt="Before smile">
+            <span class="compare-before-label">{% trans "Before" %}</span>
+          </div>
+          <div class="compare-handle" id="compareHandle">
+            <div class="compare-handle-btn"><i class="bi bi-arrows-expand-horizontal"></i></div>
+          </div>
+        </div>
+        <p class="text-center text-muted mt-3 small"><i class="bi bi-cursor-fill me-1"></i>{% trans "Drag the slider to compare" %}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENT CATEGORY TABS + BEFORE/AFTER CARDS -->
+<section class="section-py" style="background:var(--cf-bg-light);">
+  <div class="container">
+        {% include 'gallery/components/smile_grid.html' %}
+  </div>
+</section>
+
+{% include 'components/testimonials.html' %}
+
+{% include 'components/faq.html' with faq_type='gallery' %}
+
+<!-- CTA -->
+<div class="nd-cta-strip">
+  <div class="cta-inner container">
+    <h2>{% trans "Ready to Start Your Smile Journey?" %}</h2>
+    <p>{% trans "Book a free smile consultation and discover what Carefirst Dental Clinic can do for your confidence." %}</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Free Consultation" %}</a>
+      <a href="{% url 'main:clinic_gallery' %}"
+        class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-images"></i>{% trans "View Clinic Gallery" %}</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  (function () {
+    'use strict';
+
+    /* ── Treatment Filter ────────────────────────────────── */
+    const tabs = document.querySelectorAll('#treatmentTabs .tt-tab');
+    const cards = document.querySelectorAll('#baGrid [data-treatment]');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const treatment = tab.dataset.treatment;
+        cards.forEach(card => {
+          const show = treatment === 'all' || card.dataset.treatment === treatment;
+          card.style.display = show ? 'block' : 'none';
+        });
+      });
+    });
+
+    /* ── Comparison Slider ───────────────────────────────── */
+    const slider = document.getElementById('compareSlider');
+    const handle = document.getElementById('compareHandle');
+    const after = document.getElementById('compareAfter');
+
+    if (slider && handle && after) {
+      let dragging = false;
+
+      function setPosition(x) {
+        const rect = slider.getBoundingClientRect();
+        let pct = ((x - rect.left) / rect.width) * 100;
+        pct = Math.max(5, Math.min(95, pct));
+        after.style.width = pct + '%';
+        handle.style.left = pct + '%';
+      }
+
+      handle.addEventListener('mousedown', (e) => { dragging = true; e.preventDefault(); });
+      document.addEventListener('mouseup', () => { dragging = false; });
+      document.addEventListener('mousemove', (e) => { if (dragging) setPosition(e.clientX); });
+
+      handle.addEventListener('touchstart', (e) => { dragging = true; e.preventDefault(); }, { passive: false });
+      document.addEventListener('touchend', () => { dragging = false; });
+      document.addEventListener('touchmove', (e) => {
+        if (dragging) setPosition(e.touches[0].clientX);
+      }, { passive: true });
+    }
+  })();
+</script>
+{% endblock %}

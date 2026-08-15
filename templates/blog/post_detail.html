@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% load static %}
+
+{% block title %}{% if post.meta_title %}{{ post.meta_title }}{% else %}{{ post.title }} — Carefirst Dental Clinic Blog{% endif %}{% endblock %}
+{% block meta_description %}{{ post.meta_description|default:post.excerpt|striptags|truncatewords:25 }}{% endblock %}
+{% block og_title %}{% if post.meta_title %}{{ post.meta_title }}{% else %}{{ post.title }}{% endif %}{% endblock %}
+{% block og_desc %}{{ post.meta_description|default:post.excerpt|striptags|truncatewords:25 }}{% endblock %}
+{% block twitter_title %}{% if post.meta_title %}{{ post.meta_title }}{% else %}{{ post.title }}{% endif %}{% endblock %}
+{% block twitter_desc %}{{ post.meta_description|default:post.excerpt|striptags|truncatewords:25 }}{% endblock %}
+
+{% block extra_head %}
+<!-- Structured Data for Blog Post -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ request.build_absolute_uri }}"
+  },
+  "headline": "{{ post.title }}",
+  "image": "{% if post.featured_image %}{{ request.scheme }}://{{ request.get_host }}{{ post.featured_image.url }}{% endif %}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ post.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site_settings.clinic_name|default:'Carefirst Dental Clinic' }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'main/img/logo.jpg' %}"
+    }
+  },
+  "datePublished": "{{ post.published_date|date:'Y-m-d' }}"
+}
+</script>
+<style>
+  /* Post Detail Hero */
+  .post-hero {
+    background: linear-gradient(rgba(14, 90, 79, 0.8), rgba(14, 90, 79, 0.9)), url('{% if post.featured_image %}{{ post.featured_image.url }}{% else %}{% static 'images/hero_bg.png' %}{% endif %}');
+    background-size: cover;
+    background-position: center;
+    padding: 120px 0 80px;
+    color: #fff;
+    text-align: center;
+  }
+  .post-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: var(--cf-font-head);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .post-meta {
+    font-size: 1rem;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .badge-category {
+    background-color: var(--cf-accent);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  /* Content Area */
+  .post-content {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #444;
+  }
+  .post-content p {
+    margin-bottom: 25px;
+  }
+  .post-content h2, .post-content h3 {
+    color: var(--cf-primary-dark);
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  
+  /* Sidebar */
+  .sidebar-widget {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    margin-bottom: 30px;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .sidebar-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cf-primary-dark);
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  .sidebar-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--cf-accent);
+  }
+  
+  /* Categories Filter */
+  .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .category-list a {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #f8f9fa;
+    color: #495057;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+  }
+  .category-list a:hover {
+    background: var(--cf-primary-dark);
+    color: #fff;
+    border-color: var(--cf-primary-dark);
+  }
+
+  /* Popular Posts list */
+  .popular-post-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .popular-post-item:last-child {
+    margin-bottom: 0;
+  }
+  .popular-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  .popular-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cf-primary-dark);
+    text-decoration: none;
+    line-height: 1.3;
+  }
+  .popular-title:hover {
+    color: var(--cf-accent);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO BANNER -->
+<section class="post-hero">
+  <div class="container">
+    <span class="badge-category">{{ post.category.name }}</span>
+    <h1>{{ post.title }}</h1>
+    <div class="post-meta">
+      <span><i class="bi bi-person-circle me-2"></i> {{ post.author }}</span>
+      <span><i class="bi bi-calendar3 me-2"></i> {{ post.published_date|date:"F d, Y" }}</span>
+      <span><i class="bi bi-arrow-repeat me-2"></i> {% trans "Last Updated:" %} {{ post.updated_at|date:"F d, Y" }}</span>
+      <span><i class="bi bi-clock me-2"></i> {{ post.reading_time }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row g-5">
+      
+      <!-- MAIN CONTENT -->
+      <div class="col-lg-8">
+        <a href="{% url 'blogs:blog_list' %}" class="btn btn-outline-secondary btn-sm mb-4"><i class="bi bi-arrow-left me-2"></i>{% trans "Back to Blog" %}</a>
+        
+        <div class="post-content">
+          <p class="lead fw-bold text-muted">{{ post.excerpt }}</p>
+          
+          {{ post.content|linebreaks }}
+          
+        </div>
+        
+        <div class="mt-5 pt-4 pb-2 border-top d-flex justify-content-between align-items-center">
+          <h5 class="fw-bold mb-0 text-dark">{% trans "Share this article:" %}</h5>
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-outline-secondary rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="btn btn-outline-secondary rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="btn btn-outline-secondary rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="col-lg-4">
+        
+        <!-- Categories -->
+        <div class="sidebar-widget">
+          <h4 class="sidebar-title">{% trans "Categories" %}</h4>
+          <ul class="category-list">
+            <li><a href="{% url 'blogs:blog_list' %}">All</a></li>
+            {% for cat in categories %}
+            <li><a href="{% url 'blogs:blog_list' %}?category={{ cat.slug }}">{{ cat.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- Popular Posts -->
+        <div class="sidebar-widget">
+          <h4 class="sidebar-title">{% trans "Popular Articles" %}</h4>
+          {% for pop in popular_posts %}
+          <div class="popular-post-item">
+            <a href="{% url 'blogs:post_detail' pop.slug %}">
+              {% if pop.featured_image %}
+              <img loading="lazy" src="{{ pop.featured_image.url }}" alt="{{ pop.title }}" class="popular-img">
+              {% else %}
+              <img loading="lazy" src="{% static 'images/hero_bg.png' %}" alt="{{ pop.title }}" class="popular-img">
+              {% endif %}
+            </a>
+            <div>
+              <a href="{% url 'blogs:post_detail' pop.slug %}" class="popular-title">{{ pop.title }}</a>
+              <div class="text-muted small mt-1">{{ pop.published_date|date:"M d, Y" }}</div>
+            </div>
+          </div>
+          {% empty %}
+          <p class="text-muted small">{% trans "No other popular articles yet." %}</p>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="py-5 text-white position-relative" style="background: linear-gradient(135deg, var(--cf-primary-dark) 0%, #0a4a40 100%);">
+  <div class="container text-center position-relative z-1">
+    <h2 class="fw-bold mb-3" style="font-family: var(--cf-font-head); font-size: 2.5rem;">{% trans "Ready to Improve Your Smile?" %}</h2>
+    <p class="mb-4" style="font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">{% trans "Schedule a consultation with our experienced specialists today." %}</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="{% url 'main:contact' %}#book" class="btn btn-lg" style="background-color: var(--cf-accent); color: #000; font-weight: 700; border-radius: 50px; padding: 12px 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Consultation" %}</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

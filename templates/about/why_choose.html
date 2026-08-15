@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% load static %}
+
+{% block title %}Why Choose Us — Carefirst Dental Clinic{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'main/css/about.css' %}">
+<meta name="description" content="Discover why thousands of patients trust Carefirst Dental Clinic — advanced technology, experienced specialists, transparent pricing, and a patient-first approach.">
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="about-hero text-center">
+  <div class="hero-inner container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:about' %}" class="text-white text-decoration-none opacity-75">{% trans "About" %}</a></li>
+        <li class="breadcrumb-item active text-warning">{% trans "Why Choose Us" %}</li>
+      </ol>
+    </nav>
+    <h1>{% trans "Why Choose Carefirst Dental Clinic?" %}</h1>
+    <p class="hero-sub mx-auto">{% trans "The reasons thousands of families trust us with their smiles — and keep coming back." %}</p>
+  </div>
+</section>
+
+<!-- WHY CHOOSE CAREFIRST DENTAL INTRO -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="nd-eyebrow">{% trans "Our Difference" %}</div>
+        <h2 class="section-heading mb-4">{% trans "A Dental Experience" %}<span class="accent">{% trans "Unlike Any Other" %}</span></h2>
+        <p class="text-muted mb-4" style="line-height:1.85;">{% trans "Choosing the right dental clinic is a big decision. At Carefirst Dental Clinic, we go beyond standard care — combining cutting-edge technology with genuine compassion, transparent pricing, and proven clinical excellence to give you the best dental experience in Kathmandu." %}</p>
+        <ul class="nd-checklist mb-5">
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Experienced & Certified Specialists" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Latest Digital Dental Technology" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "ISO Sterilization & Safety Standards" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Personalized Treatment Plans" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Transparent, No-Hidden-Cost Pricing" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Comfortable, Anxiety-Free Environment" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Family & Pediatric Dentistry" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Emergency Dental Services" %}</li>
+        </ul>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#" class="btn-nd-gold btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
+          <a href="{% url 'main:doctors' %}" class="btn-nd-green btn"><i class="bi bi-people-fill me-2"></i>{% trans "Meet Our Doctors" %}</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img loading="lazy" src="{% static '/clinic_gallery/clinic_gallery15.jpeg' %}"
+             alt="Doctor consulting patient" class="img-fluid rounded-4 shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FEATURES & BENEFITS -->
+<section class="section-py" style="background:var(--cf-bg-light);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="nd-eyebrow justify-content-center">{% trans "Key Benefits" %}</div>
+      <h2 class="section-heading">{% trans "What Sets Us Apart" %}</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-value-card h-100">
+          <div class="vc-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+          <h5>{% trans "Compassionate Care" %}</h5>
+          <p>{% trans "We treat every patient as family. Our gentle, patient-first approach makes even the most anxious patients feel at ease throughout their visit." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-value-card h-100">
+          <div class="vc-icon"><i class="bi bi-cpu-fill"></i></div>
+          <h5>{% trans "Advanced Technology" %}</h5>
+          <p>{% trans "From digital X-rays and CBCT scans to laser dentistry and same-day CAD/CAM crowns — we use the best tools available for precise, comfortable treatment." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-value-card h-100">
+          <div class="vc-icon"><i class="bi bi-shield-check-fill"></i></div>
+          <h5>{% trans "Patient Safety First" %}</h5>
+          <p>{% trans "Class-B autoclave sterilization, barrier-protected surfaces, and WHO-compliant infection protocols — your safety is our top priority, always." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-value-card h-100">
+          <div class="vc-icon"><i class="bi bi-person-lines-fill"></i></div>
+          <h5>{% trans "Personalized Treatment" %}</h5>
+          <p>{% trans "No two patients are alike. We craft individualized treatment plans based on thorough consultation, detailed diagnostics, and your unique goals." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-value-card h-100">
+          <div class="vc-icon"><i class="bi bi-chat-dots-fill"></i></div>
+          <h5>{% trans "Transparent Consultations" %}</h5>
+          <p>{% trans "We walk you through every diagnosis, treatment option, and cost — no surprises, no hidden fees. Informed consent is the foundation of our practice." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-value-card h-100">
+          <div class="vc-icon"><i class="bi bi-award-fill"></i></div>
+          <h5>{% trans "Clinical Excellence" %}</h5>
+          <p>{% trans "Our specialists hold MDS degrees, international fellowships, and attend global dental conferences to deliver treatments that meet world-class standards." %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANCED TECHNOLOGY SECTION -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 order-lg-2">
+        <div class="nd-eyebrow">{% trans "Innovation" %}</div>
+        <h2 class="section-heading mb-4">{% trans "Powered by" %}<span class="accent">{% trans "Advanced Dental Technology" %}</span></h2>
+        <div class="clinic-feature-row">
+          <div class="cfr-icon"><i class="bi bi-camera-fill"></i></div>
+          <div><h6>{% trans "3D CBCT & Digital OPG" %}</h6><p>{% trans "Highly accurate 3-dimensional imaging for implant planning, orthodontics, and complex diagnoses." %}</p></div>
+        </div>
+        <div class="clinic-feature-row">
+          <div class="cfr-icon"><i class="bi bi-gem"></i></div>
+          <div><h6>{% trans "Same-Day CAD/CAM Crowns" %}</h6><p>{% trans "In-house crown milling from digital impressions — no temporaries, no second appointment." %}</p></div>
+        </div>
+        <div class="clinic-feature-row">
+          <div class="cfr-icon"><i class="bi bi-lightbulb-fill"></i></div>
+          <div><h6>{% trans "Dental Laser Systems" %}</h6><p>{% trans "Laser-assisted gum treatment and surgery for faster healing and greater precision." %}</p></div>
+        </div>
+        <div class="clinic-feature-row">
+          <div class="cfr-icon"><i class="bi bi-vinyl-fill"></i></div>
+          <div><h6>{% trans "Invisible Aligners" %}</h6><p>{% trans "Clear aligner therapy (Invisalign-compatible) with digital outcome simulation before you start." %}</p></div>
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <img loading="lazy" src="{% static 'images/hero_bg.png' %}"
+             alt="Advanced dental technology" class="img-fluid rounded-4 shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATIENT TESTIMONIALS -->
+<section class="section-py" style="background:var(--cf-bg-light);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="nd-eyebrow justify-content-center">{% trans "Patients Speak" %}</div>
+      <h2 class="section-heading">{% trans "What Our Patients Say" %}</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-testimonial-card">
+          <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <span class="quote-icon">"</span>
+          <p class="tc-text">{% trans "Carefirst Dental Clinic completely transformed my smile. The team was so gentle and professional. I used to dread the dentist — now I actually look forward to my check-ups!" %}</p>
+          <div class="tc-name">{% trans "Priya Sharma" %}</div>
+          <div class="tc-role">{% trans "Smile Makeover Patient" %}</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-testimonial-card">
+          <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <span class="quote-icon">"</span>
+          <p class="tc-text">{% blocktrans %}I got my dental implants done here and I'm amazed by the results. The doctors explained everything clearly, the clinic is spotlessly clean, and the staff is incredibly kind.{% endblocktrans %}</p>
+          <div class="tc-name">{% trans "Rajan Thapa" %}</div>
+          <div class="tc-role">{% trans "Dental Implant Patient" %}</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-testimonial-card">
+          <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <span class="quote-icon">"</span>
+          <p class="tc-text">{% trans "Best orthodontic experience in Kathmandu. My braces journey was comfortable and well-guided. The doctors are knowledgeable and truly care about the outcome." %}</p>
+          <div class="tc-name">{% trans "Anita Gurung" %}</div>
+          <div class="tc-role">{% trans "Orthodontics Patient" %}</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-testimonial-card">
+          <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+          <span class="quote-icon">"</span>
+          <p class="tc-text">{% blocktrans %}Brought my 7-year-old here for her first filling and she didn't even cry! The pediatric dentist was amazing with children. Highly recommend for families.{% endblocktrans %}</p>
+          <div class="tc-name">{% trans "Sita Rai" %}</div>
+          <div class="tc-role">{% trans "Parent — Pediatric Patient" %}</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-testimonial-card">
+          <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <span class="quote-icon">"</span>
+          <p class="tc-text">Had an emergency root canal on a Saturday — they fit me in same day. Pain was gone by evening. The level of care and professionalism is unmatched in Nepal.</p>
+          <div class="tc-name">{% trans "Bikash Maharjan" %}</div>
+          <div class="tc-role">{% trans "Emergency Root Canal Patient" %}</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="nd-testimonial-card">
+          <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <span class="quote-icon">"</span>
+          <p class="tc-text">{% trans "The teeth whitening session was fantastic — 8 shades whiter in one sitting! The clinic is modern, hygienic, and the whole experience felt luxurious. Will be back!" %}</p>
+          <div class="tc-name">{% trans "Meena Shrestha" %}</div>
+          <div class="tc-role">{% trans "Whitening Patient" %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<div class="nd-cta-strip">
+  <div class="cta-inner container">
+    <h2>{% trans "Join 10,000+ Happy Patients" %}</h2>
+    <p>{% trans "Take the first step towards a healthier, more confident smile. Book your free consultation today." %}</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Free Consultation" %}</a>
+      <a href="{% url 'main:clinic' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold"><i class="bi bi-building me-2"></i>{% trans "Tour Our Clinic" %}</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

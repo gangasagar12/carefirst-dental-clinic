@@ -1,0 +1,27 @@
+/* ==========================================================================
+   CareFirst Dental Clinic - Footer Styling
+   ========================================================================== */
+
+.nd-footer {
+  background-color: var(--cf-navy, #0B2545);
+  background: linear-gradient(180deg, #0B2545 0%, #081C33 100%);
+  border-top: 4px solid var(--cf-primary, #0284C7);
+  color: #FFFFFF;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  font-size: 0.9375rem;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: #38BDF8;
+  padding-left: 5px;
+}

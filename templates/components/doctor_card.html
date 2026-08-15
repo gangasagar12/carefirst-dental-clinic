@@ -1,0 +1,66 @@
+{% load i18n %}
+
+<div class="nd-doctor-card">
+  <!-- Photo -->
+  <div class="doc-photo-wrap">
+    {% if doc.photo %}
+      <img loading="lazy" src="{{ doc.photo.url }}" alt="{{ doc.name }}">
+    {% else %}
+      <i class="bi bi-person-circle doc-placeholder"></i>
+    {% endif %}
+    {% if doc.get_specialty_display %}
+    <span class="doc-specialty-badge">{{ doc.get_specialty_display }}</span>
+    {% endif %}
+  </div>
+
+  <!-- Body -->
+  <div class="doc-body">
+    <div class="doc-name">{{ doc.name }}</div>
+    <div class="doc-designation">{{ doc.designation }}</div>
+
+    {% if doc.qualifications %}
+    <span class="doc-quals">{{ doc.qualifications }}</span>
+    {% endif %}
+
+    {% if doc.nmc_number %}
+    <div class="mt-1" style="font-size: 0.9rem; font-weight: 600; color: var(--nd-primary);">
+      NMC NO: {{ doc.nmc_number }}
+    </div>
+    {% endif %}
+
+    {% if doc.experience_years %}
+    <div class="doc-exp">
+      <i class="bi bi-clock-fill"></i>
+      {{ doc.experience_years }}+ {% trans "years of clinical experience" %}
+    </div>
+    {% endif %}
+
+    {% if doc.bio %}
+    <p class="doc-bio">{{ doc.bio }}</p>
+    {% endif %}
+
+    {% if doc.get_certifications_list %}
+    <ul class="doc-certs">
+      {% for cert in doc.get_certifications_list %}
+      <li>{{ cert }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if doc.languages %}
+    <div class="doc-langs">
+      <i class="bi bi-translate"></i>{{ doc.languages }}
+    </div>
+    {% endif %}
+
+    <div class="d-flex gap-2 flex-wrap align-items-center">
+      <a href="#" class="btn-nd-green btn btn-sm px-3">
+        <i class="bi bi-calendar-plus me-1"></i>{% trans "Book Consultation" %}</a>
+      {% if doc.linkedin %}
+      <a href="{{ doc.linkedin }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary rounded-circle" style="width:34px;height:34px;padding:0;display:inline-flex;align-items:center;justify-content:center;">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</div>

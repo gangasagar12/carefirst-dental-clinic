@@ -1,0 +1,116 @@
+[
+{
+    "model": "main.testimonial",
+    "pk": 1,
+    "fields": {
+        "patient_name": "Sunita Karki",
+        "patient_name_en": "Sunita Karki",
+        "patient_name_ne": "Sunita Karki",
+        "treatment": "Clear Aligners",
+        "treatment_en": "Clear Aligners",
+        "treatment_ne": "Clear Aligners",
+        "photo": "",
+        "review": "I had severe crowding for years and always hid my smile. After clear aligners at Niko Dental, I smile in every photo now. The team was so supportive.",
+        "review_en": "I had severe crowding for years and always hid my smile. After clear aligners at Niko Dental, I smile in every photo now. The team was so supportive.",
+        "review_ne": "I had severe crowding for years and always hid my smile. After clear aligners at Niko Dental, I smile in every photo now. The team was so supportive.",
+        "rating": 5,
+        "is_active": true,
+        "order": 1
+    }
+},
+{
+    "model": "main.testimonial",
+    "pk": 2,
+    "fields": {
+        "patient_name": "Roshan Poudel",
+        "patient_name_en": "Roshan Poudel",
+        "patient_name_ne": "Roshan Poudel",
+        "treatment": "Smile Makeover",
+        "treatment_en": "Smile Makeover",
+        "treatment_ne": "Smile Makeover",
+        "photo": "",
+        "review": "My smile makeover with 8 veneers was absolutely life-changing. Dr. Niko's team crafted a smile that looks completely natural — not overdone at all.",
+        "review_en": "My smile makeover with 8 veneers was absolutely life-changing. Dr. Niko's team crafted a smile that looks completely natural — not overdone at all.",
+        "review_ne": "My smile makeover with 8 veneers was absolutely life-changing. Dr. Niko's team crafted a smile that looks completely natural — not overdone at all.",
+        "rating": 5,
+        "is_active": true,
+        "order": 2
+    }
+},
+{
+    "model": "main.testimonial",
+    "pk": 3,
+    "fields": {
+        "patient_name": "Anita Dhungana",
+        "patient_name_en": "Anita Dhungana",
+        "patient_name_ne": "Anita Dhungana",
+        "treatment": "Zoom! Teeth Whitening",
+        "treatment_en": "Zoom! Teeth Whitening",
+        "treatment_ne": "Zoom! Teeth Whitening",
+        "photo": "",
+        "review": "Got my teeth whitened before my wedding — 8 shades in one session! The results lasted for months and the process was completely painless.",
+        "review_en": "Got my teeth whitened before my wedding — 8 shades in one session! The results lasted for months and the process was completely painless.",
+        "review_ne": "Got my teeth whitened before my wedding — 8 shades in one session! The results lasted for months and the process was completely painless.",
+        "rating": 5,
+        "is_active": true,
+        "order": 3
+    }
+},
+{
+    "model": "main.testimonial",
+    "pk": 4,
+    "fields": {
+        "patient_name": "Prakash Adhikari",
+        "patient_name_en": "Prakash Adhikari",
+        "patient_name_ne": "Prakash Adhikari",
+        "treatment": "Dual Dental Implants",
+        "treatment_en": "Dual Dental Implants",
+        "treatment_ne": "Dual Dental Implants",
+        "photo": "",
+        "review": "I was missing two teeth and it affected my confidence. The dental implants look and feel exactly like my natural teeth. I can eat anything now!",
+        "review_en": "I was missing two teeth and it affected my confidence. The dental implants look and feel exactly like my natural teeth. I can eat anything now!",
+        "review_ne": "I was missing two teeth and it affected my confidence. The dental implants look and feel exactly like my natural teeth. I can eat anything now!",
+        "rating": 5,
+        "is_active": true,
+        "order": 4
+    }
+},
+{
+    "model": "main.testimonial",
+    "pk": 5,
+    "fields": {
+        "patient_name": "Rekha Tamang",
+        "patient_name_en": "Rekha Tamang",
+        "patient_name_ne": "Rekha Tamang",
+        "treatment": "Composite Veneer Bonding",
+        "treatment_en": "Composite Veneer Bonding",
+        "treatment_ne": "Composite Veneer Bonding",
+        "photo": "",
+        "review": "Composite veneers in one sitting — I couldn't believe how different I looked when I saw myself. The gap between my front teeth is gone.",
+        "review_en": "Composite veneers in one sitting — I couldn't believe how different I looked when I saw myself. The gap between my front teeth is gone.",
+        "review_ne": "Composite veneers in one sitting — I couldn't believe how different I looked when I saw myself. The gap between my front teeth is gone.",
+        "rating": 5,
+        "is_active": true,
+        "order": 5
+    }
+},
+{
+    "model": "main.testimonial",
+    "pk": 6,
+    "fields": {
+        "patient_name": "Deepak Shrestha",
+        "patient_name_en": "Deepak Shrestha",
+        "patient_name_ne": "Deepak Shrestha",
+        "treatment": "Full Arch Rehabilitation",
+        "treatment_en": "Full Arch Rehabilitation",
+        "treatment_ne": "Full Arch Rehabilitation",
+        "photo": "",
+        "review": "Full arch rehabilitation was a big investment but absolutely worth it. I now have a functional, beautiful smile. The team's skill is exceptional.",
+        "review_en": "Full arch rehabilitation was a big investment but absolutely worth it. I now have a functional, beautiful smile. The team's skill is exceptional.",
+        "review_ne": "Full arch rehabilitation was a big investment but absolutely worth it. I now have a functional, beautiful smile. The team's skill is exceptional.",
+        "rating": 5,
+        "is_active": true,
+        "order": 6
+    }
+}
+]

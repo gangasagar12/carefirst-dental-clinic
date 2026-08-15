@@ -1,0 +1,57 @@
+/* =========================================================
+   home.css — Homepage-specific styles for Carefirst Dental Clinic
+   Import order: variables.css > base.css > utilities.css > home.css
+   ========================================================= */
+
+/* Hero Section */
+.hero-section {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Floating appointment card */
+
+/* Service Cards */
+.service-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Doctor Cards */
+.doctor-card img {
+  transition: transform 0.4s ease;
+}
+
+.doctor-card:hover img {
+  transform: scale(1.03);
+}
+
+/* Clinic Image Gallery */
+
+/* Timeline Steps */
+.timeline-step { padding: 0 15px; }
+
+/* Accordion Custom */
+
+/* Stats bar */
+
+/* Promo Cards */
+.promo-card { transition: transform 0.3s ease; }
+.promo-card:hover { transform: translateY(-5px); }
+
+/* CTA Section */
+
+/* Blog Cards */
+.blog-card img {
+  transition: transform 0.4s ease;
+}
+
+.blog-card:hover img {
+  transform: scale(1.04);
+}
+
+/* Newsletter */

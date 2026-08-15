@@ -1,0 +1,62 @@
+
+{% load i18n %}
+
+<!-- RELATED SERVICES ROW -->
+<div class="related-services-wrapper mt-5 pt-4 border-top">
+  <h3 class="fw-bold mb-4" style="color:var(--nd-green-dark);">
+    {% trans "Related Dental Services" %}
+  </h3>
+  <div class="row g-4">
+    {% for rel_service in related_services %}
+    <div class="col-md-4">
+      <a href="{% url 'main:service_detail' rel_service.slug %}" class="text-decoration-none h-100 d-block">
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 related-service-card">
+          {% if rel_service.image %}
+          <img loading="lazy" src="{{ rel_service.image.url }}" alt="{{ rel_service.title }}" class="card-img-top object-fit-cover" style="height: 200px;">
+          {% else %}
+          <div class="card-img-top w-100 d-flex align-items-center justify-content-center" style="background: rgba(14, 90, 79, 0.05); height: 200px;">
+            <i class="{{ rel_service.icon|default:'bi bi-heart-pulse' }} display-4" style="color: var(--nd-green-dark);"></i>
+          </div>
+          {% endif %}
+          <div class="card-body p-4 d-flex flex-column">
+            <h5 class="fw-bold mb-1" style="color: var(--nd-green-dark);">{{ rel_service.title }}</h5>
+            <p class="text-muted small mb-0">{{ rel_service.category_label|default:"Dental Service" }}</p>
+            
+            <div class="d-flex justify-content-between align-items-center border-top pt-3 mt-auto">
+              {% if rel_service.starting_price %}
+              <div class="fw-bold" style="color: var(--nd-gold-dark);">
+                <span class="text-muted d-block" style="font-size:0.75rem;">{% trans "Starting at" %}</span>
+                Rs. {{ rel_service.starting_price }}
+              </div>
+              {% else %}
+              <div></div>
+              {% endif %}
+              <div class="small fw-bold text-uppercase d-flex align-items-center gap-1" style="color: var(--nd-green); letter-spacing: 0.5px; font-size: 0.8rem;">
+                {% trans "Learn More" %} <i class="bi bi-arrow-right ms-1 fs-5"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% empty %}
+    <div class="col-12">
+      <p class="text-muted small">{% trans "No related services found." %}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .related-service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+  }
+  .related-service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+  }
+  .object-fit-cover {
+    object-fit: cover;
+  }
+</style>

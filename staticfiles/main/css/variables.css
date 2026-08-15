@@ -1,0 +1,85 @@
+:root {
+  /* ==========================================================================
+     CareFirst Dental Clinic - Official Logo Design System
+     Palette extracted from CareFirst Logo:
+     - Circular Dental Azure Blue: #0284C7 / #0091D5 / #0284C7
+     - Outer Stethoscope Deep Navy: #0B2545 / #081C33
+     - Toothbrush Crimson Red Accent: #EF4444 / #E11D48
+     - Medicine Capsule Gold/Amber: #F59E0B / #FBBF24
+     - Clean Ice Blue Tint: #F0F9FF / #E0F2FE
+     ========================================================================== */
+
+  /* 1. Primary Colors - Dental Sky/Azure Blue */
+  --cf-primary: #0284C7;
+  --cf-primary-dark: #0369A1;
+  --cf-primary-deeper: #075985;
+  --cf-primary-light: #E0F2FE;
+  --cf-primary-subtle: #F0F9FF;
+  --cf-primary-tint: #E0F2FE;
+  --cf-primary-glow: rgba(2, 132, 199, 0.22);
+
+  /* 2. Deep Stethoscope Royal Navy */
+  --cf-navy: #0B2545;
+  --cf-navy-dark: #081C33;
+  --cf-navy-light: #133A66;
+  --cf-navy-tint: rgba(11, 37, 69, 0.04);
+
+  /* 3. Logo Accents */
+  --cf-accent: #0284C7;
+  --cf-accent-crimson: #EF4444;
+  --cf-accent-gold: #F59E0B;
+  --cf-gold: #F59E0B;
+  --cf-danger: #EF4444;
+  --cf-success: #10B981;
+  --cf-whatsapp: #25D366;
+
+  /* 4. Neutrals & Backgrounds */
+  --cf-charcoal: #1E293B;
+  --cf-black: #0F172A;
+  --cf-white: #FFFFFF;
+  --cf-bg-light: #F8FAFC;
+  --cf-bg-card: #FFFFFF;
+  --cf-gray-50: #F8FAFC;
+  --cf-gray-100: #F1F5F9;
+  --cf-gray-200: #E2E8F0;
+  --cf-gray-300: #CBD5E1;
+  --cf-gray-500: #64748B;
+  --cf-gray-700: #334155;
+  --cf-gray-900: #0F172A;
+
+  /* 5. Text Colors */
+  --cf-text-primary: #0F172A;
+  --cf-text-secondary: #475569;
+  --cf-text-dark: #0B2545;
+  --cf-text-mute: #64748B;
+  --cf-text-light: #FFFFFF;
+
+  /* 6. Borders & Shadows */
+  --cf-border: #E2E8F0;
+  --cf-border-color: #E2E8F0;
+  --cf-border-light: rgba(255, 255, 255, 0.12);
+  --cf-shadow-sm: 0 2px 8px rgba(11, 37, 69, 0.05);
+  --cf-shadow-md: 0 8px 24px -4px rgba(11, 37, 69, 0.08);
+  --cf-shadow-lg: 0 16px 36px -6px rgba(11, 37, 69, 0.12);
+  --cf-shadow-soft: 0 16px 40px -8px rgba(2, 132, 199, 0.14);
+  --cf-shadow-glow: 0 0 24px rgba(2, 132, 199, 0.3);
+
+  /* 7. Modern Border Radius */
+  --cf-radius-xs: 4px;
+  --cf-radius-sm: 8px;
+  --cf-radius-md: 12px;
+  --cf-radius-lg: 16px;
+  --cf-radius-xl: 24px;
+  --cf-radius-full: 9999px;
+  --cf-radius: 12px;
+
+  /* 8. Modern Luxury Typography (Outfit + Plus Jakarta Sans) */
+  --cf-font-head: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --cf-font-body: 'Plus Jakarta Sans', sans-serif;
+  --cf-font-nav: 'Plus Jakarta Sans', sans-serif;
+
+  /* 9. Layout Dimensions & Transitions */
+  --cf-transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --cf-nav-h: 82px;
+  --cf-topbar-h: 38px;
+}

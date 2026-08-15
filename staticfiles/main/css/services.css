@@ -1,0 +1,447 @@
+/* =========================================================
+   CareFirst Dental Clinic - Services Stylesheet
+   Depends on: variables.css, base.css, utilities.css
+   ========================================================= */
+
+/* ── Hero Banner ─────────────────────────────────────────── */
+.service-hero {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  background: var(--cf-navy, #0B2545);
+  background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%);
+  padding: 120px 0 80px;
+  overflow: hidden;
+}
+
+.service-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(2, 132, 199, 0.25), transparent 60%);
+  z-index: 1;
+}
+
+.service-hero .hero-inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.service-hero h1 {
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 15px;
+  letter-spacing: -0.02em;
+}
+
+.service-hero .hero-sub {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
+  max-width: 600px;
+  font-weight: 400;
+}
+
+/* ── Section Utilities ───────────────────────────────────── */
+.section-py {
+  padding: 80px 0;
+}
+
+.section-py-sm {
+  padding: 50px 0;
+}
+
+.nd-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cf-primary, #0284C7);
+  margin-bottom: 12px;
+}
+
+.nd-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--cf-primary, #0284C7);
+  border-radius: 2px;
+}
+
+.section-heading {
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--cf-navy, #0B2545);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.section-heading .accent {
+  color: var(--cf-primary, #0284C7);
+}
+
+/* ── Service Detail - Symptoms Checklist ─────────────────── */
+.symptom-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.symptom-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--cf-charcoal, #1E293B);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.symptom-list li i {
+  color: var(--cf-primary, #0284C7);
+  font-size: 1.1rem;
+  margin-top: 2px;
+}
+
+/* ── Service Detail - FAQs ───────────────────────────────── */
+.nd-accordion {
+  --bs-accordion-border-color: #E2E8F0;
+  --bs-accordion-bg: #fff;
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-active-bg: var(--cf-primary-subtle, #F0F9FF);
+  --bs-accordion-active-color: var(--cf-primary, #0284C7);
+}
+
+.nd-accordion .accordion-item {
+  border-radius: var(--cf-radius-md, 12px);
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid var(--bs-accordion-border-color);
+  box-shadow: var(--cf-shadow-sm);
+}
+
+.nd-accordion .accordion-button {
+  font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 18px 24px;
+  color: var(--cf-navy, #0B2545);
+  box-shadow: none;
+}
+
+.nd-accordion .accordion-button:not(.collapsed) {
+  font-weight: 700;
+  background: var(--cf-primary-subtle, #F0F9FF);
+  color: var(--cf-primary, #0284C7);
+}
+
+.nd-accordion .accordion-body {
+  padding: 0 24px 20px;
+  font-size: 0.95rem;
+  color: var(--cf-text-secondary, #475569);
+  line-height: 1.7;
+}
+
+/* ── CTA Strip ───────────────────────────────────────────── */
+.nd-cta-strip {
+  background: linear-gradient(135deg, #081C33 0%, #0B2545 50%, #0369A1 100%);
+  padding: 70px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.nd-cta-strip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(2, 132, 199, 0.2), transparent 70%);
+}
+
+.nd-cta-strip .cta-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.nd-cta-strip h2 {
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  color: #fff;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.nd-cta-strip p {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+
+/* Service Detail Buttons */
+.btn-nd-green,
+.btn-nd-primary {
+  background: var(--cf-primary, #0284C7);
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  color: #fff;
+  border: none;
+  border-radius: var(--cf-radius-full, 9999px);
+  padding: 12px 30px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+}
+
+.btn-nd-green:hover,
+.btn-nd-primary:hover {
+  background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.5);
+}
+
+.btn-nd-gold {
+  background: #F59E0B;
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--cf-radius-full, 9999px);
+  padding: 12px 30px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-nd-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+  color: #FFFFFF;
+}
+
+.btn-nd-white {
+  background: #fff;
+  color: var(--cf-navy, #0B2545);
+  border: 1px solid var(--cf-border);
+  border-radius: var(--cf-radius-full, 9999px);
+  padding: 12px 30px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-nd-white:hover {
+  background: var(--cf-primary-subtle, #F0F9FF);
+  color: var(--cf-primary, #0284C7);
+  transform: translateY(-2px);
+}
+
+/* Filters */
+.service-filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  background: white;
+  border: 1px solid var(--cf-border, #E2E8F0);
+  border-radius: 50px;
+  padding: 8px 22px;
+  color: var(--cf-charcoal, #1E293B);
+  font-weight: 600;
+  font-size: 0.885rem;
+  transition: all 0.25s ease;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: var(--cf-primary, #0284C7);
+  color: white;
+  border-color: var(--cf-primary, #0284C7);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+}
+
+.filter-btn i {
+  margin-right: 5px;
+}
+
+/* Premium Service Cards */
+.service-card-premium {
+  background: white;
+  border-radius: var(--cf-radius-lg, 16px);
+  box-shadow: 0 4px 20px rgba(11, 37, 69, 0.06);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  border: 1px solid var(--cf-border, #E2E8F0);
+}
+
+.service-card-premium:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px -6px rgba(2, 132, 199, 0.16);
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+.sc-img-wrap {
+  position: relative;
+  height: 170px;
+}
+
+.sc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sc-icon {
+  position: absolute;
+  right: 16px;
+  bottom: -20px;
+  width: 44px;
+  height: 44px;
+  background: var(--cf-primary, #0284C7);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.sc-popular-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #F59E0B;
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sc-body {
+  padding: 30px 22px 20px;
+  flex-grow: 1;
+}
+
+.sc-category {
+  display: inline-block;
+  background: var(--cf-primary-subtle, #F0F9FF);
+  color: var(--cf-primary, #0284C7);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(2, 132, 199, 0.15);
+}
+
+.sc-title {
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cf-navy, #0B2545);
+  margin-bottom: 12px;
+}
+
+.sc-features {
+  font-size: 0.875rem;
+  color: var(--cf-text-secondary, #475569);
+  margin-bottom: 0;
+}
+
+.sc-features li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+
+.sc-features i {
+  color: var(--cf-primary, #0284C7);
+  font-size: 0.8rem;
+  margin-right: 8px;
+  margin-top: 4px;
+}
+
+.sc-footer {
+  padding: 16px 22px;
+  border-top: 1px solid var(--cf-border, #E2E8F0);
+  background: #FAFCFE;
+}
+
+.sc-price-box small {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cf-text-mute, #64748B);
+}
+
+.sc-price-box strong {
+  font-size: 1.05rem;
+  color: var(--cf-primary, #0284C7);
+  font-weight: 800;
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+}
+
+.sc-learn-more {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cf-primary, #0284C7);
+}
+
+/* Trust Bar */
+.trust-bar {
+  background: var(--cf-primary-subtle, #F0F9FF);
+  padding: 34px 0;
+  border-top: 1px solid var(--cf-border, #E2E8F0);
+  margin-top: 40px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.trust-icon {
+  font-size: 2.4rem;
+  color: var(--cf-primary, #0284C7);
+}
+
+.trust-text h5 {
+  margin: 0 0 3px 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cf-navy, #0B2545);
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+}
+
+.trust-text p {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--cf-text-secondary, #475569);
+}

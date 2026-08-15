@@ -1,0 +1,495 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% load static %}
+
+{% block title %}Blog — Carefirst Dental Clinic{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="Read the latest articles on dental health, treatments, and tips from the experts at Carefirst Dental Clinic.">
+<style>
+  /* Section Styles */
+  .section-py {
+    padding: 80px 0;
+  }
+  .section-heading {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--cf-primary-dark, #0b4a41);
+    font-family: var(--cf-font-head);
+  }
+  .section-heading .accent {
+    color: var(--cf-accent, #c5a880);
+  }
+  .nd-eyebrow {
+    color: var(--cf-accent, #c5a880);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  .nd-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background-color: var(--cf-accent, #c5a880);
+    margin-right: 15px;
+  }
+  .nd-eyebrow.justify-content-center::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background-color: var(--cf-accent, #c5a880);
+    margin-left: 15px;
+  }
+
+  /* Hero Banner */
+  .blog-hero {
+    background: linear-gradient(rgba(14, 90, 79, 0.8), rgba(14, 90, 79, 0.9)), url('{% static "/images/footer_banner.png" %}');
+    background-size: cover;
+    background-position: center;
+    padding: 220px 0 140px;
+    color: #fff;
+    text-align: center;
+  }
+  .blog-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: var(--cf-font-head);
+  }
+  .blog-hero p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+
+  /* Featured Article */
+  .featured-post-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  @media (min-width: 992px) {
+    .featured-post-card {
+      flex-direction: row;
+    }
+    .featured-post-img {
+      width: 55%;
+      min-height: 400px;
+    }
+    .featured-post-content {
+      width: 45%;
+    }
+  }
+  .featured-post-img {
+    background-size: cover;
+    background-position: center;
+    min-height: 250px;
+  }
+  .featured-post-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .badge-category {
+    background-color: rgba(197, 168, 128, 0.2);
+    color: var(--cf-accent-dark);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  .featured-post-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--cf-primary-dark);
+    margin-bottom: 15px;
+    line-height: 1.2;
+    text-decoration: none;
+  }
+  .featured-post-title:hover {
+    color: var(--cf-accent);
+  }
+  
+  /* Blog Grid */
+  .blog-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  }
+  .blog-card-img-wrapper {
+    height: 220px;
+    overflow: hidden;
+  }
+  .blog-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .blog-card:hover .blog-card-img {
+    transform: scale(1.05);
+  }
+  .blog-card-body {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cf-primary-dark);
+    margin: 15px 0;
+    text-decoration: none;
+    line-height: 1.4;
+  }
+  .blog-title:hover {
+    color: var(--cf-accent);
+  }
+  .blog-meta {
+    font-size: 0.85rem;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  /* Sidebar */
+  .sidebar-widget {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    margin-bottom: 30px;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .sidebar-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cf-primary-dark);
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  .sidebar-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--cf-accent);
+  }
+  
+  /* Categories Filter */
+  .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .category-list a {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #f8f9fa;
+    color: #495057;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+  }
+  .category-list a:hover, .category-list a.active {
+    background: var(--cf-primary-dark);
+    color: #fff;
+    border-color: var(--cf-primary-dark);
+  }
+
+  /* Popular Posts list */
+  .popular-post-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .popular-post-item:last-child {
+    margin-bottom: 0;
+  }
+  .popular-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  .popular-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cf-primary-dark);
+    text-decoration: none;
+    line-height: 1.3;
+  }
+  .popular-title:hover {
+    color: var(--cf-accent);
+  }
+
+  /* Search */
+  .search-form .input-group {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .search-form .form-control {
+    border: none;
+    padding: 12px 15px;
+  }
+  .search-form .btn {
+    background: var(--cf-accent);
+    color: white;
+    border: none;
+    padding: 0 20px;
+  }
+  .search-form .btn:hover {
+    background: var(--cf-accent-dark);
+  }
+
+  /* Newsletter */
+  .newsletter-widget {
+    background: var(--cf-primary-dark);
+    color: #fff;
+    text-align: center;
+  }
+  .newsletter-widget .sidebar-title {
+    color: #fff;
+  }
+  .newsletter-widget .sidebar-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- 1. HERO BANNER -->
+<section class="blog-hero">
+  <div class="container">
+    <h1>{% trans "Dental Health Blog" %}</h1>
+    <p>{% trans "Explore expert advice, latest clinic news, and comprehensive guides to help you maintain a perfect, healthy smile." %}</p>
+  </div>
+</section>
+
+<section class="section-py bg-light" style="padding-top: 60px;">
+  <div class="container">
+    
+    {% if search_query or active_category %}
+    <div class="mb-5 text-center">
+      <h3 class="fw-bold">
+        {% if search_query %}Search Results for "{{ search_query }}"{% endif %}
+        {% if active_category %}Category: {{ active_category.name }}{% endif %}
+      </h3>
+      <a href="{% url 'blogs:blog_list' %}" class="btn btn-outline-secondary btn-sm mt-2">{% trans "Clear Filters" %}</a>
+    </div>
+    {% endif %}
+
+    <!-- 2. FEATURED ARTICLE -->
+    {% if featured_post and not search_query and not active_category %}
+    <div class="featured-post-card">
+      <div class="featured-post-img" style="background-image: url('{% if featured_post.featured_image %}{{ featured_post.featured_image.url }}{% else %}{% static 'images/hero_bg.png' %}{% endif %}');"></div>
+      <div class="featured-post-content">
+        <div>
+          <span class="badge-category">{{ featured_post.category.name }}</span>
+          <a href="{% url 'blogs:post_detail' featured_post.slug %}" class="d-block featured-post-title">{{ featured_post.title }}</a>
+          <p class="text-muted mb-4">{{ featured_post.excerpt }}</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-auto pt-4 border-top">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-person-circle fs-3 text-gold"></i>
+            <div>
+              <div class="fw-bold text-dark small">{{ featured_post.author }}</div>
+              <div class="text-muted small">{{ featured_post.published_date|date:"M d, Y" }} &bull; {{ featured_post.reading_time }}</div>
+            </div>
+          </div>
+          <a href="{% url 'blogs:post_detail' featured_post.slug %}" class="btn btn-nd-gold">{% trans "Read More" %}</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="row g-5">
+      
+      <!-- MAIN CONTENT: LATEST ARTICLES GRID -->
+      <div class="col-lg-8">
+        <div class="mb-4 d-flex justify-content-between align-items-center">
+          <h2 class="fw-bold mb-0">{% trans "Latest Articles" %}</h2>
+        </div>
+
+        <div class="row g-4">
+          {% for post in latest_posts %}
+          <div class="col-md-6">
+            <div class="blog-card">
+              <div class="blog-card-img-wrapper">
+                <a href="{% url 'blogs:post_detail' post.slug %}">
+                  {% if post.featured_image %}
+                  <img loading="lazy" src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="blog-card-img">
+                  {% else %}
+                  <img loading="lazy" src="{% static 'images/hero_bg.png' %}" alt="{{ post.title }}" class="blog-card-img">
+                  {% endif %}
+                </a>
+              </div>
+              <div class="blog-card-body">
+                <div>
+                  <span class="badge-category">{{ post.category.name }}</span>
+                  <a href="{% url 'blogs:post_detail' post.slug %}" class="d-block blog-title">{{ post.title }}</a>
+                  <p class="text-muted small mb-0">{{ post.excerpt|truncatewords:20 }}</p>
+                </div>
+                <div class="blog-meta">
+                  <span><i class="bi bi-calendar3 me-1"></i> {{ post.published_date|date:"M d, Y" }}</span>
+                  <span><i class="bi bi-clock me-1"></i> {{ post.reading_time }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="col-12">
+            <div class="alert alert-info">{% trans "No articles found matching your criteria." %}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="col-lg-4">
+        
+        <!-- Search -->
+        <div class="sidebar-widget">
+          <h4 class="sidebar-title">{% trans "Search" %}</h4>
+          <form action="{% url 'blogs:blog_list' %}" method="GET" class="search-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search articles..." value="{{ search_query|default:'' }}">
+              <button class="btn" type="submit"><i class="bi bi-search"></i></button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-widget">
+          <h4 class="sidebar-title">{% trans "Categories" %}</h4>
+          <ul class="category-list">
+            <li><a href="{% url 'blogs:blog_list' %}" class="{% if not active_category %}active{% endif %}">All</a></li>
+            {% for cat in categories %}
+            <li><a href="?category={{ cat.slug }}" class="{% if active_category.id == cat.id %}active{% endif %}">{{ cat.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- Popular Posts -->
+        <div class="sidebar-widget">
+          <h4 class="sidebar-title">{% trans "Popular Articles" %}</h4>
+          {% for pop in popular_posts %}
+          <div class="popular-post-item">
+            <a href="{% url 'blogs:post_detail' pop.slug %}">
+              {% if pop.featured_image %}
+              <img loading="lazy" src="{{ pop.featured_image.url }}" alt="{{ pop.title }}" class="popular-img">
+              {% else %}
+              <img loading="lazy" src="{% static 'images/hero_bg.png' %}" alt="{{ pop.title }}" class="popular-img">
+              {% endif %}
+            </a>
+            <div>
+              <a href="{% url 'blogs:post_detail' pop.slug %}" class="popular-title">{{ pop.title }}</a>
+              <div class="text-muted small mt-1">{{ pop.published_date|date:"M d, Y" }}</div>
+            </div>
+          </div>
+          {% empty %}
+          <p class="text-muted small">{% trans "No popular articles yet." %}</p>
+          {% endfor %}
+        </div>
+
+        <!-- Newsletter -->
+        <div class="sidebar-widget newsletter-widget">
+          <h4 class="sidebar-title">{% trans "Join Our Newsletter" %}</h4>
+          <p class="small mb-4">{% trans "Get the latest dental tips, guides, and clinic offers delivered straight to your inbox." %}</p>
+          <form>
+            <input type="email" class="form-control mb-3 text-center" placeholder="Your Email Address" required>
+            <button type="submit" class="btn btn-outline-light w-100 fw-bold">{% trans "Subscribe Now" %}</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5">
+          <h2 class="section-heading">{% trans "Dental" %}<span class="accent">FAQ</span></h2>
+          <p class="text-muted">{% trans "Quick answers to common questions about oral health and visiting our clinic." %}</p>
+        </div>
+        
+        <div class="accordion nd-accordion" id="blogFaq">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqOne" aria-expanded="true">{% trans "How often should I visit the dentist?" %}</button>
+            </h2>
+            <div id="collapseFaqOne" class="accordion-collapse collapse show" data-bs-parent="#blogFaq">
+              <div class="accordion-body">{% trans "We recommend visiting for a routine check-up and professional cleaning every 6 months. However, if you have ongoing oral health issues like gum disease, we may suggest more frequent visits." %}</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqTwo" aria-expanded="false">{% trans "What are the early signs of gum disease?" %}</button>
+            </h2>
+            <div id="collapseFaqTwo" class="accordion-collapse collapse" data-bs-parent="#blogFaq">
+              <div class="accordion-body">{% trans "Early signs include red, swollen, or tender gums that bleed easily when you brush or floss. If you notice persistent bad breath or receding gums, schedule a consultation immediately." %}</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqThree" aria-expanded="false">{% trans "Are dental X-rays safe?" %}</button>
+            </h2>
+            <div id="collapseFaqThree" class="accordion-collapse collapse" data-bs-parent="#blogFaq">
+              <div class="accordion-body">{% trans "Yes, especially at Carefirst Dental Clinic where we use advanced Digital X-Rays (RVG). Digital X-rays emit up to 90% less radiation than traditional film X-rays and provide instant, highly accurate diagnostics." %}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

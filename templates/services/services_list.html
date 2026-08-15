@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Our Services — Carefirst Dental Clinic{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
+<meta name="description" content="Explore our comprehensive range of premium dental services, from general check-ups to full smile makeovers and dental implants at Carefirst Dental Clinic.">
+
+{% endblock %}
+
+{% block content %}
+
+<!-- HEADER SECTION -->
+<div class="text-center py-5" style="background-color: #fafafa;">
+  <div class="container">
+    <div class="nd-eyebrow justify-content-center text-uppercase text-gold fw-bold mb-2" style="letter-spacing: 2px;">{% trans "What We Do" %}</div>
+    <h1 class="section-heading mb-3 text-dark" style="font-family: var(--cf-font-head); font-weight: 800;">{% blocktrans %}Expert Care for <span class="text-gold">Every Smile</span>{% endblocktrans %}</h1>
+    <p class="text-muted mx-auto" style="max-width: 600px; font-size: 1.1rem;">
+      {% blocktrans %}Comprehensive dental care using advanced technology and a gentle approach.<br>
+      Your smile is our priority.{% endblocktrans %}
+    </p>
+  </div>
+</div>
+
+<!-- SERVICES GRID SECTION -->
+<section class="py-5" style="background: #fafafa;">
+  <div class="container-fluid px-4 px-lg-5">
+    
+    <!-- Filters -->
+    <div class="service-filters" id="serviceFilters">
+      <button class="filter-btn active" data-filter="*"><i class="bi bi-grid-fill"></i> {% trans "All Services" %}</button>
+      <button class="filter-btn" data-filter=".general"><i class="bi bi-tooth"></i> {% trans "General" %}</button>
+      <button class="filter-btn" data-filter=".preventive"><i class="bi bi-shield-check"></i> {% trans "Preventive" %}</button>
+      <button class="filter-btn" data-filter=".restorative"><i class="bi bi-puzzle"></i> {% trans "Restorative" %}</button>
+      <button class="filter-btn" data-filter=".cosmetic"><i class="bi bi-stars"></i> {% trans "Cosmetic" %}</button>
+      <button class="filter-btn" data-filter=".orthodontics"><i class="bi bi-bezier2"></i> {% trans "Orthodontics" %}</button>
+      <button class="filter-btn" data-filter=".implants"><i class="bi bi-gear-wide-connected"></i> {% trans "Implants" %}</button>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4" id="servicesGrid">
+      {% for service in services %}
+      <div class="col service-item {{ service.category }}">
+        {% include 'components/service_card.html' with service=service %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include 'components/faq.html' with faq_type='services' %}
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Simple filter logic
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.service-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add to clicked
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        items.forEach(item => {
+          if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+{% include 'components/google_reviews.html' %}
+
+{% endblock %}

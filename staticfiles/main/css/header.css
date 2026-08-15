@@ -1,0 +1,670 @@
+.cf-topbar {
+    background-color: #0B2545 !important;
+    background: linear-gradient(90deg, #07192F 0%, #0B2545 45%, #0D315C 100%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 8px 0;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.8125rem;
+    color: #FFFFFF !important;
+    position: relative;
+    z-index: 1040;
+}
+
+.cf-topbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Left Section: Static Badge + Flowing Ticker */
+.cf-topbar-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    max-width: 55%;
+    gap: 14px;
+}
+
+.cf-ticker-static {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    color: #FFFFFF;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+    padding-right: 14px;
+    border-right: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.cf-ticker-static i {
+    color: #F59E0B;
+    /* Gold Star */
+    font-size: 0.9rem;
+    animation: starPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes starPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.85;
+    }
+}
+
+/* Continuous Marquee Ticker Track */
+.cf-ticker-container {
+    overflow: hidden;
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+}
+
+.cf-ticker-track {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: cfTickerScroll 30s linear infinite;
+    will-change: transform;
+}
+
+.cf-ticker-container:hover .cf-ticker-track {
+    animation-play-state: paused;
+}
+
+@keyframes cfTickerScroll {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.cf-ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #E2E8F0;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0 4px;
+    transition: color 0.2s ease;
+}
+
+.cf-ticker-item i {
+    color: #38BDF8;
+    font-size: 0.85rem;
+}
+
+.cf-ticker-item:hover {
+    color: #FFFFFF;
+}
+
+.cf-ticker-dot {
+    display: inline-block;
+    padding: 0 12px;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.75rem;
+}
+
+/* Right Section: Timings, WhatsApp, Call & Pill Button (No wrap) */
+.cf-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.cf-topbar-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #E2E8F0;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.cf-topbar-item i {
+    color: #38BDF8;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.cf-topbar-link:hover {
+    color: #FFFFFF;
+}
+
+.cf-topbar-link:hover i {
+    color: #60A5FA;
+    transform: translateY(-1px);
+}
+
+.cf-topbar-link:hover i.bi-whatsapp {
+    color: #22C55E;
+}
+
+/* Pill Shaped CTA Button matching Image 1 */
+.cf-topbar-btn {
+    background: #0284C7;
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF !important;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    padding: 7px 20px;
+    border-radius: var(--cf-radius-full, 9999px);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 2px 12px rgba(2, 132, 199, 0.4);
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.2px;
+}
+
+.cf-topbar-btn:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+    box-shadow: 0 4px 18px rgba(2, 132, 199, 0.6);
+    transform: translateY(-1px);
+    color: #FFFFFF !important;
+}
+
+/* Responsive Hide for Topbar items on tablet/mobile */
+@media (max-width: 991.98px) {
+    .cf-topbar {
+        padding: 6px 0;
+    }
+
+    .cf-topbar-right .cf-topbar-item,
+    .cf-topbar-right .cf-topbar-btn {
+        display: none !important;
+    }
+
+    .cf-topbar-inner {
+        justify-content: center;
+    }
+
+    .cf-topbar-left {
+        max-width: 100%;
+        justify-content: center;
+    }
+}
+
+
+/* ===== 2. Main Navigation Bar (Soft Medical Tint Background) ===== */
+.cf-header {
+    background-color: #F4F8FA !important;
+    background: linear-gradient(180deg, #F8FAFC 0%, #F1F6F9 100%) !important;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid rgba(2, 132, 199, 0.12);
+    box-shadow: 0 2px 10px rgba(11, 37, 69, 0.04);
+}
+
+.cf-header.is-sticky {
+    background: rgba(244, 248, 250, 0.98) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 4px 25px -2px rgba(11, 37, 69, 0.1);
+    border-bottom: 2px solid rgba(2, 132, 199, 0.2);
+}
+
+.cf-navbar {
+    height: 82px;
+    /* Increased for prominent logo */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: height 0.3s ease;
+}
+
+.cf-header.is-sticky .cf-navbar {
+    height: 68px;
+}
+
+/* Enlarged Logo Presentation */
+.cf-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.cf-logo-frame {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2.5px solid #0284C7;
+    box-shadow: 0 3px 12px rgba(2, 132, 199, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.cf-header.is-sticky .cf-logo-frame {
+    width: 42px;
+    height: 42px;
+}
+
+.cf-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cf-logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.cf-logo-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-weight: 800;
+    font-size: 1.65rem;
+    color: #0B2545;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.cf-header.is-sticky .cf-logo-title {
+    font-size: 1.45rem;
+}
+
+.cf-logo-accent {
+    color: #0284C7;
+}
+
+.cf-logo-subtitle {
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #64748B;
+    margin-top: 2px;
+}
+
+/* Desktop Navigation Menu */
+.cf-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.cf-nav-link {
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #1E293B;
+    text-decoration: none;
+    padding: 8px 4px;
+    position: relative;
+    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Active & Hover Underline Indicator matching Image 1 */
+.cf-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 3px;
+    background: #0284C7;
+    border-radius: 4px;
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cf-nav-link:hover {
+    color: #0284C7;
+}
+
+.cf-nav-link:hover::after {
+    width: 80%;
+}
+
+.cf-nav-link.active {
+    color: #0B2545;
+    font-weight: 700;
+}
+
+.cf-nav-link.active::after {
+    width: 22px;
+    background: #0284C7;
+}
+
+.cf-nav-link i.bi-chevron-down {
+    font-size: 0.7rem;
+    margin-top: 1px;
+    transition: transform 0.25s ease, color 0.2s ease;
+    color: #64748B;
+}
+
+.cf-nav-item:hover .cf-nav-link i.bi-chevron-down {
+    transform: rotate(180deg);
+    color: #0284C7;
+}
+
+/* ===== 3. Rich Dropdown Menus with Colorful Icon Badges ===== */
+.cf-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: -15px;
+    min-width: 280px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 16px 40px -4px rgba(11, 37, 69, 0.16), 0 4px 12px rgba(0, 0, 0, 0.04);
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    border: 1px solid #E2E8F0;
+    z-index: 1050;
+}
+
+.cf-nav-item:hover .cf-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.cf-dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    color: #1E293B;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.cf-dropdown-link:hover {
+    background-color: #F0F9FF;
+    transform: translateX(3px);
+}
+
+/* Colorful Icon Badges */
+.cf-menu-icon-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.cf-dropdown-link:hover .cf-menu-icon-badge {
+    transform: scale(1.1);
+}
+
+/* Badge Color Themes */
+.bg-blue-subtle {
+    background: #E0F2FE;
+    color: #0284C7 !important;
+}
+
+.bg-cyan-subtle {
+    background: #ECFEFF;
+    color: #0891B2 !important;
+}
+
+.bg-rose-subtle {
+    background: #FFE4E6;
+    color: #E11D48 !important;
+}
+
+.bg-purple-subtle {
+    background: #F3E8FF;
+    color: #9333EA !important;
+}
+
+.bg-amber-subtle {
+    background: #FEF3C7;
+    color: #D97706 !important;
+}
+
+.text-purple {
+    color: #9333EA !important;
+}
+
+.cf-menu-item-title {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #0B2545;
+    line-height: 1.2;
+}
+
+.cf-menu-item-sub {
+    font-size: 0.75rem;
+    color: #64748B;
+    display: block;
+    margin-top: 2px;
+}
+
+.cf-dropdown-featured {
+    background: #F0F9FF;
+    border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.cf-dropdown-featured:hover {
+    background: #E0F2FE;
+}
+
+/* Nav Actions (Right Side) */
+.cf-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Minimalist Language Switcher */
+.cf-lang-wrapper {
+    background: #FFFFFF;
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid #CBD5E1;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+}
+
+.cf-lang-wrapper:hover {
+    border-color: #0284C7;
+    background: #F0F9FF;
+}
+
+.cf-lang-wrapper i.bi-globe2 {
+    font-size: 0.85rem;
+    color: #0284C7;
+}
+
+.cf-lang-select {
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: #0B2545;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding-right: 14px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.cf-lang-chevron {
+    position: absolute;
+    right: 8px;
+    font-size: 0.6rem;
+    color: #64748B;
+    pointer-events: none;
+}
+
+/* Fallback Nav Book button for tablet */
+.cf-btn-book-nav {
+    background: #0284C7;
+    color: #FFFFFF !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.cf-btn-book-nav:hover {
+    background: #0369A1;
+    transform: translateY(-1px);
+}
+
+/* Mobile Hamburger Toggle */
+.cf-mobile-toggle {
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    color: #0B2545;
+    display: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.cf-mobile-toggle:hover {
+    background: #F0F9FF;
+    border-color: #0284C7;
+}
+
+@media (max-width: 1199.98px) {
+    .cf-nav-menu {
+        gap: 16px;
+    }
+
+    .cf-nav-link {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .cf-nav-menu {
+        display: none !important;
+    }
+
+    .cf-mobile-toggle {
+        display: block;
+    }
+}
+
+
+/* ===== 4. Mobile Offcanvas Navigation Drawer ===== */
+.cf-offcanvas {
+    background-color: #FFFFFF;
+    width: 320px !important;
+    box-shadow: -8px 0 30px rgba(11, 37, 69, 0.15);
+}
+
+.cf-offcanvas-header {
+    background: #0B2545;
+    color: #FFFFFF;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cf-offcanvas-body {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.cf-mobile-ticker {
+    background: #0D315C;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cf-mobile-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+}
+
+.cf-mobile-link {
+    display: block;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1E293B;
+    text-decoration: none;
+    border-bottom: 1px solid #F1F5F9;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+
+.cf-mobile-link:hover,
+.cf-mobile-link.active {
+    background-color: #F0F9FF;
+    color: #0284C7;
+}
+
+.cf-mobile-footer {
+    margin-top: auto;
+    padding: 18px 20px;
+    background-color: #F8FAFC;
+    border-top: 1px solid #E2E8F0;
+}
+
+.cf-mobile-cta-btn {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF !important;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 12px 20px;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+    transition: all 0.2s ease;
+}
+
+.cf-mobile-cta-btn:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+}

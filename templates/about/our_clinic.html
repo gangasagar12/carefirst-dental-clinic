@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% load static i18n %}
+
+{% block title %}Our Clinic — Niko Dental & Aesthetics{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'main/css/about.css' %}">
+<meta name="description" content="Explore Niko Dental's modern clinic — advanced treatment rooms, state-of-the-art equipment, ISO sterilization, and a calming patient environment.">
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="about-hero text-center">
+  <div class="hero-inner container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:about' %}" class="text-white text-decoration-none opacity-75">{% trans "About" %}</a></li>
+        <li class="breadcrumb-item active text-warning">{% trans "Our Clinic" %}</li>
+      </ol>
+    </nav>
+    <h1>{% trans "Our Clinic" %}</h1>
+    <p class="hero-sub mx-auto">{% trans "A modern, calming environment designed for your comfort and confidence." %}</p>
+  </div>
+</section>
+
+<!-- CLINIC OVERVIEW -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="nd-eyebrow">{% trans "Clinic Overview" %}</div>
+        <h2 class="section-heading mb-4">{% trans "Designed for" %}<span class="accent">{% trans "Your Comfort & Safety" %}</span></h2>
+        <p class="text-muted mb-3" style="line-height:1.85;">{% trans "At Niko Dental & Aesthetics, every detail of our clinic has been designed to ensure patients feel relaxed, safe, and cared for. Our 3,500 sq. ft. facility houses 6 fully equipped treatment rooms, a dedicated cosmetic dentistry suite, a digital imaging center, and a welcoming reception lounge." %}</p>
+        <ul class="nd-checklist mb-4">
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "6 Fully Equipped Treatment Rooms" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Dedicated Cosmetic Dentistry Suite" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Digital Imaging & X-Ray Center" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "ISO-Certified Sterilization Unit" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Comfortable Patient Lounge" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Child-Friendly Waiting Area" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Wheelchair-Accessible Facility" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Free Parking Available" %}</li>
+        </ul>
+        <a href="{% url 'main:why_choose' %}" class="btn-nd-green btn"><i class="bi bi-arrow-right-circle me-2"></i>{% trans "Why Choose Us" %}</a>
+      </div>
+      <div class="col-lg-6">
+        <div class="rounded-4 overflow-hidden shadow-lg">
+          <img loading="lazy" src="{% static 'main/img/niko1.jpeg' %}"
+               alt="Niko Dental clinic reception" class="w-100" style="height:460px;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLINIC SECTIONS -->
+<section class="section-py" style="background:var(--nd-gray-bg);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="nd-eyebrow justify-content-center">{% trans "Explore Our Spaces" %}</div>
+      <h2 class="section-heading">{% trans "Inside Niko Dental" %}</h2>
+    </div>
+    <div class="row g-4">
+
+      <!-- Reception -->
+      <div class="col-lg-6">
+        <div class="nd-value-card h-100">
+          <div class="row g-0 align-items-center h-100">
+            <div class="col-auto">
+              <div class="vc-icon me-4"><i class="bi bi-building"></i></div>
+            </div>
+            <div class="col">
+              <h5>{% trans "Reception & Waiting Area" %}</h5>
+              <p>{% trans "Our warm, spa-like reception greets every patient with a smile. Enjoy complimentary beverages, Wi-Fi, and a calm, stress-free environment while you wait." %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Treatment Rooms -->
+      <div class="col-lg-6">
+        <div class="nd-value-card h-100">
+          <div class="row g-0 align-items-center h-100">
+            <div class="col-auto">
+              <div class="vc-icon me-4"><i class="bi bi-hospital"></i></div>
+            </div>
+            <div class="col">
+              <h5>{% trans "Treatment Rooms" %}</h5>
+              <p>{% trans "6 fully equipped, private treatment rooms with ergonomic dental chairs, LED lighting, and in-room entertainment to keep you relaxed throughout your procedure." %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced Equipment -->
+      <div class="col-lg-6">
+        <div class="nd-value-card h-100">
+          <div class="row g-0 align-items-center h-100">
+            <div class="col-auto">
+              <div class="vc-icon me-4"><i class="bi bi-cpu-fill"></i></div>
+            </div>
+            <div class="col">
+              <h5>{% trans "Advanced Equipment" %}</h5>
+              <p>{% trans "Digital OPG & CBCT X-ray, intraoral cameras, CAD/CAM crown mill, laser dentistry units, and digital impressioning systems for precision and comfort." %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sterilization -->
+      <div class="col-lg-6">
+        <div class="nd-value-card h-100">
+          <div class="row g-0 align-items-center h-100">
+            <div class="col-auto">
+              <div class="vc-icon me-4"><i class="bi bi-shield-check-fill"></i></div>
+            </div>
+            <div class="col">
+              <h5>{% trans "Sterilization Process" %}</h5>
+              <p>{% trans "Class B autoclave sterilization, barrier-protected surfaces, and WHO-compliant infection control protocols ensure the highest safety standards for every patient." %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ADVANCED EQUIPMENT DETAILS -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5">
+        <div class="nd-eyebrow">{% trans "Technology" %}</div>
+        <h2 class="section-heading mb-4">{% trans "State-of-the-Art" %}<span class="accent">{% trans "Dental Technology" %}</span></h2>
+        <div class="clinic-feature-row">
+          <div class="cfr-icon"><i class="bi bi-camera-fill"></i></div>
+          <div><h6>{% trans "Digital OPG & CBCT Imaging" %}</h6><p>{% trans "Full-mouth panoramic X-rays and 3D cone-beam CT scans for accurate diagnosis and implant planning." %}</p></div>
+        </div>
+        <div class="clinic-feature-row">
+          <div class="cfr-icon"><i class="bi bi-lightbulb-fill"></i></div>
+          <div><h6>{% trans "Laser Dentistry" %}</h6><p>{% trans "Minimally invasive soft-tissue procedures with dental lasers — faster healing, less discomfort, no stitches." %}</p></div>
+        </div>
+        <div class="clinic-feature-row">
+          <div class="cfr-icon"><i class="bi bi-gem"></i></div>
+          <div><h6>{% trans "CAD/CAM Crowns (Same Day)" %}</h6><p>{% trans "Digital impressions and in-house crown milling let you walk out with a permanent ceramic crown in one visit." %}</p></div>
+        </div>
+        <div class="clinic-feature-row">
+          <div class="cfr-icon"><i class="bi bi-brightness-high-fill"></i></div>
+          <div><h6>{% trans "Teeth Whitening Systems" %}</h6><p>{% trans "Professional in-office Zoom! whitening and at-home kits for a dazzling, natural-looking smile." %}</p></div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <img loading="lazy" src="{% static 'images/hero_bg.png' %}"
+             alt="Advanced dental equipment" class="img-fluid rounded-4 shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section-py" style="background:var(--nd-gray-bg);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="nd-eyebrow justify-content-center">{% trans "Take a Look Around" %}</div>
+      <h2 class="section-heading">{% trans "Clinic Gallery" %}</h2>
+    </div>
+    <div class="clinic-gallery">
+      <div class="gallery-item">
+        <img loading="lazy" src="{% static 'clinic_gallery/clinic_gallery1.jpeg' %}" alt="Reception area">
+        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+      </div>
+      <div class="gallery-item">
+        <img loading="lazy" src="{% static 'clinic_gallery/clinic_gallery2.jpeg' %}" alt="Treatment room">
+        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+      </div>
+      <div class="gallery-item">
+        <img loading="lazy" src="{% static 'clinic_gallery/clinic_gallery3.jpeg' %}" alt="Dental equipment">
+        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+      </div>
+      <div class="gallery-item">
+        <img loading="lazy" src="{% static 'clinic_gallery/clinic_gallery4.jpeg' %}" alt="Doctor consulting">
+        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+      </div>
+      <div class="gallery-item">
+        <img loading="lazy" src="{% static 'clinic_gallery/clinic_gallery5.jpeg' %}" alt="Dental procedure">
+        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+      </div>
+      <div class="gallery-item">
+        <img loading="lazy" src="{% static 'clinic_gallery/clinic_gallery7.jpeg' %}" alt="Patient smiling">
+        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="nd-cta-strip">
+  <div class="cta-inner container">
+    <h2>{% trans "Experience World-Class Dentistry" %}</h2>
+    <p>{% trans "Visit our clinic and see the difference premium care makes. Book your consultation today." %}</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
+      <a href="{% url 'main:doctors' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold"><i class="bi bi-people-fill me-2"></i>{% trans "Meet Our Doctors" %}</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

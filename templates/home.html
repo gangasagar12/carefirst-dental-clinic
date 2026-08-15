@@ -1,0 +1,1927 @@
+{% extends 'base.html' %}
+{% load static i18n seo_tags %}
+
+{% block title %}Carefirst Dental Clinic | Premium Dental Clinic in Kathmandu{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'main/css/pricing_table.css' %}?v=2.1">
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
+<meta name="description" content="Experience world-class dental care at Carefirst Dental Clinic. From advanced implants to cosmetic smile makeovers, we provide pain-free, modern dentistry.">
+<link rel="stylesheet" href="{% static 'main/css/about.css' %}?v=1.1">
+<link rel="stylesheet" href="{% static 'main/css/google_reviews.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/gallery.css' %}?v=1.2">
+{% if google_reviews_schema %}
+<script type="application/ld+json">{{ google_reviews_schema|safe }}</script>
+{% endif %}
+<style>
+  /* Global Utilities */
+  .nd-btn-primary,
+  .cf-btn-primary {
+    background: var(--cf-primary, #0284C7);
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #fff !important;
+    border: none;
+    border-radius: var(--cf-radius-full, 9999px);
+    padding: 12px 28px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nd-btn-primary:hover,
+  .cf-btn-primary:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.5);
+  }
+
+  .section-py {
+    padding: 80px 0;
+  }
+  /* ── Standardized Headings & Interactions ── */
+  .nd-section-title {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    color: var(--cf-navy, #0B2545);
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .nd-section-title .accent {
+    color: var(--cf-primary, #0284C7);
+  }
+  .nd-section-subtitle {
+    font-size: 1.15rem;
+    color: var(--cf-text-secondary, #475569) !important;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  
+  /* Premium Hover Effects */
+  .nd-hover-lift {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  }
+  .nd-hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(2, 132, 199, 0.14) !important;
+  }
+  
+  .nd-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cf-navy, #0B2545);
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    transition: color 0.3s ease;
+    margin-bottom: 10px;
+  }
+  .nd-hover-lift:not(.dark-card):hover .nd-card-title {
+    color: var(--cf-primary, #0284C7) !important;
+  }
+  
+  @media (max-width: 768px) {
+    .nd-section-title { font-size: 2rem; }
+    .nd-section-subtitle { font-size: 1rem; }
+  }
+  
+/* ── Hero Section ─────────────────────────────────────────── */
+  .hero-section {
+    position: relative;
+    padding: 160px 0 100px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    color: #fff;
+  }
+  .hero-bg-slider {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+  }
+  .hero-bg-slider .carousel,
+  .hero-bg-slider .carousel-inner,
+  .hero-bg-slider .carousel-item {
+    height: 100%;
+  }
+  .hero-slide-bg {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  .hero-blur-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    backdrop-filter: blur(2px);
+    background: linear-gradient(to right, rgba(8, 28, 51, 0.85) 0%, rgba(11, 37, 69, 0.6) 100%);
+    z-index: 1;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    margin-bottom: 20px;
+    color: #ffffff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .hero-content p {
+    font-size: 1.2rem;
+    max-width: 480px;
+    opacity: 0.95;
+    margin-bottom: 35px;
+    color: #E2E8F0;
+  }
+  
+  /* Floating Form */
+  .hero-floating-form {
+    background: #FFFFFF;
+    padding: 35px;
+    border-radius: var(--cf-radius-lg, 16px);
+    box-shadow: 0 20px 50px rgba(11, 37, 69, 0.18);
+    color: #1E293B;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  .hero-floating-form h4 {
+    color: var(--cf-navy, #0B2545);
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  /* ── Trust Statistics ─────────────────────────────────────── */
+  .trust-stats-section {
+    position: relative;
+    z-index: 10;
+    margin-top: -60px;
+    padding: 0 15px;
+  }
+  .stats-wrapper {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    flex: 1;
+  }
+  .stat-item:not(:last-child) {
+    border-right: 1px solid #e0e0e0;
+  }
+  .stat-icon {
+    font-size: 2.2rem;
+    color: var(--cf-primary-dark);
+  }
+  .stat-text {
+    text-align: left;
+  }
+  .stat-text h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #000;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .stat-text p {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+    font-weight: 500;
+  }
+  @media (max-width: 991px) {
+    .stat-item {
+      flex: 1 1 45%;
+      margin-bottom: 10px;
+    }
+    .stat-item:nth-child(2) {
+      border-right: none;
+    }
+    .stat-item:not(:last-child) {
+      border-right: none;
+    }
+  }
+
+  /* ── About Us ─────────────────────────────────────────────── */
+  .about-img-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  }
+  .about-img-wrapper img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: inline;
+  }
+
+  /* ── Why Choose Us ────────────────────────────────────────── */
+  .feature-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+  }
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  }
+  .feature-icon {
+    font-size: 3rem;
+    color: var(--cf-accent);
+    margin-bottom: 20px;
+  }
+
+  /* ── Dental Services ──────────────────────────────────────── */
+  .service-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  }
+  .service-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+  }
+  .service-body {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-body h4 {
+    color: var(--cf-primary-dark);
+    font-weight: 700;
+  }
+
+  /* ── Meet Our Doctors ─────────────────────────────────────── */
+  .doctor-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    text-align: center;
+    border: 1px solid #f5f5f5;
+  }
+  .doctor-img {
+    height: 350px;
+    object-fit: cover;
+    width: 100%;
+    object-position: top;
+  }
+  .doctor-info {
+    padding: 25px;
+  }
+  .doctor-info h4 {
+    color: var(--cf-primary-dark);
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .doctor-info p.spec {
+    color: var(--cf-accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* ── Technology ───────────────────────────────────────────── */
+  .tech-item {
+    text-align: center;
+    padding: 20px;
+  }
+  .tech-icon {
+    font-size: 3.5rem;
+    color: var(--cf-primary-dark);
+    margin-bottom: 15px;
+  }
+  .tech-item h5 {
+    font-weight: 700;
+  }
+
+  /* ── Treatment Journey ────────────────────────────────────── */
+  .timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 40px 0;
+    overflow-x: auto;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: #e9ecef;
+    z-index: 1;
+  }
+  .timeline-step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 150px;
+    flex-shrink: 0;
+  }
+  .timeline-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--cf-primary-dark);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin: 0 auto 15px;
+    box-shadow: 0 0 0 5px #fff, 0 0 0 7px var(--cf-accent);
+  }
+  .timeline-step h6 {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--cf-primary-dark);
+  }
+
+  /* ── Pricing Preview ──────────────────────────────────────── */
+  .price-preview-list {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  .price-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .price-item:last-child {
+    border-bottom: none;
+  }
+  .price-item h5 {
+    margin: 0;
+    font-weight: 600;
+    color: var(--cf-primary-dark);
+  }
+  .price-val {
+    font-weight: 700;
+    color: var(--cf-accent);
+    font-size: 1.1rem;
+  }
+
+  /* ── Educational Videos ───────────────────────────────────── */
+  .nd-video-card {
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .nd-video-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(14, 90, 79, 0.12) !important;
+  }
+  .nd-video-card .card-img-top {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    transition: transform 0.6s ease;
+  }
+  .nd-video-card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+  .play-btn-overlay i {
+    font-size: 4rem;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+  }
+  .nd-video-card:hover .play-btn-overlay i {
+    color: var(--cf-accent);
+    transform: scale(1.1);
+  }
+  .nd-video-card .card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 3rem;
+    line-height: 1.5;
+    font-weight: 800;
+    font-family: var(--cf-font-head);
+    font-size: 1.15rem;
+  }
+  .platform-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    z-index: 10;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+  .nd-video-card:hover .platform-badge {
+    transform: rotate(15deg) scale(1.15);
+  }
+  .platform-youtube { color: #FF0000; }
+  .platform-facebook { color: #1877F2; }
+  .platform-instagram { color: #E4405F; }
+  .platform-tiktok { color: #000000; }
+
+  /* ── Latest Blog Articles ─────────────────────────────────── */
+  .blog-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.03);
+  }
+  .blog-card-img {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+
+  /* ── Floating Action Buttons ──────────────────────────────── */
+  .fab-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* ── Clinic Moments Marquee (photo ticker) ────────────────── */
+  .marquee-section {
+    overflow: hidden;
+    padding: 20px 0;
+    background: #f8f9fa;
+    position: relative;
+  }
+  .marquee-section::before,
+  .marquee-section::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .marquee-section::before {
+    left: 0;
+    background: linear-gradient(to right, #f8f9fa, transparent);
+  }
+  .marquee-section::after {
+    right: 0;
+    background: linear-gradient(to left, #f8f9fa, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 35s linear infinite;
+  }
+  .marquee-section:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  .marquee-track img {
+    height: 300px;
+    width: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+  }
+  @keyframes marqueeScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── Promo Banner Marquee (treatment/offer banners) ───────── */
+  .promo-marquee-section {
+    overflow: hidden;
+    padding: 30px 0;
+    background: #fff;
+    position: relative;
+  }
+  .promo-marquee-section::before,
+  .promo-marquee-section::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .promo-marquee-section::before { left: 0; background: linear-gradient(to right, #fff, transparent); }
+  .promo-marquee-section::after  { right: 0; background: linear-gradient(to left, #fff, transparent); }
+
+  .promo-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 40s linear infinite;
+  }
+  .promo-marquee-section:hover .promo-marquee-track {
+    animation-play-state: paused;
+  }
+  .promo-marquee-track .promo-card {
+    width: 340px;
+    height: 200px;
+    margin-right: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .promo-marquee-track .promo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&display=swap');
+  
+  .new-promo-marquee-section {
+    overflow: hidden;
+    padding: 20px 0;
+    background: #fdfdfd;
+    position: relative;
+  }
+  .new-promo-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 60s linear infinite;
+  }
+  .new-promo-marquee-section:hover .new-promo-marquee-track {
+    animation-play-state: paused;
+  }
+  
+  .adv-card {
+    width: 500px;
+    height: 260px;
+    margin-right: 20px;
+    border-radius: 16px;
+    background: #f8fbf8;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Mukta', sans-serif;
+  }
+  .adv-card-main {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+  }
+  .adv-card-left {
+    width: 60%;
+    padding: 15px;
+    z-index: 2;
+  }
+  .adv-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .adv-card-logo {
+    width: 35px;
+    margin-right: 8px;
+  }
+  .adv-card-brand h4 {
+    margin: 0; font-size: 0.9rem; font-weight: 800; color: #000; line-height:1.1;
+  }
+  .adv-card-brand p {
+    margin: 0; font-size: 0.6rem; color: #777; font-family: 'Brush Script MT', cursive, serif;
+  }
+  
+  .adv-card-title {
+    font-size: 1.35rem; font-weight: 800; color: #0b4a41; line-height: 1.1;
+  }
+  .adv-card-subtitle {
+    font-size: 0.85rem; font-weight: 700; color: #d84315; margin-bottom: 4px; text-transform: uppercase;
+  }
+  .adv-card-desc {
+    font-size: 0.75rem; color: #444; line-height: 1.3; margin-bottom: 10px; width: 95%;
+  }
+  .adv-card-features {
+    display: flex; gap: 8px;
+  }
+  .adv-feature {
+    text-align: center; width: 45px;
+  }
+  .adv-feature i {
+    font-size: 0.9rem; color: #555; margin-bottom: 2px;
+  }
+  .adv-feature span {
+    display: block; font-size: 0.55rem; font-weight: 600; color: #333; line-height: 1.1;
+  }
+  
+  .adv-card-right {
+    width: 45%;
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    z-index: 1;
+    border-top-left-radius: 140px 50%;
+    border-bottom-left-radius: 140px 50%;
+    border-left: 2px solid #d4af37;
+    overflow: hidden;
+  }
+  .adv-card-right img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+  }
+  
+  .adv-card-badge {
+    position: absolute;
+    right: 180px;
+    top: 50%; transform: translateY(-50%);
+    width: 65px; height: 65px;
+    background: #0b4a41;
+    border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #fff; text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 3;
+    border: 1px solid #d4af37;
+  }
+  .adv-card-badge i { font-size: 1rem; color: #d4af37; margin-bottom: 2px; }
+  .adv-card-badge span { font-size: 0.45rem; line-height: 1.1; font-weight: 600; }
+  
+  .adv-card-footer {
+    background: #0b4a41;
+    color: #fff;
+    padding: 6px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    align-items: center;
+    z-index: 4;
+  }
+  .adv-card-footer div { display: flex; align-items: center; gap: 5px; }
+  .adv-card-footer i { color: #d4af37; font-size: 0.8rem; }
+
+  .fab-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    text-decoration: none;
+  }
+  .fab-btn:hover {
+    transform: scale(1.1);
+    color: #fff;
+  }
+  .fab-whatsapp { background: #25D366; }
+  .fab-call { background: var(--cf-accent); }
+  .fab-up { background: var(--cf-primary-dark); width: 45px; height: 45px; font-size: 1.2rem; align-self: flex-end; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- 1. HERO SECTION -->
+<section class="hero-section">
+  <div class="hero-bg-slider">
+    <div id="heroBgCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause="false" data-bs-interval="4000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="hero-slide-bg" style="background-image: url('{% static "hero_section/hero_section1.jpeg" %}');"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hero-slide-bg" style="background-image: url('{% static "hero_section/hero_section2.jpeg" %}');"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hero-slide-bg" style="background-image: url('{% static "hero_section/hero_section3.jpeg" %}');"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hero-slide-bg" style="background-image: url('{% static "hero_section/hero_section4.jpeg" %}');"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hero-slide-bg" style="background-image: url('{% static "hero_section/hero_section5.jpeg" %}');"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hero-slide-bg" style="background-image: url('{% static "hero_section/hero_section6.jpeg" %}');"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hero-slide-bg" style="background-image: url('{% static "hero_section/hero_section7.png" %}');"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="hero-blur-overlay"></div>
+
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7 hero-content">
+        <div style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8); min-height: 250px;">
+          <h1 id="hero-typed" style="margin: 0; padding: 0;"></h1>
+        </div>
+        <div id="typed-strings" style="display: none;">
+          
+            {% blocktrans %}<span><span style="color: #ffffff; font-weight: 800; font-size: 2.8rem; line-height: 1.2; display: block; margin-bottom: 20px;">Transform Your Smile With Expert Dental Care.</span><span style="color: rgba(255,255,255,0.9); font-size: 1.25rem; display: block; max-width: 650px;">Experience world-class, pain-free dentistry at Carefirst Dental Clinic, the best dental clinic in Kathmandu. From advanced implants to cosmetic smile makeovers, your perfect smile starts here.</span></span>{% endblocktrans %}
+          
+        </div>
+      </div>
+      
+      <div class="col-lg-4 ms-auto" style="margin-top: 100px;">
+        <div class="hero-floating-form">
+          <h4>{% trans "Request a Consultation" %}</h4>
+          <p class="text-muted small mb-4">{% trans "Fill out the form and our team will contact you shortly." %}</p>
+          <form method="POST" action="{% url 'main:home' %}">
+            {% csrf_token %}
+            <input type="hidden" name="form_type" value="appointment">
+            <div class="mb-3">
+              <input type="text" name="full_name" class="form-control" placeholder="{% trans "Full Name" %}" required>
+            </div>
+            <div class="mb-3">
+              <input type="tel" name="phone" class="form-control" placeholder="{% trans "Phone Number" %}" required>
+            </div>
+            <div class="mb-3">
+              <input type="date" name="preferred_date" class="form-control" placeholder="Select Preferred Date..." required>
+            </div>
+            <div class="mb-3">
+              <select name="treatment" class="form-select" required>
+                <option value="other" disabled selected>{% trans "Select Treatment..." %}</option>
+                <option value="">{% trans "General Checkup" %}</option>
+                <option value="implants">{% trans "Dental Implants" %}</option>
+                <option value="rct">{% trans "Root Canal Treatment" %}</option>
+                <option value="braces">{% trans "Orthodontics (Braces)" %}</option>
+                <option value="other">{% trans "Other / Not Sure" %}</option>
+              </select>
+            </div>
+            
+            {% load form_tags %}
+            {% get_active_doctors as active_doctors %}
+            {% get_active_branches as active_branches %}
+            
+            <div class="mb-3">
+              <select name="doctor" class="form-select">
+                <option value="" selected>{% trans "Any Doctor" %}</option>
+                {% for doc in active_doctors %}
+                  <option value="{{ doc.id }}">{{ doc.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-4">
+              <select name="branch" class="form-select">
+                <option value="" selected>{% trans "Any Branch" %}</option>
+                {% for branch in active_branches %}
+                  <option value="{{ branch.id }}">{{ branch.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button type="submit" class="btn nd-btn-primary w-100 fw-bold">{% trans "Book Now" %}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if active_offer %}
+<!-- SPECIAL OFFER SECTION -->
+<section class="py-4 bg-light border-bottom">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between p-4 rounded-4 shadow-sm" style="background-color: var(--cf-primary-dark); color: #fff; border-left: 5px solid var(--cf-accent);">
+          <div class="d-flex align-items-center mb-3 mb-md-0">
+            <i class="bi bi-tags-fill fs-1 me-4" style="color: var(--cf-accent);"></i>
+            <div>
+              <h4 class="fw-bold mb-1" style="color: var(--cf-accent);">{{ active_offer.title }}</h4>
+              <p class="mb-0 fs-6 text-white-50">{{ active_offer.description }}</p>
+            </div>
+          </div>
+          <div>
+            <a href="{{ active_offer.button_link }}" class="btn fw-bold px-4 py-2" style="background-color: var(--cf-accent); color: #000;">{{ active_offer.button_text }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- 4. ABOUT CAREFIRST DENTAL -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 order-first order-lg-last">
+        <div class="about-img-wrapper">
+          <img loading="lazy" src="{% static '/clinic_gallery/clinic_gallery5.jpeg' %}" alt="Carefirst Dental Clinic Clinic Interior">
+        </div>
+      </div>
+      <div class="col-lg-6 order-last order-lg-first">
+        <div class="mb-4">
+          <h2 class="nd-section-title mb-3">{% blocktrans %}Welcome to <span class="text-gold">Carefirst Dental Clinic</span>{% endblocktrans %}</h2>
+          <h4 class="fw-bold text-muted mb-0" style="font-size: 1.5rem;">{% trans "We Create Beautiful, Healthy Smiles For Life." %}</h4>
+        </div>
+        <p class="text-muted fs-5 mb-4">{% trans "Located in the heart of Kathmandu, Carefirst Dental Clinic is widely recognized for having top dentists in Nepal. As a state-of-the-art, premium dental facility, we are dedicated to transforming smiles and improving oral health. We combine world-class dental expertise with advanced clinical technology to deliver painless, precise, and highly personalized treatments. From routine check-ups to offering a painless dental implant in Kathmandu, our commitment to rigorous international sterilization protocols ensures a safe, comfortable, and luxurious experience for every patient." %}</p>
+        
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <h5 class="fw-bold text-dark"><i class="bi bi-bullseye text-gold me-2"></i>{% trans "Our Mission" %}</h5>
+            <p class="text-muted small">{% trans "To deliver painless, comprehensive, and high-quality dental care tailored to individual patient needs, ensuring a comfortable journey to a perfect smile." %}</p>
+          </div>
+          <div class="col-md-6">
+            <h5 class="fw-bold text-dark"><i class="bi bi-eye text-gold me-2"></i>{% trans "Our Vision" %}</h5>
+            <p class="text-muted small">{% trans "To be the most trusted and technologically advanced dental clinic in Nepal, continuously setting new benchmarks in clinical excellence and patient care." %}</p>
+          </div>
+        </div>
+        
+        <a href="{% url 'main:about' %}" class="btn nd-btn-primary px-4 py-2 fw-bold">{% trans "Read Our Story" %}<i class="bi bi-arrow-right ms-2"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. WHY CHOOSE US -->
+<section class="section-py bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="nd-section-title">{% trans "Why Choose" %}<span class="accent">{% trans " Carefirst Dental Clinic?" %}</span></h2>
+      <p class="text-muted nd-section-subtitle">{% trans "We combine expertise, technology, and compassion to deliver a superior dental experience." %}</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card">
+          <i class="bi bi-person-hearts feature-icon"></i>
+          <h5 class="fw-bold">{% trans "Experienced Specialists" %}</h5>
+          <p class="text-muted small mb-0">{% trans "Our team comprises highly qualified MDS doctors specializing in various fields of dentistry." %}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <i class="bi bi-magic feature-icon"></i>
+          <h5 class="fw-bold">{% trans "Advanced Technology" %}</h5>
+          <p class="text-muted small mb-0">{% trans "Equipped with digital RVG X-rays, rotary endodontics, and modern dental units for precise care." %}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <i class="bi bi-emoji-smile feature-icon"></i>
+          <h5 class="fw-bold">{% trans "Pain-Free Treatment" %}</h5>
+          <p class="text-muted small mb-0">{% trans "We prioritize your comfort using modern anesthetics and gentle techniques for anxiety-free visits." %}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <i class="bi bi-shield-check feature-icon"></i>
+          <h5 class="fw-bold">{% trans "100% Sterilization" %}</h5>
+          <p class="text-muted small mb-0">{% trans "We strictly follow international Class-B autoclave sterilization protocols for maximum safety." %}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <i class="bi bi-tag feature-icon"></i>
+          <h5 class="fw-bold">{% trans "Transparent Pricing" %}</h5>
+          <p class="text-muted small mb-0">{% trans "No hidden costs. We provide a clear treatment plan and cost estimate before starting any procedure." %}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <i class="bi bi-heart feature-icon"></i>
+          <h5 class="fw-bold">{% trans "Personalized Care" %}</h5>
+          <p class="text-muted small mb-0">{% trans "Every smile is unique. We tailor our treatments specifically to your oral health needs and goals." %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. OUR DENTAL SERVICES -->
+<section class="section-py position-relative" style="background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.85)), url('{% static "images/services1.avif" %}'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="text-center mb-5">
+      <h2 class="nd-section-title mb-3 fw-bolder text-dark">
+        {% blocktrans %}Our <span class="text-gold">Services</span>{% endblocktrans %}
+      </h2>
+      <p class="text-dark fw-semibold fs-5 nd-section-subtitle">
+        {% trans "Comprehensive dental solutions under one roof." %}
+      </p>
+    </div>
+  </div>
+
+  <!-- SEPARATE BANNERS MARQUEE (Styled like Screenshot 2) -->
+  <div class="new-promo-marquee-section mb-4">
+    <div class="new-promo-marquee-track">
+      <!-- Card 1: Dental Implant -->
+      <div class="adv-card nd-hover-lift">
+        <div class="adv-card-main">
+          <div class="adv-card-left">
+            <div class="adv-card-header">
+              <img loading="lazy" src="{% static 'main/img/logo.jpg' %}" alt="Logo" class="adv-card-logo">
+              <div class="adv-card-brand">
+                <h4>CAREFIRST DENTAL<br><span style="color:#d4af37; font-size: 0.8rem;">&amp; AESTHETICS</span></h4>
+                <p>Healthy Smile, Beautiful You</p>
+              </div>
+            </div>
+            <div class="adv-card-title">{% trans "Dental Implant" %}</div>
+            <div class="adv-card-subtitle" style="color:#d84315;">DENTAL IMPLANT</div>
+            <div class="adv-card-desc">{% trans "Permanent solution for missing teeth, strong and attractive just like natural teeth." %}</div>
+            <div class="adv-card-features">
+              <div class="adv-feature"><i class="bi bi-shield-check"></i><span>{% blocktrans %}Natural<br>Feel{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-star"></i><span>{% blocktrans %}Durable &<br>Lasting{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-emoji-smile"></i><span>{% blocktrans %}Beautiful<br>Smile{% endblocktrans %}</span></div>
+            </div>
+          </div>
+          <div class="adv-card-right">
+            <img loading="lazy" src="{% static 'promos/implant_3d.png' %}" alt="Implants">
+          </div>
+          <div class="adv-card-badge">
+            <i class="bi bi-patch-check-fill"></i>
+            <span>{% blocktrans %}Permanent<br>Solution{% endblocktrans %}</span>
+          </div>
+        </div>
+        <div class="adv-card-footer">
+          <div><i class="bi bi-geo-alt-fill"></i> Koteshwor, Kathmandu | Dhangadhi, Kailali</div>
+          <div><i class="bi bi-telephone-fill"></i> +977 9848631371</div>
+        </div>
+      </div>
+      
+      <!-- Card 2: Root Canal -->
+      <div class="adv-card nd-hover-lift">
+        <div class="adv-card-main">
+          <div class="adv-card-left">
+            <div class="adv-card-header">
+              <img loading="lazy" src="{% static 'main/img/logo.jpg' %}" alt="Logo" class="adv-card-logo">
+              <div class="adv-card-brand">
+                <h4>CAREFIRST DENTAL<br><span style="color:#d4af37; font-size: 0.8rem;">&amp; AESTHETICS</span></h4>
+                <p>Healthy Smile, Beautiful You</p>
+              </div>
+            </div>
+            <div class="adv-card-title">{% trans "Root Canal Treatment" %}</div>
+            <div class="adv-card-subtitle" style="color:#2e7d32;">ROOT CANAL TREATMENT</div>
+            <div class="adv-card-desc">{% trans "Treatment to remove root infection, making the tooth safe and durable." %}</div>
+            <div class="adv-card-features">
+              <div class="adv-feature"><i class="bi bi-bandaid"></i><span>{% blocktrans %}Pain<br>Free{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-shield-x"></i><span>{% blocktrans %}Infection<br>Free{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-heart"></i><span>{% blocktrans %}Tooth<br>Protection{% endblocktrans %}</span></div>
+            </div>
+          </div>
+          <div class="adv-card-right">
+            <img loading="lazy" src="{% static 'promos/root_canal_3d.png' %}" alt="Root Canal">
+          </div>
+          <div class="adv-card-badge">
+            <i class="bi bi-heart-pulse-fill"></i>
+            <span>{% blocktrans %}Pain Free<br>Safe Care{% endblocktrans %}</span>
+          </div>
+        </div>
+        <div class="adv-card-footer">
+          <div><i class="bi bi-geo-alt-fill"></i> Koteshwor, Kathmandu | Dhangadhi, Kailali</div>
+          <div><i class="bi bi-telephone-fill"></i> +977 9848631371</div>
+        </div>
+      </div>
+
+      <!-- Card 3: Scaling & Polishing -->
+      <div class="adv-card nd-hover-lift">
+        <div class="adv-card-main">
+          <div class="adv-card-left">
+            <div class="adv-card-header">
+              <img loading="lazy" src="{% static 'main/img/logo.jpg' %}" alt="Logo" class="adv-card-logo">
+              <div class="adv-card-brand">
+                <h4>CAREFIRST DENTAL<br><span style="color:#d4af37; font-size: 0.8rem;">&amp; AESTHETICS</span></h4>
+                <p>Healthy Smile, Beautiful You</p>
+              </div>
+            </div>
+            <div class="adv-card-title">{% trans "Scaling & Polishing" %}</div>
+            <div class="adv-card-subtitle" style="color:#1565c0;">SCALING & POLISHING</div>
+            <div class="adv-card-desc">{% trans "Removes plaque and yellow stains, making teeth bright and healthy." %}</div>
+            <div class="adv-card-features">
+              <div class="adv-feature"><i class="bi bi-stars"></i><span>{% blocktrans %}Bright<br>Teeth{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-wind"></i><span>{% blocktrans %}Fresh<br>Breath{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-shield-shaded"></i><span>{% blocktrans %}Gum<br>Safety{% endblocktrans %}</span></div>
+            </div>
+          </div>
+          <div class="adv-card-right">
+            <img loading="lazy" src="{% static 'promos/scaling_3d.png' %}" alt="Scaling">
+          </div>
+          <div class="adv-card-badge">
+            <i class="bi bi-brightness-high-fill"></i>
+            <span>{% blocktrans %}Clean Teeth<br>Healthy Smile{% endblocktrans %}</span>
+          </div>
+        </div>
+        <div class="adv-card-footer">
+          <div><i class="bi bi-geo-alt-fill"></i> Koteshwor, Kathmandu | Dhangadhi, Kailali</div>
+          <div><i class="bi bi-telephone-fill"></i> +977 9848631371</div>
+        </div>
+      </div>
+
+      <!-- Card 4: Braces -->
+      <div class="adv-card nd-hover-lift">
+        <div class="adv-card-main">
+          <div class="adv-card-left">
+            <div class="adv-card-header">
+              <img loading="lazy" src="{% static 'main/img/logo.jpg' %}" alt="Logo" class="adv-card-logo">
+              <div class="adv-card-brand">
+                <h4>CAREFIRST DENTAL<br><span style="color:#d4af37; font-size: 0.8rem;">&amp; AESTHETICS</span></h4>
+                <p>Healthy Smile, Beautiful You</p>
+              </div>
+            </div>
+            <div class="adv-card-title">{% trans "Orthodontic Treatment" %}</div>
+            <div class="adv-card-subtitle" style="color:#c62828;">ORTHODONTICS (BRACES)</div>
+            <div class="adv-card-desc">{% trans "Treatment to align crooked or uneven teeth, making them beautiful and healthy." %}</div>
+            <div class="adv-card-features">
+              <div class="adv-feature"><i class="bi bi-bezier2"></i><span>{% blocktrans %}Straight<br>Teeth{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-emoji-smile"></i><span>{% blocktrans %}Beautiful<br>Smile{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-chat-square-quote"></i><span>{% blocktrans %}Boosts<br>Confidence{% endblocktrans %}</span></div>
+            </div>
+          </div>
+          <div class="adv-card-right">
+            <img loading="lazy" src="{% static 'promos/braces_3d.png' %}" alt="Braces">
+          </div>
+          <div class="adv-card-badge">
+            <i class="bi bi-star-fill"></i>
+            <span>{% blocktrans %}Straight Teeth<br>Beautiful Smile{% endblocktrans %}</span>
+          </div>
+        </div>
+        <div class="adv-card-footer">
+          <div><i class="bi bi-geo-alt-fill"></i> Koteshwor, Kathmandu | Dhangadhi, Kailali</div>
+          <div><i class="bi bi-telephone-fill"></i> +977 9848631371</div>
+        </div>
+      </div>
+
+      <!-- DUPLICATE SET -->
+      <!-- Card 1: Dental Implant -->
+      <div class="adv-card nd-hover-lift">
+        <div class="adv-card-main">
+          <div class="adv-card-left">
+            <div class="adv-card-header">
+              <img loading="lazy" src="{% static 'main/img/logo.jpg' %}" alt="Logo" class="adv-card-logo">
+              <div class="adv-card-brand">
+                <h4>CAREFIRST DENTAL<br><span style="color:#d4af37; font-size: 0.8rem;">&amp; AESTHETICS</span></h4>
+                <p>Healthy Smile, Beautiful You</p>
+              </div>
+            </div>
+            <div class="adv-card-title">{% trans "Dental Implant" %}</div>
+            <div class="adv-card-subtitle" style="color:#d84315;">DENTAL IMPLANT</div>
+            <div class="adv-card-desc">{% trans "Permanent solution for missing teeth, strong and attractive just like natural teeth." %}</div>
+            <div class="adv-card-features">
+              <div class="adv-feature"><i class="bi bi-shield-check"></i><span>{% blocktrans %}Natural<br>Feel{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-star"></i><span>{% blocktrans %}Durable &<br>Lasting{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-emoji-smile"></i><span>{% blocktrans %}Beautiful<br>Smile{% endblocktrans %}</span></div>
+            </div>
+          </div>
+          <div class="adv-card-right">
+            <img loading="lazy" src="{% static 'promos/implant_3d.png' %}" alt="Implants">
+          </div>
+          <div class="adv-card-badge">
+            <i class="bi bi-patch-check-fill"></i>
+            <span>{% blocktrans %}Permanent<br>Solution{% endblocktrans %}</span>
+          </div>
+        </div>
+        <div class="adv-card-footer">
+          <div><i class="bi bi-geo-alt-fill"></i> Koteshwor, Kathmandu | Dhangadhi, Kailali</div>
+          <div><i class="bi bi-telephone-fill"></i> +977 9848631371</div>
+        </div>
+      </div>
+      
+      <!-- Card 2: Root Canal -->
+      <div class="adv-card nd-hover-lift">
+        <div class="adv-card-main">
+          <div class="adv-card-left">
+            <div class="adv-card-header">
+              <img loading="lazy" src="{% static 'main/img/logo.jpg' %}" alt="Logo" class="adv-card-logo">
+              <div class="adv-card-brand">
+                <h4>CAREFIRST DENTAL<br><span style="color:#d4af37; font-size: 0.8rem;">&amp; AESTHETICS</span></h4>
+                <p>Healthy Smile, Beautiful You</p>
+              </div>
+            </div>
+            <div class="adv-card-title">{% trans "Root Canal Treatment" %}</div>
+            <div class="adv-card-subtitle" style="color:#2e7d32;">ROOT CANAL TREATMENT</div>
+            <div class="adv-card-desc">{% trans "Treatment to remove root infection, making the tooth safe and durable." %}</div>
+            <div class="adv-card-features">
+              <div class="adv-feature"><i class="bi bi-bandaid"></i><span>{% blocktrans %}Pain<br>Free{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-shield-x"></i><span>{% blocktrans %}Infection<br>Free{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-heart"></i><span>{% blocktrans %}Tooth<br>Protection{% endblocktrans %}</span></div>
+            </div>
+          </div>
+          <div class="adv-card-right">
+            <img loading="lazy" src="{% static 'promos/root_canal_3d.png' %}" alt="Root Canal">
+          </div>
+          <div class="adv-card-badge">
+            <i class="bi bi-heart-pulse-fill"></i>
+            <span>{% blocktrans %}Pain Free<br>Safe Care{% endblocktrans %}</span>
+          </div>
+        </div>
+        <div class="adv-card-footer">
+          <div><i class="bi bi-geo-alt-fill"></i> Koteshwor, Kathmandu | Dhangadhi, Kailali</div>
+          <div><i class="bi bi-telephone-fill"></i> +977 9848631371</div>
+        </div>
+      </div>
+
+      <!-- Card 3: Scaling & Polishing -->
+      <div class="adv-card nd-hover-lift">
+        <div class="adv-card-main">
+          <div class="adv-card-left">
+            <div class="adv-card-header">
+              <img loading="lazy" src="{% static 'main/img/logo.jpg' %}" alt="Logo" class="adv-card-logo">
+              <div class="adv-card-brand">
+                <h4>CAREFIRST DENTAL<br><span style="color:#d4af37; font-size: 0.8rem;">&amp; AESTHETICS</span></h4>
+                <p>Healthy Smile, Beautiful You</p>
+              </div>
+            </div>
+            <div class="adv-card-title">{% trans "Scaling & Polishing" %}</div>
+            <div class="adv-card-subtitle" style="color:#1565c0;">SCALING & POLISHING</div>
+            <div class="adv-card-desc">{% trans "Removes plaque and yellow stains, making teeth bright and healthy." %}</div>
+            <div class="adv-card-features">
+              <div class="adv-feature"><i class="bi bi-stars"></i><span>{% blocktrans %}Bright<br>Teeth{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-wind"></i><span>{% blocktrans %}Fresh<br>Breath{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-shield-shaded"></i><span>{% blocktrans %}Gum<br>Safety{% endblocktrans %}</span></div>
+            </div>
+          </div>
+          <div class="adv-card-right">
+            <img loading="lazy" src="{% static 'promos/scaling_3d.png' %}" alt="Scaling">
+          </div>
+          <div class="adv-card-badge">
+            <i class="bi bi-brightness-high-fill"></i>
+            <span>{% blocktrans %}Clean Teeth<br>Healthy Smile{% endblocktrans %}</span>
+          </div>
+        </div>
+        <div class="adv-card-footer">
+          <div><i class="bi bi-geo-alt-fill"></i> Koteshwor, Kathmandu | Dhangadhi, Kailali</div>
+          <div><i class="bi bi-telephone-fill"></i> +977 9848631371</div>
+        </div>
+      </div>
+
+      <!-- Card 4: Braces -->
+      <div class="adv-card nd-hover-lift">
+        <div class="adv-card-main">
+          <div class="adv-card-left">
+            <div class="adv-card-header">
+              <img loading="lazy" src="{% static 'main/img/logo.jpg' %}" alt="Logo" class="adv-card-logo">
+              <div class="adv-card-brand">
+                <h4>CAREFIRST DENTAL<br><span style="color:#d4af37; font-size: 0.8rem;">&amp; AESTHETICS</span></h4>
+                <p>Healthy Smile, Beautiful You</p>
+              </div>
+            </div>
+            <div class="adv-card-title">{% trans "Orthodontic Treatment" %}</div>
+            <div class="adv-card-subtitle" style="color:#c62828;">ORTHODONTICS (BRACES)</div>
+            <div class="adv-card-desc">{% trans "Treatment to align crooked or uneven teeth, making them beautiful and healthy." %}</div>
+            <div class="adv-card-features">
+              <div class="adv-feature"><i class="bi bi-bezier2"></i><span>{% blocktrans %}Straight<br>Teeth{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-emoji-smile"></i><span>{% blocktrans %}Beautiful<br>Smile{% endblocktrans %}</span></div>
+              <div class="adv-feature"><i class="bi bi-chat-square-quote"></i><span>{% blocktrans %}Boosts<br>Confidence{% endblocktrans %}</span></div>
+            </div>
+          </div>
+          <div class="adv-card-right">
+            <img loading="lazy" src="{% static 'promos/braces_3d.png' %}" alt="Braces">
+          </div>
+          <div class="adv-card-badge">
+            <i class="bi bi-star-fill"></i>
+            <span>{% blocktrans %}Straight Teeth<br>Beautiful Smile{% endblocktrans %}</span>
+          </div>
+        </div>
+        <div class="adv-card-footer">
+          <div><i class="bi bi-geo-alt-fill"></i> Koteshwor, Kathmandu | Dhangadhi, Kailali</div>
+          <div><i class="bi bi-telephone-fill"></i> +977 9848631371</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row g-4">
+      {% for service in services|slice:":3" %}
+      <div class="col-md-6 col-lg-4">
+        {% include 'components/service_card.html' with service=service %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5">
+      <a href="{% url 'main:services_list' %}" class="btn nd-btn-primary px-4 py-2">{% trans "View All Services" %}</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. MEET OUR DOCTORS -->
+<section class="section-py bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="nd-section-title">{% blocktrans %}Meet Our <span class="accent">Specialists</span>{% endblocktrans %}</h2>
+      <p class="text-muted nd-section-subtitle">{% trans "Highly qualified professionals dedicated to providing you with the best dental care." %}</p>
+    </div>
+
+    <div class="row g-4">
+      {% for doc in doctors|slice:":3" %}
+      <div class="col-md-6 col-lg-4">
+        {% include 'components/doctor_card.html' with doc=doc %}
+      </div>
+      {% empty %}
+      <div class="col-12 text-center">
+        <p class="text-muted">{% trans "Doctors profiles will be updated shortly." %}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="{% url 'main:doctors' %}" class="btn nd-btn-primary px-4 py-2 fw-bold">
+        {% trans "View All Doctors" %}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. ADVANCED TECHNOLOGY -->
+<section class="section-py" style="background: #0e5a4f; color: #fff;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">{% trans "Advanced" %}<span class="text-gold">{% trans "Technology" %}</span></h2>
+      <p class="opacity-75">{% trans "We invest in the latest equipment for precise diagnostics and comfortable treatments." %}</p>
+    </div>
+    
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="tech-item">
+          <i class="bi bi-camera tech-icon text-white"></i>
+          <h6>{% trans "Digital X-Ray (RVG)" %}</h6>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="tech-item">
+          <i class="bi bi-tools tech-icon text-white"></i>
+          <h6>{% trans "Rotary Endodontics" %}</h6>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="tech-item">
+          <i class="bi bi-shield-plus tech-icon text-white"></i>
+          <h6>{% trans "Class-B Autoclave" %}</h6>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="tech-item">
+          <i class="bi bi-laptop tech-icon text-white"></i>
+          <h6>{% trans "Digital Planning" %}</h6>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="tech-item">
+          <i class="bi bi-heart-pulse tech-icon text-white"></i>
+          <h6>{% trans "Premium Chairs" %}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. TREATMENT JOURNEY TIMELINE -->
+<section class="section-py bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="nd-section-title">{% trans "Your Treatment" %}<span class="accent">{% trans "Journey" %}</span></h2>
+      <p class="text-muted">{% trans "A seamless, transparent process from your first call to your perfect smile." %}</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="timeline-icon"><i class="bi bi-calendar-check"></i></div>
+        <h6>{% trans "1. Appointment" %}</h6>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-icon"><i class="bi bi-chat-text"></i></div>
+        <h6>{% trans "2. Consultation" %}</h6>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-icon"><i class="bi bi-camera"></i></div>
+        <h6>{% trans "3. Digital X-Ray" %}</h6>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-icon"><i class="bi bi-clipboard-check"></i></div>
+        <h6>{% trans "4. Treatment Plan" %}</h6>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-icon"><i class="bi bi-bandaid"></i></div>
+        <h6>{% trans "5. Treatment" %}</h6>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-icon"><i class="bi bi-emoji-smile"></i></div>
+        <h6>{% trans "6. Healthy Smile" %}</h6>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. PRICING PREVIEW -->
+<section class="section-py position-relative" style="background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.85)), url('{% static "images/hero_bg.png" %}'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <div class="container">
+    <div class="text-center mb-5 mx-auto" style="max-width: 800px;">
+      <h2 class="nd-section-title justify-content-center fw-bolder text-dark" style="display: flex; justify-content: center; gap: 0.5rem;">{% trans "Transparent" %}<span class="accent">{% trans "Pricing" %}</span></h2>
+      <p class="text-dark fw-semibold fs-5 mb-0">{% trans "We believe in complete transparency. There are no hidden fees, and we always provide a comprehensive cost estimate before beginning any treatment." %}</p>
+    </div>
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+                <!-- Currency Toggle -->
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mb-4 gap-3">
+          <h3 class="fw-bold mb-0" style="color: var(--cf-primary-dark); font-family: var(--cf-font-head);">{% trans "Treatment Fees" %}</h3>
+          <div class="currency-toggle bg-white border rounded-pill p-1 shadow-sm d-inline-flex align-items-center">
+            <button class="btn btn-sm rounded-pill px-4 py-2 fw-bold" id="btn-npr" style="color: var(--cf-primary-dark); background: rgba(14,90,79,0.1); transition: all 0.3s;">NPR (रु)</button>
+            <button class="btn btn-sm rounded-pill px-4 py-2 fw-bold text-muted" id="btn-usd" style="background: transparent; transition: all 0.3s;">USD ($)</button>
+          </div>
+        </div>
+        
+        <div class="price-list-container shadow-lg border-0 rounded-4 mb-4">
+          <table class="table price-list-table">
+            <tbody>
+              <tr class="section-header">
+                <td colspan="3">{% if pricing_items.first.category %}{{ pricing_items.first.category.name }}{% else %}General Dentistry{% endif %}</td>
+              </tr>
+              {% for item in pricing_items %}
+              <tr>
+                <td class="num-col">{{ forloop.counter }}</td>
+                <td class="treatment-col">{% if request.LANGUAGE_CODE == 'ne' and item.name_ne %}{{ item.name_ne }}{% else %}{{ item.name }}{% endif %}</td>
+                <td class="price-col fw-semibold" data-raw-price="{{ item.price }}"><span class="price-display">{{ item.price }}</span></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="text-center mt-5">
+          <a href="{% url 'main:pricing' %}" class="btn nd-btn-primary btn-lg px-5 rounded-pill shadow-sm">{% trans "View Complete Price List" %} <i class="bi bi-arrow-right ms-2"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. MEDIA & VIDEOS -->
+{% if latest_videos %}
+<section class="section-py" style="background: #FAF8F3;">
+  <div class="container">
+    <div class="text-center mb-5 mx-auto" style="max-width: 700px;">
+      <h2 class="nd-section-title justify-content-center" style="display: flex; justify-content: center; gap: 0.5rem;">{% trans "Our" %}<span style="color: var(--cf-accent);">{% trans "Media" %}</span></h2>
+      <p class="text-muted mt-2 mb-0 fs-5">{% trans "Educational videos and clinic highlights." %}</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      {% for video in latest_videos %}
+      <div class="col-md-6 col-lg-4">
+        <article class="card h-100 nd-video-card border-0 nd-hover-lift dark-card" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: all 0.4s ease; background-color: #1A1D27; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; width: 100%;" onclick="window.location.href='{% url 'media_center:video_detail' video.slug %}'">
+          
+          <!-- Top Area: Thumbnail (16:9 Aspect Ratio) -->
+          <div class="position-relative overflow-hidden w-100">
+            <!-- Play Button Overlay -->
+            <div class="play-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(0, 0, 0, 0.2); transition: all 0.3s ease; z-index: 5;">
+              <div class="play-btn rounded-circle d-flex align-items-center justify-content-center shadow-lg" style="width: 60px; height: 60px; background: rgba(255,255,255,0.95); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+                <i class="bi bi-play-fill" style="color: #FF0000; font-size: 2.2rem; margin-left: 4px;"></i>
+              </div>
+            </div>
+            
+            <img src="{{ video.get_thumbnail }}" class="w-100 video-thumb" alt="{{ video.title }}" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; transition: transform 0.7s ease; display: block;">
+          </div>
+          
+          <!-- Bottom Area: Content (Premium Black) -->
+          <div class="card-body p-4 d-flex flex-column" style="background-color: #1A1D27;">
+            <!-- Category & Platform Badges -->
+            <div class="mb-3 d-flex align-items-center gap-2">
+              {% if video.platform == 'youtube' %}
+                <span class="badge" style="background: rgba(255, 0, 0, 0.1); color: #FF5555; border: 1px solid rgba(255, 0, 0, 0.2); padding: 5px 10px; font-size: 0.75rem; letter-spacing: 0.5px; font-weight: 600;">
+                  <i class="bi bi-youtube me-1"></i> YOUTUBE
+                </span>
+              {% elif video.platform == 'instagram' %}
+                <span class="badge" style="background: rgba(225, 48, 108, 0.1); color: #FF7597; border: 1px solid rgba(225, 48, 108, 0.2); padding: 5px 10px; font-size: 0.75rem; letter-spacing: 0.5px; font-weight: 600;">
+                  <i class="bi bi-instagram me-1"></i> INSTAGRAM
+                </span>
+              {% endif %}
+              
+              <span class="badge rounded-pill" style="background-color: rgba(200, 169, 106, 0.15); color: #C8A96A; font-weight: 600; padding: 6px 12px; font-size: 0.75rem; border: 1px solid rgba(200, 169, 106, 0.3);">
+                {{ video.category.name|default:"General" }}
+              </span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="card-title fw-bold mb-3" style="color: #ffffff; font-size: 1.15rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; font-family: var(--cf-font-head);">
+              {{ video.title }}
+            </h3>
+            
+            <!-- Description -->
+            {% if video.short_description %}
+            <p class="card-text mb-4" style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+              {{ video.short_description }}
+            </p>
+            {% else %}
+            <p class="card-text mb-4" style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+              Educational content regarding our dental services.
+            </p>
+            {% endif %}
+            
+            <!-- Footer Row -->
+            <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center" style="border-color: rgba(255,255,255,0.1) !important;">
+              <span class="text-decoration-none fw-bold" style="color: #C8A96A; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
+                <i class="bi bi-play-circle-fill"></i> {% trans "Watch video" %} 
+              </span>
+              <span style="color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; font-weight: 500;">{{ video.published_date|date:"F d, Y" }}</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <div class="text-center mt-5">
+      <a href="{% url 'media_center:video_list' %}" class="btn btn-lg px-5 py-3 rounded-pill shadow-sm fw-bold" style="background: var(--cf-accent); color: #000; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+        {% trans "View All Videos" %} <i class="bi bi-arrow-right ms-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Interactive Gallery & Smile Transformations -->
+<section class="section-py bg-white border-bottom">
+  <div class="container">
+    
+    <!-- Header & Tabs -->
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-4">
+      
+      <!-- Title Area -->
+      <div>
+        <div class="d-inline-flex align-items-center gap-2 mb-2 px-3 py-1 rounded-pill" style="background: rgba(200, 163, 77, 0.15); color: #c8a34d; font-size: 0.85rem; font-weight: 700; border: 1px solid rgba(200, 163, 77, 0.3);">
+          <i class="bi bi-images"></i> {% trans "MEDIA & RESOURCES" %}
+        </div>
+        <h2 class="nd-section-title mb-2">{% trans "Clinic Gallery & Transformations" %}</h2>
+        <p class="text-muted mb-0 fs-5" style="max-width: 700px;">{% trans "Explore our state-of-the-art clinic facilities and witness real patient smile transformations." %}</p>
+      </div>
+
+      <!-- Toggle Tabs -->
+      <div class="gallery-tabs p-2 rounded-pill d-inline-flex" style="background: #e9ecef;">
+        <button class="btn rounded-pill px-4 py-2 fw-semibold active-tab" data-target="#clinic-images-pane" style="background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); color: #0b4a41; transition: all 0.3s;">
+          <i class="bi bi-camera me-2"></i>{% trans "Clinic Images" %}
+        </button>
+        <button class="btn rounded-pill px-4 py-2 fw-semibold text-muted" data-target="#smile-transformations-pane" style="transition: all 0.3s;">
+          <i class="bi bi-stars me-2"></i>{% trans "Smile Transformations" %}
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Content Panes -->
+    <div class="gallery-content">
+      
+      <!-- Clinic Images Pane -->
+      <div id="clinic-images-pane" class="gallery-pane active">
+        {% include "gallery/components/clinic_grid.html" with gallery_images=clinic_gallery_images hide_title=True %}
+      </div>
+
+      <!-- Smile Transformations Pane -->
+      <div id="smile-transformations-pane" class="gallery-pane d-none">
+        {% include "gallery/components/smile_grid.html" with hide_title=True %}
+      </div>
+      
+    </div>
+
+
+  </div>
+</section>
+
+<!-- COMBINED PATIENT TRUST SECTION -->
+<section class="section-py" style="background: linear-gradient(rgba(240, 243, 242, 0.85), rgba(240, 243, 242, 0.95)), url('{% static 'images/rct_feat_experienced.jpeg' %}'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="rounded-5 shadow-lg p-4 p-lg-5 border" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-color: rgba(255,255,255,0.4) !important;">
+      {% include 'components/google_reviews.html' with hide_wrapper=True %}
+      
+      <hr class="my-5" style="border-color: rgba(14, 90, 79, 0.15);">
+      
+      {% include 'components/testimonials.html' with hide_wrapper=True %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const tabs = document.querySelectorAll(".gallery-tabs .btn");
+    const panes = document.querySelectorAll(".gallery-pane");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", function() {
+        // Reset all tabs
+        tabs.forEach(t => {
+          t.classList.remove("active-tab");
+          t.classList.add("text-muted");
+          t.style.background = "transparent";
+          t.style.boxShadow = "none";
+          t.style.color = "";
+        });
+
+        // Activate clicked tab
+        this.classList.add("active-tab");
+        this.classList.remove("text-muted");
+        this.style.background = "#fff";
+        this.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
+        this.style.color = "#4a66e8";
+
+        // Hide all panes
+        panes.forEach(p => p.classList.add("d-none"));
+
+        // Show target pane
+        const target = this.getAttribute("data-target");
+        document.querySelector(target).classList.remove("d-none");
+      });
+    });
+  });
+</script>
+
+
+
+<!-- 12. LATEST BLOG ARTICLES -->
+<section class="section-py position-relative" style="background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.85)), url('{% static "images/scalling_hero.jpg" %}'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <div class="container">
+    <div class="text-center mb-5 mx-auto" style="max-width: 700px;">
+      <h2 class="nd-section-title justify-content-center fw-bolder text-dark" style="display: flex; justify-content: center; gap: 0.5rem;">{% trans "Latest" %}<span class="accent">{% trans "Articles" %}</span></h2>
+      <p class="text-dark fw-semibold mt-2 mb-0 fs-5">{% trans "Educational tips and guides for your oral health." %}</p>
+    </div>
+
+    <div class="row g-4">
+      {% for post in latest_posts %}
+      <div class="col-md-4">
+        <div class="blog-card">
+          <a href="{% url 'blogs:post_detail' post.slug %}">
+            {% if post.featured_image %}
+            <img loading="lazy" src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="blog-card-img">
+            {% else %}
+            <img loading="lazy" src="{% static 'images/hero_bg.png' %}" alt="{{ post.title }}" class="blog-card-img">
+            {% endif %}
+          </a>
+          <div class="p-4">
+            <span class="badge bg-light text-gold mb-2">{{ post.category.name }}</span>
+            <a href="{% url 'blogs:post_detail' post.slug %}" class="d-block text-dark fw-bold fs-5 mb-2 text-decoration-none">{{ post.title }}</a>
+            <p class="text-muted small">{{ post.excerpt|truncatewords:15 }}</p>
+            <a href="{% url 'blogs:post_detail' post.slug %}" class="text-green fw-bold text-decoration-none small">{% trans "Read More" %}<i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12 text-center">
+        <p class="text-muted">{% trans "No articles available at the moment." %}</p>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <div class="text-center mt-5">
+      <a href="{% url 'blogs:blog_list' %}" class="btn nd-btn-primary btn-lg px-5 rounded-pill shadow-sm">{% trans "Read All Articles" %} <i class="bi bi-arrow-right ms-2"></i></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- 13. CONTACT & APPOINTMENT -->
+<section class="section-py bg-white" id="homeContact">
+  <div class="container">
+    <div class="row g-0 rounded-4 overflow-hidden shadow-lg" style="border: 1px solid #f0f0f0;">
+      <div class="col-lg-5 text-white p-5 d-flex flex-column justify-content-center" style="background: var(--cf-primary-dark);">
+        <h3 class="fw-bold mb-4">{% trans "Get In Touch" %}</h3>
+        <p class="opacity-75 mb-5">{% blocktrans %}Have a question or need to book an appointment? We're here to help you achieve your perfect smile.{% endblocktrans %}</p>
+        
+        <ul class="list-unstyled mb-0">
+          <li class="d-flex mb-4">
+            <div class="me-3 fs-3 text-gold"><i class="bi bi-geo-alt-fill"></i></div>
+            <div>
+              <h5 class="fw-bold mb-1 text-white">{% trans "Clinic Address" %}</h5>
+              <p class="opacity-75 mb-0">{% trans "Pragatinagar Road, Shankhamul-31, Kathmandu 44600 (Shankhamul / New Baneshwor)" %}</p>
+            </div>
+          </li>
+          <li class="d-flex mb-4">
+            <div class="me-3 fs-3 text-gold"><i class="bi bi-clock-fill"></i></div>
+            <div>
+              <h5 class="fw-bold mb-1 text-white">{% trans "Operating Hours" %}</h5>
+              <p class="opacity-75 mb-0">{% trans "Open daily (Monday to Sunday) from 7:30 AM to 7:30 PM" %}</p>
+            </div>
+          </li>
+          <li class="d-flex mb-4">
+            <div class="me-3 fs-3 text-gold"><i class="bi bi-telephone-fill"></i></div>
+            <div>
+              <h5 class="fw-bold mb-1 text-white">{% trans "Primary Phone & Call" %}</h5>
+              <p class="opacity-75 mb-0"><a href="tel:+9779807464136" class="text-white text-decoration-none fw-semibold">+977 980-7464136</a>, <a href="tel:015916886" class="text-white text-decoration-none fw-semibold">01-5916886</a></p>
+            </div>
+          </li>
+          <li class="d-flex mb-4">
+            <div class="me-3 fs-3 text-gold"><i class="bi bi-envelope-fill"></i></div>
+            <div>
+              <h5 class="fw-bold mb-1 text-white">{% trans "Email Address" %}</h5>
+              <p class="opacity-75 mb-0"><a href="mailto:carefirstdentalclinic@gmail.com" class="text-white text-decoration-none">carefirstdentalclinic@gmail.com</a></p>
+            </div>
+          </li>
+          <li class="d-flex">
+            <div class="me-3 fs-3 text-gold"><i class="bi bi-clock-fill"></i></div>
+            <div>
+              <h5 class="fw-bold mb-1 text-white">{% trans "Working Hours" %}</h5>
+              <p class="opacity-75 mb-0">{% trans "Every day 8 am to 8 pm" %}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-7 p-5 bg-white">
+        <h3 class="fw-bold mb-2 text-dark">{% trans "Book an Appointment" %}</h3>
+        <p class="text-muted mb-4">{% trans "Fill out the form below and our team will get back to you to confirm your slot." %}</p>
+        <form method="POST" action="{% url 'main:home' %}">
+          {% csrf_token %}
+          <input type="hidden" name="form_type" value="appointment">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">{% trans "Full Name *" %}</label>
+              <input type="text" name="full_name" class="form-control bg-light" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">{% trans "Phone Number *" %}</label>
+              <input type="tel" name="phone" class="form-control bg-light" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">{% trans "Email Address" %}</label>
+              <input type="email" name="email" class="form-control bg-light">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">{% trans "Preferred Date *" %}</label>
+              <input type="date" name="preferred_date" class="form-control bg-light" placeholder="Select Preferred Date..." required>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label fw-semibold">{% trans "Preferred Treatment" %}</label>
+              <select name="treatment" class="form-select bg-light">
+                <option value="other" selected disabled>{% trans "Choose..." %}</option>
+                <option value="">{% trans "General Checkup" %}</option>
+                <option value="rct">{% trans "Root Canal Treatment" %}</option>
+                <option value="implants">{% trans "Dental Implants" %}</option>
+                <option value="braces">{% trans "Braces / Aligners" %}</option>
+                <option value="other">{% trans "Teeth Whitening / Other" %}</option>
+              </select>
+            </div>
+            
+            {% load form_tags %}
+            {% get_active_doctors as active_doctors %}
+            {% get_active_branches as active_branches %}
+            
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">{% trans "Preferred Doctor" %} <span class="text-muted fw-normal">({% trans "Optional" %})</span></label>
+              <select name="doctor" class="form-select bg-light">
+                <option value="" selected>{% trans "Any Doctor" %}</option>
+                {% for doc in active_doctors %}
+                  <option value="{{ doc.id }}">{{ doc.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">{% trans "Preferred Branch" %} <span class="text-muted fw-normal">({% trans "Optional" %})</span></label>
+              <select name="branch" class="form-select bg-light">
+                <option value="" selected>{% trans "Any Branch" %}</option>
+                {% for branch in active_branches %}
+                  <option value="{{ branch.id }}">{{ branch.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">{% trans "Message / Symptoms" %}</label>
+              <textarea class="form-control bg-light" rows="4" placeholder="{% trans "Briefly describe what you need help with..." %}"></textarea>
+            </div>
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn nd-btn-primary btn-lg w-100 fw-bold">{% trans "Submit Appointment Request" %}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DYNAMIC LOCAL SEO FAQS -->
+<div class="container">
+  {% render_seo_faqs 'local-seo' %}
+</div>
+
+<!-- 14. FLOATING ACTION BUTTONS -->
+<div class="fab-container">
+  <a href="https://wa.me/9779848631371" class="fab-btn fab-whatsapp" aria-label="Chat on WhatsApp" target="_blank">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+  <a href="tel:+9779848631371" class="fab-btn fab-call" aria-label="Call Us">
+    <i class="bi bi-telephone-fill"></i>
+  </a>
+  <a href="#" class="fab-btn fab-up" aria-label="Scroll to top" onclick="window.scrollTo(0,0); return false;">
+    <i class="bi bi-chevron-up"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    if(document.getElementById('hero-typed')) {
+      new Typed('#hero-typed', {
+        stringsElement: '#typed-strings',
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 2000,
+        startDelay: 500,
+        loop: false,
+        showCursor: true,
+        cursorChar: '|',
+      });
+    }
+  });
+</script>
+
+{% endblock %}
+
+
+<div class="nd-lightbox" id="ndLightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
+  <button class="lb-next" id="lbNext" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
+  <img loading="lazy" id="lbImg" src="" alt="">
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
+
+{% block extra_scripts %}
+<script>
+
+(function () {
+  'use strict';
+
+  /* ── Gallery Filter ──────────────────────────────────── */
+  const filterBtns = document.querySelectorAll('.gf-btn');
+  const galleryItems = document.querySelectorAll('#clinicGallery .g-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      galleryItems.forEach(item => {
+        const show = filter === 'all' || item.dataset.filter === filter;
+        item.style.display = show ? 'block' : 'none';
+      });
+    });
+  });
+
+  /* ── Lightbox ─────────────────────────────────────────── */
+  const lightbox  = document.getElementById('ndLightbox');
+  const lbImg     = document.getElementById('lbImg');
+  const lbCaption = document.getElementById('lbCaption');
+  const lbClose   = document.getElementById('lbClose');
+  const lbPrev    = document.getElementById('lbPrev');
+  const lbNext    = document.getElementById('lbNext');
+
+  let currentItems = [];
+  let currentIndex = 0;
+
+  function getVisible() {
+    return [...galleryItems].filter(el => el.style.display !== 'none');
+  }
+
+  function openLightbox(items, index) {
+    currentItems = items;
+    currentIndex = index;
+    showImage();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showImage() {
+    const item = currentItems[currentIndex];
+    lbImg.src = item.dataset.src;
+    lbCaption.textContent = item.dataset.caption || '';
+  }
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const visible = getVisible();
+      openLightbox(visible, visible.indexOf(item));
+    });
+  });
+
+  lbClose.addEventListener('click', () => {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+
+  lbPrev.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + currentItems.length) % currentItems.length;
+    showImage();
+  });
+
+  lbNext.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % currentItems.length;
+    showImage();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+    if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + currentItems.length) % currentItems.length; showImage(); }
+    if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % currentItems.length; showImage(); }
+  });
+})();
+
+
+  (function () {
+    'use strict';
+
+    /* ── Treatment Filter ────────────────────────────────── */
+    const tabs = document.querySelectorAll('#treatmentTabs .tt-tab');
+    const cards = document.querySelectorAll('#baGrid [data-treatment]');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const treatment = tab.dataset.treatment;
+        cards.forEach(card => {
+          const show = treatment === 'all' || card.dataset.treatment === treatment;
+          card.style.display = show ? 'block' : 'none';
+        });
+      });
+    });
+
+    /* ── Comparison Slider ───────────────────────────────── */
+    const slider = document.getElementById('compareSlider');
+    const handle = document.getElementById('compareHandle');
+    const after = document.getElementById('compareAfter');
+
+    if (slider && handle && after) {
+      let dragging = false;
+
+      function setPosition(x) {
+        const rect = slider.getBoundingClientRect();
+        let pct = ((x - rect.left) / rect.width) * 100;
+        pct = Math.max(5, Math.min(95, pct));
+        after.style.width = pct + '%';
+        handle.style.left = pct + '%';
+      }
+
+      handle.addEventListener('mousedown', (e) => { dragging = true; e.preventDefault(); });
+      document.addEventListener('mouseup', () => { dragging = false; });
+      document.addEventListener('mousemove', (e) => { if (dragging) setPosition(e.clientX); });
+
+      handle.addEventListener('touchstart', (e) => { dragging = true; e.preventDefault(); }, { passive: false });
+      document.addEventListener('touchend', () => { dragging = false; });
+      document.addEventListener('touchmove', (e) => {
+        if (dragging) setPosition(e.touches[0].clientX);
+      }, { passive: true });
+    }
+  })();
+
+</script>
+
+<script src="{% static 'main/js/google_reviews.js' %}"></script>
+<script src="{% static 'main/js/pricing_toggle.js' %}"></script>
+{% endblock %}

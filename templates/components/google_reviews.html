@@ -1,0 +1,123 @@
+{% load i18n %}
+
+{% if google_business %}
+{% if not hide_wrapper %}
+<section class="google-reviews-section section-py" aria-labelledby="googleReviewsTitle">
+{% endif %}
+  <div class="{% if not hide_wrapper %}container{% endif %}">
+    <div class="google-reviews-header">
+      <p class="google-reviews-kicker">{% trans "Trusted by Patients • Rated on Google" %}</p>
+      <h2 id="googleReviewsTitle" class="google-reviews-title">{% trans "What Our Patients Say" %}</h2>
+
+      <div class="google-rating-line">
+        <span class="google-stars" aria-label="{{ google_business.google_rating }} out of 5 stars">★★★★★</span>
+        <strong>{{ google_business.google_rating|floatformat:1 }}</strong>
+      </div>
+      <p class="google-review-count">{% if request.LANGUAGE_CODE == 'ne' %}{{ google_business.review_count }} Google समीक्षाहरूमा आधारित{% else %}Based on {{ google_business.review_count }} Google Reviews{% endif %}</p>
+
+      <div class="google-review-actions">
+        <a class="btn google-review-btn google-review-btn-primary" href="https://maps.google.com/?cid=4352731592766171750" target="_blank" rel="noopener">
+          <i class="bi bi-google"></i>
+          {% trans "Read All Reviews" %}
+        </a>
+        <a class="btn google-review-btn google-review-btn-secondary" href="https://search.google.com/local/writereview?placeid={{ google_business.place_id }}" target="_blank" rel="noopener">
+          <i class="bi bi-pencil-square"></i>
+          {% trans "Leave a Review" %}
+        </a>
+      </div>
+    </div>
+
+    <!-- Swiper Container for Google Reviews -->
+    {% if google_reviews %}
+    <div class="swiper googleReviewsSwiper mt-5" style="padding-bottom: 3rem; cursor: grab;">
+      <div class="swiper-wrapper">
+        
+          {% for review in google_reviews %}
+          <div class="swiper-slide" style="height: auto;">
+            <article class="google-review-card mx-auto" style="height: 100%; border: 1px solid #e3ece9; box-shadow: 0 8px 24px rgba(0,0,0,0.03); border-radius: 16px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="google-review-stars mb-3" style="color: #fbbc04; font-size: 1.1rem;">
+                  {% if review.rating >= 1 %}★{% endif %}{% if review.rating >= 2 %}★{% endif %}{% if review.rating >= 3 %}★{% endif %}{% if review.rating >= 4 %}★{% endif %}{% if review.rating >= 5 %}★{% endif %}
+                </div>
+                {% if review.review_text %}
+                <p class="google-review-text" style="color: #333; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">"{{ review.review_text }}"</p>
+                {% endif %}
+              </div>
+              <div class="google-review-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="google-review-author" style="display: flex; align-items: center; gap: 12px;">
+                  {% if review.author_photo %}
+                  <img src="{{ review.author_photo }}" alt="{{ review.author_name }}" loading="lazy" style="width: 40px; height: 40px; border-radius: 50%;">
+                  {% else %}
+                  <span class="google-review-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: #0e5a4f; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold;">{{ review.author_name|first|upper }}</span>
+                  {% endif %}
+                  <div class="google-review-author-info">
+                    <h3 style="margin: 0; font-size: 1rem; color: #0e5a4f; font-weight: 600;">{{ review.author_name }}</h3>
+                    <p style="margin: 0; font-size: 0.8rem; color: #6c757d;">{{ review.relative_time|default:"Google review" }}</p>
+                  </div>
+                </div>
+                {% if review.author_url %}
+                <a href="{{ review.author_url }}" target="_blank" rel="noopener" aria-label="View {{ review.author_name }} review on Google" style="color: #4285f4; font-size: 1.2rem;">
+                  <i class="bi bi-google"></i>
+                </a>
+                {% else %}
+                <span aria-hidden="true" style="color: #4285f4; font-size: 1.2rem;"><i class="bi bi-google"></i></span>
+                {% endif %}
+              </div>
+            </article>
+          </div>
+          {% endfor %}
+        
+      </div>
+      <!-- Pagination Dots -->
+      <div class="swiper-pagination"></div>
+    </div>
+    {% endif %}
+
+    {% if not google_reviews %}
+    <div class="google-review-empty mt-4" style="max-width: 640px; margin: 0 auto; padding: 2rem; border: 1px solid #e3ece9; border-radius: 14px; background: #fff; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.03);">
+      <div class="google-review-empty-stars" style="color: #fbbc04; font-size: 1.15rem; margin-bottom: 12px;">★★★★★</div>
+      <h3 style="margin: 0 0 8px; color: #0e5a4f; font-size: 1.2rem; font-weight: 700;">
+        {% blocktrans with rating=google_business.google_rating|floatformat:1 count=google_business.review_count %}{{ rating }} Google rating from {{ count }} reviews{% endblocktrans %}
+      </h3>
+      <p style="color: #506762; font-size: 0.95rem; margin: 0 auto; max-width: 470px;">
+        {% trans "Google is providing the live rating and review count. Open Google to read the verified patient reviews directly." %}
+      </p>
+    </div>
+    {% endif %}
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        if (typeof Swiper !== 'undefined') {
+          new Swiper('.googleReviewsSwiper', {
+            slidesPerView: 1.1,
+            spaceBetween: 16,
+            loop: true,
+            autoplay: {
+              delay: 4000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            },
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            grabCursor: true,
+            breakpoints: {
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+              }
+            }
+          });
+        }
+      });
+    </script>
+  </div>
+{% if not hide_wrapper %}
+</section>
+{% endif %}
+{% endif %}

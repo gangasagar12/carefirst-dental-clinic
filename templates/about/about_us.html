@@ -1,0 +1,1243 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "About Us — CareFirst Dental Clinic | Shankhamul, Kathmandu" %}{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="{% trans 'Learn about CareFirst Dental Clinic in Shankhamul, Kathmandu. Led by Dr. Subash Banjade (Dental Surgeon) offering ethical, patient-focused, and comprehensive oral healthcare.' %}">
+<link rel="stylesheet" href="{% static 'main/css/about.css' %}?v=5">
+<style>
+  /* ==========================================================================
+     CareFirst Dental Clinic - Premium Modern About Page Stylesheet
+     ========================================================================== */
+  
+  :root {
+    --cf-about-bg-light: #F5FBFF;
+    --cf-about-card-border: #E2E8F0;
+    --cf-gradient-text: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    --cf-glass-bg: rgba(255, 255, 255, 0.85);
+    --cf-glass-border: rgba(2, 132, 199, 0.15);
+  }
+
+  .about-page-wrapper {
+    overflow-x: hidden;
+    color: #1E293B;
+  }
+
+  /* Section Spacing & Headers */
+  .about-section-py {
+    padding: 90px 0;
+    position: relative;
+  }
+  @media (max-width: 768px) {
+    .about-section-py { padding: 60px 0; }
+  }
+
+  /* Typography System Standardized Classes */
+  .cf-eyebrow-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(2, 132, 199, 0.1);
+    color: #0284C7;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.825rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    border: 1px solid rgba(2, 132, 199, 0.25);
+  }
+
+  .cf-section-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-weight: 800;
+    font-size: clamp(2rem, 3.2vw, 2.65rem);
+    color: #0B2545;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  .cf-gradient-title-accent {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+
+  .cf-section-lead {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #475569;
+    line-height: 1.75;
+  }
+
+  .cf-body-text {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #1E293B;
+    line-height: 1.8;
+  }
+
+  .cf-card-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #0B2545;
+    line-height: 1.3;
+  }
+
+  .cf-card-desc {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  /* 1. HERO SECTION */
+  .about-hero-split {
+    padding: 60px 0 80px;
+    background: linear-gradient(180deg, #F0F9FF 0%, #FFFFFF 100%);
+    position: relative;
+  }
+
+  .hero-floating-badge {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(11, 37, 69, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 12px 30px rgba(11, 37, 69, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    animation: floatBadge 4s ease-in-out infinite;
+  }
+
+  @keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* 2. OUR STORY SECTION */
+  .story-accent-box {
+    border-left: 4px solid #0284C7;
+    padding-left: 22px;
+  }
+
+  /* 3. ABOUT THE CLINIC GRID */
+  .clinic-info-pill {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 4px 15px rgba(11, 37, 69, 0.04);
+    transition: all 0.25s ease;
+  }
+  .clinic-info-pill:hover {
+    transform: translateY(-3px);
+    border-color: #0284C7;
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.12);
+  }
+  .clinic-info-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #E0F2FE;
+    color: #0284C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  /* 4. PREMIUM SERVICES CARD GRID (Full-Bleed Image Cards) */
+  .services-section-bg {
+    background-color: #F5FBFF;
+    border-top: 1px solid rgba(2, 132, 199, 0.1);
+    border-bottom: 1px solid rgba(2, 132, 199, 0.1);
+  }
+
+  .cf-service-img-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none !important;
+  }
+  .cf-service-img-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -5px rgba(2, 132, 199, 0.35);
+    border-color: rgba(56, 189, 248, 0.6);
+  }
+
+  .cf-service-card-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+  }
+  .cf-service-img-card:hover .cf-service-card-bg {
+    transform: scale(1.08);
+  }
+
+  .cf-service-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(11, 37, 69, 0.15) 0%, rgba(11, 37, 69, 0.5) 45%, rgba(11, 37, 69, 0.94) 85%, #0B2545 100%);
+    z-index: 2;
+    transition: background 0.3s ease;
+  }
+  .cf-service-img-card:hover .cf-service-card-overlay {
+    background: linear-gradient(180deg, rgba(11, 37, 69, 0.25) 0%, rgba(11, 37, 69, 0.68) 45%, rgba(11, 37, 69, 0.98) 85%, #081C33 100%);
+  }
+
+  .cf-service-card-content {
+    position: relative;
+    z-index: 3;
+    padding: 24px 22px 20px;
+  }
+
+  .cf-service-card-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: #FFFFFF !important;
+    margin-bottom: 6px;
+    line-height: 1.25;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+  }
+
+  .cf-service-card-desc {
+    font-size: 0.875rem;
+    color: #E2E8F0;
+    font-weight: 500;
+    margin-bottom: 14px;
+    line-height: 1.45;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .cf-service-card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #FFFFFF !important;
+    border-bottom: 2px solid #38BDF8;
+    padding-bottom: 3px;
+    transition: all 0.25s ease;
+  }
+  /* Center View All Treatments Pill Button */
+  .cf-btn-view-all {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-weight: 800 !important;
+    font-size: 1.05rem !important;
+    letter-spacing: 0.3px !important;
+    padding: 14px 34px !important;
+    border-radius: 9999px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-decoration: none !important;
+    box-shadow: 0 10px 25px -3px rgba(2, 132, 199, 0.45) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+  }
+
+  .cf-btn-view-all:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 16px 36px -2px rgba(2, 132, 199, 0.6) !important;
+    color: #FFFFFF !important;
+  }
+
+  .cf-btn-view-all .btn-arrow-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  }
+
+  .cf-btn-view-all:hover .btn-arrow-icon {
+    transform: translateX(4px);
+    background: #FFFFFF;
+    color: #0284C7;
+  }
+
+  /* Primary & Secondary Pill Buttons */
+  .cf-btn-primary {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 12px 28px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    transition: all 0.25s ease !important;
+  }
+  .cf-btn-primary:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%) !important;
+    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.5) !important;
+    transform: translateY(-2px) !important;
+    color: #FFFFFF !important;
+  }
+
+  .cf-btn-secondary {
+    background: #FFFFFF !important;
+    color: #0B2545 !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 12px 28px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 4px 14px rgba(11, 37, 69, 0.08) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    border: 1.5px solid #E2E8F0 !important;
+    transition: all 0.25s ease !important;
+  }
+  .cf-btn-secondary:hover {
+    border-color: #0284C7 !important;
+    color: #0284C7 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.18) !important;
+  }
+
+  /* 5. MISSION & VISION (Glass Cards) */
+  .cf-glass-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    border-radius: 20px;
+    padding: 40px 34px;
+    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.06);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  .cf-glass-card:hover {
+    transform: translateY(-5px);
+    border-color: #0284C7;
+    box-shadow: 0 20px 45px rgba(2, 132, 199, 0.14);
+  }
+  .cf-glass-watermark {
+    position: absolute;
+    right: -15px;
+    bottom: -20px;
+    font-size: 8.5rem;
+    color: rgba(2, 132, 199, 0.05);
+    pointer-events: none;
+  }
+
+  /* 6. WHY CHOOSE CAREFIRST */
+  .why-choose-card {
+    background: #FFFFFF;
+    border-radius: 18px;
+    padding: 28px 24px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 18px rgba(11, 37, 69, 0.04);
+    height: 100%;
+    transition: all 0.28s ease;
+  }
+  .why-choose-card:hover {
+    transform: translateY(-5px);
+    border-color: #0284C7;
+    box-shadow: 0 14px 32px rgba(2, 132, 199, 0.16);
+  }
+  .why-icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: #E0F2FE;
+    color: #0284C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+  }
+
+  /* 7. PATIENT JOURNEY TIMELINE */
+  .timeline-track-wrap {
+    position: relative;
+  }
+  .timeline-step-card {
+    background: #FFFFFF;
+    border-radius: 18px;
+    padding: 28px 22px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 6px 22px rgba(11, 37, 69, 0.05);
+    height: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .timeline-step-card:hover {
+    transform: translateY(-6px);
+    border-color: #0284C7;
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.18);
+  }
+  .timeline-step-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-weight: 800;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  }
+
+  /* 8. LEAD DENTIST CARD */
+  .doctor-profile-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 16px 45px rgba(11, 37, 69, 0.08);
+    overflow: hidden;
+  }
+
+  /* 9. PATIENT EXPERIENCE HIGHLIGHT */
+  .experience-section-bg {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%);
+    color: #FFFFFF;
+  }
+  .exp-mini-badge {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50px;
+    padding: 10px 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #FFFFFF;
+  }
+
+  /* 10. FAQ ACCORDION */
+  .about-faq-accordion .accordion-item {
+    border-radius: 14px !important;
+    border: 1px solid #E2E8F0;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(11, 37, 69, 0.04);
+  }
+  .about-faq-accordion .accordion-button {
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #0B2545;
+    padding: 20px 24px;
+    background: #FFFFFF;
+    box-shadow: none !important;
+  }
+  .about-faq-accordion .accordion-button:not(.collapsed) {
+    background: #F0F9FF;
+    color: #0284C7;
+  }
+  .about-faq-accordion .accordion-body {
+    padding: 0 24px 22px;
+    font-weight: 500;
+    color: #475569;
+    line-height: 1.75;
+    font-size: 0.98rem;
+  }
+
+  /* 11. FINAL CONVERSION CTA */
+  .final-cta-section {
+    background: linear-gradient(135deg, #0B2545 0%, #081C33 50%, #0369A1 100%);
+    color: #FFFFFF;
+    padding: 90px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -20%; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(2, 132, 199, 0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-page-wrapper">
+
+  <!-- =========================================================================
+       1. ABOUT HERO SECTION (Split Hero: Text Left, Clinic Image Right)
+       ========================================================================= -->
+  <section class="about-hero-split">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        
+        <!-- Hero Text Left -->
+        <div class="col-lg-6">
+          <div class="cf-eyebrow-badge">
+            <i class="bi bi-shield-fill-check"></i>
+            {% trans "ABOUT CAREFIRST DENTAL CLINIC" %}
+          </div>
+          
+          <h1 class="cf-section-title mb-4">
+            {% trans "A" %} <span class="cf-gradient-title-accent">{% trans "Trusted Dental Experience" %}</span> {% trans "in the Heart of Kathmandu" %}
+          </h1>
+          
+          <p class="cf-section-lead mb-4">
+            {% trans "CareFirst Dental Clinic is a highly-rated multispecialty dental practice in Shankhamul, Kathmandu, dedicated to providing patient-focused, ethical, and comprehensive oral healthcare for individuals and families." %}
+          </p>
+
+          <div class="d-flex flex-wrap gap-3 pt-2">
+            <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary btn-lg">
+              <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book Appointment" %}
+            </a>
+            <a href="tel:+9779807464136" class="cf-btn-secondary btn-lg">
+              <i class="bi bi-telephone-fill me-1"></i> {% trans "Call Clinic: 980-7464136" %}
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Image Right with Floating Trust Badge -->
+        <div class="col-lg-6">
+          <div class="position-relative rounded-4 overflow-hidden shadow-lg" style="min-height: 420px; max-height: 480px;">
+            <img src="{% static '/main/img/hero_bg.jpeg' %}" alt="CareFirst Dental Clinic Shankhamul" class="w-100 h-100 object-fit-cover">
+            <div class="hero-floating-badge">
+              <i class="bi bi-clock-fill text-warning fs-4"></i>
+              <div>
+                <strong class="d-block text-white" style="font-size: 0.95rem;">{% trans "Open Daily (Mon – Sun)" %}</strong>
+                <small class="text-info fw-bold">7:30 AM – 7:30 PM</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       2. OUR STORY (Storytelling Section: Image Left, Text Right)
+       ========================================================================= -->
+  <section class="about-section-py bg-white">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        
+        <!-- Story Image Left -->
+        <div class="col-lg-5">
+          <div class="position-relative rounded-4 overflow-hidden shadow-lg" style="height: 440px;">
+            <img src="/media/banners/desktop/about_intro.webp" alt="CareFirst Dental Clinic Story" class="w-100 h-100 object-fit-cover" onerror="this.src='/static/main/img/hero_bg.jpeg'">
+            <div class="position-absolute bottom-0 start-0 m-3 p-3 text-white rounded-3" style="background: rgba(11, 37, 69, 0.88); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15);">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-patch-check-fill text-info fs-5"></i>
+                <div>
+                  <strong class="d-block text-white small">{% trans "Ethical Healthcare" %}</strong>
+                  <small class="text-white-50" style="font-size: 0.75rem;">{% trans "Patient-Centered Practice" %}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story Content Right with Vertical Accent Line -->
+        <div class="col-lg-7">
+          <div class="cf-eyebrow-badge">
+            <i class="bi bi-heart-pulse-fill"></i>
+            {% trans "OUR PURPOSE & BEGINNING" %}
+          </div>
+          
+          <h2 class="cf-section-title mb-4">{% trans "Our Story" %}</h2>
+          
+          <div class="story-accent-box">
+            <p class="cf-body-text mb-3">
+              {% trans "CareFirst Dental Clinic was founded with a simple belief: every patient deserves respectful, ethical, and personalized dental care. What began as a vision to create a patient-first dental practice has grown into a trusted multispecialty clinic serving families across Shankhamul, New Baneshwor, and surrounding areas of Kathmandu." %}
+            </p>
+            <p class="cf-body-text mb-0">
+              {% trans "Led by Dr. Subash Banjade and supported by senior consultant doctors, CareFirst combines professional expertise with compassionate care, helping patients feel informed, comfortable, and confident throughout their dental journey." %}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       3. ABOUT THE CLINIC (Text Left, Image Right + Info Grid)
+       ========================================================================= -->
+  <section class="about-section-py bg-light">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        
+        <!-- Clinic Description Left -->
+        <div class="col-lg-7">
+          <div class="cf-eyebrow-badge">
+            <i class="bi bi-hospital-fill"></i>
+            {% trans "CLINIC ENVIRONMENT" %}
+          </div>
+          
+          <h2 class="cf-section-title mb-4">{% trans "About the Clinic" %}</h2>
+          
+          <p class="cf-body-text mb-4">
+            {% trans "Our clinic is designed to provide a calm and welcoming environment where patients of all ages can receive dental care comfortably. From consultation to treatment and follow-up, we focus on clear communication, respectful care, and individualized attention so that every visit feels organized and reassuring." %}
+          </p>
+
+          <!-- 4-Pill Info Grid -->
+          <div class="row g-3 pt-2">
+            <div class="col-sm-6">
+              <div class="clinic-info-pill">
+                <div class="clinic-info-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                <div>
+                  <strong class="d-block text-dark" style="font-size: 0.95rem;">Shankhamul-31</strong>
+                  <small class="text-muted">Kathmandu 44600</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="clinic-info-pill">
+                <div class="clinic-info-icon"><i class="bi bi-calendar-check-fill"></i></div>
+                <div>
+                  <strong class="d-block text-dark" style="font-size: 0.95rem;">Open Every Day</strong>
+                  <small class="text-muted">7:30 AM – 7:30 PM</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="clinic-info-pill">
+                <div class="clinic-info-icon"><i class="bi bi-people-fill"></i></div>
+                <div>
+                  <strong class="d-block text-dark" style="font-size: 0.95rem;">Specialist Doctors</strong>
+                  <small class="text-muted">Multispecialty Team</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="clinic-info-pill">
+                <div class="clinic-info-icon"><i class="bi bi-telephone-fill"></i></div>
+                <div>
+                  <strong class="d-block text-dark" style="font-size: 0.95rem;">Easy Appointments</strong>
+                  <small class="text-muted">Call & WhatsApp Support</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Clinic Image Right -->
+        <div class="col-lg-5">
+          <div class="position-relative rounded-4 overflow-hidden shadow-lg" style="height: 460px;">
+            <img src="/media/clinic_gallery/clinic_gallery14.jpeg" alt="CareFirst Dental Clinic Facilities" class="w-100 h-100 object-fit-cover" onerror="this.src='/static/main/img/hero_bg.jpeg'">
+            <div class="position-absolute bottom-0 start-0 m-3 p-3 text-white rounded-3" style="background: rgba(11, 37, 69, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.18);">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-shield-check text-info fs-4"></i>
+                <div>
+                  <strong class="d-block text-white" style="font-size: 0.9rem;">{% trans "Modern Sterilization Suite" %}</strong>
+                  <small class="text-white-50" style="font-size: 0.75rem;">{% trans "Clean & Comfortable Operatories" %}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       4. OUR PREMIUM DENTAL SERVICES (3-Column Card Grid on #F5FBFF)
+       ========================================================================= -->
+  <section class="about-section-py services-section-bg">
+    <div class="container">
+      
+      <div class="text-center mx-auto mb-5" style="max-width: 720px;">
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-gem"></i>
+          {% trans "CLINICAL EXCELLENCE" %}
+        </div>
+        <h2 class="cf-section-title mb-3">{% trans "Our Premium Dental Services" %}</h2>
+        <p class="cf-section-lead mb-0">{% trans "Comprehensive dental care designed around your smile." %}</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- 1. Root Canal Treatment -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'root-canal-treatment' %}" class="cf-service-img-card">
+            <img src="/media/services/rct_feat_experienced.jpeg" alt="Root Canal Treatment" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "Root Canal Treatment" %}</h3>
+              <p class="cf-service-card-desc">{% trans "Comfortable, technology-driven endodontic care." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 2. Dental Implants -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'dental-implants' %}" class="cf-service-img-card">
+            <img src="/media/services/dental-implant-hero.jpg" alt="Dental Implants" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "Dental Implants" %}</h3>
+              <p class="cf-service-card-desc">{% trans "Permanent solutions for missing teeth." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 3. Scaling & Polishing / Teeth Whitening -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'scaling-and-polishing' %}" class="cf-service-img-card">
+            <img src="/media/services/filling_hero.png" alt="Teeth Whitening" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "Teeth Whitening & Scaling" %}</h3>
+              <p class="cf-service-card-desc">{% trans "Professional, lasting cosmetic brightening & calculus removal." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 4. Crowns & Bridges -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'crowns-and-bridges' %}" class="cf-service-img-card">
+            <img src="/media/services/zirconia-crown.jpg" alt="Crowns & Bridges" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "Crowns & Bridges" %}</h3>
+              <p class="cf-service-card-desc">{% trans "High-quality, durable smile restorations." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 5. Tooth Extraction & Wisdom Tooth -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'tooth-extraction' %}" class="cf-service-img-card">
+            <img src="/media/services/toothextraction-hero.jpg" alt="Wisdom Tooth Care" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "Wisdom Tooth & Extractions" %}</h3>
+              <p class="cf-service-card-desc">{% trans "Safe extractions with expert pain management." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 6. General Dentistry -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'general-dentistry' %}" class="cf-service-img-card">
+            <img src="/media/services/dental_x-ray.jpg" alt="General Checkup" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "General Dentistry" %}</h3>
+              <p class="cf-service-card-desc">{% trans "Routine examinations for lifelong oral health." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 7. Dental Filling -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'dental-filling' %}" class="cf-service-img-card">
+            <img src="/media/services/niko1.jpeg" alt="Dental Filling" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "Dental Filling" %}</h3>
+              <p class="cf-service-card-desc">{% trans "Seamless composite tooth-colored aesthetic fillings." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 8. Orthodontic Treatment (Braces) -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'orthodontic-treatment-braces' %}" class="cf-service-img-card">
+            <img src="/media/services/braces-hero.jpg" alt="Orthodontic Treatment" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "Orthodontics & Braces" %}</h3>
+              <p class="cf-service-card-desc">{% trans "Precision alignment for teens and adults." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 9. Digital Dental X-Ray -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'digital-dental-x-ray' %}" class="cf-service-img-card">
+            <img src="/media/services/dental_x-ray.jpg" alt="Digital Dental X-Ray" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "Digital Dental X-Ray" %}</h3>
+              <p class="cf-service-card-desc">{% trans "Low-radiation instant high-definition diagnostics." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 10. Dentures -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'dentures' %}" class="cf-service-img-card">
+            <img src="/media/services/dentures-hero.jpeg" alt="Dentures" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "Dentures" %}</h3>
+              <p class="cf-service-card-desc">{% trans "Custom complete & partial precision dentures." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 11. Periodontal Treatment (Gum) -->
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'main:service_detail' 'periodontal-treatment-gum' %}" class="cf-service-img-card">
+            <img src="/media/services/periodontal-hero.jpg" alt="Periodontal Treatment" class="cf-service-card-bg">
+            <div class="cf-service-card-overlay"></div>
+            <div class="cf-service-card-content">
+              <h3 class="cf-service-card-title">{% trans "Gum & Periodontal Care" %}</h3>
+              <p class="cf-service-card-desc">{% trans "Comprehensive periodontal therapy for healthy gums." %}</p>
+              <span class="cf-service-card-btn">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Center CTA -->
+      <div class="text-center mt-5 pt-2">
+        <a href="{% url 'main:services_list' %}" class="cf-btn-view-all">
+          <span>{% trans "View All Treatments & Pricing" %}</span>
+          <span class="btn-arrow-icon"><i class="bi bi-arrow-right"></i></span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+  <!-- =========================================================================
+       6. WHY CHOOSE CAREFIRST? (Trust Feature Grid)
+       ========================================================================= -->
+  <section class="about-section-py bg-light">
+    <div class="container">
+      
+      <div class="text-center mx-auto mb-5" style="max-width: 650px;">
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-patch-check-fill"></i>
+          {% trans "PATIENT ADVANTAGES" %}
+        </div>
+        <h2 class="cf-section-title">{% trans "Why Choose CareFirst?" %}</h2>
+      </div>
+
+      <div class="row g-4">
+        <!-- Feature 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="why-choose-card">
+            <div class="why-icon-circle"><i class="bi bi-heart-pulse-fill"></i></div>
+            <h4 class="cf-card-title mb-2">{% trans "Patient-Focused Care" %}</h4>
+            <p class="cf-card-desc mb-0">{% trans "Every visit is centered on your personal comfort, listening carefully to your concerns." %}</p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="why-choose-card">
+            <div class="why-icon-circle"><i class="bi bi-shield-check"></i></div>
+            <h4 class="cf-card-title mb-2">{% trans "Ethical Treatment Approach" %}</h4>
+            <p class="cf-card-desc mb-0">{% trans "Transparent advice and only recommended procedures that genuinely benefit your oral health." %}</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="why-choose-card">
+            <div class="why-icon-circle"><i class="bi bi-people-fill"></i></div>
+            <h4 class="cf-card-title mb-2">{% trans "Multispecialty Dental Team" %}</h4>
+            <p class="cf-card-desc mb-0">{% trans "Senior consultant doctors covering all branches of modern dentistry in one clinic." %}</p>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="why-choose-card">
+            <div class="why-icon-circle"><i class="bi bi-geo-alt-fill"></i></div>
+            <h4 class="cf-card-title mb-2">{% trans "Convenient Kathmandu Location" %}</h4>
+            <p class="cf-card-desc mb-0">{% trans "Easily accessible at Pragatinagar Road, Shankhamul (near New Baneshwor)." %}</p>
+          </div>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="why-choose-card">
+            <div class="why-icon-circle"><i class="bi bi-clock-history"></i></div>
+            <h4 class="cf-card-title mb-2">{% trans "Open Daily (7:30 AM – 7:30 PM)" %}</h4>
+            <p class="cf-card-desc mb-0">{% trans "Flexible appointment hours 7 days a week to fit easily into busy work and family schedules." %}</p>
+          </div>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="why-choose-card">
+            <div class="why-icon-circle"><i class="bi bi-clipboard2-check-fill"></i></div>
+            <h4 class="cf-card-title mb-2">{% trans "Personalized Treatment Plans" %}</h4>
+            <p class="cf-card-desc mb-0">{% trans "Tailored treatment options with clear discussions on timelines and costs before starting." %}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       7. HOW IT HAPPENS: THE PATIENT JOURNEY (5-Step Timeline)
+       ========================================================================= -->
+  <section class="about-section-py bg-white">
+    <div class="container">
+      
+      <div class="text-center mx-auto mb-5" style="max-width: 650px;">
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-arrow-repeat"></i>
+          {% trans "TRANSPARENT PROCESS" %}
+        </div>
+        <h2 class="cf-section-title">{% trans "How It Happens: The Patient Journey" %}</h2>
+        <p class="cf-section-lead">{% trans "A structured, comfortable experience at every stage of your care." %}</p>
+      </div>
+
+      <div class="row g-4 timeline-track-wrap">
+        <!-- Step 1 -->
+        <div class="col-lg">
+          <div class="timeline-step-card">
+            <div class="timeline-step-num">1</div>
+            <h5 class="cf-card-title mb-2" style="font-size: 1.1rem;">{% trans "Book Your Visit" %}</h5>
+            <p class="cf-card-desc mb-0" style="font-size: 0.85rem;">{% trans "Schedule easily via Call, WhatsApp, or our online appointment form." %}</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="col-lg">
+          <div class="timeline-step-card">
+            <div class="timeline-step-num">2</div>
+            <h5 class="cf-card-title mb-2" style="font-size: 1.1rem;">{% trans "Consultation" %}</h5>
+            <p class="cf-card-desc mb-0" style="font-size: 0.85rem;">{% trans "Comprehensive checkup and thorough discussion of your oral health goals." %}</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="col-lg">
+          <div class="timeline-step-card">
+            <div class="timeline-step-num">3</div>
+            <h5 class="cf-card-title mb-2" style="font-size: 1.1rem;">{% trans "Treatment Plan" %}</h5>
+            <p class="cf-card-desc mb-0" style="font-size: 0.85rem;">{% trans "Clear explanation of all available options, steps, and transparent pricing." %}</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="col-lg">
+          <div class="timeline-step-card">
+            <div class="timeline-step-num">4</div>
+            <h5 class="cf-card-title mb-2" style="font-size: 1.1rem;">{% trans "Comfortable Care" %}</h5>
+            <p class="cf-card-desc mb-0" style="font-size: 0.85rem;">{% trans "Gentle, organized, and pain-free treatment in our modern clinical suites." %}</p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="col-lg">
+          <div class="timeline-step-card">
+            <div class="timeline-step-num">5</div>
+            <h5 class="cf-card-title mb-2" style="font-size: 1.1rem;">{% trans "Follow-Up" %}</h5>
+            <p class="cf-card-desc mb-0" style="font-size: 0.85rem;">{% trans "Ongoing guidance and scheduled follow-ups for lasting oral health." %}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       8. MEET OUR LEAD DENTIST (Dr. Subash Banjade)
+       ========================================================================= -->
+  <section class="about-section-py bg-light">
+    <div class="container">
+      
+      <div class="doctor-profile-card">
+        <div class="row align-items-center g-0">
+          
+          <!-- Doctor Photo Left -->
+          <div class="col-lg-5">
+            <div class="h-100 position-relative" style="min-height: 420px; background: #0B2545;">
+              <img src="/media/doctors/WhatsApp_Image_2026-07-10_at_10.39.18_PM.jpeg" alt="Dr. Subash Banjade - Lead Dental Surgeon" class="w-100 h-100 object-fit-cover" onerror="this.src='{% static 'main/img/haris.jpg' %}'">
+              <div class="position-absolute bottom-0 start-0 m-3 p-2 px-3 text-white rounded-pill" style="background: rgba(11, 37, 69, 0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2);">
+                <small class="fw-bold"><i class="bi bi-award-fill text-warning me-1"></i> {% trans "Clinical Director" %}</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Doctor Bio Right -->
+          <div class="col-lg-7 p-4 p-md-5">
+            <div class="cf-eyebrow-badge">
+              <i class="bi bi-person-badge-fill"></i>
+              {% trans "CLINICAL LEADERSHIP" %}
+            </div>
+            
+            <h2 class="cf-section-title mb-1">Dr. Subash Banjade</h2>
+            <p class="fw-bold text-primary mb-4" style="font-size: 1.15rem;">{% trans "Dental Surgeon & Clinical Director" %}</p>
+            
+            <p class="cf-body-text mb-4">
+              {% trans "Dr. Subash Banjade leads CareFirst Dental Clinic with a deep commitment to ethical dentistry, patient education, and clinical precision. Supported by a team of senior consultant doctors across different dental specialties, Dr. Subash ensures every patient receives attentive, comfortable, and personalized care." %}
+            </p>
+
+            <div class="d-flex flex-wrap gap-3">
+              <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary">
+                <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book Consultation with Dr. Subash" %}
+              </a>
+              <a href="{% url 'main:doctors' %}" class="cf-btn-secondary">
+                {% trans "Meet Our Dental Team" %} <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       9. PATIENT EXPERIENCE HIGHLIGHT (Comfort, Cleanliness, Support)
+       ========================================================================= -->
+  <section class="about-section-py experience-section-bg">
+    <div class="container text-center">
+      
+      <div class="mx-auto mb-4" style="max-width: 780px;">
+        <h2 class="cf-section-title text-white mb-3">{% trans "A Comfortable Experience Matters" %}</h2>
+        <p class="fs-5 text-white-50 mb-4" style="line-height: 1.8;">
+          {% trans "We recognize that visiting the dentist can sometimes feel overwhelming. That is why our entire team focuses on gentle techniques, clear explanations before every step, and creating a supportive, calm environment for every patient." %}
+        </p>
+      </div>
+
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <div class="exp-mini-badge">
+          <i class="bi bi-shield-fill-check text-info"></i>
+          <span>{% trans "Clean & Organized" %}</span>
+        </div>
+        <div class="exp-mini-badge">
+          <i class="bi bi-emoji-smile-fill text-warning"></i>
+          <span>{% trans "Friendly Support Team" %}</span>
+        </div>
+        <div class="exp-mini-badge">
+          <i class="bi bi-chat-heart-fill text-danger"></i>
+          <span>{% trans "Clear Treatment Guidance" %}</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       10. FREQUENTLY ASKED QUESTIONS (Accordion)
+       ========================================================================= -->
+  <section class="about-section-py bg-white">
+    <div class="container">
+      
+      <div class="text-center mx-auto mb-5" style="max-width: 650px;">
+        <div class="cf-eyebrow-badge">
+          <i class="bi bi-question-circle-fill"></i>
+          {% trans "HELPFUL INFORMATION" %}
+        </div>
+        <h2 class="cf-section-title">{% trans "Frequently Asked Questions" %}</h2>
+      </div>
+
+      <div class="accordion about-faq-accordion mx-auto" id="aboutFaqAccordion" style="max-width: 820px;">
+        
+        <!-- FAQ 1 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              {% trans "Where is CareFirst Dental Clinic located?" %}
+            </button>
+          </h3>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#aboutFaqAccordion">
+            <div class="accordion-body">
+              {% trans "CareFirst Dental Clinic is located at Pragatinagar Road, Shankhamul-31, Kathmandu 44600 (easily accessible from New Baneshwor and surrounding Kathmandu areas)." %}
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              {% trans "What are the clinic opening hours?" %}
+            </button>
+          </h3>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#aboutFaqAccordion">
+            <div class="accordion-body">
+              {% trans "We are open daily (Monday to Sunday) from 7:30 AM to 7:30 PM." %}
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              {% trans "Do I need an appointment before visiting?" %}
+            </button>
+          </h3>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#aboutFaqAccordion">
+            <div class="accordion-body">
+              {% trans "While walk-ins are welcomed, booking an appointment in advance via phone, WhatsApp, or our website is recommended to minimize any waiting time." %}
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              {% trans "What dental treatments are available?" %}
+            </button>
+          </h3>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#aboutFaqAccordion">
+            <div class="accordion-body">
+              {% trans "We offer comprehensive services including General Dental Checkups, Root Canal Treatment, Dental Implants, Crowns & Bridges, Orthodontic Braces, Scaling & Polishing, Teeth Whitening, and Wisdom Tooth Extractions." %}
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              {% trans "Is the clinic suitable for children?" %}
+            </button>
+          </h3>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#aboutFaqAccordion">
+            <div class="accordion-body">
+              {% trans "Yes! Our team provides gentle, child-friendly pediatric dental care designed to keep young patients relaxed and comfortable." %}
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              {% trans "How can I contact the clinic?" %}
+            </button>
+          </h3>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#aboutFaqAccordion">
+            <div class="accordion-body">
+              {% trans "You can reach us at +977 980-7464136 or 01-5916886, message us directly on WhatsApp, or email carefirstdentalclinic@gmail.com." %}
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="headingSeven">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+              {% trans "What should I bring for my first visit?" %}
+            </button>
+          </h3>
+          <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#aboutFaqAccordion">
+            <div class="accordion-body">
+              {% trans "Please bring any previous dental records or X-rays if available, a list of current medications, and your preferred appointment time." %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       11. FINAL CONVERSION CTA
+       ========================================================================= -->
+  <section class="final-cta-section">
+    <div class="container text-center position-relative z-1">
+      
+      <div class="mx-auto" style="max-width: 720px;">
+        <h2 class="cf-section-title text-white mb-3">{% trans "Ready to Take Care of Your Smile?" %}</h2>
+        <p class="fs-5 text-white-50 mb-4" style="line-height: 1.8;">
+          {% trans "Book a consultation with CareFirst Dental Clinic and experience patient-focused dental care in Shankhamul, Kathmandu." %}
+        </p>
+
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary btn-lg">
+            <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book Appointment" %}
+          </a>
+          <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill fw-bold px-4 py-2">
+            <i class="bi bi-telephone-fill me-1"></i> +977 980-7464136
+          </a>
+          <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success btn-lg rounded-pill fw-bold px-4 py-2">
+            <i class="bi bi-whatsapp me-1"></i> WhatsApp Us
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+{% endblock %}
