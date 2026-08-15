@@ -545,37 +545,69 @@
   </div>
 </section>
 
-<!-- 6. TREATMENT GALLERY (LIGHTBOX) -->
+<!-- 6. TREATMENT GALLERY (LIGHTBOX - 6 HIGH DEFINITION CLINICAL IMAGES) -->
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
       <div class="cf-eyebrow-badge justify-content-center">
-        <i class="bi bi-images"></i> {% trans "CLINICAL FACILITY" %}
+        <i class="bi bi-images"></i> {% trans "CLINICAL FACILITY & TECHNOLOGY" %}
       </div>
-      <h2 class="cf-section-title">{% trans "Diagnostic" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Suite & Gallery" %}</span></h2>
-      <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "Explore our modern imaging equipment and comfortable diagnostic environment in Kathmandu." %}</p>
+      <h2 class="cf-section-title">{% trans "Diagnostic Suite" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "& Technology Gallery" %}</span></h2>
+      <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 620px;">{% trans "Explore the modern low-radiation diagnostic equipment and chairside digital imaging we use to safeguard your smile in Kathmandu." %}</p>
     </div>
     
     <div class="row g-4">
-      <div class="col-md-4">
+      <!-- Image 1: Digital Sensor -->
+      <div class="col-lg-4 col-md-6">
+        <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/digital_xray_sensor.jpg' %}'">
+          <img loading="lazy" src="{% static 'images/digital_xray_sensor.jpg' %}" alt="Digital Radiography Sensor" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Ultra-Low Radiation Sensors" %}</div>
+        </div>
+      </div>
+
+      <!-- Image 2: Panoramic OPG Machine -->
+      <div class="col-lg-4 col-md-6">
+        <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/digital_panoramic_opg.jpg' %}'">
+          <img loading="lazy" src="{% static 'images/digital_panoramic_opg.jpg' %}" alt="Panoramic OPG Diagnostic Unit" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Panoramic OPG Scanner" %}</div>
+        </div>
+      </div>
+
+      <!-- Image 3: Doctor Consultation -->
+      <div class="col-lg-4 col-md-6">
+        <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/digital_xray_consultation.jpg' %}'">
+          <img loading="lazy" src="{% static 'images/digital_xray_consultation.jpg' %}" alt="Chairside Patient Consultation" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Chairside Digital Review" %}</div>
+        </div>
+      </div>
+
+      <!-- Image 4: Instant Review -->
+      <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/Dental1-X-Rays.jpeg' %}'">
           <img loading="lazy" src="{% static 'images/Dental1-X-Rays.jpeg' %}" alt="Reviewing X-Ray" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
           <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Instant Chairside Review" %}</div>
+          <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Instant Root Anatomy Check" %}</div>
         </div>
       </div>
-      <div class="col-md-4">
+
+      <!-- Image 5: Modern Suite -->
+      <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/dental2_x-ray.jpg' %}'">
           <img loading="lazy" src="{% static 'images/dental2_x-ray.jpg' %}" alt="Modern Clinic Equipment" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
           <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
           <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Modern Diagnostic Suite" %}</div>
         </div>
       </div>
-      <div class="col-md-4">
+
+      <!-- Image 6: Treatment Planning -->
+      <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/dental3_x-ray.jpg' %}'">
           <img loading="lazy" src="{% static 'images/dental3_x-ray.jpg' %}" alt="Consultation" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
           <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
-          <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Accurate Treatment Planning" %}</div>
+          <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Precision Treatment Planning" %}</div>
         </div>
       </div>
     </div>
