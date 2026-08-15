@@ -9,9 +9,9 @@
     </div>
     {% endif %}
     {% if service.image %}
-    <img loading="lazy" src="{{ service.image.url }}" class="sc-img" alt="{{ service.title }}" onerror="this.onerror=null; this.src='{% static 'images/hero_bg.png' %}';">
+    <img loading="lazy" src="{{ service.image.url }}" class="sc-img" alt="{{ service.title }}" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpg' %}';">
     {% else %}
-    <img loading="lazy" src="{% static 'images/hero_bg.png' %}" class="sc-img" alt="{{ service.title }}">
+    <img loading="lazy" src="{% static 'main/img/hero_bg.jpg' %}" class="sc-img" alt="{{ service.title }}">
     {% endif %}
     <div class="sc-icon"><i class="bi {{ service.icon|default:'bi-patch-check-fill' }}"></i></div>
   </div>
