@@ -113,19 +113,19 @@
 {% block content %}
 
 <!-- 1. HERO BANNER -->
-<section class="service-hero text-center" style="background-image: url('{% static "images/toothextraction-hero.jpg" %}');">
+<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.85) 0%, rgba(11,37,69,0.80) 60%, rgba(3,105,161,0.75) 100%), url('{% static "images/hero_tooth_extraction.jpg" %}') center/cover no-repeat;">
   <div class="hero-inner container">
-    <nav aria-label="breadcrumb" class="mb-3">
+    <nav aria-label="breadcrumb" class="mb-4">
       <ol class="breadcrumb justify-content-center mb-0">
         <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
         <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
-        <li class="breadcrumb-item active text-warning">{% trans "Tooth Extraction" %}</li>
+        <li class="breadcrumb-item active text-warning fw-bold">{% trans "Tooth Extraction" %}</li>
       </ol>
     </nav>
-    <h1><i class="bi bi-scissors me-3 text-warning"></i>{% trans "Tooth Extraction" %}</h1>
-    <p class="hero-sub mx-auto">{% trans "Safe, painless removal of severely damaged or problematic teeth." %}</p>
-    <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Get Immediate Relief" %}</a>
+    <h1 class="display-4 fw-bold text-white mb-3"><i class="bi bi-scissors me-3 text-warning"></i>{% trans "Tooth Extraction" %}</h1>
+    <p class="hero-sub mx-auto text-white opacity-75 mb-4" style="font-size: 1.25rem;">{% trans "Safe, painless removal of severely damaged or problematic teeth." %}</p>
+    <div class="mt-5">
+      <a href="{% url 'main:contact' %}#book" class="btn btn-warning btn-lg text-dark py-3 px-5 rounded-pill fw-bold shadow-lg">{% trans "Get Immediate Relief" %}</a>
     </div>
   </div>
 </section>
@@ -150,7 +150,7 @@
         </div>
       </div>
       <div class="col-lg-6">
-        <img loading="lazy" src="{% static 'images/toothextraction-hero.jpg' %}" alt="Gentle Dental Care" class="img-fluid rounded-4 shadow-lg">
+        <img loading="lazy" src="{% static 'images/hero_tooth_extraction.jpg' %}" alt="Gentle Dental Care" class="img-fluid rounded-4 shadow-lg" style="object-fit: cover; height: 100%; min-height: 400px;">
       </div>
     </div>
   </div>
