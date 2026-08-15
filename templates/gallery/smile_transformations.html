@@ -8,6 +8,163 @@
 <meta name="description"
   content="See real patient smile transformations at Carefirst Dental Clinic — before & after results for veneers, braces, whitening, implants, and full smile makeovers.">
 <style>
+  /* CareFirst Global Design System & Typography */
+  .gallery-hero {
+    position: relative !important;
+    min-height: 380px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, rgba(8, 28, 51, 0.88) 0%, rgba(11, 37, 69, 0.84) 60%, rgba(3, 105, 161, 0.78) 100%), url('/static/main/img/hero_bg.jpeg') center/cover no-repeat !important;
+    overflow: hidden !important;
+    padding: 85px 0 65px !important;
+  }
+
+  .gallery-hero::before {
+    display: none !important;
+  }
+
+  .gallery-hero h1 {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: clamp(2.2rem, 4vw, 3rem) !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 12px !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .gallery-hero .hero-sub {
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    max-width: 580px !important;
+    margin: 0 auto !important;
+    line-height: 1.7 !important;
+  }
+
+  .nd-eyebrow,
+  .cf-eyebrow-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(2, 132, 199, 0.1) !important;
+    color: #0284C7 !important;
+    padding: 6px 16px !important;
+    border-radius: 50px !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.825rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    border: 1px solid rgba(2, 132, 199, 0.25) !important;
+    margin-bottom: 16px !important;
+  }
+
+  .nd-eyebrow::before {
+    display: none !important;
+  }
+
+  .section-heading,
+  .cf-section-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: clamp(2rem, 3.2vw, 2.65rem) !important;
+    font-weight: 800 !important;
+    color: #0B2545 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .section-heading .accent,
+  .cf-gradient-title-accent {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: #0284C7 !important;
+    display: inline-block !important;
+  }
+
+  .cf-body-text {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 1.05rem !important;
+    font-weight: 500 !important;
+    color: #1E293B !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Primary & Secondary Pill Buttons */
+  .cf-btn-primary {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    color: #FFFFFF !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 12px 28px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    transition: all 0.25s ease !important;
+  }
+  .cf-btn-primary:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%) !important;
+    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.5) !important;
+    transform: translateY(-2px) !important;
+    color: #FFFFFF !important;
+  }
+
+  .cf-btn-secondary {
+    background: #FFFFFF !important;
+    color: #0B2545 !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 12px 28px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 4px 14px rgba(11, 37, 69, 0.08) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    border: 1.5px solid #E2E8F0 !important;
+    transition: all 0.25s ease !important;
+  }
+  .cf-btn-secondary:hover {
+    border-color: #0284C7 !important;
+    color: #0284C7 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.18) !important;
+  }
+
+  /* Treatment Filter Tabs */
+  .tt-tab {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    border: 1.5px solid #E2E8F0 !important;
+    background: #FFFFFF !important;
+    border-radius: 50px !important;
+    padding: 10px 22px !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    color: #475569 !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+  }
+  .tt-tab:hover,
+  .tt-tab.active {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+    border-color: #0284C7 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 8px 22px rgba(2, 132, 199, 0.35) !important;
+    transform: translateY(-2px) !important;
+  }
+
   /* Page-specific overrides for Before / After Cards */
   .ba-card {
     background: #FFFFFF !important;
@@ -176,7 +333,7 @@
             class="text-white text-decoration-none opacity-75">Home</a></li>
         <li class="breadcrumb-item"><a href="{% url 'main:clinic_gallery' %}"
             class="text-white text-decoration-none opacity-75">{% trans "Gallery" %}</a></li>
-        <li class="breadcrumb-item active text-warning">{% trans "Smile Transformations" %}</li>
+        <li class="breadcrumb-item active text-info fw-bold">{% trans "Smile Transformations" %}</li>
       </ol>
     </nav>
     <h1>{% trans "Smile Transformations" %}</h1>
@@ -190,45 +347,57 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="row align-items-center g-5">
-      <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Before & After" %}</div>
-        <h2 class="section-heading mb-4">{% trans "Every Smile Has a" %} <span class="accent">{% trans "Story Worth Telling" %}</span></h2>
-        <p class="text-muted mb-3" style="line-height:1.85;">{% blocktrans %}Our gallery of smile transformations showcases the real results achieved for real patients. From subtle
-          whitening to complete smile makeovers, each case reflects our commitment to precision, artistry, and
-          personalized care.{% endblocktrans %}</p>
-        <p class="text-muted mb-4" style="line-height:1.85;">{% blocktrans %}Browse by treatment category and see how our specialists have helped patients across Kathmandu rediscover
-          their confidence, one smile at a time.{% endblocktrans %}</p>
-        <div class="d-flex gap-3 flex-wrap">
-          <a href="#" class="btn-nd-gold btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Start Your Journey" %}</a>
-          <a href="{% url 'main:why_choose' %}" class="btn-nd-green btn"><i class="bi bi-info-circle me-2"></i>{% blocktrans %}Why
-            Choose Us{% endblocktrans %}</a>
+      <!-- Text Left -->
+      <div class="col-lg-7">
+        <div class="nd-eyebrow mb-3">
+          <i class="bi bi-stars"></i>
+          {% trans "BEFORE & AFTER GALLERY" %}
+        </div>
+        <h2 class="section-heading mb-4">
+          {% trans "Every Smile Has a" %} <span class="accent">{% trans "Story Worth Telling" %}</span>
+        </h2>
+        <p class="cf-body-text mb-3">
+          {% blocktrans %}Our gallery of smile transformations showcases the real results achieved for real patients. From subtle whitening to complete smile makeovers, each case reflects our commitment to precision, artistry, and personalized care.{% endblocktrans %}
+        </p>
+        <p class="cf-body-text mb-4">
+          {% blocktrans %}Browse by treatment category and see how our specialists have helped patients across Kathmandu rediscover their confidence, one smile at a time.{% endblocktrans %}
+        </p>
+        <div class="d-flex gap-3 flex-wrap pt-1">
+          <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary">
+            <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Start Your Smile Journey" %}
+          </a>
+          <a href="{% url 'main:why_choose' %}" class="cf-btn-secondary">
+            <i class="bi bi-shield-check me-1"></i> {% blocktrans %}Why Choose CareFirst{% endblocktrans %}
+          </a>
         </div>
       </div>
-      <div class="col-lg-6">
-        <!-- COMPARISON SLIDER -->
-        <div class="compare-slider-wrap" id="compareSlider">
-          <div class="compare-before">
-            <img loading="lazy" src="{% static 'images/after_smile.png' %}"
-              alt="After smile" >
-            <span class="compare-after-label">{% trans "After" %}</span>
+
+      <!-- Hero Comparison Slider Right (Reduced Width) -->
+      <div class="col-lg-5">
+        <div class="position-relative mx-auto" style="max-width: 440px;">
+          <!-- COMPARISON SLIDER -->
+          <div class="compare-slider-wrap" id="compareSlider">
+            <div class="compare-before">
+              <img loading="lazy" src="{% static 'images/after_smile.png' %}" alt="After smile">
+              <span class="compare-after-label">{% trans "After" %}</span>
+            </div>
+            <div class="compare-after" id="compareAfter">
+              <img loading="lazy" src="{% static 'images/before_smile.png' %}" alt="Before smile">
+              <span class="compare-before-label">{% trans "Before" %}</span>
+            </div>
+            <div class="compare-handle" id="compareHandle">
+              <div class="compare-handle-btn"><i class="bi bi-arrows-expand-horizontal"></i></div>
+            </div>
           </div>
-          <div class="compare-after" id="compareAfter">
-            <img loading="lazy" src="{% static 'images/before_smile.png' %}"
-              alt="Before smile">
-            <span class="compare-before-label">{% trans "Before" %}</span>
-          </div>
-          <div class="compare-handle" id="compareHandle">
-            <div class="compare-handle-btn"><i class="bi bi-arrows-expand-horizontal"></i></div>
-          </div>
+          <p class="text-center text-muted mt-3 fw-bold small"><i class="bi bi-cursor-fill me-1 text-primary"></i>{% trans "Drag the slider to compare" %}</p>
         </div>
-        <p class="text-center text-muted mt-3 small"><i class="bi bi-cursor-fill me-1"></i>{% trans "Drag the slider to compare" %}</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TREATMENT CATEGORY TABS + BEFORE/AFTER CARDS -->
-<section class="section-py" style="background:var(--cf-bg-light);">
+<section class="section-py" style="background:var(--cf-bg-light, #F8FAFC);">
   <div class="container">
         {% include 'gallery/components/smile_grid.html' %}
   </div>
@@ -241,13 +410,16 @@
 <!-- CTA -->
 <div class="nd-cta-strip">
   <div class="cta-inner container">
-    <h2>{% trans "Ready to Start Your Smile Journey?" %}</h2>
-    <p>{% trans "Book a free smile consultation and discover what Carefirst Dental Clinic can do for your confidence." %}</p>
+    <h2 class="fw-bold mb-3">{% trans "Ready to Start Your Smile Journey?" %}</h2>
+    <p class="fs-5 text-white-50 mb-4">{% trans "Book a free smile consultation and discover what CareFirst Dental Clinic can do for your confidence." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Free Consultation" %}</a>
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Free Consultation" %}
+      </a>
       <a href="{% url 'main:clinic_gallery' %}"
-        class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-images"></i>{% trans "View Clinic Gallery" %}</a>
+        class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-images"></i>{% trans "View Clinic Gallery" %}
+      </a>
     </div>
   </div>
 </div>

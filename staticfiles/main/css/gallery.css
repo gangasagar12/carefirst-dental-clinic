@@ -3,23 +3,24 @@
    Depends on: variables.css, base.css, utilities.css
    ========================================================= */
 
-/* ── Hero Banner (reuses about-hero pattern) ─────────────── */
+/* ── Hero Banner ─────────────── */
 .gallery-hero {
   position: relative;
-  min-height: 750px;
+  min-height: 380px;
   display: flex;
-  align-items: flex-end;
-  background: linear-gradient(135deg, var(--cf-primary-dark) 0%, var(--cf-primary) 100%);
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(8, 28, 51, 0.88) 0%, rgba(11, 37, 69, 0.84) 60%, rgba(3, 105, 161, 0.78) 100%), url('/static/main/img/hero_bg.jpeg') center/cover no-repeat;
   overflow: hidden;
-  padding-bottom: 120px;
+  padding: 85px 0 65px;
 }
 
 .gallery-hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/static/images/hero_bg.png') center/cover no-repeat;
-  opacity: 0.12;
+  background: radial-gradient(circle at 80% 20%, rgba(2, 132, 199, 0.25) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .gallery-hero .hero-inner {
@@ -29,18 +30,22 @@
 }
 
 .gallery-hero h1 {
-  font-family: var(--cf-font-head);
-  font-size: clamp(1.9rem, 4vw, 2.8rem);
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 10px;
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
 }
 
 .gallery-hero .hero-sub {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 1.05rem;
-  max-width: 560px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  max-width: 580px;
   margin: 0 auto;
+  line-height: 1.7;
 }
 
 .gallery-hero .breadcrumb-item+.breadcrumb-item::before {
@@ -49,7 +54,7 @@
 
 /* ── Section Utilities ───────────────────────────────────── */
 .section-py {
-  padding: 80px 0;
+  padding: 85px 0;
 }
 
 .section-py-sm {
@@ -59,61 +64,65 @@
 .nd-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--cf-font-nav);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 2.5px;
+  gap: 8px;
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284C7;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.825rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--cf-accent-dark);
   margin-bottom: 14px;
-}
-
-.nd-eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 28px;
-  height: 2px;
-  background: var(--cf-accent);
-  border-radius: 2px;
+  border: 1px solid rgba(2, 132, 199, 0.25);
 }
 
 .section-heading {
-  font-family: var(--cf-font-head);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 700;
-  color: var(--cf-text-dark);
+  font-family: var(--cf-font-head, 'Outfit', sans-serif);
+  font-size: clamp(2rem, 3.2vw, 2.65rem);
+  font-weight: 800;
+  color: #0B2545;
   line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 
 .section-heading .accent {
-  background: linear-gradient(90deg, var(--cf-primary) 0%, var(--cf-accent-dark) 100%);
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
+  display: inline-block;
+}
+
+.cf-body-text {
+  font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #1E293B;
+  line-height: 1.8;
 }
 
 /* ── Filter Buttons ──────────────────────────────────────── */
-
 .gf-btn {
-  border: 1.5px solid rgba(14, 90, 79, 0.2);
-  background: #fff;
-  color: var(--cf-text-mute);
+  border: 1.5px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #475569;
   border-radius: 50px;
-  padding: 8px 22px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 9px 22px;
+  font-size: 0.875rem;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.25s ease;
-  font-family: var(--cf-font-nav);
+  font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
 }
 
 .gf-btn:hover,
 .gf-btn.active {
-  background: var(--cf-primary);
-  border-color: var(--cf-primary);
-  color: #fff;
-  box-shadow: 0 6px 18px rgba(14, 90, 79, 0.25);
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  border-color: #0284C7;
+  color: #FFFFFF;
+  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.35);
+  transform: translateY(-2px);
 }
 
 /* ── Masonry / Grid Gallery ──────────────────────────────── */
@@ -310,12 +319,14 @@
 /* ── Comparison Slider ───────────────────────────────────── */
 .compare-slider-wrap {
   position: relative;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   user-select: none;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
-  aspect-ratio: 16/9;
-  max-width: 100%;
+  box-shadow: 0 16px 40px rgba(11, 37, 69, 0.16);
+  border: 2px solid #E2E8F0;
+  aspect-ratio: 4/3;
+  max-width: 440px;
+  margin: 0 auto;
 }
 
 .compare-before,
@@ -345,10 +356,11 @@
   bottom: 0;
   left: 50%;
   width: 3px;
-  background: #fff;
+  background: #FFFFFF;
   cursor: ew-resize;
   z-index: 10;
   transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .compare-handle-btn {
@@ -358,40 +370,53 @@
   transform: translate(-50%, -50%);
   width: 44px;
   height: 44px;
-  background: #fff;
+  background: #FFFFFF;
+  border: 2px solid #0284C7;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  color: var(--cf-primary);
+  box-shadow: 0 4px 16px rgba(11, 37, 69, 0.25);
+  color: #0284C7;
   font-size: 1rem;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.compare-slider-wrap:hover .compare-handle-btn {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: #0284C7;
+  color: #FFFFFF;
 }
 
 .compare-before-label,
 .compare-after-label {
   position: absolute;
   bottom: 16px;
+  font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 5px 14px;
-  border-radius: 6px;
+  border-radius: 50px;
   pointer-events: none;
   z-index: 5;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .compare-before-label {
   left: 16px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  background: rgba(11, 37, 69, 0.85);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .compare-after-label {
   right: 16px;
-  background: var(--cf-primary);
-  color: #fff;
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* ── Treatment Category Tabs ─────────────────────────────── */
@@ -407,16 +432,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1.5px solid rgba(14, 90, 79, 0.18);
-  background: #fff;
+  border: 1.5px solid #E2E8F0;
+  background: #FFFFFF;
   border-radius: 50px;
   padding: 9px 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--cf-text-mute);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #475569;
   cursor: pointer;
   transition: all 0.25s ease;
-  font-family: var(--cf-font-nav);
+  font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
 }
 
 .tt-tab i {
@@ -425,10 +450,11 @@
 
 .tt-tab:hover,
 .tt-tab.active {
-  background: var(--cf-primary);
-  border-color: var(--cf-primary);
-  color: #fff;
-  box-shadow: 0 6px 18px rgba(14, 90, 79, 0.25);
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  border-color: #0284C7;
+  color: #FFFFFF;
+  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.35);
+  transform: translateY(-2px);
 }
 
 /* ── Testimonial Cards ───────────────────────────────────── */

@@ -46,12 +46,15 @@
 <!-- CTA -->
 <div class="nd-cta-strip">
   <div class="cta-inner container">
-    <h2>{% trans "Impressed by Our Clinic?" %}</h2>
-    <p>{% trans "Visit us in person and experience the Carefirst Dental Clinic difference. Book your appointment today." %}</p>
+    <h2 class="fw-bold mb-3">{% trans "Impressed by Our Clinic?" %}</h2>
+    <p class="fs-5 text-white-50 mb-4">{% trans "Visit us in person and experience the CareFirst Dental Clinic difference. Book your appointment today." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
-      <a href="{% url 'main:smile_transformations' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-stars"></i>{% trans "View Smile Transformations" %}</a>
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Appointment" %}
+      </a>
+      <a href="{% url 'main:smile_transformations' %}" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-stars"></i>{% trans "View Smile Transformations" %}
+      </a>
     </div>
   </div>
 </div>
