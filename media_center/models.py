@@ -145,7 +145,11 @@ class Video(models.Model):
     def get_thumbnail(self):
         if self.thumbnail:
             return self.thumbnail.url
-        return self.thumbnail_url
+        if self.thumbnail_url:
+            return self.thumbnail_url
+        if self.platform == 'youtube' and self.video_id:
+            return f"https://img.youtube.com/vi/{self.video_id}/hqdefault.jpg"
+        return ""
 
     def __str__(self):
         return self.title
