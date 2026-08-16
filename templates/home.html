@@ -983,15 +983,16 @@
                 <label class="form-label small fw-bold text-secondary mb-1">{% trans "Date *" %}</label>
                 <input type="date" name="preferred_date" class="form-control rounded-3 py-2" required>
               </div>
+              {% load form_tags %}
+              {% get_active_services as active_services %}
               <div class="col-6">
                 <label class="form-label small fw-bold text-secondary mb-1">{% trans "Treatment" %}</label>
-                <select name="treatment" class="form-select rounded-3 py-2" required>
+                <select name="treatment" class="form-select rounded-3 py-2">
                   <option value="" selected>{% trans "General Checkup" %}</option>
-                  <option value="implants">{% trans "Dental Implants" %}</option>
-                  <option value="rct">{% trans "Root Canal (RCT)" %}</option>
-                  <option value="braces">{% trans "Braces / Aligners" %}</option>
-                  <option value="whitening">{% trans "Teeth Cleaning & Whitening" %}</option>
-                  <option value="other">{% trans "Other Treatment" %}</option>
+                  {% for s in active_services %}
+                  <option value="{{ s.slug }}">{{ s.title }}</option>
+                  {% endfor %}
+                  <option value="other">{% trans "Other Concern" %}</option>
                 </select>
               </div>
             </div>
@@ -1759,12 +1760,11 @@
             </div>
             <div class="col-md-6">
               <label class="form-label fw-bold text-secondary small">{% trans "Preferred Treatment" %}</label>
-              <select name="treatment" class="form-select bg-light py-2" required>
+              <select name="treatment" class="form-select bg-light py-2">
                 <option value="" selected>{% trans "General Dental Checkup" %}</option>
-                <option value="implants">{% trans "Dental Implants" %}</option>
-                <option value="rct">{% trans "Root Canal (RCT)" %}</option>
-                <option value="braces">{% trans "Braces / Aligners" %}</option>
-                <option value="whitening">{% trans "Scaling / Teeth Whitening" %}</option>
+                {% for s in active_services %}
+                <option value="{{ s.slug }}">{{ s.title }}</option>
+                {% endfor %}
                 <option value="other">{% trans "Other / Emergency" %}</option>
               </select>
             </div>

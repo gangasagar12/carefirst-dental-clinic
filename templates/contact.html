@@ -410,17 +410,15 @@
                     <option value="evening">{% trans "Evening (4:00 PM - 7:30 PM)" %}</option>
                   </select>
                 </div>
+                {% get_active_services as active_services %}
                 <div class="col-md-6">
                   <label class="form-label">{% trans "Select Treatment" %}</label>
                   <select name="treatment" class="form-select">
                     <option value="">{% trans "General Check-up & Consultation" %}</option>
-                    <option value="cleaning">{% trans "Scaling & Polishing (Cleaning)" %}</option>
-                    <option value="filling">{% trans "Composite Dental Filling" %}</option>
-                    <option value="rct">{% trans "Root Canal Treatment (RCT)" %}</option>
-                    <option value="extraction">{% trans "Tooth Extraction / Wisdom Tooth" %}</option>
-                    <option value="implants">{% trans "Dental Implants" %}</option>
-                    <option value="braces">{% trans "Braces / Clear Aligners" %}</option>
-                    <option value="other">{% trans "Other / Smile Consultation" %}</option>
+                    {% for s in active_services %}
+                    <option value="{{ s.slug }}" {% if request.GET.treatment == s.slug %}selected{% endif %}>{{ s.title }}</option>
+                    {% endfor %}
+                    <option value="other" {% if request.GET.treatment == 'other' %}selected{% endif %}>{% trans "Other / Smile Consultation" %}</option>
                   </select>
                 </div>
                 

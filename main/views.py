@@ -63,7 +63,8 @@ def home(request):
                 from main.services.email import queue_email_confirmation
                 queue_whatsapp_confirmation(instance.full_name, instance.phone, 'appointment', instance.id)
                 queue_email_confirmation(instance.full_name, instance.email, 'appointment', instance.id)
-                messages.success(request, 'Thank you! Your request has been received. We will contact you soon.')
+                from django.urls import reverse
+                return redirect('appointments:confirmation', appointment_number=instance.appointment_number)
             else:
                 messages.error(request, 'There was an error in your appointment request. Please check the fields and try again.')
             return redirect('main:home')
@@ -244,8 +245,8 @@ def contact(request):
                 from main.services.email import queue_email_confirmation
                 queue_whatsapp_confirmation(instance.full_name, instance.phone, 'appointment', instance.id)
                 queue_email_confirmation(instance.full_name, instance.email, 'appointment', instance.id)
-                messages.success(request, 'Thank you! Your request has been received. We will contact you soon.')
-                return redirect('main:contact')
+                from django.urls import reverse
+                return redirect('appointments:confirmation', appointment_number=instance.appointment_number)
             else:
                 messages.error(request, 'There was an error in your appointment request. Please check the fields and try again.')
         elif form_type == 'contact':

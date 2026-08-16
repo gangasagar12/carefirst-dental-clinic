@@ -10,3 +10,8 @@ def get_active_doctors():
 @register.simple_tag
 def get_active_branches():
     return Branch.objects.all().order_by('order')
+
+@register.simple_tag
+def get_active_services():
+    from main.models import Service
+    return Service.objects.filter(is_active=True).order_by('order', 'title')

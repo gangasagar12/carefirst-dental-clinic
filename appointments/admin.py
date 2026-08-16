@@ -1,12 +1,9 @@
 from django.contrib import admin
-from django.urls import path
-from django.shortcuts import redirect
 from django.utils.html import format_html
 from django.utils import timezone
 from unfold.admin import ModelAdmin
 from unfold.decorators import action
-from .models import Appointment, AppointmentFunnelEvent, InquiriesDashboard, WhatsAppNotification, EmailNotification
-from .admin_views import inquiries_dashboard
+from .models import Appointment
 
 @admin.register(Appointment)
 class AppointmentAdmin(ModelAdmin):
@@ -26,23 +23,44 @@ class AppointmentAdmin(ModelAdmin):
     readonly_fields = ('appointment_number', 'created_at', 'updated_at', 'confirmed_at', 'completed_at')
     
     fieldsets = (
-        ("Request Identification", {
-            "fields": ("appointment_number", "status", "appointment_type", "created_at", "updated_at")
+        ("1. Request Reference & Status", {
+            "fields": (
+                ("appointment_number", "status"),
+                ("appointment_type", "created_at"),
+            )
         }),
-        ("Patient Contact", {
-            "fields": ("full_name", "phone", "email", "message")
+        ("2. Patient Contact Details", {
+            "fields": (
+                ("full_name", "phone"),
+                ("email",),
+                ("message",)
+            )
         }),
-        ("Clinical Requirements", {
-            "fields": ("service", "treatment", "doctor", "pricing_option", "quantity", "estimated_amount")
+        ("3. Clinical Requirements & Treatment", {
+            "fields": (
+                ("service", "treatment"),
+                ("doctor", "branch"),
+                ("pricing_option", "quantity", "estimated_amount"),
+            )
         }),
-        ("Scheduling & Rescheduling", {
-            "fields": ("preferred_date", "preferred_time", "original_date", "original_time", "reschedule_reason", "confirmed_at", "completed_at")
+        ("4. Preferred Schedule & Rescheduling", {
+            "fields": (
+                ("preferred_date", "preferred_time"),
+                ("original_date", "original_time"),
+                ("reschedule_reason",),
+                ("confirmed_at", "completed_at"),
+            )
         }),
-        ("Marketing Attribution & Funnel", {
-            "fields": ("utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "landing_page", "referrer", "chat_used", "estimator_used"),
+        ("5. Marketing Attribution & Origin", {
+            "fields": (
+                ("utm_source", "utm_medium", "utm_campaign"),
+                ("utm_content", "utm_term"),
+                ("landing_page", "referrer"),
+                ("chat_used", "estimator_used"),
+            ),
             "classes": ("collapse",)
         }),
-        ("Staff Internal Management", {
+        ("6. Staff Internal Notes", {
             "fields": ("internal_note",)
         }),
     )
@@ -50,7 +68,7 @@ class AppointmentAdmin(ModelAdmin):
     actions = ['confirm_appointments', 'mark_completed', 'mark_no_show', 'cancel_appointments']
 
     def appointment_number_badge(self, obj):
-        return format_html('<span style="font-family:monospace; font-weight:bold; color:#0284C7;">{}</span>', obj.appointment_number or f"#{obj.id}")
+        return format_html('<span style="font-family:monospace; font-weight:bold; color:#0284C7; font-size:1.05em;">{}</span>', obj.appointment_number or f"#{obj.id}")
     appointment_number_badge.short_description = "Request ID"
 
     def treatment_badge(self, obj):
@@ -73,7 +91,7 @@ class AppointmentAdmin(ModelAdmin):
             'no_show': '#64748B',
         }
         color = colors.get(obj.status, '#64748B')
-        return format_html('<span style="background:{}; color:#FFF; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:bold;">{}</span>', color, obj.get_status_display())
+        return format_html('<span style="background:{}; color:#FFF; padding:4px 10px; border-radius:12px; font-size:11px; font-weight:bold;">{}</span>', color, obj.get_status_display())
     status_badge.short_description = "Status"
 
     def source_badge(self, obj):
@@ -105,55 +123,3 @@ class AppointmentAdmin(ModelAdmin):
     def cancel_appointments(self, request, queryset):
         queryset.update(status='cancelled')
         self.message_user(request, f"{queryset.count()} appointment(s) cancelled.")
-
-
-@admin.register(AppointmentFunnelEvent)
-class AppointmentFunnelEventAdmin(ModelAdmin):
-    list_display = ('event_type_badge', 'treatment_slug', 'source', 'session_id_short', 'created_at')
-    list_filter = ('event_type', 'treatment_slug', 'source', 'created_at')
-    search_fields = ('session_id', 'treatment_slug', 'source')
-    readonly_fields = ('session_id', 'appointment', 'event_type', 'treatment_slug', 'source', 'metadata', 'created_at')
-
-    def session_id_short(self, obj):
-        return obj.session_id[:12] if obj.session_id else '-'
-    session_id_short.short_description = "Session"
-
-    def event_type_badge(self, obj):
-        colors = {
-            'STARTED': '#0284C7',
-            'TREATMENT_SELECTED': '#0EA5E9',
-            'TYPE_SELECTED': '#38BDF8',
-            'DATE_SELECTED': '#818CF8',
-            'DETAILS_STARTED': '#F59E0B',
-            'REVIEW_VIEWED': '#F97316',
-            'SUBMITTED': '#10B981',
-            'ABANDONED': '#EF4444',
-            'CONFIRMED': '#059669',
-        }
-        color = colors.get(obj.event_type, '#64748B')
-        return format_html('<span style="background:{}; color:#FFF; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:bold;">{}</span>', color, obj.get_event_type_display())
-    event_type_badge.short_description = "Event"
-
-
-@admin.register(WhatsAppNotification)
-class WhatsAppNotificationAdmin(ModelAdmin):
-    list_display = ('patient_name', 'phone_number', 'inquiry_type', 'status', 'created_at')
-    list_filter = ('status', 'inquiry_type', 'created_at')
-    search_fields = ('patient_name', 'phone_number')
-
-
-@admin.register(EmailNotification)
-class EmailNotificationAdmin(ModelAdmin):
-    list_display = ('patient_name', 'email_address', 'subject', 'status', 'created_at')
-    list_filter = ('status', 'created_at')
-    search_fields = ('patient_name', 'email_address', 'subject')
-
-
-@admin.register(InquiriesDashboard)
-class InquiriesDashboardAdmin(ModelAdmin):
-    def get_urls(self):
-        urls = super().get_urls()
-        custom_urls = [
-            path('', self.admin_site.admin_view(inquiries_dashboard), name='appointments_inquiriesdashboard_changelist'),
-        ]
-        return custom_urls + urls
