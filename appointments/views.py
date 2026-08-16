@@ -80,12 +80,14 @@ def appointment_funnel_view(request):
     return render(request, 'appointments/book.html', context)
 
 
-@require_POST
 def submit_appointment_ajax(request):
     """
     Secure AJAX endpoint to validate & create appointment request.
     Handles anti-duplicate locks, UTM persistence, and instant confirmation receipt generation.
     """
+    if request.method != 'POST':
+        return redirect('appointments:book')
+
     try:
         data = json.loads(request.body.decode('utf-8'))
     except Exception:

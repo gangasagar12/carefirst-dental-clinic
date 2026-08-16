@@ -102,10 +102,16 @@
     }
   }
 
+  // Helper: Get localized API URL
+  function getApiUrl(endpoint) {
+    const lang = window.location.pathname.startsWith('/ne/') ? '/ne' : (window.location.pathname.startsWith('/en/') ? '/en' : '');
+    return `${lang}${endpoint.startsWith('/') ? endpoint : '/' + endpoint}`;
+  }
+
   // Send Event to Analytics API
   function trackEvent(eventType, metadata = {}) {
     try {
-      fetch('/appointment/track-event/', {
+      fetch(getApiUrl('/appointment/track-event/'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -310,7 +316,7 @@
     }
 
     try {
-      const response = await fetch('/appointment/submit/', {
+      const response = await fetch(getApiUrl('/appointment/submit/'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
