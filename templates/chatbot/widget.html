@@ -1,0 +1,64 @@
+{% load static i18n %}
+
+<!-- Floating Ask CareFirst Trigger Button -->
+<div class="cf-chat-launcher" id="cfChatLauncher" role="button" aria-label="Open CareFirst Dental Assistant">
+  <div class="cf-chat-launcher-badge">
+    <i class="bi bi-chat-heart-fill"></i>
+  </div>
+  <span>{% trans "Ask CareFirst" %}</span>
+</div>
+
+<!-- Chatbot Window Panel -->
+<div class="cf-chat-panel" id="cfChatPanel" aria-hidden="true">
+  
+  <!-- Header -->
+  <div class="cf-chat-header">
+    <div class="cf-chat-header-brand">
+      <div class="cf-chat-avatar">
+        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="CareFirst Logo">
+      </div>
+      <div>
+        <h3 class="cf-chat-header-title">Care<span style="color:#38BDF8;">First</span> Assistant</h3>
+        <div class="cf-chat-header-subtitle">
+          <span class="cf-chat-status-dot"></span>
+          <span>{% trans "Online • Verified Care Guidance" %}</span>
+        </div>
+      </div>
+    </div>
+    <div class="cf-chat-header-actions">
+      <button class="cf-chat-header-btn" id="cfChatClose" aria-label="Close Assistant">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Messages Body -->
+  <div class="cf-chat-body" id="cfChatBody">
+    <!-- Messages & interactive cards dynamically appended via chatbot.js -->
+  </div>
+
+  <!-- Typing Indicator -->
+  <div class="px-3 pb-2 bg-light" id="cfChatTyping" style="display: none;">
+    <div class="cf-chat-typing">
+      <div class="cf-chat-dot"></div>
+      <div class="cf-chat-dot"></div>
+      <div class="cf-chat-dot"></div>
+    </div>
+  </div>
+
+  <!-- Quick Action Chips -->
+  <div class="cf-chat-quick-actions" id="cfChatQuickActions" style="display: none;">
+    <!-- Action buttons populated dynamically -->
+  </div>
+
+  <!-- Footer Input Bar -->
+  <div class="cf-chat-footer">
+    <div class="cf-chat-input-wrap">
+      <input type="text" id="cfChatInput" class="cf-chat-input" placeholder="{% trans 'Ask about treatments, price, appointments...' %}" maxlength="2000" autocomplete="off">
+      <button class="cf-chat-send-btn" id="cfChatSend" aria-label="Send Message">
+        <i class="bi bi-send-fill"></i>
+      </button>
+    </div>
+  </div>
+
+</div>
