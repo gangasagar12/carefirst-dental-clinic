@@ -411,10 +411,210 @@
   .fab-call { background: #0284C7; }
   .fab-up { background: #081C33; width: 44px; height: 44px; font-size: 1.1rem; align-self: flex-end; }
 
+  /* ── Continuous Services Flow (Right to Left Marquee) ── */
+  .cf-services-marquee-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 15px 0 25px;
+  }
+  .cf-services-marquee-wrapper::before,
+  .cf-services-marquee-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .cf-services-marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #F8FAFC 0%, transparent 100%);
+  }
+  .cf-services-marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #F8FAFC 0%, transparent 100%);
+  }
+  .cf-services-track {
+    display: flex;
+    gap: 26px;
+    width: max-content;
+    animation: marqueeServices 50s linear infinite;
+  }
+  .cf-services-marquee-wrapper:hover .cf-services-track {
+    animation-play-state: paused;
+  }
+  @keyframes marqueeServices {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Redesigned Service Flow Card */
+  .cf-service-flow-card {
+    width: 370px;
+    background: #FFFFFF;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1.5px solid #E2E8F0;
+    box-shadow: 0 10px 30px rgba(8, 28, 51, 0.05);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .cf-service-flow-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(2, 132, 199, 0.16);
+    border-color: #0284C7;
+  }
+  .cf-sfc-thumb-wrap {
+    position: relative;
+    width: 100%;
+    height: 195px;
+    background: #081C33;
+    overflow: hidden;
+  }
+  .cf-sfc-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+  .cf-service-flow-card:hover .cf-sfc-thumb {
+    transform: scale(1.06);
+  }
+  .cf-sfc-cat-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(8, 28, 51, 0.85);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    border-radius: 50px;
+    padding: 4px 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+  }
+  .cf-sfc-price-pill {
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+    background: #0284C7;
+    color: #FFFFFF;
+    border-radius: 50px;
+    padding: 4px 14px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 2;
+  }
+  .cf-sfc-body {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: #FFFFFF;
+  }
+  .cf-sfc-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #081C33;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+  .cf-sfc-desc {
+    font-size: 0.86rem;
+    color: #64748B;
+    line-height: 1.55;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .cf-sfc-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .cf-sfc-features li {
+    font-size: 0.82rem;
+    color: #334155;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cf-sfc-features li i {
+    color: #0284C7;
+    font-size: 0.95rem;
+  }
+  .cf-sfc-actions {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #F1F5F9;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .cf-sfc-btn-book {
+    flex: 1;
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF !important;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 14px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none !important;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .cf-sfc-btn-book:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.45);
+  }
+  .cf-sfc-btn-detail {
+    background: #F8FAFC;
+    color: #081C33 !important;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 50px;
+    padding: 9px 16px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .cf-sfc-btn-detail:hover {
+    background: #F1F5F9;
+    border-color: #CBD5E1;
+    color: #0284C7 !important;
+  }
+
   @media (max-width: 991px) {
     .cf-stat-box { flex: 1 1 45%; margin-bottom: 12px; border-right: none !important; }
     .cf-hero-wrapper { padding: 110px 0 70px; min-height: auto; }
     .cf-intro-director-card { position: static; margin-top: 20px; max-width: 100%; }
+    .cf-service-flow-card { width: 320px; }
   }
 </style>
 {% endblock %}
@@ -721,7 +921,7 @@
   </div>
 </section>
 
-<!-- 4. CORE SERVICES & PROCEDURES -->
+<!-- 4. CORE SERVICES & CONTINUOUS PROCEDURES FLOW -->
 <section class="section-py" style="background: #F8FAFC;" id="services">
   <div class="container">
     <div class="text-center mb-5">
@@ -732,27 +932,118 @@
         {% trans "Comprehensive" %} <span class="accent">{% trans "Dental Treatments" %}</span>
       </h2>
       <p class="cf-section-subtitle">
-        {% trans "Precision restorative, cosmetic, surgical, and preventive dental solutions tailored for you and your family." %}
+        {% trans "Precision restorative, cosmetic, surgical, and preventive dental solutions tailored for you and your family. Hover to pause and explore." %}
       </p>
     </div>
+  </div>
 
-    <div class="row g-4">
+  <!-- Continuous Flow Marquee Track (Right to Left) -->
+  <div class="cf-services-marquee-wrapper">
+    <div class="cf-services-track">
+      <!-- Set 1: All Services -->
       {% for service in services %}
-      <div class="col-md-6 col-lg-4">
-        {% include 'components/service_card.html' with service=service %}
+      <div class="cf-service-flow-card">
+        <div class="cf-sfc-thumb-wrap">
+          <span class="cf-sfc-cat-badge">
+            {{ service.category_label|default:service.get_category_display }}
+          </span>
+          {% if service.starting_price %}
+          <span class="cf-sfc-price-pill">
+            <i class="bi bi-tag-fill me-1"></i>NPR {{ service.starting_price }}
+          </span>
+          {% else %}
+          <span class="cf-sfc-price-pill">
+            {% trans "Consultation" %}
+          </span>
+          {% endif %}
+          {% if service.image %}
+          <img src="{{ service.image.url }}" class="cf-sfc-thumb" alt="{{ service.title }}" loading="lazy" onerror="this.onerror=null; this.src='{% static 'images/services1.avif' %}';">
+          {% else %}
+          <img src="{% static 'images/services1.avif' %}" class="cf-sfc-thumb" alt="{{ service.title }}" loading="lazy">
+          {% endif %}
+        </div>
+
+        <div class="cf-sfc-body">
+          <h3 class="cf-sfc-title">{{ service.title }}</h3>
+          <p class="cf-sfc-desc">{{ service.short_description|default:"Advanced clinical treatment performed by certified dental specialists with pain-free protocols." }}</p>
+
+          <ul class="cf-sfc-features">
+            {% for feature in service.get_features_list|slice:":3" %}
+            <li><i class="bi bi-check-circle-fill"></i> <span>{{ feature }}</span></li>
+            {% empty %}
+            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Painless Anesthesia Protocol" %}</span></li>
+            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Class-B Sterile Equipment" %}</span></li>
+            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Digital Diagnosis & Planning" %}</span></li>
+            {% endfor %}
+          </ul>
+
+          <div class="cf-sfc-actions">
+            <a href="#appointment" class="cf-sfc-btn-book">
+              <i class="bi bi-calendar-check-fill"></i> {% trans "Book Slot" %}
+            </a>
+            <a href="{% url 'main:service_detail' service.slug %}" class="cf-sfc-btn-detail">
+              <span>{% trans "Details" %}</span> <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
       </div>
-      {% empty %}
-      <div class="col-12 text-center py-4">
-        <p class="text-muted">{% trans "Services directory is being updated." %}</p>
+      {% endfor %}
+
+      <!-- Set 2: Seamless Infinite Duplicate -->
+      {% for service in services %}
+      <div class="cf-service-flow-card">
+        <div class="cf-sfc-thumb-wrap">
+          <span class="cf-sfc-cat-badge">
+            {{ service.category_label|default:service.get_category_display }}
+          </span>
+          {% if service.starting_price %}
+          <span class="cf-sfc-price-pill">
+            <i class="bi bi-tag-fill me-1"></i>NPR {{ service.starting_price }}
+          </span>
+          {% else %}
+          <span class="cf-sfc-price-pill">
+            {% trans "Consultation" %}
+          </span>
+          {% endif %}
+          {% if service.image %}
+          <img src="{{ service.image.url }}" class="cf-sfc-thumb" alt="{{ service.title }}" loading="lazy" onerror="this.onerror=null; this.src='{% static 'images/services1.avif' %}';">
+          {% else %}
+          <img src="{% static 'images/services1.avif' %}" class="cf-sfc-thumb" alt="{{ service.title }}" loading="lazy">
+          {% endif %}
+        </div>
+
+        <div class="cf-sfc-body">
+          <h3 class="cf-sfc-title">{{ service.title }}</h3>
+          <p class="cf-sfc-desc">{{ service.short_description|default:"Advanced clinical treatment performed by certified dental specialists with pain-free protocols." }}</p>
+
+          <ul class="cf-sfc-features">
+            {% for feature in service.get_features_list|slice:":3" %}
+            <li><i class="bi bi-check-circle-fill"></i> <span>{{ feature }}</span></li>
+            {% empty %}
+            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Painless Anesthesia Protocol" %}</span></li>
+            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Class-B Sterile Equipment" %}</span></li>
+            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Digital Diagnosis & Planning" %}</span></li>
+            {% endfor %}
+          </ul>
+
+          <div class="cf-sfc-actions">
+            <a href="#appointment" class="cf-sfc-btn-book">
+              <i class="bi bi-calendar-check-fill"></i> {% trans "Book Slot" %}
+            </a>
+            <a href="{% url 'main:service_detail' service.slug %}" class="cf-sfc-btn-detail">
+              <span>{% trans "Details" %}</span> <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
       </div>
       {% endfor %}
     </div>
+  </div>
 
-    <div class="text-center mt-5">
-      <a href="{% url 'main:services_list' %}" class="cf-btn-primary px-5 py-3 shadow">
-        <i class="bi bi-collection-fill me-2"></i>{% trans "View All Treatments & Pricing" %}
-      </a>
-    </div>
+  <div class="container text-center mt-4">
+    <a href="{% url 'main:services_list' %}" class="cf-btn-primary px-5 py-3 shadow">
+      <i class="bi bi-collection-fill me-2"></i>{% trans "View All Treatments & Detailed Pricing" %}
+    </a>
   </div>
 </section>
 

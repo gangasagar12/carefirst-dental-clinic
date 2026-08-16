@@ -70,7 +70,7 @@ def home(request):
 
     doctors_qs = Doctor.objects.filter(is_active=True)[:4]
     latest_posts = Post.objects.filter(is_published=True).order_by('-published_date')[:3]
-    services = Service.objects.filter(is_active=True).order_by('order')[:6]
+    services = Service.objects.filter(is_active=True).order_by('order')
     from .models import PricingItem
     pricing_items = PricingItem.objects.all()[:5]
     from media_center.models import Video
