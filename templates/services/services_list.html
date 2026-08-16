@@ -468,7 +468,7 @@
             <li><i class="bi bi-check2-circle"></i> {% trans "Comprehensive Dental Examination" %}</li>
             <li><i class="bi bi-check2-circle"></i> {% trans "Composite Tooth Fillings" %}</li>
           </ul>
-          <a href="{% url 'main:contact' %}#appointment" class="recommend-btn">
+          <a href="{% url 'appointments:book' %}?treatment=scaling-and-polishing" class="recommend-btn">
             <span>{% trans "Book Checkup" %}</span> <i class="bi bi-arrow-right"></i>
           </a>
         </div>
@@ -489,7 +489,7 @@
             <li><i class="bi bi-check2-circle"></i> {% trans "Crowns & Bridges" %}</li>
             <li><i class="bi bi-check2-circle"></i> {% trans "Wisdom Tooth Extractions" %}</li>
           </ul>
-          <a href="{% url 'main:contact' %}#appointment" class="recommend-btn">
+          <a href="{% url 'appointments:book' %}?treatment=root-canal-treatment" class="recommend-btn">
             <span>{% trans "Relieve Tooth Pain" %}</span> <i class="bi bi-arrow-right"></i>
           </a>
         </div>
@@ -530,7 +530,7 @@
           </p>
         </div>
         <div class="col-lg-4 text-lg-end">
-          <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-3 fw-bold text-dark shadow">
+          <a href="{% url 'appointments:book' %}" class="btn btn-light btn-lg rounded-pill px-4 py-3 fw-bold text-dark shadow">
             <i class="bi bi-calendar2-check-fill text-primary me-2"></i>{% trans "Book Consultation" %}
           </a>
         </div>

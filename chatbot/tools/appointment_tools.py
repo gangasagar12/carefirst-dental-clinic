@@ -58,17 +58,28 @@ def validate_and_create_appointment(data: Dict[str, Any]) -> Dict[str, Any]:
     elif not treatment:
         treatment_code = ''
 
+    # Resolve Service FK
+    from main.models import Service
+    service_obj = None
+    if treatment:
+        service_obj = Service.objects.filter(slug=treatment).first() or Service.objects.filter(title__icontains=treatment).first()
+
     try:
-        appointment = Appointment.objects.create(
+        appointment = Appointment(
             full_name=full_name,
             phone=phone,
             email=email,
             preferred_date=preferred_date,
             preferred_time=preferred_time,
-            treatment=treatment_code,
+            service=service_obj,
+            treatment=service_obj.slug if service_obj else treatment_code,
+            appointment_type='consultation',
             message=f"[Booked via Ask CareFirst AI Assistant] {message}".strip(),
-            status='pending'
+            status='new',
+            chat_used=True,
+            source='chatbot' if hasattr(Appointment, 'source') else ''
         )
+        appointment.save()
 
         # Trigger WhatsApp and Email notification queues
         try:

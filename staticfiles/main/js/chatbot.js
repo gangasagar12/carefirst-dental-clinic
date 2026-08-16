@@ -317,6 +317,11 @@
           <input type="date" id="cfQuickDate" class="form-control form-control-sm" value="${new Date(Date.now() + 86400000).toISOString().split('T')[0]}">
         </div>
         <button class="btn btn-primary btn-sm w-100 fw-bold" onclick="window.careFirstChat.submitAppointmentForm('${defaultTreatment}')">Submit Appointment Request</button>
+        <div class="text-center mt-2">
+          <a href="/appointment/?treatment=${encodeURIComponent(defaultTreatment)}&source=chatbot" class="small text-decoration-none text-primary fw-bold" style="font-size:0.75rem;">
+            Open Full Interactive Booking Funnel →
+          </a>
+        </div>
       </div>
     `;
 

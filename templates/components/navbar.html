@@ -794,7 +794,7 @@
         </a>
       </div>
 
-      <a href="{% url 'main:contact' %}#appointment" class="cf-row2-btn">
+      <a href="{% url 'appointments:book' %}" class="cf-row2-btn">
         <i class="bi bi-calendar2-check-fill"></i>
         <span>{% trans "Book Appointment" %}</span>
       </a>
@@ -1058,7 +1058,7 @@
     
     <!-- Mobile Bottom CTA -->
     <div class="cf-mobile-footer">
-      <a href="{% url 'main:contact' %}#appointment" class="cf-mobile-cta-btn mb-2">
+      <a href="{% url 'appointments:book' %}" class="cf-mobile-cta-btn mb-2">
         <i class="bi bi-calendar2-check"></i> {% trans "Book Appointment" %}
       </a>
       <div class="d-flex gap-2">
