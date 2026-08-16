@@ -1679,20 +1679,32 @@
   </div>
 </section>
 
-<!-- 12. SMART APPOINTMENT BOOKING FUNNEL & CLINIC DESK -->
-<section class="section-py bg-light" id="appointment">
-  <div class="container">
-    <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center mb-2">
-        <i class="bi bi-calendar2-check-fill"></i> {% trans "ONLINE APPOINTMENT DESK" %}
-      </div>
-      <h2 class="cf-section-title">{% trans "Book Your Appointment at" %} <span class="text-primary" style="color: #0284C7 !important;">CareFirst</span></h2>
-      <p class="text-muted mx-auto" style="max-width: 620px;">
-        {% trans "Follow the quick interactive steps below to pick your treatment, select a comfortable time, and receive an instant confirmation receipt." %}
-      </p>
-    </div>
+<!-- 12. EXACT SAME SMART APPOINTMENT FUNNEL AS BOOK.HTML -->
+<div class="cf-funnel-page" id="appointment">
 
-    <!-- Smart Funnel Component -->
+  <!-- ── Hero Section ── -->
+  <section class="cf-funnel-hero text-center">
+    <div class="container">
+      <div class="cf-eyebrow-badge justify-content-center mb-2" style="background: rgba(255,255,255,0.15); color: #BAE6FD; border-color: rgba(255,255,255,0.25);">
+        <i class="bi bi-calendar2-check-fill text-warning"></i> {% trans "SMART APPOINTMENT SYSTEM" %}
+      </div>
+      <h2 class="text-white mb-2" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); font-weight: 800; font-size: 2.2rem;">{% trans "Schedule Your Smile Visit" %}</h2>
+      <p class="cf-funnel-hero-sub">
+        {% trans "Request a consultation with Dr. Subash Banjade and our NMC-certified specialist team in Shankhamul, Kathmandu." %}
+      </p>
+
+      <!-- Trust Badges -->
+      <div class="cf-trust-badge-row">
+        <span class="cf-trust-pill"><i class="bi bi-shield-check text-warning"></i> {% trans "NMC Verified Doctors" %}</span>
+        <span class="cf-trust-pill"><i class="bi bi-clock-history text-info"></i> {% trans "Open 7:30 AM - 7:30 PM" %}</span>
+        <span class="cf-trust-pill"><i class="bi bi-tag-fill text-success"></i> {% trans "Transparent Pricing" %}</span>
+        <span class="cf-trust-pill"><i class="bi bi-heart-pulse-fill text-danger"></i> {% trans "Painless Techniques" %}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Funnel Container ── -->
+  <div class="container">
     <div class="row justify-content-center mb-5">
       <div class="col-lg-10 col-xl-9">
         {% include 'components/smart_appointment_funnel.html' %}
@@ -1724,7 +1736,8 @@
       </div>
     </div>
   </div>
-</section>
+
+</div>
 
 <!-- 13. DYNAMIC LOCAL SEO FAQS -->
 <div class="container py-4">

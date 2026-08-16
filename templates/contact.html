@@ -356,40 +356,41 @@
   </div>
 </section>
 
-<!-- 3. SMART APPOINTMENT FUNNEL & MESSAGE SECTION -->
-<section class="section-py bg-white" id="book">
-  <div class="container">
-    {% if messages %}
-    <div class="row mb-4">
-      <div class="col-12">
-        {% for message in messages %}
-        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show rounded-3" role="alert">
-          {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        {% endfor %}
+<!-- 3. EXACT SAME SMART APPOINTMENT FUNNEL AS BOOK.HTML -->
+<div class="cf-funnel-page" id="book">
+
+  <!-- ── Hero Section ── -->
+  <section class="cf-funnel-hero text-center">
+    <div class="container">
+      <div class="cf-eyebrow-badge justify-content-center mb-2" style="background: rgba(255,255,255,0.15); color: #BAE6FD; border-color: rgba(255,255,255,0.25);">
+        <i class="bi bi-calendar2-check-fill text-warning"></i> {% trans "SMART APPOINTMENT SYSTEM" %}
+      </div>
+      <h2 class="text-white mb-2" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); font-weight: 800; font-size: 2.2rem;">{% trans "Schedule Your Smile Visit" %}</h2>
+      <p class="cf-funnel-hero-sub">
+        {% trans "Request a consultation with Dr. Subash Banjade and our NMC-certified specialist team in Shankhamul, Kathmandu." %}
+      </p>
+
+      <!-- Trust Badges -->
+      <div class="cf-trust-badge-row">
+        <span class="cf-trust-pill"><i class="bi bi-shield-check text-warning"></i> {% trans "NMC Verified Doctors" %}</span>
+        <span class="cf-trust-pill"><i class="bi bi-clock-history text-info"></i> {% trans "Open 7:30 AM - 7:30 PM" %}</span>
+        <span class="cf-trust-pill"><i class="bi bi-tag-fill text-success"></i> {% trans "Transparent Pricing" %}</span>
+        <span class="cf-trust-pill"><i class="bi bi-heart-pulse-fill text-danger"></i> {% trans "Painless Techniques" %}</span>
       </div>
     </div>
-    {% endif %}
+  </section>
 
-    <!-- Smart Appointment Funnel Card -->
-    <div class="row justify-content-center mb-5">
+  <!-- ── Funnel Container ── -->
+  <div class="container">
+    <div class="row justify-content-center">
       <div class="col-lg-10 col-xl-9">
-        <div class="text-center mb-4">
-          <div class="cf-eyebrow-badge justify-content-center mb-2">
-            <i class="bi bi-calendar2-check-fill"></i> {% trans "ONLINE APPOINTMENT DESK" %}
-          </div>
-          <h2 class="cf-section-title">{% trans "Schedule Your Smile Visit" %}</h2>
-          <p class="text-muted">{% trans "Select your dental service, preferred date, and contact details below." %}</p>
-        </div>
-
         {% include 'components/smart_appointment_funnel.html' %}
       </div>
     </div>
 
     <!-- Direct General Message Form -->
-    <div class="row justify-content-center pt-4 border-top">
-      <div class="col-lg-8">
+    <div class="row justify-content-center pt-5 mt-4">
+      <div class="col-lg-9">
         <div class="cf-form-card">
           <div class="cf-form-header-azure">
             <h3 class="mb-1 fw-bold text-white" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">
@@ -429,15 +430,9 @@
         </div>
       </div>
     </div>
-                <i class="bi bi-send-fill me-2 text-warning"></i>{% trans "Send Message" %}
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-</section>
+
+</div>
 
 <!-- 4. SINGLE LOCATION & INTERACTIVE MAP -->
 <section class="section-py bg-light" id="location">
