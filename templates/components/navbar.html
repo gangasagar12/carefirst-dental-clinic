@@ -633,12 +633,24 @@
   }
 
   /* Sleek Mobile Offcanvas Drawer */
-  .cf-offcanvas {
-    background-color: #FFFFFF !important;
+  .offcanvas.cf-offcanvas {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
     width: 320px !important;
     max-width: 85vw !important;
+    background-color: #FFFFFF !important;
     z-index: 1065 !important;
     box-shadow: -5px 0 30px rgba(8, 28, 51, 0.25) !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .offcanvas.cf-offcanvas.show,
+  .offcanvas.cf-offcanvas.showing {
+    transform: translateX(0) !important;
+    visibility: visible !important;
   }
 
   .cf-offcanvas-header {
@@ -978,12 +990,13 @@
 <!-- Mobile Drawer Offcanvas -->
 <div class="offcanvas offcanvas-end cf-offcanvas" tabindex="-1" id="cfMobileMenu" aria-labelledby="cfMobileMenuLabel">
   <div class="cf-offcanvas-header d-flex justify-content-between align-items-center">
-    <a href="{% url 'main:home' %}" class="cf-logo text-decoration-none">
-      <div class="cf-logo-frame me-2" style="width:40px;height:40px;">
-        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="Carefirst Dental" class="cf-logo-img">
+    <a href="{% url 'main:home' %}" class="cf-logo text-decoration-none d-inline-flex align-items-center gap-2">
+      <div class="cf-logo-frame me-1" style="width: 40px; height: 40px; background: #FFFFFF; border-radius: 50%; padding: 2px; border: 2px solid #0284C7;">
+        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="Carefirst Dental" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
       </div>
       <div class="cf-logo-text">
-        <span class="cf-logo-title fs-5 text-white">Care<span class="text-info">First</span></span>
+        <span class="cf-logo-title fs-5 text-white">Care<span style="color: #38BDF8;">First</span></span>
+        <span style="font-size: 0.65rem; color: #BAE6FD; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">DENTAL CLINIC</span>
       </div>
     </a>
     <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
