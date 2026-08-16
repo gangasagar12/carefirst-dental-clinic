@@ -44,6 +44,7 @@ class SpecialOfferAdmin(ModelAdmin, TranslationAdmin):
     list_filter = ('is_active',)
     search_fields = ('title', 'description')
 
+from django.utils.html import format_html
 from .models import Branch, Testimonial, ClinicGallery, FAQ
 
 @admin.register(Branch)
@@ -54,8 +55,15 @@ class BranchAdmin(ModelAdmin, TranslationAdmin):
 
 @admin.register(Testimonial)
 class TestimonialAdmin(ModelAdmin, TranslationAdmin):
-    list_display = ('patient_name', 'rating', 'is_active', 'order')
+    list_display = ('photo_preview', 'patient_name', 'treatment', 'rating', 'is_active', 'order')
     list_editable = ('is_active', 'order')
+    search_fields = ('patient_name', 'treatment', 'review')
+
+    def photo_preview(self, obj):
+        if obj.photo:
+            return format_html('<img src="{}" style="width:36px; height:36px; object-fit:cover; border-radius:50%; border:2px solid #0284C7;">', obj.photo.url)
+        return format_html('<div style="width:36px; height:36px; border-radius:50%; background:#E2E8F0; color:#64748B; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:bold;">{}</div>', obj.patient_name[:2].upper())
+    photo_preview.short_description = "Photo"
 
 @admin.register(ClinicGallery)
 class ClinicGalleryAdmin(ModelAdmin, TranslationAdmin):
