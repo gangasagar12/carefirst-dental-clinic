@@ -57,6 +57,35 @@ class Service(models.Model):
     def get_features_list(self):
         return [f.strip() for f in self.features.splitlines() if f.strip()]
 
+    def get_dynamic_price(self):
+        """
+        Dynamically retrieves the latest price from PricingCategory and PricingItem.
+        When pricing items are edited/updated on the pricing page, service cards
+        automatically reflect the new rates.
+        """
+        try:
+            # 1. Direct Category Match
+            cat = PricingCategory.objects.filter(name__iexact=self.title).first()
+            if not cat:
+                for c in PricingCategory.objects.all():
+                    if c.name.lower() in self.title.lower() or self.title.lower() in c.name.lower():
+                        cat = c
+                        break
+            
+            if cat:
+                first_item = cat.items.order_by('order', 'id').first()
+                if first_item and first_item.price:
+                    return first_item.price
+
+            # 2. Direct Item Match
+            item = PricingItem.objects.filter(name__icontains=self.title).first()
+            if item and item.price:
+                return item.price
+        except Exception:
+            pass
+
+        return self.starting_price or "1,000"
+
 class Doctor(models.Model):
     SPECIALTY_CHOICES = [
         ('general', 'General Dentistry'),

@@ -71,8 +71,9 @@ def home(request):
     doctors_qs = Doctor.objects.filter(is_active=True)[:4]
     latest_posts = Post.objects.filter(is_published=True).order_by('-published_date')[:3]
     services = Service.objects.filter(is_active=True).order_by('order')
-    from .models import PricingItem
-    pricing_items = PricingItem.objects.all()[:5]
+    from .models import PricingCategory, PricingItem
+    pricing_categories = PricingCategory.objects.prefetch_related('items').order_by('order')
+    pricing_items = PricingItem.objects.select_related('category').order_by('category__order', 'order')
     from media_center.models import Video
         
     latest_videos = Video.objects.filter(is_published=True).order_by('-published_date')[:4]
@@ -98,6 +99,7 @@ def home(request):
         'latest_posts': latest_posts,
         'services': services,
         'pricing_items': pricing_items,
+        'pricing_categories': pricing_categories,
         'latest_videos': latest_videos,
         'google_business': google_business,
         'google_reviews': google_reviews,
@@ -116,10 +118,10 @@ def build_google_reviews_schema(request, business, reviews):
         "name": business.business_name,
         "image": logo_url,
         "url": request.build_absolute_uri('/'),
-        "telephone": "+977-9848631371",
+        "telephone": "+977-9807464136",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Koteshwor-32",
+            "streetAddress": "Pragatinagar Road, Shankhamul-31",
             "addressLocality": "Kathmandu",
             "addressRegion": "Bagmati",
             "addressCountry": "NP",

@@ -1054,9 +1054,9 @@
           <span class="cf-sfc-cat-badge">
             {{ service.category_label|default:service.get_category_display }}
           </span>
-          {% if service.starting_price %}
+          {% if service.get_dynamic_price %}
           <span class="cf-sfc-price-pill">
-            <i class="bi bi-tag-fill me-1"></i>NPR {{ service.starting_price }}
+            <i class="bi bi-tag-fill me-1"></i>NPR {{ service.get_dynamic_price }}
           </span>
           {% else %}
           <span class="cf-sfc-price-pill">
@@ -1103,9 +1103,9 @@
           <span class="cf-sfc-cat-badge">
             {{ service.category_label|default:service.get_category_display }}
           </span>
-          {% if service.starting_price %}
+          {% if service.get_dynamic_price %}
           <span class="cf-sfc-price-pill">
-            <i class="bi bi-tag-fill me-1"></i>NPR {{ service.starting_price }}
+            <i class="bi bi-tag-fill me-1"></i>NPR {{ service.get_dynamic_price }}
           </span>
           {% else %}
           <span class="cf-sfc-price-pill">
@@ -1175,8 +1175,8 @@
             <p class="cf-dsc-desc">{{ service.short_description|default:"Advanced clinical treatment performed by certified dental specialists with pain-free protocols." }}</p>
             <div class="cf-dsc-footer d-flex justify-content-between align-items-center">
               <span class="cf-dsc-link">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
-              {% if service.starting_price %}
-              <span class="cf-dsc-price">{% trans "From" %} NPR {{ service.starting_price }}</span>
+              {% if service.get_dynamic_price %}
+              <span class="cf-dsc-price">{% trans "From" %} NPR {{ service.get_dynamic_price }}</span>
               {% else %}
               <span class="cf-dsc-price">{% trans "Consultation" %}</span>
               {% endif %}
@@ -1341,14 +1341,15 @@
         <div class="price-list-container shadow-lg border-0 rounded-4 mb-4 bg-white overflow-hidden">
           <table class="table price-list-table mb-0">
             <tbody>
+              {% for cat in pricing_categories|slice:":3" %}
               <tr class="section-header" style="background: #081C33; color: #FFFFFF;">
                 <td colspan="3" class="py-3 px-4 fw-bold">
-                  <i class="bi bi-check2-circle text-warning me-2"></i>{% if pricing_items.first.category %}{{ pricing_items.first.category.name }}{% else %}General & Specialty Treatments{% endif %}
+                  <i class="bi bi-check2-circle text-warning me-2"></i>{{ cat.name }}
                 </td>
               </tr>
-              {% for item in pricing_items %}
+              {% for item in cat.items.all %}
               <tr>
-                <td class="num-col px-4 py-3">{{ forloop.counter }}</td>
+                <td class="num-col px-4 py-3 text-muted">{{ forloop.counter }}</td>
                 <td class="treatment-col py-3">
                   <strong>{% if request.LANGUAGE_CODE == 'ne' and item.name_ne %}{{ item.name_ne }}{% else %}{{ item.name }}{% endif %}</strong>
                 </td>
@@ -1356,6 +1357,7 @@
                   <span class="price-display">{{ item.price }}</span>
                 </td>
               </tr>
+              {% endfor %}
               {% endfor %}
             </tbody>
           </table>

@@ -31,7 +31,7 @@
   <div class="sc-footer d-flex justify-content-between align-items-center">
     <div class="sc-price-box">
       <small class="d-block">{% trans "Starting From" %}</small>
-      <strong>{% if service.starting_price %}NPR {{ service.starting_price }}{% else %}{% trans "Consultation" %}{% endif %}</strong>
+      <strong>{% if service.get_dynamic_price %}NPR {{ service.get_dynamic_price }}{% else %}{% trans "Consultation" %}{% endif %}</strong>
     </div>
     <a href="{% url 'main:service_detail' service.slug %}" class="sc-learn-more">
       <span>{% trans "Learn More" %}</span> <i class="bi bi-arrow-right"></i>
