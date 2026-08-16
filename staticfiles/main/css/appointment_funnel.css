@@ -1,0 +1,610 @@
+/* ==========================================================================
+   CareFirst Dental Clinic — Smart Appointment & Patient Conversion Funnel
+   High-Conversion Multi-Step Workflow CSS
+   ========================================================================== */
+
+:root {
+  --cf-primary: #0284C7;
+  --cf-primary-dark: #0369A1;
+  --cf-navy: #0B2545;
+  --cf-navy-dark: #081C33;
+  --cf-accent: #0EA5E9;
+  --cf-success: #10B981;
+  --cf-warning: #F59E0B;
+  --cf-bg-light: #F8FAFC;
+  --cf-border: #E2E8F0;
+  --cf-text-main: #1E293B;
+  --cf-text-muted: #64748B;
+  --cf-font-head: 'Outfit', sans-serif;
+  --cf-font-body: 'Inter', sans-serif;
+}
+
+.cf-funnel-page {
+  background: #F1F5F9;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* ── Hero Section ── */
+.cf-funnel-hero {
+  background: linear-gradient(135deg, #0B2545 0%, #081C33 60%, #0284C7 100%);
+  color: #FFFFFF;
+  padding: 48px 0 64px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cf-funnel-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 24px;
+  background: #F1F5F9;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+}
+
+.cf-funnel-hero h1 {
+  font-family: var(--cf-font-head);
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.5px;
+}
+
+.cf-funnel-hero-sub {
+  color: #BAE6FD;
+  font-size: 1.05rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.cf-trust-badge-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cf-trust-pill {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Funnel Card Container ── */
+.cf-funnel-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(8, 28, 51, 0.08), 0 2px 6px rgba(8, 28, 51, 0.04);
+  border: 1px solid var(--cf-border);
+  overflow: hidden;
+  margin-top: -32px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ── Step Progress Indicator ── */
+.cf-funnel-stepper {
+  display: flex;
+  background: #F8FAFC;
+  border-bottom: 1px solid var(--cf-border);
+  padding: 16px 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.cf-funnel-stepper::-webkit-scrollbar { display: none; }
+
+.cf-step-item {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: default;
+}
+
+.cf-step-item.active {
+  opacity: 1;
+}
+
+.cf-step-item.completed {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.cf-step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #E2E8F0;
+  color: var(--cf-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.cf-step-item.active .cf-step-circle {
+  background: var(--cf-primary);
+  color: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.2);
+}
+
+.cf-step-item.completed .cf-step-circle {
+  background: var(--cf-success);
+  color: #FFFFFF;
+}
+
+.cf-step-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.cf-step-num {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: var(--cf-text-muted);
+  font-weight: 700;
+}
+
+.cf-step-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--cf-navy);
+}
+
+/* ── Funnel Step Content Bodies ── */
+.cf-step-pane {
+  display: none;
+  padding: 36px 32px;
+  animation: cfFadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cf-step-pane.active {
+  display: block;
+}
+
+.cf-pane-header {
+  margin-bottom: 28px;
+}
+
+.cf-pane-title {
+  font-family: var(--cf-font-head);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--cf-navy);
+  margin-bottom: 6px;
+}
+
+.cf-pane-desc {
+  color: var(--cf-text-muted);
+  font-size: 0.95rem;
+}
+
+/* ── Preselected Banner ── */
+.cf-preselected-banner {
+  background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+  border: 1.5px solid #BAE6FD;
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.cf-preselected-banner .badge-text {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0369A1;
+}
+
+/* ── Treatment Selection Grid ── */
+.cf-treatment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.cf-treatment-card {
+  background: #FFFFFF;
+  border: 2px solid var(--cf-border);
+  border-radius: 16px;
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.cf-treatment-card:hover {
+  border-color: var(--cf-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(2, 132, 199, 0.12);
+}
+
+.cf-treatment-card.selected {
+  border-color: var(--cf-primary);
+  background: #F0F9FF;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+.cf-treatment-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #E0F2FE;
+  color: var(--cf-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.cf-treatment-card.selected .cf-treatment-icon {
+  background: var(--cf-primary);
+  color: #FFFFFF;
+}
+
+.cf-treatment-title {
+  font-family: var(--cf-font-head);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--cf-navy);
+  margin-bottom: 4px;
+}
+
+.cf-treatment-price {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cf-primary-dark);
+}
+
+.cf-treatment-check {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 1.2rem;
+  color: var(--cf-primary);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.2s ease;
+}
+
+.cf-treatment-card.selected .cf-treatment-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Type Selection Cards ── */
+.cf-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.cf-type-card {
+  border: 2px solid var(--cf-border);
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: #FFFFFF;
+}
+
+.cf-type-card:hover {
+  border-color: var(--cf-primary);
+  transform: translateY(-2px);
+}
+
+.cf-type-card.selected {
+  border-color: var(--cf-primary);
+  background: #F0F9FF;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+.cf-type-icon {
+  font-size: 1.5rem;
+  color: var(--cf-primary);
+  margin-bottom: 10px;
+}
+
+.cf-type-title {
+  font-family: var(--cf-font-head);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--cf-navy);
+  margin-bottom: 4px;
+}
+
+.cf-type-desc {
+  font-size: 0.82rem;
+  color: var(--cf-text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ── Time Preference Cards ── */
+.cf-time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 768px) {
+  .cf-time-grid { grid-template-columns: 1fr; }
+}
+
+.cf-time-card {
+  border: 2px solid var(--cf-border);
+  border-radius: 14px;
+  padding: 16px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  background: #FFFFFF;
+}
+
+.cf-time-card:hover {
+  border-color: var(--cf-primary);
+}
+
+.cf-time-card.selected {
+  border-color: var(--cf-primary);
+  background: #F0F9FF;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+.cf-time-card i {
+  font-size: 1.3rem;
+  color: var(--cf-primary);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.cf-time-title {
+  font-weight: 700;
+  color: var(--cf-navy);
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.cf-time-hours {
+  font-size: 0.75rem;
+  color: var(--cf-text-muted);
+}
+
+/* ── Form Inputs & Floating Labels ── */
+.cf-input-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--cf-navy);
+  margin-bottom: 6px;
+}
+
+.cf-funnel-input {
+  width: 100%;
+  border: 1.5px solid var(--cf-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  color: var(--cf-text-main);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.cf-funnel-input:focus {
+  border-color: var(--cf-primary);
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+}
+
+.cf-phone-input-group {
+  display: flex;
+  border: 1.5px solid var(--cf-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.cf-phone-input-group:focus-within {
+  border-color: var(--cf-primary);
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+}
+
+.cf-phone-prefix {
+  background: #F8FAFC;
+  padding: 12px 14px;
+  font-weight: 700;
+  color: var(--cf-navy);
+  border-right: 1px solid var(--cf-border);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+.cf-phone-input-group input {
+  border: none;
+  padding: 12px 16px;
+  flex: 1;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+/* ── Summary & Review Card ── */
+.cf-review-card {
+  background: #F8FAFC;
+  border: 1.5px solid var(--cf-border);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.cf-review-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cf-border);
+}
+
+.cf-review-row:last-child {
+  border-bottom: none;
+}
+
+.cf-review-label {
+  font-size: 0.88rem;
+  color: var(--cf-text-muted);
+  font-weight: 600;
+}
+
+.cf-review-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cf-navy);
+  text-align: right;
+}
+
+.cf-edit-chip {
+  background: transparent;
+  border: 1px solid var(--cf-primary);
+  color: var(--cf-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+}
+
+.cf-edit-chip:hover {
+  background: var(--cf-primary);
+  color: #FFFFFF;
+}
+
+/* ── Bottom Action Bar ── */
+.cf-funnel-footer {
+  background: #FFFFFF;
+  border-top: 1px solid var(--cf-border);
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cf-btn-funnel-back {
+  background: #F1F5F9;
+  border: 1px solid var(--cf-border);
+  color: var(--cf-navy);
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.92rem;
+}
+
+.cf-btn-funnel-back:hover {
+  background: #E2E8F0;
+}
+
+.cf-btn-funnel-next {
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  color: #FFFFFF;
+  border: none;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+}
+
+.cf-btn-funnel-next:hover {
+  background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(2, 132, 199, 0.4);
+}
+
+.cf-btn-funnel-next:disabled {
+  background: #CBD5E1;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Animations ── */
+@keyframes cfFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Confirmation Receipt ── */
+.cf-confirmation-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  border: 1.5px solid var(--cf-border);
+  box-shadow: 0 20px 50px rgba(8, 28, 51, 0.08);
+  padding: 40px;
+  text-align: center;
+  max-width: 620px;
+  margin: -32px auto 0 auto;
+}
+
+.cf-check-halo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #D1FAE5;
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.15);
+}
+
+.cf-request-badge {
+  display: inline-block;
+  background: #0B2545;
+  color: #38BDF8;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 12px 0;
+}
