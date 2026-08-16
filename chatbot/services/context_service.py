@@ -20,7 +20,7 @@ class ContextService:
         'dental-filling': ['filling', 'cavity fill', 'composite', 'tooth restoration', 'glass ionomer'],
         'scaling-and-polishing': ['scaling', 'cleaning', 'teeth cleaning', 'polishing', 'tartar removal'],
         'teeth-whitening': ['whitening', 'bleaching', 'teeth brightening', 'yellow teeth'],
-        'crowns-and-bridges': ['crown', 'cap', 'bridge', 'zirconia', 'ceramic cap'],
+        'crowns-and-bridges': ['crown', 'cap', 'bridge', 'zirconia', 'ceramic cap', 'veneer', 'veneers', 'porcelain veneer'],
         'tooth-extraction': ['extraction', 'tooth removal', 'pull tooth', 'wisdom tooth'],
         'dentures': ['denture', 'false teeth', 'complete denture', 'removable teeth'],
         'digital-dental-x-ray': ['xray', 'x-ray', 'rvg', 'dental scan', 'radiograph'],
@@ -30,10 +30,10 @@ class ContextService:
     @classmethod
     def resolve_treatment_context(cls, user_message: str, current_page: str = '', current_treatment: str = '', conversation: Optional[Conversation] = None) -> Optional[str]:
         """
-        Determines the relevant treatment for the message using:
-        1. Explicit mention in message
-        2. Implicit pronoun reference + Page Context
-        3. Prior conversation context
+        Determines the relevant treatment for the message:
+        1. Direct match in the current message (highest priority).
+        2. Pronoun match ('it', 'this') + Page context.
+        3. Only if ambiguous pronoun, fall back to prior conversation context.
         """
         text = user_message.lower().strip()
 
@@ -50,23 +50,24 @@ class ContextService:
             if s.title.lower() in text or s.slug in text:
                 return s.slug
 
-        # 2. Pronoun match with Page Context
+        # 2. Only if the message uses pronouns ('it', 'this', 'that') use page/session context
         has_pronoun = any(re.search(pat, text, re.IGNORECASE) for pat in cls.PRONOUN_PATTERNS)
         
-        if current_treatment:
-            return current_treatment
+        if has_pronoun:
+            if current_treatment:
+                return current_treatment
 
-        # Extract from URL path (e.g. /services/dental-implants/)
-        if current_page:
-            match = re.search(r'/services/([a-zA-Z0-9\-_]+)/?', current_page)
-            if match:
-                slug_candidate = match.group(1)
-                if Service.objects.filter(slug=slug_candidate).exists():
-                    return slug_candidate
+            # Extract from URL path (e.g. /services/dental-implants/)
+            if current_page:
+                match = re.search(r'/services/([a-zA-Z0-9\-_]+)/?', current_page)
+                if match:
+                    slug_candidate = match.group(1)
+                    if Service.objects.filter(slug=slug_candidate).exists():
+                        return slug_candidate
 
-        # 3. Fallback to Conversation's last mentioned treatment
-        if conversation and conversation.current_treatment:
-            return conversation.current_treatment
+            if conversation and conversation.current_treatment:
+                return conversation.current_treatment
+        return None
 
         return None
 

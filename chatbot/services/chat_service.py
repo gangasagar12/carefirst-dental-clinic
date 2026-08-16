@@ -233,8 +233,8 @@ class ChatService:
                 }]
             }
 
-        # 4. Doctor Information
-        elif intent == 'DOCTOR_INFORMATION':
+        # 4. Doctor Information (Only if specifically asking for doctor credentials list)
+        elif intent == 'DOCTOR_INFORMATION' and ('who' in message.lower() or 'doctor' in message.lower() or 'dentist' in message.lower()):
             docs = tool_data.get('doctors', [])
             doc_lines = []
             for d in docs:
@@ -254,54 +254,6 @@ class ChatService:
                 'cards': [{
                     'type': 'doctor_card',
                     'doctors': docs[:2]
-                }]
-            }
-
-        # 5. Treatment Information / Explanation
-        elif (intent in ['TREATMENT_INFORMATION', 'TREATMENT_PROCESS', 'TREATMENT_DURATION']) and tool_data.get('current_treatment_details'):
-            details = tool_data['current_treatment_details']
-            features_bullets = "\n".join([f"• {f}" for f in details.get('features', [])]) if details.get('features') else "• Advanced digital precision\n• Gentle, comfortable technique\n• High-grade aesthetic materials"
-
-            return {
-                'content': (
-                    f"🦷 **{details['name']} at CareFirst Dental Clinic:**\n\n"
-                    f"{details.get('detail_content', 'Comprehensive restorative and aesthetic treatment.')}\n\n"
-                    f"**Key Clinical Highlights:**\n"
-                    f"{features_bullets}\n\n"
-                    f"**Starting Price:** `{details['starting_price']}`\n\n"
-                    f"Would you like to check the detailed pricing breakdown or schedule an oral consultation?"
-                ),
-                'quick_actions': ["Check Pricing", "Book Appointment", "Estimate Cost", "WhatsApp CareFirst"],
-                'cards': [{
-                    'type': 'treatment_card',
-                    'name': details['name'],
-                    'category': details['category'],
-                    'starting_price': details['starting_price'],
-                    'url': details['url'],
-                    'features': details.get('features', [])[:3]
-                }]
-            }
-
-        # 6. Treatment Pricing
-        elif intent == 'TREATMENT_PRICE' and tool_data.get('pricing') and tool_data['pricing'].get('found'):
-            pricing = tool_data['pricing']
-            items = pricing.get('items', [])
-            item_lines = "\n".join([f"• **{item['name']}**: `{item['price']}`" for item in items[:5]]) if items else f"• Starting rate: `{pricing.get('starting_price')}`"
-
-            return {
-                'content': (
-                    f"🏷️ **Current Pricing for {pricing['treatment']}:**\n\n"
-                    f"{item_lines}\n\n"
-                    f"*Note: {pricing.get('note')}*\n\n"
-                    f"How many teeth would you like to estimate?"
-                ),
-                'quick_actions': ["Estimate for 1 Tooth", "Estimate for 2 Teeth", "Book Consultation", "All Prices"],
-                'cards': [{
-                    'type': 'pricing_card',
-                    'treatment': pricing['treatment'],
-                    'starting_price': pricing.get('starting_price'),
-                    'items': items[:4],
-                    'note': pricing.get('note')
                 }]
             }
 
