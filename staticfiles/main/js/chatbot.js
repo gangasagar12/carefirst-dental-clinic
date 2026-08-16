@@ -331,8 +331,31 @@
     scrollToBottom();
   }
 
+  // Callout speech bubble management
+  const callout = document.getElementById('cfChatCallout');
+  const calloutClose = document.getElementById('cfCalloutClose');
+
+  if (callout && !localStorage.getItem('carefirst_callout_dismissed')) {
+    setTimeout(() => {
+      if (!isOpen && callout) {
+        callout.classList.add('show');
+      }
+    }, 2800);
+  }
+
+  if (calloutClose) {
+    calloutClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (callout) callout.classList.remove('show');
+      localStorage.setItem('carefirst_callout_dismissed', 'true');
+    });
+  }
+
   // Event Listeners
-  if (launcher) launcher.addEventListener('click', () => toggleChat());
+  if (launcher) launcher.addEventListener('click', () => {
+    if (callout) callout.classList.remove('show');
+    toggleChat();
+  });
   if (closeBtn) closeBtn.addEventListener('click', () => toggleChat(false));
 
   if (sendBtn) sendBtn.addEventListener('click', () => sendMessage());

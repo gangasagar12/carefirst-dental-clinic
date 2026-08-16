@@ -1,15 +1,30 @@
 {% load static i18n %}
 
-<!-- Floating Ask CareFirst Trigger Button -->
-<div class="cf-chat-launcher" id="cfChatLauncher" role="button" aria-label="Open CareFirst Dental Assistant">
-  <div class="cf-chat-launcher-badge">
-    <i class="bi bi-chat-heart-fill"></i>
+<!-- Floating Ask CareFirst Container (Left Aligned) -->
+<div class="cf-chat-launcher-container" id="cfChatLauncherContainer">
+  
+  <!-- Proactive Welcome Callout Bubble -->
+  <div class="cf-chat-callout" id="cfChatCallout">
+    <div class="cf-chat-callout-content" onclick="window.careFirstChat && window.careFirstChat.open()">
+      <span class="cf-callout-wave">👋</span>
+      <span>{% trans "Have questions about dental care or pricing?" %} <strong>{% trans "Ask here!" %}</strong></span>
+    </div>
+    <button class="cf-chat-callout-close" id="cfCalloutClose" aria-label="Dismiss">&times;</button>
   </div>
-  <span>{% trans "Ask CareFirst" %}</span>
+
+  <!-- Floating Ask CareFirst Trigger Button with Zooming Pulse & Ripple -->
+  <div class="cf-chat-launcher" id="cfChatLauncher" role="button" aria-label="Open CareFirst Dental Assistant">
+    <div class="cf-launcher-ripple"></div>
+    <div class="cf-chat-launcher-badge">
+      <i class="bi bi-chat-heart-fill"></i>
+    </div>
+    <span class="cf-chat-launcher-text">{% trans "Ask CareFirst" %}</span>
+  </div>
+
 </div>
 
-<!-- Chatbot Window Panel -->
-<div class="cf-chat-panel" id="cfChatPanel" aria-hidden="true">
+<!-- Chatbot Window Panel (Left Aligned) -->
+<div class="cf-chat-panel cf-chat-panel-left" id="cfChatPanel" aria-hidden="true">
   
   <!-- Header -->
   <div class="cf-chat-header">
