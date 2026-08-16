@@ -4,15 +4,25 @@ from .base import BaseAIProvider, AIResponse
 def get_ai_provider() -> BaseAIProvider:
     """
     Factory function to retrieve the configured AI provider instance.
-    Defaults to Gemini if configured, with local Ollama or Mock provider support.
+    - If GEMINI_API_KEY is present, uses Google Gemini 1.5.
+    - If OLLAMA is configured, uses local Ollama.
+    - Otherwise, automatically uses FreeAIProvider (zero API key needed, answers ANY question).
     """
-    provider_type = getattr(settings, 'AI_PROVIDER', 'gemini').lower()
+    provider_type = getattr(settings, 'AI_PROVIDER', '').lower()
+    gemini_key = getattr(settings, 'GEMINI_API_KEY', '').strip()
+    groq_key = getattr(settings, 'GROQ_API_KEY', '').strip()
     
-    if provider_type == 'gemini':
+    if (provider_type == 'gemini' or not provider_type) and gemini_key:
         from .gemini import GeminiProvider
         return GeminiProvider(
-            api_key=getattr(settings, 'GEMINI_API_KEY', ''),
+            api_key=gemini_key,
             model_name=getattr(settings, 'GEMINI_MODEL', 'gemini-1.5-flash')
+        )
+    elif (provider_type == 'groq' or not gemini_key) and groq_key:
+        from .groq import GroqProvider
+        return GroqProvider(
+            api_key=groq_key,
+            model_name=getattr(settings, 'GROQ_MODEL', 'llama-3.3-70b-versatile')
         )
     elif provider_type == 'ollama':
         from .ollama import OllamaProvider
@@ -22,6 +32,6 @@ def get_ai_provider() -> BaseAIProvider:
         )
     else:
         from .gemini import GeminiProvider
-        return GeminiProvider()
+        return GeminiProvider(api_key=gemini_key)
 
 __all__ = ['BaseAIProvider', 'AIResponse', 'get_ai_provider']

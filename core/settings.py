@@ -56,9 +56,11 @@ INSTALLED_APPS = [
 ]
 
 # AI Patient Assistant Configuration
-AI_PROVIDER = os.environ.get('AI_PROVIDER', 'gemini') # 'gemini' or 'ollama'
+AI_PROVIDER = os.environ.get('AI_PROVIDER', 'gemini') # 'gemini', 'groq', or 'ollama'
 GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', '')
 GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-1.5-flash')
+GROQ_API_KEY = os.environ.get('GROQ_API_KEY', '')
+GROQ_MODEL = os.environ.get('GROQ_MODEL', 'llama-3.3-70b-versatile')
 OLLAMA_BASE_URL = os.environ.get('OLLAMA_BASE_URL', 'http://localhost:11434')
 OLLAMA_MODEL = os.environ.get('OLLAMA_MODEL', 'llama3:8b')
 CHATBOT_RATE_LIMIT_PER_MINUTE = int(os.environ.get('CHATBOT_RATE_LIMIT_PER_MINUTE', '20'))
