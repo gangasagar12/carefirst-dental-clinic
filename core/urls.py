@@ -36,6 +36,7 @@ sitemaps = {
 urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+    path('api/chat/', include('chatbot.urls')),
 ]
 
 urlpatterns += i18n_patterns(
@@ -43,7 +44,6 @@ urlpatterns += i18n_patterns(
     path('', include('main.urls')),
     path('blog/', include('blogs.urls')),
     path('videos/', include('media_center.urls')),
-    path('api/chat/', include('chatbot.urls')),
     path('admin/dashboard/', inquiries_dashboard, name='admin_dashboard'),
     path('admin/password_reset/', custom_auth_views.OTPRequestView.as_view(), name='admin_password_reset'),
     path('admin/password_reset/done/', custom_auth_views.OTPVerifyView.as_view(), name='password_reset_done'),

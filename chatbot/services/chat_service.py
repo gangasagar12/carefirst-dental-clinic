@@ -176,6 +176,7 @@ class ChatService:
     def _try_fast_path(cls, intent: str, tool_data: Dict[str, Any], treatment_slug: Optional[str], message: str) -> Optional[Dict[str, Any]]:
         clinic = tool_data.get('clinic', {})
 
+        # 1. Opening Hours
         if intent == 'OPENING_HOURS':
             return {
                 'content': (
@@ -193,6 +194,7 @@ class ChatService:
                 }]
             }
 
+        # 2. Location & Directions
         elif intent == 'LOCATION':
             return {
                 'content': (
@@ -211,6 +213,7 @@ class ChatService:
                 }]
             }
 
+        # 3. Contact & Phone
         elif intent == 'CONTACT':
             return {
                 'content': (
@@ -230,25 +233,75 @@ class ChatService:
                 }]
             }
 
-        elif intent == 'APPOINTMENT' and 'book' in message.lower() and not treatment_slug:
+        # 4. Doctor Information
+        elif intent == 'DOCTOR_INFORMATION':
+            docs = tool_data.get('doctors', [])
+            doc_lines = []
+            for d in docs:
+                doc_lines.append(f"• **{d['name']}** — {d['designation']} ({d['qualifications']})\n  NMC Reg: `{d['nmc_number']}` | Experience: {d['experience_years']}")
+            
+            content_str = "\n\n".join(doc_lines) if doc_lines else (
+                "**Clinical Director:** Dr. Subash Banjade (BDS, Senior Dental Surgeon, NMC #31229)\n"
+                "Leading a specialized dental team providing gentle, precision oral care in Kathmandu."
+            )
             return {
                 'content': (
-                    "🗓️ **Schedule Your CareFirst Consultation:**\n\n"
-                    "I can help you submit an appointment request directly. "
-                    "Which dental treatment or consultation would you like to visit us for?"
+                    f"👨‍⚕️ **Our Certified Dental Specialists at CareFirst:**\n\n"
+                    f"{content_str}\n\n"
+                    f"Our dentists utilize digital low-radiation RVG X-rays and Class-B autoclave sterilization."
                 ),
-                'quick_actions': [
-                    "General Check-up",
-                    "Scaling & Polishing",
-                    "Dental Filling",
-                    "Root Canal (RCT)",
-                    "Dental Implants",
-                    "Braces / Aligners"
-                ],
+                'quick_actions': ["Book Consultation", "Our Treatments", "Clinic Hours"],
                 'cards': [{
-                    'type': 'appointment_launcher',
-                    'title': 'Start Appointment Request',
-                    'treatment': 'General Check-up'
+                    'type': 'doctor_card',
+                    'doctors': docs[:2]
+                }]
+            }
+
+        # 5. Treatment Information / Explanation
+        elif (intent in ['TREATMENT_INFORMATION', 'TREATMENT_PROCESS', 'TREATMENT_DURATION']) and tool_data.get('current_treatment_details'):
+            details = tool_data['current_treatment_details']
+            features_bullets = "\n".join([f"• {f}" for f in details.get('features', [])]) if details.get('features') else "• Advanced digital precision\n• Gentle, comfortable technique\n• High-grade aesthetic materials"
+
+            return {
+                'content': (
+                    f"🦷 **{details['name']} at CareFirst Dental Clinic:**\n\n"
+                    f"{details.get('detail_content', 'Comprehensive restorative and aesthetic treatment.')}\n\n"
+                    f"**Key Clinical Highlights:**\n"
+                    f"{features_bullets}\n\n"
+                    f"**Starting Price:** `{details['starting_price']}`\n\n"
+                    f"Would you like to check the detailed pricing breakdown or schedule an oral consultation?"
+                ),
+                'quick_actions': ["Check Pricing", "Book Appointment", "Estimate Cost", "WhatsApp CareFirst"],
+                'cards': [{
+                    'type': 'treatment_card',
+                    'name': details['name'],
+                    'category': details['category'],
+                    'starting_price': details['starting_price'],
+                    'url': details['url'],
+                    'features': details.get('features', [])[:3]
+                }]
+            }
+
+        # 6. Treatment Pricing
+        elif intent == 'TREATMENT_PRICE' and tool_data.get('pricing') and tool_data['pricing'].get('found'):
+            pricing = tool_data['pricing']
+            items = pricing.get('items', [])
+            item_lines = "\n".join([f"• **{item['name']}**: `{item['price']}`" for item in items[:5]]) if items else f"• Starting rate: `{pricing.get('starting_price')}`"
+
+            return {
+                'content': (
+                    f"🏷️ **Current Pricing for {pricing['treatment']}:**\n\n"
+                    f"{item_lines}\n\n"
+                    f"*Note: {pricing.get('note')}*\n\n"
+                    f"How many teeth would you like to estimate?"
+                ),
+                'quick_actions': ["Estimate for 1 Tooth", "Estimate for 2 Teeth", "Book Consultation", "All Prices"],
+                'cards': [{
+                    'type': 'pricing_card',
+                    'treatment': pricing['treatment'],
+                    'starting_price': pricing.get('starting_price'),
+                    'items': items[:4],
+                    'note': pricing.get('note')
                 }]
             }
 
@@ -268,7 +321,7 @@ class ChatService:
                 'items': pricing.get('items', [])[:4],
                 'note': pricing.get('note')
             })
-            quick_actions = ["Estimate Cost (2+ teeth)", "Book Consultation", "WhatsApp CareFirst", "Other Treatments"]
+            quick_actions = ["Estimate Cost", "Book Consultation", "WhatsApp CareFirst", "Other Treatments"]
 
         elif tool_data.get('current_treatment_details'):
             details = tool_data['current_treatment_details']
