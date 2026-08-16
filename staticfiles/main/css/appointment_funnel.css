@@ -46,18 +46,23 @@
   border-top-right-radius: 28px;
 }
 
-.cf-funnel-hero h1 {
+.cf-funnel-hero h1,
+.cf-funnel-hero h2,
+.cf-funnel-hero h3 {
   font-family: var(--cf-font-head);
   font-weight: 800;
   font-size: 2.2rem;
   letter-spacing: -0.5px;
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
 .cf-funnel-hero-sub {
-  color: #BAE6FD;
+  color: #E0F2FE !important;
   font-size: 1.05rem;
   max-width: 650px;
   margin: 0 auto;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .cf-trust-badge-row {
