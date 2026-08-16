@@ -1343,7 +1343,7 @@
 </section>
 
 <!-- 10. PRICING PREVIEW -->
-<section class="section-py position-relative" style="background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.85)), url('{% static "images/hero_bg.png" %}'); background-size: cover; background-position: center; background-attachment: fixed;">
+<section class="section-py position-relative" style="background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.90)), url('{% static "hero_section/hero_section4.jpeg" %}'); background-size: cover; background-position: center; background-attachment: fixed;">
   <div class="container">
     <div class="text-center mb-5 mx-auto" style="max-width: 800px;">
       <h2 class="nd-section-title justify-content-center fw-bolder text-dark" style="display: flex; justify-content: center; gap: 0.5rem;">{% trans "Transparent" %}<span class="accent">{% trans "Pricing" %}</span></h2>
@@ -1581,7 +1581,7 @@
             {% if post.featured_image %}
             <img loading="lazy" src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="blog-card-img">
             {% else %}
-            <img loading="lazy" src="{% static 'images/hero_bg.png' %}" alt="{{ post.title }}" class="blog-card-img">
+            <img loading="lazy" src="{% static 'hero_section/hero_section6.jpeg' %}" alt="{{ post.title }}" class="blog-card-img">
             {% endif %}
           </a>
           <div class="p-4">

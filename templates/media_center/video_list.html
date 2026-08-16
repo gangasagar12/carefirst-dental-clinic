@@ -234,7 +234,7 @@
 {% block content %}
 
 <!-- 1. HERO BANNER -->
-<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.60) 0%, rgba(11,37,69,0.50) 60%, rgba(3,105,161,0.40) 100%), url('{% static "main/img/hero_bg.jpeg" %}') center/cover no-repeat;">
+<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.60) 0%, rgba(11,37,69,0.50) 60%, rgba(3,105,161,0.40) 100%), url('{% static "hero_section/hero_section5.jpeg" %}') center/cover no-repeat;">
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
@@ -347,14 +347,14 @@
 
 <!-- 4. CTA SECTION -->
 <div class="nd-cta-strip" id="consult">
-  <div class="cta-inner container">
-    <h2>{% trans "Have Questions About a Treatment?" %}</h2>
-    <p>{% trans "Our dental specialists are available to explain procedures and create custom treatment plans tailored for your smile." %}</p>
+  <div class="cta-inner container text-center py-5">
+    <h2 class="text-white fw-bold mb-3">{% trans "Have Questions About a Treatment?" %}</h2>
+    <p class="text-white-50 mb-4 mx-auto" style="max-width: 680px;">{% trans "Our dental specialists are available to explain procedures and create custom treatment plans tailored for your smile." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
+      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-5 fw-bold text-dark shadow">
         <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Consultation" %}
       </a>
-      <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2 shadow">
+      <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success btn-lg rounded-pill px-5 fw-bold d-inline-flex align-items-center gap-2 shadow">
         <i class="bi bi-whatsapp"></i>{% trans "WhatsApp Inquiry" %}
       </a>
     </div>

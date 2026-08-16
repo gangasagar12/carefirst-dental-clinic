@@ -187,7 +187,7 @@
 {% block content %}
 
 <!-- 1. HERO BANNER -->
-<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.65) 0%, rgba(11,37,69,0.55) 60%, rgba(3,105,161,0.45) 100%), url('{% static "main/img/hero_bg.jpeg" %}') center/cover no-repeat;">
+<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.65) 0%, rgba(11,37,69,0.55) 60%, rgba(3,105,161,0.45) 100%), url('{% if post.featured_image %}{{ post.featured_image.url }}{% else %}{% static "images/digital_xray_consultation.jpg" %}{% endif %}') center/cover no-repeat;">
   <div class="hero-inner container" style="max-width: 960px;">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">

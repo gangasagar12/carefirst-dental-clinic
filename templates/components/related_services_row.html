@@ -15,7 +15,7 @@
       <a href="{% url 'main:service_detail' rel_service.slug %}" class="text-decoration-none h-100 d-block">
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 related-service-card" style="border: 1.5px solid #E2E8F0 !important;">
           {% if rel_service.image %}
-          <img loading="lazy" src="{{ rel_service.image.url }}" alt="{{ rel_service.title }}" class="card-img-top object-fit-cover" style="height: 200px;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
+          <img loading="lazy" src="{{ rel_service.image.url }}" alt="{{ rel_service.title }}" class="card-img-top object-fit-cover" style="height: 200px;" onerror="this.onerror=null; this.src='{% static 'images/services1.avif' %}';">
           {% else %}
           <div class="card-img-top w-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 100%); height: 200px;">
             <i class="{{ rel_service.icon|default:'bi bi-heart-pulse' }} display-4 text-info"></i>

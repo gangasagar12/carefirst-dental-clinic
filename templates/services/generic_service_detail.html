@@ -27,9 +27,11 @@
 <style>
   .service-hero {
     {% if service.detail_image %}
-    background: linear-gradient(rgba(14, 90, 79, 0.85), rgba(14, 90, 79, 0.95)), url('{{ service.detail_image.url }}');
+    background: linear-gradient(135deg, rgba(8,28,51,0.60) 0%, rgba(11,37,69,0.50) 60%, rgba(3,105,161,0.40) 100%), url('{{ service.detail_image.url }}');
+    {% elif service.image %}
+    background: linear-gradient(135deg, rgba(8,28,51,0.60) 0%, rgba(11,37,69,0.50) 60%, rgba(3,105,161,0.40) 100%), url('{{ service.image.url }}');
     {% else %}
-    background: linear-gradient(rgba(14, 90, 79, 0.85), rgba(14, 90, 79, 0.95)), url('{% static "images/general-hero.jpg" %}');
+    background: linear-gradient(135deg, rgba(8,28,51,0.60) 0%, rgba(11,37,69,0.50) 60%, rgba(3,105,161,0.40) 100%), url('{% static "images/services1.avif" %}');
     {% endif %}
     background-size: cover;
     background-position: center;
