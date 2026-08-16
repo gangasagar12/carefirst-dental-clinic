@@ -5,6 +5,8 @@
 {% block meta_description %}{% trans "Experience pain-free, world-class dental care at Carefirst Dental Clinic, Shankhamul, Kathmandu. Led by Dr. Subash Banjade (NMC #31229), offering implants, root canal, braces, teeth whitening, and general dentistry." %}{% endblock %}
 
 {% block extra_head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=1.0">
 <link rel="stylesheet" href="{% static 'main/css/pricing_table.css' %}?v=2.1">
 <link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
 <link rel="stylesheet" href="{% static 'main/css/about.css' %}?v=1.1">
@@ -1677,117 +1679,48 @@
   </div>
 </section>
 
-<!-- 12. APPOINTMENT BOOKING & LOCATION MAP -->
-<section class="section-py bg-white" id="appointment">
+<!-- 12. SMART APPOINTMENT BOOKING FUNNEL & CLINIC DESK -->
+<section class="section-py bg-light" id="appointment">
   <div class="container">
-    <div class="row g-0 rounded-4 overflow-hidden shadow-lg border">
-      <!-- Left Column: Clinic Contact Details -->
-      <div class="col-lg-5 text-white p-5 d-flex flex-column justify-content-between" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 100%);">
-        <div>
-          <div class="cf-eyebrow-badge mb-3 text-white border-white-50 bg-white-10">
-            <i class="bi bi-geo-alt-fill text-warning"></i> {% trans "VISIT OUR CLINIC" %}
-          </div>
-          <h3 class="fw-bold mb-3 text-white" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">{% trans "CareFirst Dental Clinic" %}</h3>
-          <p class="text-white-50 mb-4 fs-6">{% trans "We are ready to welcome you. Book your consultation or visit our Kathmandu clinic for personalized dental care." %}</p>
-          
-          <ul class="list-unstyled mb-4">
-            <li class="d-flex mb-3">
-              <i class="bi bi-geo-alt-fill text-warning fs-5 me-3"></i>
-              <div>
-                <strong class="d-block text-white">{% trans "Location Address" %}</strong>
-                <span class="text-white-50 small">Pragatinagar Road, Shankhamul-31, Kathmandu 44600 (Shankhamul / New Baneshwor)</span>
-              </div>
-            </li>
-            <li class="d-flex mb-3">
-              <i class="bi bi-clock-fill text-warning fs-5 me-3"></i>
-              <div>
-                <strong class="d-block text-white">{% trans "Operating Hours" %}</strong>
-                <span class="text-white-50 small">Open Daily (Mon – Sun): 7:30 AM – 7:30 PM</span>
-              </div>
-            </li>
-            <li class="d-flex mb-3">
-              <i class="bi bi-telephone-fill text-warning fs-5 me-3"></i>
-              <div>
-                <strong class="d-block text-white">{% trans "Phone & WhatsApp" %}</strong>
-                <span class="text-white-50 small">
-                  <a href="tel:+9779807464136" class="text-white text-decoration-none">+977 980-7464136</a> • <a href="tel:015916886" class="text-white text-decoration-none">01-5916886</a>
-                </span>
-              </div>
-            </li>
-            <li class="d-flex">
-              <i class="bi bi-envelope-fill text-warning fs-5 me-3"></i>
-              <div>
-                <strong class="d-block text-white">{% trans "Email Address" %}</strong>
-                <span class="text-white-50 small">
-                  <a href="mailto:carefirstdentalclinic@gmail.com" class="text-white text-decoration-none">carefirstdentalclinic@gmail.com</a>
-                </span>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="mt-3">
-          <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success w-100 py-3 rounded-pill fw-bold shadow d-inline-flex align-items-center justify-content-center gap-2">
-            <i class="bi bi-whatsapp fs-5"></i> {% trans "Chat with Dr. Subash on WhatsApp" %}
-          </a>
-        </div>
+    <div class="text-center mb-5">
+      <div class="cf-eyebrow-badge justify-content-center mb-2">
+        <i class="bi bi-calendar2-check-fill"></i> {% trans "ONLINE APPOINTMENT DESK" %}
       </div>
-      
-      <!-- Right Column: Appointment Form -->
-      <div class="col-lg-7 p-5 bg-white">
-        <h3 class="fw-bold mb-2 text-dark" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">{% trans "Book Your Appointment" %}</h3>
-        <p class="text-muted mb-4">{% trans "Fill in your details below and our clinic reception will confirm your scheduled slot." %}</p>
-        
-        <form method="POST" action="{% url 'main:home' %}">
-          {% csrf_token %}
-          <input type="hidden" name="form_type" value="appointment">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label class="form-label fw-bold text-secondary small">{% trans "Full Name *" %}</label>
-              <input type="text" name="full_name" class="form-control bg-light py-2" required placeholder="e.g. Ramesh Shrestha">
+      <h2 class="cf-section-title">{% trans "Book Your Appointment at" %} <span class="text-primary" style="color: #0284C7 !important;">CareFirst</span></h2>
+      <p class="text-muted mx-auto" style="max-width: 620px;">
+        {% trans "Follow the quick interactive steps below to pick your treatment, select a comfortable time, and receive an instant confirmation receipt." %}
+      </p>
+    </div>
+
+    <!-- Smart Funnel Component -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-10 col-xl-9">
+        {% include 'components/smart_appointment_funnel.html' %}
+      </div>
+    </div>
+
+    <!-- Clinic Quick Info Bar Below Funnel -->
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <div class="p-4 rounded-4 shadow-sm bg-white border d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="cf-contact-icon-wrap m-0" style="width: 50px; height: 50px; font-size: 1.4rem;">
+              <i class="bi bi-geo-alt-fill"></i>
             </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold text-secondary small">{% trans "Phone Number *" %}</label>
-              <input type="tel" name="phone" class="form-control bg-light py-2" required placeholder="e.g. 98XXXXXXXX">
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold text-secondary small">{% trans "Email Address" %}</label>
-              <input type="email" name="email" class="form-control bg-light py-2" placeholder="name@example.com">
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold text-secondary small">{% trans "Preferred Date *" %}</label>
-              <input type="date" name="preferred_date" class="form-control bg-light py-2" required>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold text-secondary small">{% trans "Preferred Treatment" %}</label>
-              <select name="treatment" class="form-select bg-light py-2">
-                <option value="" selected>{% trans "General Dental Checkup" %}</option>
-                {% for s in active_services %}
-                <option value="{{ s.slug }}">{{ s.title }}</option>
-                {% endfor %}
-                <option value="other">{% trans "Other / Emergency" %}</option>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold text-secondary small">{% trans "Preferred Doctor" %}</label>
-              <select name="doctor" class="form-select bg-light py-2">
-                <option value="" selected>{% trans "Any Available Specialist" %}</option>
-                {% for doc in active_doctors %}
-                  <option value="{{ doc.id }}">Dr. {{ doc.name }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="col-12">
-              <label class="form-label fw-bold text-secondary small">{% trans "Symptoms / Additional Notes" %}</label>
-              <textarea name="message" class="form-control bg-light" rows="3" placeholder="{% trans "Describe your tooth pain, desired cosmetic outcome, or questions..." %}"></textarea>
-            </div>
-            <div class="col-12 mt-4">
-              <button type="submit" class="cf-btn-primary w-100 justify-content-center py-3 fs-6">
-                <i class="bi bi-calendar-check-fill me-2"></i>{% trans "Submit Appointment Request" %}
-              </button>
+            <div>
+              <h6 class="fw-bold mb-0 text-dark">{% trans "CareFirst Dental Clinic — Shankhamul, Kathmandu" %}</h6>
+              <span class="small text-muted">{% trans "Open Daily 7:30 AM – 7:30 PM • Dr. Subash Banjade (NMC #31229)" %}</span>
             </div>
           </div>
-        </form>
+          <div class="d-flex gap-2">
+            <a href="tel:+9779807464136" class="btn btn-outline-primary rounded-pill px-3 py-2 fw-bold text-nowrap">
+              <i class="bi bi-telephone-fill me-1"></i> +977 980-7464136
+            </a>
+            <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success rounded-pill px-3 py-2 fw-bold text-nowrap">
+              <i class="bi bi-whatsapp me-1"></i> WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1947,6 +1880,8 @@
   });
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{% static 'main/js/appointment_funnel.js' %}?v=1.0"></script>
 <script src="{% static 'main/js/google_reviews.js' %}"></script>
 <script src="{% static 'main/js/pricing_toggle.js' %}"></script>
 {% endblock %}

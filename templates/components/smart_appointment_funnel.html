@@ -1,0 +1,343 @@
+{% load static i18n form_tags %}
+
+<!-- ── Reusable Smart Appointment Conversion Funnel Component ── -->
+<div class="cf-funnel-card" id="cfFunnelCard">
+  
+  <!-- Stepper Progress Header -->
+  <div class="cf-funnel-stepper">
+    <div class="cf-step-item active" data-step="1">
+      <div class="cf-step-circle">1</div>
+      <div class="cf-step-label">
+        <span class="cf-step-num">Step 1</span>
+        <span class="cf-step-name">{% trans "Treatment" %}</span>
+      </div>
+    </div>
+    <div class="cf-step-item" data-step="2">
+      <div class="cf-step-circle">2</div>
+      <div class="cf-step-label">
+        <span class="cf-step-num">Step 2</span>
+        <span class="cf-step-name">{% trans "Visit Type" %}</span>
+      </div>
+    </div>
+    <div class="cf-step-item" data-step="3">
+      <div class="cf-step-circle">3</div>
+      <div class="cf-step-label">
+        <span class="cf-step-num">Step 3</span>
+        <span class="cf-step-name">{% trans "Date & Time" %}</span>
+      </div>
+    </div>
+    <div class="cf-step-item" data-step="4">
+      <div class="cf-step-circle">4</div>
+      <div class="cf-step-label">
+        <span class="cf-step-num">Step 4</span>
+        <span class="cf-step-name">{% trans "Your Details" %}</span>
+      </div>
+    </div>
+    <div class="cf-step-item" data-step="5">
+      <div class="cf-step-circle">5</div>
+      <div class="cf-step-label">
+        <span class="cf-step-num">Step 5</span>
+        <span class="cf-step-name">{% trans "Review" %}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STEP 1: TREATMENT / REASON FOR VISIT
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="cf-step-pane active" id="cfStep1">
+    <div class="cf-pane-header">
+      <h2 class="cf-pane-title">{% trans "How can we help your smile?" %}</h2>
+      <p class="cf-pane-desc">{% trans "Select the dental service or concern you would like to consult with our doctors about." %}</p>
+    </div>
+
+    {% if preselected_service %}
+    <div class="cf-preselected-banner">
+      <div>
+        <span class="badge-text"><i class="bi bi-check-circle-fill me-1"></i> {% trans "Selected Treatment:" %} {{ preselected_service.title }}</span>
+        <div class="small text-muted">{% trans "You can keep this treatment or tap another option below." %}</div>
+      </div>
+      <button type="button" class="btn btn-sm btn-outline-primary rounded-pill fw-bold" onclick="document.querySelectorAll('.cf-treatment-card').forEach(c => c.classList.remove('selected'))">{% trans "Change" %}</button>
+    </div>
+    {% endif %}
+
+    {% get_active_services as active_services_list %}
+    <div class="cf-treatment-grid">
+      <!-- General Check-up Default Card -->
+      <div class="cf-treatment-card {% if not preselected_service %}selected{% endif %}" data-slug="general-dentistry" data-title="General Dental Consultation">
+        <i class="bi bi-check-circle-fill cf-treatment-check"></i>
+        <div class="cf-treatment-icon"><i class="bi bi-clipboard2-pulse"></i></div>
+        <div>
+          <h3 class="cf-treatment-title">{% trans "General Dental Check-up" %}</h3>
+          <div class="cf-treatment-price">{% trans "Oral Examination & Diagnosis" %}</div>
+        </div>
+      </div>
+
+      {% for s in active_services_list %}
+      <div class="cf-treatment-card {% if preselected_service.slug == s.slug %}selected{% endif %}" data-slug="{{ s.slug }}" data-title="{{ s.title }}">
+        <i class="bi bi-check-circle-fill cf-treatment-check"></i>
+        <div class="cf-treatment-icon">
+          {% if "root" in s.slug %}<i class="bi bi-bandaid"></i>
+          {% elif "fill" in s.slug %}<i class="bi bi-gem"></i>
+          {% elif "implant" in s.slug %}<i class="bi bi-shield-plus"></i>
+          {% elif "white" in s.slug %}<i class="bi bi-stars"></i>
+          {% elif "brace" in s.slug or "ortho" in s.slug %}<i class="bi bi-emoji-smile"></i>
+          {% elif "scale" in s.slug or "clean" in s.slug %}<i class="bi bi-water"></i>
+          {% elif "extract" in s.slug %}<i class="bi bi-scissors"></i>
+          {% elif "x-ray" in s.slug %}<i class="bi bi-camera"></i>
+          {% else %}<i class="bi bi-heart-pulse"></i>
+          {% endif %}
+        </div>
+        <div>
+          <h3 class="cf-treatment-title">{{ s.title }}</h3>
+          <div class="cf-treatment-price">
+            {% if s.starting_price %}
+              {% trans "Starting from" %} NPR {{ s.starting_price }}
+            {% else %}
+              {% trans "Consultation & Custom Plan" %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- Other / Unsure Card -->
+      <div class="cf-treatment-card" data-slug="other" data-title="Tooth Pain / Other Concern">
+        <i class="bi bi-check-circle-fill cf-treatment-check"></i>
+        <div class="cf-treatment-icon"><i class="bi bi-question-circle"></i></div>
+        <div>
+          <h3 class="cf-treatment-title">{% trans "Tooth Pain / Other Concern" %}</h3>
+          <div class="cf-treatment-price">{% trans "Clinical Evaluation with Doctor" %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STEP 2: APPOINTMENT TYPE
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="cf-step-pane" id="cfStep2">
+    <div class="cf-pane-header">
+      <h2 class="cf-pane-title">{% trans "What type of visit would you prefer?" %}</h2>
+      <p class="cf-pane-desc">{% trans "Let us know the purpose of your appointment so we can allocate the right clinical time." %}</p>
+    </div>
+
+    <div class="cf-type-grid">
+      <div class="cf-type-card selected" data-type="consultation">
+        <div class="cf-type-icon"><i class="bi bi-search"></i></div>
+        <h3 class="cf-type-title">{% trans "Book a Consultation" %}</h3>
+        <p class="cf-type-desc">{% trans "Thorough oral examination, digital assessment, and step-by-step treatment plan discussion." %}</p>
+      </div>
+
+      <div class="cf-type-card" data-type="treatment">
+        <div class="cf-type-icon"><i class="bi bi-tools"></i></div>
+        <h3 class="cf-type-title">{% trans "Direct Treatment Visit" %}</h3>
+        <p class="cf-type-desc">{% trans "Ready to proceed directly with your planned dental procedure (filling, cleaning, RCT session)." %}</p>
+      </div>
+
+      <div class="cf-type-card" data-type="checkup">
+        <div class="cf-type-icon"><i class="bi bi-heart-pulse"></i></div>
+        <h3 class="cf-type-title">{% trans "Routine Check-up & Polish" %}</h3>
+        <p class="cf-type-desc">{% trans "Periodic 6-month preventive maintenance, plaque removal, and healthy smile check." %}</p>
+      </div>
+
+      <div class="cf-type-card" data-type="follow_up">
+        <div class="cf-type-icon"><i class="bi bi-arrow-repeat"></i></div>
+        <h3 class="cf-type-title">{% trans "Post-Care / Follow-up" %}</h3>
+        <p class="cf-type-desc">{% trans "Review ongoing healing, suture removal, or crown/bridge adjustment check." %}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STEP 3: PREFERRED DATE & TIME
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="cf-step-pane" id="cfStep3">
+    <div class="cf-pane-header">
+      <h2 class="cf-pane-title">{% trans "When would you prefer to visit?" %}</h2>
+      <p class="cf-pane-desc">{% trans "Choose your preferred date and time slot. Our clinic is open Sunday to Saturday (7:30 AM – 7:30 PM)." %}</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <label class="cf-input-label" for="cfPreferredDate">
+          <i class="bi bi-calendar-event text-primary me-1"></i> {% trans "Preferred Visit Date" %} <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="cfPreferredDate" class="cf-funnel-input" placeholder="Select Preferred Date" readonly>
+        <div class="small text-muted mt-2">
+          <i class="bi bi-info-circle me-1"></i> {% trans "Appointments can be requested from today onwards." %}
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="cf-input-label">
+          <i class="bi bi-clock text-primary me-1"></i> {% trans "Preferred Time Slot" %}
+        </label>
+        <div class="cf-time-grid">
+          <div class="cf-time-card selected" data-time="morning">
+            <i class="bi bi-sunrise"></i>
+            <div class="cf-time-title">{% trans "Morning" %}</div>
+            <div class="cf-time-hours">7:30 AM – 12 PM</div>
+          </div>
+          <div class="cf-time-card" data-time="afternoon">
+            <i class="bi bi-sun"></i>
+            <div class="cf-time-title">{% trans "Afternoon" %}</div>
+            <div class="cf-time-hours">12 PM – 4 PM</div>
+          </div>
+          <div class="cf-time-card" data-time="evening">
+            <i class="bi bi-sunset"></i>
+            <div class="cf-time-title">{% trans "Evening" %}</div>
+            <div class="cf-time-hours">4 PM – 7:30 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-info border-0 rounded-4 mt-4 d-flex align-items-center gap-3">
+      <i class="bi bi-shield-check fs-3 text-primary"></i>
+      <div class="small">
+        <strong>{% trans "Note on Availability:" %}</strong> {% trans "Selecting a preferred slot lets our staff arrange your visit smoothly. We will contact you via phone or WhatsApp to lock in the exact confirmed time." %}
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STEP 4: PATIENT DETAILS
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="cf-step-pane" id="cfStep4">
+    <div class="cf-pane-header">
+      <h2 class="cf-pane-title">{% trans "Who is this appointment for?" %}</h2>
+      <p class="cf-pane-desc">{% trans "We only ask for minimal contact information to reach you and confirm your visit." %}</p>
+    </div>
+
+    {% get_active_doctors as active_doctors_list %}
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="cf-input-label" for="cfFullName">
+          {% trans "Full Name" %} <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="cfFullName" class="cf-funnel-input" placeholder="{% trans 'e.g. Ram Sharma' %}" required>
+      </div>
+
+      <div class="col-md-6">
+        <label class="cf-input-label" for="cfPhone">
+          {% trans "Phone Number" %} <span class="text-danger">*</span>
+        </label>
+        <div class="cf-phone-input-group">
+          <span class="cf-phone-prefix">🇳🇵 +977</span>
+          <input type="tel" id="cfPhone" placeholder="98XXXXXXXX" maxlength="15" required>
+        </div>
+        <div class="small text-muted mt-1">{% trans "We will call or WhatsApp this number to confirm." %}</div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="cf-input-label" for="cfEmail">
+          {% trans "Email Address" %} <span class="text-muted">({% trans "Optional" %})</span>
+        </label>
+        <input type="email" id="cfEmail" class="cf-funnel-input" placeholder="{% trans 'name@example.com' %}">
+      </div>
+
+      <div class="col-md-6">
+        <label class="cf-input-label" for="cfDocSelect">
+          {% trans "Preferred Doctor" %} <span class="text-muted">({% trans "Optional" %})</span>
+        </label>
+        <select id="cfDocSelect" class="cf-funnel-input">
+          <option value="">{% trans "Any Available Specialist" %}</option>
+          {% for doc in active_doctors_list %}
+          <option value="{{ doc.id }}" {% if preselected_doctor.id == doc.id %}selected{% endif %}>
+            Dr. {{ doc.name }} ({{ doc.get_specialty_display|default:"Dental Surgeon" }})
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-12">
+        <label class="cf-input-label" for="cfMessage">
+          {% trans "Anything you'd like the clinic to know?" %} <span class="text-muted">({% trans "Optional" %})</span>
+        </label>
+        <textarea id="cfMessage" class="cf-funnel-input" rows="3" placeholder="{% trans 'Example: Experiencing sensitivity in upper molar for 3 days...' %}"></textarea>
+        <div class="small text-muted mt-1">
+          <i class="bi bi-lock-fill text-secondary"></i> {% trans "Privacy reminder: Avoid entering sensitive personal medical history into this field." %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STEP 5: REVIEW & CONFIRMATION
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="cf-step-pane" id="cfStep5">
+    <div class="cf-pane-header">
+      <h2 class="cf-pane-title">{% trans "Review Your Appointment Request" %}</h2>
+      <p class="cf-pane-desc">{% trans "Please verify your details before submitting to CareFirst Dental Clinic." %}</p>
+    </div>
+
+    <div class="cf-review-card">
+      <div class="cf-review-row">
+        <span class="cf-review-label">{% trans "Treatment / Reason:" %}</span>
+        <span class="cf-review-val">
+          <span id="cfRevTreatment">General Consultation</span>
+          <button type="button" class="cf-edit-chip" onclick="cfGoToFunnelStep(1)">{% trans "Edit" %}</button>
+        </span>
+      </div>
+
+      <div class="cf-review-row">
+        <span class="cf-review-label">{% trans "Appointment Type:" %}</span>
+        <span class="cf-review-val">
+          <span id="cfRevType">Book a Consultation</span>
+          <button type="button" class="cf-edit-chip" onclick="cfGoToFunnelStep(2)">{% trans "Edit" %}</button>
+        </span>
+      </div>
+
+      <div class="cf-review-row">
+        <span class="cf-review-label">{% trans "Preferred Schedule:" %}</span>
+        <span class="cf-review-val">
+          <span id="cfRevSchedule">Tomorrow • Morning</span>
+          <button type="button" class="cf-edit-chip" onclick="cfGoToFunnelStep(3)">{% trans "Edit" %}</button>
+        </span>
+      </div>
+
+      <div class="cf-review-row">
+        <span class="cf-review-label">{% trans "Doctor:" %}</span>
+        <span class="cf-review-val">
+          <span id="cfRevDoctor">Dr. Subash Banjade</span>
+          <button type="button" class="cf-edit-chip" onclick="cfGoToFunnelStep(4)">{% trans "Edit" %}</button>
+        </span>
+      </div>
+
+      <div class="cf-review-row">
+        <span class="cf-review-label">{% trans "Patient Details:" %}</span>
+        <span class="cf-review-val">
+          <span id="cfRevPatient">Ram Sharma (98XXXXXXXX)</span>
+          <button type="button" class="cf-edit-chip" onclick="cfGoToFunnelStep(4)">{% trans "Edit" %}</button>
+        </span>
+      </div>
+
+      <div class="cf-review-row" id="cfRevEstimateRow" style="display: none;">
+        <span class="cf-review-label">{% trans "Estimator Reference:" %}</span>
+        <span class="cf-review-val text-primary" id="cfRevEstimate">NPR 3,000</span>
+      </div>
+    </div>
+
+    <div class="p-3 bg-light rounded-4 border mb-3">
+      <div class="d-flex align-items-center gap-2 text-dark font-weight-bold mb-1">
+        <i class="bi bi-clock-fill text-warning"></i>
+        <strong>{% trans "What happens next?" %}</strong>
+      </div>
+      <p class="small text-muted mb-0">
+        {% trans "After submitting, our front desk team in Shankhamul will review our clinic schedule and call or WhatsApp you within clinic operating hours to confirm your time slot." %}
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Funnel Footer Navigation ── -->
+  <div class="cf-funnel-footer">
+    <button type="button" class="cf-btn-funnel-back" id="cfBtnBack" style="visibility: hidden;">
+      <i class="bi bi-arrow-left me-1"></i> {% trans "Back" %}
+    </button>
+    <button type="button" class="cf-btn-funnel-next" id="cfBtnNext">
+      {% trans "Continue" %} <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+  </div>
+
+</div>

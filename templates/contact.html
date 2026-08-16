@@ -5,6 +5,8 @@
 {% block meta_description %}{% trans "Contact Carefirst Dental Clinic in Kathmandu. Book an appointment, view our clinic location in Shankhamul / New Baneshwor, or call for emergency dental care." %}{% endblock %}
 
 {% block extra_head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=1.0">
 <link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
 <style>
   /* ── Contact Page Specific Styles ── */
@@ -354,7 +356,7 @@
   </div>
 </section>
 
-<!-- 3. FORMS SECTION -->
+<!-- 3. SMART APPOINTMENT FUNNEL & MESSAGE SECTION -->
 <section class="section-py bg-white" id="book">
   <div class="container">
     {% if messages %}
@@ -370,76 +372,55 @@
     </div>
     {% endif %}
 
-    <div class="row g-5">
-      <!-- Book Appointment Form -->
-      <div class="col-lg-7">
+    <!-- Smart Appointment Funnel Card -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-10 col-xl-9">
+        <div class="text-center mb-4">
+          <div class="cf-eyebrow-badge justify-content-center mb-2">
+            <i class="bi bi-calendar2-check-fill"></i> {% trans "ONLINE APPOINTMENT DESK" %}
+          </div>
+          <h2 class="cf-section-title">{% trans "Schedule Your Smile Visit" %}</h2>
+          <p class="text-muted">{% trans "Select your dental service, preferred date, and contact details below." %}</p>
+        </div>
+
+        {% include 'components/smart_appointment_funnel.html' %}
+      </div>
+    </div>
+
+    <!-- Direct General Message Form -->
+    <div class="row justify-content-center pt-4 border-top">
+      <div class="col-lg-8">
         <div class="cf-form-card">
-          <div class="cf-form-header-primary">
+          <div class="cf-form-header-azure">
             <h3 class="mb-1 fw-bold text-white" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">
-              <i class="bi bi-calendar2-check-fill me-2 text-warning"></i>{% trans "Book an Appointment" %}
+              <i class="bi bi-envelope-paper-fill me-2 text-white"></i>{% trans "Have a General Question? Send Us a Message" %}
             </h3>
-            <p class="mb-0 small text-white-50">{% trans "Fill out the details below and our clinic reception will confirm your visit." %}</p>
+            <p class="mb-0 small text-white-50">{% trans "For non-appointment inquiries or general questions, write directly to our desk." %}</p>
           </div>
           <div class="cf-form-body">
             <form action="{% url 'main:contact' %}" method="POST">
               {% csrf_token %}
-              <input type="hidden" name="form_type" value="appointment">
+              <input type="hidden" name="form_type" value="contact">
               <div class="row g-3">
                 <div class="col-md-6">
-                  <label class="form-label">{% trans "Full Name *" %}</label>
-                  <input type="text" name="full_name" class="form-control" required placeholder="{% trans "e.g. Ramesh Sharma" %}">
+                  <label class="form-label">{% trans "Your Name *" %}</label>
+                  <input type="text" name="name" class="form-control" required placeholder="{% trans "Full Name" %}">
                 </div>
                 <div class="col-md-6">
-                  <label class="form-label">{% trans "Phone Number *" %}</label>
-                  <input type="tel" name="phone" class="form-control" required placeholder="{% trans "+977 98XXXXXXXX" %}">
+                  <label class="form-label">{% trans "Email Address *" %}</label>
+                  <input type="email" name="email" class="form-control" required placeholder="name@example.com">
                 </div>
-                <div class="col-md-12">
-                  <label class="form-label">{% trans "Email Address" %}</label>
-                  <input type="email" name="email" class="form-control" placeholder="name@example.com">
+                <div class="col-12">
+                  <label class="form-label">{% trans "Subject" %}</label>
+                  <input type="text" name="subject" class="form-control" placeholder="{% trans "e.g. Treatment Inquiry" %}">
                 </div>
-                <div class="col-md-6">
-                  <label class="form-label">{% trans "Preferred Date *" %}</label>
-                  <input type="date" name="preferred_date" class="form-control" required>
+                <div class="col-12">
+                  <label class="form-label">{% trans "Your Message *" %}</label>
+                  <textarea name="message" class="form-control" rows="3" required placeholder="{% trans "Write your message here..." %}"></textarea>
                 </div>
-                <div class="col-md-6">
-                  <label class="form-label">{% trans "Preferred Time" %}</label>
-                  <select name="preferred_time" class="form-select">
-                    <option value="">{% trans "Any Time" %}</option>
-                    <option value="morning">{% trans "Morning (7:30 AM - 12:00 PM)" %}</option>
-                    <option value="afternoon">{% trans "Afternoon (12:00 PM - 4:00 PM)" %}</option>
-                    <option value="evening">{% trans "Evening (4:00 PM - 7:30 PM)" %}</option>
-                  </select>
-                </div>
-                {% get_active_services as active_services %}
-                <div class="col-md-6">
-                  <label class="form-label">{% trans "Select Treatment" %}</label>
-                  <select name="treatment" class="form-select">
-                    <option value="">{% trans "General Check-up & Consultation" %}</option>
-                    {% for s in active_services %}
-                    <option value="{{ s.slug }}" {% if request.GET.treatment == s.slug %}selected{% endif %}>{{ s.title }}</option>
-                    {% endfor %}
-                    <option value="other" {% if request.GET.treatment == 'other' %}selected{% endif %}>{% trans "Other / Smile Consultation" %}</option>
-                  </select>
-                </div>
-                
-                {% get_active_doctors as active_doctors %}
-                <div class="col-md-6">
-                  <label class="form-label">{% trans "Preferred Doctor" %} <span class="text-muted fw-normal" style="font-size: 0.85em;">({% trans "Optional" %})</span></label>
-                  <select name="doctor" class="form-select">
-                    <option value="" {% if not request.GET.doctor %}selected{% endif %}>{% trans "Any Available Specialist" %}</option>
-                    {% for doc in active_doctors %}
-                      <option value="{{ doc.id }}" {% if request.GET.doctor == doc.id|stringformat:"s" %}selected{% endif %}>Dr. {{ doc.name }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-
-                <div class="col-md-12">
-                  <label class="form-label">{% trans "Message / Dental Issue Details" %}</label>
-                  <textarea name="message" class="form-control" rows="3" placeholder="{% trans "Describe your symptoms, questions, or specific dental concerns..." %}"></textarea>
-                </div>
-                <div class="col-md-12 mt-4">
-                  <button type="submit" class="cf-btn-primary w-100 py-3 rounded-pill text-white fw-bold shadow justify-content-center">
-                    <i class="bi bi-calendar-check-fill me-2"></i>{% trans "Submit Appointment Request" %}
+                <div class="col-12 mt-3">
+                  <button type="submit" class="btn btn-dark w-100 py-3 rounded-pill fw-bold shadow-sm" style="background: #081C33; border: none;">
+                    <i class="bi bi-send-fill me-2"></i>{% trans "Send Direct Message" %}
                   </button>
                 </div>
               </div>
@@ -447,37 +428,7 @@
           </div>
         </div>
       </div>
-
-      <!-- Direct Message Form -->
-      <div class="col-lg-5">
-        <div class="cf-form-card h-100 d-flex flex-column">
-          <div class="cf-form-header-azure">
-            <h3 class="mb-1 fw-bold text-white" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">
-              <i class="bi bi-envelope-paper-fill me-2 text-white"></i>{% trans "Send a Message" %}
-            </h3>
-            <p class="mb-0 small text-white-50">{% trans "Have a general question about treatments or pricing? Write to us." %}</p>
-          </div>
-          <div class="cf-form-body flex-grow-1 d-flex flex-column">
-            <form action="{% url 'main:contact' %}" method="POST" class="d-flex flex-column flex-grow-1">
-              {% csrf_token %}
-              <input type="hidden" name="form_type" value="contact">
-              <div class="mb-3">
-                <label class="form-label">{% trans "Your Name *" %}</label>
-                <input type="text" name="name" class="form-control" required placeholder="{% trans "Full Name" %}">
-              </div>
-              <div class="mb-3">
-                <label class="form-label">{% trans "Email Address *" %}</label>
-                <input type="email" name="email" class="form-control" required placeholder="name@example.com">
-              </div>
-              <div class="mb-3">
-                <label class="form-label">{% trans "Subject" %}</label>
-                <input type="text" name="subject" class="form-control" placeholder="{% trans "e.g. Treatment Inquiry" %}">
-              </div>
-              <div class="mb-4 flex-grow-1">
-                <label class="form-label">{% trans "Your Message *" %}</label>
-                <textarea name="message" class="form-control" rows="4" required placeholder="{% trans "Write your message here..." %}"></textarea>
-              </div>
-              <button type="submit" class="btn btn-dark w-100 py-3 rounded-pill fw-bold shadow-sm" style="background: #081C33; border: none;">
+    </div>
                 <i class="bi bi-send-fill me-2 text-warning"></i>{% trans "Send Message" %}
               </button>
             </form>
@@ -638,5 +589,10 @@
 {% include 'components/google_reviews.html' %}
 {% include 'components/faq.html' with faq_type='contact' %}
 
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{% static 'main/js/appointment_funnel.js' %}?v=1.0"></script>
 {% endblock %}
 
