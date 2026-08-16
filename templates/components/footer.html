@@ -1,142 +1,135 @@
-
 {% load static i18n %}
 <footer class="nd-footer mt-auto">
-
   <div class="footer-top py-5">
     <div class="container">
       <div class="row g-5">
 
-        <!-- LEFT BLOCK: Brand + Quick Links + Social + Language -->
-        <div class="col-lg-7 col-md-12">
-          <div class="row g-4">
-
-            <!-- Brand & Contact -->
-            <div class="col-md-6">
-              <div class="footer-brand mb-4 d-flex align-items-center">
-                <img loading="lazy" src="{% static 'main/img/logo.jpg' %}" alt="Carefirst Dental Clinic Logo" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
-                <div>
-                  <h4 class="mb-0 text-white" style="font-family: var(--cf-font-head); font-weight: 700; font-size:1.25rem;">Carefirst Dental Clinic</h4>
-                  <span class="text-gold fw-bold text-uppercase" style="letter-spacing: 2px; font-size:0.8rem;">&amp; Aesthetics</span>
-                </div>
-              </div>
-              <p class="text-white mb-4" style="font-size:0.95rem; line-height:1.75; opacity:0.9;">
-                {% trans "Premium dental care facility serving Kathmandu and Dhangadi, Kailali — advanced, pain-free treatments with international standards." %}
-              </p>
-              <ul class="list-unstyled footer-contact-list mb-0 text-white">
-
-                <!-- Address -->
-                <li class="mb-3 d-flex align-items-start">
-                  <i class="bi bi-geo-alt-fill text-gold me-3 mt-1" style="flex-shrink:0; font-size:1.1rem;"></i>
-                  <address style="font-size:0.95rem; line-height:1.65; margin-bottom:0; font-style:normal;" itemscope itemtype="https://schema.org/PostalAddress">
-                    <strong>{% trans "Kathmandu Clinic:" %}</strong><br>
-                    <span itemprop="streetAddress">Pragatinagar Road, Shankhamul-31</span>, <span itemprop="addressLocality">Kathmandu 44600</span><br>
-                    <small style="opacity:0.8;">{% trans "Shankhamul / New Baneshwor Area" %}</small>
-                  </address>
-                </li>
-
-                <!-- Phone -->
-                <li class="mb-3 d-flex align-items-start">
-                  <i class="bi bi-telephone-fill text-gold me-3 mt-1" style="flex-shrink:0; font-size:1.1rem;"></i>
-                  <span style="font-size:0.95rem; line-height:1.65;">
-                    <a href="tel:+9779807464136" class="text-white text-decoration-none fw-semibold">+977 980-7464136</a>,
-                    <a href="tel:015916886" class="text-white text-decoration-none fw-semibold">01-5916886</a>
-                  </span>
-                </li>
-
-                <!-- Email -->
-                <li class="mb-3 d-flex align-items-start">
-                  <i class="bi bi-envelope-fill text-gold me-3 mt-1" style="flex-shrink:0; font-size:1.1rem;"></i>
-                  <span style="font-size:0.95rem;">
-                    <a href="mailto:carefirstdentalclinic@gmail.com" class="text-white text-decoration-none">carefirstdentalclinic@gmail.com</a>
-                  </span>
-                </li>
-
-                <!-- Working Hours -->
-                <li class="d-flex align-items-start">
-                  <i class="bi bi-clock-fill text-gold me-3 mt-1" style="flex-shrink:0; font-size:1.1rem;"></i>
-                  <span style="font-size:0.95rem; line-height:1.65;">
-                    {% trans "Open daily (Monday to Sunday): 7:30 AM to 7:30 PM" %}
-                  </span>
-                </li>
-
-              </ul>
+        <!-- Col 1: Brand Info & Clinic Mission -->
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand mb-4 d-flex align-items-center">
+            <img loading="lazy" src="{% static 'main/img/logo.jpg' %}" alt="Carefirst Dental Clinic Logo" class="rounded-circle me-3" style="width: 58px; height: 58px; object-fit: cover; border: 2px solid #0284C7;">
+            <div>
+              <h4 class="mb-0 text-white" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.01em;">CareFirst Dental</h4>
+              <span class="text-warning fw-bold text-uppercase" style="letter-spacing: 2px; font-size: 0.78rem;">&amp; AESTHETICS CLINIC</span>
             </div>
+          </div>
+          
+          <p class="text-white mb-4" style="font-size: 0.92rem; line-height: 1.75; opacity: 0.88;">
+            {% trans "Kathmandu's state-of-the-art dental care center in Shankhamul. Dedicated to providing painless, precise, and international-standard treatments with advanced digital imaging and Class-B autoclave sterilization." %}
+          </p>
 
-            <!-- Quick Links + Social + Language -->
-            <div class="col-md-6">
-              <h5 class="text-white fw-bold mb-4" style="font-size:1.1rem;">{% trans "Quick Links" %}</h5>
-              <ul class="list-unstyled footer-links mb-4">
-                <li><a href="{% url 'main:home' %}">{% trans "Home" %}</a></li>
-                <li><a href="{% url 'main:about' %}">{% trans "About Us" %}</a></li>
-                <li><a href="{% url 'main:services_list' %}">{% trans "Our Services" %}</a></li>
-                <li><a href="{% url 'main:clinic_gallery' %}">{% trans "Gallery" %}</a></li>
-                <li><a href="{% url 'blogs:blog_list' %}">{% trans "Blog" %}</a></li>
-                <li><a href="{% url 'main:contact' %}">{% trans "Contact" %}</a></li>
-                <li class="mt-2 pt-2 border-top border-secondary"><a href="{% url 'main:pricing' %}">{% trans "Price List" %}</a></li>
-                <li><a href="{% url 'main:home' %}#homeFaq">{% trans "FAQs" %}</a></li>
-                <li><a href="#">{% trans "Privacy Policy" %}</a></li>
-              </ul>
-
-              <!-- Social -->
-              <h5 class="text-white fw-bold mb-3" style="font-size:1.05rem;">{% trans "Follow Us" %}</h5>
-              <div class="footer-social mb-4">
-                <a href="https://wa.me/9779848631371" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="bg-whatsapp" style="background-color: #25D366; color: white;"><i class="bi bi-whatsapp"></i></a>
-                <a href="https://www.facebook.com/Nikodentalkathmandu" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="bg-facebook"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.instagram.com/nikodentalandaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="bg-instagram"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.tiktok.com/@niko.dental.koteshwor" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="bg-tiktok"><i class="bi bi-tiktok"></i></a>
-                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="bg-youtube"><i class="bi bi-youtube"></i></a>
+          <div class="footer-trust-badge p-3 rounded-3 mb-4" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);">
+            <div class="d-flex align-items-center gap-3">
+              <i class="bi bi-shield-fill-check fs-2 text-warning"></i>
+              <div>
+                <strong class="d-block text-white" style="font-size: 0.88rem;">{% trans "NMC Certified Leadership" %}</strong>
+                <span class="text-white-50" style="font-size: 0.78rem;">Dr. Subash Banjade (BDS, NMC #31229)</span>
               </div>
-
-              <!-- Language -->
-              <h5 class="text-white fw-bold mb-3" style="font-size:1.05rem;">{% trans "Language" %}</h5>
-              <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center mb-0">
-                {% csrf_token %}
-                <input name="next" type="hidden" value="{{ request.get_full_path|default:'/' }}">
-                <select name="language" class="form-select border-0 shadow-sm fw-bold" onchange="this.form.submit()"
-                  style="cursor:pointer; background-color:rgba(255,255,255,0.12); color:white; border:1px solid rgba(255,255,255,0.25) !important; max-width:170px; font-size:0.95rem;">
-                  {% get_current_language as LANGUAGE_CODE %}
-                  {% get_available_languages as LANGUAGES %}
-                  {% get_language_info_list for LANGUAGES as languages %}
-                  {% for language in languages %}
-                    <option value="{{ language.code }}" class="text-dark"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                      {% if language.code == 'en' %}🇬🇧 English{% elif language.code == 'ne' %}🇳🇵 नेपाली{% else %}{{ language.name_local }}{% endif %}
-                    </option>
-                  {% endfor %}
-                </select>
-              </form>
             </div>
+          </div>
 
+          <!-- Social Links -->
+          <h6 class="text-white fw-bold mb-3" style="font-size: 0.95rem; letter-spacing: 0.5px; text-transform: uppercase;">{% trans "Connect With Us" %}</h6>
+          <div class="footer-social mb-3">
+            <a href="https://wa.me/9779807464136" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="bg-whatsapp" style="background-color: #25D366; color: white;"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
 
-        <!-- RIGHT BLOCK: Clinic Location Map -->
-        <div class="col-lg-5 col-md-12">
-          <h5 class="text-white fw-bold mb-4" style="font-size:1.1rem;">
-            <i class="bi bi-geo-alt-fill text-gold me-2"></i>
-            {% trans "Find Our Clinic" %}
+        <!-- Col 2: Clinical Treatments -->
+        <div class="col-lg-2 col-md-6 col-6">
+          <h5 class="text-white fw-bold mb-4" style="font-size: 1.05rem; font-family: var(--cf-font-head, 'Outfit', sans-serif); letter-spacing: 0.5px; text-transform: uppercase;">
+            <i class="bi bi-patch-check-fill text-warning me-2"></i>{% trans "Treatments" %}
+          </h5>
+          <ul class="list-unstyled footer-links mb-0">
+            <li><a href="{% url 'main:services_list' %}">{% trans "Dental Implants" %}</a></li>
+            <li><a href="{% url 'main:services_list' %}">{% trans "Root Canal (RCT)" %}</a></li>
+            <li><a href="{% url 'main:services_list' %}">{% trans "Braces & Aligners" %}</a></li>
+            <li><a href="{% url 'main:services_list' %}">{% trans "Teeth Whitening" %}</a></li>
+            <li><a href="{% url 'main:services_list' %}">{% trans "Dental Crowns" %}</a></li>
+            <li><a href="{% url 'main:services_list' %}">{% trans "Tooth Extraction" %}</a></li>
+            <li><a href="{% url 'main:services_list' %}">{% trans "Dentures" %}</a></li>
+            <li><a href="{% url 'main:services_list' %}">{% trans "Digital RVG X-Ray" %}</a></li>
+            <li class="pt-2"><a href="{% url 'main:services_list' %}" class="fw-bold text-warning">{% trans "View All 11 Services →" %}</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Quick Links & Language -->
+        <div class="col-lg-2 col-md-6 col-6">
+          <h5 class="text-white fw-bold mb-4" style="font-size: 1.05rem; font-family: var(--cf-font-head, 'Outfit', sans-serif); letter-spacing: 0.5px; text-transform: uppercase;">
+            <i class="bi bi-compass-fill text-warning me-2"></i>{% trans "Explore" %}
+          </h5>
+          <ul class="list-unstyled footer-links mb-4">
+            <li><a href="{% url 'main:home' %}">{% trans "Home" %}</a></li>
+            <li><a href="{% url 'main:about' %}">{% trans "About Us" %}</a></li>
+            <li><a href="{% url 'main:doctors' %}">{% trans "Our Doctors" %}</a></li>
+            <li><a href="{% url 'main:clinic_gallery' %}">{% trans "Smile Gallery" %}</a></li>
+            <li><a href="{% url 'media_center:video_list' %}">{% trans "Video Library" %}</a></li>
+            <li><a href="{% url 'main:pricing' %}">{% trans "Transparent Pricing" %}</a></li>
+            <li><a href="{% url 'blogs:blog_list' %}">{% trans "Dental Health Blog" %}</a></li>
+            <li><a href="{% url 'main:contact' %}">{% trans "Contact Us" %}</a></li>
+          </ul>
+
+          <!-- Language Selector -->
+          <h6 class="text-white fw-bold mb-2" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">{% trans "Language" %}</h6>
+          <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center mb-0">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.get_full_path|default:'/' }}">
+            <select name="language" class="form-select border-0 shadow-sm fw-bold py-1 px-3" onchange="this.form.submit()"
+              style="cursor: pointer; background-color: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.25) !important; font-size: 0.85rem; border-radius: 20px;">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              {% for language in languages %}
+                <option value="{{ language.code }}" class="text-dark"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                  {% if language.code == 'en' %}🇬🇧 English{% elif language.code == 'ne' %}🇳🇵 नेपाली{% else %}{{ language.name_local }}{% endif %}
+                </option>
+              {% endfor %}
+            </select>
+          </form>
+        </div>
+
+        <!-- Col 4: Location, Contact & Map -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="text-white fw-bold mb-4" style="font-size: 1.05rem; font-family: var(--cf-font-head, 'Outfit', sans-serif); letter-spacing: 0.5px; text-transform: uppercase;">
+            <i class="bi bi-geo-alt-fill text-warning me-2"></i>{% trans "Kathmandu Clinic" %}
           </h5>
 
-          <!-- Kathmandu Clinic Map -->
-          <div class="footer-map-card mb-3">
-            <div class="footer-map-header">
-              <i class="bi bi-building text-gold" style="font-size:1.1rem;"></i>
-              <div>
-                <div class="text-white fw-bold" style="font-size:0.95rem; line-height:1.3;">{% trans "Carefirst Dental Clinic" %}</div>
-                <div class="text-gold" style="font-size:0.72rem; font-weight:700; letter-spacing:1.2px; text-transform:uppercase;">Shankhamul / New Baneshwor, Kathmandu</div>
-              </div>
-            </div>
-            <iframe
-              title="Google Maps Location for Carefirst Dental Clinic Kathmandu"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7065.909722981325!2d85.32764974016911!3d27.68778995511458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19797240e571%3A0x749fab7a165b359f!2sCarefirst%20Dental%20clinic!5e0!3m2!1sen!2snp!4v1786850051588!5m2!1sen!2snp"
-              width="100%" height="240" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
-            </iframe>
-            <div class="footer-map-footer">
-              <i class="bi bi-pin-map-fill text-gold me-2 mt-1" style="flex-shrink:0;"></i>
-              <span>
+          <ul class="list-unstyled footer-contact-list mb-3 text-white">
+            <li class="mb-2 d-flex align-items-start">
+              <i class="bi bi-geo-alt-fill text-warning me-2 mt-1" style="flex-shrink: 0; font-size: 1rem;"></i>
+              <span style="font-size: 0.9rem; line-height: 1.6;">
                 Pragatinagar Road, Shankhamul-31, Kathmandu 44600<br>
-                <small style="opacity:0.85;">Open Daily 7:30 AM – 7:30 PM &bull; Call: +977 980-7464136 / 01-5916886</small>
+                <small class="text-white-50">Near New Baneshwor Junction</small>
               </span>
-            </div>
+            </li>
+
+            <li class="mb-2 d-flex align-items-start">
+              <i class="bi bi-telephone-fill text-warning me-2 mt-1" style="flex-shrink: 0; font-size: 1rem;"></i>
+              <span style="font-size: 0.9rem; line-height: 1.6;">
+                <a href="tel:+9779807464136" class="text-white text-decoration-none fw-bold">+977 980-7464136</a> •
+                <a href="tel:015916886" class="text-white text-decoration-none">01-5916886</a>
+              </span>
+            </li>
+
+            <li class="mb-2 d-flex align-items-start">
+              <i class="bi bi-clock-fill text-warning me-2 mt-1" style="flex-shrink: 0; font-size: 1rem;"></i>
+              <span style="font-size: 0.9rem; line-height: 1.6;">
+                Open Daily (Mon – Sun): <strong>7:30 AM – 7:30 PM</strong>
+              </span>
+            </li>
+          </ul>
+
+          <!-- Google Map Card -->
+          <div class="footer-map-card overflow-hidden rounded-3 border border-white-50 border-opacity-25 shadow-sm">
+            <iframe
+              title="Google Maps Location for CareFirst Dental Clinic Kathmandu"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7065.909722981325!2d85.32764974016911!3d27.68778995511458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19797240e571%3A0x749fab7a165b359f!2sCarefirst%20Dental%20clinic!5e0!3m2!1sen!2snp!4v1786850051588!5m2!1sen!2snp"
+              width="100%" height="150" style="border: 0; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
           </div>
         </div>
 
@@ -144,46 +137,43 @@
     </div>
   </div>
 
-  <!-- Footer Bottom -->
-  <div class="footer-bottom py-3 text-center" style="border-top: 1px solid rgba(255,255,255,0.1);">
-    <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
-      <p class="mb-0 text-white" style="font-size:0.9rem; opacity:0.85;">
-        Developed by <span style="color: #ffd700; font-weight: 600; opacity: 1;">Ganga Sagar Joshi</span>
+  <!-- Footer Bottom Sub-bar -->
+  <div class="footer-bottom py-3 text-center" style="border-top: 1px solid rgba(255, 255, 255, 0.1); background: rgba(8, 28, 51, 0.95);">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <p class="mb-0 text-white-50" style="font-size: 0.85rem;">
+        &copy; {% now "Y" %} <strong>CareFirst Dental Clinic</strong>. {% trans "All Rights Reserved." %}
       </p>
-      <div class="d-flex align-items-center gap-2">
-        <a href="{% url 'admin:index' %}" class="btn btn-sm shadow-sm" style="background-color: #343a40; color: white; padding: 4px 12px; font-size: 0.85rem; border-radius: 20px; font-weight: 500;" target="_blank">
+      
+      <div class="d-flex align-items-center gap-2 flex-wrap justify-content-center">
+        <span class="text-white-50 small">Developed by <strong class="text-warning">Ganga Sagar Joshi</strong></span>
+        <a href="{% url 'admin:index' %}" class="btn btn-sm" style="background-color: #1E293B; color: #FFFFFF; padding: 3px 10px; font-size: 0.78rem; border-radius: 20px;" target="_blank">
           <i class="bi bi-shield-lock-fill me-1"></i> Admin Panel
         </a>
-        <a href="https://wa.me/9779746332963" target="_blank" rel="noopener noreferrer" class="btn btn-sm shadow-sm" style="background-color: #25D366; color: white; padding: 4px 12px; font-size: 0.85rem; border-radius: 20px; font-weight: 500;">
+        <a href="https://wa.me/9779746332963" target="_blank" rel="noopener noreferrer" class="btn btn-sm" style="background-color: #25D366; color: white; padding: 3px 10px; font-size: 0.78rem; border-radius: 20px;">
           <i class="bi bi-whatsapp me-1"></i> WhatsApp
         </a>
-        <a href="mailto:gangasaagar62@gmail.com" class="btn btn-sm shadow-sm" style="background-color: #EA4335; color: white; padding: 4px 12px; font-size: 0.85rem; border-radius: 20px; font-weight: 500;">
+        <a href="mailto:gangasaagar62@gmail.com" class="btn btn-sm" style="background-color: #EA4335; color: white; padding: 3px 10px; font-size: 0.78rem; border-radius: 20px;">
           <i class="bi bi-envelope-fill me-1"></i> Email
         </a>
       </div>
     </div>
   </div>
-
 </footer>
 
 <style>
   .nd-footer {
-    background-color: var(--cf-navy, #0B2545);
     background: linear-gradient(180deg, #0B2545 0%, #081C33 100%);
-    color: #fff;
+    color: #FFFFFF;
     margin-top: auto;
-    border-top: 4px solid var(--cf-primary, #0284C7);
+    border-top: 4px solid #0284C7;
   }
-  .footer-top {
-    background-image: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="fdots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse"><circle fill="rgba(255,255,255,0.03)" cx="2" cy="2" r="2"></circle></pattern></defs><rect x="0" y="0" width="100%25" height="100%25" fill="url(%23fdots)"></rect></svg>');
-  }
-  .footer-links li { margin-bottom: 10px; }
+  .footer-links li { margin-bottom: 9px; }
   .footer-links a {
-    color: rgba(255,255,255,0.85);
+    color: rgba(255, 255, 255, 0.82);
     text-decoration: none;
     transition: color 0.25s ease, padding-left 0.25s ease;
     display: inline-block;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
   .footer-links a:hover {
     color: #38BDF8;
@@ -193,49 +183,24 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(255,255,255,0.1);
-    color: #fff;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
     border-radius: 50%;
     margin-right: 8px;
     transition: all 0.3s ease;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     text-decoration: none;
   }
   .footer-social a:hover {
-    background: var(--cf-primary, #0284C7);
+    background: #0284C7;
     transform: translateY(-3px);
   }
-  /* Map cards */
   .footer-map-card {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1.5px solid rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.04);
     transition: border-color 0.3s ease;
   }
-  .footer-map-card:hover { border-color: rgba(2, 132, 199, 0.4); }
-  .footer-map-card--gold { border-color: rgba(245, 158, 11, 0.35); }
-  .footer-map-card--gold:hover { border-color: rgba(245, 158, 11, 0.65); }
-  .footer-map-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 11px 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.03);
-  }
-  .footer-map-card--gold .footer-map-header {
-    border-bottom-color: rgba(245, 158, 11, 0.15);
-  }
-  .footer-map-footer {
-    display: flex;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 10px 16px;
-    color: rgba(255,255,255,0.85);
-    font-size: 0.88rem;
-    line-height: 1.6;
+  .footer-map-card:hover {
+    border-color: rgba(2, 132, 199, 0.6) !important;
   }
 </style>
