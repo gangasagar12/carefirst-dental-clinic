@@ -42,6 +42,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('i18n/', include('django.conf.urls.i18n')),
     path('', include('main.urls')),
+    path('appointment/', include('appointments.urls')),
     path('blog/', include('blogs.urls')),
     path('videos/', include('media_center.urls')),
     path('admin/dashboard/', inquiries_dashboard, name='admin_dashboard'),
