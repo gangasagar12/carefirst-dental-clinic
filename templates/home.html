@@ -610,6 +610,113 @@
     color: #0284C7 !important;
   }
 
+  /* ── Dark Overlay Service Grid Cards (Screenshot Style) ── */
+  .cf-dark-service-card {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    min-height: 290px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 10px 30px rgba(8, 28, 51, 0.08);
+    border: 1.5px solid rgba(226, 232, 240, 0.8);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .cf-dark-service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(2, 132, 199, 0.22);
+    border-color: #0284C7;
+  }
+  .cf-dsc-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+  }
+  .cf-dark-service-card:hover .cf-dsc-bg {
+    transform: scale(1.08);
+  }
+  .cf-dsc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(8, 28, 51, 0.95) 0%, rgba(8, 28, 51, 0.65) 55%, rgba(8, 28, 51, 0.2) 100%);
+    z-index: 2;
+    transition: background 0.3s ease;
+  }
+  .cf-dark-service-card:hover .cf-dsc-overlay {
+    background: linear-gradient(to top, rgba(8, 28, 51, 0.98) 0%, rgba(3, 105, 161, 0.65) 60%, rgba(8, 28, 51, 0.15) 100%);
+  }
+  .cf-dsc-content {
+    position: relative;
+    z-index: 3;
+    padding: 26px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .cf-dsc-cat {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.15);
+    color: #38BDF8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    backdrop-filter: blur(8px);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 50px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .cf-dsc-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .cf-dsc-desc {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .cf-dsc-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 12px;
+  }
+  .cf-dsc-link {
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease, gap 0.2s ease;
+  }
+  .cf-dark-service-card:hover .cf-dsc-link {
+    color: #38BDF8;
+    gap: 10px;
+  }
+  .cf-dsc-price {
+    background: rgba(2, 132, 199, 0.9);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 50px;
+  }
+
   @media (max-width: 991px) {
     .cf-stat-box { flex: 1 1 45%; margin-bottom: 12px; border-right: none !important; }
     .cf-hero-wrapper { padding: 110px 0 70px; min-height: auto; }
@@ -1040,10 +1147,51 @@
     </div>
   </div>
 
-  <div class="container text-center mt-4">
-    <a href="{% url 'main:services_list' %}" class="cf-btn-primary px-5 py-3 shadow">
-      <i class="bi bi-collection-fill me-2"></i>{% trans "View All Treatments & Detailed Pricing" %}
-    </a>
+  <!-- 4B. ALL 11 PROCEDURES GRID -->
+  <div class="container mt-5 pt-5 border-top" style="border-color: #E2E8F0 !important;">
+    <div class="text-center mb-5">
+      <div class="cf-eyebrow-badge justify-content-center mb-2">
+        <i class="bi bi-grid-3x3-gap-fill"></i> {% trans "ALL 11 SPECIALIZED PROCEDURES" %}
+      </div>
+      <h3 class="cf-section-title mb-2" style="font-size: 2rem;">
+        {% trans "Explore All Clinical Treatments" %}
+      </h3>
+      <p class="cf-section-subtitle">
+        {% trans "Click any treatment to review detailed procedure steps, transparent pricing, recovery timelines, and specialist doctors." %}
+      </p>
+    </div>
+
+    <div class="row g-4">
+      {% for service in services %}
+      <div class="col-md-6 col-lg-4">
+        <a href="{% url 'main:service_detail' service.slug %}" class="cf-dark-service-card d-block text-decoration-none">
+          <div class="cf-dsc-bg" style="background-image: url('{% if service.image %}{{ service.image.url }}{% else %}{% static "images/services1.avif" %}{% endif %}');"></div>
+          <div class="cf-dsc-overlay"></div>
+          <div class="cf-dsc-content">
+            <span class="cf-dsc-cat">
+              {{ service.category_label|default:service.get_category_display }}
+            </span>
+            <h4 class="cf-dsc-title">{{ service.title }}</h4>
+            <p class="cf-dsc-desc">{{ service.short_description|default:"Advanced clinical treatment performed by certified dental specialists with pain-free protocols." }}</p>
+            <div class="cf-dsc-footer d-flex justify-content-between align-items-center">
+              <span class="cf-dsc-link">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+              {% if service.starting_price %}
+              <span class="cf-dsc-price">{% trans "From" %} NPR {{ service.starting_price }}</span>
+              {% else %}
+              <span class="cf-dsc-price">{% trans "Consultation" %}</span>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="{% url 'main:services_list' %}" class="cf-btn-primary px-5 py-3 shadow">
+        <i class="bi bi-collection-fill me-2"></i>{% trans "View Complete Treatment Directory & Packages" %}
+      </a>
+    </div>
   </div>
 </section>
 
