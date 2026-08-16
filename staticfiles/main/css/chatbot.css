@@ -1,38 +1,40 @@
 /* ==========================================================================
    CareFirst Dental Clinic - AI Patient Assistant ("Ask CareFirst") UI
-   Left-Aligned with Zooming & Shimmer Animations + Engagement Optimizations
+   Ultra-Modern Floating AI Widget (Left Aligned, Elevated & Levitating)
    ========================================================================== */
 
-/* ── Floating Launcher Container (Left Aligned) ── */
+/* ── Floating Launcher Container (Elevated from Bottom-Left) ── */
 .cf-chat-launcher-container {
   position: fixed;
-  bottom: 24px;
-  left: 24px;
+  bottom: 36px;
+  left: 30px;
   right: auto;
   z-index: 1040;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
 }
 
-/* ── Proactive Welcome Callout Bubble ── */
+/* ── Proactive Welcome Callout Speech Bubble ── */
 .cf-chat-callout {
   position: relative;
-  background: #FFFFFF;
-  color: #0F172A;
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  box-shadow: 0 10px 25px rgba(8, 28, 51, 0.18), 0 0 0 1px rgba(2, 132, 199, 0.15);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #0B2545;
+  padding: 10px 16px;
+  border-radius: 16px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  box-shadow: 0 12px 30px rgba(8, 28, 51, 0.16), 0 0 0 1.5px rgba(2, 132, 199, 0.2);
   display: flex;
   align-items: center;
   gap: 10px;
-  max-width: 270px;
+  max-width: 280px;
   cursor: pointer;
   opacity: 0;
-  transform: translateY(10px) scale(0.92);
+  transform: translateY(12px) scale(0.92);
   pointer-events: none;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: var(--cf-font-body, 'Inter', sans-serif);
@@ -44,21 +46,20 @@
   pointer-events: auto;
 }
 
-/* Downward speech bubble pointer on the left */
 .cf-chat-callout::after {
   content: '';
   position: absolute;
   bottom: -6px;
-  left: 28px;
+  left: 24px;
   width: 12px;
   height: 12px;
   background: #FFFFFF;
   transform: rotate(45deg);
-  box-shadow: 2px 2px 3px rgba(8, 28, 51, 0.05);
+  box-shadow: 2px 2px 3px rgba(8, 28, 51, 0.04);
 }
 
 .cf-callout-wave {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   animation: cfHandWave 2.5s infinite;
   display: inline-block;
   transform-origin: 70% 70%;
@@ -68,7 +69,7 @@
   background: transparent;
   border: none;
   color: #94A3B8;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   line-height: 1;
   cursor: pointer;
   padding: 0 2px;
@@ -79,32 +80,31 @@
   color: #EF4444;
 }
 
-/* ── Floating Launcher Trigger with Zooming Animation ── */
+/* ── Ultra-Modern Levitating Floating Launcher ── */
 .cf-chat-launcher {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  gap: 12px;
+  background: linear-gradient(135deg, #0B2545 0%, #0284C7 100%);
   color: #FFFFFF;
-  padding: 12px 22px;
+  padding: 10px 20px 10px 12px;
   border-radius: 50px;
-  border: 2px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 10px 30px rgba(2, 132, 199, 0.38);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 14px 34px rgba(2, 132, 199, 0.35), 0 4px 12px rgba(8, 28, 51, 0.2);
   cursor: pointer;
   font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
   font-weight: 700;
-  font-size: 0.95rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.92rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
-  overflow: hidden;
-  animation: cfZoomPulse 3.5s infinite ease-in-out;
+  animation: cfFloatingLevitate 4s infinite ease-in-out;
 }
 
 .cf-chat-launcher:hover {
-  transform: translateY(-4px) scale(1.08) !important;
-  box-shadow: 0 18px 40px rgba(2, 132, 199, 0.5);
-  background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+  transform: translateY(-6px) scale(1.05) !important;
+  box-shadow: 0 20px 45px rgba(2, 132, 199, 0.5), 0 6px 16px rgba(8, 28, 51, 0.25);
+  background: linear-gradient(135deg, #0369A1 0%, #081C33 100%);
 }
 
 .cf-chat-launcher.is-open {
@@ -113,7 +113,7 @@
   animation: none;
 }
 
-/* Subtle continuous ripple halo */
+/* Outer Glowing Aura Pulse */
 .cf-launcher-ripple {
   position: absolute;
   top: 50%;
@@ -123,11 +123,11 @@
   border-radius: 50px;
   transform: translate(-50%, -50%);
   border: 2px solid rgba(56, 189, 248, 0.6);
-  animation: cfRippleHalo 2.5s infinite cubic-bezier(0.25, 1, 0.5, 1);
+  animation: cfAuraPulse 3s infinite cubic-bezier(0.25, 1, 0.5, 1);
   pointer-events: none;
 }
 
-/* Shimmer shine wave moving across pill */
+/* Shimmer Highlight Gliding Across */
 .cf-chat-launcher::before {
   content: '';
   position: absolute;
@@ -138,51 +138,84 @@
   background: linear-gradient(
     120deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.3) 50%,
     rgba(255, 255, 255, 0) 100%
   );
-  animation: cfShimmerLight 4s infinite ease-in-out;
+  animation: cfShimmerLight 4.5s infinite ease-in-out;
 }
 
+/* Floating Orb Avatar */
 .cf-chat-launcher-badge {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 38px;
+  height: 38px;
   background: #FFFFFF;
   color: #0284C7;
   border-radius: 50%;
-  font-size: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-size: 1.15rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
   transition: transform 0.3s ease;
 }
 
-.cf-chat-launcher:hover .cf-chat-launcher-badge {
-  transform: scale(1.15) rotate(8deg);
+.cf-chat-launcher-badge::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10B981;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 6px #10B981;
 }
 
-/* ── Chat Main Panel Container (Left Aligned) ── */
+.cf-chat-launcher:hover .cf-chat-launcher-badge {
+  transform: scale(1.1) rotate(6deg);
+}
+
+.cf-chat-launcher-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.cf-chat-launcher-text span:first-child {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.cf-chat-launcher-text span:last-child {
+  font-size: 0.7rem;
+  color: #BAE6FD;
+  font-weight: 500;
+}
+
+/* ── Chat Main Panel Container (Elevated Above Launcher) ── */
 .cf-chat-panel {
   position: fixed;
-  bottom: 90px;
-  left: 24px;
+  bottom: 100px;
+  left: 30px;
   right: auto;
   width: 410px;
-  max-width: calc(100vw - 32px);
+  max-width: calc(100vw - 36px);
   height: 620px;
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 140px);
   background: #FFFFFF;
-  border-radius: 20px;
+  border-radius: 22px;
   border: 1px solid #E2E8F0;
-  box-shadow: 0 24px 70px rgba(8, 28, 51, 0.25);
+  box-shadow: 0 28px 75px rgba(8, 28, 51, 0.28);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   z-index: 1050;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px) scale(0.94);
+  transform: translateY(24px) scale(0.92);
   transform-origin: bottom left;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: var(--cf-font-body, 'Inter', sans-serif);
@@ -522,35 +555,32 @@
 }
 
 /* ── Keyframe Animations ── */
-@keyframes cfZoomPulse {
+@keyframes cfFloatingLevitate {
   0% {
-    transform: scale(1);
-    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.35);
+    transform: translateY(0);
   }
   50% {
-    transform: scale(1.055);
-    box-shadow: 0 14px 35px rgba(2, 132, 199, 0.52);
+    transform: translateY(-8px);
   }
   100% {
-    transform: scale(1);
-    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.35);
+    transform: translateY(0);
   }
 }
 
-@keyframes cfRippleHalo {
+@keyframes cfAuraPulse {
   0% {
-    opacity: 0.8;
+    opacity: 0.85;
     transform: translate(-50%, -50%) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.35);
+    transform: translate(-50%, -50%) scale(1.4);
   }
 }
 
 @keyframes cfShimmerLight {
   0% { left: -100%; }
-  35% { left: 140%; }
+  30% { left: 140%; }
   100% { left: 140%; }
 }
 
@@ -573,7 +603,7 @@
 /* ── Mobile Responsive Overlay ── */
 @media (max-width: 576px) {
   .cf-chat-launcher-container {
-    bottom: 16px;
+    bottom: 20px;
     left: 16px;
   }
   .cf-chat-panel {
@@ -587,7 +617,7 @@
     transform-origin: center;
   }
   .cf-chat-launcher {
-    padding: 10px 16px;
-    font-size: 0.88rem;
+    padding: 8px 14px 8px 10px;
+    font-size: 0.84rem;
   }
 }
