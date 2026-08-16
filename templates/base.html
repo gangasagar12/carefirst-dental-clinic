@@ -28,72 +28,41 @@
     <meta name="twitter:description" content="{% block twitter_desc %}Premium dental care and advanced treatments.{% endblock %}" />
 
     <meta name="geo.region" content="NP" />
-    <meta name="geo.placename" content="Kathmandu, Dhangadi" />
-    <meta name="geo.position" content="27.678798;85.345713" />
-    <meta name="ICBM" content="27.678798, 85.345713" />
+    <meta name="geo.placename" content="Kathmandu" />
+    <meta name="geo.position" content="27.687790;85.327650" />
+    <meta name="ICBM" content="27.687790, 85.327650" />
 
-    <!-- Structured Data: Local Business Schema (Multi-Location) -->
+    <!-- Structured Data: Local Business Schema -->
     <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "Dentist",
-        "name": "Carefirst Dental Clinic (Kathmandu)",
-        "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'main/img/care-first-logo.jpeg' %}",
-        "@id": "{{ request.scheme }}://{{ request.get_host }}/#kathmandu",
-        "url": "{{ request.scheme }}://{{ request.get_host }}/",
-        "telephone": "+977-9807464136",
-        "email": "carefirstdentalclinic@gmail.com",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Pragatinagar Road, Shankhamul-31",
-          "addressLocality": "Kathmandu",
-          "addressRegion": "Bagmati",
-          "postalCode": "44600",
-          "addressCountry": "NP"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 27.687405,
-          "longitude": 85.334187
-        },
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "07:30",
-          "closes": "19:30"
-        }
+    {
+      "@context": "https://schema.org",
+      "@type": "Dentist",
+      "name": "Carefirst Dental Clinic",
+      "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'main/img/care-first-logo.jpeg' %}",
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/#kathmandu",
+      "url": "{{ request.scheme }}://{{ request.get_host }}/",
+      "telephone": "+977-9807464136",
+      "email": "carefirstdentalclinic@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Pragatinagar Road, Shankhamul-31",
+        "addressLocality": "Kathmandu",
+        "addressRegion": "Bagmati",
+        "postalCode": "44600",
+        "addressCountry": "NP"
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "Dentist",
-        "name": "Carefirst Dental Clinic (Dhangadi)",
-        "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'main/img/care-first-logo.jpeg' %}",
-        "@id": "{{ request.scheme }}://{{ request.get_host }}/#dhangadi",
-        "url": "{{ request.scheme }}://{{ request.get_host }}/",
-        "telephone": "+977-091591181",
-        "email": "{{ site_settings.email }}",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Campus Chowk",
-          "addressLocality": "Dhangadi",
-          "addressRegion": "Sudurpashchim",
-          "postalCode": "10900",
-          "addressCountry": "NP"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 28.698940,
-          "longitude": 80.600321
-        },
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "19:00"
-        }
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 27.687790,
+        "longitude": 85.327650
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "07:30",
+        "closes": "19:30"
       }
-    ]
+    }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

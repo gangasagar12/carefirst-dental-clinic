@@ -1,298 +1,209 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load static i18n form_tags %}
 
-{% load static %}
-
-{% block title %}Contact Us —Care First Dental Clinic{% endblock %}
+{% block title %}{% trans "Contact Us & Appointments" %} — Carefirst Dental Clinic{% endblock %}
+{% block meta_description %}{% trans "Contact Carefirst Dental Clinic in Kathmandu. Book an appointment, view our clinic location in Shankhamul / New Baneshwor, or call for emergency dental care." %}{% endblock %}
 
 {% block extra_head %}
-<meta name="description" content="Contact Carefirst Dental Clinic in Kathmandu. Book an appointment, find our clinic location, or reach out for emergency dental care.">
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
 <style>
-  /* Hero Section */
-  .contact-hero {
-    background: linear-gradient(rgba(14, 90, 79, 0.8), rgba(14, 90, 79, 0.9)), url('{% static "images/periodontal-hero.jpg" %}');
-    background-size: cover;
-    background-position: center;
-    padding: 220px 0 140px;
-    color: #fff;
-    text-align: center;
-  }
-  .contact-hero h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-    font-family: var(--cf-font-head);
-  }
-  .contact-hero p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0.9;
-  }
-
-  /* Info Cards Grid */
-  .contact-info-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 30px;
+  /* ── Contact Page Specific Styles ── */
+  .cf-contact-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 32px 24px;
     height: 100%;
-    border: 1px solid rgba(14, 90, 79, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1.5px solid #E2E8F0;
+    box-shadow: 0 10px 30px rgba(8, 28, 51, 0.05);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     text-align: center;
   }
-  .contact-info-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  .cf-contact-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(2, 132, 199, 0.14);
+    border-color: #BAE6FD;
   }
-  .contact-icon {
-    font-size: 2.5rem;
-    color: var(--cf-accent);
-    margin-bottom: 15px;
-  }
-  .contact-info-card h4 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--cf-primary-dark);
-    margin-bottom: 10px;
-  }
-  .contact-info-card p, .contact-info-card a {
-    color: #6c757d;
-    text-decoration: none;
-    font-size: 0.95rem;
-  }
-
-  /* Branch Location Tabs */
-  .branch-tab-nav {
-    display: flex;
-    gap: 0;
-    background: #f0f7f5;
-    border-radius: 14px;
-    padding: 6px;
-    margin-bottom: 30px;
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
-  }
-  .branch-tab-btn {
-    flex: 1;
-    padding: 14px 20px;
-    border: none;
-    background: transparent;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #6c757d;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  .cf-contact-icon-wrap {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284C7;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    font-size: 1.8rem;
+    margin: 0 auto 18px auto;
+    transition: all 0.3s ease;
   }
-  .branch-tab-btn.active {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    box-shadow: 0 4px 14px rgba(14, 90, 79, 0.3);
+  .cf-contact-card:hover .cf-contact-icon-wrap {
+    background: #0284C7;
+    color: #FFFFFF;
+    transform: scale(1.08);
   }
-  .branch-tab-btn .branch-badge {
-    font-size: 0.72rem;
-    background: var(--cf-accent);
-    color: #fff;
-    padding: 2px 8px;
-    border-radius: 20px;
+  .cf-contact-card h4 {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #081C33;
+    margin-bottom: 8px;
+  }
+
+  /* Form Containers */
+  .cf-form-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: 0 12px 35px rgba(8, 28, 51, 0.06);
+    border: 1.5px solid #E2E8F0;
+    overflow: hidden;
+  }
+  .cf-form-header-primary {
+    background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%);
+    color: #FFFFFF;
+    padding: 30px;
+    text-align: center;
+  }
+  .cf-form-header-azure {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF;
+    padding: 30px;
+    text-align: center;
+  }
+  .cf-form-body {
+    padding: 36px;
+  }
+  .cf-form-body .form-label {
+    font-size: 0.88rem;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    color: #334155;
+    margin-bottom: 6px;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
   }
-  .branch-tab-btn.active .branch-badge {
-    background: rgba(255,255,255,0.25);
+  .cf-form-body .form-control,
+  .cf-form-body .form-select {
+    border-radius: 10px;
+    padding: 12px 16px;
+    border: 1.5px solid #E2E8F0;
+    font-size: 0.92rem;
+    color: #1E293B;
+    background-color: #F8FAFC;
+    transition: all 0.25s ease;
   }
-  .branch-panel {
-    display: none;
-    animation: fadeInUp 0.4s ease;
+  .cf-form-body .form-control:focus,
+  .cf-form-body .form-select:focus {
+    background-color: #FFFFFF;
+    border-color: #0284C7;
+    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
   }
-  .branch-panel.active {
-    display: block;
-  }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(15px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .branch-info-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
-    border-top: 4px solid var(--cf-accent);
+
+  /* Location Info Panel */
+  .cf-location-info-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 36px 30px;
+    box-shadow: 0 10px 30px rgba(8, 28, 51, 0.06);
+    border: 1.5px solid #E2E8F0;
+    border-top: 4px solid #0284C7;
     height: 100%;
+    display: flex;
+    flex-direction: column;
   }
-  .branch-info-card .branch-label {
+  .cf-loc-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(14, 90, 79, 0.08);
-    color: var(--cf-primary-dark);
-    font-weight: 700;
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284C7;
+    font-weight: 800;
     font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     padding: 5px 14px;
     border-radius: 20px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
+    width: fit-content;
+    border: 1px solid rgba(2, 132, 199, 0.2);
   }
-  .branch-info-row {
+  .cf-loc-row {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #f0f0f0;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #F1F5F9;
   }
-  .branch-info-row:last-of-type {
+  .cf-loc-row:last-of-type {
     border-bottom: none;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     padding-bottom: 0;
   }
-  .branch-info-row .icon-wrap {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    background: rgba(197, 168, 128, 0.12);
-    border-radius: 10px;
+  .cf-loc-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    background: rgba(2, 132, 199, 0.08);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.15rem;
-    color: var(--cf-accent);
+    font-size: 1.2rem;
+    color: #0284C7;
   }
-  .branch-info-row h6 {
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: #444;
-    margin-bottom: 3px;
-  }
-  .branch-info-row p {
-    font-size: 0.9rem;
-    color: #666;
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  /* Section Styles */
-  .section-py {
-    padding: 80px 0;
-  }
-  .section-heading {
-    font-size: 2.5rem;
+  .cf-loc-row h6 {
     font-weight: 800;
-    color: var(--cf-primary-dark, #0b4a41);
-    font-family: var(--cf-font-head);
+    font-size: 0.88rem;
+    color: #081C33;
+    margin-bottom: 2px;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
   }
-  .section-heading .accent {
-    color: var(--cf-accent, #c5a880);
-  }
-  .nd-eyebrow {
-    color: var(--cf-accent, #c5a880);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.85rem;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-  }
-  .nd-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 2px;
-    background-color: var(--cf-accent, #c5a880);
-    margin-right: 15px;
-  }
-  .nd-eyebrow.justify-content-center::after {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 2px;
-    background-color: var(--cf-accent, #c5a880);
-    margin-left: 15px;
-  }
-  .contact-info-card a:hover {
-    color: var(--cf-accent);
+  .cf-loc-row p {
+    font-size: 0.92rem;
+    color: #64748B;
+    margin: 0;
+    line-height: 1.55;
   }
 
-  /* Forms Section */
-  .form-section {
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+  /* Map Container */
+  .cf-map-wrapper {
+    border-radius: 20px;
     overflow: hidden;
-  }
-  .form-header {
-    background: var(--cf-primary-dark);
-    color: #fff;
-    padding: 30px;
-    text-align: center;
-  }
-  .form-body {
-    padding: 40px;
-  }
-  .form-control, .form-select {
-    border-radius: 8px;
-    padding: 12px 15px;
-    border: 1px solid #dee2e6;
-  }
-  .form-control:focus, .form-select:focus {
-    border-color: var(--cf-accent);
-    box-shadow: 0 0 0 0.2rem rgba(197, 168, 128, 0.25);
-  }
-  .btn-submit {
-    background: var(--cf-accent);
-    color: #fff;
-    font-weight: 700;
-    padding: 14px;
-    border-radius: 8px;
-    border: none;
-    width: 100%;
-    transition: background 0.3s ease;
-  }
-  .btn-submit:hover {
-    background: var(--cf-accent-dark);
-    color: #fff;
-  }
-
-  /* Emergency Banner */
-  .emergency-banner {
-    background: #dc3545;
-    color: #fff;
-    border-radius: 16px;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .emergency-icon {
-    font-size: 3rem;
-  }
-
-  /* Why Us Cards */
-  .feature-card {
-    text-align: left;
-    padding: 25px;
-    background: #fff;
-    border-radius: 12px;
-    border-left: 4px solid var(--cf-accent);
+    box-shadow: 0 10px 30px rgba(8, 28, 51, 0.08);
+    border: 2px solid #E2E8F0;
     height: 100%;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    min-height: 480px;
   }
-  .feature-card i {
+
+  /* Feature cards */
+  .cf-why-feature-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 28px 22px;
+    height: 100%;
+    border: 1.5px solid #E2E8F0;
+    box-shadow: 0 6px 20px rgba(8, 28, 51, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cf-why-feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(2, 132, 199, 0.12);
+    border-color: #BAE6FD;
+  }
+  .cf-why-feature-card i {
     font-size: 2rem;
-    color: var(--cf-primary-dark);
-    margin-bottom: 15px;
+    color: #0284C7;
+    margin-bottom: 14px;
     display: inline-block;
   }
-  
-  /* Floating Widget */
-  .floating-widget {
+  .cf-why-feature-card h5 {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #081C33;
+    margin-bottom: 8px;
+  }
+
+  /* Floating Quick Action Widget */
+  .cf-floating-widget {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -301,54 +212,56 @@
     gap: 10px;
     z-index: 1000;
   }
-  .float-btn {
-    width: 60px;
-    height: 60px;
+  .cf-float-btn {
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    color: #fff;
+    font-size: 1.4rem;
+    color: #FFFFFF;
     text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
+    box-shadow: 0 6px 18px rgba(8, 28, 51, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     position: relative;
   }
-  .float-btn:hover {
+  .cf-float-btn:hover {
     transform: scale(1.1);
-    color: #fff;
+    color: #FFFFFF;
+    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.4);
   }
-  .float-btn .tooltip-text {
+  .cf-float-btn .tooltip-text {
     position: absolute;
-    right: 75px;
-    background: #333;
-    color: #fff;
+    right: 70px;
+    background: #081C33;
+    color: #FFFFFF;
     padding: 6px 12px;
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 700;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease;
   }
-  .float-btn:hover .tooltip-text {
+  .cf-float-btn:hover .tooltip-text {
     opacity: 1;
   }
-  .btn-whatsapp { background: #25D366; }
-  .btn-call { background: var(--cf-primary-dark); }
-  .btn-book { background: var(--cf-accent); }
-  .btn-map { background: #4285F4; }
+  .btn-float-wa { background: #25D366; }
+  .btn-float-call { background: #0284C7; }
+  .btn-float-book { background: #081C33; }
+  .btn-float-map { background: #EA4335; }
 
   @media (max-width: 768px) {
-    .floating-widget {
+    .cf-floating-widget {
       bottom: 20px;
       right: 20px;
     }
-    .float-btn {
-      width: 50px;
-      height: 50px;
-      font-size: 1.25rem;
+    .cf-float-btn {
+      width: 48px;
+      height: 48px;
+      font-size: 1.2rem;
     }
   }
 </style>
@@ -356,67 +269,84 @@
 
 {% block content %}
 
-<!-- Floating Widget -->
-<div class="floating-widget">
-  <a href="https://wa.me/9779848631371" target="_blank" class="float-btn btn-whatsapp" aria-label="WhatsApp">
+<!-- Floating Quick Actions -->
+<div class="cf-floating-widget">
+  <a href="https://wa.me/9779807464136" target="_blank" class="cf-float-btn btn-float-wa" aria-label="WhatsApp">
     <i class="bi bi-whatsapp"></i>
     <span class="tooltip-text">{% trans "WhatsApp Us" %}</span>
   </a>
-  <a href="tel:+9779848631371" class="float-btn btn-call" aria-label="Call Now">
+  <a href="tel:+9779807464136" class="cf-float-btn btn-float-call" aria-label="Call Now">
     <i class="bi bi-telephone-fill"></i>
-    <span class="tooltip-text">{% trans "Call Now" %}</span>
+    <span class="tooltip-text">{% trans "Call Clinic" %}</span>
   </a>
-  <a href="#book" class="float-btn btn-book" aria-label="Book Appointment">
+  <a href="#book" class="cf-float-btn btn-float-book" aria-label="Book Appointment">
     <i class="bi bi-calendar-check"></i>
     <span class="tooltip-text">{% trans "Book Visit" %}</span>
   </a>
-  <a href="#location" class="float-btn btn-map" aria-label="Get Directions">
+  <a href="#location" class="cf-float-btn btn-float-map" aria-label="Get Directions">
     <i class="bi bi-geo-alt-fill"></i>
-    <span class="tooltip-text">{% trans "Directions" %}</span>
+    <span class="tooltip-text">{% trans "Google Maps" %}</span>
   </a>
 </div>
 
 <!-- 1. HERO BANNER -->
-<section class="contact-hero">
-  <div class="container">
-    <h1>{% trans "Get in Touch" %}</h1>
-    <p>{% trans "Whether you need a routine check-up, an advanced cosmetic procedure, or emergency dental care, our team is ready to assist you. Contact us today!" %}</p>
+<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.60) 0%, rgba(11,37,69,0.50) 60%, rgba(3,105,161,0.40) 100%), url('{% static "main/img/hero_bg.jpeg" %}') center/cover no-repeat;">
+  <div class="hero-inner container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
+        <li class="breadcrumb-item active text-warning fw-bold">{% trans "Contact Us" %}</li>
+      </ol>
+    </nav>
+    <div class="cf-eyebrow-badge justify-content-center mb-3 text-white border-white-50 bg-white-10">
+      <i class="bi bi-chat-heart-fill text-warning"></i> {% trans "GET IN TOUCH & APPOINTMENTS" %}
+    </div>
+    <h1 class="display-4 fw-bold text-white mb-3">
+      {% trans "Contact CareFirst Dental Clinic" %}
+    </h1>
+    <p class="hero-sub mx-auto text-white opacity-75" style="font-size: 1.15rem; max-width: 760px;">
+      {% trans "Whether you need a routine check-up, an advanced cosmetic procedure, dental implants, or emergency care in Kathmandu, our dedicated team is here to help." %}
+    </p>
   </div>
 </section>
 
-<!-- 2. CONTACT INFO GRID -->
+<!-- 2. CONTACT INFO CARDS -->
 <section class="section-py bg-light" style="margin-top: -60px; padding-top: 0;">
-  <div class="container relative z-index-1">
+  <div class="container position-relative z-1">
     <div class="row g-4">
-      <!-- Location: Shankhamul / New Baneshwor -->
+      <!-- Location Card -->
       <div class="col-lg-4 col-md-6">
-        <div class="contact-info-card">
-          <div class="contact-icon"><i class="bi bi-geo-alt"></i></div>
+        <div class="cf-contact-card">
+          <div class="cf-contact-icon-wrap"><i class="bi bi-geo-alt-fill"></i></div>
           <h4>{% trans "Clinic Location" %}</h4>
-          <p class="mb-1 fw-semibold" style="color: var(--cf-primary-dark); font-size:0.85rem;">{% trans "Shankhamul / New Baneshwor" %}</p>
-          <address class="mb-0" style="font-style:normal;" itemscope itemtype="https://schema.org/PostalAddress">
-            <span itemprop="streetAddress">{% trans "Pragatinagar Road, Shankhamul-31" %}</span>, <span itemprop="addressLocality">{% trans "Kathmandu 44600" %}</span>
+          <p class="mb-1 fw-bold text-primary" style="font-size: 0.9rem; color: #0284C7 !important;">{% trans "Shankhamul / New Baneshwor" %}</p>
+          <address class="mb-0 text-muted small" style="font-style: normal;">
+            {% trans "Pragatinagar Road, Shankhamul-31" %}, {% trans "Kathmandu 44600, Nepal" %}
           </address>
         </div>
       </div>
-      <!-- Operating Hours -->
+
+      <!-- Operating Hours Card -->
       <div class="col-lg-4 col-md-6">
-        <div class="contact-info-card" style="border-top: 3px solid var(--cf-accent);">
-          <div class="contact-icon"><i class="bi bi-clock"></i></div>
+        <div class="cf-contact-card" style="border-top: 4px solid #0284C7;">
+          <div class="cf-contact-icon-wrap"><i class="bi bi-clock-fill"></i></div>
           <h4>{% trans "Operating Hours" %}</h4>
-          <p class="mb-1 fw-semibold" style="color: var(--cf-primary-dark); font-size:0.85rem;">{% trans "Open Daily (Mon – Sun)" %}</p>
-          <p class="mb-0">{% trans "7:30 AM to 7:30 PM" %}</p>
+          <p class="mb-1 fw-bold text-primary" style="font-size: 0.9rem; color: #0284C7 !important;">{% trans "Open Daily (Mon – Sun)" %}</p>
+          <p class="mb-0 text-muted small">{% trans "7:30 AM to 7:30 PM (Evening appointments available)" %}</p>
         </div>
       </div>
-      <!-- Contact & Email -->
+
+      <!-- Phone & Email Card -->
       <div class="col-lg-4 col-md-6">
-        <div class="contact-info-card">
-          <div class="contact-icon"><i class="bi bi-envelope"></i></div>
+        <div class="cf-contact-card">
+          <div class="cf-contact-icon-wrap"><i class="bi bi-headset"></i></div>
           <h4>{% trans "Phone & Email" %}</h4>
-          <p class="mb-0">
-            <a href="tel:+9779807464136" class="fw-bold text-decoration-none" style="color: var(--cf-navy);">+977 980-7464136</a> / 
-            <a href="tel:015916886" class="fw-bold text-decoration-none" style="color: var(--cf-navy);">01-5916886</a><br>
-            <a href="mailto:carefirstdentalclinic@gmail.com" class="text-decoration-none" style="color: var(--cf-primary);">carefirstdentalclinic@gmail.com</a>
+          <p class="mb-1">
+            <a href="tel:+9779807464136" class="fw-bold text-dark text-decoration-none">+977 980-7464136</a> / 
+            <a href="tel:015916886" class="fw-bold text-dark text-decoration-none">01-5916886</a>
+          </p>
+          <p class="mb-0 small">
+            <a href="mailto:carefirstdentalclinic@gmail.com" class="text-primary text-decoration-none" style="color: #0284C7 !important;">carefirstdentalclinic@gmail.com</a>
           </p>
         </div>
       </div>
@@ -431,7 +361,7 @@
     <div class="row mb-4">
       <div class="col-12">
         {% for message in messages %}
-        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show rounded-3" role="alert">
           {{ message }}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -439,22 +369,25 @@
       </div>
     </div>
     {% endif %}
+
     <div class="row g-5">
       <!-- Book Appointment Form -->
       <div class="col-lg-7">
-        <div class="form-section">
-          <div class="form-header">
-            <h3 class="mb-0 fw-bold">{% trans "Book an Appointment" %}</h3>
-            <p class="mb-0 small text-white-50">{% trans "Fill out the form below and we will confirm your visit." %}</p>
+        <div class="cf-form-card">
+          <div class="cf-form-header-primary">
+            <h3 class="mb-1 fw-bold text-white" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">
+              <i class="bi bi-calendar2-check-fill me-2 text-warning"></i>{% trans "Book an Appointment" %}
+            </h3>
+            <p class="mb-0 small text-white-50">{% trans "Fill out the details below and our clinic reception will confirm your visit." %}</p>
           </div>
-          <div class="form-body">
+          <div class="cf-form-body">
             <form action="{% url 'main:contact' %}" method="POST">
               {% csrf_token %}
               <input type="hidden" name="form_type" value="appointment">
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label">{% trans "Full Name *" %}</label>
-                  <input type="text" name="full_name" class="form-control" required placeholder="{% trans "John Doe" %}">
+                  <input type="text" name="full_name" class="form-control" required placeholder="{% trans "e.g. Ramesh Sharma" %}">
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">{% trans "Phone Number *" %}</label>
@@ -462,64 +395,54 @@
                 </div>
                 <div class="col-md-12">
                   <label class="form-label">{% trans "Email Address" %}</label>
-                  <input type="email" name="email" class="form-control" placeholder="john@example.com">
+                  <input type="email" name="email" class="form-control" placeholder="name@example.com">
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">{% trans "Preferred Date *" %}</label>
-                  <input type="date" name="preferred_date" class="form-control" placeholder="Select Preferred Date..." required>
+                  <input type="date" name="preferred_date" class="form-control" required>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">{% trans "Preferred Time" %}</label>
                   <select name="preferred_time" class="form-select">
                     <option value="">{% trans "Any Time" %}</option>
-                    <option value="morning">{% trans "Morning (9AM - 12PM)" %}</option>
-                    <option value="afternoon">{% trans "Afternoon (12PM - 4PM)" %}</option>
-                    <option value="evening">{% trans "Evening (4PM - 7PM)" %}</option>
+                    <option value="morning">{% trans "Morning (7:30 AM - 12:00 PM)" %}</option>
+                    <option value="afternoon">{% trans "Afternoon (12:00 PM - 4:00 PM)" %}</option>
+                    <option value="evening">{% trans "Evening (4:00 PM - 7:30 PM)" %}</option>
                   </select>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <label class="form-label">{% trans "Select Treatment" %}</label>
                   <select name="treatment" class="form-select">
                     <option value="">{% trans "General Check-up & Consultation" %}</option>
-                    <option value="cleaning">{% trans "Scaling & Polishing" %}</option>
-                    <option value="filling">{% trans "Dental Filling" %}</option>
-                    <option value="rct">{% trans "Root Canal Treatment" %}</option>
-                    <option value="extraction">{% trans "Tooth Extraction" %}</option>
+                    <option value="cleaning">{% trans "Scaling & Polishing (Cleaning)" %}</option>
+                    <option value="filling">{% trans "Composite Dental Filling" %}</option>
+                    <option value="rct">{% trans "Root Canal Treatment (RCT)" %}</option>
+                    <option value="extraction">{% trans "Tooth Extraction / Wisdom Tooth" %}</option>
                     <option value="implants">{% trans "Dental Implants" %}</option>
-                    <option value="braces">{% trans "Braces / Orthodontics" %}</option>
-                    <option value="other">{% trans "Other / Not Sure" %}</option>
+                    <option value="braces">{% trans "Braces / Clear Aligners" %}</option>
+                    <option value="other">{% trans "Other / Smile Consultation" %}</option>
                   </select>
                 </div>
                 
-                {% load form_tags %}
                 {% get_active_doctors as active_doctors %}
-                {% get_active_branches as active_branches %}
-                
                 <div class="col-md-6">
                   <label class="form-label">{% trans "Preferred Doctor" %} <span class="text-muted fw-normal" style="font-size: 0.85em;">({% trans "Optional" %})</span></label>
                   <select name="doctor" class="form-select">
-                    <option value="" {% if not request.GET.doctor %}selected{% endif %}>{% trans "Any Doctor" %}</option>
+                    <option value="" {% if not request.GET.doctor %}selected{% endif %}>{% trans "Any Available Specialist" %}</option>
                     {% for doc in active_doctors %}
-                      <option value="{{ doc.id }}" {% if request.GET.doctor == doc.id|stringformat:"s" %}selected{% endif %}>{{ doc.name }}</option>
+                      <option value="{{ doc.id }}" {% if request.GET.doctor == doc.id|stringformat:"s" %}selected{% endif %}>Dr. {{ doc.name }}</option>
                     {% endfor %}
                   </select>
                 </div>
-                
-                <div class="col-md-6">
-                  <label class="form-label">{% trans "Preferred Branch" %} <span class="text-muted fw-normal" style="font-size: 0.85em;">({% trans "Optional" %})</span></label>
-                  <select name="branch" class="form-select">
-                    <option value="" selected>{% trans "Any Branch" %}</option>
-                    {% for branch in active_branches %}
-                      <option value="{{ branch.id }}">{{ branch.name }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
+
                 <div class="col-md-12">
-                  <label class="form-label">{% trans "Message / Special Requirements" %}</label>
-                  <textarea name="message" class="form-control" rows="3" placeholder="{% trans "Tell us about your dental issue..." %}"></textarea>
+                  <label class="form-label">{% trans "Message / Dental Issue Details" %}</label>
+                  <textarea name="message" class="form-control" rows="3" placeholder="{% trans "Describe your symptoms, questions, or specific dental concerns..." %}"></textarea>
                 </div>
                 <div class="col-md-12 mt-4">
-                  <button type="submit" class="btn-submit"><i class="bi bi-calendar-check me-2"></i>{% trans "Submit Appointment Request" %}</button>
+                  <button type="submit" class="cf-btn-primary w-100 py-3 rounded-pill text-white fw-bold shadow justify-content-center">
+                    <i class="bi bi-calendar-check-fill me-2"></i>{% trans "Submit Appointment Request" %}
+                  </button>
                 </div>
               </div>
             </form>
@@ -527,34 +450,38 @@
         </div>
       </div>
 
-      <!-- Send a Message Form -->
+      <!-- Direct Message Form -->
       <div class="col-lg-5">
-        <div class="form-section h-100">
-          <div class="form-header" style="background: var(--cf-accent);">
-            <h3 class="mb-0 fw-bold">{% trans "Send a Message" %}</h3>
-            <p class="mb-0 small text-white-50">{% trans "Have a general question? Write to us." %}</p>
+        <div class="cf-form-card h-100 d-flex flex-column">
+          <div class="cf-form-header-azure">
+            <h3 class="mb-1 fw-bold text-white" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">
+              <i class="bi bi-envelope-paper-fill me-2 text-white"></i>{% trans "Send a Message" %}
+            </h3>
+            <p class="mb-0 small text-white-50">{% trans "Have a general question about treatments or pricing? Write to us." %}</p>
           </div>
-          <div class="form-body">
-            <form action="{% url 'main:contact' %}" method="POST">
+          <div class="cf-form-body flex-grow-1 d-flex flex-column">
+            <form action="{% url 'main:contact' %}" method="POST" class="d-flex flex-column flex-grow-1">
               {% csrf_token %}
               <input type="hidden" name="form_type" value="contact">
               <div class="mb-3">
-                <label class="form-label">{% trans "Name *" %}</label>
-                <input type="text" name="name" class="form-control" required>
+                <label class="form-label">{% trans "Your Name *" %}</label>
+                <input type="text" name="name" class="form-control" required placeholder="{% trans "Full Name" %}">
               </div>
               <div class="mb-3">
                 <label class="form-label">{% trans "Email Address *" %}</label>
-                <input type="email" name="email" class="form-control" required>
+                <input type="email" name="email" class="form-control" required placeholder="name@example.com">
               </div>
               <div class="mb-3">
                 <label class="form-label">{% trans "Subject" %}</label>
-                <input type="text" name="subject" class="form-control">
+                <input type="text" name="subject" class="form-control" placeholder="{% trans "e.g. Treatment Inquiry" %}">
               </div>
-              <div class="mb-4">
+              <div class="mb-4 flex-grow-1">
                 <label class="form-label">{% trans "Your Message *" %}</label>
-                <textarea name="message" class="form-control" rows="5" required></textarea>
+                <textarea name="message" class="form-control" rows="4" required placeholder="{% trans "Write your message here..." %}"></textarea>
               </div>
-              <button type="submit" class="btn-submit" style="background: var(--cf-primary-dark);"><i class="bi bi-send me-2"></i>{% trans "Send Message" %}</button>
+              <button type="submit" class="btn btn-dark w-100 py-3 rounded-pill fw-bold shadow-sm" style="background: #081C33; border: none;">
+                <i class="bi bi-send-fill me-2 text-warning"></i>{% trans "Send Message" %}
+              </button>
             </form>
           </div>
         </div>
@@ -563,212 +490,147 @@
   </div>
 </section>
 
-
-<!-- 5. LOCATION & MAP -->
+<!-- 4. SINGLE LOCATION & INTERACTIVE MAP -->
 <section class="section-py bg-light" id="location">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Find Us" %}</div>
-      <h2 class="section-heading">{% trans "Our" %} <span class="accent">{% trans "Branches" %}</span></h2>
-      <p class="text-muted mt-2" style="max-width:560px; margin: 0 auto;">{% trans "We serve patients in Kathmandu and Dhangadi, Kailali. Select your nearest branch." %}</p>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-geo-alt-fill"></i> {% trans "Visit Our Clinic" %}</div>
+      <h2 class="cf-section-title">{% trans "Find Us in" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Kathmandu" %}</span></h2>
+      <p class="text-muted mt-2 mx-auto" style="max-width: 580px;">{% trans "Conveniently located in Shankhamul, Kathmandu with accessible parking, peaceful clinical rooms, and modern digital facilities." %}</p>
     </div>
 
-    <!-- Branch Tab Switcher -->
-    <div class="branch-tab-nav" role="tablist">
-      <button class="branch-tab-btn active" onclick="switchBranch('koteshwor', this)" role="tab" aria-selected="true" id="tab-koteshwor">
-        <i class="bi bi-building"></i>
-        {% trans "Koteshwor, Kathmandu" %}
-      </button>
-      <button class="branch-tab-btn" onclick="switchBranch('dhangadi', this)" role="tab" aria-selected="false" id="tab-dhangadi">
-        <i class="bi bi-building"></i>
-        {% trans "Dhangadi, Kailali" %}
-      </button>
-    </div>
+    <div class="row g-4 align-items-stretch">
+      <!-- Clinic Details Card -->
+      <div class="col-lg-5">
+        <div class="cf-location-info-card">
+          <div class="cf-loc-badge"><i class="bi bi-building-check"></i> {% trans "Kathmandu Central Clinic" %}</div>
+          <h3 class="fw-bold text-dark mb-4" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); font-size: 1.45rem;">
+            {% trans "Carefirst Dental Clinic" %}
+          </h3>
 
-    <!-- Branch Panel 1: Shankhamul -->
-    <div class="branch-panel active" id="panel-koteshwor">
-      <div class="row g-4 align-items-stretch">
-        <div class="col-lg-4">
-          <div class="branch-info-card">
-            <div class="branch-label"><i class="bi bi-geo-alt-fill"></i> {% trans "Kathmandu Main Clinic" %}</div>
-            <h4 class="fw-bold text-dark mb-4" style="font-size:1.3rem;">{% trans "Carefirst Dental Clinic" %}</h4>
-
-            <div class="branch-info-row">
-              <div class="icon-wrap"><i class="bi bi-geo-alt-fill"></i></div>
-              <div>
-                <h6>{% trans "Address" %}</h6>
-                <p>{% trans "Pragatinagar Road, Shankhamul-31, Kathmandu 44600" %}<br><small class="text-muted">{% trans "Shankhamul / New Baneshwor Area" %}</small></p>
-              </div>
+          <div class="cf-loc-row">
+            <div class="cf-loc-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <div>
+              <h6>{% trans "Address" %}</h6>
+              <p>{% trans "Pragatinagar Road, Shankhamul-31, Kathmandu 44600" %}<br><small class="text-muted">{% trans "Shankhamul / New Baneshwor Area" %}</small></p>
             </div>
-
-            <div class="branch-info-row">
-              <div class="icon-wrap"><i class="bi bi-clock-fill"></i></div>
-              <div>
-                <h6>{% trans "Operating Hours" %}</h6>
-                <p>{% trans "Open daily (Monday to Sunday) from 7:30 AM to 7:30 PM" %}</p>
-              </div>
-            </div>
-
-            <div class="branch-info-row">
-              <div class="icon-wrap"><i class="bi bi-telephone-fill"></i></div>
-              <div>
-                <h6>{% trans "Phone" %}</h6>
-                <p><a href="tel:+9779807464136" style="color:var(--cf-primary-dark); font-weight:600;">+977 980-7464136</a><br><a href="tel:015916886" style="color:var(--cf-primary-dark); font-weight:600;">01-5916886</a></p>
-              </div>
-            </div>
-
-            <div class="branch-info-row">
-              <div class="icon-wrap"><i class="bi bi-envelope-fill"></i></div>
-              <div>
-                <h6>{% trans "Email" %}</h6>
-                <p><a href="mailto:carefirstdentalclinic@gmail.com" style="color:var(--cf-primary-dark); font-weight:600;">carefirstdentalclinic@gmail.com</a></p>
-              </div>
-            </div>
-
-            <div class="branch-info-row">
-              <div class="icon-wrap"><i class="bi bi-person-badge-fill"></i></div>
-              <div>
-                <h6>{% trans "Lead Dental Surgeon" %}</h6>
-                <p class="fw-semibold mb-0" style="color: var(--cf-navy);">Dr. Subash Banjade</p>
-                <small class="text-muted">{% trans "Supported by Senior Consultant Specialists" %}</small>
-              </div>
-            </div>
-
-            <a href="https://maps.google.com/?q=Pragatinagar+Road+Shankhamul+Kathmandu" target="_blank" class="btn btn-nd-gold w-100 rounded-pill mt-2">
-              <i class="bi bi-map me-2"></i>{% trans "Open in Google Maps" %}
-            </a>
           </div>
-        </div>
-        <div class="col-lg-8">
-          <div class="rounded-4 overflow-hidden shadow-sm" style="height: 450px; border: 2px solid rgba(14,90,79,0.12);">
-            <iframe title="Google Maps Location for Carefirst Dental Clinic Kathmandu" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2227.078717719535!2d85.34571344401655!3d27.678798125992724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1900378fe595%3A0x3c6802526572aa66!2sNiko%20Dental%20And%20Aesthetics!5e0!3m2!1sen!2snp!4v1784277549493!5m2!1sen!2snp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+          <div class="cf-loc-row">
+            <div class="cf-loc-icon"><i class="bi bi-clock-fill"></i></div>
+            <div>
+              <h6>{% trans "Operating Hours" %}</h6>
+              <p>{% trans "Open daily (Monday to Sunday) from 7:30 AM to 7:30 PM" %}</p>
+            </div>
+          </div>
+
+          <div class="cf-loc-row">
+            <div class="cf-loc-icon"><i class="bi bi-telephone-fill"></i></div>
+            <div>
+              <h6>{% trans "Direct Phone & Reception" %}</h6>
+              <p>
+                <a href="tel:+9779807464136" class="text-primary fw-bold text-decoration-none" style="color: #0284C7 !important;">+977 980-7464136</a><br>
+                <a href="tel:015916886" class="text-dark fw-bold text-decoration-none">01-5916886</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="cf-loc-row">
+            <div class="cf-loc-icon"><i class="bi bi-envelope-fill"></i></div>
+            <div>
+              <h6>{% trans "Email Address" %}</h6>
+              <p><a href="mailto:carefirstdentalclinic@gmail.com" class="text-primary text-decoration-none" style="color: #0284C7 !important;">carefirstdentalclinic@gmail.com</a></p>
+            </div>
+          </div>
+
+          <div class="cf-loc-row">
+            <div class="cf-loc-icon"><i class="bi bi-person-badge-fill"></i></div>
+            <div>
+              <h6>{% trans "Clinical Director" %}</h6>
+              <p class="fw-bold mb-0 text-dark">Dr. Subash Banjade</p>
+              <small class="text-muted">{% trans "Senior Dental Surgeon (NMC #31229)" %}</small>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2 flex-wrap mt-auto pt-3">
+            <a href="https://maps.google.com/?q=Carefirst+Dental+clinic+Shankhamul+Kathmandu" target="_blank" rel="noopener" class="cf-btn-primary flex-grow-1 text-center py-2 px-3 rounded-pill text-white text-decoration-none fw-bold small justify-content-center">
+              <i class="bi bi-map-fill me-1"></i>{% trans "Open Google Maps" %}
+            </a>
+            <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success rounded-pill px-3 fw-bold small d-inline-flex align-items-center">
+              <i class="bi bi-whatsapp me-1"></i> WhatsApp
+            </a>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Branch Panel 2: Dhangadi -->
-    <div class="branch-panel" id="panel-dhangadi">
-      <div class="row g-4 align-items-stretch">
-        <div class="col-lg-4">
-          <div class="branch-info-card">
-            <div class="branch-label"><i class="bi bi-geo-alt-fill"></i> {% trans "Dhangadi Branch" %}</div>
-            <h4 class="fw-bold text-dark mb-4" style="font-size:1.3rem;">{% trans "Dhangadi Clinic" %}</h4>
-
-            <div class="branch-info-row">
-              <div class="icon-wrap"><i class="bi bi-geo-alt-fill"></i></div>
-              <div>
-                <h6>{% trans "Address" %}</h6>
-                <p>{% trans "Campus Chowk, Dhangadi, Kailali" %}</p>
-              </div>
-            </div>
-
-            <div class="branch-info-row">
-              <div class="icon-wrap"><i class="bi bi-signpost-2-fill"></i></div>
-              <div>
-                <h6>{% trans "Landmark" %}</h6>
-                <p>{% trans "Campus Chowk, Dhangadi — near the main market" %}</p>
-              </div>
-            </div>
-
-            <div class="branch-info-row">
-              <div class="icon-wrap"><i class="bi bi-telephone-fill"></i></div>
-              <div>
-                <h6>{% trans "Phone" %}</h6>
-                <p>
-                  <a href="tel:091591181" style="color:var(--cf-primary-dark); font-weight:600;">091-591181</a><br>
-                  <a href="tel:+9779812646607" style="color:var(--cf-primary-dark); font-weight:600;">+977 9812646607</a><br>
-                  <a href="tel:+9779848631371" style="color:var(--cf-primary-dark); font-weight:600;">+977 9848631371</a>
-                </p>
-              </div>
-            </div>
-
-            <div class="branch-info-row">
-              <div class="icon-wrap"><i class="bi bi-car-front-fill"></i></div>
-              <div>
-                <h6>{% trans "Parking" %}</h6>
-                <p>{% trans "Free dedicated parking for all patients" %}</p>
-              </div>
-            </div>
-
-            <a href="https://www.google.com/maps/place/Niko+dental+Dhangadhi/@28.6989399,80.6003208,17z" target="_blank" class="btn btn-nd-gold w-100 rounded-pill mt-2">
-              <i class="bi bi-map me-2"></i>{% trans "Open in Google Maps" %}
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-8">
-          <div class="rounded-4 overflow-hidden shadow-sm" style="height: 450px; border: 2px solid rgba(197,168,128,0.25);">
-            <iframe title="Google Maps Location for Carefirst Dental Clinic Dhangadi" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.6892806279657!2d80.60032087475425!3d28.698939981063305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a1ed0059e682c3%3A0xb49b86803050f53e!2sNiko%20dental%20Dhangadhi!5e0!3m2!1sen!2snp!4v1784280650771!5m2!1sen!2snp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          </div>
+      <!-- Google Maps Embed -->
+      <div class="col-lg-7">
+        <div class="cf-map-wrapper">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7065.909722981325!2d85.32764974016911!3d27.68778995511458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19797240e571%3A0x749fab7a165b359f!2sCarefirst%20Dental%20clinic!5e0!3m2!1sen!2snp!4v1786850051588!5m2!1sen!2snp" 
+            width="100%" 
+            height="100%" 
+            style="border:0; min-height: 480px; display: block;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Google Maps Location for Carefirst Dental Clinic Kathmandu">
+          </iframe>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<script>
-function switchBranch(branchId, btn) {
-  // Remove active from all panels and tabs
-  document.querySelectorAll('.branch-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.branch-tab-btn').forEach(b => {
-    b.classList.remove('active');
-    b.setAttribute('aria-selected', 'false');
-  });
-  // Activate selected
-  document.getElementById('panel-' + branchId).classList.add('active');
-  btn.classList.add('active');
-  btn.setAttribute('aria-selected', 'true');
-}
-</script>
-
-<!-- 6. WHY VISIT US (FEATURES) -->
+<!-- 5. WHY CHOOSE CAREFIRST -->
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="section-heading">{% trans "Why Visit" %}<span class="accent">{% trans "Carefirst Dental Clinic?" %}</span></h2>
+      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-shield-check"></i> {% trans "Clinical Standards" %}</div>
+      <h2 class="cf-section-title">{% trans "Why Choose" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Carefirst Dental Clinic?" %}</span></h2>
     </div>
     
     <div class="row g-4">
       <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
+        <div class="cf-why-feature-card">
           <i class="bi bi-award-fill"></i>
-          <h5 class="fw-bold">{% trans "Experienced Specialists" %}</h5>
-          <p class="text-muted mb-0 small">{% trans "Our team consists of highly qualified MDS specialists with years of clinical expertise." %}</p>
+          <h5>{% trans "Experienced Specialists" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "Our team consists of recognized dental surgeons and consultants with years of specialized clinical practice." %}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
+        <div class="cf-why-feature-card">
           <i class="bi bi-display"></i>
-          <h5 class="fw-bold">{% trans "Advanced Technology" %}</h5>
-          <p class="text-muted mb-0 small">{% trans "Equipped with modern RVG, apex locators, and painless rotary endodontic systems." %}</p>
+          <h5>{% trans "Digital Technology" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "Equipped with modern Digital X-rays (RVG), digital apex locators, and pain-free rotary endodontics." %}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
+        <div class="cf-why-feature-card">
           <i class="bi bi-heart-pulse-fill"></i>
-          <h5 class="fw-bold">{% trans "Comfortable Environment" %}</h5>
-          <p class="text-muted mb-0 small">{% trans "A luxury, anxiety-free clinic designed to make you feel relaxed during treatment." %}</p>
+          <h5>{% trans "Gentle, Pain-Free Care" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "Comfort-first dentistry designed to eliminate anxiety and make every dental visit painless and relaxing." %}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
+        <div class="cf-why-feature-card">
           <i class="bi bi-person-check-fill"></i>
-          <h5 class="fw-bold">{% trans "Personalized Care" %}</h5>
-          <p class="text-muted mb-0 small">{% trans "We take time to listen to your concerns and tailor every treatment plan to your specific needs." %}</p>
+          <h5>{% trans "Personalized Treatment" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "We dedicate time to listen to your goals and customize every treatment plan specifically for your smile." %}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
+        <div class="cf-why-feature-card">
           <i class="bi bi-shield-check"></i>
-          <h5 class="fw-bold">{% trans "Strict Sterilization" %}</h5>
-          <p class="text-muted mb-0 small">{% trans "100% adherence to international protocols for hygiene, sanitization, and safety." %}</p>
+          <h5>{% trans "Hospital-Grade Sterilization" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "Strict Class-B autoclave sterilization and multi-stage infection control protocols for your complete safety." %}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
+        <div class="cf-why-feature-card">
           <i class="bi bi-tags-fill"></i>
-          <h5 class="fw-bold">{% trans "Transparent Pricing" %}</h5>
-          <p class="text-muted mb-0 small">{% trans "No hidden fees. We provide clear, upfront cost estimates before starting any procedure." %}</p>
+          <h5>{% trans "Transparent Pricing" %}</h5>
+          <p class="text-muted mb-0 small">{% trans "Clear upfront estimates with zero hidden charges. Itemized treatment costs provided before procedure starts." %}</p>
         </div>
       </div>
     </div>
@@ -776,7 +638,7 @@ function switchBranch(branchId, btn) {
 </section>
 
 {% include 'components/google_reviews.html' %}
-
 {% include 'components/faq.html' with faq_type='contact' %}
 
 {% endblock %}
+

@@ -797,24 +797,14 @@
                 <option value="other">{% trans "Other / Not Sure" %}</option>
               </select>
             </div>
-            
             {% load form_tags %}
             {% get_active_doctors as active_doctors %}
-            {% get_active_branches as active_branches %}
             
-            <div class="mb-3">
+            <div class="mb-4">
               <select name="doctor" class="form-select">
                 <option value="" {% if not request.GET.doctor %}selected{% endif %}>{% trans "Any Doctor" %}</option>
                 {% for doc in active_doctors %}
                   <option value="{{ doc.id }}" {% if request.GET.doctor == doc.id|stringformat:"s" %}selected{% endif %}>{{ doc.name }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="mb-4">
-              <select name="branch" class="form-select">
-                <option value="" selected>{% trans "Any Branch" %}</option>
-                {% for branch in active_branches %}
-                  <option value="{{ branch.id }}">{{ branch.name }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -1705,19 +1695,9 @@
             <div class="col-md-6">
               <label class="form-label fw-semibold">{% trans "Preferred Doctor" %} <span class="text-muted fw-normal">({% trans "Optional" %})</span></label>
               <select name="doctor" class="form-select bg-light">
-                <option value="" {% if not request.GET.doctor %}selected{% endif %}>{% trans "Any Doctor" %}</option>
+                <option value="" {% if not request.GET.doctor %}selected{% endif %}>{% trans "Any Available Specialist" %}</option>
                 {% for doc in active_doctors %}
-                  <option value="{{ doc.id }}" {% if request.GET.doctor == doc.id|stringformat:"s" %}selected{% endif %}>{{ doc.name }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            
-            <div class="col-md-6">
-              <label class="form-label fw-semibold">{% trans "Preferred Branch" %} <span class="text-muted fw-normal">({% trans "Optional" %})</span></label>
-              <select name="branch" class="form-select bg-light">
-                <option value="" selected>{% trans "Any Branch" %}</option>
-                {% for branch in active_branches %}
-                  <option value="{{ branch.id }}">{{ branch.name }}</option>
+                  <option value="{{ doc.id }}" {% if request.GET.doctor == doc.id|stringformat:"s" %}selected{% endif %}>Dr. {{ doc.name }}</option>
                 {% endfor %}
               </select>
             </div>
