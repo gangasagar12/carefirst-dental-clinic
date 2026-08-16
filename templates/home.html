@@ -1544,7 +1544,7 @@
     </div>
 
     <div class="row g-4 justify-content-center">
-      {% for video in latest_videos|slice:":3" %}
+      {% for video in latest_videos|slice:":6" %}
       <div class="col-md-6 col-lg-4">
         <a href="{% url 'media_center:video_detail' video.slug %}" class="cf-video-card" style="text-decoration: none;">
           <div class="cf-video-thumb-wrap">
