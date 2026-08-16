@@ -68,6 +68,19 @@ def home(request):
             else:
                 messages.error(request, 'There was an error in your appointment request. Please check the fields and try again.')
             return redirect('main:home')
+        elif form_type == 'contact':
+            form = ContactMessageForm(request.POST)
+            if form.is_valid():
+                instance = form.save()
+                send_notification_email(instance, 'contact')
+                from main.services.whatsapp import queue_whatsapp_confirmation
+                from main.services.email import queue_email_confirmation
+                queue_whatsapp_confirmation(instance.name, getattr(instance, 'phone', None), 'contact', instance.id)
+                queue_email_confirmation(instance.name, instance.email, 'contact', instance.id)
+                messages.success(request, 'Thank you! Your message has been sent to our clinical desk. We will get back to you shortly.')
+            else:
+                messages.error(request, 'There was an error sending your message. Please check the fields and try again.')
+            return redirect('main:home')
 
     doctors_qs = Doctor.objects.filter(is_active=True)[:4]
     latest_posts = Post.objects.filter(is_published=True).order_by('-published_date')[:3]
