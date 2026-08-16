@@ -51,8 +51,17 @@ INSTALLED_APPS = [
     'appointments',
     'blogs',
     'media_center',
+    'chatbot',
     'django.contrib.sitemaps',
 ]
+
+# AI Patient Assistant Configuration
+AI_PROVIDER = os.environ.get('AI_PROVIDER', 'gemini') # 'gemini' or 'ollama'
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', '')
+GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-1.5-flash')
+OLLAMA_BASE_URL = os.environ.get('OLLAMA_BASE_URL', 'http://localhost:11434')
+OLLAMA_MODEL = os.environ.get('OLLAMA_MODEL', 'llama3:8b')
+CHATBOT_RATE_LIMIT_PER_MINUTE = int(os.environ.get('CHATBOT_RATE_LIMIT_PER_MINUTE', '20'))
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
