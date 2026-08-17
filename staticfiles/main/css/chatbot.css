@@ -6,14 +6,14 @@
 /* ── Floating Launcher Container (Elevated from Bottom-Left) ── */
 .cf-chat-launcher-container {
   position: fixed;
-  bottom: 36px;
-  left: 30px;
+  bottom: 22px;
+  left: 22px;
   right: auto;
   z-index: 1040;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* ── Proactive Welcome Callout Speech Bubble ── */

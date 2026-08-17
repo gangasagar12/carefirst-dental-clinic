@@ -6,21 +6,21 @@
 {% block extra_head %}
 <!-- Flatpickr CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=2.0">
+<link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=3.0">
 <meta name="description" content="{% trans 'Book your dental consultation at CareFirst Dental Clinic Kathmandu. Simple multi-step appointment request for root canal, implants, teeth whitening, braces, and general care.' %}">
 
 <style>
-  /* ── Dedicated Booking Hero Styling ── */
+  /* ── Compact & Polished Booking Hero ── */
   .cf-funnel-page {
     background: #F1F5F9 !important;
     min-height: 100vh;
-    padding-bottom: 80px;
+    padding-bottom: 70px;
   }
 
   .cf-booking-hero {
     background: linear-gradient(135deg, #07192C 0%, #0B2545 55%, #0284C7 100%) !important;
     color: #FFFFFF !important;
-    padding: 54px 0 80px 0 !important;
+    padding: 36px 0 56px 0 !important;
     position: relative !important;
     overflow: hidden !important;
   }
@@ -30,9 +30,9 @@
     position: absolute;
     top: -20%;
     right: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(56, 189, 248, 0) 70%);
+    width: 460px;
+    height: 460px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, rgba(56, 189, 248, 0) 70%);
     border-radius: 50%;
     pointer-events: none;
   }
@@ -43,21 +43,21 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 28px;
+    height: 24px;
     background: #F1F5F9;
-    border-top-left-radius: 32px;
-    border-top-right-radius: 32px;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
   }
 
-  /* Left Showcase Image Card */
+  /* Left Showcase Image Card (Optimized Height) */
   .cf-hero-img-showcase {
     position: relative !important;
-    border-radius: 22px !important;
+    border-radius: 20px !important;
     overflow: hidden !important;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4) !important;
-    border: 2px solid rgba(255, 255, 255, 0.25) !important;
-    height: 380px !important;
-    max-height: 420px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+    height: 330px !important;
+    max-height: 350px !important;
     background: #081C33 !important;
     width: 100% !important;
   }
@@ -66,55 +66,55 @@
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: center 20% !important;
+    object-position: center 15% !important;
     display: block !important;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .cf-hero-img-showcase:hover img {
-    transform: scale(1.04) !important;
+    transform: scale(1.03) !important;
   }
 
   .cf-hero-img-gradient-overlay {
     position: absolute !important;
     inset: 0 !important;
-    background: linear-gradient(180deg, rgba(11, 37, 69, 0.1) 0%, rgba(8, 28, 51, 0.75) 100%) !important;
+    background: linear-gradient(180deg, rgba(11, 37, 69, 0.08) 0%, rgba(8, 28, 51, 0.72) 100%) !important;
     pointer-events: none !important;
   }
 
   .cf-hero-img-badge-top {
     position: absolute !important;
-    top: 16px !important;
-    left: 16px !important;
+    top: 14px !important;
+    left: 14px !important;
     background: rgba(11, 37, 69, 0.9) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
     color: #BAE6FD !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    padding: 6px 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    padding: 5px 12px !important;
     border-radius: 50px !important;
-    font-size: 0.78rem !important;
+    font-size: 0.75rem !important;
     font-weight: 700 !important;
-    letter-spacing: 0.5px !important;
+    letter-spacing: 0.4px !important;
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.25) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
     z-index: 2 !important;
   }
 
   .cf-hero-img-card-bottom {
     position: absolute !important;
-    bottom: 16px !important;
-    left: 16px !important;
-    right: 16px !important;
-    background: rgba(255, 255, 255, 0.95) !important;
+    bottom: 14px !important;
+    left: 14px !important;
+    right: 14px !important;
+    background: rgba(255, 255, 255, 0.96) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     color: #0B2545 !important;
-    border-radius: 16px !important;
-    padding: 12px 18px !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 14px !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -123,107 +123,118 @@
 
   /* Right Content Box */
   .cf-hero-content-wrap {
-    padding: 8px 0 !important;
+    padding: 4px 0 !important;
   }
 
   .cf-hero-eyebrow {
     display: inline-flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 7px !important;
     background: rgba(255, 255, 255, 0.14) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
     color: #BAE6FD !important;
-    padding: 6px 16px !important;
+    padding: 5px 14px !important;
     border-radius: 50px !important;
-    font-size: 0.78rem !important;
+    font-size: 0.75rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.8px !important;
     text-transform: uppercase !important;
-    margin-bottom: 16px !important;
+    margin-bottom: 12px !important;
   }
 
   .cf-hero-title {
     font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
-    font-size: 2.5rem !important;
+    font-size: 2.25rem !important;
     font-weight: 800 !important;
     line-height: 1.18 !important;
     color: #FFFFFF !important;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35) !important;
-    margin-bottom: 14px !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+    margin-bottom: 10px !important;
   }
 
   .cf-hero-desc {
-    font-size: 1.08rem !important;
-    line-height: 1.6 !important;
+    font-size: 1.02rem !important;
+    line-height: 1.55 !important;
     color: #E0F2FE !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 18px !important;
     font-weight: 400 !important;
   }
 
-  /* 4 Trust Indicators Grid */
+  /* 4 Compact Trust Indicators Grid */
   .cf-trust-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
-    margin-bottom: 28px !important;
+    gap: 10px !important;
+    margin-bottom: 22px !important;
   }
 
   .cf-trust-item {
     background: rgba(255, 255, 255, 0.1) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 12px !important;
-    padding: 10px 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 10px !important;
+    padding: 8px 12px !important;
     display: flex !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 8px !important;
     color: #FFFFFF !important;
-    font-size: 0.88rem !important;
+    font-size: 0.84rem !important;
     font-weight: 600 !important;
   }
 
   .cf-trust-item i {
     color: #38BDF8 !important;
-    font-size: 1.15rem !important;
+    font-size: 1.05rem !important;
   }
 
-  /* Hero CTA Button */
+  /* Primary CTA Button with Smooth Micro-Animation */
   .cf-hero-cta-btn {
     background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
     color: #FFFFFF !important;
     font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
-    font-size: 1.025rem !important;
+    font-size: 0.98rem !important;
     font-weight: 800 !important;
-    padding: 14px 32px !important;
+    padding: 12px 28px !important;
     border-radius: 50px !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.45) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 8px 22px rgba(2, 132, 199, 0.45) !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 8px !important;
     text-decoration: none !important;
     transition: all 0.3s ease !important;
   }
 
+  .cf-hero-cta-btn i.bi-arrow-down {
+    transition: transform 0.25s ease !important;
+  }
+
   .cf-hero-cta-btn:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.6) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 14px 30px rgba(2, 132, 199, 0.55) !important;
     background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%) !important;
     color: #FFFFFF !important;
   }
 
+  .cf-hero-cta-btn:hover i.bi-arrow-down {
+    transform: translateY(3px) !important;
+  }
+
   @media (max-width: 991.98px) {
+    .cf-booking-hero {
+      padding: 28px 0 46px 0 !important;
+    }
     .cf-hero-img-showcase {
-      height: 270px !important;
-      margin-bottom: 24px !important;
+      height: 240px !important;
+      margin-bottom: 20px !important;
     }
     .cf-hero-title {
-      font-size: 1.95rem !important;
+      font-size: 1.85rem !important;
     }
     .cf-trust-grid {
       grid-template-columns: 1fr !important;
-      gap: 8px !important;
+      gap: 7px !important;
     }
   }
 </style>
@@ -232,15 +243,15 @@
 {% block content %}
 <div class="cf-funnel-page">
 
-  <!-- ── 1. Premium Two-Column Booking Hero (Image + Content) ── -->
+  <!-- ── 1. Compact Premium Two-Column Booking Hero ── -->
   <section class="cf-booking-hero">
     <div class="container position-relative z-2">
       <div class="row align-items-center g-4 g-lg-5">
         
-        <!-- Left Side: Dental/Clinic Consultation Image Showcase -->
+        <!-- Left Side: Professional Dental Consultation Image Showcase -->
         <div class="col-lg-5 col-12 order-lg-1 order-1">
           <div class="cf-hero-img-showcase">
-            <img src="{% static 'images/digital_xray_consultation.jpg' %}" alt="CareFirst Dental Clinic Consultation & Treatment" onerror="this.onerror=null; this.src='{% static 'images/about_intro.png' %}';">
+            <img src="{% static 'images/appointment_hero_consultation.jpg' %}" alt="CareFirst Dental Clinic Doctor & Patient Consultation" onerror="this.onerror=null; this.src='{% static 'images/about_intro.png' %}';">
             <div class="cf-hero-img-gradient-overlay"></div>
             
             <!-- Top Verified Badge -->
@@ -252,27 +263,27 @@
             <!-- Bottom Floating Trust Pill -->
             <div class="cf-hero-img-card-bottom">
               <div class="d-flex align-items-center gap-2">
-                <div class="rounded-circle bg-primary bg-opacity-10 p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                  <i class="bi bi-star-fill text-warning fs-6"></i>
+                <div class="rounded-circle bg-primary bg-opacity-10 p-2 d-flex align-items-center justify-content-center" style="width: 34px; height: 34px;">
+                  <i class="bi bi-star-fill text-warning" style="font-size: 0.85rem;"></i>
                 </div>
                 <div>
-                  <div class="fw-bold" style="font-size: 0.85rem; color: #0B2545;">{% trans "4.9 Google Rating" %}</div>
-                  <div class="text-muted" style="font-size: 0.72rem;">{% trans "120+ Verified Patient Reviews" %}</div>
+                  <div class="fw-bold" style="font-size: 0.825rem; color: #0B2545;">{% trans "4.9 Google Rating" %}</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">{% trans "120+ Verified Patient Reviews" %}</div>
                 </div>
               </div>
-              <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill px-2 py-1 fw-bold" style="font-size: 0.7rem;">
+              <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill px-2 py-1 fw-bold" style="font-size: 0.68rem;">
                 <i class="bi bi-dot"></i> {% trans "Open Today" %}
               </span>
             </div>
           </div>
         </div>
 
-        <!-- Right Side: Booking Introduction & Reassurances -->
+        <!-- Right Side: Appointment Desk Introduction & Actions -->
         <div class="col-lg-7 col-12 order-lg-2 order-2">
           <div class="cf-hero-content-wrap">
             <div class="cf-hero-eyebrow">
               <i class="bi bi-calendar2-check-fill text-info"></i>
-              <span>{% trans "Online Consultation Desk" %}</span>
+              <span>{% trans "APPOINTMENT DESK" %}</span>
             </div>
             
             <h1 class="cf-hero-title">{% trans "Schedule Your Smile Visit" %}</h1>
@@ -301,7 +312,7 @@
               </div>
             </div>
 
-            <!-- Primary CTA -->
+            <!-- Primary CTA & Phone Helpline -->
             <div class="d-flex flex-wrap align-items-center gap-3">
               <a href="#cfFunnelCard" class="cf-hero-cta-btn">
                 <i class="bi bi-calendar-plus-fill"></i>
@@ -335,5 +346,5 @@
 {% block extra_scripts %}
 <!-- Flatpickr JS -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="{% static 'main/js/appointment_funnel.js' %}?v=2.0"></script>
+<script src="{% static 'main/js/appointment_funnel.js' %}?v=3.0"></script>
 {% endblock %}
