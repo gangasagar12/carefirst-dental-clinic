@@ -30,9 +30,30 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-d%xqg&9q-0i63l3vglto!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True').lower() in ('true', '1', 't')
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+# Allowed Hosts & Render Auto-Domain Support
+allowed_hosts_env = os.environ.get('ALLOWED_HOSTS', '*')
+ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_env.split(',') if host.strip()]
 
-CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', 'https://niko-dental.onrender.com').split(',')
+# Auto-add Render external hostname if provided by Render environment
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# Ensure common local and cloud domains are allowed
+for host in ['.onrender.com', 'localhost', '127.0.0.1']:
+    if host not in ALLOWED_HOSTS and '*' not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(host)
+
+# CSRF Trusted Origins
+csrf_env = os.environ.get('CSRF_TRUSTED_ORIGINS', '')
+CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in csrf_env.split(',') if origin.strip()]
+
+if RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS.append(f"https://{RENDER_EXTERNAL_HOSTNAME}")
+
+for origin in ['https://*.onrender.com', 'http://localhost:8000', 'http://127.0.0.1:8000']:
+    if origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(origin)
 
 
 # Application definition
