@@ -13,25 +13,95 @@
 {% block content %}
 <div class="cf-funnel-page">
 
-  <!-- ── 1. Hero Section ── -->
-  <section class="cf-funnel-hero text-center">
-    <div class="container">
-      <h1 class="mb-2">{% trans "Schedule Your Smile Visit" %}</h1>
-      <p class="cf-funnel-hero-sub">
-        {% trans "Request a consultation with Dr. Subash Banjade and our NMC-certified specialist team in Shankhamul, Kathmandu." %}
-      </p>
+  <!-- ── 1. Premium Two-Column Booking Hero (Image + Content) ── -->
+  <section class="cf-booking-hero">
+    <div class="container position-relative z-2">
+      <div class="row align-items-center g-4 g-lg-5">
+        
+        <!-- Left Side: Dental/Clinic Image Showcase -->
+        <div class="col-lg-5 col-12 order-lg-1 order-1">
+          <div class="cf-hero-img-showcase">
+            <img src="{% static 'hero_section/hero_section1.jpeg' %}" alt="CareFirst Dental Clinic Treatment & Consultation" onerror="this.onerror=null; this.src='{% static 'images/about_intro.png' %}';">
+            <div class="cf-hero-img-gradient-overlay"></div>
+            
+            <!-- Top Verified Badge -->
+            <div class="cf-hero-img-badge-top">
+              <i class="bi bi-patch-check-fill text-info"></i>
+              <span>{% trans "NMC Certified Dental Hub" %}</span>
+            </div>
 
-      <!-- Trust Badges -->
-      <div class="cf-trust-badge-row">
-        <span class="cf-trust-pill"><i class="bi bi-shield-check text-warning"></i> {% trans "NMC Verified Doctors" %}</span>
-        <span class="cf-trust-pill"><i class="bi bi-clock-history text-info"></i> {% trans "Open 7:30 AM - 7:30 PM" %}</span>
-        <span class="cf-trust-pill"><i class="bi bi-tag-fill text-success"></i> {% trans "Transparent Pricing" %}</span>
-        <span class="cf-trust-pill"><i class="bi bi-heart-pulse-fill text-danger"></i> {% trans "Painless Techniques" %}</span>
+            <!-- Bottom Floating Trust Pill -->
+            <div class="cf-hero-img-card-bottom">
+              <div class="d-flex align-items-center gap-2">
+                <div class="rounded-circle bg-primary bg-opacity-10 p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                  <i class="bi bi-star-fill text-warning fs-6"></i>
+                </div>
+                <div>
+                  <div class="fw-bold" style="font-size: 0.85rem; color: #0B2545;">{% trans "4.9 Google Rating" %}</div>
+                  <div class="text-muted" style="font-size: 0.72rem;">{% trans "120+ Verified Patient Reviews" %}</div>
+                </div>
+              </div>
+              <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill px-2 py-1 fw-bold" style="font-size: 0.7rem;">
+                <i class="bi bi-dot"></i> {% trans "Open Today" %}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Booking Introduction & Reassurances -->
+        <div class="col-lg-7 col-12 order-lg-2 order-2">
+          <div class="cf-hero-content-wrap">
+            <div class="cf-hero-eyebrow">
+              <i class="bi bi-calendar2-check-fill text-info"></i>
+              <span>{% trans "Online Consultation Desk" %}</span>
+            </div>
+            
+            <h1 class="cf-hero-title">{% trans "Schedule Your Smile Visit" %}</h1>
+            
+            <p class="cf-hero-desc">
+              {% trans "Request a consultation with our NMC-certified specialist team in Shankhamul, Kathmandu." %}
+            </p>
+
+            <!-- 4 Compact Trust Indicators -->
+            <div class="cf-trust-grid">
+              <div class="cf-trust-item">
+                <i class="bi bi-shield-check text-info"></i>
+                <span>{% trans "NMC Verified Doctors" %}</span>
+              </div>
+              <div class="cf-trust-item">
+                <i class="bi bi-clock-history text-info"></i>
+                <span>{% trans "Open 7:30 AM – 7:30 PM" %}</span>
+              </div>
+              <div class="cf-trust-item">
+                <i class="bi bi-tag-fill text-info"></i>
+                <span>{% trans "Transparent Pricing" %}</span>
+              </div>
+              <div class="cf-trust-item">
+                <i class="bi bi-heart-pulse-fill text-info"></i>
+                <span>{% trans "Pain-Free Techniques" %}</span>
+              </div>
+            </div>
+
+            <!-- Primary CTA -->
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <a href="#cfFunnelCard" class="cf-hero-cta-btn">
+                <i class="bi bi-calendar-plus-fill"></i>
+                <span>{% trans "Book Your Appointment" %}</span>
+                <i class="bi bi-arrow-down ms-1"></i>
+              </a>
+              <span class="text-white text-opacity-75 small">
+                <i class="bi bi-telephone-fill text-warning me-1"></i> {% trans "Need help?" %} <a href="tel:9807464136" class="text-info fw-bold text-decoration-none">980-7464136</a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ── 2. Funnel Container ── -->
+  <!-- ── 2. Smart Booking Funnel Container ── -->
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10 col-xl-9">
