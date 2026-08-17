@@ -1,0 +1,74 @@
+{% load static i18n form_tags %}
+
+<!-- ── Reusable Split-Screen Booking Workstation Component ── -->
+<div class="cf-split-booking-page">
+  <div class="container-xxl px-2 px-md-4">
+    
+    <div class="cf-split-card-wrapper" id="cfBookingWorkstation">
+      <div class="row g-0">
+        
+        <!-- LEFT SIDE: Dental Visual & Trust Experience (45%) -->
+        <div class="col-lg-5 col-xl-5 col-12 order-lg-1 order-1 cf-split-left-visual">
+          <img src="{% static 'images/appointment_hero_consultation.jpg' %}" alt="CareFirst Dental Consultation & Care" class="cf-split-visual-img" onerror="this.onerror=null; this.src='{% static 'images/about_intro.png' %}';">
+          <div class="cf-split-visual-gradient"></div>
+
+          <!-- Top Floating Hotspot -->
+          <div class="cf-split-hotspot">
+            <span class="cf-hotspot-pulse"></span>
+            <span>{% trans "Clinical Consultation & Care" %}</span>
+          </div>
+
+          <!-- Bottom Floating Information Card -->
+          <div class="cf-split-trust-card">
+            <h3 class="cf-split-trust-title">{% trans "Your Smile, Our Priority" %}</h3>
+            <p class="cf-split-trust-sub">{% trans "Comfortable care from our NMC-certified dental team in Shankhamul, Kathmandu." %}</p>
+            
+            <div class="cf-split-rating-row">
+              <span class="cf-split-rating-badge">
+                <i class="bi bi-star-fill text-warning"></i>
+                <span>{% trans "4.9 Google Rating" %}</span>
+              </span>
+              <span class="text-muted small fw-bold">{% trans "120+ Verified Patient Reviews" %}</span>
+            </div>
+
+            <!-- Compact Trust Indicators -->
+            <div class="cf-split-pills">
+              <span class="cf-split-pill"><i class="bi bi-shield-check text-primary"></i> {% trans "NMC Verified Doctors" %}</span>
+              <span class="cf-split-pill"><i class="bi bi-clock-history text-primary"></i> {% trans "Open 7:30 AM – 7:30 PM" %}</span>
+              <span class="cf-split-pill"><i class="bi bi-tag-fill text-primary"></i> {% trans "Transparent Pricing" %}</span>
+              <span class="cf-split-pill"><i class="bi bi-heart-pulse-fill text-primary"></i> {% trans "Pain-Free Techniques" %}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE: Interactive Booking Panel (55%) -->
+        <div class="col-lg-7 col-xl-7 col-12 order-lg-2 order-2 cf-split-right-panel">
+          
+          <div class="cf-split-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div>
+              <div class="cf-workstation-tag">
+                <i class="bi bi-calendar2-check-fill"></i>
+                <span>{% trans "APPOINTMENT DESK" %}</span>
+              </div>
+              <h1 class="cf-split-heading">{% trans "Schedule Your Smile Visit" %}</h1>
+              <p class="cf-split-sub">
+                {% trans "Request a consultation with our NMC-certified specialist team in Shankhamul, Kathmandu." %}
+              </p>
+            </div>
+            <div class="d-none d-md-block text-end">
+              <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-bold text-muted" style="font-size: 0.78rem;">
+                <i class="bi bi-shield-check text-success me-1"></i> {% trans "NMC Certified" %}
+              </span>
+            </div>
+          </div>
+
+          <!-- Included 5-Step Smart Conversion Funnel -->
+          {% include 'components/smart_appointment_funnel.html' %}
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
