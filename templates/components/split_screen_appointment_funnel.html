@@ -1,5 +1,249 @@
 {% load static i18n form_tags %}
 
+<style>
+  /* ── Standalone Robust Split-Screen Booking Layout ── */
+  .cf-split-booking-page {
+    background: radial-gradient(circle at top right, #E0F2FE 0%, #F1F5F9 45%, #F8FAFC 100%) !important;
+    min-height: 100% !important;
+    padding: 40px 0 70px 0 !important;
+  }
+
+  .cf-split-card-wrapper {
+    background: #FFFFFF !important;
+    border-radius: 28px !important;
+    border: 1px solid #E2E8F0 !important;
+    box-shadow: 0 24px 70px rgba(11, 37, 69, 0.1), 0 4px 16px rgba(0, 0, 0, 0.03) !important;
+    overflow: hidden !important;
+    margin: 0 auto !important;
+  }
+
+  /* LEFT SIDE: Dental Visual & Trust Experience (45%) */
+  .cf-split-left-visual {
+    position: relative !important;
+    background: #081C33 !important;
+    min-height: 580px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  .cf-split-visual-img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 20% !important;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .cf-split-left-visual:hover .cf-split-visual-img {
+    transform: scale(1.03) !important;
+  }
+
+  .cf-split-visual-gradient {
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(180deg, rgba(11, 37, 69, 0.15) 0%, rgba(8, 28, 51, 0.88) 100%) !important;
+    pointer-events: none !important;
+  }
+
+  /* Top Hotspot Tag */
+  .cf-split-hotspot {
+    position: relative !important;
+    z-index: 3 !important;
+    margin: 24px 0 0 24px !important;
+    align-self: flex-start !important;
+    background: rgba(11, 37, 69, 0.88) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #FFFFFF !important;
+    padding: 7px 16px !important;
+    border-radius: 50px !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .cf-hotspot-pulse {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background: #38BDF8 !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.4) !important;
+    animation: cfHotspotGlow 2s infinite ease-in-out !important;
+  }
+
+  @keyframes cfHotspotGlow {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.6; }
+  }
+
+  /* Bottom Trust Overlay Card */
+  .cf-split-trust-card {
+    position: relative !important;
+    z-index: 3 !important;
+    margin: 0 24px 24px 24px !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-radius: 20px !important;
+    padding: 22px !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28) !important;
+  }
+
+  .cf-split-trust-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    color: #0B2545 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .cf-split-trust-sub {
+    font-size: 0.85rem !important;
+    color: #64748B !important;
+    margin-bottom: 14px !important;
+    line-height: 1.45 !important;
+  }
+
+  .cf-split-rating-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-bottom: 12px !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .cf-split-rating-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    color: #0B2545 !important;
+  }
+
+  .cf-split-pills {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .cf-split-pill {
+    background: #F0F9FF !important;
+    border: 1px solid #BAE6FD !important;
+    color: #0369A1 !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    padding: 5px 8px !important;
+    border-radius: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    white-space: nowrap !important;
+  }
+
+  /* RIGHT SIDE: Interactive Booking Panel (55%) */
+  .cf-split-right-panel {
+    padding: 42px 48px !important;
+    background: #FFFFFF !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .cf-split-header {
+    margin-bottom: 24px !important;
+    padding-bottom: 18px !important;
+    border-bottom: 1px solid #F1F5F9 !important;
+  }
+
+  .cf-workstation-tag {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.76rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    color: #0284C7 !important;
+    background: #F0F9FF !important;
+    border: 1px solid #BAE6FD !important;
+    padding: 4px 12px !important;
+    border-radius: 50px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .cf-split-heading {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-size: 2.2rem !important;
+    font-weight: 800 !important;
+    color: #0B2545 !important;
+    letter-spacing: -0.5px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .cf-split-sub {
+    font-size: 0.98rem !important;
+    color: #64748B !important;
+    margin-bottom: 0 !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Funnel Card Overrides for Split Layout */
+  .cf-split-right-panel .cf-funnel-card,
+  .cf-split-card-wrapper .cf-funnel-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .cf-split-right-panel .cf-funnel-stepper {
+    background: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 16px !important;
+    padding: 12px 18px !important;
+    margin-bottom: 28px !important;
+  }
+
+  .cf-split-right-panel .cf-step-pane {
+    padding: 0 !important;
+  }
+
+  @media (max-width: 991.98px) {
+    .cf-split-right-panel {
+      padding: 30px 20px !important;
+    }
+    .cf-split-heading {
+      font-size: 1.85rem !important;
+    }
+    .cf-split-left-visual {
+      min-height: 320px !important;
+      height: 320px !important;
+    }
+    .cf-split-trust-card {
+      margin: 0 16px 16px 16px !important;
+      padding: 16px !important;
+    }
+    .cf-split-pills {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
 <!-- ── Reusable Split-Screen Booking Workstation Component ── -->
 <div class="cf-split-booking-page">
   <div class="container-xxl px-2 px-md-4">
