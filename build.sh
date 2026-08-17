@@ -2,6 +2,8 @@
 
 set -o errexit
 
+export PYTHONPATH=.
+
 pip install -r requirements.txt
 
 python manage.py collectstatic --noinput
