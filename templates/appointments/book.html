@@ -6,7 +6,7 @@
 {% block extra_head %}
 <!-- Flatpickr CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=4.0">
 <meta name="description" content="{% trans 'Book your dental consultation at CareFirst Dental Clinic Kathmandu. Simple multi-step appointment request for root canal, implants, teeth whitening, braces, and general care.' %}">
 
 <style>
@@ -49,7 +49,7 @@
     border-top-right-radius: 28px;
   }
 
-  /* Left Showcase Image Card (Optimized Height) */
+  /* Left Showcase Image Card */
   .cf-hero-img-showcase {
     position: relative !important;
     border-radius: 20px !important;
@@ -221,6 +221,136 @@
     transform: translateY(3px) !important;
   }
 
+  /* ── Right Side Dental Visual Trust Panel (Alongside Booking Funnel) ── */
+  .cf-booking-visual-card {
+    background: #FFFFFF !important;
+    border-radius: 24px !important;
+    border: 1px solid #E2E8F0 !important;
+    box-shadow: 0 16px 45px rgba(8, 28, 51, 0.08) !important;
+    overflow: hidden !important;
+    position: sticky !important;
+    top: 96px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin-top: -24px !important;
+    z-index: 10 !important;
+  }
+
+  .cf-visual-img-wrap {
+    position: relative !important;
+    height: 300px !important;
+    overflow: hidden !important;
+    background: #0B2545 !important;
+  }
+
+  .cf-visual-img-wrap img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 15% !important;
+    display: block !important;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .cf-booking-visual-card:hover .cf-visual-img-wrap img {
+    transform: scale(1.04) !important;
+  }
+
+  .cf-visual-gradient-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(180deg, rgba(11, 37, 69, 0.05) 0%, rgba(8, 28, 51, 0.82) 100%) !important;
+  }
+
+  .cf-visual-img-badge {
+    position: absolute !important;
+    bottom: 16px !important;
+    left: 16px !important;
+    right: 16px !important;
+    color: #FFFFFF !important;
+    z-index: 2 !important;
+  }
+
+  .cf-visual-img-badge h5 {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
+    font-weight: 800 !important;
+    font-size: 1.25rem !important;
+    color: #FFFFFF !important;
+    margin-bottom: 4px !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
+  }
+
+  .cf-visual-img-badge p {
+    font-size: 0.84rem !important;
+    color: #BAE6FD !important;
+    margin-bottom: 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  .cf-visual-body {
+    padding: 22px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    flex-grow: 1 !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+  }
+
+  .cf-visual-trust-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 11px !important;
+  }
+
+  .cf-visual-trust-list li {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    color: #1E293B !important;
+  }
+
+  .cf-visual-trust-list li i {
+    color: #0284C7 !important;
+    font-size: 1.1rem !important;
+  }
+
+  .cf-visual-help-box {
+    background: #F0F9FF !important;
+    border: 1px solid #BAE6FD !important;
+    border-radius: 14px !important;
+    padding: 12px 14px !important;
+    margin-top: 6px !important;
+  }
+
+  .cf-visual-help-box small {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    color: #0369A1 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    display: block !important;
+    margin-bottom: 4px !important;
+  }
+
+  .cf-visual-help-box a {
+    color: #0B2545 !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .cf-visual-help-box a:hover {
+    color: #0284C7 !important;
+  }
+
   @media (max-width: 991.98px) {
     .cf-booking-hero {
       padding: 28px 0 46px 0 !important;
@@ -331,12 +461,57 @@
     </div>
   </section>
 
-  <!-- ── 2. Smart Booking Funnel Container ── -->
-  <div class="container" id="booking-funnel-card">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 col-xl-9">
+  <!-- ── 2. Smart Booking Funnel + Dental Visual Trust Panel ── -->
+  <div class="container-xl px-3 px-lg-4" id="booking-funnel-card">
+    <div class="row g-4 justify-content-center">
+      
+      <!-- Left Column: 5-Step Smart Conversion Funnel (Primary Interaction) -->
+      <div class="col-lg-8 col-12">
         {% include 'components/smart_appointment_funnel.html' %}
       </div>
+
+      <!-- Right Column: Dental Visual Trust Card (Desktop & Tablet) -->
+      <div class="col-lg-4 col-12 d-none d-lg-block">
+        <div class="cf-booking-visual-card">
+          <div class="cf-visual-img-wrap">
+            <img src="{% static 'images/fill_smile_result.jpg' %}" alt="CareFirst Dental Patient Smile" onerror="this.onerror=null; this.src='{% static 'images/about_intro.png' %}';">
+            <div class="cf-visual-gradient-overlay"></div>
+            <div class="cf-visual-img-badge">
+              <h5>{% trans "Your Smile, Our Priority" %}</h5>
+              <p>{% trans "Comfortable care from our NMC-certified dental team." %}</p>
+            </div>
+          </div>
+          <div class="cf-visual-body">
+            <ul class="cf-visual-trust-list">
+              <li>
+                <i class="bi bi-check-circle-fill text-primary"></i>
+                <span>{% trans "Patient-focused care" %}</span>
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill text-primary"></i>
+                <span>{% trans "Modern sterilization & hygiene" %}</span>
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill text-primary"></i>
+                <span>{% trans "Transparent treatment plans" %}</span>
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill text-primary"></i>
+                <span>{% trans "Instant WhatsApp confirmation" %}</span>
+              </li>
+            </ul>
+
+            <div class="cf-visual-help-box">
+              <small>{% trans "Direct Clinic Reception" %}</small>
+              <a href="tel:9807464136">
+                <i class="bi bi-telephone-fill text-primary"></i>
+                <span>980-7464136</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -346,5 +521,5 @@
 {% block extra_scripts %}
 <!-- Flatpickr JS -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="{% static 'main/js/appointment_funnel.js' %}?v=3.0"></script>
+<script src="{% static 'main/js/appointment_funnel.js' %}?v=4.0"></script>
 {% endblock %}
