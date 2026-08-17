@@ -1,19 +1,90 @@
 {% extends 'base.html' %}
 {% load static i18n form_tags %}
 
-{% block title %}{% trans "Contact Us & Appointments" %} — Carefirst Dental Clinic{% endblock %}
+{% block title %}{% trans "Contact Us" %} — Carefirst Dental Clinic{% endblock %}
 {% block meta_description %}{% trans "Contact Carefirst Dental Clinic in Kathmandu. Book an appointment, view our clinic location in Shankhamul / New Baneshwor, or call for emergency dental care." %}{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=7.0">
+<link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=8.0">
 <link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
 
 <style>
-  /* ── Contact Page Specific Split-Screen Workstation Styles ── */
+  /* ── Contact Page Specific Styles ── */
+  .cf-contact-hero {
+    background: linear-gradient(135deg, #07192C 0%, #0B2545 60%, #0284C7 100%) !important;
+    color: #FFFFFF !important;
+    padding: 44px 0 54px 0 !important;
+    position: relative !important;
+    text-align: center !important;
+  }
+
+  .cf-contact-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #BAE6FD;
+    padding: 5px 16px;
+    border-radius: 50px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .cf-contact-hero-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .cf-contact-hero-sub {
+    font-size: 1.05rem;
+    color: #E0F2FE;
+    max-width: 680px;
+    margin: 0 auto 20px auto;
+    line-height: 1.6;
+  }
+
+  .cf-contact-hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .cf-hero-pill-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .cf-hero-pill-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+  }
+
+  /* ── Split-Screen Contact & Message Section ── */
   .cf-split-contact-section {
     background: radial-gradient(circle at top right, #E0F2FE 0%, #F1F5F9 45%, #F8FAFC 100%) !important;
-    padding: 60px 0 80px 0 !important;
+    padding: 40px 0 60px 0 !important;
   }
 
   .cf-split-contact-wrapper {
@@ -285,6 +356,97 @@
     flex-shrink: 0 !important;
   }
 
+  /* Location Info Panel */
+  .cf-location-info-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 36px 30px;
+    box-shadow: 0 12px 35px rgba(8, 28, 51, 0.06);
+    border: 1.5px solid #E2E8F0;
+    border-top: 5px solid #0284C7;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .cf-loc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284C7;
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    width: fit-content;
+    border: 1px solid rgba(2, 132, 199, 0.2);
+  }
+  .cf-loc-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #F1F5F9;
+  }
+  .cf-loc-row:last-of-type {
+    border-bottom: none;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+  }
+  .cf-loc-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    background: rgba(2, 132, 199, 0.08);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #0284C7;
+  }
+  .cf-loc-row h6 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #081C33;
+    margin-bottom: 4px;
+  }
+  .cf-loc-row p {
+    font-size: 0.88rem;
+    color: #64748B;
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+  .cf-map-wrapper {
+    border-radius: 24px;
+    overflow: hidden;
+    height: 100%;
+    min-height: 440px;
+    box-shadow: 0 12px 35px rgba(8, 28, 51, 0.08);
+    border: 1.5px solid #E2E8F0;
+  }
+  .cf-map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 440px;
+    border: 0;
+    display: block;
+  }
+
+  /* Booking Banner Strip */
+  .cf-contact-booking-banner {
+    background: linear-gradient(135deg, #0B2545 0%, #0284C7 100%);
+    border-radius: 24px;
+    padding: 36px 40px;
+    color: #FFFFFF;
+    box-shadow: 0 20px 50px rgba(2, 132, 199, 0.2);
+    margin: 40px 0;
+  }
+
   /* Floating Quick Action Buttons */
   .cf-floating-widget {
     position: fixed;
@@ -381,7 +543,7 @@
     <i class="bi bi-telephone-fill"></i>
     <span class="tooltip-text">{% trans "Call Clinic" %}</span>
   </a>
-  <a href="#book" class="cf-float-btn btn-float-book" aria-label="Book Appointment">
+  <a href="{% url 'appointments:book' %}" class="cf-float-btn btn-float-book" aria-label="Book Appointment">
     <i class="bi bi-calendar-check"></i>
     <span class="tooltip-text">{% trans "Book Visit" %}</span>
   </a>
@@ -391,72 +553,44 @@
   </a>
 </div>
 
-<!-- 1. HERO BANNER -->
-<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.65) 0%, rgba(11,37,69,0.55) 60%, rgba(3,105,161,0.45) 100%), url('{% static "images/hero_section3.jpeg" %}') center/cover no-repeat;">
-  <div class="hero-inner container">
-    <nav aria-label="breadcrumb" class="mb-3">
-      <ol class="breadcrumb justify-content-center mb-0">
+<!-- 1. COMPACT PREMIUM HERO HEADER -->
+<section class="cf-contact-hero">
+  <div class="container position-relative z-2">
+    <nav aria-label="breadcrumb" class="mb-2">
+      <ol class="breadcrumb justify-content-center mb-0 small">
         <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
-        <li class="breadcrumb-item active text-warning fw-bold">{% trans "Contact Us" %}</li>
+        <li class="breadcrumb-item active text-info fw-bold">{% trans "Contact Us" %}</li>
       </ol>
     </nav>
-    <div class="cf-eyebrow-badge justify-content-center mb-3 text-white border-white-50 bg-white-10">
-      <i class="bi bi-chat-heart-fill text-warning"></i> {% trans "GET IN TOUCH & APPOINTMENTS" %}
+    
+    <div class="cf-contact-hero-badge">
+      <i class="bi bi-chat-heart-fill text-info"></i>
+      <span>{% trans "CAREFIRST CONTACT DESK" %}</span>
     </div>
-    <h1 class="display-4 fw-bold text-white mb-3">
-      {% trans "Contact CareFirst Dental Clinic" %}
-    </h1>
-    <p class="hero-sub mx-auto text-white opacity-75" style="font-size: 1.15rem; max-width: 760px;">
-      {% trans "Whether you need a routine check-up, an advanced cosmetic procedure, dental implants, or emergency care in Kathmandu, our dedicated team is here to help." %}
+
+    <h1 class="cf-contact-hero-title">{% trans "We're Here for Your Smile" %}</h1>
+    <p class="cf-contact-hero-sub">
+      {% trans "Have a question about dental treatments or ready to schedule your consultation? Reach out to our specialist team in Shankhamul, Kathmandu." %}
     </p>
-  </div>
-</section>
 
-<!-- 2. CONTACT INFO CARDS -->
-<section class="section-py bg-light" style="margin-top: -60px; padding-top: 0;">
-  <div class="container position-relative z-1">
-    <div class="row g-4">
-      <!-- Location Card -->
-      <div class="col-lg-4 col-md-6">
-        <div class="cf-contact-card">
-          <div class="cf-contact-icon-wrap"><i class="bi bi-geo-alt-fill"></i></div>
-          <h4>{% trans "Clinic Location" %}</h4>
-          <p class="mb-1 fw-bold text-primary" style="font-size: 0.9rem; color: #0284C7 !important;">{% trans "Shankhamul / New Baneshwor" %}</p>
-          <address class="mb-0 text-muted small" style="font-style: normal;">
-            {% trans "Pragatinagar Road, Shankhamul-31" %}, {% trans "Kathmandu 44600, Nepal" %}
-          </address>
-        </div>
-      </div>
-
-      <!-- Operating Hours Card -->
-      <div class="col-lg-4 col-md-6">
-        <div class="cf-contact-card" style="border-top: 4px solid #0284C7;">
-          <div class="cf-contact-icon-wrap"><i class="bi bi-clock-fill"></i></div>
-          <h4>{% trans "Operating Hours" %}</h4>
-          <p class="mb-1 fw-bold text-primary" style="font-size: 0.9rem; color: #0284C7 !important;">{% trans "Open Daily (Mon – Sun)" %}</p>
-          <p class="mb-0 text-muted small">{% trans "7:30 AM to 7:30 PM (Evening appointments available)" %}</p>
-        </div>
-      </div>
-
-      <!-- Phone & Email Card -->
-      <div class="col-lg-4 col-md-6">
-        <div class="cf-contact-card">
-          <div class="cf-contact-icon-wrap"><i class="bi bi-headset"></i></div>
-          <h4>{% trans "Phone & Email" %}</h4>
-          <p class="mb-1">
-            <a href="tel:+9779807464136" class="fw-bold text-dark text-decoration-none">+977 980-7464136</a> / 
-            <a href="tel:015916886" class="fw-bold text-dark text-decoration-none">01-5916886</a>
-          </p>
-          <p class="mb-0 small">
-            <a href="mailto:carefirstdentalclinic@gmail.com" class="text-primary text-decoration-none" style="color: #0284C7 !important;">carefirstdentalclinic@gmail.com</a>
-          </p>
-        </div>
-      </div>
+    <div class="cf-contact-hero-pills">
+      <a href="tel:+9779807464136" class="cf-hero-pill-item">
+        <i class="bi bi-telephone-fill text-warning"></i>
+        <span>+977 980-7464136</span>
+      </a>
+      <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="cf-hero-pill-item">
+        <i class="bi bi-whatsapp text-success"></i>
+        <span>{% trans "WhatsApp Available" %}</span>
+      </a>
+      <span class="cf-hero-pill-item">
+        <i class="bi bi-clock-fill text-info"></i>
+        <span>{% trans "Open Daily: 7:30 AM – 7:30 PM" %}</span>
+      </span>
     </div>
   </div>
 </section>
 
-<!-- 3. PREMIUM SPLIT-SCREEN CONTACT & MESSAGE WORKSTATION -->
+<!-- 2. PREMIUM SPLIT-SCREEN CONTACT & MESSAGE WORKSTATION -->
 <section class="cf-split-contact-section" id="message-form">
   <div class="container-xxl px-2 px-md-4">
     
@@ -591,16 +725,26 @@
       </div>
     </div>
 
+    <!-- Appointment Direct Booking Banner -->
+    <div class="cf-contact-booking-banner d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+      <div>
+        <h4 class="fw-bold mb-1 text-white" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">
+          <i class="bi bi-calendar2-check-fill text-warning me-2"></i>{% trans "Ready to Schedule Your Appointment?" %}
+        </h4>
+        <p class="mb-0 text-white text-opacity-75 small">
+          {% trans "Use our interactive 5-step booking desk to choose your doctor, treatment, date, and preferred time slot." %}
+        </p>
+      </div>
+      <a href="{% url 'appointments:book' %}" class="btn btn-light rounded-pill px-4 py-2.5 fw-bold text-dark text-nowrap shadow-sm">
+        {% trans "Open Booking Desk" %} <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+
   </div>
 </section>
 
-<!-- 4. SPLIT-SCREEN APPOINTMENT WORKSTATION (Direct Booking Flow) -->
-<div id="book">
-  {% include 'components/split_screen_appointment_funnel.html' %}
-</div>
-
-<!-- 5. SINGLE LOCATION & INTERACTIVE MAP -->
-<section class="section-py bg-light" id="location">
+<!-- 3. CLINIC LOCATION & INTERACTIVE MAP -->
+<section class="section-py bg-white" id="location">
   <div class="container">
     <div class="text-center mb-5">
       <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-geo-alt-fill"></i> {% trans "Visit Our Clinic" %}</div>
@@ -680,5 +824,4 @@
 
 {% block extra_scripts %}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="{% static 'main/js/appointment_funnel.js' %}?v=6.0"></script>
 {% endblock %}
