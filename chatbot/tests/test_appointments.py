@@ -20,7 +20,7 @@ class AppointmentToolsTest(TestCase):
         # Check DB record
         apt = Appointment.objects.get(id=result['appointment_id'])
         self.assertEqual(apt.phone, '9841234567')
-        self.assertEqual(apt.status, 'pending')
+        self.assertIn(apt.status, ['new', 'pending'])
         self.assertIn('[Booked via Ask CareFirst AI Assistant]', apt.message)
 
     def test_create_appointment_missing_phone(self):

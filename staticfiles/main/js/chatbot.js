@@ -354,6 +354,110 @@
       if (callout) callout.classList.remove('show');
       localStorage.setItem('carefirst_callout_dismissed', 'true');
     });
+  // ── Context-Aware Dynamic Launcher Engine ──
+  let inactivityTimer = null;
+  let isInactive = false;
+  let currentBadgeState = '';
+
+  function getPageContextMessage() {
+    const path = window.location.pathname.toLowerCase();
+
+    // Treatment Pages (e.g. /en/services/root-canal/, /services/, /treatments/)
+    if (path.includes('/services') || path.includes('/treatments')) {
+      const parts = path.split('/').filter(Boolean);
+      // If viewing a specific treatment detail
+      if (parts.length >= 2 && !['services', 'treatments', 'en', 'ne'].includes(parts[parts.length - 1])) {
+        return { emoji: '🦷', title: 'Questions about this treatment?', sub: 'CareFirst AI • Online' };
+      }
+      return { emoji: '🦷', title: 'Questions about treatments?', sub: 'CareFirst AI • Online' };
+    }
+
+    // Pricing Page (e.g. /pricing/, /en/pricing/)
+    if (path.includes('/pricing')) {
+      return { emoji: '💰', title: 'Need help with pricing?', sub: 'CareFirst AI • Online' };
+    }
+
+    // Appointment / Booking Page (e.g. /appointment/, /en/appointment/, /contact/#book)
+    if (path.includes('/appointment') || path.includes('/book')) {
+      return { emoji: '📅', title: 'Need help booking?', sub: 'CareFirst AI • Online' };
+    }
+
+    // Default / Homepage / Other Pages
+    return { emoji: '👋', title: 'Need dental help?', sub: 'CareFirst AI • Online' };
+  }
+
+  function getInactivityMessage() {
+    return { emoji: '💬', title: 'Have a question?', sub: 'CareFirst AI • Online' };
+  }
+
+  function updateLauncherBadge(emoji, title, sub, force = false) {
+    const key = `${emoji}-${title}`;
+    if (!force && currentBadgeState === key) return;
+    currentBadgeState = key;
+
+    const emojiEl = document.getElementById('cfLauncherEmoji');
+    const textWrap = document.getElementById('cfLauncherTextWrapper');
+    const titleEl = document.getElementById('cfLauncherTitle');
+    const subEl = document.getElementById('cfLauncherSub');
+
+    if (!textWrap || !titleEl) return;
+
+    // Smooth subtle crossfade without jumping
+    textWrap.classList.add('cf-text-fade-out');
+    if (emojiEl) emojiEl.style.opacity = '0';
+
+    setTimeout(() => {
+      if (emojiEl) {
+        emojiEl.textContent = emoji;
+        emojiEl.style.opacity = '1';
+      }
+      if (titleEl) titleEl.textContent = title;
+      if (subEl) subEl.textContent = sub;
+
+      textWrap.classList.remove('cf-text-fade-out');
+      textWrap.classList.add('cf-text-fade-in');
+
+      setTimeout(() => {
+        textWrap.classList.remove('cf-text-fade-in');
+      }, 250);
+    }, 200);
+  }
+
+  function resetInactivityTimer() {
+    if (isOpen) return;
+
+    if (isInactive) {
+      isInactive = false;
+      const ctx = getPageContextMessage();
+      updateLauncherBadge(ctx.emoji, ctx.title, ctx.sub);
+    }
+
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(() => {
+      if (!isOpen) {
+        isInactive = true;
+        const msg = getInactivityMessage();
+        updateLauncherBadge(msg.emoji, msg.title, msg.sub);
+      }
+    }, 7000); // 7 seconds of inactivity
+  }
+
+  function initContextAwareBadge() {
+    const ctx = getPageContextMessage();
+    updateLauncherBadge(ctx.emoji, ctx.title, ctx.sub, true);
+
+    ['mousemove', 'scroll', 'keydown', 'touchstart', 'click'].forEach(evt => {
+      window.addEventListener(evt, resetInactivityTimer, { passive: true });
+    });
+
+    resetInactivityTimer();
+  }
+
+  // Initialize Dynamic Badge on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContextAwareBadge);
+  } else {
+    initContextAwareBadge();
   }
 
   // Event Listeners

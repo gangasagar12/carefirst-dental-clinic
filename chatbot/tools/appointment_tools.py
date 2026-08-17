@@ -77,7 +77,7 @@ def validate_and_create_appointment(data: Dict[str, Any]) -> Dict[str, Any]:
             message=f"[Booked via Ask CareFirst AI Assistant] {message}".strip(),
             status='new',
             chat_used=True,
-            source='chatbot' if hasattr(Appointment, 'source') else ''
+            utm_source='ai_chatbot'
         )
         appointment.save()
 

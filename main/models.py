@@ -439,7 +439,7 @@ class GoogleBusiness(models.Model):
 
 class GoogleReview(models.Model):
     business = models.ForeignKey(GoogleBusiness, on_delete=models.CASCADE, related_name='reviews')
-    google_review_id = models.CharField(max_length=500, unique=True)
+    google_review_id = models.CharField(max_length=255, unique=True)
     author_name = models.CharField(max_length=255)
     author_photo = models.URLField(max_length=1000, blank=True)
     author_url = models.URLField(max_length=1000, blank=True)
