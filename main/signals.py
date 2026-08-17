@@ -1,7 +1,6 @@
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from modeltranslation.translator import translator
-from deep_translator import GoogleTranslator
 import logging
 
 logger = logging.getLogger(__name__)
@@ -16,8 +15,12 @@ def auto_translate_fields(sender, instance, **kwargs):
         return
 
     try:
+        try:
+            from deep_translator import GoogleTranslator
+        except ImportError:
+            return
+
         opts = translator.get_options_for_model(sender)
-        # We instantiate it once per save to optimize a bit if there are multiple fields
         gt = GoogleTranslator(source='en', target='ne')
         
         for field in opts.fields:
