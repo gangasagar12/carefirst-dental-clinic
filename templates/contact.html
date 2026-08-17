@@ -743,7 +743,12 @@
   </div>
 </section>
 
-<!-- 3. CLINIC LOCATION & INTERACTIVE MAP -->
+<!-- 3. SPLIT-SCREEN APPOINTMENT BOOKING DESK -->
+<div id="book">
+  {% include 'components/split_screen_appointment_funnel.html' %}
+</div>
+
+<!-- 4. CLINIC LOCATION & INTERACTIVE MAP -->
 <section class="section-py bg-white" id="location">
   <div class="container">
     <div class="text-center mb-5">
@@ -824,4 +829,5 @@
 
 {% block extra_scripts %}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{% static 'main/js/appointment_funnel.js' %}?v=8.0"></script>
 {% endblock %}
