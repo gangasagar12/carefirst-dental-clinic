@@ -23,18 +23,23 @@
 </head>
 <body class="cf-dashboard-body">
 
-  <div class="cf-sidebar-backdrop" id="cfSidebarBackdrop" onclick="toggleSidebar()"></div>
+  <div class="cf-sidebar-backdrop" id="cfSidebarBackdrop" onclick="toggleMobileSidebar()"></div>
 
-  <div class="cf-dash-wrapper">
+  <div class="cf-dash-wrapper" id="cfDashWrapper">
     <!-- SIDEBAR -->
     <aside class="cf-dash-sidebar" id="cfDashSidebar">
-      <a href="{% url 'dashboard:home' %}" class="cf-dash-brand">
-        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="Clinic Logo" class="cf-dash-brand-logo">
-        <div>
-          <h1 class="cf-dash-brand-title">Niko Dental</h1>
-          <p class="cf-dash-brand-subtitle">Clinic Command Center</p>
-        </div>
-      </a>
+      <div class="cf-dash-brand justify-content-between">
+        <a href="{% url 'dashboard:home' %}" class="d-flex align-items-center gap-3 text-decoration-none">
+          <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="Clinic Logo" class="cf-dash-brand-logo">
+          <div>
+            <h1 class="cf-dash-brand-title">Niko Dental</h1>
+            <p class="cf-dash-brand-subtitle">Command Center</p>
+          </div>
+        </a>
+        <button type="button" class="btn btn-sm text-white-50 p-1 d-none d-lg-flex align-items-center justify-content-center rounded-2 border border-white-10" onclick="toggleSidebarFullWidth()" title="Collapse Sidebar (Full Width Screen)">
+          <i class="bi bi-layout-sidebar-inset fs-5"></i>
+        </button>
+      </div>
 
       <nav class="cf-dash-nav">
         <p class="cf-nav-section-title">Core Operations</p>
@@ -72,6 +77,10 @@
         </a>
 
         <p class="cf-nav-section-title">Marketing & Content</p>
+        <a href="{% url 'dashboard:sliders' %}" class="cf-nav-link {% if active_page == 'sliders' %}active{% endif %}">
+          <i class="bi bi-images"></i>
+          <span>Hero Sliders & Gallery</span>
+        </a>
         <a href="{% url 'dashboard:offers' %}" class="cf-nav-link {% if active_page == 'offers' %}active{% endif %}">
           <i class="bi bi-stars"></i>
           <span>Special Offers</span>
@@ -117,8 +126,9 @@
       <!-- TOPBAR -->
       <header class="cf-dash-topbar">
         <div class="d-flex align-items-center gap-3">
-          <button class="btn btn-light d-lg-none rounded-3 p-2" onclick="toggleSidebar()">
-            <i class="bi bi-list fs-5"></i>
+          <!-- 3-LINE HAMBURGER / SLIDER FULL-WIDTH BUTTON -->
+          <button type="button" class="cf-sidebar-toggle-btn" id="cfSidebarToggleBtn" onclick="toggleSidebarFullWidth()" title="Toggle Sidebar (Full Screen Width)">
+            <i class="bi bi-list"></i>
           </button>
           <h2 class="cf-dash-topbar-title">{{ title|default:"Dashboard" }}</h2>
         </div>
@@ -155,12 +165,40 @@
   <!-- Bootstrap 5.3.3 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    function toggleSidebar() {
+    // Full width sidebar slider toggle (3-line hamburger menu)
+    function toggleSidebarFullWidth() {
+      const wrapper = document.getElementById('cfDashWrapper');
       const sidebar = document.getElementById('cfDashSidebar');
       const backdrop = document.getElementById('cfSidebarBackdrop');
-      sidebar.classList.toggle('open');
-      backdrop.classList.toggle('open');
+      
+      if (window.innerWidth < 992) {
+        // Mobile behavior: drawer overlay
+        sidebar.classList.toggle('open');
+        backdrop.classList.toggle('open');
+      } else {
+        // Desktop behavior: collapse sidebar to expand screen into full width
+        wrapper.classList.toggle('sidebar-collapsed');
+        const isCollapsed = wrapper.classList.contains('sidebar-collapsed');
+        localStorage.setItem('cf_sidebar_collapsed', isCollapsed ? 'true' : 'false');
+      }
     }
+
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('cfDashSidebar');
+      const backdrop = document.getElementById('cfSidebarBackdrop');
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('open');
+    }
+
+    // Restore user full-width preference across page navigations
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.innerWidth >= 992) {
+        const savedState = localStorage.getItem('cf_sidebar_collapsed');
+        if (savedState === 'true') {
+          document.getElementById('cfDashWrapper').classList.add('sidebar-collapsed');
+        }
+      }
+    });
   </script>
   {% block extra_scripts %}{% endblock %}
 </body>

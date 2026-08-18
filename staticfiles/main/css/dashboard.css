@@ -36,7 +36,7 @@ body.cf-dashboard-body {
   width: 100%;
 }
 
-/* ── Sidebar ── */
+/* ── Sidebar & Slider Transitions ── */
 .cf-dash-sidebar {
   width: 280px;
   background: var(--cf-dash-sidebar);
@@ -51,7 +51,61 @@ body.cf-dashboard-body {
   overflow-y: auto;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   z-index: 1040;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), margin-left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, width, margin-left;
+}
+
+.cf-dash-main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: calc(100% - 280px);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Full Width Display Mode (When Hamburger Slider is clicked) */
+.cf-dash-wrapper.sidebar-collapsed .cf-dash-sidebar {
+  width: 0 !important;
+  min-width: 0 !important;
+  margin-left: -280px !important;
+  overflow: hidden !important;
+  border-right: none !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cf-dash-wrapper.sidebar-collapsed .cf-dash-main {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+}
+
+.cf-sidebar-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  color: #0B2545;
+  font-size: 1.35rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(8, 28, 51, 0.04);
+}
+
+.cf-sidebar-toggle-btn:hover {
+  background: #F1F5F9;
+  color: #0284C7;
+  border-color: #BAE6FD;
+  transform: scale(1.05);
+}
+
+.cf-sidebar-toggle-btn:active {
+  transform: scale(0.95);
 }
 
 .cf-dash-brand {
