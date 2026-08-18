@@ -67,6 +67,30 @@
 (function () {
   'use strict';
 
+  /* ── Gallery Load More Expander ───────────────────────── */
+  window.toggleMoreHomeGallery = function() {
+    const extraItems = document.querySelectorAll('#clinicGallery .cf-extra-gallery-item');
+    const btn = document.getElementById('cfBtnLoadMoreGallery');
+    if (!extraItems.length || !btn) return;
+
+    const isHidden = extraItems[0].classList.contains('d-none');
+    extraItems.forEach(item => {
+      if (isHidden) {
+        item.classList.remove('d-none');
+        item.style.display = 'block';
+      } else {
+        item.classList.add('d-none');
+        item.style.display = 'none';
+      }
+    });
+
+    if (isHidden) {
+      btn.innerHTML = '<i class="bi bi-chevron-up me-2"></i> {% trans "Show Less Photos" %}';
+    } else {
+      btn.innerHTML = '<i class="bi bi-images me-2"></i> {% trans "View More Clinic Photos" %} (' + extraItems.length + ' {% trans "more" %})';
+    }
+  };
+
   /* ── Gallery Filter ──────────────────────────────────── */
   const filterBtns = document.querySelectorAll('.gf-btn');
   const galleryItems = document.querySelectorAll('#clinicGallery .g-item');
@@ -76,10 +100,26 @@
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const filter = btn.dataset.filter;
-      galleryItems.forEach(item => {
-        const show = filter === 'all' || item.dataset.filter === filter;
-        item.style.display = show ? 'block' : 'none';
-      });
+      const loadMoreWrap = document.getElementById('cfGalleryLoadMoreWrap');
+
+      if (filter === 'all') {
+        if (loadMoreWrap) loadMoreWrap.style.display = 'block';
+        galleryItems.forEach(item => {
+          if (item.classList.contains('cf-extra-gallery-item')) {
+            const btn = document.getElementById('cfBtnLoadMoreGallery');
+            const isExpanded = btn && btn.innerHTML.includes('Show Less');
+            item.style.display = isExpanded ? 'block' : 'none';
+          } else {
+            item.style.display = 'block';
+          }
+        });
+      } else {
+        if (loadMoreWrap) loadMoreWrap.style.display = 'none';
+        galleryItems.forEach(item => {
+          const matches = item.dataset.filter === filter;
+          item.style.display = matches ? 'block' : 'none';
+        });
+      }
     });
   });
 

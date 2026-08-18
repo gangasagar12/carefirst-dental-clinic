@@ -15,11 +15,11 @@
   <button class="gf-btn" data-filter="reception">{% trans "Lounge & Reception" %}</button>
 </div>
 
-<!-- Masonry Gallery -->
+<!-- Masonry / Uniform Grid Gallery -->
 <div class="gallery-grid" id="clinicGallery">
   {% if gallery_images %}
     {% for image in gallery_images %}
-    <a class="g-item" data-caption="{{ image.caption }}" data-src="{{ image.image.url }}" data-filter="{{ image.category|default:'treatment' }}">
+    <a class="g-item {% if forloop.counter > 6 %}cf-extra-gallery-item d-none{% endif %}" data-caption="{{ image.caption }}" data-src="{{ image.image.url }}" data-filter="{{ image.category|default:'treatment' }}">
       <img src="{{ image.image.url }}" alt="{{ image.caption }}" loading="lazy">
       <div class="g-item-overlay">
         <span class="g-item-caption">{{ image.caption }}</span>
@@ -27,7 +27,7 @@
     </a>
     {% endfor %}
   {% else %}
-    <!-- Authentic Clinical Gallery Items -->
+    <!-- Authentic Clinical Gallery Items (First 6 in 2 Rows) -->
     <a class="g-item" data-caption="{% trans 'Main Dental Operatory Suite & Computerized Treatment Chair — Shankhamul, Kathmandu' %}" data-src="{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}" data-filter="treatment">
       <img src="{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}" alt="CareFirst Treatment Operatory" loading="lazy">
       <div class="g-item-overlay">
@@ -70,18 +70,29 @@
       </div>
     </a>
 
-    <a class="g-item" data-caption="{% trans 'High-Intensity LED Curing & Aesthetic Composite Dental Restorations' %}" data-src="{% static 'images/fill_procedure_curing.jpg' %}" data-filter="equipment">
+    <!-- Extra Items (Hidden initially for 2-row layout) -->
+    <a class="g-item cf-extra-gallery-item d-none" data-caption="{% trans 'High-Intensity LED Curing & Aesthetic Composite Dental Restorations' %}" data-src="{% static 'images/fill_procedure_curing.jpg' %}" data-filter="equipment">
       <img src="{% static 'images/fill_procedure_curing.jpg' %}" alt="Aesthetic Restorative Equipment" loading="lazy">
       <div class="g-item-overlay">
         <span class="g-item-caption"><i class="bi bi-lightning-charge-fill me-1 text-warning"></i> {% trans "Aesthetic Curing & Restorations" %}</span>
       </div>
     </a>
 
-    <a class="g-item" data-caption="{% trans 'Welcoming Reception Desk & Patient Waiting Area — Pragatinagar Road, Shankhamul' %}" data-src="{% static 'images/appointment_hero_consultation.jpg' %}" data-filter="reception">
+    <a class="g-item cf-extra-gallery-item d-none" data-caption="{% trans 'Welcoming Reception Desk & Patient Waiting Area — Pragatinagar Road, Shankhamul' %}" data-src="{% static 'images/appointment_hero_consultation.jpg' %}" data-filter="reception">
       <img src="{% static 'images/appointment_hero_consultation.jpg' %}" alt="CareFirst Reception & Lounge" loading="lazy">
       <div class="g-item-overlay">
         <span class="g-item-caption"><i class="bi bi-building me-1 text-primary"></i> {% trans "Reception Desk & Lounge" %}</span>
       </div>
     </a>
   {% endif %}
+</div>
+
+<!-- View More Gallery Expander Button -->
+<div class="text-center mt-5" id="cfGalleryLoadMoreWrap">
+  <button type="button" class="btn btn-outline-primary rounded-pill px-4 py-2.5 fw-bold shadow-sm" id="cfBtnLoadMoreGallery" onclick="toggleMoreHomeGallery()">
+    <i class="bi bi-images me-2"></i> {% trans "View More Clinic Photos" %} (<span id="cfMoreGalleryCount">2</span> {% trans "more" %})
+  </button>
+  <a href="{% url 'main:clinic_gallery' %}" class="btn btn-outline-secondary rounded-pill px-4 py-2.5 fw-bold ms-2 shadow-sm d-none d-md-inline-flex align-items-center">
+    <i class="bi bi-box-arrow-up-right me-1"></i> {% trans "Full Gallery" %}
+  </a>
 </div>
