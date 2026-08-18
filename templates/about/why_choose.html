@@ -45,8 +45,8 @@
           <li><i class="bi bi-check-circle-fill"></i>{% trans "Emergency Dental Services" %}</li>
         </ul>
         <div class="d-flex flex-wrap gap-3">
-          <a href="#" class="btn-nd-gold btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
-          <a href="{% url 'main:doctors' %}" class="btn-nd-green btn"><i class="bi bi-people-fill me-2"></i>{% trans "Meet Our Doctors" %}</a>
+          <a href="{% url 'appointments:book' %}" class="cf-btn-primary"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
+          <a href="{% url 'main:doctors' %}" class="btn btn-outline-primary rounded-pill px-4 py-2.5 fw-bold"><i class="bi bi-people-fill me-2"></i>{% trans "Meet Our Doctors" %}</a>
         </div>
       </div>
       <div class="col-lg-6">
@@ -216,7 +216,7 @@
     <h2>{% trans "Join 10,000+ Happy Patients" %}</h2>
     <p>{% trans "Take the first step towards a healthier, more confident smile. Book your free consultation today." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Free Consultation" %}</a>
+      <a href="{% url 'appointments:book' %}" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Free Consultation" %}</a>
       <a href="{% url 'main:clinic' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold"><i class="bi bi-building me-2"></i>{% trans "Tour Our Clinic" %}</a>
     </div>
   </div>

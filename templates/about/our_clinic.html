@@ -2,10 +2,10 @@
 
 {% load static i18n %}
 
-{% block title %}Our Clinic — Niko Dental & Aesthetics{% endblock %}
+{% block title %}{% trans "Our Clinic — CareFirst Dental Clinic | Kathmandu" %}{% endblock %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'main/css/about.css' %}">
-<meta name="description" content="Explore Niko Dental's modern clinic — advanced treatment rooms, state-of-the-art equipment, ISO sterilization, and a calming patient environment.">
+<meta name="description" content="{% trans "Explore CareFirst Dental Clinic's modern clinic in Shankhamul, Kathmandu — advanced operatory rooms, digital RVG/OPG, Class-B autoclave sterilization, and a calming patient environment." %}">
 {% endblock %}
 
 {% block content %}
@@ -15,13 +15,13 @@
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
         <li class="breadcrumb-item"><a href="{% url 'main:about' %}" class="text-white text-decoration-none opacity-75">{% trans "About" %}</a></li>
         <li class="breadcrumb-item active text-warning">{% trans "Our Clinic" %}</li>
       </ol>
     </nav>
     <h1>{% trans "Our Clinic" %}</h1>
-    <p class="hero-sub mx-auto">{% trans "A modern, calming environment designed for your comfort and confidence." %}</p>
+    <p class="hero-sub mx-auto">{% trans "A modern, calming environment designed for your comfort, sterilization safety, and confidence." %}</p>
   </div>
 </section>
 
@@ -31,24 +31,27 @@
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
         <div class="nd-eyebrow">{% trans "Clinic Overview" %}</div>
-        <h2 class="section-heading mb-4">{% trans "Designed for" %}<span class="accent">{% trans "Your Comfort & Safety" %}</span></h2>
-        <p class="text-muted mb-3" style="line-height:1.85;">{% trans "At Niko Dental & Aesthetics, every detail of our clinic has been designed to ensure patients feel relaxed, safe, and cared for. Our 3,500 sq. ft. facility houses 6 fully equipped treatment rooms, a dedicated cosmetic dentistry suite, a digital imaging center, and a welcoming reception lounge." %}</p>
+        <h2 class="section-heading mb-4">{% trans "Designed for" %} <span class="accent">{% trans "Your Comfort & Safety" %}</span></h2>
+        <p class="text-muted mb-3" style="line-height:1.85;">{% trans "At CareFirst Dental Clinic, every detail of our clinical space in Shankhamul, Kathmandu has been designed to ensure patients feel relaxed, safe, and cared for. Our modern facility houses fully equipped digital operatory suites, a digital imaging center, Class-B autoclave sterilization, and a welcoming reception lounge." %}</p>
         <ul class="nd-checklist mb-4">
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "6 Fully Equipped Treatment Rooms" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Dedicated Cosmetic Dentistry Suite" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Digital Imaging & X-Ray Center" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "ISO-Certified Sterilization Unit" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Comfortable Patient Lounge" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Child-Friendly Waiting Area" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Fully Equipped Modern Operatory Suites" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Dedicated Cosmetic & Implant Dentistry Suite" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Digital RVG & Low-Radiation X-Ray Center" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Class-B Hospital-Grade Autoclave Sterilization" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Comfortable Patient Lounge & Free Wi-Fi" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Open 7 Days a Week: 7:30 AM – 7:30 PM" %}</li>
           <li><i class="bi bi-check-circle-fill"></i>{% trans "Wheelchair-Accessible Facility" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Free Parking Available" %}</li>
+          <li><i class="bi bi-check-circle-fill"></i>{% trans "Free Dedicated Patient Parking" %}</li>
         </ul>
-        <a href="{% url 'main:why_choose' %}" class="btn-nd-green btn"><i class="bi bi-arrow-right-circle me-2"></i>{% trans "Why Choose Us" %}</a>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="{% url 'appointments:book' %}" class="cf-btn-primary"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Visit" %}</a>
+          <a href="{% url 'main:why_choose' %}" class="btn btn-outline-primary rounded-pill px-4 py-2.5 fw-bold"><i class="bi bi-arrow-right-circle me-2"></i>{% trans "Why Choose Us" %}</a>
+        </div>
       </div>
       <div class="col-lg-6">
-        <div class="rounded-4 overflow-hidden shadow-lg">
-          <img loading="lazy" src="{% static 'main/img/niko1.jpeg' %}"
-               alt="Niko Dental clinic reception" class="w-100" style="height:460px;object-fit:cover;">
+        <div class="rounded-4 overflow-hidden shadow-lg border">
+          <img loading="lazy" src="{% static 'images/hero_section1.jpeg' %}"
+               alt="CareFirst Dental clinic operatory" class="w-100" style="height:460px;object-fit:cover;">
         </div>
       </div>
     </div>
@@ -60,7 +63,7 @@
   <div class="container">
     <div class="text-center mb-5">
       <div class="nd-eyebrow justify-content-center">{% trans "Explore Our Spaces" %}</div>
-      <h2 class="section-heading">{% trans "Inside Niko Dental" %}</h2>
+      <h2 class="section-heading">{% trans "Inside CareFirst Dental Clinic" %}</h2>
     </div>
     <div class="row g-4">
 
@@ -202,7 +205,7 @@
     <h2>{% trans "Experience World-Class Dentistry" %}</h2>
     <p>{% trans "Visit our clinic and see the difference premium care makes. Book your consultation today." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
+      <a href="{% url 'appointments:book' %}" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
       <a href="{% url 'main:doctors' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold"><i class="bi bi-people-fill me-2"></i>{% trans "Meet Our Doctors" %}</a>
     </div>
   </div>
