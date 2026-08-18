@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'blogs',
     'media_center',
     'chatbot',
+    'dashboard',
     'django.contrib.sitemaps',
 ]
 
