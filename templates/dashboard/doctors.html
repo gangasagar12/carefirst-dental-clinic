@@ -1,0 +1,88 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="cf-dash-card">
+  <div class="cf-dash-card-header flex-wrap gap-3">
+    <div>
+      <h3 class="cf-card-title"><i class="bi bi-people-fill text-primary"></i> Doctors & Clinical Team</h3>
+      <p class="small text-muted mb-0">Manage dental surgeons, specialists, NMC registration numbers, and clinical bios.</p>
+    </div>
+    <div>
+      <a href="{% url 'dashboard:doctor_create' %}" class="btn btn-cf-primary btn-sm rounded-pill px-3">
+        <i class="bi bi-person-plus me-1"></i> Add New Doctor
+      </a>
+    </div>
+  </div>
+
+  <div class="cf-table-responsive">
+    <table class="cf-dash-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Doctor</th>
+          <th>Specialty</th>
+          <th>NMC Reg #</th>
+          <th>Experience</th>
+          <th>Status</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for doc in doctors %}
+        <tr>
+          <td><span class="badge bg-light text-muted border font-monospace">#{{ doc.order }}</span></td>
+          <td>
+            <div class="d-flex align-items-center gap-3">
+              {% if doc.photo %}
+              <img src="{{ doc.photo.url }}" alt="{{ doc.name }}" class="rounded-circle shadow-sm" style="width: 44px; height: 44px; object-fit: cover;">
+              {% else %}
+              <div class="rounded-circle bg-light text-primary border d-flex align-items-center justify-content-center fw-bold" style="width: 44px; height: 44px;">
+                {{ doc.name|slice:":1" }}
+              </div>
+              {% endif %}
+              <div>
+                <div class="fw-bold text-dark">Dr. {{ doc.name }}</div>
+                <div class="small text-muted">{{ doc.designation }}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge bg-light text-primary border">{{ doc.get_specialty_display }}</span></td>
+          <td>
+            {% if doc.nmc_number %}
+            <span class="badge bg-light text-dark border font-monospace">{{ doc.nmc_number }}</span>
+            {% else %}
+            <span class="text-muted small">—</span>
+            {% endif %}
+          </td>
+          <td><span class="fw-semibold text-dark">{{ doc.experience_years }}+ Yrs</span></td>
+          <td>
+            {% if doc.is_active %}
+            <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Active</span>
+            {% else %}
+            <span class="badge bg-secondary">Inactive</span>
+            {% endif %}
+          </td>
+          <td class="text-end text-nowrap">
+            <a href="{% url 'dashboard:doctor_edit' doc.id %}" class="btn btn-sm btn-light border" title="Edit Doctor Profile">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+            <a href="{% url 'dashboard:doctor_delete' doc.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to remove Dr. {{ doc.name }}?');" title="Delete">
+              <i class="bi bi-trash3"></i>
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" class="text-center py-5 text-muted">
+            <i class="bi bi-people fs-1 d-block mb-2"></i>
+            <h5>No Doctors Added</h5>
+            <p class="small mb-0">Click 'Add New Doctor' to create your first clinical specialist.</p>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
