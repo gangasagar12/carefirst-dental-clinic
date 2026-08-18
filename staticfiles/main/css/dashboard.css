@@ -34,11 +34,15 @@ body.cf-dashboard-body {
   display: flex;
   min-height: 100vh;
   width: 100%;
+  position: relative;
+  overflow-x: clip;
 }
 
 /* ── Sidebar & Slider Transitions ── */
 .cf-dash-sidebar {
   width: 280px;
+  min-width: 280px;
+  max-width: 280px;
   background: var(--cf-dash-sidebar);
   background: linear-gradient(180deg, #051426 0%, #081D36 60%, #051426 100%);
   color: #FFFFFF;
@@ -51,34 +55,36 @@ body.cf-dashboard-body {
   overflow-y: auto;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   z-index: 1040;
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), margin-left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, width, margin-left;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), min-width 0.3s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cf-dash-main {
-  flex: 1 1 auto;
+  flex: 1 1 0%;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  width: calc(100% - 280px);
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Full Width Display Mode (When Hamburger Slider is clicked) */
 .cf-dash-wrapper.sidebar-collapsed .cf-dash-sidebar {
   width: 0 !important;
   min-width: 0 !important;
-  margin-left: -280px !important;
-  overflow: hidden !important;
+  max-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
   border-right: none !important;
-  visibility: hidden;
-  pointer-events: none;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 .cf-dash-wrapper.sidebar-collapsed .cf-dash-main {
   width: 100% !important;
   max-width: 100% !important;
-  margin-left: 0 !important;
+  margin: 0 !important;
 }
 
 .cf-sidebar-toggle-btn {
@@ -510,13 +516,27 @@ body.cf-dashboard-body {
 @media (max-width: 991px) {
   .cf-dash-sidebar {
     position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
     transform: translateX(-100%);
+    width: 280px !important;
+    min-width: 280px !important;
+    max-width: 280px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
   .cf-dash-sidebar.open {
     transform: translateX(0);
   }
   .cf-sidebar-backdrop.open {
     display: block;
+  }
+  .cf-dash-main {
+    width: 100% !important;
+    max-width: 100% !important;
   }
   .cf-dash-topbar {
     padding: 0 16px;
