@@ -62,6 +62,15 @@ urlpatterns = [
     path('media/<int:pk>/edit/', views.video_edit, name='video_edit'),
     path('media/<int:pk>/delete/', views.video_delete, name='video_delete'),
     
+    # Hero Sliders & Banners
+    path('sliders/', views.sliders_list, name='sliders'),
+    path('sliders/new/', views.slide_create, name='slide_create'),
+    path('sliders/<int:pk>/edit/', views.slide_edit, name='slide_edit'),
+    path('sliders/<int:pk>/toggle-active/', views.slide_toggle_active, name='slide_toggle_active'),
+    path('sliders/<int:pk>/delete/', views.slide_delete, name='slide_delete'),
+    path('gallery/new/', views.gallery_create, name='gallery_create'),
+    path('gallery/<int:pk>/delete/', views.gallery_delete, name='gallery_delete'),
+    
     # Settings
     path('settings/', views.settings_view, name='settings'),
 ]

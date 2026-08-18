@@ -10,11 +10,12 @@ from django.http import JsonResponse
 from django.core.paginator import Paginator
 
 from appointments.models import Appointment
-from main.models import Service, Doctor, PricingCategory, PricingItem, SpecialOffer, Testimonial, SiteSettings, ContactMessage
+from main.models import Service, Doctor, PricingCategory, PricingItem, SpecialOffer, Testimonial, SiteSettings, ContactMessage, HeroSlide, ClinicGallery
 from media_center.models import Video
 from .forms import (
     AppointmentForm, ServiceForm, DoctorForm, PricingCategoryForm,
-    PricingItemForm, SpecialOfferForm, TestimonialForm, VideoForm, SiteSettingsForm
+    PricingItemForm, SpecialOfferForm, TestimonialForm, VideoForm, SiteSettingsForm,
+    HeroSlideForm, ClinicGalleryForm
 )
 
 
@@ -700,3 +701,101 @@ def settings_view(request):
         'active_page': 'settings',
         'form': form,
     })
+
+
+# ── Hero Sliders & Gallery Banners ────────────────────────────────────────────
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def sliders_list(request):
+    slides = HeroSlide.objects.all().order_by('order', 'id')
+    gallery_images = ClinicGallery.objects.all().order_by('order', 'id')
+    return render(request, 'dashboard/sliders.html', {
+        'title': 'Hero Sliders & Gallery Banners',
+        'active_page': 'sliders',
+        'slides': slides,
+        'gallery_images': gallery_images,
+    })
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def slide_create(request):
+    if request.method == 'POST':
+        form = HeroSlideForm(request.POST, request.FILES)
+        if form.is_valid():
+            slide = form.save()
+            messages.success(request, f"Hero slide '{slide.title or slide.id}' added.")
+            return redirect('dashboard:sliders')
+    else:
+        form = HeroSlideForm()
+
+    return render(request, 'dashboard/form_generic.html', {
+        'title': 'Add Hero Background Slide',
+        'active_page': 'sliders',
+        'form': form,
+        'back_url': 'dashboard:sliders',
+    })
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def slide_edit(request, pk):
+    slide = get_object_or_404(HeroSlide, pk=pk)
+    if request.method == 'POST':
+        form = HeroSlideForm(request.POST, request.FILES, instance=slide)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Hero slide updated.")
+            return redirect('dashboard:sliders')
+    else:
+        form = HeroSlideForm(instance=slide)
+
+    return render(request, 'dashboard/form_generic.html', {
+        'title': f"Edit Hero Slide #{slide.id}",
+        'active_page': 'sliders',
+        'form': form,
+        'back_url': 'dashboard:sliders',
+    })
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def slide_toggle_active(request, pk):
+    slide = get_object_or_404(HeroSlide, pk=pk)
+    slide.is_active = not slide.is_active
+    slide.save()
+    messages.success(request, f"Slide #{slide.id} is now {'Active' if slide.is_active else 'Disabled'}.")
+    return redirect('dashboard:sliders')
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def slide_delete(request, pk):
+    slide = get_object_or_404(HeroSlide, pk=pk)
+    slide.delete()
+    messages.success(request, "Hero slide removed.")
+    return redirect('dashboard:sliders')
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def gallery_create(request):
+    if request.method == 'POST':
+        form = ClinicGalleryForm(request.POST, request.FILES)
+        if form.is_valid():
+            g = form.save()
+            messages.success(request, f"Gallery photo '{g.caption or g.id}' added.")
+            return redirect('dashboard:sliders')
+    else:
+        form = ClinicGalleryForm()
+
+    return render(request, 'dashboard/form_generic.html', {
+        'title': 'Add Clinic Gallery Photo',
+        'active_page': 'sliders',
+        'form': form,
+        'back_url': 'dashboard:sliders',
+    })
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def gallery_delete(request, pk):
+    g = get_object_or_404(ClinicGallery, pk=pk)
+    g.delete()
+    messages.success(request, "Gallery photo removed.")
+    return redirect('dashboard:sliders')
+

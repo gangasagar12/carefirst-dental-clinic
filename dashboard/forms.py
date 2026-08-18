@@ -1,6 +1,6 @@
 from django import forms
 from appointments.models import Appointment
-from main.models import Service, Doctor, PricingCategory, PricingItem, SpecialOffer, Testimonial, SiteSettings, ContactMessage
+from main.models import Service, Doctor, PricingCategory, PricingItem, SpecialOffer, Testimonial, SiteSettings, ContactMessage, HeroSlide, ClinicGallery
 from media_center.models import Video
 
 
@@ -128,3 +128,15 @@ class SiteSettingsForm(BootstrapFormMixin, forms.ModelForm):
             'landmark': forms.Textarea(attrs={'rows': 2}),
             'google_maps_iframe_url': forms.Textarea(attrs={'rows': 2}),
         }
+
+
+class HeroSlideForm(BootstrapFormMixin, forms.ModelForm):
+    class Meta:
+        model = HeroSlide
+        fields = ['title', 'subtitle', 'image', 'order', 'is_active']
+
+
+class ClinicGalleryForm(BootstrapFormMixin, forms.ModelForm):
+    class Meta:
+        model = ClinicGallery
+        fields = ['caption', 'image', 'order']

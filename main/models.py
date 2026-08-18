@@ -304,6 +304,21 @@ class ClinicGallery(models.Model):
     def __str__(self):
         return self.caption or f"Gallery Image {self.id}"
 
+class HeroSlide(models.Model):
+    title = models.CharField(max_length=200, blank=True, help_text="e.g. Modern Operatory & Care")
+    subtitle = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to='hero_slides/', help_text="High-resolution banner image")
+    order = models.PositiveSmallIntegerField(default=0, help_text="Lower number appears first")
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = "Hero Slide"
+        verbose_name_plural = "Hero Slides"
+
+    def __str__(self):
+        return self.title or f"Slide #{self.id}"
+
 class FAQ(models.Model):
     question = models.CharField(max_length=255)
     answer = models.TextField()
