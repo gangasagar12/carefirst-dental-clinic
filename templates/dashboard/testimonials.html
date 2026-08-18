@@ -1,0 +1,72 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="cf-dash-card">
+  <div class="cf-dash-card-header flex-wrap gap-3">
+    <div>
+      <h3 class="cf-card-title"><i class="bi bi-chat-quote-fill text-primary"></i> Patient Testimonials & Reviews</h3>
+      <p class="small text-muted mb-0">Manage verified patient experiences, star ratings, and smile makeover feedback.</p>
+    </div>
+    <div>
+      <a href="{% url 'dashboard:testimonial_create' %}" class="btn btn-cf-primary btn-sm rounded-pill px-3">
+        <i class="bi bi-plus-lg me-1"></i> Add Testimonial
+      </a>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    {% for t in testimonials %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card border rounded-4 shadow-sm h-100 bg-white p-4 d-flex flex-column">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div class="d-flex align-items-center gap-2">
+            {% if t.photo %}
+            <img src="{{ t.photo.url }}" alt="{{ t.patient_name }}" class="rounded-circle shadow-sm" style="width: 44px; height: 44px; object-fit: cover;">
+            {% else %}
+            <div class="rounded-circle bg-light text-primary border d-flex align-items-center justify-content-center fw-bold" style="width: 44px; height: 44px;">
+              {{ t.patient_name|slice:":1" }}
+            </div>
+            {% endif %}
+            <div>
+              <h6 class="fw-bold text-dark mb-0">{{ t.patient_name }}</h6>
+              <span class="small text-muted">{{ t.treatment|default:"Dental Patient" }}</span>
+            </div>
+          </div>
+          <div class="text-warning">
+            {% for i in "12345"|slice:t.rating %}★{% endfor %}
+          </div>
+        </div>
+
+        <p class="small text-muted mb-4 flex-grow-1" style="line-height: 1.6;">
+          "{{ t.review }}"
+        </p>
+
+        <div class="d-flex justify-content-between align-items-center border-top pt-3 mt-auto">
+          {% if t.is_active %}
+          <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Published</span>
+          {% else %}
+          <span class="badge bg-secondary">Hidden</span>
+          {% endif %}
+
+          <div class="d-flex gap-1">
+            <a href="{% url 'dashboard:testimonial_edit' t.id %}" class="btn btn-sm btn-light border" title="Edit">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+            <a href="{% url 'dashboard:testimonial_delete' t.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete testimonial from {{ t.patient_name }}?');" title="Delete">
+              <i class="bi bi-trash3"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5 text-muted">
+      <i class="bi bi-chat-heart fs-1 d-block mb-2"></i>
+      <h5>No Testimonials Added</h5>
+      <p class="small mb-0">Add patient reviews and smile transformation stories to showcase on the homepage.</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
