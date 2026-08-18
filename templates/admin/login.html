@@ -1,196 +1,528 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login | Carefirst Dental Clinic</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{% static 'main/css/variables.css' %}" />
+    <title>{% trans "Admin Login" %} — CareFirst Dental Clinic</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="{% static 'main/img/care-first-logo.jpeg' %}">
+    
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    
     <style>
-        body {
-            background-color: var(--cf-white);
-            font-family: var(--cf-font-nav);
-            height: 100vh;
+        :root {
+            --cf-navy: #081C33;
+            --cf-navy-dark: #051426;
+            --cf-navy-mid: #0B2545;
+            --cf-blue: #0284C7;
+            --cf-blue-hover: #0369A1;
+            --cf-sky: #38BDF8;
+            --cf-sky-tint: rgba(56, 189, 248, 0.12);
+            --cf-white: #FFFFFF;
+            --cf-slate-50: #F8FAFC;
+            --cf-slate-100: #F1F5F9;
+            --cf-slate-200: #E2E8F0;
+            --cf-slate-600: #475569;
+            --cf-slate-800: #1E293B;
+            --cf-font-head: 'Outfit', sans-serif;
+            --cf-font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: var(--cf-font-body);
+            background-color: var(--cf-slate-100);
+            min-height: 100vh;
+            color: var(--cf-slate-800);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
             overflow-x: hidden;
         }
-        .login-wrapper {
-            width: 100vw;
-            min-height: 100vh;
-            display: flex;
+
+        /* ── Full Screen Split Card Workstation ── */
+        .cf-login-container {
+            width: 100%;
+            max-width: 1180px;
+            min-height: 680px;
             background: var(--cf-white);
+            border-radius: 28px;
+            border: 1px solid var(--cf-slate-200);
+            box-shadow: 0 25px 70px rgba(8, 28, 51, 0.14), 0 4px 20px rgba(0, 0, 0, 0.04);
+            display: flex;
+            overflow: hidden;
         }
-        .login-left {
-            flex: 1.2;
-            background: linear-gradient(135deg, rgba(9, 63, 55, 0.88), rgba(14, 90, 79, 0.95)), url("{% static 'images/services1.avif' %}") center/cover no-repeat;
-            padding: 60px;
+
+        /* ── LEFT PANEL: Dental Visual Showcase (52%) ── */
+        .cf-login-left {
+            flex: 1.15;
+            background: linear-gradient(135deg, rgba(5, 20, 38, 0.93) 0%, rgba(11, 37, 69, 0.88) 55%, rgba(2, 132, 199, 0.78) 100%), 
+                        url("{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}") center/cover no-repeat;
+            padding: 60px 48px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--cf-white);
+            justify-content: space-between;
             position: relative;
+            color: var(--cf-white);
+            overflow: hidden;
         }
-        .login-left::before {
+
+        .cf-login-left::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25) 0%, transparent 60%);
+            pointer-events: none;
         }
-        .login-left-content {
-            position: relative;
-            z-index: 2;
-            max-width: 550px;
-            width: 100%;
+
+        .cf-badge-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: var(--cf-sky);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            width: fit-content;
         }
-        .login-left h1 {
+
+        .cf-pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--cf-sky);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.4);
+            animation: cfPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes cfPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.6; }
+        }
+
+        .cf-hero-heading {
             font-family: var(--cf-font-head);
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.1;
+            font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin: 24px 0 14px 0;
+            color: var(--cf-white);
         }
-        .login-left p {
-            font-size: 1.15rem;
-            opacity: 0.85;
+
+        .cf-hero-heading .highlight {
+            background: linear-gradient(135deg, #38BDF8 0%, #BAE6FD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cf-hero-desc {
+            font-size: 1rem;
+            color: #E2E8F0;
             line-height: 1.6;
+            max-width: 460px;
+            margin-bottom: 32px;
         }
-        .login-right {
+
+        /* Feature Pills */
+        .cf-security-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cf-sec-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 18px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .cf-sec-item:hover {
+            background: rgba(255, 255, 255, 0.14);
+            transform: translateX(4px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .cf-sec-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.18);
+            color: var(--cf-sky);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .cf-sec-text h6 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--cf-white);
+            margin: 0;
+        }
+
+        .cf-sec-text p {
+            font-size: 0.76rem;
+            color: #CBD5E1;
+            margin: 0;
+        }
+
+        .cf-left-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: #94A3B8;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* ── RIGHT PANEL: Clean White Modern Login Card (48%) ── */
+        .cf-login-right {
             flex: 1;
-            padding: 60px;
+            padding: 60px 54px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
             background: var(--cf-white);
         }
-        .login-form-container {
-            width: 100%;
-            max-width: 440px;
-        }
-        .brand-logo {
-            font-family: var(--cf-font-head);
-            color: var(--cf-primary-dark);
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 40px;
+
+        .cf-brand-row {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+            margin-bottom: 28px;
         }
-        .brand-logo img {
+
+        .cf-brand-logo-img {
+            width: 48px;
             height: 48px;
-        }
-        .form-control {
-            border: 2px solid #eaeaea;
             border-radius: 12px;
-            padding: 14px 20px;
-            font-size: 1rem;
-            transition: var(--cf-transition);
-            background: #fafafa;
+            object-fit: cover;
+            border: 2px solid var(--cf-slate-100);
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
         }
-        .form-control:focus {
-            border-color: var(--cf-primary);
-            box-shadow: 0 0 0 4px var(--cf-primary-tint);
-            background: #fff;
+
+        .cf-brand-title {
+            font-family: var(--cf-font-head);
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--cf-navy);
+            line-height: 1.1;
+            letter-spacing: -0.3px;
         }
-        .form-label {
-            font-weight: 600;
-            color: var(--cf-text-dark);
+
+        .cf-brand-title span {
+            color: var(--cf-blue);
+        }
+
+        .cf-brand-sub {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--cf-blue);
+            margin-top: 2px;
+        }
+
+        .cf-form-heading {
+            font-family: var(--cf-font-head);
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--cf-navy);
+            margin-bottom: 6px;
+            letter-spacing: -0.4px;
+        }
+
+        .cf-form-sub {
+            font-size: 0.92rem;
+            color: var(--cf-slate-600);
+            margin-bottom: 26px;
+            line-height: 1.5;
+        }
+
+        .cf-field-group {
+            margin-bottom: 20px;
+        }
+
+        .cf-field-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--cf-slate-800);
             margin-bottom: 8px;
-            font-size: 0.95rem;
         }
-        .btn-login {
-            background: linear-gradient(135deg, var(--cf-primary-dark), var(--cf-primary));
-            color: var(--cf-white);
-            border: none;
-            border-radius: 12px;
-            padding: 16px;
-            font-size: 1.05rem;
-            font-weight: 600;
+
+        .cf-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .cf-input-icon {
+            position: absolute;
+            left: 16px;
+            color: #94A3B8;
+            font-size: 1.1rem;
+            pointer-events: none;
+            transition: color 0.25s ease;
+        }
+
+        .cf-form-input {
             width: 100%;
-            transition: var(--cf-transition);
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(14, 90, 79, 0.25);
-            color: white;
-        }
-        .form-error {
-            background: #fff3f3;
-            color: #dc3545;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: 1px solid #ffd0d0;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            background: var(--cf-slate-50);
+            border: 1.5px solid var(--cf-slate-200);
+            border-radius: 14px;
+            padding: 13px 16px 13px 46px;
+            font-size: 0.95rem;
+            font-family: var(--cf-font-body);
+            color: var(--cf-slate-800);
             font-weight: 500;
+            transition: all 0.25s ease;
+            outline: none;
         }
-        @media (max-width: 991px) {
-            .login-left { display: none; }
+
+        .cf-form-input:focus {
+            background: var(--cf-white);
+            border-color: var(--cf-blue);
+            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.14);
         }
-        @media (max-width: 576px) {
-            .login-right { padding: 40px 25px; }
+
+        .cf-form-input:focus ~ .cf-input-icon {
+            color: var(--cf-blue);
+        }
+
+        .cf-password-toggle {
+            position: absolute;
+            right: 14px;
+            background: transparent;
+            border: none;
+            color: #94A3B8;
+            font-size: 1.15rem;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+        }
+
+        .cf-password-toggle:hover {
+            color: var(--cf-blue);
+        }
+
+        /* Submit Button */
+        .cf-btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--cf-blue) 0%, var(--cf-blue-hover) 100%);
+            color: var(--cf-white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 14px 28px;
+            font-family: var(--cf-font-body);
+            font-size: 1rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-top: 8px;
+            text-decoration: none;
+        }
+
+        .cf-btn-submit .btn-arrow {
+            transition: transform 0.25s ease;
+        }
+
+        .cf-btn-submit:hover {
+            background: linear-gradient(135deg, #38BDF8 0%, var(--cf-blue) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(2, 132, 199, 0.5);
+            color: var(--cf-white);
+        }
+
+        .cf-btn-submit:hover .btn-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Error alerts */
+        .cf-alert-error {
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            color: #DC2626;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Footer & Back Link */
+        .cf-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--cf-slate-600);
+            font-size: 0.84rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            margin-top: 24px;
+        }
+
+        .cf-back-link:hover {
+            color: var(--cf-blue);
+        }
+
+        .cf-copyright-text {
+            font-size: 0.78rem;
+            color: #94A3B8;
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 991.98px) {
+            .cf-login-left {
+                display: none;
+            }
+            .cf-login-right {
+                padding: 44px 30px;
+            }
+            .cf-login-container {
+                max-width: 480px;
+                min-height: auto;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="login-wrapper">
-    <div class="login-left">
-        <div class="login-left-content">
-            <h1>Secure<br><span style="color: var(--cf-accent);">Administration</span></h1>
-            <p>Welcome to the Carefirst Dental Clinic portal. Manage your patients, content, and clinic operations securely.</p>
-            <div class="mt-5">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <div style="width: 45px; height: 45px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;">
-                        <i class="bi bi-shield-lock-fill fs-5 text-warning"></i>
+<div class="cf-login-container">
+    
+    <!-- 1. LEFT PANEL: Clinical Branding & Security Experience (52%) -->
+    <div class="cf-login-left">
+        <div>
+            <!-- Top Tag -->
+            <div class="cf-badge-tag">
+                <span class="cf-pulse-dot"></span>
+                <span>{% trans "CAREFIRST CLINICAL PORTAL" %}</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="cf-hero-heading">
+                CareFirst<br>
+                <span class="highlight">Administration</span>
+            </h1>
+            <p class="cf-hero-desc">
+                {% trans "Centralized clinical workspace to manage appointments, patient consultations, service pricing, and dental clinic operations." %}
+            </p>
+
+            <!-- 3 Reassurance Feature Cards -->
+            <div class="cf-security-cards">
+                <div class="cf-sec-item">
+                    <div class="cf-sec-icon">
+                        <i class="bi bi-shield-lock-fill"></i>
                     </div>
-                    <span style="font-weight: 500;">Encrypted Connection</span>
+                    <div class="cf-sec-text">
+                        <h6>{% trans "Encrypted Staff Workspace" %}</h6>
+                        <p>{% trans "End-to-end SSL connection & HIPAA-compliant access" %}</p>
+                    </div>
                 </div>
-                <div class="d-flex align-items-center gap-3">
-                    <div style="width: 45px; height: 45px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;">
-                        <i class="bi bi-person-badge-fill fs-5 text-warning"></i>
+
+                <div class="cf-sec-item">
+                    <div class="cf-sec-icon">
+                        <i class="bi bi-person-badge-fill"></i>
                     </div>
-                    <span style="font-weight: 500;">Authorized Personnel Only</span>
+                    <div class="cf-sec-text">
+                        <h6>{% trans "Dr. Subash Banjade & Specialist Team" %}</h6>
+                        <p>{% trans "Authorized clinical personnel and reception desk" %}</p>
+                    </div>
+                </div>
+
+                <div class="cf-sec-item">
+                    <div class="cf-sec-icon">
+                        <i class="bi bi-calendar2-check-fill"></i>
+                    </div>
+                    <div class="cf-sec-text">
+                        <h6>{% trans "Real-Time Appointment Stream" %}</h6>
+                        <p>{% trans "Live booking tracking & patient inquiry sync" %}</p>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Left Bottom Footer -->
+        <div class="cf-left-footer">
+            <span><i class="bi bi-geo-alt-fill me-1 text-info"></i> Shankhamul, Kathmandu</span>
+            <span><i class="bi bi-clock-fill me-1 text-info"></i> Open 7:30 AM – 7:30 PM</span>
+        </div>
     </div>
-    <div class="login-right">
-        <div class="login-form-container">
-            <div class="brand-logo">
-                <img loading="lazy" src="{% static 'main/images/logo.png' %}" alt="Carefirst Dental Clinic Logo" onerror="this.style.display='none'">
-                <div>Niko<span style="color: var(--cf-accent);">Dental</span></div>
-            </div>
+
+    <!-- 2. RIGHT PANEL: Modern Authentication Form (48%) -->
+    <div class="cf-login-right">
         
-        <h3 class="fw-bold mb-2" style="color: var(--cf-text-dark);">Sign In</h3>
-        <p class="text-muted mb-4">Please enter your admin credentials to continue.</p>
+        <!-- Brand Header -->
+        <div class="cf-brand-row">
+            <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="CareFirst Dental Clinic Logo" class="cf-brand-logo-img" onerror="this.onerror=null; this.src='{% static 'images/about_intro.png' %}';">
+            <div>
+                <div class="cf-brand-title">CareFirst <span>Dental</span></div>
+                <div class="cf-brand-sub">{% trans "Kathmandu, Nepal" %}</div>
+            </div>
+        </div>
+
+        <h2 class="cf-form-heading">{% trans "Welcome Back" %}</h2>
+        <p class="cf-form-sub">{% trans "Please enter your administrator credentials to continue." %}</p>
 
         {% if form.errors and not form.non_field_errors %}
-        <div class="form-error">
+        <div class="cf-alert-error">
             <i class="bi bi-exclamation-triangle-fill fs-5"></i>
-            <div>Please correct the errors below.</div>
+            <div>{% trans "Invalid username or password. Please verify your details." %}</div>
         </div>
         {% endif %}
 
         {% if form.non_field_errors %}
-        <div class="form-error">
+        <div class="cf-alert-error">
             <i class="bi bi-exclamation-triangle-fill fs-5"></i>
             <div>
                 {% for error in form.non_field_errors %}
@@ -201,87 +533,87 @@
         {% endif %}
 
         {% if user.is_authenticated %}
-        <div class="form-error" style="background: #e3f2fd; color: #0d6efd; border-color: #b6d4fe;">
+        <div class="cf-alert-error" style="background: #F0F9FF; color: #0369A1; border-color: #BAE6FD;">
             <i class="bi bi-info-circle-fill fs-5"></i>
-            <div>You are authenticated as {{ username }}, but are not authorized to access this page. Would you like to login to a different account?</div>
+            <div>{% trans "You are currently logged in as" %} <strong>{{ username }}</strong>, {% trans "but you do not have staff administrator privileges." %}</div>
         </div>
         {% endif %}
 
         <form action="{{ app_path }}" method="post" id="login-form">
             {% csrf_token %}
-            <div class="mb-4">
-                <label for="id_username" class="form-label">Username</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-transparent border-end-0 text-muted" style="border-radius: 12px 0 0 12px; border: 2px solid #eaeaea;"><i class="bi bi-person-fill"></i></span>
-                    <input type="text" name="username" class="form-control border-start-0 ps-0" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username" placeholder="Enter username">
+
+            <!-- Username Field -->
+            <div class="cf-field-group">
+                <label for="id_username" class="cf-field-label">
+                    <span>{% trans "Username" %}</span>
+                </label>
+                <div class="cf-input-wrapper">
+                    <i class="bi bi-person-fill cf-input-icon"></i>
+                    <input type="text" name="username" class="cf-form-input" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username" placeholder="{% trans "Enter your username" %}">
                 </div>
             </div>
-            <div class="mb-4">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <label for="id_password" class="form-label mb-0">Password</label>
-                    <a href="/admin/password_reset/" class="text-decoration-none" style="color: var(--cf-accent-dark); font-weight: 600; font-size: 0.85rem;">Forgot password?</a>
+
+            <!-- Password Field -->
+            <div class="cf-field-group">
+                <div class="cf-field-label">
+                    <span>{% trans "Password" %}</span>
+                    <a href="/admin/password_reset/" class="text-decoration-none text-primary fw-bold small" style="color: #0284C7 !important;">{% trans "Forgot password?" %}</a>
                 </div>
-                <div class="input-group">
-                    <span class="input-group-text bg-transparent border-end-0 text-muted" style="border-radius: 12px 0 0 12px; border: 2px solid #eaeaea;"><i class="bi bi-lock-fill"></i></span>
-                    <input type="password" name="password" class="form-control border-start-0 border-end-0 px-0" autocomplete="current-password" required id="id_password" placeholder="Enter password">
-                    <button class="btn border-start-0 text-muted" type="button" id="togglePassword" style="border: 2px solid #eaeaea; border-radius: 0 12px 12px 0; background: #fafafa; transition: var(--cf-transition);" tabindex="-1">
+                <div class="cf-input-wrapper">
+                    <i class="bi bi-shield-lock-fill cf-input-icon"></i>
+                    <input type="password" name="password" class="cf-form-input" autocomplete="current-password" required id="id_password" placeholder="{% trans "Enter your password" %}" style="padding-right: 48px;">
+                    <button class="cf-password-toggle" type="button" id="togglePassword" aria-label="Toggle password visibility">
                         <i class="bi bi-eye-slash-fill" id="toggleIcon"></i>
                     </button>
                 </div>
             </div>
-            
+
             <input type="hidden" name="next" value="{{ next }}">
-            
-            <button type="submit" class="btn-login">
-                Sign In <i class="bi bi-arrow-right"></i>
+
+            <!-- Primary Submit CTA -->
+            <button type="submit" class="cf-btn-submit">
+                <span>{% trans "Sign In to Portal" %}</span>
+                <i class="bi bi-arrow-right btn-arrow"></i>
             </button>
         </form>
-        
-            <div class="text-center mt-5 text-muted" style="font-size: 0.85rem; font-weight: 500;">
-                &copy; {% now "Y" %} Carefirst Dental Clinic.<br>All rights reserved.
-            </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <a href="{% url 'main:home' %}" class="cf-back-link">
+                <i class="bi bi-arrow-left"></i> {% trans "Back to Public Website" %}
+            </a>
         </div>
+
+        <div class="cf-copyright-text">
+            &copy; {% now "Y" %} CareFirst Dental Clinic. {% trans "All rights reserved." %}
+        </div>
+
     </div>
+
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Toggle input focus styles on the icon wrapper
-    document.querySelectorAll('.form-control').forEach(input => {
-        input.addEventListener('focus', () => {
-            if (input.previousElementSibling) input.previousElementSibling.style.borderColor = 'var(--cf-primary)';
-            input.style.borderColor = 'var(--cf-primary)';
-            if (input.nextElementSibling) input.nextElementSibling.style.borderColor = 'var(--cf-primary)';
-            input.parentElement.style.boxShadow = '0 0 0 4px var(--cf-primary-tint)';
-            input.parentElement.style.borderRadius = '12px';
-        });
-        input.addEventListener('blur', () => {
-            if (input.previousElementSibling) input.previousElementSibling.style.borderColor = '#eaeaea';
-            input.style.borderColor = '#eaeaea';
-            if (input.nextElementSibling) input.nextElementSibling.style.borderColor = '#eaeaea';
-            input.parentElement.style.boxShadow = 'none';
-        });
-    });
-
     // Password Show/Hide Toggle
     const togglePassword = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('id_password');
     const toggleIcon = document.getElementById('toggleIcon');
 
-    if (togglePassword) {
+    if (togglePassword && passwordInput && toggleIcon) {
         togglePassword.addEventListener('click', function () {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
             
-            if (type === 'password') {
-                toggleIcon.classList.remove('bi-eye-fill');
-                toggleIcon.classList.add('bi-eye-slash-fill');
-            } else {
+            if (isPassword) {
                 toggleIcon.classList.remove('bi-eye-slash-fill');
                 toggleIcon.classList.add('bi-eye-fill');
+                togglePassword.style.color = '#0284C7';
+            } else {
+                toggleIcon.classList.remove('bi-eye-fill');
+                toggleIcon.classList.add('bi-eye-slash-fill');
+                togglePassword.style.color = '#94A3B8';
             }
         });
     }
 </script>
+
 </body>
 </html>
