@@ -1,0 +1,80 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="cf-dash-card">
+  <div class="cf-dash-card-header flex-wrap gap-3">
+    <div>
+      <h3 class="cf-card-title"><i class="bi bi-tag-fill text-primary"></i> Procedure Pricing & Categories</h3>
+      <p class="small text-muted mb-0">Manage treatment rate sheets and transparent pricing displayed on the website.</p>
+    </div>
+    <div class="d-flex gap-2">
+      <a href="{% url 'dashboard:pricing_category_create' %}" class="btn btn-light border btn-sm rounded-pill px-3">
+        <i class="bi bi-folder-plus me-1"></i> Add Category
+      </a>
+      <a href="{% url 'dashboard:pricing_item_create' %}" class="btn btn-cf-primary btn-sm rounded-pill px-3">
+        <i class="bi bi-plus-lg me-1"></i> Add Procedure Item
+      </a>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    {% for cat in categories %}
+    <div class="col-lg-6">
+      <div class="card border rounded-4 shadow-sm h-100 bg-white">
+        <div class="card-header bg-light d-flex align-items-center justify-content-between py-3 rounded-top-4">
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-primary rounded-circle p-2"><i class="bi bi-folder2-open text-white"></i></span>
+            <h5 class="fw-bold text-dark mb-0">{{ cat.name }}</h5>
+          </div>
+          <div class="d-flex gap-1">
+            <a href="{% url 'dashboard:pricing_item_create' %}?category={{ cat.id }}" class="btn btn-sm btn-outline-primary" title="Add item to this category">
+              <i class="bi bi-plus"></i> Item
+            </a>
+            <a href="{% url 'dashboard:pricing_category_edit' cat.id %}" class="btn btn-sm btn-light border" title="Edit Category">
+              <i class="bi bi-pencil"></i>
+            </a>
+            <a href="{% url 'dashboard:pricing_category_delete' cat.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete category {{ cat.name }} and all its items?');" title="Delete Category">
+              <i class="bi bi-trash3"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="card-body p-0">
+          <ul class="list-group list-group-flush rounded-bottom-4">
+            {% for item in cat.items.all %}
+            <li class="list-group-item d-flex align-items-center justify-content-between py-3 px-4">
+              <div>
+                <span class="fw-semibold text-dark">{{ item.name }}</span>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <span class="badge bg-light text-success border fs-6 fw-bold">NPR {{ item.price }}</span>
+                <div class="d-flex gap-1">
+                  <a href="{% url 'dashboard:pricing_item_edit' item.id %}" class="btn btn-sm btn-light border py-1 px-2" title="Edit Item">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <a href="{% url 'dashboard:pricing_item_delete' item.id %}" class="btn btn-sm btn-outline-danger py-1 px-2" onclick="return confirm('Delete {{ item.name }}?');" title="Delete Item">
+                    <i class="bi bi-trash3"></i>
+                  </a>
+                </div>
+              </div>
+            </li>
+            {% empty %}
+            <li class="list-group-item text-center py-4 text-muted small">
+              No procedure items in this category yet.
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5 text-muted">
+      <i class="bi bi-tag fs-1 d-block mb-2"></i>
+      <h5>No Pricing Categories Found</h5>
+      <p class="small mb-0">Create categories like 'Preventive Care', 'Cosmetic', or 'Implants' to add pricing items.</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
