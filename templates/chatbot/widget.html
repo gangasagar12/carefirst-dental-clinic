@@ -5,7 +5,7 @@
   
   <!-- Proactive Context Speech Bubble (Optional) -->
   <div class="cf-chat-callout" id="cfChatCallout" style="display: none;">
-    <div class="cf-chat-callout-content" onclick="window.careFirstChat && window.careFirstChat.open()">
+    <div class="cf-chat-callout-content" onclick="window.careFirstChat && window.careFirstChat.open ? window.careFirstChat.open() : document.getElementById('cfChatPanel').classList.add('active')">
       <span class="cf-callout-wave" id="cfCalloutIcon">👋</span>
       <span id="cfCalloutMsg">{% trans "Have questions about dental care or pricing?" %} <strong>{% trans "Ask here!" %}</strong></span>
     </div>
@@ -13,7 +13,7 @@
   </div>
 
   <!-- Floating Context-Aware AI Receptionist Launcher -->
-  <div class="cf-chat-launcher" id="cfChatLauncher" role="button" tabindex="0" aria-label="Open CareFirst Dental Assistant" onclick="window.careFirstChat && window.careFirstChat.open ? window.careFirstChat.open() : null" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.careFirstChat&&window.careFirstChat.open&&window.careFirstChat.open();}">
+  <div class="cf-chat-launcher" id="cfChatLauncher" role="button" tabindex="0" aria-label="Open CareFirst Dental Assistant">
     <div class="cf-launcher-ripple"></div>
     <div class="cf-chat-launcher-badge">
       <span class="cf-launcher-icon-emoji" id="cfLauncherEmoji">👋</span>
@@ -80,3 +80,43 @@
   </div>
 
 </div>
+
+<script>
+  (function() {
+    function initDirectLauncher() {
+      const launcher = document.getElementById('cfChatLauncher');
+      const panel = document.getElementById('cfChatPanel');
+      const closeBtn = document.getElementById('cfChatClose');
+      if (launcher && panel) {
+        launcher.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const willOpen = !panel.classList.contains('active');
+          if (willOpen) {
+            panel.classList.add('active');
+            launcher.classList.add('is-open');
+            if (window.careFirstChat && typeof window.careFirstChat.open === 'function') {
+              window.careFirstChat.open();
+            }
+          } else {
+            panel.classList.remove('active');
+            launcher.classList.remove('is-open');
+          }
+        };
+      }
+      if (closeBtn && panel) {
+        closeBtn.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          panel.classList.remove('active');
+          if (launcher) launcher.classList.remove('is-open');
+        };
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDirectLauncher);
+    } else {
+      initDirectLauncher();
+    }
+  })();
+</script>
