@@ -1423,15 +1423,15 @@
 
 <!-- 8. MEDIA & PATIENT EDUCATION VIDEOS -->
 {% if latest_videos %}
-<section class="section-py bg-white">
+<section class="section-py bg-white" id="videos">
   <div class="container">
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
       <div>
         <div class="cf-eyebrow-badge mb-2">
-          <i class="bi bi-play-circle-fill"></i> {% trans "VIDEO LIBRARY" %}
+          <i class="bi bi-play-circle-fill"></i> {% trans "PATIENT EDUCATION & VIDEOS" %}
         </div>
-        <h2 class="cf-section-title mb-1">{% trans "Watch & Learn Before Your Visit" %}</h2>
-        <p class="text-muted mb-0 fs-6">{% trans "3D procedure walk-throughs, smile transformations, and oral health tips." %}</p>
+        <h2 class="cf-section-title mb-1">{% trans "Watch Our Doctors & Procedure Guides" %}</h2>
+        <p class="text-muted mb-0 fs-6">{% trans "Discover 3D procedure walk-throughs, patient transformations, and doctor-approved oral care advice." %}</p>
       </div>
       <div>
         <a href="{% url 'media_center:video_list' %}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">
@@ -1440,9 +1440,9 @@
       </div>
     </div>
 
-    <div class="row g-4 justify-content-center">
-      {% for video in latest_videos|slice:":6" %}
-      <div class="col-md-6 col-lg-4">
+    <div class="row g-4 justify-content-center" id="cfHomeVideosGrid">
+      {% for video in latest_videos %}
+      <div class="col-md-6 col-lg-4 {% if forloop.counter > 6 %}cf-extra-home-video d-none{% endif %}">
         <a href="{% url 'media_center:video_detail' video.slug %}" class="cf-video-card" style="text-decoration: none;">
           <div class="cf-video-thumb-wrap">
             {% if video.platform == 'youtube' %}
@@ -1471,6 +1471,14 @@
       </div>
       {% endfor %}
     </div>
+
+    {% if latest_videos|length > 6 %}
+    <div class="text-center mt-5" id="cfVideoLoadMoreWrap">
+      <button type="button" class="btn btn-outline-primary rounded-pill px-4 py-2.5 fw-bold shadow-sm" id="cfBtnLoadMoreVideos" onclick="toggleMoreHomeVideos()">
+        <i class="bi bi-collection-play-fill me-2"></i> {% trans "View More Videos" %} ({{ latest_videos|length|add:"-6" }} {% trans "more" %})
+      </button>
+    </div>
+    {% endif %}
   </div>
 </section>
 {% endif %}
@@ -1745,6 +1753,29 @@
       if (e.key === 'ArrowRight' && currentItems.length) { currentIndex = (currentIndex + 1) % currentItems.length; showImage(); }
     });
   });
+
+  // Toggle More Videos Function
+  function toggleMoreHomeVideos() {
+    const extraVideos = document.querySelectorAll('.cf-extra-home-video');
+    extraVideos.forEach(el => {
+      el.classList.remove('d-none');
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      setTimeout(() => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 50);
+    });
+    const wrap = document.getElementById('cfVideoLoadMoreWrap');
+    if (wrap) {
+      wrap.innerHTML = `
+        <a href="{% url 'media_center:video_list' %}" class="cf-btn-primary px-4 py-2.5 shadow-sm">
+          <span>{% trans "Explore Complete Video Library" %}</span> <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+      `;
+    }
+  }
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

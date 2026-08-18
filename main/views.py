@@ -90,7 +90,7 @@ def home(request):
     pricing_items = PricingItem.objects.select_related('category').order_by('category__order', 'order')
     from media_center.models import Video
         
-    latest_videos = Video.objects.filter(is_published=True).order_by('-published_date')[:6]
+    latest_videos = Video.objects.filter(is_published=True).order_by('-published_date')[:12]
     
     from .models import ClinicGallery
     clinic_gallery_images = ClinicGallery.objects.all()

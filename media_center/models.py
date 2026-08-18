@@ -103,7 +103,7 @@ class Video(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = slugify(self.title)[:48].rstrip('-')
             
         # Auto-extract video ID from URL if provided
         if self.video_url:
