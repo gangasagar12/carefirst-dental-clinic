@@ -73,11 +73,13 @@ class Video(models.Model):
     PLATFORM_CHOICES = [
         ('youtube', 'YouTube'),
         ('instagram', 'Instagram'),
+        ('tiktok', 'TikTok'),
+        ('facebook', 'Facebook'),
     ]
     
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, blank=True)
-    platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES)
+    platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES, default='youtube')
     video_id = models.CharField(max_length=100, blank=True, help_text="Can be left blank if you provide the full Video URL below")
     video_url = models.URLField(blank=True, help_text="Paste the full video URL here to auto-extract the ID")
     embed_code = models.TextField(blank=True, help_text="Optional: Paste the raw iframe embed code directly from YouTube/Facebook")
@@ -103,11 +105,11 @@ class Video(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
             
-        # Auto-extract video ID from URL if the user pastes a full URL in the ID field, or if it's missing
-        if self.video_url and (not self.video_id or 'http' in self.video_id):
+        # Auto-extract video ID from URL if provided
+        if self.video_url:
             import re
             if self.platform == 'youtube':
-                match = re.search(r'(?:v=|youtu\.be/|embed/|shorts/)([0-9A-Za-z_-]{11})', self.video_url)
+                match = re.search(r'(?:v=|youtu\.be/|embed/|shorts/|live/|watch\?.*?v=)([0-9A-Za-z_-]{11})', self.video_url)
                 if match:
                     self.video_id = match.group(1)
             elif self.platform == 'facebook':
@@ -119,7 +121,7 @@ class Video(models.Model):
                 if match:
                     self.video_id = match.group(1)
             elif self.platform == 'instagram':
-                match = re.search(r'instagram\.com/(?:p|reel)/([A-Za-z0-9_-]+)', self.video_url)
+                match = re.search(r'instagram\.com/(?:p|reel|reels|tv|share/reel)/([A-Za-z0-9_-]+)', self.video_url)
                 if match:
                     self.video_id = match.group(1)
                     
@@ -129,17 +131,30 @@ class Video(models.Model):
         ordering = ['-published_date']
         
     def get_embed_url(self):
+        """
+        Generate mobile-optimized, cross-browser embed URL (Android, iOS Safari, desktop).
+        Includes playsinline=1, modestbranding, rel=0 for YouTube.
+        """
         if self.platform == 'youtube':
-            return f"https://www.youtube.com/embed/{self.video_id}"
+            if self.video_id:
+                return f"https://www.youtube.com/embed/{self.video_id}?enablejsapi=1&playsinline=1&rel=0&modestbranding=1"
+            return ""
         elif self.platform == 'tiktok':
-            return f"https://www.tiktok.com/embed/v2/{self.video_id}"
+            if self.video_id:
+                return f"https://www.tiktok.com/embed/v2/{self.video_id}"
+            return ""
         elif self.platform == 'facebook':
-            import urllib.parse
-            encoded_url = urllib.parse.quote(self.video_url)
-            return f"https://www.facebook.com/plugins/video.php?href={encoded_url}&show_text=false"
+            if self.video_url:
+                import urllib.parse
+                encoded_url = urllib.parse.quote(self.video_url)
+                return f"https://www.facebook.com/plugins/video.php?href={encoded_url}&show_text=false&allowfullscreen=true"
+            return ""
         elif self.platform == 'instagram':
-            # Instagram embedding usually requires an oEmbed endpoint or specific script
-            return f"{self.video_url}embed/"
+            if self.video_id:
+                return f"https://www.instagram.com/reel/{self.video_id}/embed/captioned/"
+            elif self.video_url:
+                clean_url = self.video_url.split('?')[0].rstrip('/')
+                return f"{clean_url}/embed/captioned/"
         return ""
 
     def get_thumbnail(self):

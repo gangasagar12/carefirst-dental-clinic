@@ -115,6 +115,48 @@ h6, .h6 { font-size: 0.95rem; font-weight: 700; }
   border-color: #FECACA;
 }
 
+/* ==========================================================================
+   Mobile Reliability & Cross-Platform Fixes (iOS Safari, Android, iPadOS)
+   ========================================================================== */
+html, body {
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
+/* Responsive Embeds & Videos */
+iframe, video, object, embed {
+  max-width: 100%;
+}
+
+.ratio-16x9 {
+  aspect-ratio: 16 / 9;
+}
+
+.ratio-9x16 {
+  aspect-ratio: 9 / 16;
+}
+
+/* Fix iOS Safari input auto-zoom: inputs must have min 16px font-size on mobile */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime-local"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Smooth momentum scrolling for iOS touch */
+.scroll-touch,
+.cf-filters-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition-duration: 0.001ms !important;
