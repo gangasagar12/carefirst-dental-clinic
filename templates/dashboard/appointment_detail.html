@@ -1,0 +1,140 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row g-4">
+  <!-- Left Column: Patient & Treatment Details -->
+  <div class="col-lg-8">
+    <div class="cf-dash-card">
+      <div class="cf-dash-card-header">
+        <div>
+          <span class="badge bg-light text-primary border mb-1 font-monospace">{{ appointment.appointment_number|default:appointment.id }}</span>
+          <h3 class="cf-card-title">{{ appointment.full_name }}</h3>
+          <p class="small text-muted mb-0">Booking received {{ appointment.created_at|date:"M d, Y, h:i A" }}</p>
+        </div>
+        <div>
+          <span class="cf-badge-status status-{{ appointment.status }} fs-6 px-3 py-1">
+            {{ appointment.get_status_display }}
+          </span>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-sm-6">
+          <label class="small text-muted fw-bold">Phone Number</label>
+          <div class="fw-bold fs-6 text-dark d-flex align-items-center gap-2">
+            {{ appointment.phone }}
+            {% if appointment.phone %}
+            <a href="https://wa.me/{{ appointment.phone|cut:'+'|cut:' '|cut:'-' }}" target="_blank" class="btn btn-sm btn-success py-0 px-2" style="border-radius: 6px;" title="Chat on WhatsApp">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="tel:{{ appointment.phone }}" class="btn btn-sm btn-light border py-0 px-2" style="border-radius: 6px;" title="Call Patient">
+              <i class="bi bi-telephone"></i>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label class="small text-muted fw-bold">Email Address</label>
+          <div class="fw-semibold text-dark">{{ appointment.email|default:"Not provided" }}</div>
+        </div>
+        <div class="col-sm-6">
+          <label class="small text-muted fw-bold">Selected Service</label>
+          <div class="fw-bold text-primary">{{ appointment.service.title|default:appointment.get_treatment_display }}</div>
+        </div>
+        <div class="col-sm-6">
+          <label class="small text-muted fw-bold">Appointment Type</label>
+          <div class="fw-semibold text-dark">{{ appointment.get_appointment_type_display }}</div>
+        </div>
+        <div class="col-sm-6">
+          <label class="small text-muted fw-bold">Preferred Schedule Date</label>
+          <div class="fw-bold text-dark">{{ appointment.preferred_date|date:"l, F j, Y" }}</div>
+        </div>
+        <div class="col-sm-6">
+          <label class="small text-muted fw-bold">Time Window</label>
+          <div class="fw-semibold text-dark">{{ appointment.get_preferred_time_display|default:"Flexible / Any time" }}</div>
+        </div>
+        {% if appointment.doctor %}
+        <div class="col-sm-6">
+          <label class="small text-muted fw-bold">Assigned Specialist</label>
+          <div class="fw-bold text-dark">Dr. {{ appointment.doctor.name }} ({{ appointment.doctor.get_specialty_display }})</div>
+        </div>
+        {% endif %}
+        {% if appointment.branch %}
+        <div class="col-sm-6">
+          <label class="small text-muted fw-bold">Clinic Branch</label>
+          <div class="fw-semibold text-dark">{{ appointment.branch.name }}</div>
+        </div>
+        {% endif %}
+        {% if appointment.pricing_option or appointment.estimated_amount %}
+        <div class="col-sm-6">
+          <label class="small text-muted fw-bold">Material / Option & Quantity</label>
+          <div class="fw-semibold text-dark">{{ appointment.pricing_option|default:"Standard" }} (Qty: {{ appointment.quantity }})</div>
+        </div>
+        <div class="col-sm-6">
+          <label class="small text-muted fw-bold">Informational Estimate</label>
+          <div class="fw-bold text-success fs-6">NPR {{ appointment.estimated_amount }}</div>
+        </div>
+        {% endif %}
+      </div>
+
+      {% if appointment.message %}
+      <div class="p-3 bg-light rounded-3 border mb-4">
+        <label class="small text-muted fw-bold d-block mb-1"><i class="bi bi-chat-left-text text-primary me-1"></i> Patient Notes & Concerns:</label>
+        <p class="mb-0 text-dark">{{ appointment.message }}</p>
+      </div>
+      {% endif %}
+
+      <!-- Marketing Attribution info if present -->
+      {% if appointment.utm_source or appointment.landing_page %}
+      <div class="p-3 bg-light rounded-3 border">
+        <span class="small text-muted fw-bold d-block mb-2"><i class="bi bi-funnel text-primary me-1"></i> Marketing Attribution:</span>
+        <div class="row g-2 small text-muted">
+          {% if appointment.utm_source %}<div class="col-6">Source: <b class="text-dark">{{ appointment.utm_source }}</b></div>{% endif %}
+          {% if appointment.utm_medium %}<div class="col-6">Medium: <b class="text-dark">{{ appointment.utm_medium }}</b></div>{% endif %}
+          {% if appointment.utm_campaign %}<div class="col-6">Campaign: <b class="text-dark">{{ appointment.utm_campaign }}</b></div>{% endif %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Right Column: Status Controls & Quick Actions -->
+  <div class="col-lg-4">
+    <div class="cf-dash-card">
+      <h4 class="cf-card-title mb-3"><i class="bi bi-sliders text-primary"></i> Update Status</h4>
+      <form method="post" class="mb-4">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label small fw-bold text-muted">Current Workflow Status</label>
+          <select name="status" class="form-select">
+            {% for val, label in status_choices %}
+            <option value="{{ val }}" {% if appointment.status == val %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-cf-primary w-100">
+          <i class="bi bi-check2-circle me-1"></i> Save Status Change
+        </button>
+      </form>
+
+      <hr class="my-4">
+
+      <h5 class="fw-bold small text-muted text-uppercase mb-3">Direct Patient Actions</h5>
+      <div class="d-grid gap-2">
+        {% if appointment.phone %}
+        <a href="https://wa.me/{{ appointment.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ appointment.full_name|urlencode }}%2C%20greeting%20from%20Niko%20Dental%20Clinic%20regarding%20your%20appointment%20on%20{{ appointment.preferred_date|date:'M d' }}." target="_blank" class="btn btn-success fw-bold d-flex align-items-center justify-content-center gap-2 py-2">
+          <i class="bi bi-whatsapp"></i> Chat on WhatsApp
+        </a>
+        {% endif %}
+        <a href="{% url 'dashboard:appointment_edit' appointment.id %}" class="btn btn-light border fw-bold d-flex align-items-center justify-content-center gap-2 py-2">
+          <i class="bi bi-pencil-square"></i> Edit Booking Details
+        </a>
+        <a href="{% url 'dashboard:appointments' %}" class="btn btn-outline-secondary fw-semibold">
+          <i class="bi bi-arrow-left me-1"></i> Back to Appointments
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
