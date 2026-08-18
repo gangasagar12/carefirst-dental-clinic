@@ -13,7 +13,7 @@
   </div>
 
   <!-- Floating Context-Aware AI Receptionist Launcher -->
-  <div class="cf-chat-launcher" id="cfChatLauncher" role="button" aria-label="Open CareFirst Dental Assistant">
+  <div class="cf-chat-launcher" id="cfChatLauncher" role="button" tabindex="0" aria-label="Open CareFirst Dental Assistant" onclick="window.careFirstChat && window.careFirstChat.open ? window.careFirstChat.open() : null" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.careFirstChat&&window.careFirstChat.open&&window.careFirstChat.open();}">
     <div class="cf-launcher-ripple"></div>
     <div class="cf-chat-launcher-badge">
       <span class="cf-launcher-icon-emoji" id="cfLauncherEmoji">👋</span>

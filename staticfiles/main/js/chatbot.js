@@ -354,6 +354,8 @@
       if (callout) callout.classList.remove('show');
       localStorage.setItem('carefirst_callout_dismissed', 'true');
     });
+  }
+
   // ── Context-Aware Dynamic Launcher Engine ──
   let inactivityTimer = null;
   let isInactive = false;
