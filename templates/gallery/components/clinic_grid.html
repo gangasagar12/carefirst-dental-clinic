@@ -1,26 +1,87 @@
-{% load i18n %}
+{% load i18n static %}
 {% if not hide_title %}
 <div class="text-center mb-5">
   <div class="nd-eyebrow justify-content-center">{% trans "Photo Gallery" %}</div>
   <h2 class="section-heading">{% trans "Browse Our" %} <span class="accent">{% trans "Clinic Spaces" %}</span></h2>
+  <p class="text-muted mx-auto mt-2" style="max-width: 580px;">{% trans "Take a tour of our modern operatories, advanced diagnostic imaging systems, and comfortable consultation lounge in Shankhamul, Kathmandu." %}</p>
 </div>
 {% endif %}
 
 <!-- Filter Buttons -->
-<div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
-  <button class="gf-btn active" data-filter="all">{% trans "All" %}</button>
-  <button class="gf-btn" data-filter="reception">{% trans "Reception" %}</button>
+<div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+  <button class="gf-btn active" data-filter="all">{% trans "All Spaces" %}</button>
   <button class="gf-btn" data-filter="treatment">{% trans "Treatment Rooms" %}</button>
-  <button class="gf-btn" data-filter="equipment">{% trans "Equipment" %}</button>
+  <button class="gf-btn" data-filter="equipment">{% trans "Digital Equipment" %}</button>
+  <button class="gf-btn" data-filter="reception">{% trans "Lounge & Reception" %}</button>
 </div>
 
 <!-- Masonry Gallery -->
 <div class="gallery-grid" id="clinicGallery">
-  {% for image in gallery_images %}
-  <a class="g-item" data-caption="{{ image.caption }}" data-src="{{ image.image.url }}" data-filter="{{ image.category|default:'all' }}">
-    <img src="{{ image.image.url }}" alt="{{ image.caption }}" loading="lazy">
-  </a>
-  {% empty %}
-  <p class="text-center text-muted">{% trans "No images have been added to the gallery yet." %}</p>
-  {% endfor %}
+  {% if gallery_images %}
+    {% for image in gallery_images %}
+    <a class="g-item" data-caption="{{ image.caption }}" data-src="{{ image.image.url }}" data-filter="{{ image.category|default:'treatment' }}">
+      <img src="{{ image.image.url }}" alt="{{ image.caption }}" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption">{{ image.caption }}</span>
+      </div>
+    </a>
+    {% endfor %}
+  {% else %}
+    <!-- Authentic Clinical Gallery Items -->
+    <a class="g-item" data-caption="{% trans 'Main Dental Operatory Suite & Computerized Treatment Chair — Shankhamul, Kathmandu' %}" data-src="{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}" data-filter="treatment">
+      <img src="{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}" alt="CareFirst Treatment Operatory" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-geo-alt-fill me-1 text-warning"></i> {% trans "Main Dental Operatory Suite" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'Digital Panoramic OPG & Cephalometric Imaging Diagnostic Center' %}" data-src="{% static 'images/digital_panoramic_opg.jpg' %}" data-filter="equipment">
+      <img src="{% static 'images/digital_panoramic_opg.jpg' %}" alt="Digital Panoramic OPG" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-cpu-fill me-1 text-info"></i> {% trans "Digital Panoramic OPG Imaging" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'Private Doctor Consultation & Digital Treatment Planning Room' %}" data-src="{% static 'images/digital_xray_consultation.jpg' %}" data-filter="reception">
+      <img src="{% static 'images/digital_xray_consultation.jpg' %}" alt="Doctor Consultation Room" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-chat-heart-fill me-1 text-warning"></i> {% trans "Consultation & Treatment Planning" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'High-Precision RVG Digital Sensor for Instant Low-Radiation X-Rays' %}" data-src="{% static 'images/digital_xray_sensor.jpg' %}" data-filter="equipment">
+      <img src="{% static 'images/digital_xray_sensor.jpg' %}" alt="RVG Digital Sensor" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-broadcast-pin me-1 text-primary"></i> {% trans "Low-Dose Digital RVG Sensor" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'Precision Rotary Endodontics & Microscopic Root Canal Equipment' %}" data-src="{% static 'images/rct_gallery_microscope.jpg' %}" data-filter="treatment">
+      <img src="{% static 'images/rct_gallery_microscope.jpg' %}" alt="Rotary Endodontics Workstation" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-search me-1 text-info"></i> {% trans "Rotary Endodontics Workstation" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'Strict Rubber Dam Isolation & Hospital-Grade Autoclave Sterilization' %}" data-src="{% static 'images/rct_gallery_isolation.jpg' %}" data-filter="treatment">
+      <img src="{% static 'images/rct_gallery_isolation.jpg' %}" alt="Sterilization & Isolation" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-shield-check me-1 text-success"></i> {% trans "Sterilization & Infection Control" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'High-Intensity LED Curing & Aesthetic Composite Dental Restorations' %}" data-src="{% static 'images/fill_procedure_curing.jpg' %}" data-filter="equipment">
+      <img src="{% static 'images/fill_procedure_curing.jpg' %}" alt="Aesthetic Restorative Equipment" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-lightning-charge-fill me-1 text-warning"></i> {% trans "Aesthetic Curing & Restorations" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'Welcoming Reception Desk & Patient Waiting Area — Pragatinagar Road, Shankhamul' %}" data-src="{% static 'images/appointment_hero_consultation.jpg' %}" data-filter="reception">
+      <img src="{% static 'images/appointment_hero_consultation.jpg' %}" alt="CareFirst Reception & Lounge" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-building me-1 text-primary"></i> {% trans "Reception Desk & Lounge" %}</span>
+      </div>
+    </a>
+  {% endif %}
 </div>
