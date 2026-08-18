@@ -1,0 +1,72 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10 col-xl-8">
+    <div class="cf-dash-card">
+      <div class="cf-dash-card-header">
+        <div>
+          <h3 class="cf-card-title">{{ title }}</h3>
+          <p class="small text-muted mb-0">Fill in the fields below to update records.</p>
+        </div>
+        <div>
+          <a href="{% url back_url %}" class="btn btn-sm btn-light border rounded-pill px-3">
+            <i class="bi bi-arrow-left me-1"></i> Back
+          </a>
+        </div>
+      </div>
+
+      <form method="post" enctype="multipart/form-data" class="needs-validation">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger rounded-3 py-2 px-3 mb-3">
+          {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+
+        <div class="row g-3">
+          {% for field in form %}
+          <div class="{% if field.name in 'detail_content,bio,features,message,review,landmark,google_maps_iframe_url,short_description,embed_code,meta_description' %}col-12{% elif field.name in 'is_active,is_popular,is_featured' %}col-md-6 d-flex align-items-center pt-3{% else %}col-md-6{% endif %}">
+            
+            {% if field.field.widget.input_type == 'checkbox' %}
+            <div class="form-check form-switch fs-6">
+              {{ field }}
+              <label class="form-check-label fw-bold ms-2" for="{{ field.id_for_label }}">
+                {{ field.label }}
+              </label>
+            </div>
+            {% else %}
+            <label class="form-label fw-bold small text-muted mb-1" for="{{ field.id_for_label }}">
+              {{ field.label }} {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+            </label>
+            {{ field }}
+            {% endif %}
+
+            {% if field.help_text %}
+            <div class="form-text small text-muted">{{ field.help_text }}</div>
+            {% endif %}
+
+            {% if field.errors %}
+            <div class="text-danger small mt-1">{{ field.errors }}</div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+
+        <hr class="my-4">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="{% url back_url %}" class="btn btn-light border fw-semibold">
+            Cancel
+          </a>
+          <button type="submit" class="btn btn-cf-primary px-4 py-2">
+            <i class="bi bi-check-circle-fill me-1"></i> Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
