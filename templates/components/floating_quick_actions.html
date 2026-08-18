@@ -1,0 +1,143 @@
+{% load static i18n %}
+
+<!-- Global Floating Quick Action Buttons (CareFirst Dental) -->
+<style>
+  .cf-global-floating-widget {
+    position: fixed;
+    bottom: 28px;
+    right: 24px;
+    z-index: 1030;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .cf-global-float-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF !important;
+    font-size: 1.35rem;
+    box-shadow: 0 8px 22px rgba(8, 28, 51, 0.22);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    text-decoration: none !important;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .cf-global-float-btn:hover {
+    transform: scale(1.12) translateY(-3px);
+    box-shadow: 0 12px 28px rgba(8, 28, 51, 0.35);
+  }
+
+  /* Tooltip Pill */
+  .cf-global-float-btn .cf-float-tooltip {
+    position: absolute;
+    right: 66px;
+    background: rgba(8, 28, 51, 0.94);
+    color: #FFFFFF;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    transform: translateX(6px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+
+  .cf-global-float-btn:hover .cf-float-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* 🟢 WhatsApp Button with Floating Animation & Glow Pulse */
+  .cf-btn-float-whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+    animation: cfWaFloatAnimation 3s infinite ease-in-out;
+  }
+
+  @keyframes cfWaFloatAnimation {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+    }
+    50% {
+      transform: translateY(-6px) scale(1.06);
+      box-shadow: 0 14px 30px rgba(37, 211, 102, 0.65), 0 0 0 7px rgba(37, 211, 102, 0.18);
+    }
+  }
+
+  .cf-btn-float-whatsapp:hover {
+    animation-play-state: paused;
+    transform: scale(1.15) translateY(-4px) !important;
+    box-shadow: 0 16px 36px rgba(37, 211, 102, 0.7) !important;
+  }
+
+  /* 🔵 Phone Call Button */
+  .cf-btn-float-phone {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+  }
+
+  /* 🟣 Book Visit Button */
+  .cf-btn-float-book {
+    background: linear-gradient(135deg, #0B2545 0%, #081C33 100%) !important;
+  }
+
+  /* 🔴 Location / Directions Button */
+  .cf-btn-float-map {
+    background: linear-gradient(135deg, #EA4335 0%, #C5221F 100%) !important;
+  }
+
+  @media (max-width: 768px) {
+    .cf-global-floating-widget {
+      bottom: 20px;
+      right: 16px;
+      gap: 10px;
+    }
+    .cf-global-float-btn {
+      width: 46px;
+      height: 46px;
+      font-size: 1.15rem;
+    }
+    .cf-global-float-btn .cf-float-tooltip {
+      display: none; /* Hide hover tooltips on touch screens */
+    }
+  }
+</style>
+
+<div class="cf-global-floating-widget" id="cfGlobalFloatingWidget" aria-label="Quick Contact Actions">
+  <!-- 1. WhatsApp Button (with Floating Animation) -->
+  <a href="https://wa.me/9779807464136" target="_blank" rel="noopener noreferrer" class="cf-global-float-btn cf-btn-float-whatsapp" aria-label="WhatsApp CareFirst">
+    <i class="bi bi-whatsapp"></i>
+    <span class="cf-float-tooltip">{% trans "WhatsApp Us" %}</span>
+  </a>
+
+  <!-- 2. Direct Phone Call -->
+  <a href="tel:+9779807464136" class="cf-global-float-btn cf-btn-float-phone" aria-label="Call CareFirst Dental">
+    <i class="bi bi-telephone-fill"></i>
+    <span class="cf-float-tooltip">{% trans "Call Clinic (980-7464136)" %}</span>
+  </a>
+
+  <!-- 3. Book Appointment -->
+  <a href="{% url 'appointments:book' %}" class="cf-global-float-btn cf-btn-float-book" aria-label="Book Dental Appointment">
+    <i class="bi bi-calendar-check-fill"></i>
+    <span class="cf-float-tooltip">{% trans "Book Appointment" %}</span>
+  </a>
+
+  <!-- 4. Google Maps Directions -->
+  <a href="https://maps.app.goo.gl/yJ6h1K6x8Z5UoU849" target="_blank" rel="noopener noreferrer" class="cf-global-float-btn cf-btn-float-map" aria-label="Clinic Location & Directions">
+    <i class="bi bi-geo-alt-fill"></i>
+    <span class="cf-float-tooltip">{% trans "Get Directions" %}</span>
+  </a>
+</div>
