@@ -1,0 +1,473 @@
+/* ==========================================================================
+   CareFirst / Niko Dental Clinic - Custom Executive Dashboard UI
+   ========================================================================== */
+
+:root {
+  --cf-dash-bg: #F1F5F9;
+  --cf-dash-surface: #FFFFFF;
+  --cf-dash-sidebar: #07192F;
+  --cf-dash-sidebar-active: #0B2545;
+  --cf-dash-primary: #0284C7;
+  --cf-dash-primary-dark: #0369A1;
+  --cf-dash-accent: #38BDF8;
+  --cf-dash-gold: #F59E0B;
+  --cf-dash-navy: #0B2545;
+  --cf-dash-text-dark: #0F172A;
+  --cf-dash-text-muted: #64748B;
+  --cf-dash-border: #E2E8F0;
+  --cf-dash-radius: 16px;
+  --cf-dash-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --cf-dash-head-font: 'Outfit', sans-serif;
+}
+
+body.cf-dashboard-body {
+  margin: 0;
+  font-family: var(--cf-dash-font);
+  background-color: var(--cf-dash-bg);
+  color: var(--cf-dash-text-dark);
+  font-size: 0.925rem;
+  overflow-x: hidden;
+}
+
+/* ── Layout Framework ── */
+.cf-dash-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ── Sidebar ── */
+.cf-dash-sidebar {
+  width: 280px;
+  background: var(--cf-dash-sidebar);
+  background: linear-gradient(180deg, #051426 0%, #081D36 60%, #051426 100%);
+  color: #FFFFFF;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 1040;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cf-dash-brand {
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+}
+
+.cf-dash-brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1.5px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.cf-dash-brand-title {
+  font-family: var(--cf-dash-head-font);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.cf-dash-brand-subtitle {
+  font-size: 0.72rem;
+  color: var(--cf-dash-accent);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── Navigation Menu ── */
+.cf-dash-nav {
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.cf-nav-section-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 12px 14px 6px;
+  margin: 0;
+}
+
+.cf-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  color: #CBD5E1;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.cf-nav-link i {
+  font-size: 1.15rem;
+  color: #94A3B8;
+  transition: color 0.2s ease;
+}
+
+.cf-nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  transform: translateX(3px);
+}
+
+.cf-nav-link:hover i {
+  color: var(--cf-dash-accent);
+}
+
+.cf-nav-link.active {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.3) 0%, rgba(3, 105, 161, 0.5) 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+}
+
+.cf-nav-link.active i {
+  color: var(--cf-dash-accent);
+}
+
+.cf-nav-badge {
+  margin-left: auto;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+/* ── Sidebar Footer / User Profile ── */
+.cf-dash-user-bar {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cf-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cf-user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cf-dash-primary) 0%, var(--cf-dash-gold) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.cf-user-name {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.cf-user-role {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Main Content Area ── */
+.cf-dash-main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ── Top Header Bar ── */
+.cf-dash-topbar {
+  height: 72px;
+  background: var(--cf-dash-surface);
+  border-bottom: 1px solid var(--cf-dash-border);
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  box-shadow: 0 2px 10px rgba(8, 28, 51, 0.03);
+}
+
+.cf-dash-topbar-title {
+  font-family: var(--cf-dash-head-font);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--cf-dash-navy);
+  margin: 0;
+}
+
+.cf-dash-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ── Dashboard Cards & Containers ── */
+.cf-dash-content {
+  padding: 30px;
+  flex-grow: 1;
+}
+
+.cf-dash-card {
+  background: var(--cf-dash-surface);
+  border-radius: var(--cf-dash-radius);
+  border: 1px solid var(--cf-dash-border);
+  box-shadow: 0 4px 20px rgba(8, 28, 51, 0.04);
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cf-dash-card:hover {
+  box-shadow: 0 8px 28px rgba(8, 28, 51, 0.07);
+}
+
+.cf-dash-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--cf-dash-border);
+}
+
+.cf-card-title {
+  font-family: var(--cf-dash-head-font);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--cf-dash-navy);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Stat Metric Cards ── */
+.cf-stat-card {
+  background: var(--cf-dash-surface);
+  border-radius: var(--cf-dash-radius);
+  border: 1px solid var(--cf-dash-border);
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 18px rgba(8, 28, 51, 0.04);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cf-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.12);
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+.cf-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.cf-stat-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--cf-dash-text-muted);
+  margin-bottom: 4px;
+}
+
+.cf-stat-value {
+  font-family: var(--cf-dash-head-font);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--cf-dash-navy);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.cf-stat-sub {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #10B981;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cf-stat-icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.icon-blue { background: rgba(2, 132, 199, 0.12); color: #0284C7; }
+.icon-amber { background: rgba(245, 158, 11, 0.14); color: #D97706; }
+.icon-green { background: rgba(16, 185, 129, 0.14); color: #059669; }
+.icon-purple { background: rgba(139, 92, 246, 0.14); color: #7C3AED; }
+.icon-rose { background: rgba(244, 63, 94, 0.14); color: #E11D48; }
+
+/* ── Modern Data Table ── */
+.cf-table-responsive {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+.cf-dash-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.88rem;
+}
+
+.cf-dash-table th {
+  background: #F8FAFC;
+  color: #475569;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  letter-spacing: 0.5px;
+  padding: 14px 16px;
+  border-bottom: 1.5px solid var(--cf-dash-border);
+  white-space: nowrap;
+}
+
+.cf-dash-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--cf-dash-border);
+  vertical-align: middle;
+  background: #FFFFFF;
+}
+
+.cf-dash-table tr:last-child td {
+  border-bottom: none;
+}
+
+.cf-dash-table tr:hover td {
+  background-color: #F8FAFC;
+}
+
+/* ── Status Pills ── */
+.cf-badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.status-new { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
+.status-pending { background: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD; }
+.status-confirmed { background: #DCFCE7; color: #15803D; border: 1px solid #BBF7D0; }
+.status-completed { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; }
+.status-cancelled { background: #FEE2E2; color: #B91C1C; border: 1px solid #FECACA; }
+.status-rescheduled { background: #F3E8FF; color: #7E22CE; border: 1px solid #E9D5FF; }
+
+/* ── Buttons & Actions ── */
+.btn-cf-primary {
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  color: #FFFFFF !important;
+  border: none;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 8px 18px;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-cf-primary:hover {
+  background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+}
+
+.btn-cf-whatsapp {
+  background: #25D366;
+  color: #FFFFFF !important;
+  border: none;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-cf-whatsapp:hover {
+  background: #1EBE5D;
+  color: #FFFFFF;
+}
+
+/* ── Mobile Sidebar Overlay ── */
+.cf-sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 28, 51, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1035;
+}
+
+@media (max-width: 991px) {
+  .cf-dash-sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+  }
+  .cf-dash-sidebar.open {
+    transform: translateX(0);
+  }
+  .cf-sidebar-backdrop.open {
+    display: block;
+  }
+  .cf-dash-topbar {
+    padding: 0 16px;
+  }
+  .cf-dash-content {
+    padding: 16px;
+  }
+}
