@@ -11,9 +11,9 @@
 
   /* ===== ROW 1: Dedicated Marquee Announcement Ticker Row ===== */
   .cf-header-row-marquee {
-    background-color: #07192F !important;
-    background: linear-gradient(90deg, #051426 0%, #081D36 50%, #051426 100%) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background-color: #020B16 !important;
+    background: linear-gradient(90deg, #020B16 0%, #06192E 50%, #020B16 100%) !important;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.16) !important;
     padding: 6px 0 !important;
     font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
     font-size: 0.8rem !important;
@@ -34,15 +34,16 @@
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     color: #FFFFFF !important;
     white-space: nowrap !important;
-    padding: 2px 10px !important;
-    background: rgba(2, 132, 199, 0.25) !important;
-    border: 1px solid rgba(56, 189, 248, 0.3) !important;
-    border-radius: 20px !important;
-    font-size: 0.75rem !important;
-    letter-spacing: 0.3px !important;
+    padding: 3px 12px !important;
+    background: rgba(2, 132, 199, 0.3) !important;
+    border: 1px solid rgba(56, 189, 248, 0.4) !important;
+    border-radius: 50px !important;
+    font-size: 0.74rem !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
     flex-shrink: 0 !important;
   }
 
@@ -65,7 +66,7 @@
     display: inline-flex !important;
     align-items: center !important;
     white-space: nowrap !important;
-    animation: cfMarqueeScroll3Row 32s linear infinite !important;
+    animation: cfMarqueeScroll3Row 30s linear infinite !important;
     will-change: transform !important;
   }
 
@@ -96,15 +97,15 @@
   .cf-marquee-dot {
     display: inline-block !important;
     padding: 0 14px !important;
-    color: rgba(255, 255, 255, 0.45) !important;
+    color: rgba(56, 189, 248, 0.5) !important;
     font-size: 0.75rem !important;
   }
 
 
   /* ===== ROW 2: Deep Navy Utility Contact & Action Bar ===== */
   .cf-header-row-contact {
-    background-color: #0B2545 !important;
-    background: linear-gradient(90deg, #081C33 0%, #0B2545 50%, #0D315C 100%) !important;
+    background-color: #051527 !important;
+    background: linear-gradient(90deg, #041220 0%, #081E38 50%, #051629 100%) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
     padding: 7px 0 !important;
     font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
@@ -132,7 +133,7 @@
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
-    color: #FFFFFF !important;
+    color: #E2E8F0 !important;
     font-size: 0.8125rem !important;
     font-weight: 600 !important;
     text-decoration: none !important;
@@ -189,10 +190,9 @@
 
   /* Book Appointment CTA Pill */
   .cf-row2-btn {
-    background: #0284C7 !important;
     background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
     color: #FFFFFF !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     font-size: 0.8125rem !important;
     padding: 6px 16px !important;
     border-radius: 9999px !important;
@@ -200,15 +200,15 @@
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
-    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4) !important;
+    box-shadow: 0 2px 10px rgba(2, 132, 199, 0.45) !important;
     transition: all 0.22s ease !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
     white-space: nowrap !important;
   }
 
   .cf-row2-btn:hover {
-    background: linear-gradient(135deg, #0369A1 0%, #075985 100%) !important;
-    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.6) !important;
+    background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%) !important;
+    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.7) !important;
     transform: translateY(-1px) !important;
     color: #FFFFFF !important;
   }
@@ -216,7 +216,7 @@
   /* Translator in Row 2 */
   .cf-row2-lang-wrapper {
     background: rgba(255, 255, 255, 0.12) !important;
-    padding: 4px 8px !important;
+    padding: 4px 10px !important;
     border-radius: 20px !important;
     border: 1px solid rgba(255, 255, 255, 0.25) !important;
     display: inline-flex !important;
@@ -256,7 +256,7 @@
 
   .cf-row2-lang-chevron {
     position: absolute !important;
-    right: 6px !important;
+    right: 8px !important;
     font-size: 0.55rem !important;
     color: #CBD5E1 !important;
     pointer-events: none !important;
@@ -276,24 +276,23 @@
   }
 
 
-  /* ===== ROW 3: Main Navigation Bar ===== */
+  /* ===== ROW 3: Main Navigation Bar (Executive Gradient & Glassmorphism) ===== */
   .cf-header-row-nav {
-    background-color: #F8FAFC !important;
-    background: linear-gradient(180deg, #FFFFFF 0%, #F1F6F9 100%) !important;
+    background: linear-gradient(90deg, #06192E 0%, #0B2545 45%, #08213D 100%) !important;
     position: sticky !important;
     top: 0 !important;
     z-index: 1030 !important;
     transition: all 0.3s ease !important;
-    border-bottom: 2px solid rgba(2, 132, 199, 0.14) !important;
-    box-shadow: 0 2px 10px rgba(11, 37, 69, 0.05) !important;
+    border-bottom: 2px solid rgba(56, 189, 248, 0.25) !important;
+    box-shadow: 0 10px 30px rgba(5, 20, 38, 0.35) !important;
   }
 
   .cf-header-row-nav.is-sticky {
-    background: rgba(248, 250, 252, 0.98) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
-    box-shadow: 0 4px 25px -2px rgba(11, 37, 69, 0.1) !important;
-    border-bottom: 2px solid rgba(2, 132, 199, 0.2) !important;
+    background: rgba(6, 25, 46, 0.96) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    box-shadow: 0 12px 35px rgba(5, 20, 38, 0.45) !important;
+    border-bottom: 2px solid rgba(56, 189, 248, 0.4) !important;
   }
 
   .cf-navbar-inner {
@@ -308,11 +307,11 @@
     height: 66px !important;
   }
 
-  /* Logo (Sharp, High Resolution, No Blur) */
+  /* Logo (Sharp, High Resolution, Glowing Ring) */
   .cf-logo {
     display: inline-flex !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 12px !important;
     text-decoration: none !important;
     flex-shrink: 0 !important;
   }
@@ -322,8 +321,8 @@
     height: 48px !important;
     border-radius: 50% !important;
     overflow: hidden !important;
-    border: 2px solid #0284C7 !important;
-    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.18) !important;
+    border: 2px solid #38BDF8 !important;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.4) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -345,8 +344,6 @@
     border-radius: 50% !important;
     image-rendering: -webkit-optimize-contrast !important;
     image-rendering: crisp-edges !important;
-    filter: none !important;
-    -webkit-filter: none !important;
   }
 
   .cf-logo-text {
@@ -357,10 +354,11 @@
   .cf-logo-title {
     font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
     font-weight: 800 !important;
-    font-size: 1.5rem !important;
-    color: #081C33 !important;
+    font-size: 1.55rem !important;
+    color: #FFFFFF !important;
     line-height: 1 !important;
     letter-spacing: -0.02em !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
   }
 
   .cf-header-row-nav.is-sticky .cf-logo-title {
@@ -368,7 +366,7 @@
   }
 
   .cf-logo-accent {
-    color: #0284C7 !important;
+    color: #38BDF8 !important;
   }
 
   .cf-logo-subtitle {
@@ -376,12 +374,12 @@
     font-size: 0.72rem !important;
     font-weight: 800 !important;
     text-transform: uppercase !important;
-    letter-spacing: 1.5px !important;
-    color: #0284C7 !important;
-    margin-top: 2px !important;
+    letter-spacing: 1.6px !important;
+    color: #BAE6FD !important;
+    margin-top: 3px !important;
   }
 
-  /* Nav Links (Bold, Sharp, High Contrast) */
+  /* Nav Links (High Contrast White & Cyber Cyan Glowing Hover) */
   .cf-nav-menu {
     display: flex !important;
     align-items: center !important;
@@ -395,15 +393,16 @@
     font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
     font-weight: 700 !important;
     font-size: 0.95rem !important;
-    color: #0B2545 !important;
+    color: #FFFFFF !important;
     text-decoration: none !important;
     padding: 8px 4px !important;
     position: relative !important;
-    transition: color 0.2s ease !important;
+    transition: all 0.22s ease !important;
     display: inline-flex !important;
     align-items: center !important;
     gap: 5px !important;
     white-space: nowrap !important;
+    opacity: 0.92 !important;
   }
 
   .cf-nav-link::after {
@@ -414,13 +413,16 @@
     transform: translateX(-50%) !important;
     width: 0% !important;
     height: 3px !important;
-    background: #0284C7 !important;
+    background: #38BDF8 !important;
     border-radius: 4px !important;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.8) !important;
     transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 
   .cf-nav-link:hover {
-    color: #0284C7 !important;
+    color: #38BDF8 !important;
+    opacity: 1 !important;
+    transform: translateY(-1px) !important;
   }
 
   .cf-nav-link:hover::after {
@@ -428,25 +430,26 @@
   }
 
   .cf-nav-link.active {
-    color: #0B2545 !important;
-    font-weight: 700 !important;
+    color: #38BDF8 !important;
+    font-weight: 800 !important;
+    opacity: 1 !important;
   }
 
   .cf-nav-link.active::after {
     width: 22px !important;
-    background: #0284C7 !important;
+    background: #38BDF8 !important;
   }
 
   .cf-nav-link i.bi-chevron-down {
     font-size: 0.7rem !important;
     margin-top: 1px !important;
     transition: transform 0.25s ease, color 0.2s ease !important;
-    color: #64748B !important;
+    color: #94A3B8 !important;
   }
 
   .cf-nav-item:hover .cf-nav-link i.bi-chevron-down {
     transform: rotate(180deg) !important;
-    color: #0284C7 !important;
+    color: #38BDF8 !important;
   }
 
   /* Treatments 2-Column Mega Menu */
@@ -577,11 +580,11 @@
 
   /* Mobile Toggle */
   .cf-mobile-toggle {
-    background: #F0F9FF !important;
-    border: 1.5px solid #0284C7 !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1.5px solid rgba(56, 189, 248, 0.5) !important;
     border-radius: 10px !important;
     font-size: 1.5rem !important;
-    color: #0284C7 !important;
+    color: #38BDF8 !important;
     display: none !important;
     cursor: pointer !important;
     width: 42px !important;
@@ -591,12 +594,14 @@
     padding: 0 !important;
     line-height: 1 !important;
     transition: all 0.2s ease !important;
-    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.15) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
   }
 
   .cf-mobile-toggle:hover {
     background: #0284C7 !important;
+    border-color: #38BDF8 !important;
     color: #FFFFFF !important;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.5) !important;
   }
 
   @media (max-width: 991.98px) {
