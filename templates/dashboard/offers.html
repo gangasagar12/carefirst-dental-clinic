@@ -1,0 +1,72 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="cf-dash-card">
+  <div class="cf-dash-card-header flex-wrap gap-3">
+    <div>
+      <h3 class="cf-card-title"><i class="bi bi-stars text-warning"></i> Special Offers & Seasonal Promotions</h3>
+      <p class="small text-muted mb-0">Manage promotional banners, festival discounts, and active popup schedules.</p>
+    </div>
+    <div>
+      <a href="{% url 'dashboard:offer_create' %}" class="btn btn-cf-primary btn-sm rounded-pill px-3">
+        <i class="bi bi-plus-lg me-1"></i> Create Special Offer
+      </a>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    {% for offer in offers %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card border rounded-4 shadow-sm h-100 bg-white overflow-hidden">
+        {% if offer.image %}
+        <img src="{{ offer.image.url }}" alt="{{ offer.title }}" class="card-img-top" style="height: 160px; object-fit: cover;">
+        {% else %}
+        <div class="bg-gradient p-4 text-white d-flex align-items-center justify-content-center" style="height: 160px; background: linear-gradient(135deg, #0B2545 0%, #0284C7 100%);">
+          <div class="text-center">
+            <span class="badge bg-warning text-dark mb-1">{{ offer.highlight_text|default:"SPECIAL OFFER" }}</span>
+            <h5 class="fw-bold mb-0 text-white">{{ offer.title }}</h5>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="card-body p-4 d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="badge bg-light text-primary border">{{ offer.badge_text|default:"PROMOTION" }}</span>
+            {% if offer.is_currently_valid %}
+            <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Active Now</span>
+            {% elif not offer.is_active %}
+            <span class="badge bg-secondary">Disabled</span>
+            {% else %}
+            <span class="badge bg-warning text-dark">Scheduled</span>
+            {% endif %}
+          </div>
+
+          <h5 class="fw-bold text-dark mb-2">{{ offer.title }}</h5>
+          <p class="small text-muted mb-3 flex-grow-1">{{ offer.description|truncatewords:20 }}</p>
+
+          <div class="small text-muted mb-3 border-top pt-2">
+            <div><i class="bi bi-calendar-event me-1"></i> {{ offer.start_date|date:"M d, Y" }} — {{ offer.end_date|date:"M d, Y" }}</div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <a href="{% url 'dashboard:offer_edit' offer.id %}" class="btn btn-sm btn-light border flex-grow-1">
+              <i class="bi bi-pencil-square me-1"></i> Edit Offer
+            </a>
+            <a href="{% url 'dashboard:offer_delete' offer.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this offer?');">
+              <i class="bi bi-trash3"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5 text-muted">
+      <i class="bi bi-stars fs-1 d-block mb-2 text-warning"></i>
+      <h5>No Promotional Offers Created</h5>
+      <p class="small mb-0">Create festive discounts or special dental checkup deals to highlight on the site.</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
