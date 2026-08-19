@@ -1557,15 +1557,15 @@
             <img loading="lazy" src="{% static 'images/hero_section6.jpeg' %}" alt="{{ post.title }}" class="w-100" style="height: 220px; object-fit: cover;">
             {% endif %}
           </a>
-          <div class="p-4 d-flex flex-column flex-grow-1">
-            <span class="badge bg-light text-primary border border-primary border-opacity-25 px-3 py-1 rounded-pill fw-bold text-uppercase align-self-start mb-2" style="font-size: 0.72rem;">
+          <div class="p-4 d-flex flex-column flex-grow-1" style="background: linear-gradient(180deg, #F0F7FF 0%, #EBF4FC 100%); border-top: 1px solid #E2E8F0;">
+            <span class="badge bg-white text-primary border border-primary border-opacity-25 px-3 py-1 rounded-pill fw-bold text-uppercase align-self-start mb-2" style="font-size: 0.72rem; box-shadow: 0 1px 4px rgba(2, 132, 199, 0.08);">
               {{ post.category.name }}
             </span>
-            <a href="{% url 'blogs:post_detail' post.slug %}" class="d-block text-dark fw-bold fs-5 mb-2 text-decoration-none" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">
+            <a href="{% url 'blogs:post_detail' post.slug %}" class="d-block text-dark fw-bold fs-5 mb-2 text-decoration-none" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: #0B2545 !important;">
               {{ post.title }}
             </a>
-            <p class="text-muted small mb-4 flex-grow-1">{{ post.excerpt|truncatewords:15 }}</p>
-            <a href="{% url 'blogs:post_detail' post.slug %}" class="text-primary fw-bold text-decoration-none small d-inline-flex align-items-center gap-1">
+            <p class="small mb-4 flex-grow-1" style="color: #475569 !important; line-height: 1.6;">{{ post.excerpt|truncatewords:15 }}</p>
+            <a href="{% url 'blogs:post_detail' post.slug %}" class="text-primary fw-bold text-decoration-none small d-inline-flex align-items-center gap-1" style="color: #0284C7 !important;">
               <span>{% trans "Read Article" %}</span> <i class="bi bi-arrow-right"></i>
             </a>
           </div>
