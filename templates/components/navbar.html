@@ -805,13 +805,13 @@
         <input name="next" type="hidden" value="{{ request.path }}">
         {% get_current_language as LANGUAGE_CODE %}
         <div class="cf-row2-lang-wrapper position-relative">
-          <i class="bi bi-globe2"></i>
+          <i class="bi bi-translate text-info"></i>
           <select name="language" class="cf-row2-lang-select" onchange="document.getElementById('row2-lang-form').submit();" aria-label="Language Selector">
             {% get_available_languages as LANGUAGES %}
             {% get_language_info_list for LANGUAGES as languages %}
             {% for language in languages %}
               <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                {% if language.code == 'en' %}EN{% elif language.code == 'ne' %}NE{% else %}{{ language.code|upper }}{% endif %}
+                {% if language.code == 'en' %}🇬🇧 EN{% elif language.code == 'ne' %}🇳🇵 नेपाली{% else %}{{ language.code|upper }}{% endif %}
               </option>
             {% endfor %}
           </select>
@@ -1055,6 +1055,22 @@
       <li><a href="{% url 'main:pricing' %}" class="cf-mobile-link {% if request.resolver_match.url_name == 'pricing' %}active{% endif %}"><i class="bi bi-cash-stack text-success me-2"></i>{% trans "Pricing" %}</a></li>
       <li><a href="{% url 'blogs:blog_list' %}" class="cf-mobile-link {% if 'blog' in request.resolver_match.url_name %}active{% endif %}"><i class="bi bi-newspaper text-warning me-2"></i>{% trans "Blog" %}</a></li>
       <li><a href="{% url 'main:contact' %}" class="cf-mobile-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"><i class="bi bi-telephone text-primary me-2"></i>{% trans "Contact" %}</a></li>
+
+      <!-- Mobile Language Switcher -->
+      <li class="p-3 bg-light border-top border-bottom my-2">
+        <div class="d-flex align-items-center justify-content-between">
+          <span class="small fw-bold text-dark"><i class="bi bi-translate text-primary me-1"></i> {% trans "Language" %}</span>
+          <form action="{% url 'set_language' %}" method="post" id="mob-lang-form" class="mb-0">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path }}">
+            {% get_current_language as LANGUAGE_CODE %}
+            <select name="language" class="form-select form-select-sm fw-bold border-primary" onchange="document.getElementById('mob-lang-form').submit();">
+              <option value="en"{% if LANGUAGE_CODE == 'en' %} selected{% endif %}>🇬🇧 English</option>
+              <option value="ne"{% if LANGUAGE_CODE == 'ne' %} selected{% endif %}>🇳🇵 नेपाली (Nepali)</option>
+            </select>
+          </form>
+        </div>
+      </li>
     </ul>
     
     <!-- Mobile Bottom CTA -->
