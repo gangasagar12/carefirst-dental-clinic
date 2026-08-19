@@ -9,13 +9,13 @@
     background-position: center left;
     background-repeat: no-repeat;
     min-height: 640px;
-    padding: 70px 0;
+    padding: 75px 0;
     display: flex;
     align-items: center;
     overflow: hidden;
   }
 
-  /* Gradient Overlay: Soft on Left to show Clinic Chair, Solid/Translucent on Right for Clean Form */
+  /* Gradient Overlay: Soft on Left to showcase the clinic chair, clean white-wash on Right for the form */
   .cf-operatory-overlay {
     position: absolute;
     inset: 0;
@@ -38,7 +38,7 @@
 
   /* Form Container on the Right Side */
   .cf-app-form-wrap {
-    padding: 20px 10px;
+    padding: 10px;
   }
 
   .cf-app-badge-tag {
@@ -73,7 +73,7 @@
     margin-bottom: 28px;
   }
 
-  /* Form Labels & Inputs Matching Reference Image */
+  /* Form Labels & Inputs Matching Clean Reference */
   .cf-app-label {
     font-family: var(--cf-font-body, 'Inter', sans-serif);
     font-size: 0.9rem;
@@ -148,14 +148,13 @@
     transform: translateY(0);
   }
 
-  /* Responsive Adjustments */
   @media (max-width: 991.98px) {
     .cf-operatory-appointment-section {
       background-position: center center;
       padding: 50px 0;
     }
     .cf-operatory-overlay {
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.95);
     }
     .cf-app-heading {
       font-size: 1.9rem;
@@ -279,7 +278,7 @@
 </section>
 
 <script>
-  // Set minimum date to tomorrow or today
+  // Set minimum date to today/tomorrow
   document.addEventListener('DOMContentLoaded', function() {
     const dateInput = document.getElementById('appDate');
     if (dateInput) {
@@ -289,7 +288,6 @@
       const dd = String(today.getDate()).padStart(2, '0');
       dateInput.min = `${yyyy}-${mm}-${dd}`;
       if (!dateInput.value) {
-        // default to tomorrow
         const tomorrow = new Date(Date.now() + 86400000);
         const tYyyy = tomorrow.getFullYear();
         const tMm = String(tomorrow.getMonth() + 1).padStart(2, '0');
