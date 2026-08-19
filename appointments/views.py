@@ -36,13 +36,47 @@ def validate_nepal_phone(phone: str) -> bool:
 
 def appointment_funnel_view(request):
     """
-    Primary Smart Appointment Funnel view: /appointment/
-    Supports query parameters:
-    - ?treatment=root-canal-treatment
-    - ?doctor=1
-    - ?type=consultation
-    - ?option=composite&qty=2&est=3000
+    Primary Appointment view: /appointment/
+    Handles both standard form submissions and query parameters.
     """
+    if request.method == 'POST':
+        full_name = request.POST.get('full_name', '').strip()
+        phone = request.POST.get('phone', '').strip()
+        email = request.POST.get('email', '').strip() or None
+        treatment_val = request.POST.get('treatment', 'general-consultation').strip()
+        preferred_date_str = request.POST.get('preferred_date', '').strip()
+        preferred_time = request.POST.get('preferred_time', 'morning').strip()
+        message = request.POST.get('message', '').strip()
+
+        if full_name and phone:
+            preferred_date = timezone.now().date() + datetime.timedelta(days=1)
+            if preferred_date_str:
+                try:
+                    preferred_date = datetime.date.fromisoformat(preferred_date_str)
+                except ValueError:
+                    pass
+
+            appointment = Appointment.objects.create(
+                full_name=full_name,
+                phone=phone,
+                email=email,
+                treatment=treatment_val,
+                preferred_date=preferred_date,
+                preferred_time=preferred_time,
+                message=message,
+                status='new'
+            )
+
+            # Notifications
+            try:
+                queue_whatsapp_confirmation(appointment.full_name, appointment.phone, 'appointment', appointment.id)
+                if appointment.email:
+                    queue_email_confirmation(appointment.full_name, appointment.email, 'appointment', appointment.id)
+            except Exception:
+                pass
+
+            return redirect('appointments:confirmation', appointment_number=appointment.appointment_number)
+
     treatment_slug = request.GET.get('treatment', '').strip().lower()
     doctor_id = request.GET.get('doctor', '').strip()
     appointment_type = request.GET.get('type', 'consultation')

@@ -1,318 +1,301 @@
 {% load static i18n form_tags %}
 
 <style>
-  /* ── Standalone Robust Split-Screen Booking Layout ── */
-  .cf-split-booking-page {
-    background: radial-gradient(circle at top right, #E0F2FE 0%, #F1F5F9 45%, #F8FAFC 100%) !important;
-    min-height: 100% !important;
-    padding: 40px 0 70px 0 !important;
+  /* ── Full-Width Background Dental Operatory Appointment Section ── */
+  .cf-operatory-appointment-section {
+    position: relative;
+    background-image: url("{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}");
+    background-size: cover;
+    background-position: center left;
+    background-repeat: no-repeat;
+    min-height: 640px;
+    padding: 70px 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
   }
 
-  .cf-split-card-wrapper {
+  /* Gradient Overlay: Soft on Left to show Clinic Chair, Solid/Translucent on Right for Clean Form */
+  .cf-operatory-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.55) 35%,
+      rgba(255, 255, 255, 0.92) 55%,
+      rgba(255, 255, 255, 0.98) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .cf-operatory-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  /* Form Container on the Right Side */
+  .cf-app-form-wrap {
+    padding: 20px 10px;
+  }
+
+  .cf-app-badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(2, 132, 199, 0.1);
+    color: #0284C7;
+    border: 1px solid rgba(2, 132, 199, 0.25);
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .cf-app-heading {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 2.35rem;
+    font-weight: 800;
+    color: #0B2545;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .cf-app-sub {
+    font-size: 0.95rem;
+    color: #64748B;
+    margin-bottom: 28px;
+  }
+
+  /* Form Labels & Inputs Matching Reference Image */
+  .cf-app-label {
+    font-family: var(--cf-font-body, 'Inter', sans-serif);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .cf-app-label .required-star {
+    color: #0284C7;
+    font-weight: 700;
+  }
+
+  .cf-app-input {
     background: #FFFFFF !important;
-    border-radius: 28px !important;
-    border: 1px solid #E2E8F0 !important;
-    box-shadow: 0 24px 70px rgba(11, 37, 69, 0.1), 0 4px 16px rgba(0, 0, 0, 0.03) !important;
-    overflow: hidden !important;
-    margin: 0 auto !important;
-  }
-
-  /* LEFT SIDE: Dental Visual & Trust Experience (45%) */
-  .cf-split-left-visual {
-    position: relative !important;
-    background: #081C33 !important;
-    min-height: 580px !important;
-    overflow: hidden !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-  }
-
-  .cf-split-visual-img {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center 20% !important;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  }
-
-  .cf-split-left-visual:hover .cf-split-visual-img {
-    transform: scale(1.03) !important;
-  }
-
-  .cf-split-visual-gradient {
-    position: absolute !important;
-    inset: 0 !important;
-    background: linear-gradient(180deg, rgba(11, 37, 69, 0.15) 0%, rgba(8, 28, 51, 0.88) 100%) !important;
-    pointer-events: none !important;
-  }
-
-  /* Top Hotspot Tag */
-  .cf-split-hotspot {
-    position: relative !important;
-    z-index: 3 !important;
-    margin: 24px 0 0 24px !important;
-    align-self: flex-start !important;
-    background: rgba(11, 37, 69, 0.88) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    color: #FFFFFF !important;
-    padding: 7px 16px !important;
-    border-radius: 50px !important;
-    font-size: 0.78rem !important;
-    font-weight: 700 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
-  }
-
-  .cf-hotspot-pulse {
-    width: 8px !important;
-    height: 8px !important;
-    border-radius: 50% !important;
-    background: #38BDF8 !important;
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.4) !important;
-    animation: cfHotspotGlow 2s infinite ease-in-out !important;
-  }
-
-  @keyframes cfHotspotGlow {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.3); opacity: 0.6; }
-  }
-
-  /* Bottom Trust Overlay Card */
-  .cf-split-trust-card {
-    position: relative !important;
-    z-index: 3 !important;
-    margin: 0 24px 24px 24px !important;
-    background: rgba(255, 255, 255, 0.96) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-radius: 20px !important;
-    padding: 22px !important;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28) !important;
-  }
-
-  .cf-split-trust-title {
-    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
-    font-size: 1.25rem !important;
-    font-weight: 800 !important;
-    color: #0B2545 !important;
-    margin-bottom: 4px !important;
-  }
-
-  .cf-split-trust-sub {
-    font-size: 0.85rem !important;
-    color: #64748B !important;
-    margin-bottom: 14px !important;
-    line-height: 1.45 !important;
-  }
-
-  .cf-split-rating-row {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding-bottom: 12px !important;
-    border-bottom: 1px solid #E2E8F0 !important;
-    margin-bottom: 12px !important;
-  }
-
-  .cf-split-rating-badge {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-    font-size: 0.85rem !important;
-    font-weight: 800 !important;
-    color: #0B2545 !important;
-  }
-
-  .cf-split-pills {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-  }
-
-  .cf-split-pill {
-    background: #F0F9FF !important;
-    border: 1px solid #BAE6FD !important;
-    color: #0369A1 !important;
-    font-size: 0.75rem !important;
-    font-weight: 700 !important;
-    padding: 5px 8px !important;
+    border: 1.5px solid #E2E8F0 !important;
     border-radius: 8px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 5px !important;
-    white-space: nowrap !important;
+    padding: 13px 16px !important;
+    font-size: 0.935rem !important;
+    color: #0F172A !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 6px rgba(11, 37, 69, 0.02) !important;
+    width: 100%;
   }
 
-  /* RIGHT SIDE: Interactive Booking Panel (55%) */
-  .cf-split-right-panel {
-    padding: 42px 48px !important;
+  .cf-app-input::placeholder {
+    color: #94A3B8 !important;
+    font-size: 0.9rem;
+  }
+
+  .cf-app-input:focus {
+    border-color: #0284C7 !important;
+    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.12) !important;
+    outline: none !important;
     background: #FFFFFF !important;
-    display: flex !important;
-    flex-direction: column !important;
   }
 
-  .cf-split-header {
-    margin-bottom: 24px !important;
-    padding-bottom: 18px !important;
-    border-bottom: 1px solid #F1F5F9 !important;
+  textarea.cf-app-input {
+    min-height: 110px;
+    resize: vertical;
   }
 
-  .cf-workstation-tag {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
-    font-size: 0.76rem !important;
-    font-weight: 800 !important;
-    letter-spacing: 0.8px !important;
-    text-transform: uppercase !important;
-    color: #0284C7 !important;
-    background: #F0F9FF !important;
-    border: 1px solid #BAE6FD !important;
-    padding: 4px 12px !important;
-    border-radius: 50px !important;
-    margin-bottom: 10px !important;
+  /* Submit Button Matching Reference Coral/Terracotta Button */
+  .cf-app-submit-btn {
+    background: #E07A5F;
+    background: linear-gradient(135deg, #E07A5F 0%, #D96B43 100%);
+    color: #FFFFFF !important;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 14px 34px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(224, 122, 95, 0.35);
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
-  .cf-split-heading {
-    font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
-    font-size: 2.2rem !important;
-    font-weight: 800 !important;
-    color: #0B2545 !important;
-    letter-spacing: -0.5px !important;
-    line-height: 1.2 !important;
-    margin-bottom: 6px !important;
+  .cf-app-submit-btn:hover {
+    background: linear-gradient(135deg, #D96B43 0%, #C85A32 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(224, 122, 95, 0.45);
+    color: #FFFFFF !important;
   }
 
-  .cf-split-sub {
-    font-size: 0.98rem !important;
-    color: #64748B !important;
-    margin-bottom: 0 !important;
-    line-height: 1.5 !important;
+  .cf-app-submit-btn:active {
+    transform: translateY(0);
   }
 
-  /* Funnel Card Overrides for Split Layout */
-  .cf-split-right-panel .cf-funnel-card,
-  .cf-split-card-wrapper .cf-funnel-card {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    margin-top: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
-  }
-
-  .cf-split-right-panel .cf-funnel-stepper {
-    background: #F8FAFC !important;
-    border: 1px solid #E2E8F0 !important;
-    border-radius: 16px !important;
-    padding: 12px 18px !important;
-    margin-bottom: 28px !important;
-  }
-
-  .cf-split-right-panel .cf-step-pane {
-    padding: 0 !important;
-  }
-
+  /* Responsive Adjustments */
   @media (max-width: 991.98px) {
-    .cf-split-right-panel {
-      padding: 30px 20px !important;
+    .cf-operatory-appointment-section {
+      background-position: center center;
+      padding: 50px 0;
     }
-    .cf-split-heading {
-      font-size: 1.85rem !important;
+    .cf-operatory-overlay {
+      background: rgba(255, 255, 255, 0.94);
     }
-    .cf-split-left-visual {
-      min-height: 320px !important;
-      height: 320px !important;
+    .cf-app-heading {
+      font-size: 1.9rem;
     }
-    .cf-split-trust-card {
-      margin: 0 16px 16px 16px !important;
-      padding: 16px !important;
-    }
-    .cf-split-pills {
-      grid-template-columns: 1fr !important;
+    .cf-app-submit-btn {
+      width: 100%;
     }
   }
 </style>
 
-<!-- ── Reusable Split-Screen Booking Workstation Component ── -->
-<div class="cf-split-booking-page">
-  <div class="container-xxl px-2 px-md-4">
-    
-    <div class="cf-split-card-wrapper" id="cfBookingWorkstation">
-      <div class="row g-0">
-        
-        <!-- LEFT SIDE: Dental Visual & Trust Experience (45%) -->
-        <div class="col-lg-5 col-xl-5 col-12 order-lg-1 order-1 cf-split-left-visual">
-          <img src="{% static 'images/appointment_hero_consultation.jpg' %}" alt="CareFirst Dental Consultation & Care" class="cf-split-visual-img" onerror="this.onerror=null; this.src='{% static 'images/about_intro.png' %}';">
-          <div class="cf-split-visual-gradient"></div>
+<!-- ── Background Dental Operatory Appointment Section ── -->
+<section class="cf-operatory-appointment-section" id="cfAppointmentBooking">
+  <div class="cf-operatory-overlay"></div>
 
-          <!-- Top Floating Hotspot -->
-          <div class="cf-split-hotspot">
-            <span class="cf-hotspot-pulse"></span>
-            <span>{% trans "Clinical Consultation & Care" %}</span>
-          </div>
-
-          <!-- Bottom Floating Information Card -->
-          <div class="cf-split-trust-card">
-            <h3 class="cf-split-trust-title">{% trans "Your Smile, Our Priority" %}</h3>
-            <p class="cf-split-trust-sub">{% trans "Comfortable care from our NMC-certified dental team in Shankhamul, Kathmandu." %}</p>
-            
-            <div class="cf-split-rating-row">
-              <span class="cf-split-rating-badge">
-                <i class="bi bi-star-fill text-warning"></i>
-                <span>{% trans "4.9 Google Rating" %}</span>
-              </span>
-              <span class="text-muted small fw-bold">{% trans "120+ Verified Patient Reviews" %}</span>
-            </div>
-
-            <!-- Compact Trust Indicators -->
-            <div class="cf-split-pills">
-              <span class="cf-split-pill"><i class="bi bi-shield-check text-primary"></i> {% trans "NMC Verified Doctors" %}</span>
-              <span class="cf-split-pill"><i class="bi bi-clock-history text-primary"></i> {% trans "Open 7:30 AM – 7:30 PM" %}</span>
-              <span class="cf-split-pill"><i class="bi bi-tag-fill text-primary"></i> {% trans "Transparent Pricing" %}</span>
-              <span class="cf-split-pill"><i class="bi bi-heart-pulse-fill text-primary"></i> {% trans "Pain-Free Techniques" %}</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT SIDE: Interactive Booking Panel (55%) -->
-        <div class="col-lg-7 col-xl-7 col-12 order-lg-2 order-2 cf-split-right-panel">
+  <div class="container cf-operatory-container">
+    <div class="row justify-content-end">
+      
+      <!-- Right Form Column (Spanning Right 7 to 8 Columns) -->
+      <div class="col-lg-7 col-xl-7 col-md-12">
+        <div class="cf-app-form-wrap">
           
-          <div class="cf-split-header d-flex flex-wrap justify-content-between align-items-center gap-2">
-            <div>
-              <div class="cf-workstation-tag">
-                <i class="bi bi-calendar2-check-fill"></i>
-                <span>{% trans "APPOINTMENT DESK" %}</span>
-              </div>
-              <h1 class="cf-split-heading">{% trans "Schedule Your Smile Visit" %}</h1>
-              <p class="cf-split-sub">
-                {% trans "Request a consultation with our NMC-certified specialist team in Shankhamul, Kathmandu." %}
-              </p>
-            </div>
-            <div class="d-none d-md-block text-end">
-              <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-bold text-muted" style="font-size: 0.78rem;">
-                <i class="bi bi-shield-check text-success me-1"></i> {% trans "NMC Certified" %}
-              </span>
-            </div>
+          <div class="cf-app-badge-tag">
+            <i class="bi bi-calendar2-check-fill"></i> {% trans "Appointment Desk" %}
           </div>
+          <h2 class="cf-app-heading">{% trans "Schedule Your Smile Visit" %}</h2>
+          <p class="cf-app-sub">{% trans "Request an appointment with our specialist dental team in Shankhamul, Kathmandu." %}</p>
 
-          <!-- Included 5-Step Smart Conversion Funnel -->
-          {% include 'components/smart_appointment_funnel.html' %}
+          <form action="{% url 'appointments:book' %}" method="POST" id="cfDirectAppointmentForm">
+            {% csrf_token %}
+            <input type="hidden" name="form_type" value="appointment">
+            <input type="hidden" name="appointment_type" value="consultation">
+
+            <div class="row g-3">
+              
+              <!-- Row 1: Name & Email -->
+              <div class="col-md-6">
+                <label class="cf-app-label" for="appFullName">
+                  {% trans "Your Name" %} <span class="required-star">*</span>
+                </label>
+                <input type="text" name="full_name" id="appFullName" class="cf-app-input" placeholder="{% trans 'Full Name' %}" required autocomplete="name">
+              </div>
+
+              <div class="col-md-6">
+                <label class="cf-app-label" for="appEmail">
+                  {% trans "Your Email Address" %} <span class="required-star">*</span>
+                </label>
+                <input type="email" name="email" id="appEmail" class="cf-app-input" placeholder="{% trans 'Email' %}" required autocomplete="email">
+              </div>
+
+              <!-- Row 2: Contact Number & Appointment Date -->
+              <div class="col-md-6">
+                <label class="cf-app-label" for="appPhone">
+                  {% trans "Contact Number" %} <span class="required-star">*</span>
+                </label>
+                <input type="tel" name="phone" id="appPhone" class="cf-app-input" placeholder="{% trans 'Phone' %}" required autocomplete="tel">
+              </div>
+
+              <div class="col-md-6">
+                <label class="cf-app-label" for="appDate">
+                  {% trans "Appointment date" %} <span class="required-star">*</span>
+                </label>
+                <div class="position-relative">
+                  <input type="date" name="preferred_date" id="appDate" class="cf-app-input pe-5" placeholder="{% trans 'Requested Date' %}" required>
+                </div>
+              </div>
+
+              <!-- Row 3: Treatment Selection (Optional/Smart) & Preferred Time -->
+              <div class="col-md-6">
+                <label class="cf-app-label" for="appTreatment">
+                  {% trans "Treatment / Service" %}
+                </label>
+                <select name="treatment" id="appTreatment" class="cf-app-input form-select">
+                  <option value="general-consultation" selected>{% trans "General Dental Check-up & Consultation" %}</option>
+                  {% for s in services %}
+                  <option value="{{ s.slug }}">{{ s.title }}</option>
+                  {% empty %}
+                  <option value="root-canal-treatment">{% trans "Root Canal Treatment (RCT)" %}</option>
+                  <option value="dental-implants">{% trans "Dental Implants" %}</option>
+                  <option value="teeth-whitening">{% trans "Cosmetic Teeth Whitening" %}</option>
+                  <option value="braces-orthodontics">{% trans "Orthodontics & Braces" %}</option>
+                  <option value="tooth-extraction">{% trans "Tooth Extraction" %}</option>
+                  <option value="dental-fillings">{% trans "Tooth Fillings & Restoration" %}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="cf-app-label" for="appTime">
+                  {% trans "Preferred Time" %}
+                </label>
+                <select name="preferred_time" id="appTime" class="cf-app-input form-select">
+                  <option value="morning">{% trans "Morning (7:30 AM – 11:30 AM)" %}</option>
+                  <option value="afternoon" selected>{% trans "Afternoon (11:30 AM – 4:00 PM)" %}</option>
+                  <option value="evening">{% trans "Evening (4:00 PM – 7:30 PM)" %}</option>
+                </select>
+              </div>
+
+              <!-- Row 4: Message -->
+              <div class="col-12">
+                <label class="cf-app-label" for="appMessage">
+                  {% trans "Message" %}
+                </label>
+                <textarea name="message" id="appMessage" class="cf-app-input" rows="3" placeholder="{% trans 'Your message' %}"></textarea>
+              </div>
+
+              <!-- Row 5: Action Button -->
+              <div class="col-12 pt-2">
+                <button type="submit" class="cf-app-submit-btn" id="cfAppSubmitBtn">
+                  {% trans "Book Appointment Now" %}
+                </button>
+              </div>
+
+            </div>
+          </form>
 
         </div>
-
       </div>
-    </div>
 
+    </div>
   </div>
-</div>
+</section>
+
+<script>
+  // Set minimum date to tomorrow or today
+  document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('appDate');
+    if (dateInput) {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      dateInput.min = `${yyyy}-${mm}-${dd}`;
+      if (!dateInput.value) {
+        // default to tomorrow
+        const tomorrow = new Date(Date.now() + 86400000);
+        const tYyyy = tomorrow.getFullYear();
+        const tMm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        const tDd = String(tomorrow.getDate()).padStart(2, '0');
+        dateInput.value = `${tYyyy}-${tMm}-${tDd}`;
+      }
+    }
+  });
+</script>
