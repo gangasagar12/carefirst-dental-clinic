@@ -42,3 +42,19 @@ def site_settings(request):
     return {
         'site_settings': settings_obj
     }
+
+
+def google_reviews_context(request):
+    """
+    Returns the Google Business data and Google reviews to all templates.
+    """
+    from .models import GoogleBusiness, GoogleReview
+    business = GoogleBusiness.objects.order_by('-last_synced', '-updated_at').first()
+    reviews = []
+    if business:
+        reviews = list(GoogleReview.objects.filter(business=business, is_active=True).order_by('-publish_time', '-created_at')[:10])
+    return {
+        'google_business': business,
+        'google_reviews': reviews
+    }
+

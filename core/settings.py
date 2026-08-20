@@ -127,6 +127,7 @@ TEMPLATES = [
                 'main.context_processors.active_offer',
                 'main.context_processors.dynamic_pricing',
                 'main.context_processors.site_settings',
+                'main.context_processors.google_reviews_context',
             ],
         },
     },
