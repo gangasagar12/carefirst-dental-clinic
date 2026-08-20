@@ -13,6 +13,7 @@ from chatbot.providers import get_ai_provider
 from chatbot.prompts.system_prompt import CAREFIRST_SYSTEM_PROMPT
 from chatbot.tools.appointment_tools import generate_whatsapp_link
 from main.models import Service, PricingCategory, PricingItem, Doctor, FAQ, SiteSettings
+from chatbot.services.educational_kb import find_educational_concept
 
 logger = logging.getLogger(__name__)
 
@@ -108,28 +109,14 @@ class ChatService:
         # 4. Intent Detection
         intent = IntentService.detect_intent(cleaned_msg, current_treatment=resolved_treatment)
 
-        # 5. Database Tools Execution
+        # 5. Database Tools Execution (Gather verified real-time context)
         tool_data = ToolService.execute_tools_for_intent(intent, cleaned_msg, treatment_slug=resolved_treatment)
 
-        # 6. Fast-Path Deterministic Routing (Comprehensive Clinical Intelligence)
-        fast_path_response = cls._try_fast_path(intent, tool_data, resolved_treatment, cleaned_msg, is_ne=is_ne)
-        if fast_path_response:
-            assistant_msg = ChatMessage.objects.create(
-                conversation=conversation,
-                role='assistant',
-                content=fast_path_response['content'],
-                intent=intent,
-                quick_actions=fast_path_response.get('quick_actions', []),
-                cards=fast_path_response.get('cards', []),
-                metadata={'fast_path': True}
-            )
-            cls._log_interaction(conversation, intent, resolved_treatment, 'answer')
-            return cls._format_response(assistant_msg)
-
-        # 7. AI Provider Synthesis (Optional cloud LLM if configured and healthy)
+        # 6. Live AI Model Generation (Real LLM Inference)
         history = ContextService.get_recent_history(conversation, limit=6)
         provider = get_ai_provider()
         ai_resp = None
+
         try:
             ai_resp = provider.generate_response(
                 prompt=cleaned_msg,
@@ -148,8 +135,15 @@ class ChatService:
             final_content = ai_resp.content
             cards, quick_actions = cls._generate_supplementary_ui(intent, tool_data, resolved_treatment, is_ne=is_ne)
         else:
-            final_content = cls._generate_smart_fallback(intent, tool_data, resolved_treatment, cleaned_msg, is_ne=is_ne)
-            cards, quick_actions = cls._generate_supplementary_ui(intent, tool_data, resolved_treatment, is_ne=is_ne)
+            # Fallback to rich fast-path only if AI provider is unreachable
+            fast_path_response = cls._try_fast_path(intent, tool_data, resolved_treatment, cleaned_msg, is_ne=is_ne)
+            if fast_path_response:
+                final_content = fast_path_response['content']
+                quick_actions = fast_path_response.get('quick_actions', [])
+                cards = fast_path_response.get('cards', [])
+            else:
+                final_content = cls._generate_smart_fallback(intent, tool_data, resolved_treatment, cleaned_msg, is_ne=is_ne)
+                cards, quick_actions = cls._generate_supplementary_ui(intent, tool_data, resolved_treatment, is_ne=is_ne)
 
         assistant_msg = ChatMessage.objects.create(
             conversation=conversation,
@@ -553,15 +547,68 @@ class ChatService:
             }
 
         # ==========================================
-        # 10. TREATMENT SPECIFIC INFORMATION (e.g. RCT, Implants, Braces, etc.)
+        # 10. TREATMENT SPECIFIC INFORMATION & EDUCATIONAL CONCEPT
         # ==========================================
-        elif intent in ('TREATMENT_INFORMATION', 'TREATMENT_PROCESS', 'TREATMENT_DURATION'):
-            details = tool_data.get('current_treatment_details')
-            if details:
-                name = details['name']
-                price = details.get('starting_price', 'NPR 1,000')
-                feat_list = "\n".join([f"✓ {f}" for f in details.get('features', [])[:4]])
+        elif intent in ('TREATMENT_INFORMATION', 'TREATMENT_PROCESS', 'TREATMENT_DURATION') or True:
+            # Check educational encyclopedia first for deep clinical definition
+            edu_concept = find_educational_concept(message)
+            if not edu_concept and treatment_slug:
+                edu_concept = find_educational_concept(treatment_slug)
 
+            details = tool_data.get('current_treatment_details')
+            name = details['name'] if details else (edu_concept['en']['title'] if edu_concept else 'Dental Procedure')
+            price = details.get('starting_price', 'NPR 1,000') if details else 'NPR 1,000'
+
+            if edu_concept:
+                lang_key = 'ne' if is_ne else 'en'
+                edu = edu_concept[lang_key]
+
+                if is_ne:
+                    full_answer = (
+                        f"🦷 **{edu['title']}**\n\n"
+                        f"{edu['definition']}\n\n"
+                        f"{edu['how_it_works']}\n\n"
+                        f"{edu['benefits']}\n\n"
+                        f"🏥 **केयरफर्स्ट क्लिनिकमा उपचार:**\n"
+                        f"केयरफर्स्ट डेन्टल क्लिनिकमा यो सेवा सुरुवाती **{price}** मा उपलब्ध छ। डा. सुवास बन्जाडेको टोलीले डिजिटल प्रविधि र पूर्ण दुखाइरहित विधिबाट सेवा प्रदान गर्दछ।"
+                    )
+                    return {
+                        'content': full_answer,
+                        'quick_actions': ["अपोइन्टमेन्ट लिनुहोस्", "शुल्क विवरण", "डाक्टरको जानकारी", "अन्य उपचारहरू"],
+                        'cards': [{
+                            'type': 'treatment_card',
+                            'name': name,
+                            'category': details.get('category', 'Dental Care') if details else 'Dental Care',
+                            'starting_price': price,
+                            'url': details.get('url', '/services/'),
+                            'features': details.get('features', [])[:3] if details else ["Painless Protocol", "Digital Planning"]
+                        }] if details else []
+                    }
+                else:
+                    full_answer = (
+                        f"🦷 **{edu['title']}**\n\n"
+                        f"{edu['definition']}\n\n"
+                        f"{edu['how_it_works']}\n\n"
+                        f"{edu['benefits']}\n\n"
+                        f"🏥 **At CareFirst Dental Clinic:**\n"
+                        f"This procedure starts from **{price}** with transparent pricing and zero hidden fees. Performed by Dr. Subash Banjade (BDS, NMC #31229) and our specialist team using computer-guided, hospital-grade Class-B sterile standards.\n\n"
+                        f"Would you like to schedule an oral evaluation or consult our team?"
+                    )
+                    return {
+                        'content': full_answer,
+                        'quick_actions': ["Book Appointment", "View Pricing Breakdown", "Meet the Doctor", "Ask Another Question"],
+                        'cards': [{
+                            'type': 'treatment_card',
+                            'name': name,
+                            'category': details.get('category', 'Dental Care') if details else 'Dental Care',
+                            'starting_price': price,
+                            'url': details.get('url', '/services/'),
+                            'features': details.get('features', [])[:3] if details else ["Painless Protocol", "Digital Planning"]
+                        }] if details else []
+                    }
+
+            if details:
+                feat_list = "\n".join([f"✓ {f}" for f in details.get('features', [])[:4]])
                 if is_ne:
                     return {
                         'content': (
