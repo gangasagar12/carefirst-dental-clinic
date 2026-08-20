@@ -1120,7 +1120,7 @@
 
         <div class="cf-sfc-body">
           <h3 class="cf-sfc-title">{{ service.title }}</h3>
-          <p class="cf-sfc-desc">{{ service.short_description|default:"Advanced clinical treatment performed by certified dental specialists with pain-free protocols." }}</p>
+          <p class="cf-sfc-desc">{% if service.short_description %}{{ service.short_description }}{% else %}{% trans "Advanced clinical treatment performed by certified dental specialists with pain-free protocols." %}{% endif %}</p>
 
           <ul class="cf-sfc-features">
             {% for feature in service.get_features_list|slice:":3" %}
@@ -1169,7 +1169,7 @@
 
         <div class="cf-sfc-body">
           <h3 class="cf-sfc-title">{{ service.title }}</h3>
-          <p class="cf-sfc-desc">{{ service.short_description|default:"Advanced clinical treatment performed by certified dental specialists with pain-free protocols." }}</p>
+          <p class="cf-sfc-desc">{% if service.short_description %}{{ service.short_description }}{% else %}{% trans "Advanced clinical treatment performed by certified dental specialists with pain-free protocols." %}{% endif %}</p>
 
           <ul class="cf-sfc-features">
             {% for feature in service.get_features_list|slice:":3" %}
@@ -1220,7 +1220,7 @@
               {{ service.category_label|default:service.get_category_display }}
             </span>
             <h4 class="cf-dsc-title">{{ service.title }}</h4>
-            <p class="cf-dsc-desc">{{ service.short_description|default:"Advanced clinical treatment performed by certified dental specialists with pain-free protocols." }}</p>
+            <p class="cf-dsc-desc">{% if service.short_description %}{{ service.short_description }}{% else %}{% trans "Advanced clinical treatment performed by certified dental specialists with pain-free protocols." %}{% endif %}</p>
             <div class="cf-dsc-footer d-flex justify-content-between align-items-center">
               <span class="cf-dsc-link">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
               {% if service.get_dynamic_price %}
