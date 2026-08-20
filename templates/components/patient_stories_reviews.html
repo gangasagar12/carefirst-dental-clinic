@@ -17,7 +17,7 @@
         {% trans "Exceptional care, in our patients' own words." %}
       </h2>
       <p class="psr-subtitle">
-        {% trans "From independent Google ratings to in-depth clinical transformations, discover why thousands of patients trust CareFirst Dental Clinic in Kathmandu." %}
+        {% trans "From independent Google ratings to real patient treatment experiences, discover why thousands of patients trust CareFirst Dental Clinic in Kathmandu." %}
       </p>
 
       <!-- Trust Summary Badge -->
@@ -113,7 +113,6 @@
               </div>
               {% endfor %}
             {% else %}
-              <!-- Fallback review if DB is freshly syncing -->
               <div class="carousel-item active" data-index="0">
                 <div class="psr-single-review">
                   <div class="psr-review-rating mb-3">
@@ -147,7 +146,7 @@
 
           </div>
 
-          <!-- Minimal Elegant Navigation Bar: ← 01 / 07 → -->
+          <!-- Minimal Navigation: ← 01 / 07 → -->
           <div class="psr-nav-container d-flex align-items-center justify-content-center gap-4 mt-4">
             <button class="psr-nav-arrow psr-nav-prev" type="button" data-bs-target="#psrGoogleCarousel" data-bs-slide="prev" aria-label="Previous Review">
               <i class="bi bi-arrow-left"></i>
@@ -173,76 +172,88 @@
     <div class="psr-divider my-5">
       <span class="psr-divider-line"></span>
       <span class="psr-divider-badge">
-        <i class="bi bi-heart-fill text-danger me-1"></i> {% trans "In-Depth Case Journeys" %}
+        <i class="bi bi-chat-square-quote-fill text-primary me-1"></i> {% trans "Patient Testimonials" %}
       </span>
       <span class="psr-divider-line"></span>
     </div>
 
-    <!-- ============================================================= -->
-    <!-- 4. PATIENT STORIES (CURATED EDITORIAL EXPERIENCES)            -->
-    <!-- ============================================================= -->
-    <div class="psr-stories-wrapper">
-      <div class="text-center mb-5">
-        <div class="psr-stories-badge text-uppercase fw-bold mb-2">
-          {% trans "PATIENT STORIES" %}
-        </div>
-        <h3 class="psr-stories-title fw-bold">
-          {% trans "Real treatments. Real transformations. Real people." %}
-        </h3>
-        <p class="text-muted mx-auto" style="max-width: 600px;">
-          {% trans "Explore curated clinical journeys and see how personalized dental treatments restored our patients' health and confidence." %}
-        </p>
-      </div>
+  </div> <!-- /container -->
 
-      <!-- Dynamic 3 Story Cards Grid (Desktop 3, Tablet 2, Mobile 1/Swipe) -->
-      <div class="row g-4">
-        {% for story in patient_stories|slice:":3" %}
-        <div class="col-lg-4 col-md-6">
-          <article class="psr-story-card">
-            <div class="psr-story-img-wrap">
-              <img src="{{ story.get_image_url }}" onerror="this.onerror=null; this.src='{% static 'images/hero_section1.jpeg' %}';" alt="{{ story.patient_name }} — {{ story.treatment }}" class="psr-story-img" loading="lazy">
-              <span class="psr-story-tag {% if story.tag_color == 'cosmetic' %}psr-tag-cosmetic{% elif story.tag_color == 'whitening' %}psr-tag-whitening{% endif %}">
-                {{ story.treatment|default:_("Smile Transformation") }}
-              </span>
-            </div>
-            <div class="psr-story-body">
-              <h4 class="psr-story-headline">{{ story.get_headline }}</h4>
-              <p class="psr-story-excerpt">
-                "{{ story.review }}"
-              </p>
-              <div class="psr-story-footer d-flex align-items-center justify-content-between pt-3 border-top">
-                <div class="psr-patient-name-wrap">
-                  <span class="fw-bold text-dark d-block">{{ story.patient_name }}</span>
-                  <span class="text-muted small">{{ story.treatment|default:_("Patient Experience") }}</span>
+  <!-- ============================================================= -->
+  <!-- 4. CONTINUOUSLY FLOWING PATIENT TESTIMONIALS (RIGHT TO LEFT) -->
+  <!-- ============================================================= -->
+  <div class="psr-continuous-flow-section">
+    <div class="container text-center mb-4">
+      <div class="psr-stories-badge text-uppercase fw-bold mb-2">
+        {% trans "PATIENT EXPERIENCES" %}
+      </div>
+      <h3 class="psr-stories-title fw-bold mb-2">
+        {% trans "Real treatments. Real transformations. Real people." %}
+      </h3>
+      <p class="text-muted mx-auto" style="max-width: 600px;">
+        {% trans "Read authentic experiences from patients who underwent root canal, cosmetic veneers, teeth whitening, and dental implants at CareFirst." %}
+      </p>
+    </div>
+
+    <!-- Swiper Infinite Linear Right-to-Left Continuous Marquee Ticker -->
+    <div class="swiper psrContinuousSwiper swiper-container-continuous" style="padding: 1rem 0 2rem 0; cursor: grab;">
+      <div class="swiper-wrapper">
+        {% for ts in patient_stories %}
+        <div class="swiper-slide" style="width: 360px; height: auto;">
+          <div class="ts-flow-card">
+            <div>
+              <div class="ts-flow-header">
+                <div class="ts-flow-avatar">
+                  {% if ts.photo %}
+                    <img src="{{ ts.photo.url }}" alt="{{ ts.patient_name }}">
+                  {% else %}
+                    <span>{{ ts.patient_name|slice:":2"|upper }}</span>
+                  {% endif %}
                 </div>
-                <button type="button" class="btn psr-read-story-btn" 
-                  data-name="{{ story.patient_name }}" 
-                  data-treatment="{{ story.treatment }}" 
-                  data-img="{{ story.get_image_url }}" 
-                  data-concern="{{ story.get_concern }}" 
-                  data-journey="{{ story.get_journey }}" 
-                  data-outcome="{{ story.get_outcome }}" 
-                  data-quote="{{ story.review }}"
-                  onclick="openDynamicStoryModal(this)">
-                  {% trans "Read Story" %} <i class="bi bi-arrow-right ms-1"></i>
-                </button>
+                <div>
+                  <h5 class="ts-flow-name">{{ ts.patient_name }}</h5>
+                  <p class="ts-flow-treatment">{{ ts.treatment|default:_("Dental Care") }}</p>
+                </div>
               </div>
+
+              <div class="ts-flow-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+
+              <p class="ts-flow-quote">"{{ ts.review }}"</p>
             </div>
-          </article>
-        </div>
-        {% empty %}
-        <div class="col-12 text-center py-4">
-          <p class="text-muted">{% trans "Patient stories are loading." %}</p>
+
+            <div class="ts-flow-footer d-flex align-items-center justify-content-between pt-3 border-top mt-auto">
+              <span class="ts-flow-verified">
+                <i class="bi bi-check-circle-fill"></i> {% trans "Verified Patient" %}
+              </span>
+              <button type="button" class="btn ts-flow-detail-btn"
+                data-name="{{ ts.patient_name }}" 
+                data-treatment="{{ ts.treatment }}" 
+                data-img="{{ ts.get_image_url }}" 
+                data-concern="{{ ts.get_concern }}" 
+                data-journey="{{ ts.get_journey }}" 
+                data-outcome="{{ ts.get_outcome }}" 
+                data-quote="{{ ts.review }}"
+                onclick="openDynamicStoryModal(this)">
+                {% trans "Details" %} <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
         </div>
         {% endfor %}
       </div>
     </div>
-
   </div>
+
 </section>
 
 <!-- ================================================================= -->
-<!-- 6. PATIENT STORY DETAILED MODAL                                   -->
+<!-- 5. PATIENT STORY DETAILED MODAL                                   -->
 <!-- ================================================================= -->
 <div class="modal fade" id="psrStoryModal" tabindex="-1" aria-labelledby="psrStoryModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -258,7 +269,7 @@
         <div class="row g-4 align-items-center">
           <div class="col-md-5">
             <div class="rounded-3 overflow-hidden shadow-sm">
-              <img id="modalStoryImg" src="" alt="Treatment Transformation" class="img-fluid w-100" style="height: 240px; object-fit: cover;">
+              <img id="modalStoryImg" src="{% static 'images/hero_section1.jpeg' %}" alt="Treatment Transformation" class="img-fluid w-100" style="height: 240px; object-fit: cover;">
             </div>
             <div class="mt-3 p-3 bg-light rounded-3">
               <p class="mb-1 text-muted small">{% trans "Treating Specialist" %}:</p>
@@ -295,13 +306,14 @@
 </div>
 
 <!-- ================================================================= -->
-<!-- 7. SECTION STYLING (LUXURY HEALTHCARE AESTHETICS)                 -->
+<!-- 6. SECTION STYLING (LUXURY HEALTHCARE + CONTINUOUS SWIPER)        -->
 <!-- ================================================================= -->
 <style>
   .psr-main-section {
-    padding: 5rem 0;
+    padding: 5rem 0 4rem 0;
     background: #FDFEFE;
     color: #1E293B;
+    overflow: hidden;
   }
   .psr-header {
     max-width: 760px;
@@ -381,7 +393,7 @@
     color: #FFFFFF;
   }
   .psr-carousel-card {
-    min-height: 240px;
+    min-height: 220px;
   }
   .psr-single-review {
     max-width: 860px;
@@ -480,7 +492,9 @@
     letter-spacing: 0.06em;
   }
 
-  /* Patient Story Cards */
+  /* ======================================================== */
+  /* CONTINUOUS FLOW CARDS (RIGHT TO LEFT MARQUEE)            */
+  /* ======================================================== */
   .psr-stories-badge {
     color: #0E5A4F;
     font-size: 0.85rem;
@@ -490,98 +504,128 @@
     font-size: clamp(1.6rem, 2.5vw, 2.2rem);
     color: #0F172A;
   }
-  .psr-story-card {
+
+  /* Continuous Flow Card Style */
+  .ts-flow-card {
     background: #FFFFFF;
     border: 1px solid #E2E8F0;
     border-radius: 20px;
-    overflow: hidden;
+    padding: 1.6rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
     height: 100%;
+    min-height: 240px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
-  .psr-story-card:hover {
+  .ts-flow-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 16px 36px rgba(14, 90, 79, 0.12);
+    border-color: #0E5A4F;
   }
-  .psr-story-img-wrap {
-    position: relative;
-    height: 220px;
+  .ts-flow-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+  .ts-flow-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0E5A4F 0%, #081C33 100%);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    font-weight: 800;
+    flex-shrink: 0;
     overflow: hidden;
-    background: #F1F5F9;
+    box-shadow: 0 3px 8px rgba(14, 90, 79, 0.25);
+    border: 2px solid #E2E8F0;
   }
-  .psr-story-img {
+  .ts-flow-avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
   }
-  .psr-story-card:hover .psr-story-img {
-    transform: scale(1.03);
-  }
-  .psr-story-tag {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    background: rgba(14, 90, 79, 0.9);
-    color: #FFFFFF;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 50px;
-    backdrop-filter: blur(4px);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-  .psr-tag-cosmetic {
-    background: rgba(124, 58, 237, 0.9);
-  }
-  .psr-tag-whitening {
-    background: rgba(14, 165, 233, 0.9);
-  }
-  .psr-story-body {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-  }
-  .psr-story-headline {
-    font-size: 1.2rem;
-    font-weight: 700;
+  .ts-flow-name {
     color: #0F172A;
-    margin-bottom: 0.75rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.2;
   }
-  .psr-story-excerpt {
-    color: #475569;
+  .ts-flow-treatment {
+    color: #0284C7;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 2px;
+  }
+  .ts-flow-stars {
+    color: #F59E0B;
     font-size: 0.95rem;
-    line-height: 1.55;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 2px;
+  }
+  .ts-flow-quote {
+    color: #334155;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 1rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .psr-read-story-btn {
-    background: #F8FAFC;
+  .ts-flow-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.74rem;
+    color: #0F766E;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #CCFBF1;
+    padding: 3px 10px;
+    border-radius: 50px;
+  }
+  .ts-flow-verified i {
+    color: #0D9488;
+    font-size: 0.85rem;
+  }
+  .ts-flow-detail-btn {
+    background: transparent;
     color: #0E5A4F;
     border: 1px solid #E2E8F0;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     border-radius: 50px;
-    padding: 6px 14px;
+    padding: 4px 12px;
     transition: all 0.2s ease;
   }
-  .psr-read-story-btn:hover {
+  .ts-flow-detail-btn:hover {
     background: #0E5A4F;
     color: #FFFFFF;
     border-color: #0E5A4F;
   }
 
+  /* Linear continuous scrolling animation override for Swiper */
+  .swiper-container-continuous .swiper-wrapper {
+    -webkit-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+  }
+
   @media (max-width: 768px) {
     .psr-main-section {
-      padding: 3.5rem 0;
+      padding: 3.5rem 0 2.5rem 0;
     }
     .psr-google-wrapper {
       padding: 1.5rem 1rem;
@@ -597,10 +641,11 @@
 </style>
 
 <!-- ================================================================= -->
-<!-- 8. JAVASCRIPT LOGIC (SLIDE COUNTER & STORY MODAL DATA)             -->
+<!-- 7. JAVASCRIPT LOGIC (SLIDE COUNTER & SWIPER CONTINUOUS ENGINE)     -->
 <!-- ================================================================= -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    // 1. Google Carousel Slide Counter
     const carouselEl = document.getElementById("psrGoogleCarousel");
     const currentSlideEl = document.getElementById("psrCurrentSlide");
     
@@ -610,8 +655,44 @@
         currentSlideEl.textContent = nextIndex < 10 ? "0" + nextIndex : nextIndex;
       });
     }
+
+    // 2. Swiper Continuous Linear Marquee Flow (Right to Left)
+    if (typeof Swiper !== 'undefined') {
+      new Swiper('.psrContinuousSwiper', {
+        slidesPerView: 'auto',
+        spaceBetween: 24,
+        loop: true,
+        speed: 4000,
+        autoplay: {
+          delay: 0,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+        grabCursor: true,
+        freeMode: true,
+        breakpoints: {
+          320: {
+            slidesPerView: 1.15,
+            spaceBetween: 16,
+          },
+          768: {
+            slidesPerView: 2.3,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3.2,
+            spaceBetween: 24,
+          },
+          1400: {
+            slidesPerView: 4,
+            spaceBetween: 24,
+          }
+        }
+      });
+    }
   });
 
+  // 3. Dynamic Story Detail Modal Handler
   function openDynamicStoryModal(btn) {
     if (!btn) return;
     const name = btn.getAttribute("data-name") || "Patient";
