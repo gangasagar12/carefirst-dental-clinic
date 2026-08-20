@@ -524,3 +524,16 @@ class GoogleReview(models.Model):
 
     def __str__(self):
         return f"{self.author_name} - {self.rating} stars"
+
+
+# Invalidate google reviews context cache on updates
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
+from django.core.cache import cache
+
+@receiver([post_save, post_delete], sender=GoogleBusiness)
+@receiver([post_save, post_delete], sender=GoogleReview)
+@receiver([post_save, post_delete], sender=Testimonial)
+def clear_reviews_context_cache(sender, **kwargs):
+    cache.delete('google_reviews_context_data')
+

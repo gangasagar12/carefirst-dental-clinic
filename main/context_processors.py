@@ -46,19 +46,32 @@ def site_settings(request):
 
 def google_reviews_context(request):
     """
-    Returns the Google Business data, Google reviews, and Patient Stories to all templates.
+    Returns cached Google Business data, Google reviews, and Patient Stories to all templates.
     """
+    import os
+    from django.core.cache import cache
     from .models import GoogleBusiness, GoogleReview, Testimonial
-    business = GoogleBusiness.objects.order_by('-last_synced', '-updated_at').first()
-    reviews = []
-    if business:
-        reviews = list(GoogleReview.objects.filter(business=business, is_active=True).order_by('-publish_time', '-created_at')[:10])
-    
-    patient_stories = list(Testimonial.objects.filter(is_active=True).order_by('order', '-id')[:6])
-    return {
-        'google_business': business,
-        'google_reviews': reviews,
-        'patient_stories': patient_stories,
-    }
+
+    cached_data = cache.get('google_reviews_context_data')
+    if cached_data is None:
+        business = GoogleBusiness.objects.order_by('-last_synced', '-updated_at').first()
+        reviews = []
+        if business:
+            reviews = list(GoogleReview.objects.filter(business=business, is_active=True).order_by('-publish_time', '-created_at')[:10])
+        
+        patient_stories = list(Testimonial.objects.filter(is_active=True).order_by('order', '-id')[:10])
+        cached_data = {
+            'google_business': business,
+            'google_reviews': reviews,
+            'patient_stories': patient_stories,
+        }
+        try:
+            cache_ttl = int(os.getenv('GOOGLE_REVIEWS_CACHE_TTL', 21600))
+        except (ValueError, TypeError):
+            cache_ttl = 21600
+        cache.set('google_reviews_context_data', cached_data, cache_ttl)
+
+    return cached_data
+
 
 

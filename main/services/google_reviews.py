@@ -57,14 +57,14 @@ class GoogleReviewsClient:
         backoff_seconds: float = 1.5,
     ):
         load_dotenv()
-        self.api_key = api_key or os.getenv("GOOGLE_MAPS_API_KEY")
+        self.api_key = api_key or os.getenv("GOOGLE_PLACES_API_KEY") or os.getenv("GOOGLE_MAPS_API_KEY")
         self.place_id = place_id or os.getenv("GOOGLE_PLACE_ID")
         self.timeout = timeout
         self.max_retries = max_retries
         self.backoff_seconds = backoff_seconds
 
         if not self.api_key:
-            raise GoogleReviewsError("GOOGLE_MAPS_API_KEY is not configured.")
+            raise GoogleReviewsError("GOOGLE_PLACES_API_KEY or GOOGLE_MAPS_API_KEY is not configured.")
         if not self.place_id:
             raise GoogleReviewsError("GOOGLE_PLACE_ID is not configured.")
 
