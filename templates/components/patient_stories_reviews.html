@@ -37,7 +37,7 @@
           {% if google_business %}{{ google_business.review_count|default:27 }}{% else %}27{% endif %} {% trans "Google Reviews" %}
         </span>
         <span class="psr-trust-dot">•</span>
-        <a href="https://maps.google.com/?cid=4352731592766171750" target="_blank" rel="noopener" class="psr-google-link fw-bold text-decoration-none">
+        <a href="https://maps.app.goo.gl/yJ6h1K6x8Z5UoU849" target="_blank" rel="noopener" class="psr-google-link fw-bold text-decoration-none">
           {% trans "Read All Google Reviews" %} <i class="bi bi-arrow-up-right ms-1"></i>
         </a>
       </div>
@@ -84,14 +84,17 @@
 
                   <div class="psr-reviewer-meta d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4 pt-3 border-top">
                     <div class="d-flex align-items-center gap-3">
-                      {% if review.author_photo %}
-                        <img src="{{ review.author_photo }}" alt="{{ review.author_name }}" class="psr-avatar-img" loading="lazy">
+                      {% if review.author_photo and not 'random' in review.author_photo %}
+                        <img src="{{ review.author_photo }}" alt="{{ review.author_name }}" class="psr-avatar-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="psr-avatar-initials" style="display:none;">
+                          {{ review.author_name|first|upper }}{{ review.author_name|slice:"1:2"|upper }}
+                        </div>
                       {% else %}
                         <div class="psr-avatar-initials">
                           {{ review.author_name|first|upper }}{{ review.author_name|slice:"1:2"|upper }}
                         </div>
                       {% endif %}
-                      <div>
+                      <div class="text-start">
                         <h4 class="psr-author-name mb-0">{{ review.author_name }}</h4>
                         <div class="psr-author-sub d-flex align-items-center gap-2">
                           <span class="text-muted small">Google Review · {{ review.relative_time|default:"Verified on Google" }}</span>
@@ -104,7 +107,7 @@
                         <i class="bi bi-google text-primary"></i>
                         <span class="small fw-semibold text-secondary">{% trans "G Google Review" %}</span>
                       </span>
-                      <a href="{{ review.author_url|default:'https://maps.google.com/?cid=4352731592766171750' }}" target="_blank" rel="noopener" class="psr-view-g-link small text-decoration-none">
+                      <a href="https://maps.app.goo.gl/yJ6h1K6x8Z5UoU849" target="_blank" rel="noopener" class="psr-view-g-link small text-decoration-none">
                         {% trans "View on Google" %} <i class="bi bi-arrow-right"></i>
                       </a>
                     </div>
@@ -137,7 +140,7 @@
                     </div>
                     <div class="d-flex align-items-center gap-2">
                       <span class="psr-g-badge"><i class="bi bi-google text-primary"></i> <span class="small fw-semibold text-secondary">G Google Review</span></span>
-                      <a href="https://maps.google.com/?cid=4352731592766171750" target="_blank" rel="noopener" class="psr-view-g-link small">View on Google &rarr;</a>
+                      <a href="https://maps.app.goo.gl/yJ6h1K6x8Z5UoU849" target="_blank" rel="noopener" class="psr-view-g-link small">View on Google &rarr;</a>
                     </div>
                   </div>
                 </div>
