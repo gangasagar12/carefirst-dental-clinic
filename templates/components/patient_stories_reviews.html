@@ -194,84 +194,47 @@
         </p>
       </div>
 
-      <!-- 3 Story Cards Grid (Desktop 3, Tablet 2, Mobile 1/Swipe) -->
+      <!-- Dynamic 3 Story Cards Grid (Desktop 3, Tablet 2, Mobile 1/Swipe) -->
       <div class="row g-4">
-        
-        <!-- Story 1: Dental Implants -->
+        {% for story in patient_stories|slice:":3" %}
         <div class="col-lg-4 col-md-6">
           <article class="psr-story-card">
             <div class="psr-story-img-wrap">
-              <img src="{% static 'main/img/clinic/implants_story.jpg' %}" onerror="this.onerror=null; this.src='{% static 'main/img/hero/h1.jpg' %}';" alt="Dental Implants Transformation" class="psr-story-img" loading="lazy">
-              <span class="psr-story-tag">{% trans "Dental Implants" %}</span>
+              <img src="{{ story.get_image_url }}" onerror="this.onerror=null; this.src='{% static 'images/hero_section1.jpeg' %}';" alt="{{ story.patient_name }} — {{ story.treatment }}" class="psr-story-img" loading="lazy">
+              <span class="psr-story-tag {% if story.tag_color == 'cosmetic' %}psr-tag-cosmetic{% elif story.tag_color == 'whitening' %}psr-tag-whitening{% endif %}">
+                {{ story.treatment|default:_("Smile Transformation") }}
+              </span>
             </div>
             <div class="psr-story-body">
-              <h4 class="psr-story-headline">{% trans "A confident smile, restored." %}</h4>
+              <h4 class="psr-story-headline">{{ story.get_headline }}</h4>
               <p class="psr-story-excerpt">
-                "{% trans "After years of struggling with missing molars, I can finally chew comfortably and smile in photos without hesitation." %}"
+                "{{ story.review }}"
               </p>
               <div class="psr-story-footer d-flex align-items-center justify-content-between pt-3 border-top">
                 <div class="psr-patient-name-wrap">
-                  <span class="fw-bold text-dark d-block">Prakash Adhikari</span>
-                  <span class="text-muted small">{% trans "Dual Titanium Implants" %}</span>
+                  <span class="fw-bold text-dark d-block">{{ story.patient_name }}</span>
+                  <span class="text-muted small">{{ story.treatment|default:_("Patient Experience") }}</span>
                 </div>
-                <button type="button" class="btn psr-read-story-btn" onclick="openStoryModal('prakash')">
+                <button type="button" class="btn psr-read-story-btn" 
+                  data-name="{{ story.patient_name }}" 
+                  data-treatment="{{ story.treatment }}" 
+                  data-img="{{ story.get_image_url }}" 
+                  data-concern="{{ story.get_concern }}" 
+                  data-journey="{{ story.get_journey }}" 
+                  data-outcome="{{ story.get_outcome }}" 
+                  data-quote="{{ story.review }}"
+                  onclick="openDynamicStoryModal(this)">
                   {% trans "Read Story" %} <i class="bi bi-arrow-right ms-1"></i>
                 </button>
               </div>
             </div>
           </article>
         </div>
-
-        <!-- Story 2: Smile Makeover / Veneers -->
-        <div class="col-lg-4 col-md-6">
-          <article class="psr-story-card">
-            <div class="psr-story-img-wrap">
-              <img src="{% static 'main/img/clinic/smile_makeover_story.jpg' %}" onerror="this.onerror=null; this.src='{% static 'main/img/hero/h2.jpg' %}';" alt="Smile Makeover Transformation" class="psr-story-img" loading="lazy">
-              <span class="psr-story-tag psr-tag-cosmetic">{% trans "Smile Makeover" %}</span>
-            </div>
-            <div class="psr-story-body">
-              <h4 class="psr-story-headline">{% trans "A smile designed around her." %}</h4>
-              <p class="psr-story-excerpt">
-                "{% trans "Composite veneer bonding in a single appointment changed my entire facial look. Completely painless and deeply artistic." %}"
-              </p>
-              <div class="psr-story-footer d-flex align-items-center justify-content-between pt-3 border-top">
-                <div class="psr-patient-name-wrap">
-                  <span class="fw-bold text-dark d-block">Rekha Tamang</span>
-                  <span class="text-muted small">{% trans "Composite Veneer Bonding" %}</span>
-                </div>
-                <button type="button" class="btn psr-read-story-btn" onclick="openStoryModal('rekha')">
-                  {% trans "Read Story" %} <i class="bi bi-arrow-right ms-1"></i>
-                </button>
-              </div>
-            </div>
-          </article>
+        {% empty %}
+        <div class="col-12 text-center py-4">
+          <p class="text-muted">{% trans "Patient stories are loading." %}</p>
         </div>
-
-        <!-- Story 3: Teeth Whitening / Wedding Makeover -->
-        <div class="col-lg-4 col-md-6 mx-auto">
-          <article class="psr-story-card">
-            <div class="psr-story-img-wrap">
-              <img src="{% static 'main/img/clinic/whitening_story.jpg' %}" onerror="this.onerror=null; this.src='{% static 'main/img/hero/h3.jpg' %}';" alt="Teeth Whitening Transformation" class="psr-story-img" loading="lazy">
-              <span class="psr-story-tag psr-tag-whitening">{% trans "Teeth Whitening" %}</span>
-            </div>
-            <div class="psr-story-body">
-              <h4 class="psr-story-headline">{% trans "A brighter smile for a special day." %}</h4>
-              <p class="psr-story-excerpt">
-                "{% trans "Got my teeth whitened 8 shades brighter before my wedding. The laser Zoom procedure took under an hour with zero sensitivity!" %}"
-              </p>
-              <div class="psr-story-footer d-flex align-items-center justify-content-between pt-3 border-top">
-                <div class="psr-patient-name-wrap">
-                  <span class="fw-bold text-dark d-block">Anita Dhungana</span>
-                  <span class="text-muted small">{% trans "In-Office Laser Whitening" %}</span>
-                </div>
-                <button type="button" class="btn psr-read-story-btn" onclick="openStoryModal('anita')">
-                  {% trans "Read Story" %} <i class="bi bi-arrow-right ms-1"></i>
-                </button>
-              </div>
-            </div>
-          </article>
-        </div>
-
+        {% endfor %}
       </div>
     </div>
 
@@ -649,52 +612,25 @@
     }
   });
 
-  const PATIENT_STORIES_DATA = {
-    prakash: {
-      title: "Prakash Adhikari — Dental Implants Journey",
-      badge: "Dental Implants",
-      img: "{% static 'main/img/clinic/implants_story.jpg' %}",
-      fallbackImg: "{% static 'main/img/hero/h1.jpg' %}",
-      concern: "Missing two lower molars for over 4 years, leading to difficulty chewing food and gradual shift of adjacent teeth.",
-      journey: "Dr. Subash Banjade performed 3D digital CBCT planning followed by computer-guided titanium implant placement with zero discomfort.",
-      outcome: "Full masticatory function restored, natural aesthetic appearance, and permanent bone preservation.",
-      quote: "The implants look and feel exactly like my natural teeth. I can eat anything now, and my confidence has completely changed."
-    },
-    rekha: {
-      title: "Rekha Tamang — Smile Makeover Journey",
-      badge: "Smile Makeover",
-      img: "{% static 'main/img/clinic/smile_makeover_story.jpg' %}",
-      fallbackImg: "{% static 'main/img/hero/h2.jpg' %}",
-      concern: "Severe enamel chipping, discoloration, and uneven spacing between front teeth.",
-      journey: "A comprehensive digital smile design followed by artistic, hand-sculpted composite veneer bonding in a single appointment.",
-      outcome: "Harmonious, luminous white smile matching facial contours with zero enamel destruction.",
-      quote: "Composite veneers in one sitting — I couldn't believe how different and radiant my smile looked. Truly world-class artistry."
-    },
-    anita: {
-      title: "Anita Dhungana — In-Office Whitening Journey",
-      badge: "Teeth Whitening",
-      img: "{% static 'main/img/clinic/whitening_story.jpg' %}",
-      fallbackImg: "{% static 'main/img/hero/h3.jpg' %}",
-      concern: "Deep tea/coffee stains and enamel dullness right before her wedding celebrations.",
-      journey: "60-minute advanced blue laser LED whitening procedure with enamel-protecting desensitizing agent.",
-      outcome: "8 shades brighter, camera-ready wedding smile with zero lingering sensitivity.",
-      quote: "Got my teeth whitened before my wedding — 8 shades in one session! The clinic atmosphere is so relaxing and luxurious."
-    }
-  };
+  function openDynamicStoryModal(btn) {
+    if (!btn) return;
+    const name = btn.getAttribute("data-name") || "Patient";
+    const treatment = btn.getAttribute("data-treatment") || "Treatment Journey";
+    const img = btn.getAttribute("data-img") || "{% static 'images/hero_section1.jpeg' %}";
+    const concern = btn.getAttribute("data-concern") || "";
+    const journey = btn.getAttribute("data-journey") || "";
+    const outcome = btn.getAttribute("data-outcome") || "";
+    const quote = btn.getAttribute("data-quote") || "";
 
-  function openStoryModal(key) {
-    const data = PATIENT_STORIES_DATA[key];
-    if (!data) return;
-
-    document.getElementById("psrStoryModalTitle").textContent = data.title;
-    document.getElementById("modalStoryBadge").textContent = data.badge;
+    document.getElementById("psrStoryModalTitle").textContent = `${name} — ${treatment}`;
+    document.getElementById("modalStoryBadge").textContent = treatment;
     const imgEl = document.getElementById("modalStoryImg");
-    imgEl.src = data.img;
-    imgEl.onerror = function() { this.src = data.fallbackImg; };
-    document.getElementById("modalStoryConcern").textContent = data.concern;
-    document.getElementById("modalStoryJourney").textContent = data.journey;
-    document.getElementById("modalStoryOutcome").textContent = data.outcome;
-    document.getElementById("modalStoryQuote").textContent = `"${data.quote}"`;
+    imgEl.src = img;
+    imgEl.onerror = function() { this.src = "{% static 'images/hero_section1.jpeg' %}"; };
+    document.getElementById("modalStoryConcern").textContent = concern;
+    document.getElementById("modalStoryJourney").textContent = journey;
+    document.getElementById("modalStoryOutcome").textContent = outcome;
+    document.getElementById("modalStoryQuote").textContent = quote ? `"${quote}"` : "";
 
     const modal = new bootstrap.Modal(document.getElementById("psrStoryModal"));
     modal.show();

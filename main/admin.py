@@ -55,9 +55,10 @@ class BranchAdmin(ModelAdmin, TranslationAdmin):
 
 @admin.register(Testimonial)
 class TestimonialAdmin(ModelAdmin, TranslationAdmin):
-    list_display = ('photo_preview', 'patient_name', 'treatment', 'rating', 'is_active', 'order')
+    list_display = ('photo_preview', 'patient_name', 'treatment', 'tag_color', 'rating', 'is_active', 'order')
     list_editable = ('is_active', 'order')
-    search_fields = ('patient_name', 'treatment', 'review')
+    list_filter = ('treatment', 'rating', 'is_active', 'tag_color')
+    search_fields = ('patient_name', 'treatment', 'headline', 'review')
 
     def photo_preview(self, obj):
         if obj.photo:
@@ -189,6 +190,7 @@ class GoogleReviewAdmin(ModelAdmin):
     )
     list_editable = ('is_active',)
 
+
 # Unregister Django APScheduler models
 from django_apscheduler.models import DjangoJob, DjangoJobExecution
 try:
@@ -196,3 +198,4 @@ try:
     admin.site.unregister(DjangoJobExecution)
 except admin.sites.NotRegistered:
     pass
+

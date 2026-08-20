@@ -278,19 +278,69 @@ class Technology(models.Model):
         return self.title
 
 class Testimonial(models.Model):
+    TAG_COLOR_CHOICES = [
+        ('default', 'Teal (Standard)'),
+        ('cosmetic', 'Purple (Cosmetic)'),
+        ('whitening', 'Sky Blue (Whitening)'),
+        ('implant', 'Emerald (Implants)'),
+    ]
+
     patient_name = models.CharField(max_length=150)
     treatment = models.CharField(max_length=150, blank=True)
-    photo = models.ImageField(upload_to='testimonials/', blank=True, null=True)
-    review = models.TextField()
+    headline = models.CharField(max_length=255, blank=True, help_text="Editorial story headline (e.g. A confident smile, restored.)")
+    photo = models.ImageField(upload_to='testimonials/', blank=True, null=True, help_text="Patient portrait or clinical transformation image")
+    review = models.TextField(help_text="Patient quote or story excerpt")
+    initial_concern = models.TextField(blank=True, help_text="Patient's initial dental concern/problem")
+    clinical_journey = models.TextField(blank=True, help_text="Procedure performed by Dr. Subash Banjade and clinical team")
+    outcome = models.TextField(blank=True, help_text="Final aesthetic and clinical outcome")
+    tag_color = models.CharField(max_length=50, choices=TAG_COLOR_CHOICES, default='default', help_text="Badge color styling")
     rating = models.PositiveSmallIntegerField(default=5)
     is_active = models.BooleanField(default=True)
     order = models.PositiveSmallIntegerField(default=0)
 
     class Meta:
         ordering = ['order', '-id']
+        verbose_name = "Patient Story / Testimonial"
+        verbose_name_plural = "Patient Stories & Testimonials"
 
     def __str__(self):
-        return self.patient_name
+        return f"{self.patient_name} — {self.treatment or 'Patient Story'}"
+
+    def get_headline(self):
+        if self.headline:
+            return self.headline
+        return f"A healthier, radiant smile restored."
+
+    def get_concern(self):
+        if self.initial_concern:
+            return self.initial_concern
+        return f"Patient sought expert clinical care for {self.treatment or 'dental rehabilitation'} to regain comfort and oral health."
+
+    def get_journey(self):
+        if self.clinical_journey:
+            return self.clinical_journey
+        return f"Comprehensive digital evaluation followed by painless, state-of-the-art procedure performed by Dr. Subash Banjade (BDS, NMC #31229)."
+
+    def get_outcome(self):
+        if self.outcome:
+            return self.outcome
+        return f"Successful functional restoration and harmonious natural aesthetics achieved."
+
+    def get_image_url(self):
+        if self.photo:
+            try:
+                return self.photo.url
+            except Exception:
+                pass
+        t_lower = (self.treatment or '').lower()
+        if 'implant' in t_lower:
+            return '/static/main/img/clinic/implants_story.jpg'
+        elif 'whiten' in t_lower:
+            return '/static/main/img/clinic/whitening_story.jpg'
+        elif 'veneer' in t_lower or 'makeover' in t_lower or 'rehab' in t_lower:
+            return '/static/main/img/clinic/smile_makeover_story.jpg'
+        return '/static/images/hero_section1.jpeg'
+
 
 class ClinicGallery(models.Model):
     image = models.ImageField(upload_to='clinic_gallery/')

@@ -46,15 +46,19 @@ def site_settings(request):
 
 def google_reviews_context(request):
     """
-    Returns the Google Business data and Google reviews to all templates.
+    Returns the Google Business data, Google reviews, and Patient Stories to all templates.
     """
-    from .models import GoogleBusiness, GoogleReview
+    from .models import GoogleBusiness, GoogleReview, Testimonial
     business = GoogleBusiness.objects.order_by('-last_synced', '-updated_at').first()
     reviews = []
     if business:
         reviews = list(GoogleReview.objects.filter(business=business, is_active=True).order_by('-publish_time', '-created_at')[:10])
+    
+    patient_stories = list(Testimonial.objects.filter(is_active=True).order_by('order', '-id')[:6])
     return {
         'google_business': business,
-        'google_reviews': reviews
+        'google_reviews': reviews,
+        'patient_stories': patient_stories,
     }
+
 
