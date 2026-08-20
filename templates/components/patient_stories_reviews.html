@@ -275,24 +275,6 @@
       </div>
     </div>
 
-    <!-- ============================================================= -->
-    <!-- 5. HIGH-CONVERTING BOTTOM CONSULTATION CTA                    -->
-    <!-- ============================================================= -->
-    <div class="psr-bottom-cta text-center mt-5 p-4 p-md-5 rounded-4">
-      <h3 class="psr-cta-title mb-2">{% trans "Ready to Transform Your Smile?" %}</h3>
-      <p class="psr-cta-sub mb-4 text-white-50 mx-auto" style="max-width: 600px;">
-        {% trans "Book a one-on-one consultation with Dr. Subash Banjade and experience painless, international-standard dental care in Kathmandu." %}
-      </p>
-      <div class="d-flex align-items-center justify-content-center flex-wrap gap-3">
-        <a href="{% url 'appointments:book' %}" class="btn psr-cta-primary-btn px-4 py-3 fw-bold rounded-pill shadow">
-          <i class="bi bi-calendar-check me-2"></i> {% trans "Book a Consultation" %} &rarr;
-        </a>
-        <a href="https://wa.me/9779807464136?text=Hello%20CareFirst%20Dental%2C%20I%20would%20like%20to%20schedule%20a%20consultation" target="_blank" rel="noopener" class="btn psr-cta-secondary-btn px-4 py-3 fw-bold rounded-pill text-white">
-          <i class="bi bi-whatsapp me-2 text-success"></i> {% trans "WhatsApp Us Directly" %}
-        </a>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -632,38 +614,6 @@
     background: #0E5A4F;
     color: #FFFFFF;
     border-color: #0E5A4F;
-  }
-
-  /* Bottom Consultation Banner */
-  .psr-bottom-cta {
-    background: linear-gradient(135deg, #092B26 0%, #0E5A4F 100%);
-    color: #FFFFFF;
-    box-shadow: 0 16px 40px rgba(14, 90, 79, 0.25);
-  }
-  .psr-cta-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    font-weight: 800;
-  }
-  .psr-cta-primary-btn {
-    background: #F59E0B;
-    color: #0F172A;
-    border: none;
-    transition: all 0.2s ease;
-  }
-  .psr-cta-primary-btn:hover {
-    background: #D97706;
-    color: #FFFFFF;
-    transform: translateY(-2px);
-  }
-  .psr-cta-secondary-btn {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    transition: all 0.2s ease;
-  }
-  .psr-cta-secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
   }
 
   @media (max-width: 768px) {
