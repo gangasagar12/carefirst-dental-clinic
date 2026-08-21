@@ -1,279 +1,693 @@
 {% load i18n %}
 {% load static %}
+
 {% if not hide_title %}
 <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center mb-3"><i class="bi bi-grid-fill"></i> {% trans "BROWSE BY TREATMENT" %}</div>
-      <h2 class="section-heading">{% trans "Treatment" %} <span class="accent">{% trans "Categories" %}</span></h2>
+  <div class="nd-eyebrow justify-content-center mb-3">
+    <i class="bi bi-grid-fill"></i> {% trans "BROWSE BY TREATMENT" %}
+  </div>
+  <h2 class="section-heading">{% trans "Treatment" %} <span class="accent">{% trans "Categories" %}</span></h2>
+  <p class="text-muted mx-auto mb-0" style="max-width: 600px;">
+    {% trans "Drag the interactive VS slider on any case below to reveal real patient before and after results." %}
+  </p>
 </div>
 {% endif %}
 
-    <!-- Treatment Tab Buttons -->
-    <div class="treatment-tabs" id="treatmentTabs">
-      <button class="tt-tab active" data-treatment="all">
-        <i class="bi bi-grid-3x3-gap-fill"></i>{% trans "All Treatments" %}</button>
-      <button class="tt-tab" data-treatment="braces">
-        <i class="bi bi-bezier2"></i>{% trans "Braces & Aligners" %}</button>
-      <button class="tt-tab" data-treatment="veneers">
-        <i class="bi bi-gem"></i>{% trans "Veneers" %}</button>
-      <button class="tt-tab" data-treatment="whitening">
-        <i class="bi bi-brightness-high-fill"></i>{% trans "Whitening" %}</button>
-      <button class="tt-tab" data-treatment="implants">
-        <i class="bi bi-gear-wide-connected"></i>{% trans "Implants" %}</button>
-      <button class="tt-tab" data-treatment="makeover">
-        <i class="bi bi-stars"></i>{% trans "Smile Makeover" %}</button>
-      <button class="tt-tab" data-treatment="crowns">
-        <i class="bi bi-shield-fill-check"></i>{% trans "Crowns & Bridges" %}</button>
-      <button class="tt-tab" data-treatment="general">
-        <i class="bi bi-heart-pulse"></i>{% trans "General Care" %}</button>
+<!-- Treatment Tab Buttons -->
+<div class="treatment-tabs mb-4" id="treatmentTabs">
+  <button class="tt-tab active" data-treatment="all">
+    <i class="bi bi-grid-3x3-gap-fill"></i>{% trans "All Treatments" %}</button>
+  <button class="tt-tab" data-treatment="braces">
+    <i class="bi bi-bezier2"></i>{% trans "Braces & Aligners" %}</button>
+  <button class="tt-tab" data-treatment="veneers">
+    <i class="bi bi-gem"></i>{% trans "Veneers" %}</button>
+  <button class="tt-tab" data-treatment="whitening">
+    <i class="bi bi-brightness-high-fill"></i>{% trans "Whitening" %}</button>
+  <button class="tt-tab" data-treatment="implants">
+    <i class="bi bi-gear-wide-connected"></i>{% trans "Implants" %}</button>
+  <button class="tt-tab" data-treatment="makeover">
+    <i class="bi bi-stars"></i>{% trans "Smile Makeover" %}</button>
+  <button class="tt-tab" data-treatment="crowns">
+    <i class="bi bi-shield-fill-check"></i>{% trans "Crowns & Bridges" %}</button>
+  <button class="tt-tab" data-treatment="general">
+    <i class="bi bi-heart-pulse"></i>{% trans "General Care" %}</button>
+</div>
+
+<!-- Before / After Cards Grid with Interactive VS Sliders -->
+<div class="row g-4" id="baGrid">
+
+  <!-- 1. Braces -->
+  <div class="col-md-6 col-lg-4" data-treatment="braces">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/braces_after.png' %}" alt="After braces" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/braces_before.png' %}" alt="Before braces" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after braces">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Orthodontics — Braces" %}</div>
+        <div class="ba-title">{% trans "Aligned Smile in 18 Months" %}</div>
+        <p class="ba-desc">{% trans "Crooked and crowded teeth corrected with precision metal braces, resulting in a perfectly aligned, confident bite." %}</p>
+      </div>
     </div>
-
-    <!-- Before / After Cards Grid -->
-    <div class="row g-3" id="baGrid">
-
-      <!-- Braces -->
-      <div class="col-md-6 col-lg-4" data-treatment="braces">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/braces_before.png' %}"
-              alt="Before braces">
-            <img loading="lazy" src="{% static 'main/images/gallery/braces_after.png' %}"
-              alt="After braces">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Orthodontics — Braces" %}</div>
-            <div class="ba-title">{% trans "Aligned Smile in 18 Months" %}</div>
-            <p class="ba-desc">{% trans "Crooked and crowded teeth corrected with metal braces, resulting in a perfectly aligned, confident smile." %}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Veneers -->
-      <div class="col-md-6 col-lg-4" data-treatment="veneers">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/veneers_before.png' %}"
-              alt="Before veneers">
-            <img loading="lazy" src="{% static 'main/images/gallery/veneers_after.png' %}"
-              alt="After veneers">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Cosmetic Dentistry — Veneers" %}</div>
-            <div class="ba-title">{% trans "Hollywood Smile with Porcelain Veneers" %}</div>
-            <p class="ba-desc">{% trans "8 ultra-thin porcelain veneers placed in 2 visits — transforming discoloured, chipped teeth into a stunning Hollywood smile." %}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Whitening -->
-      <div class="col-md-6 col-lg-4" data-treatment="whitening">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/whitening_before.png' %}"
-              alt="Before whitening">
-            <img loading="lazy" src="{% static 'main/images/gallery/whitening_after.png' %}"
-              alt="After whitening">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Cosmetic — Teeth Whitening" %}</div>
-            <div class="ba-title">{% trans "8 Shades Whiter in One Session" %}</div>
-            <p class="ba-desc">{% trans "Professional in-office Zoom! whitening delivered an 8-shade improvement in a single 90-minute appointment." %}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Implants -->
-      <div class="col-md-6 col-lg-4" data-treatment="implants">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/implants_before.png' %}"
-              alt="Before implant">
-            <img loading="lazy" src="{% static 'main/images/gallery/implants_after.png' %}"
-              alt="After implant">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Restorative — Dental Implant" %}</div>
-            <div class="ba-title">{% trans "Natural-Looking Tooth Replacement" %}</div>
-            <p class="ba-desc">{% trans "Single dental implant with ceramic crown placed seamlessly to replace a missing molar — indistinguishable from natural teeth." %}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Smile Makeover -->
-      <div class="col-md-6 col-lg-4" data-treatment="makeover">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/makeover_before.png' %}"
-              alt="Before smile makeover">
-            <img loading="lazy" src="{% static 'main/images/gallery/makeover_after.png' %}"
-              alt="After smile makeover">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Full Smile Makeover" %}</div>
-            <div class="ba-title">{% trans "Complete Smile Transformation" %}</div>
-            <p class="ba-desc">{% trans "A comprehensive smile makeover combining gum contouring, whitening, and 6 veneers to create a perfectly harmonious, magazine-worthy smile." %}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Crowns & Bridges -->
-      <div class="col-md-6 col-lg-4" data-treatment="crowns">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/crowns_before.png' %}"
-              alt="Before crowns">
-            <img loading="lazy" src="{% static 'main/images/gallery/crowns_after.png' %}"
-              alt="After crowns">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Restorative — Crowns & Bridge" %}</div>
-            <div class="ba-title">{% trans "Same-Day Ceramic Crown" %}</div>
-            <p class="ba-desc">{% trans "CAD/CAM same-day crown fabricated and placed in a single visit — perfectly matched, strong, and beautiful." %}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Aligners -->
-      <div class="col-md-6 col-lg-4" data-treatment="braces">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/aligners_before.png' %}"
-              alt="Before aligners" >
-            <img loading="lazy" src="{% static 'main/images/gallery/aligners_after.png' %}"
-              alt="After aligners">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Orthodontics — Clear Aligners" %}</div>
-            <div class="ba-title">{% trans "Invisible Aligner Journey" %}</div>
-            <p class="ba-desc">{% trans "12 months of clear aligner treatment delivered a straight, beautiful smile — without a single visible brace." %}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Veneers 2 -->
-      <div class="col-md-6 col-lg-4" data-treatment="veneers">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/composite_veneers_before.png' %}"
-              alt="Before composite veneers" >
-            <img loading="lazy" src="{% static 'main/images/gallery/composite_veneers_after.png' %}"
-              alt="After composite veneers">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Cosmetic — Composite Veneers" %}</div>
-            <div class="ba-title">{% trans "Instant Smile Makeover — One Visit" %}</div>
-            <p class="ba-desc">{% trans "Composite resin veneers shaped and polished in a single appointment to close gaps and perfect smile symmetry." %}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Makeover 2 -->
-      <div class="col-md-6 col-lg-4" data-treatment="makeover">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/full_arch_before.png' %}"
-              alt="Before full arch" >
-            <img loading="lazy" src="{% static 'main/images/gallery/full_arch_after.png' %}"
-              alt="After full arch">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Full Arch Rehabilitation" %}</div>
-            <div class="ba-title">{% trans "Full-Mouth Reconstruction" %}</div>
-            <p class="ba-desc">{% trans "A complex full-arch case combining implants, crowns, and gum treatment — restoring both function and a youthful, radiant smile." %}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- General Dentistry - Cavity -->
-      <div class="col-md-6 col-lg-4" data-treatment="general">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/cavity_before.png' %}"
-              alt="Before cavity filling">
-            <img loading="lazy" src="{% static 'main/images/gallery/cavity_after.png' %}"
-              alt="After cavity filling">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Restorative — Tooth-Colored Filling" %}</div>
-            <div class="ba-title">{% trans "Seamless Decay Removal" %}</div>
-            <p class="ba-desc">{% trans "A deep cavity was cleaned and perfectly restored using composite resin, halting decay and blending naturally with the tooth." %}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- General Dentistry - Cleaning -->
-      <div class="col-md-6 col-lg-4" data-treatment="general">
-        <div class="ba-card">
-          <div class="ba-images">
-            <img loading="lazy" src="{% static 'main/images/gallery/teeth_cleaning_before.png' %}"
-              alt="Before teeth cleaning">
-            <img loading="lazy" src="{% static 'main/images/gallery/teeth_cleaning_after.png' %}"
-              alt="After teeth cleaning">
-            <div class="ba-divider">
-              <div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div>
-            </div>
-            <span class="ba-label before">{% trans "Before" %}</span>
-            <span class="ba-label after">{% trans "After" %}</span>
-          </div>
-          <div class="ba-body">
-            <div class="ba-treatment">{% trans "Preventative — Scaling & Polishing" %}</div>
-            <div class="ba-title">{% trans "Professional Deep Clean" %}</div>
-            <p class="ba-desc">{% trans "Hardened tartar and plaque build-up were professionally removed to restore gum health and reveal a brighter, healthier smile." %}</p>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /row#baGrid -->
   </div>
-</section>
 
+  <!-- 2. Veneers -->
+  <div class="col-md-6 col-lg-4" data-treatment="veneers">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/veneers_after.png' %}" alt="After veneers" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/veneers_before.png' %}" alt="Before veneers" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after porcelain veneers">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Cosmetic Dentistry — Veneers" %}</div>
+        <div class="ba-title">{% trans "Hollywood Smile with Porcelain Veneers" %}</div>
+        <p class="ba-desc">{% trans "8 ultra-thin custom porcelain veneers placed in 2 visits — transforming discoloured, chipped teeth into a stunning Hollywood smile." %}</p>
+      </div>
+    </div>
+  </div>
 
+  <!-- 3. Whitening -->
+  <div class="col-md-6 col-lg-4" data-treatment="whitening">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/whitening_after.png' %}" alt="After whitening" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/whitening_before.png' %}" alt="Before whitening" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after teeth whitening">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Cosmetic — Teeth Whitening" %}</div>
+        <div class="ba-title">{% trans "8 Shades Whiter in One Session" %}</div>
+        <p class="ba-desc">{% trans "Professional in-office Zoom! LED whitening delivered an 8-shade improvement in a single 90-minute appointment." %}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Implants -->
+  <div class="col-md-6 col-lg-4" data-treatment="implants">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/implants_after.png' %}" alt="After implant" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/implants_before.png' %}" alt="Before implant" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after dental implant">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Restorative — Dental Implant" %}</div>
+        <div class="ba-title">{% trans "Natural-Looking Tooth Replacement" %}</div>
+        <p class="ba-desc">{% trans "Single titanium implant with customized ceramic crown placed seamlessly to replace a missing tooth with natural chewing power." %}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Smile Makeover -->
+  <div class="col-md-6 col-lg-4" data-treatment="makeover">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/makeover_after.png' %}" alt="After smile makeover" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/makeover_before.png' %}" alt="Before smile makeover" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after smile makeover">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Full Smile Makeover" %}</div>
+        <div class="ba-title">{% trans "Complete Smile Transformation" %}</div>
+        <p class="ba-desc">{% trans "A comprehensive aesthetic plan combining laser gum contouring, whitening, and 6 veneers for natural facial harmony." %}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Crowns & Bridges -->
+  <div class="col-md-6 col-lg-4" data-treatment="crowns">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/crowns_after.png' %}" alt="After crowns" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/crowns_before.png' %}" alt="Before crowns" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after ceramic crowns">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Restorative — Crowns & Bridge" %}</div>
+        <div class="ba-title">{% trans "Same-Day Ceramic Crown" %}</div>
+        <p class="ba-desc">{% trans "CAD/CAM all-ceramic crown fabricated and bonded in a single visit — seamlessly matched in shade, strength, and translucency." %}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Clear Aligners -->
+  <div class="col-md-6 col-lg-4" data-treatment="braces">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/aligners_after.png' %}" alt="After clear aligners" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/aligners_before.png' %}" alt="Before clear aligners" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after clear aligners">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Orthodontics — Clear Aligners" %}</div>
+        <div class="ba-title">{% trans "Invisible Aligner Journey" %}</div>
+        <p class="ba-desc">{% trans "12 months of customized clear aligner trays delivered a straight, radiant smile — completely discreet without wires." %}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Composite Veneers / Edge Bonding -->
+  <div class="col-md-6 col-lg-4" data-treatment="veneers">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/composite_veneers_after.png' %}" alt="After composite veneers" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/composite_veneers_before.png' %}" alt="Before composite veneers" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after composite veneers">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Cosmetic — Composite Bonding" %}</div>
+        <div class="ba-title">{% trans "Instant Smile Makeover — One Visit" %}</div>
+        <p class="ba-desc">{% trans "Direct composite resin hand-layered and sculpted to close gaps, repair chips, and perfect midline symmetry in 90 minutes." %}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Severe Orthodontic Alignment -->
+  <div class="col-md-6 col-lg-4" data-treatment="braces">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'images/ortho_after.png' %}" alt="After severe orthodontic alignment" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'images/ortho_before.png' %}" alt="Before severe orthodontic alignment" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after orthodontic treatment">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Orthodontics — Severe Crowding" %}</div>
+        <div class="ba-title">{% trans "Deep Bite & Crowding Correction" %}</div>
+        <p class="ba-desc">{% trans "Comprehensive orthodontic realignment creating a wide, aesthetic arch and restoring normal chewing function." %}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. Full Arch Rehabilitation -->
+  <div class="col-md-6 col-lg-4" data-treatment="makeover">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/full_arch_after.png' %}" alt="After full arch" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/full_arch_before.png' %}" alt="Before full arch" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after full arch reconstruction">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Full Arch Rehabilitation" %}</div>
+        <div class="ba-title">{% trans "Full-Mouth Reconstruction" %}</div>
+        <p class="ba-desc">{% trans "Complex full-arch restoration combining implants, fixed zirconia bridge, and gum health therapy for lifelong confidence." %}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Cavity / Tooth-Colored Restoration -->
+  <div class="col-md-6 col-lg-4" data-treatment="general">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/cavity_after.png' %}" alt="After cavity filling" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/cavity_before.png' %}" alt="Before cavity filling" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after filling">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Restorative — Composite Filling" %}</div>
+        <div class="ba-title">{% trans "Seamless Decay Removal" %}</div>
+        <p class="ba-desc">{% trans "Deep dental decay cleaned and restored with nano-hybrid composite, perfectly matching natural tooth anatomy and shade." %}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. Periodontal Gum Health & Scaling -->
+  <div class="col-md-6 col-lg-4" data-treatment="general">
+    <div class="ba-card">
+      <div class="ba-slider-container" data-ba-slider>
+        <div class="ba-layer-after">
+          <img src="{% static 'main/images/gallery/teeth_cleaning_after.png' %}" alt="After teeth cleaning" loading="lazy">
+          <span class="ba-label after">{% trans "After" %}</span>
+        </div>
+        <div class="ba-layer-before" style="width: 50%;">
+          <img src="{% static 'main/images/gallery/teeth_cleaning_before.png' %}" alt="Before teeth cleaning" loading="lazy">
+          <span class="ba-label before">{% trans "Before" %}</span>
+        </div>
+        <div class="ba-slider-divider" style="left: 50%;">
+          <div class="ba-vs-circle">
+            <span class="ba-vs-text">VS</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range-slider" aria-label="Slide to compare before and after teeth scaling">
+      </div>
+      <div class="ba-body">
+        <div class="ba-treatment">{% trans "Preventative — Scaling & Polishing" %}</div>
+        <div class="ba-title">{% trans "Ultrasonic Stain & Tartar Removal" %}</div>
+        <p class="ba-desc">{% trans "Subgingival calculus and stubborn tobacco/coffee stains removed with ultrasonic scaling to restore fresh breath and gum pinkness." %}</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /row#baGrid -->
+
+<!-- Comprehensive Styles for Interactive VS Comparison Sliders -->
+<style>
+  /* ── Interactive VS Before/After Slider Engine ── */
+  .ba-slider-container {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    user-select: none;
+    touch-action: pan-y;
+    background: #081C33;
+    cursor: ew-resize;
+  }
+
+  .ba-layer-after,
+  .ba-layer-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .ba-layer-after {
+    width: 100%;
+    z-index: 1;
+  }
+
+  .ba-layer-before {
+    z-index: 2;
+    border-right: 2px solid #FFFFFF;
+    transition: width 0.05s linear;
+  }
+
+  .ba-slider-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  /* Slider Divider Line */
+  .ba-slider-divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #FFFFFF;
+    z-index: 3;
+    pointer-events: none;
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.45);
+    transition: left 0.05s linear;
+  }
+
+  /* Center White Circular Handle with "VS" Keyword */
+  .ba-vs-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 38px;
+    height: 38px;
+    background: #FFFFFF;
+    border: 2.5px solid #0284C7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(8, 28, 51, 0.35);
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .ba-slider-container:hover .ba-vs-circle,
+  .ba-slider-container:active .ba-vs-circle {
+    transform: translate(-50%, -50%) scale(1.15);
+    background: #0284C7;
+  }
+
+  .ba-vs-text {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: #0284C7;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+
+  .ba-slider-container:hover .ba-vs-text,
+  .ba-slider-container:active .ba-vs-text {
+    color: #FFFFFF;
+  }
+
+  /* Transparent Range Slider Covering Full Container for Touch & Mouse Drag */
+  .ba-range-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: ew-resize;
+    z-index: 4;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .ba-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 48px;
+    height: 240px;
+    cursor: ew-resize;
+  }
+
+  .ba-range-slider::-moz-range-thumb {
+    width: 48px;
+    height: 240px;
+    cursor: ew-resize;
+    border: 0;
+  }
+
+  /* Before / After Floating Badges */
+  .ba-label {
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 4px 12px;
+    position: absolute;
+    bottom: 12px;
+    border-radius: 50px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .ba-label.before {
+    left: 12px;
+    background: rgba(8, 28, 51, 0.88);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .ba-label.after {
+    right: 12px;
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  /* Treatment category tabs */
+  .treatment-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .tt-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid #E2E8F0;
+    background: #FFFFFF;
+    border-radius: 50px;
+    padding: 9px 20px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+  }
+
+  .tt-tab:hover,
+  .tt-tab.active {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    border-color: #0284C7;
+    color: #FFFFFF;
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35);
+    transform: translateY(-2px);
+  }
+
+  /* Card and Typography */
+  .ba-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.06);
+    border: 1.5px solid #E2E8F0;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .ba-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px -5px rgba(2, 132, 199, 0.22);
+    border-color: #0284C7;
+  }
+
+  .ba-body {
+    padding: 18px 20px 22px;
+    background: linear-gradient(180deg, #F8FAFC 0%, #F0F9FF 100%);
+    border-top: 1.5px solid rgba(2, 132, 199, 0.15);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ba-treatment {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #0284C7;
+    background: #FFFFFF;
+    padding: 3px 12px;
+    border-radius: 50px;
+    border: 1px solid rgba(2, 132, 199, 0.25);
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.08);
+    margin-bottom: 8px;
+  }
+
+  .ba-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0B2545;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  .ba-desc {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 0;
+    margin-top: auto;
+  }
+</style>
+
+<!-- Standalone JS Engine for Interactive VS Sliders and Tabs -->
+<script>
+  (function () {
+    function initBaSliders() {
+      const sliders = document.querySelectorAll('[data-ba-slider]');
+      sliders.forEach(slider => {
+        const input = slider.querySelector('.ba-range-slider');
+        const beforeLayer = slider.querySelector('.ba-layer-before');
+        const divider = slider.querySelector('.ba-slider-divider');
+        const beforeImg = beforeLayer ? beforeLayer.querySelector('img') : null;
+
+        function updateSlider(pct) {
+          pct = Math.max(0, Math.min(100, pct));
+          if (beforeLayer) beforeLayer.style.width = pct + '%';
+          if (divider) divider.style.left = pct + '%';
+          if (beforeImg) {
+            const containerWidth = slider.offsetWidth || slider.clientWidth || 360;
+            beforeImg.style.width = containerWidth + 'px';
+          }
+        }
+
+        if (input) {
+          input.addEventListener('input', function (e) {
+            updateSlider(parseFloat(e.target.value));
+          });
+          input.addEventListener('change', function (e) {
+            updateSlider(parseFloat(e.target.value));
+          });
+        }
+
+        // Initialize at 50%
+        updateSlider(50);
+
+        // Update on window resize to ensure full-width image rendering
+        window.addEventListener('resize', function () {
+          const currentVal = input ? parseFloat(input.value) : 50;
+          updateSlider(currentVal);
+        });
+      });
+
+      // Filter tabs handler
+      const tabs = document.querySelectorAll('#treatmentTabs .tt-tab');
+      const cards = document.querySelectorAll('#baGrid [data-treatment]');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+          tabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          const treatment = this.getAttribute('data-treatment');
+
+          cards.forEach(card => {
+            const match = treatment === 'all' || card.getAttribute('data-treatment') === treatment;
+            card.style.display = match ? 'block' : 'none';
+          });
+
+          // Re-trigger layout sizing for visible sliders
+          setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+          }, 50);
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBaSliders);
+    } else {
+      initBaSliders();
+    }
+  })();
+</script>
