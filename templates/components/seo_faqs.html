@@ -1,35 +1,109 @@
 {% load static %}
+{% load i18n %}
 {% if faqs %}
 <!-- SEO FAQs Section -->
-<section class="section-py position-relative mt-5 mb-5" style="background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.9)), url('{% static "images/rct_feat_digital.png" %}'); background-size: cover; background-position: center; background-attachment: fixed; border-radius: 20px;">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="text-center mb-5">
-                    <h2 class="section-heading fw-bolder text-dark" style="font-family: var(--cf-font-head); color: var(--cf-primary-dark);">Frequently Asked Questions</h2>
-                </div>
-                <div class="accordion" id="faqAccordion">
-                    {% for faq in faqs %}
-                    <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
-                        <h3 class="accordion-header" id="heading{{ faq.id }}">
-                            <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.id }}" aria-expanded="false" aria-controls="collapse{{ faq.id }}">
-                                <i class="bi bi-question-circle me-3 fs-4" style="color: var(--cf-primary);"></i> {{ faq.question }}
-                            </button>
-                        </h3>
-                        <div id="collapse{{ faq.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ faq.id }}" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                                {{ faq.answer|safe }}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+<section class="cf-faq-section py-5 my-4" id="faqAccordionSection">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        
+        <!-- Header -->
+        <div class="text-center mb-5">
+          <div class="cf-eyebrow-badge mb-2">
+            <i class="bi bi-question-circle-fill"></i> {% trans "FREQUENTLY ASKED QUESTIONS" %}
+          </div>
+          <h2 class="cf-section-title mb-2">
+            {% trans "Got Questions?" %} <span class="accent">{% trans "We Have Answers." %}</span>
+          </h2>
+          <p class="text-muted fs-6 mb-0" style="max-width: 600px; margin: 0 auto;">
+            {% trans "Everything you need to know about dental treatments, safety, appointments, and pricing at CareFirst Dental Clinic." %}
+          </p>
         </div>
+
+        <!-- Accordion -->
+        <div class="accordion cf-custom-accordion" id="cfFaqAccordion">
+          {% for faq in faqs %}
+          <div class="accordion-item cf-faq-item mb-3 rounded-4 overflow-hidden border">
+            <h3 class="accordion-header" id="heading{{ faq.id }}">
+              <button class="accordion-button cf-faq-button {% if not forloop.first %}collapsed{% endif %} bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.id }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ faq.id }}">
+                <span class="cf-faq-q-icon me-3">
+                  <i class="bi bi-patch-question-fill text-primary fs-5"></i>
+                </span>
+                <span class="cf-faq-question-text flex-grow-1">{{ faq.question }}</span>
+              </button>
+            </h3>
+            <div id="collapse{{ faq.id }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{ faq.id }}" data-bs-parent="#cfFaqAccordion">
+              <div class="accordion-body cf-faq-body bg-white text-secondary px-4 px-md-5 pb-4 pt-1">
+                <div class="cf-faq-answer-inner border-top pt-3">
+                  {{ faq.answer|safe }}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Still have questions footer CTA -->
+        <div class="text-center mt-5 p-4 rounded-4 bg-white border shadow-sm d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+          <div class="text-start">
+            <h5 class="fw-bold mb-1 text-dark" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">{% trans "Still have questions?" %}</h5>
+            <p class="text-muted small mb-0">{% trans "Our friendly reception team is ready to assist you on WhatsApp or phone." %}</p>
+          </div>
+          <div class="d-flex gap-2">
+            <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
+              <i class="bi bi-whatsapp"></i> WhatsApp Us
+            </a>
+            <a href="tel:+9779807464136" class="btn btn-outline-primary rounded-pill px-3 py-2 fw-bold d-inline-flex align-items-center gap-1.5">
+              <i class="bi bi-telephone-fill"></i> 980-7464136
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- FAQ Schema.org JSON-LD -->
+<!-- Scoped Styles for FAQ Accordion -->
+<style>
+  .cf-faq-item {
+    border: 1.5px solid #E2E8F0 !important;
+    box-shadow: 0 4px 14px rgba(11, 37, 69, 0.04);
+    transition: all 0.25s ease;
+    background: #FFFFFF;
+  }
+  .cf-faq-item:hover {
+    border-color: #0284C7 !important;
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.12);
+  }
+  .cf-faq-button {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-size: 1.08rem;
+    line-height: 1.4;
+    color: #0B2545 !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease;
+  }
+  .cf-faq-button:not(.collapsed) {
+    background: linear-gradient(180deg, #F0F7FF 0%, #FFFFFF 100%) !important;
+    color: #0284C7 !important;
+  }
+  .cf-faq-button::after {
+    background-size: 1.1rem;
+    transition: transform 0.25s ease;
+  }
+  .cf-faq-body {
+    font-family: var(--cf-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: #475569 !important;
+  }
+  .cf-faq-answer-inner {
+    border-color: #EEF2F6 !important;
+  }
+</style>
+
+<!-- FAQ Schema.org JSON-LD for Google Search Rich Snippets -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
