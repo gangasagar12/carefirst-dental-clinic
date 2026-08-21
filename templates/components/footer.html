@@ -34,12 +34,12 @@
 
           <!-- Social Links -->
           <h6 class="text-white fw-bold mb-3" style="font-size: 0.9rem; letter-spacing: 0.5px; text-transform: uppercase;">{% trans "Connect With Us" %}</h6>
-          <div class="footer-social mb-3">
-            <a href="https://wa.me/9779807464136" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="bg-whatsapp" style="background-color: #25D366; color: white;"><i class="bi bi-whatsapp"></i></a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <div class="footer-social mb-3 d-flex align-items-center flex-wrap gap-2">
+            <a href="https://wa.me/9779807464136" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="cf-foot-social cf-social-wa" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="cf-foot-social cf-social-fb" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="cf-foot-social cf-social-ig" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="cf-foot-social cf-social-tt" title="TikTok"><i class="bi bi-tiktok"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="cf-foot-social cf-social-yt" title="YouTube"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
 
@@ -180,24 +180,52 @@
     color: #38BDF8;
     padding-left: 5px;
   }
-  .footer-social a {
+  .footer-social .cf-foot-social {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #FFFFFF;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    margin-right: 8px;
-    transition: all 0.3s ease;
-    font-size: 1.05rem;
+    color: #FFFFFF !important;
     text-decoration: none;
+    font-size: 1.2rem;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, filter 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   }
-  .footer-social a:hover {
-    background: #0284C7;
-    transform: translateY(-3px);
+
+  .footer-social .cf-social-wa {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
   }
+  .footer-social .cf-social-fb {
+    background: linear-gradient(135deg, #1877F2 0%, #0D65D9 100%) !important;
+    box-shadow: 0 4px 14px rgba(24, 119, 242, 0.35);
+  }
+  .footer-social .cf-social-ig {
+    background: linear-gradient(45deg, #F58529 0%, #FEDA77 15%, #DD2A7B 50%, #8134AF 80%, #515BD4 100%) !important;
+    box-shadow: 0 4px 14px rgba(221, 42, 123, 0.35);
+  }
+  .footer-social .cf-social-tt {
+    background: linear-gradient(135deg, #000000 0%, #1E232A 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  }
+  .footer-social .cf-social-yt {
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%) !important;
+    box-shadow: 0 4px 14px rgba(255, 0, 0, 0.4);
+  }
+
+  .footer-social .cf-foot-social:hover {
+    transform: translateY(-4px) scale(1.08);
+    filter: brightness(1.1);
+  }
+  .footer-social .cf-social-wa:hover { box-shadow: 0 8px 22px rgba(37, 211, 102, 0.55) !important; }
+  .footer-social .cf-social-fb:hover { box-shadow: 0 8px 22px rgba(24, 119, 242, 0.55) !important; }
+  .footer-social .cf-social-ig:hover { box-shadow: 0 8px 22px rgba(221, 42, 123, 0.55) !important; }
+  .footer-social .cf-social-tt:hover { box-shadow: 0 8px 22px rgba(255, 255, 255, 0.25) !important; }
+  .footer-social .cf-social-yt:hover { box-shadow: 0 8px 22px rgba(255, 0, 0, 0.6) !important; }
+
   .footer-location-container {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
