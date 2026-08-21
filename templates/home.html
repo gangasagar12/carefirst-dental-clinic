@@ -107,8 +107,8 @@
   /* ── 1. HERO SECTION ── */
   .cf-hero-wrapper {
     position: relative;
-    padding: 130px 0 100px;
-    min-height: 88vh;
+    padding: 150px 0 140px;
+    min-height: 92vh;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -896,34 +896,37 @@
           <span style="color: #38BDF8;">{% trans "Beautiful & Confident" %}</span> {% trans "Smiles." %}
         </h1>
 
-        <p class="cf-hero-lead">
+        <p class="cf-hero-lead mb-4">
           {% trans "Experience world-class, pain-free dentistry in Shankhamul, Kathmandu. From dental implants to cosmetic smile makeovers, our certified specialists deliver gentle and precise treatments." %}
         </p>
 
-        <!-- Checklist -->
-        <div class="cf-hero-checklist">
-          <div class="cf-hero-check-item">
-            <i class="bi bi-check-circle-fill"></i> {% trans "NMC Certified Specialists" %}
-          </div>
-          <div class="cf-hero-check-item">
-            <i class="bi bi-check-circle-fill"></i> {% trans "100% Pain-Free Protocols" %}
-          </div>
-          <div class="cf-hero-check-item">
-            <i class="bi bi-check-circle-fill"></i> {% trans "Class-B Autoclave Sterilization" %}
-          </div>
-          <div class="cf-hero-check-item">
-            <i class="bi bi-check-circle-fill"></i> {% trans "Open Daily: 7:30 AM – 7:30 PM" %}
-          </div>
-        </div>
-
         <!-- Hero CTAs -->
-        <div class="d-flex flex-wrap gap-3 align-items-center">
+        <div class="d-flex flex-wrap gap-3 align-items-center mb-3">
           <a href="{% url 'appointments:book' %}" class="cf-btn-primary">
             <i class="bi bi-calendar-check-fill"></i> {% trans "Book Consultation" %}
           </a>
           <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="cf-btn-outline">
             <i class="bi bi-whatsapp text-success"></i> {% trans "WhatsApp: 980-7464136" %}
           </a>
+        </div>
+
+        <!-- Compact 2-Line Google Review Trust Badge -->
+        <div class="cf-hero-google-trust d-inline-flex align-items-center gap-3 p-3 px-4 rounded-4 mt-4" style="background: rgba(8, 28, 51, 0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);">
+          <div class="d-flex align-items-center gap-1 text-warning fs-5">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </div>
+          <div class="cf-hero-trust-text text-start">
+            <div class="text-white fw-bold small">
+              <span class="text-warning">5.0 Rating</span> · <a href="https://maps.google.com/?cid=8403623970546070943" target="_blank" rel="noopener" class="text-white text-decoration-underline fw-bold">{% if google_business %}{{ google_business.review_count|default:34 }}{% else %}34{% endif %} {% trans "Google Reviews" %}</a>
+            </div>
+            <div class="text-white-50" style="font-size: 0.84rem;">
+              {% trans "Verified patient feedback on Google Maps" %}
+            </div>
+          </div>
         </div>
       </div>
 
