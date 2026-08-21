@@ -7,7 +7,7 @@
 <section id="patient-stories-reviews" class="psr-main-section" aria-labelledby="psrMainTitle">
   <div class="container">
     
-    <!-- 1. SECTION HEADER & IMMEDIATE GOOGLE TRUST CREDIBILITY -->
+    <!-- 1. SECTION HEADER -->
     <div class="psr-header text-center mx-auto">
       <div class="psr-eyebrow-pill mb-3">
         <i class="bi bi-shield-check"></i>
@@ -17,155 +17,102 @@
         {% trans "Exceptional care, in our patients' own words." %}
       </h2>
       <p class="psr-subtitle">
-        {% trans "From independent Google ratings to real patient treatment experiences, discover why thousands of patients trust CareFirst Dental Clinic in Kathmandu." %}
+        {% trans "From independent Google ratings to real patient experiences, discover why thousands of patients trust CareFirst Dental Clinic in Kathmandu." %}
       </p>
-
-      <!-- Trust Summary Badge -->
-      <div class="psr-trust-badge d-inline-flex align-items-center justify-content-center flex-wrap gap-3 mt-3">
-        <div class="psr-stars-rating d-flex align-items-center gap-2">
-          <div class="psr-stars text-warning" aria-label="5 out of 5 stars">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-          </div>
-          <span class="psr-rating-number fw-bold text-dark fs-5">5.0</span>
-        </div>
-        <span class="psr-trust-dot">•</span>
-        <span class="psr-review-count text-muted fw-semibold">
-          {% if google_business %}{{ google_business.review_count|default:27 }}{% else %}27{% endif %} {% trans "Google Reviews" %}
-        </span>
-        <span class="psr-trust-dot">•</span>
-        <a href="https://maps.google.com/?cid=8403623970546070943" target="_blank" rel="noopener" class="psr-google-link fw-bold text-decoration-none">
-          {% trans "Read All Google Reviews" %} <i class="bi bi-arrow-up-right ms-1"></i>
-        </a>
-      </div>
     </div>
 
     <!-- ============================================================= -->
-    <!-- 2. GOOGLE REVIEWS (INDEPENDENT THIRD-PARTY SOCIAL PROOF)       -->
+    <!-- 2. AUTHENTIC GOOGLE REVIEWS TRUST SHOWCASE CARD               -->
     <!-- ============================================================= -->
-    <div class="psr-google-wrapper mt-5">
-      <div class="psr-sub-badge d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
-        <div class="d-flex align-items-center gap-2">
-          <svg class="psr-g-icon" width="18" height="18" viewBox="0 0 24 24">
-            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
-            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
-            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.17 0 9.99 0 12s.45 3.83 1.25 5.42l4.03-3.15z"/>
-            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
-          </svg>
-          <span class="fw-bold text-uppercase psr-label-text">{% trans "Google Reviews" %}</span>
-          <span class="badge bg-light text-secondary border">{% trans "Independent Third-Party Verification" %}</span>
-        </div>
-        <a href="https://search.google.com/local/writereview?placeid=ChIJceVAcnkZ6zkRnzVbFnqrn3Q" target="_blank" rel="noopener" class="psr-write-review-btn">
-          <i class="bi bi-pencil-square me-1"></i> {% trans "Leave a Review" %}
-        </a>
-      </div>
-
-      <!-- Single Featured Review Carousel Display -->
-      <div class="psr-carousel-card position-relative">
-        <div id="psrGoogleCarousel" class="carousel slide carousel-fade" data-bs-ride="false" data-bs-touch="true">
-          <div class="carousel-inner">
-            
-            {% if google_reviews %}
-              {% for review in google_reviews %}
-              <div class="carousel-item {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}">
-                <div class="psr-single-review">
-                  <div class="psr-review-rating mb-3">
-                    {% for i in "12345" %}
-                      <i class="bi bi-star-fill text-warning"></i>
-                    {% endfor %}
-                  </div>
-                  
-                  <blockquote class="psr-review-quote">
-                    "{{ review.review_text|default:'Excellent dental care and truly professional service by Dr. Subash and the CareFirst team.' }}"
-                  </blockquote>
-
-                  <div class="psr-reviewer-meta d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4 pt-3 border-top">
-                    <div class="d-flex align-items-center gap-3">
-                      {% if review.author_photo and not 'random' in review.author_photo %}
-                        <img src="{{ review.author_photo }}" alt="{{ review.author_name }}" class="psr-avatar-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="psr-avatar-initials" style="display:none;">
-                          {{ review.author_name|first|upper }}{{ review.author_name|slice:"1:2"|upper }}
-                        </div>
-                      {% else %}
-                        <div class="psr-avatar-initials">
-                          {{ review.author_name|first|upper }}{{ review.author_name|slice:"1:2"|upper }}
-                        </div>
-                      {% endif %}
-                      <div class="text-start">
-                        <h4 class="psr-author-name mb-0">{{ review.author_name }}</h4>
-                        <div class="psr-author-sub d-flex align-items-center gap-2">
-                          <span class="text-muted small">Google Review · {{ review.relative_time|default:"Verified on Google" }}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="psr-g-badge d-inline-flex align-items-center gap-1">
-                        <i class="bi bi-google text-primary"></i>
-                        <span class="small fw-semibold text-secondary">{% trans "G Google Review" %}</span>
-                      </span>
-                      <a href="https://maps.google.com/?cid=8403623970546070943" target="_blank" rel="noopener" class="psr-view-g-link small text-decoration-none">
-                        {% trans "View on Google" %} <i class="bi bi-arrow-right"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {% endfor %}
-            {% else %}
-              <div class="carousel-item active" data-index="0">
-                <div class="psr-single-review">
-                  <div class="psr-review-rating mb-3">
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star-fill text-warning"></i>
-                  </div>
-                  <blockquote class="psr-review-quote">
-                    "The implants look and feel exactly like my natural teeth. I can eat anything now, and my confidence has completely changed. Best dental team in Kathmandu!"
-                  </blockquote>
-                  <div class="psr-reviewer-meta d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4 pt-3 border-top">
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="psr-avatar-initials">PA</div>
-                      <div>
-                        <h4 class="psr-author-name mb-0">Prakash Adhikari</h4>
-                        <div class="psr-author-sub">
-                          <span class="text-muted small">Google Review · 2 months ago</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="psr-g-badge"><i class="bi bi-google text-primary"></i> <span class="small fw-semibold text-secondary">G Google Review</span></span>
-                      <a href="https://maps.app.goo.gl/yJ6h1K6x8Z5UoU849" target="_blank" rel="noopener" class="psr-view-g-link small">View on Google &rarr;</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {% endif %}
-
+    <div class="psr-google-showcase mt-5">
+      <div class="row align-items-center g-4 p-4 p-md-5">
+        
+        <!-- Left Column: Big Google Rating & Trust Seal -->
+        <div class="col-lg-5 text-center text-lg-start border-end-lg pe-lg-4">
+          <div class="d-inline-flex align-items-center gap-2 mb-3 bg-white px-3 py-1.5 rounded-pill shadow-sm border">
+            <svg class="psr-g-icon" width="20" height="20" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.17 0 9.99 0 12s.45 3.83 1.25 5.42l4.03-3.15z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+            <span class="fw-bold text-dark small text-uppercase letter-spacing-1">Google Rating</span>
+            <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">100% Verified</span>
           </div>
 
-          <!-- Minimal Navigation: ← 01 / 07 → -->
-          <div class="psr-nav-container d-flex align-items-center justify-content-center gap-4 mt-4">
-            <button class="psr-nav-arrow psr-nav-prev" type="button" data-bs-target="#psrGoogleCarousel" data-bs-slide="prev" aria-label="Previous Review">
-              <i class="bi bi-arrow-left"></i>
-            </button>
-
-            <div class="psr-nav-counter fw-bold" id="psrReviewCounter">
-              <span id="psrCurrentSlide">01</span>
-              <span class="text-muted mx-1">/</span>
-              <span class="text-muted" id="psrTotalSlides">{% if google_reviews %}{{ google_reviews|length|stringformat:"02d" }}{% else %}01{% endif %}</span>
+          <div class="d-flex align-items-baseline justify-content-center justify-content-lg-start gap-3 mb-2">
+            <span class="psr-big-rating">5.0</span>
+            <div>
+              <div class="psr-big-stars text-warning mb-1" aria-label="5.0 out of 5 stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="text-muted small mb-0 fw-semibold">
+                {% trans "Based on" %} <strong class="text-dark">{% if google_business %}{{ google_business.review_count|default:34 }}{% else %}34{% endif %}+ {% trans "Google Reviews" %}</strong>
+              </p>
             </div>
+          </div>
 
-            <button class="psr-nav-arrow psr-nav-next" type="button" data-bs-target="#psrGoogleCarousel" data-bs-slide="next" aria-label="Next Review">
-              <i class="bi bi-arrow-right"></i>
-            </button>
+          <p class="psr-clinic-loc text-secondary mb-0">
+            <i class="bi bi-geo-alt-fill text-danger me-1"></i> Carefirst Dental Clinic · Shankhamul, Kathmandu
+          </p>
+        </div>
+
+        <!-- Right Column: Key Trust Highlights & Google Maps Direct Actions -->
+        <div class="col-lg-7 ps-lg-4">
+          <div class="row g-3 mb-4">
+            <div class="col-sm-6">
+              <div class="psr-feature-pill d-flex align-items-center gap-2 p-2.5 rounded-3">
+                <i class="bi bi-patch-check-fill text-success fs-5"></i>
+                <div>
+                  <h6 class="mb-0 fw-bold fs-6">{% trans "100% 5-Star Experience" %}</h6>
+                  <span class="text-muted small">{% trans "Consistent top clinical ratings" %}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="psr-feature-pill d-flex align-items-center gap-2 p-2.5 rounded-3">
+                <i class="bi bi-shield-lock-fill text-primary fs-5"></i>
+                <div>
+                  <h6 class="mb-0 fw-bold fs-6">{% trans "Sterile Class-B Hygiene" %}</h6>
+                  <span class="text-muted small">{% trans "International sterilization protocols" %}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="psr-feature-pill d-flex align-items-center gap-2 p-2.5 rounded-3">
+                <i class="bi bi-heart-pulse-fill text-danger fs-5"></i>
+                <div>
+                  <h6 class="mb-0 fw-bold fs-6">{% trans "Gentle & Painless" %}</h6>
+                  <span class="text-muted small">{% trans "Comfortable modern dentistry" %}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="psr-feature-pill d-flex align-items-center gap-2 p-2.5 rounded-3">
+                <i class="bi bi-person-badge-fill text-warning-emphasis fs-5"></i>
+                <div>
+                  <h6 class="mb-0 fw-bold fs-6">Dr. Subash Banjade</h6>
+                  <span class="text-muted small">BDS, NMC #31229 Specialist</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Google Actions -->
+          <div class="d-flex align-items-center justify-content-center justify-content-lg-start flex-wrap gap-3 pt-2">
+            <a href="https://maps.google.com/?cid=8403623970546070943" target="_blank" rel="noopener" class="btn psr-google-primary-btn rounded-pill px-4 py-2.5 fw-bold shadow-sm">
+              <i class="bi bi-google me-2 text-primary"></i> {% trans "Read Real Reviews on Google" %} ({% if google_business %}{{ google_business.review_count|default:34 }}{% else %}34{% endif %}) <i class="bi bi-arrow-up-right ms-1"></i>
+            </a>
+            <a href="https://search.google.com/local/writereview?placeid=ChIJceVAcnkZ6zkRnzVbFnqrn3Q" target="_blank" rel="noopener" class="btn psr-google-outline-btn rounded-pill px-3.5 py-2.5 fw-bold">
+              <i class="bi bi-pencil-square me-1.5 text-success"></i> {% trans "Write a Google Review" %}
+            </a>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -347,128 +294,66 @@
     line-height: 1.6;
     margin-bottom: 0;
   }
-  .psr-trust-badge {
-    background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    padding: 10px 24px;
-    border-radius: 50px;
-    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
-  }
-  .psr-trust-dot {
-    color: #CBD5E1;
-    font-size: 0.8rem;
-  }
-  .psr-google-link {
-    color: #1A73E8;
-    font-size: 0.95rem;
-    transition: color 0.2s ease;
-  }
-  .psr-google-link:hover {
-    color: #0d58ba;
-    text-decoration: underline !important;
-  }
 
-  /* Google Reviews Subsection */
-  .psr-google-wrapper {
-    background: #FFFFFF;
-    border: 1px solid #EDF2F7;
-    border-radius: 24px;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  /* Authentic Google Showcase Card */
+  .psr-google-showcase {
+    background: linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 100%);
+    border: 1px solid #E2E8F0;
+    border-radius: 28px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
   }
-  .psr-label-text {
-    color: #1E293B;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
+  @media (min-width: 992px) {
+    .border-end-lg {
+      border-right: 1px solid #E2E8F0 !important;
+    }
   }
-  .psr-write-review-btn {
-    color: #0E5A4F;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    padding: 6px 14px;
-    border: 1px solid rgba(14, 90, 79, 0.2);
-    border-radius: 50px;
-    transition: all 0.2s ease;
-  }
-  .psr-write-review-btn:hover {
-    background: #0E5A4F;
-    color: #FFFFFF;
-  }
-  .psr-carousel-card {
-    min-height: 220px;
-  }
-  .psr-single-review {
-    max-width: 860px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .psr-review-quote {
-    font-size: clamp(1.15rem, 2vw, 1.45rem);
-    color: #1E293B;
-    line-height: 1.6;
-    font-weight: 400;
-    font-style: italic;
-    margin: 1.5rem 0;
-  }
-  .psr-avatar-img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #E2E8F0;
-  }
-  .psr-avatar-initials {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #0E5A4F;
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-  .psr-author-name {
-    font-size: 1.1rem;
-    font-weight: 700;
+  .psr-big-rating {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(3.2rem, 5vw, 4.2rem);
+    font-weight: 900;
     color: #0F172A;
+    line-height: 1;
   }
-  .psr-view-g-link {
-    color: #1A73E8;
-    font-weight: 600;
-    transition: color 0.2s ease;
+  .psr-big-stars {
+    font-size: 1.35rem;
+    letter-spacing: 2px;
   }
-  .psr-view-g-link:hover {
-    text-decoration: underline !important;
+  .psr-clinic-loc {
+    font-size: 0.92rem;
   }
-
-  /* Minimal Navigation Controls */
-  .psr-nav-arrow {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid #E2E8F0;
+  .psr-feature-pill {
     background: #FFFFFF;
-    color: #1E293B;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    border: 1px solid #EEF2F6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, border-color 0.2s ease;
   }
-  .psr-nav-arrow:hover {
+  .psr-feature-pill:hover {
+    transform: translateY(-2px);
+    border-color: #CBD5E1;
+  }
+  .psr-google-primary-btn {
+    background: #FFFFFF;
+    color: #0F172A;
+    border: 1px solid #CBD5E1;
+    transition: all 0.25s ease;
+  }
+  .psr-google-primary-btn:hover {
+    background: #0F172A;
+    color: #FFFFFF;
+    border-color: #0F172A;
+    transform: translateY(-2px);
+  }
+  .psr-google-outline-btn {
+    background: transparent;
+    color: #0E5A4F;
+    border: 1px solid #CBD5E1;
+    transition: all 0.25s ease;
+  }
+  .psr-google-outline-btn:hover {
     background: #0E5A4F;
     color: #FFFFFF;
     border-color: #0E5A4F;
     transform: translateY(-2px);
-  }
-  .psr-nav-counter {
-    font-size: 1.05rem;
-    letter-spacing: 0.05em;
-    color: #0F172A;
   }
 
   /* Divider */
@@ -489,7 +374,7 @@
     color: #64748B;
     background: #F8FAFC;
     border: 1px solid #E2E8F0;
-    padding: 4px 14px;
+    padding: 5px 16px;
     border-radius: 50px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -630,36 +515,18 @@
     .psr-main-section {
       padding: 3.5rem 0 2.5rem 0;
     }
-    .psr-google-wrapper {
-      padding: 1.5rem 1rem;
-    }
-    .psr-review-quote {
-      font-size: 1.05rem;
-    }
-    .psr-reviewer-meta {
-      flex-direction: column;
-      align-items: flex-start !important;
+    .psr-google-showcase {
+      border-radius: 20px;
     }
   }
 </style>
 
 <!-- ================================================================= -->
-<!-- 7. JAVASCRIPT LOGIC (SLIDE COUNTER & SWIPER CONTINUOUS ENGINE)     -->
+<!-- 7. JAVASCRIPT LOGIC (SWIPER CONTINUOUS MARQUEE ENGINE)            -->
 <!-- ================================================================= -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // 1. Google Carousel Slide Counter
-    const carouselEl = document.getElementById("psrGoogleCarousel");
-    const currentSlideEl = document.getElementById("psrCurrentSlide");
-    
-    if (carouselEl && currentSlideEl) {
-      carouselEl.addEventListener("slide.bs.carousel", function (e) {
-        const nextIndex = e.to + 1;
-        currentSlideEl.textContent = nextIndex < 10 ? "0" + nextIndex : nextIndex;
-      });
-    }
-
-    // 2. Swiper Continuous Linear Marquee Flow (Right to Left)
+    // Swiper Continuous Linear Marquee Flow (Right to Left)
     if (typeof Swiper !== 'undefined') {
       new Swiper('.psrContinuousSwiper', {
         slidesPerView: 'auto',
@@ -695,7 +562,7 @@
     }
   });
 
-  // 3. Dynamic Story Detail Modal Handler
+  // Dynamic Story Detail Modal Handler
   function openDynamicStoryModal(btn) {
     if (!btn) return;
     const name = btn.getAttribute("data-name") || "Patient";
