@@ -78,7 +78,7 @@
             <a href="{% url 'dashboard:inquiry_toggle_read' msg.id %}" class="btn btn-sm btn-light border" title="Mark as {% if msg.is_read %}Unread{% else %}Read{% endif %}">
               <i class="bi bi-{% if msg.is_read %}envelope{% else %}envelope-open{% endif %}"></i>
             </a>
-            <a href="mailto:{{ msg.email }}?subject=Re:%20{{ msg.subject|default:'Your Inquiry at Niko Dental Clinic'|urlencode }}" class="btn btn-sm btn-outline-primary" title="Reply via Email">
+            <a href="mailto:{{ msg.email }}?subject=Re:%20{{ msg.subject|default:'Your Inquiry at CareFirst Dental Clinic'|urlencode }}" class="btn btn-sm btn-outline-primary" title="Reply via Email">
               <i class="bi bi-reply-fill"></i>
             </a>
             <a href="{% url 'dashboard:inquiry_delete' msg.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this message?');" title="Delete">

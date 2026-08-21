@@ -123,7 +123,7 @@
       <h5 class="fw-bold small text-muted text-uppercase mb-3">Direct Patient Actions</h5>
       <div class="d-grid gap-2">
         {% if appointment.phone %}
-        <a href="https://wa.me/{{ appointment.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ appointment.full_name|urlencode }}%2C%20greeting%20from%20Niko%20Dental%20Clinic%20regarding%20your%20appointment%20on%20{{ appointment.preferred_date|date:'M d' }}." target="_blank" class="btn btn-success fw-bold d-flex align-items-center justify-content-center gap-2 py-2">
+        <a href="https://wa.me/{{ appointment.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ appointment.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic%20regarding%20your%20appointment%20on%20{{ appointment.preferred_date|date:'M d' }}." target="_blank" class="btn btn-success fw-bold d-flex align-items-center justify-content-center gap-2 py-2">
           <i class="bi bi-whatsapp"></i> Chat on WhatsApp
         </a>
         {% endif %}

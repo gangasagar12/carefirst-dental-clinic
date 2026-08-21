@@ -2,5 +2,8 @@ User-agent: *
 Disallow: /admin/
 Disallow: /en/admin/
 Disallow: /ne/admin/
+Disallow: /dashboard/
+Disallow: /en/dashboard/
+Disallow: /ne/dashboard/
 
-Sitemap: https://nikodentistry.com/sitemap.xml
+Sitemap: https://carefirstdental.com.np/sitemap.xml
