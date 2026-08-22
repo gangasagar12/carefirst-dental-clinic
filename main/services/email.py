@@ -184,6 +184,66 @@ def is_valid_email(email_address):
         return False
     return re.match(r"[^@]+@[^@]+\.[^@]+", email_address.strip()) is not None
 
+def send_clinic_admin_alert(instance, inquiry_type='appointment'):
+    """
+    Sends an immediate email notification alert to CareFirst clinic email inbox (carefirstdentalclinic@gmail.com).
+    """
+    try:
+        from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'carefirstdentalclinic@gmail.com')
+        to_email = getattr(settings, 'NOTIFICATION_EMAIL', 'carefirstdentalclinic@gmail.com')
+        
+        if inquiry_type == 'appointment':
+            ref_num = getattr(instance, 'appointment_number', None) or f"#{instance.id}"
+            subject = f"🚨 New Appointment Booking: {instance.full_name} ({ref_num})"
+            app_type = instance.get_appointment_type_display() if hasattr(instance, 'get_appointment_type_display') else 'Consultation'
+            pref_time = instance.get_preferred_time_display() if hasattr(instance, 'get_preferred_time_display') else str(getattr(instance, 'preferred_time', 'Flexible'))
+            treatment = instance.service.title if getattr(instance, 'service', None) else (instance.get_treatment_display() if hasattr(instance, 'get_treatment_display') else 'General Dental Care')
+            doctor_name = f"Dr. {instance.doctor.name}" if getattr(instance, 'doctor', None) else 'CareFirst Clinical Team'
+            
+            plain_body = f"""CAREFIRST DENTAL CLINIC - NEW APPOINTMENT BOOKING ALERT
+==================================================
+Reference Number: {ref_num}
+Patient Name: {instance.full_name}
+Phone Number: {instance.phone}
+Email Address: {instance.email or 'N/A'}
+Appointment Type: {app_type}
+Preferred Date: {instance.preferred_date}
+Preferred Time: {pref_time}
+Service / Treatment: {treatment}
+Assigned Specialist: {doctor_name}
+
+PATIENT NOTES / CONCERNS:
+{instance.message or 'No specific notes provided.'}
+==================================================
+Direct WhatsApp Patient: https://wa.me/{str(instance.phone).replace('+', '').replace(' ', '').replace('-', '')}
+Manage in Dashboard: https://carefirstdental.com.np/dashboard/appointments/{instance.id}/
+"""
+        else:
+            subject = f"📬 New Contact Inquiry from {instance.name}: {instance.subject}"
+            plain_body = f"""CAREFIRST DENTAL CLINIC - NEW CONTACT INQUIRY
+==================================================
+Sender Name: {instance.name}
+Email Address: {instance.email}
+Phone Number: {getattr(instance, 'phone', 'N/A')}
+Subject: {instance.subject}
+
+MESSAGE CONTENT:
+{instance.message}
+==================================================
+Reply via Email: mailto:{instance.email}
+"""
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            body=plain_body,
+            from_email=from_email,
+            to=[to_email]
+        )
+        msg.send(fail_silently=False)
+        return True
+    except Exception as e:
+        print(f"Error sending clinic notification email: {e}")
+        return False
+
 def queue_email_confirmation(name, email, inquiry_type, obj_id, details=None):
     """
     Creates a pending EmailNotification record with full contact details and triggers instant dispatch.

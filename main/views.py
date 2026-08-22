@@ -58,12 +58,18 @@ def home(request):
             form = AppointmentForm(request.POST)
             if form.is_valid():
                 instance = form.save()
-                send_notification_email(instance, 'appointment')
+                from main.services.email import send_clinic_admin_alert, queue_email_confirmation
                 from main.services.whatsapp import queue_whatsapp_confirmation
-                from main.services.email import queue_email_confirmation
+                send_clinic_admin_alert(instance, 'appointment')
                 queue_whatsapp_confirmation(instance.full_name, instance.phone, 'appointment', instance.id)
-                queue_email_confirmation(instance.full_name, instance.email, 'appointment', instance.id)
-                from django.urls import reverse
+                details = {
+                    'appointment_number': instance.appointment_number or f"CF-{instance.id:06d}",
+                    'preferred_date': str(instance.preferred_date),
+                    'preferred_time': instance.get_preferred_time_display() or 'Flexible',
+                    'treatment': instance.service.title if getattr(instance, 'service', None) else (instance.get_treatment_display() if hasattr(instance, 'get_treatment_display') else 'General Consultation'),
+                    'doctor': instance.doctor.name if getattr(instance, 'doctor', None) else 'CareFirst Clinical Team',
+                }
+                queue_email_confirmation(instance.full_name, instance.email, 'appointment', instance.id, details=details)
                 return redirect('appointments:confirmation', appointment_number=instance.appointment_number)
             else:
                 messages.error(request, 'There was an error in your appointment request. Please check the fields and try again.')
@@ -72,9 +78,9 @@ def home(request):
             form = ContactMessageForm(request.POST)
             if form.is_valid():
                 instance = form.save()
-                send_notification_email(instance, 'contact')
+                from main.services.email import send_clinic_admin_alert, queue_email_confirmation
                 from main.services.whatsapp import queue_whatsapp_confirmation
-                from main.services.email import queue_email_confirmation
+                send_clinic_admin_alert(instance, 'contact')
                 queue_whatsapp_confirmation(instance.name, getattr(instance, 'phone', None), 'contact', instance.id)
                 queue_email_confirmation(instance.name, instance.email, 'contact', instance.id)
                 messages.success(request, 'Thank you! Your message has been sent to our clinical desk. We will get back to you shortly.')
@@ -253,12 +259,18 @@ def contact(request):
             form = AppointmentForm(request.POST)
             if form.is_valid():
                 instance = form.save()
-                send_notification_email(instance, 'appointment')
+                from main.services.email import send_clinic_admin_alert, queue_email_confirmation
                 from main.services.whatsapp import queue_whatsapp_confirmation
-                from main.services.email import queue_email_confirmation
+                send_clinic_admin_alert(instance, 'appointment')
                 queue_whatsapp_confirmation(instance.full_name, instance.phone, 'appointment', instance.id)
-                queue_email_confirmation(instance.full_name, instance.email, 'appointment', instance.id)
-                from django.urls import reverse
+                details = {
+                    'appointment_number': instance.appointment_number or f"CF-{instance.id:06d}",
+                    'preferred_date': str(instance.preferred_date),
+                    'preferred_time': instance.get_preferred_time_display() or 'Flexible',
+                    'treatment': instance.service.title if getattr(instance, 'service', None) else (instance.get_treatment_display() if hasattr(instance, 'get_treatment_display') else 'General Consultation'),
+                    'doctor': instance.doctor.name if getattr(instance, 'doctor', None) else 'CareFirst Clinical Team',
+                }
+                queue_email_confirmation(instance.full_name, instance.email, 'appointment', instance.id, details=details)
                 return redirect('appointments:confirmation', appointment_number=instance.appointment_number)
             else:
                 messages.error(request, 'There was an error in your appointment request. Please check the fields and try again.')
@@ -266,9 +278,9 @@ def contact(request):
             form = ContactMessageForm(request.POST)
             if form.is_valid():
                 instance = form.save()
-                send_notification_email(instance, 'contact')
+                from main.services.email import send_clinic_admin_alert, queue_email_confirmation
                 from main.services.whatsapp import queue_whatsapp_confirmation
-                from main.services.email import queue_email_confirmation
+                send_clinic_admin_alert(instance, 'contact')
                 queue_whatsapp_confirmation(instance.name, getattr(instance, 'phone', None), 'contact', instance.id)
                 queue_email_confirmation(instance.name, instance.email, 'contact', instance.id)
                 messages.success(request, 'Thank you! Your request has been received. We will contact you soon.')

@@ -69,6 +69,8 @@ def appointment_funnel_view(request):
 
             # Notifications
             try:
+                from main.services.email import send_clinic_admin_alert
+                send_clinic_admin_alert(appointment, 'appointment')
                 queue_whatsapp_confirmation(appointment.full_name, appointment.phone, 'appointment', appointment.id)
                 if appointment.email:
                     details = {
@@ -79,8 +81,8 @@ def appointment_funnel_view(request):
                         'doctor': appointment.doctor.name if getattr(appointment, 'doctor', None) else 'CareFirst Clinical Team',
                     }
                     queue_email_confirmation(appointment.full_name, appointment.email, 'appointment', appointment.id, details=details)
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Notification error: {e}")
 
             return redirect('appointments:confirmation', appointment_number=appointment.appointment_number)
 
@@ -260,9 +262,11 @@ def submit_appointment_ajax(request):
 
     # 6. Queue WhatsApp & Email Notifications
     try:
+        from main.services.email import send_clinic_admin_alert
+        send_clinic_admin_alert(appointment, 'appointment')
         queue_whatsapp_confirmation(appointment.full_name, appointment.phone, 'appointment', appointment.id)
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"Error sending clinic alert: {e}")
 
     if appointment.email:
         try:
@@ -274,8 +278,8 @@ def submit_appointment_ajax(request):
                 'doctor': appointment.doctor.name if appointment.doctor else 'CareFirst Clinical Team',
             }
             queue_email_confirmation(appointment.full_name, appointment.email, 'appointment', appointment.id, details=details)
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Error sending patient email: {e}")
 
     return JsonResponse({
         'success': True,

@@ -73,6 +73,11 @@
           <td>
             <div class="fw-bold text-dark">{{ app.full_name }}</div>
             <div class="small text-muted">{{ app.get_appointment_type_display }}</div>
+            {% if app.message %}
+            <div class="small text-primary mt-1" style="max-width: 240px; font-size: 0.78rem; line-height: 1.3;" title="{{ app.message }}">
+              <i class="bi bi-chat-left-text-fill text-info me-1"></i>"{{ app.message|truncatewords:8 }}"
+            </div>
+            {% endif %}
           </td>
           <td>
             <div class="text-dark">{{ app.phone }}</div>

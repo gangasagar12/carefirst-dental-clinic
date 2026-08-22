@@ -112,6 +112,11 @@
               <td>
                 <div class="fw-bold text-dark">{{ app.full_name }}</div>
                 <div class="small text-muted">{{ app.phone }}</div>
+                {% if app.message %}
+                <div class="small text-primary mt-1" style="max-width: 220px; font-size: 0.76rem; line-height: 1.25;" title="{{ app.message }}">
+                  <i class="bi bi-chat-left-text-fill text-info me-1"></i>"{{ app.message|truncatewords:6 }}"
+                </div>
+                {% endif %}
               </td>
               <td>
                 <span class="badge bg-light text-dark border">{{ app.service.title|default:app.get_treatment_display }}</span>
