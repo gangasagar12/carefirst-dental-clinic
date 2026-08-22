@@ -1444,9 +1444,9 @@
       </div>
     </div>
 
-    <div class="row g-4 justify-content-center" id="cfHomeVideosGrid">
+    <div class="row g-4 justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3" id="cfHomeVideosGrid">
       {% for video in latest_videos %}
-      <div class="col-md-6 col-lg-4 {% if forloop.counter > 6 %}cf-extra-home-video d-none{% endif %}">
+      <div class="col {% if forloop.counter > 6 %}cf-extra-home-video d-none{% endif %}">
         <a href="{% url 'media_center:video_detail' video.slug %}" class="cf-video-card" style="text-decoration: none;">
           <div class="cf-video-thumb-wrap">
             {% if video.platform == 'youtube' %}
