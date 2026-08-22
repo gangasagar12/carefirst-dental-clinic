@@ -64,6 +64,8 @@ If you are experiencing severe tooth pain, bleeding, or require emergency dental
 Warm regards,
 Dr. Subash Banjade & The Clinical Team
 CareFirst Dental Clinic
+Pragatinagar Road, Shankhamul-31, Kathmandu
+Phone / WhatsApp: +977 980-7464136
 https://carefirstdental.com.np
 """
 
