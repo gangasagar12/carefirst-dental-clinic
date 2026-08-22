@@ -71,7 +71,14 @@ def appointment_funnel_view(request):
             try:
                 queue_whatsapp_confirmation(appointment.full_name, appointment.phone, 'appointment', appointment.id)
                 if appointment.email:
-                    queue_email_confirmation(appointment.full_name, appointment.email, 'appointment', appointment.id)
+                    details = {
+                        'appointment_number': appointment.appointment_number or f"CF-{appointment.id:06d}",
+                        'preferred_date': str(appointment.preferred_date),
+                        'preferred_time': appointment.get_preferred_time_display() or 'Flexible',
+                        'treatment': appointment.service.title if getattr(appointment, 'service', None) else 'General Consultation',
+                        'doctor': appointment.doctor.name if getattr(appointment, 'doctor', None) else 'CareFirst Clinical Team',
+                    }
+                    queue_email_confirmation(appointment.full_name, appointment.email, 'appointment', appointment.id, details=details)
             except Exception:
                 pass
 
@@ -259,7 +266,14 @@ def submit_appointment_ajax(request):
 
     if appointment.email:
         try:
-            queue_email_confirmation(appointment.full_name, appointment.email, 'appointment', appointment.id)
+            details = {
+                'appointment_number': appointment.appointment_number or f"CF-{appointment.id:06d}",
+                'preferred_date': appointment.preferred_date.strftime('%B %d, %Y') if appointment.preferred_date else 'Flexible',
+                'preferred_time': appointment.get_preferred_time_display() or 'Flexible',
+                'treatment': appointment.service.title if appointment.service else (treatment_slug.title() or 'General Consultation'),
+                'doctor': appointment.doctor.name if appointment.doctor else 'CareFirst Clinical Team',
+            }
+            queue_email_confirmation(appointment.full_name, appointment.email, 'appointment', appointment.id, details=details)
         except Exception:
             pass
 
