@@ -2,6 +2,38 @@ import re
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from appointments.models import EmailNotification
+from main.models import SiteSettings
+
+def get_clinic_contact_info():
+    """
+    Dynamically loads clinic contact details from the website database (SiteSettings).
+    """
+    site = SiteSettings.objects.first()
+    if site:
+        phone = site.primary_phone or "980-7464136"
+        whatsapp = site.whatsapp_number or phone.replace('+', '').replace('-', '').replace(' ', '')
+        email = site.email or getattr(settings, 'NOTIFICATION_EMAIL', 'carefirstdentalclinic@gmail.com')
+        address = site.address or "Pragatinagar Road, Shankhamul-31, Kathmandu"
+        hours = site.working_hours_weekdays or "7:30 AM – 7:30 PM (Mon - Sun)"
+    else:
+        phone = "980-7464136"
+        whatsapp = "9779807464136"
+        email = getattr(settings, 'NOTIFICATION_EMAIL', 'carefirstdentalclinic@gmail.com')
+        address = "Pragatinagar Road, Shankhamul-31, Kathmandu"
+        hours = "7:30 AM – 7:30 PM (Mon - Sun)"
+
+    # Clean whatsapp digits
+    wa_clean = re.sub(r'[^0-9]', '', str(whatsapp))
+    if len(wa_clean) == 10 and not wa_clean.startswith('977'):
+        wa_clean = '977' + wa_clean
+
+    return {
+        'phone': phone,
+        'whatsapp': wa_clean,
+        'email': email,
+        'address': address,
+        'hours': hours,
+    }
 
 def get_email_subject(inquiry_type='contact'):
     if inquiry_type == 'appointment':
@@ -13,6 +45,7 @@ def get_email_plain_text(patient_name, inquiry_type='contact', details=None):
     Returns the bilingual (English + Nepali) plain-text version for the patient.
     """
     details = details or {}
+    contact = get_clinic_contact_info()
     name = patient_name or "Valued Patient"
     app_num = details.get('appointment_number', 'Pending Confirmation')
     pref_date = details.get('preferred_date', 'To be scheduled')
@@ -25,10 +58,10 @@ def get_email_plain_text(patient_name, inquiry_type='contact', details=None):
         app_info_en = f"""
 --- YOUR APPOINTMENT SUMMARY ---
 Reference Number: {app_num}
-Treatment: {treatment}
-Preferred Date: {pref_date}
-Preferred Time: {pref_time}
-Doctor / Specialist: {doctor}
+Treatment:        {treatment}
+Preferred Date:   {pref_date}
+Time Slot:        {pref_time}
+Doctor/Specialist:{doctor}
 --------------------------------
 """
 
@@ -41,11 +74,11 @@ We have successfully received your {('appointment booking request' if inquiry_ty
 ========================================
 PLEASE KEEP CONTACT ON (OUR DIRECT DETAILS)
 ========================================
-📞 Direct Phone / Hotline: +977 980-7464136
-💬 WhatsApp Desk: +977 980-7464136 (https://wa.me/9779807464136)
-📍 Clinic Location: Pragatinagar Road, Shankhamul-31, Kathmandu, Nepal
-⏰ Opening Hours: 7:30 AM – 7:30 PM (Open 7 Days a Week, Monday – Sunday)
-✉️ Official Email: carefirstdentalclinic@gmail.com
+📞 Direct Phone: {contact['phone']}
+💬 WhatsApp Desk: https://wa.me/{contact['whatsapp']}
+📍 Clinic Location: {contact['address']}
+⏰ Opening Hours: {contact['hours']}
+✉️ Official Email: {contact['email']}
 🗺️ Google Maps: https://maps.google.com/?cid=8403623970546070943
 ========================================
 
@@ -54,18 +87,16 @@ PLEASE KEEP CONTACT ON (OUR DIRECT DETAILS)
 CareFirst Dental Clinic मा अपोइन्टमेन्ट अनुरोध गर्नुभएकोमा धन्यवाद! तपाईंको अनुरोध (Ref: {app_num}) प्राप्त भएको छ। हाम्रो क्लिनिक प्रतिनिधिले छिट्टै फोन वा ह्वाट्सएप मार्फत सम्पर्क गरी समय निश्चित गर्नेछ।
 
 क्लिनिक सम्पर्क:
-- फोन / ह्वाट्सएप: +९७७ ९८०-७४६४१३६
-- ठेगाना: प्रगतिनगर मार्ग, शंखमुल-३१, काठमाडौँ
-- समय: बिहान ७:३० देखि बेलुका ७:३० सम्म (दैनिक खुला)
+- फोन / ह्वाट्सएप: {contact['phone']}
+- ठेगाना: {contact['address']}
+- समय: {contact['hours']}
 
 🚨 DENTAL EMERGENCY OR IMMEDIATE HELP:
-If you are experiencing severe tooth pain, bleeding, or require emergency dental care, please call or WhatsApp us directly at +977 980-7464136 for priority attention.
+If you are experiencing severe tooth pain, bleeding, or require emergency dental care, please call or WhatsApp us directly at {contact['phone']} for priority attention.
 
 Warm regards,
 Dr. Subash Banjade & The Clinical Team
 CareFirst Dental Clinic
-Pragatinagar Road, Shankhamul-31, Kathmandu
-Phone / WhatsApp: +977 980-7464136
 https://carefirstdental.com.np
 """
 
@@ -74,6 +105,7 @@ def get_email_html_template(patient_name, inquiry_type='contact', details=None):
     Returns a responsive, bilingual (English + Nepali) HTML email template for the patient.
     """
     details = details or {}
+    contact = get_clinic_contact_info()
     name = patient_name or "Valued Patient"
     app_num = details.get('appointment_number', 'Pending')
     pref_date = details.get('preferred_date', 'To be confirmed')
@@ -130,32 +162,32 @@ def get_email_html_template(patient_name, inquiry_type='contact', details=None):
         <table style="width: 100%; font-size: 14px; color: #1E293B; border-collapse: collapse;">
           <tr>
             <td style="padding: 6px 0; font-weight: 700; width: 35%;">Direct Phone:</td>
-            <td style="padding: 6px 0;"><a href="tel:+9779807464136" style="color: #0284C7; text-decoration: none; font-weight: 700;">+977 980-7464136</a></td>
+            <td style="padding: 6px 0;"><a href="tel:{contact['phone']}" style="color: #0284C7; text-decoration: none; font-weight: 700;">{contact['phone']}</a></td>
           </tr>
           <tr>
             <td style="padding: 6px 0; font-weight: 700;">WhatsApp Desk:</td>
-            <td style="padding: 6px 0;"><a href="https://wa.me/9779807464136" style="color: #10B981; text-decoration: none; font-weight: 700;">+977 980-7464136 (Click to Chat)</a></td>
+            <td style="padding: 6px 0;"><a href="https://wa.me/{contact['whatsapp']}" style="color: #10B981; text-decoration: none; font-weight: 700;">{contact['phone']} (Click to Chat)</a></td>
           </tr>
           <tr>
             <td style="padding: 6px 0; font-weight: 700;">Clinic Location:</td>
-            <td style="padding: 6px 0;">Pragatinagar Road, Shankhamul-31, Kathmandu</td>
+            <td style="padding: 6px 0;">{contact['address']}</td>
           </tr>
           <tr>
             <td style="padding: 6px 0; font-weight: 700;">Opening Hours:</td>
-            <td style="padding: 6px 0; color: #0E5A4F; font-weight: 700;">7:30 AM – 7:30 PM (Daily, Mon – Sun)</td>
+            <td style="padding: 6px 0; color: #0E5A4F; font-weight: 700;">{contact['hours']}</td>
           </tr>
           <tr>
             <td style="padding: 6px 0; font-weight: 700;">Official Email:</td>
-            <td style="padding: 6px 0;"><a href="mailto:carefirstdentalclinic@gmail.com" style="color: #0284C7; text-decoration: none;">carefirstdentalclinic@gmail.com</a></td>
+            <td style="padding: 6px 0;"><a href="mailto:{contact['email']}" style="color: #0284C7; text-decoration: none;">{contact['email']}</a></td>
           </tr>
         </table>
 
         <!-- Quick Action Buttons -->
         <div style="margin-top: 16px; text-align: center;">
-          <a href="https://wa.me/9779807464136" style="display: inline-block; background: #25D366; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 13px; padding: 10px 20px; border-radius: 50px; margin: 4px;">
+          <a href="https://wa.me/{contact['whatsapp']}" style="display: inline-block; background: #25D366; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 13px; padding: 10px 20px; border-radius: 50px; margin: 4px;">
             💬 Chat on WhatsApp
           </a>
-          <a href="tel:+9779807464136" style="display: inline-block; background: #0284C7; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 13px; padding: 10px 20px; border-radius: 50px; margin: 4px;">
+          <a href="tel:{contact['phone']}" style="display: inline-block; background: #0284C7; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 13px; padding: 10px 20px; border-radius: 50px; margin: 4px;">
             📞 Call Clinic Desk
           </a>
           <a href="https://maps.google.com/?cid=8403623970546070943" style="display: inline-block; background: #FFFFFF; color: #081C33; border: 1px solid #CBD5E1; text-decoration: none; font-weight: 700; font-size: 13px; padding: 9px 18px; border-radius: 50px; margin: 4px;">
@@ -171,14 +203,14 @@ def get_email_html_template(patient_name, inquiry_type='contact', details=None):
           नमस्ते <strong>{name}</strong>, CareFirst Dental Clinic मा अपोइन्टमेन्ट अनुरोध गर्नुभएकोमा धन्यवाद! तपाईंको अनुरोध (Ref: <strong>{app_num}</strong>) प्राप्त भएको छ। हाम्रो क्लिनिक प्रतिनिधिले फोन वा ह्वाट्सएप मार्फत छिट्टै सम्पर्क गरी समय निश्चित गर्नेछ।
         </p>
         <p style="margin: 0; font-size: 13px; color: #166534;">
-          <strong>सम्पर्क:</strong> 📞 ९८०-७४६४१३६ | 📍 प्रगतिनगर मार्ग, शंखमुल-३१, काठमाडौँ | ⏰ बिहान ७:३० – बेलुका ७:३० (दैनिक खुला)
+          <strong>सम्पर्क:</strong> 📞 {contact['phone']} | 📍 {contact['address']} | ⏰ {contact['hours']}
         </p>
       </div>
 
       <!-- Emergency Help Notice -->
       <div style="background: #FEF2F2; border-left: 4px solid #EF4444; padding: 12px 16px; border-radius: 8px; margin-top: 18px;">
         <p style="margin: 0; font-size: 13px; color: #991B1B; line-height: 1.5;">
-          <strong>🚨 Need Urgent Care?</strong> If you are experiencing acute tooth pain or swelling, please call our emergency line directly at <strong>+977 980-7464136</strong> for immediate assistance.
+          <strong>🚨 Need Urgent Care?</strong> If you are experiencing acute tooth pain or swelling, please call our emergency line directly at <strong>{contact['phone']}</strong> for immediate assistance.
         </p>
       </div>
 
@@ -187,7 +219,7 @@ def get_email_html_template(patient_name, inquiry_type='contact', details=None):
     <!-- Footer -->
     <div style="background: #F1F5F9; padding: 20px 24px; text-align: center; font-size: 12px; color: #64748B; border-top: 1px solid #E2E8F0;">
       <p style="margin: 0 0 4px 0; font-weight: 700; color: #081C33;">CareFirst Dental Clinic</p>
-      <p style="margin: 0 0 6px 0;">Pragatinagar Road, Shankhamul-31, Kathmandu, Nepal • NMC Reg. #31229</p>
+      <p style="margin: 0 0 6px 0;">{contact['address']} • NMC Reg. #31229</p>
       <p style="margin: 0;"><a href="https://carefirstdental.com.np" style="color: #0284C7; text-decoration: none;">www.carefirstdental.com.np</a></p>
     </div>
 
@@ -206,16 +238,17 @@ def is_valid_email(email_address):
 
 def send_clinic_admin_alert(instance, inquiry_type='appointment'):
     """
-    Sends an immediate CLINIC-ONLY notification alert email to carefirstdentalclinic@gmail.com with complete patient details.
+    Sends an immediate CLINIC-ONLY notification alert email to NOTIFICATION_EMAIL with complete patient details.
     """
     try:
-        from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'carefirstdentalclinic@gmail.com')
-        to_email = getattr(settings, 'NOTIFICATION_EMAIL', 'carefirstdentalclinic@gmail.com')
+        contact = get_clinic_contact_info()
+        from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', contact['email'])
+        to_email = getattr(settings, 'NOTIFICATION_EMAIL', contact['email'])
         
         if inquiry_type == 'appointment':
             ref_num = getattr(instance, 'appointment_number', None) or f"CF-{instance.id:06d}"
             patient_phone = str(instance.phone or 'N/A')
-            wa_phone = patient_phone.replace('+', '').replace(' ', '').replace('-', '')
+            wa_phone = re.sub(r'[^0-9]', '', patient_phone)
             pref_time = instance.get_preferred_time_display() if hasattr(instance, 'get_preferred_time_display') else str(getattr(instance, 'preferred_time', 'Flexible'))
             treatment = instance.service.title if getattr(instance, 'service', None) else (instance.get_treatment_display() if hasattr(instance, 'get_treatment_display') else 'General Dental Care')
             doctor_name = f"Dr. {instance.doctor.name}" if getattr(instance, 'doctor', None) else 'CareFirst Clinical Team'
@@ -370,7 +403,8 @@ def send_pending_email_messages(notification_id=None, html_content=None):
         
     for notification in notifications:
         try:
-            from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'carefirstdentalclinic@gmail.com')
+            contact = get_clinic_contact_info()
+            from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', contact['email'])
             
             # Prepare email with plain text
             msg = EmailMultiAlternatives(
