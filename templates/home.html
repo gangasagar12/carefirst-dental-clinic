@@ -107,8 +107,8 @@
   /* ── 1. HERO SECTION ── */
   .cf-hero-wrapper {
     position: relative;
-    padding: 150px 0 140px;
-    min-height: 92vh;
+    padding: 65px 0 50px;
+    min-height: calc(100vh - 85px);
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -144,37 +144,38 @@
   .cf-hero-content {
     position: relative;
     z-index: 3;
+    width: 100%;
   }
   .cf-hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 6px 16px;
+    padding: 5px 14px;
     border-radius: 50px;
     color: #F8FAFC;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     backdrop-filter: blur(10px);
     letter-spacing: 0.5px;
     text-transform: uppercase;
   }
   .cf-hero-title {
-    font-size: clamp(2.3rem, 4.5vw, 3.6rem);
+    font-size: clamp(1.85rem, 3.1vw, 2.75rem);
     font-weight: 800;
     font-family: var(--cf-font-head, 'Outfit', sans-serif);
     color: #FFFFFF;
     line-height: 1.18;
     letter-spacing: -0.02em;
-    margin: 18px 0;
+    margin: 12px 0 14px;
   }
   .cf-hero-lead {
-    font-size: 1.18rem;
+    font-size: 1.02rem;
     color: rgba(255, 255, 255, 0.90);
-    max-width: 580px;
-    line-height: 1.7;
-    margin-bottom: 30px;
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 20px;
   }
 
   .cf-hero-checklist {
@@ -199,9 +200,9 @@
   /* Hero Floating Card */
   .cf-hero-form-card {
     background: #FFFFFF;
-    border-radius: 24px;
-    padding: 36px 32px;
-    box-shadow: 0 25px 60px rgba(8, 28, 51, 0.25);
+    border-radius: 20px;
+    padding: 24px 22px;
+    box-shadow: 0 20px 50px rgba(8, 28, 51, 0.25);
     border: 1.5px solid #E2E8F0;
     position: relative;
     z-index: 3;
@@ -209,9 +210,9 @@
   .cf-hero-form-header h4 {
     color: #081C33;
     font-weight: 800;
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     font-family: var(--cf-font-head, 'Outfit', sans-serif);
-    margin-bottom: 6px;
+    margin-bottom: 3px;
   }
 
   /* ── 2. TRUST STATS STRIP ── */
@@ -886,9 +887,9 @@
 
   <!-- Hero Content Grid -->
   <div class="container cf-hero-content">
-    <div class="row align-items-center g-5">
+    <div class="row align-items-center g-4">
       <div class="col-lg-7">
-        <div class="cf-hero-badge mb-3">
+        <div class="cf-hero-badge mb-2">
           <i class="bi bi-shield-fill-check text-warning"></i> {% trans "Kathmandu's Trusted Dental Clinic" %}
         </div>
         
@@ -897,23 +898,23 @@
           <span style="color: #38BDF8;">{% trans "Beautiful & Confident" %}</span> {% trans "Smiles." %}
         </h1>
 
-        <p class="cf-hero-lead mb-4">
+        <p class="cf-hero-lead mb-3">
           {% trans "Experience world-class, pain-free dentistry in Shankhamul, Kathmandu. From dental implants to cosmetic smile makeovers, our certified specialists deliver gentle and precise treatments." %}
         </p>
 
         <!-- Hero CTAs -->
-        <div class="d-flex flex-wrap gap-3 align-items-center mb-3">
-          <a href="{% url 'appointments:book' %}" class="cf-btn-primary">
+        <div class="d-flex flex-wrap gap-3 align-items-center mb-2">
+          <a href="{% url 'appointments:book' %}" class="cf-btn-primary py-2 px-4">
             <i class="bi bi-calendar-check-fill"></i> {% trans "Book Consultation" %}
           </a>
-          <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="cf-btn-outline">
+          <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="cf-btn-outline py-2 px-4">
             <i class="bi bi-whatsapp text-success"></i> {% trans "WhatsApp: 980-7464136" %}
           </a>
         </div>
 
         <!-- Compact 2-Line Google Review Trust Badge -->
-        <div class="cf-hero-google-trust d-inline-flex align-items-center gap-3 p-3 px-4 rounded-4 mt-4" style="background: rgba(8, 28, 51, 0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);">
-          <div class="d-flex align-items-center gap-1 text-warning fs-5">
+        <div class="cf-hero-google-trust d-inline-flex align-items-center gap-2 p-2 px-3 rounded-4 mt-3" style="background: rgba(8, 28, 51, 0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);">
+          <div class="d-flex align-items-center gap-1 text-warning" style="font-size: 0.95rem;">
             <i class="bi bi-star-fill"></i>
             <i class="bi bi-star-fill"></i>
             <i class="bi bi-star-fill"></i>
@@ -921,10 +922,10 @@
             <i class="bi bi-star-fill"></i>
           </div>
           <div class="cf-hero-trust-text text-start">
-            <div class="text-white fw-bold small">
+            <div class="text-white fw-bold" style="font-size: 0.82rem;">
               <span class="text-warning">5.0 Rating</span> · <a href="https://maps.google.com/?cid=8403623970546070943" target="_blank" rel="noopener" class="text-white text-decoration-underline fw-bold">{% if google_business %}{{ google_business.review_count|default:34 }}{% else %}34{% endif %} {% trans "Google Reviews" %}</a>
             </div>
-            <div class="text-white-50" style="font-size: 0.84rem;">
+            <div class="text-white-50" style="font-size: 0.75rem;">
               {% trans "Verified patient feedback on Google Maps" %}
             </div>
           </div>
@@ -934,12 +935,12 @@
       <!-- Quick Inquiry / Send a Message Column -->
       <div class="col-lg-5 col-xl-4 ms-auto">
         <div class="cf-hero-form-card">
-          <div class="cf-hero-form-header text-center mb-3">
-            <div class="d-inline-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle mb-2" style="width: 44px; height: 44px; font-size: 1.25rem;">
+          <div class="cf-hero-form-header text-center mb-2">
+            <div class="d-inline-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle mb-1" style="width: 38px; height: 38px; font-size: 1.1rem;">
               <i class="bi bi-chat-dots-fill"></i>
             </div>
-            <h4 class="fw-bold mb-1" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: var(--cf-navy, #0B2545);">{% trans "Have a Question?" %}</h4>
-            <p class="text-muted small mb-0">{% trans "Send a quick message to our clinic reception" %}</p>
+            <h4 class="fw-bold mb-0" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: var(--cf-navy, #0B2545); font-size: 1.18rem;">{% trans "Have a Question?" %}</h4>
+            <p class="text-muted mb-0" style="font-size: 0.78rem;">{% trans "Send a quick message to our clinic reception" %}</p>
           </div>
 
           <form method="POST" action="{% url 'main:home' %}">
@@ -947,26 +948,26 @@
             <input type="hidden" name="form_type" value="contact">
             
             <div class="mb-2">
-              <label class="form-label small fw-bold text-secondary mb-1">{% trans "Your Name *" %}</label>
-              <input type="text" name="name" class="form-control rounded-3 py-2 px-3" placeholder="{% trans "e.g. Ramesh Shrestha" %}" required>
+              <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.76rem;">{% trans "Your Name *" %}</label>
+              <input type="text" name="name" class="form-control rounded-3 py-1.5 px-3" style="font-size: 0.85rem;" placeholder="{% trans "e.g. Ramesh Shrestha" %}" required>
             </div>
 
             <div class="mb-2">
-              <label class="form-label small fw-bold text-secondary mb-1">{% trans "Email Address *" %}</label>
-              <input type="email" name="email" class="form-control rounded-3 py-2 px-3" placeholder="name@example.com" required>
+              <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.76rem;">{% trans "Email Address *" %}</label>
+              <input type="email" name="email" class="form-control rounded-3 py-1.5 px-3" style="font-size: 0.85rem;" placeholder="name@example.com" required>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label small fw-bold text-secondary mb-1">{% trans "Your Question / Symptoms *" %}</label>
-              <textarea name="message" class="form-control rounded-3 py-2 px-3" rows="3" placeholder="{% trans "Ask about treatment cost, tooth pain, doctor availability..." %}" required></textarea>
+            <div class="mb-2">
+              <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.76rem;">{% trans "Your Question / Symptoms *" %}</label>
+              <textarea name="message" class="form-control rounded-3 py-1.5 px-3" style="font-size: 0.85rem;" rows="2" placeholder="{% trans "Ask about treatment cost, tooth pain, doctor availability..." %}" required></textarea>
             </div>
 
-            <button type="submit" class="cf-btn-primary w-100 justify-content-center py-2.5 shadow-sm">
-              <i class="bi bi-send-fill me-2"></i> {% trans "Send Message" %}
+            <button type="submit" class="cf-btn-primary w-100 justify-content-center py-2 shadow-sm" style="font-size: 0.88rem;">
+              <i class="bi bi-send-fill me-1.5"></i> {% trans "Send Message" %}
             </button>
 
-            <div class="text-center mt-3 pt-2 border-top">
-              <a href="{% url 'appointments:book' %}" class="small fw-bold text-primary text-decoration-none">
+            <div class="text-center mt-2 pt-1 border-top">
+              <a href="{% url 'appointments:book' %}" class="fw-bold text-primary text-decoration-none" style="font-size: 0.75rem;">
                 <i class="bi bi-calendar-check-fill me-1"></i> {% trans "Need an appointment? Open Booking Desk →" %}
               </a>
             </div>
