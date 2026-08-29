@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 import datetime
 
 class Service(models.Model):
@@ -26,6 +27,7 @@ class Service(models.Model):
     icon = models.CharField(max_length=50, help_text="Bootstrap icon class, e.g. bi-tooth")
     image = models.ImageField(upload_to='services/', blank=True, null=True, help_text="Image for the service card")
     is_popular = models.BooleanField(default=False)
+    short_description = models.TextField(blank=True, help_text="Short 1-2 sentence description for homepage & listing cards")
     features = models.TextField(help_text="One feature per line (for the checkmark list)", blank=True)
     starting_price = models.CharField(max_length=50, help_text="e.g. 1,000", blank=True)
     
@@ -56,6 +58,41 @@ class Service(models.Model):
 
     def get_features_list(self):
         return [f.strip() for f in self.features.splitlines() if f.strip()]
+
+    def get_short_description(self):
+        """
+        Returns an authentic, treatment-specific summary description for each service.
+        """
+        if self.short_description:
+            return self.short_description
+        
+        slug_lower = (self.slug or '').lower()
+        title_lower = (self.title or '').lower()
+
+        if 'x-ray' in slug_lower or 'x-ray' in title_lower or 'xray' in slug_lower:
+            return _("High-definition, low-radiation digital radiography for accurate and instant diagnosis.")
+        elif 'fill' in slug_lower or 'fill' in title_lower:
+            return _("Tooth-colored composite fillings to repair cavities, chipped teeth, and restore natural aesthetics.")
+        elif 'canal' in slug_lower or 'root' in title_lower or 'rct' in slug_lower:
+            return _("Painless single-sitting rotary therapy to eliminate infection and save your natural tooth.")
+        elif 'implant' in slug_lower or 'implant' in title_lower:
+            return _("Permanent titanium root replacements and crowns for long-lasting chewing strength and beauty.")
+        elif 'extract' in slug_lower or 'extract' in title_lower:
+            return _("Gentle, painless removal of damaged, infected, or impacted wisdom teeth with quick recovery.")
+        elif 'denture' in slug_lower or 'denture' in title_lower:
+            return _("Customized complete and partial dentures designed for maximum comfort, stability, and chewing function.")
+        elif 'crown' in slug_lower or 'bridge' in title_lower or 'crown' in title_lower:
+            return _("Premium zirconia and ceramic crowns to strengthen weak teeth and restore missing gaps.")
+        elif 'ortho' in slug_lower or 'brace' in title_lower or 'aligner' in slug_lower:
+            return _("Advanced braces and clear aligners to correct crooked teeth and create a beautifully aligned smile.")
+        elif 'periodont' in slug_lower or 'gum' in title_lower:
+            return _("Specialized therapies and deep root planing to stop gum bleeding and protect tooth foundation.")
+        elif 'scal' in slug_lower or 'polish' in title_lower or 'clean' in title_lower:
+            return _("Ultrasonic deep cleaning to remove plaque, calculus, and coffee/tea stains for fresh breath.")
+        elif 'general' in slug_lower or 'general' in title_lower:
+            return _("Comprehensive dental check-ups, oral examinations, and preventive hygiene for total oral wellness.")
+        
+        return _("Advanced clinical treatment performed by certified specialists with pain-free protocols.")
 
     def get_dynamic_price(self):
         """
