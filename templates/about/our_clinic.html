@@ -11,17 +11,17 @@
 {% block content %}
 
 <!-- HERO -->
-<section class="about-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.55) 0%, rgba(11,37,69,0.45) 60%, rgba(3,105,161,0.35) 100%), url('{% static "images/hero_section3.jpeg" %}') center/cover no-repeat;">
+<section class="about-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.65) 0%, rgba(11,37,69,0.55) 60%, rgba(3,105,161,0.45) 100%), url('{% static "images/hero_section3.jpeg" %}') center/cover no-repeat;">
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
         <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
         <li class="breadcrumb-item"><a href="{% url 'main:about' %}" class="text-white text-decoration-none opacity-75">{% trans "About" %}</a></li>
-        <li class="breadcrumb-item active text-warning">{% trans "Our Clinic" %}</li>
+        <li class="breadcrumb-item active text-warning fw-bold">{% trans "Our Clinic" %}</li>
       </ol>
     </nav>
-    <h1>{% trans "Our Clinic" %}</h1>
-    <p class="hero-sub mx-auto">{% trans "A modern, calming environment designed for your comfort, sterilization safety, and confidence." %}</p>
+    <h1 class="display-4 fw-bold text-white mb-2">{% trans "Our Clinic" %}</h1>
+    <p class="hero-sub mx-auto text-white opacity-75" style="font-size: 1.15rem;">{% trans "A modern, calming environment designed for your comfort, sterilization safety, and confidence." %}</p>
   </div>
 </section>
 
@@ -30,22 +30,22 @@
   <div class="container">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
-        <div class="nd-eyebrow">{% trans "Clinic Overview" %}</div>
-        <h2 class="section-heading mb-4">{% trans "Designed for Your Comfort & Safety" %}</h2>
+        <div class="cf-eyebrow-badge mb-2">{% trans "Clinic Overview" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "Designed for Your Comfort & Safety" %}</h2>
         <p class="text-muted mb-3" style="line-height:1.85;">{% trans "At CareFirst Dental Clinic, every detail of our clinical space in Shankhamul, Kathmandu has been designed to ensure patients feel relaxed, safe, and cared for. Our modern facility houses fully equipped digital operatory suites, a digital imaging center, Class-B autoclave sterilization, and a welcoming reception lounge." %}</p>
         <ul class="nd-checklist mb-4">
-          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Fully Equipped Modern Operatory Suites" %}</li>
-          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Dedicated Cosmetic & Implant Dentistry Suite" %}</li>
-          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Digital RVG & Low-Radiation X-Ray Center" %}</li>
-          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Class-B Hospital-Grade Autoclave Sterilization" %}</li>
-          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Comfortable Patient Lounge & Free Wi-Fi" %}</li>
-          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Open 7 Days a Week: 7:30 AM – 7:30 PM" %}</li>
-          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Wheelchair-Accessible Facility" %}</li>
-          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Free Dedicated Patient Parking" %}</li>
+          <li><i class="bi bi-check-circle-fill text-primary me-2"></i>{% trans "Fully Equipped Modern Operatory Suites" %}</li>
+          <li><i class="bi bi-check-circle-fill text-primary me-2"></i>{% trans "Dedicated Cosmetic & Implant Dentistry Suite" %}</li>
+          <li><i class="bi bi-check-circle-fill text-primary me-2"></i>{% trans "Digital RVG & Low-Radiation X-Ray Center" %}</li>
+          <li><i class="bi bi-check-circle-fill text-primary me-2"></i>{% trans "Class-B Hospital-Grade Autoclave Sterilization" %}</li>
+          <li><i class="bi bi-check-circle-fill text-primary me-2"></i>{% trans "Comfortable Patient Lounge & Free Wi-Fi" %}</li>
+          <li><i class="bi bi-check-circle-fill text-primary me-2"></i>{% trans "Open 7 Days a Week: 7:30 AM – 7:30 PM" %}</li>
+          <li><i class="bi bi-check-circle-fill text-primary me-2"></i>{% trans "Wheelchair-Accessible Facility" %}</li>
+          <li><i class="bi bi-check-circle-fill text-primary me-2"></i>{% trans "Free Dedicated Patient Parking" %}</li>
         </ul>
         <div class="d-flex flex-wrap gap-3">
-          <a href="{% url 'appointments:book' %}" class="cf-btn-primary"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Visit" %}</a>
-          <a href="{% url 'main:why_choose' %}" class="btn btn-outline-primary rounded-pill px-4 py-2.5 fw-bold">{% trans "Why Choose Us" %}</a>
+          <a href="{% url 'appointments:book' %}" class="cf-btn-primary"><i class="bi bi-calendar-check-fill me-1"></i>{% trans "Book Visit" %}</a>
+          <a href="{% url 'main:why_choose' %}" class="cf-btn-outline-primary">{% trans "Why Choose Us" %}</a>
         </div>
       </div>
       <div class="col-lg-6">
@@ -59,17 +59,18 @@
 </section>
 
 <!-- CLINIC SECTIONS -->
-<section class="section-py" style="background:var(--nd-gray-bg);">
+<section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Explore Our Spaces" %}</div>
-      <h2 class="section-heading">{% trans "Inside CareFirst Dental Clinic" %}</h2>
+      <div class="cf-eyebrow-badge justify-content-center mb-2">{% trans "Explore Our Spaces" %}</div>
+      <h2 class="cf-section-title mb-2">{% trans "Inside CareFirst Dental Clinic" %}</h2>
+      <p class="cf-section-subtitle mb-0">{% trans "Take a tour through our specialized operatories, consultation lounges, and diagnostic suites." %}</p>
     </div>
     <div class="row g-4">
 
       <!-- Reception -->
       <div class="col-lg-6">
-        <div class="nd-value-card h-100">
+        <div class="nd-value-card h-100 p-4">
           <div class="row g-0 align-items-center h-100">
             <div class="col-auto">
               <div class="vc-icon me-4" style="font-size:1.1rem; font-weight:800; color:#0284C7;">01</div>
@@ -84,7 +85,7 @@
 
       <!-- Treatment Rooms -->
       <div class="col-lg-6">
-        <div class="nd-value-card h-100">
+        <div class="nd-value-card h-100 p-4">
           <div class="row g-0 align-items-center h-100">
             <div class="col-auto">
               <div class="vc-icon me-4" style="font-size:1.1rem; font-weight:800; color:#0284C7;">02</div>
@@ -99,7 +100,7 @@
 
       <!-- Advanced Equipment -->
       <div class="col-lg-6">
-        <div class="nd-value-card h-100">
+        <div class="nd-value-card h-100 p-4">
           <div class="row g-0 align-items-center h-100">
             <div class="col-auto">
               <div class="vc-icon me-4" style="font-size:1.1rem; font-weight:800; color:#0284C7;">03</div>
@@ -114,7 +115,7 @@
 
       <!-- Sterilization -->
       <div class="col-lg-6">
-        <div class="nd-value-card h-100">
+        <div class="nd-value-card h-100 p-4">
           <div class="row g-0 align-items-center h-100">
             <div class="col-auto">
               <div class="vc-icon me-4" style="font-size:1.1rem; font-weight:800; color:#0284C7;">04</div>
@@ -136,23 +137,23 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-5">
-        <div class="nd-eyebrow">{% trans "Technology" %}</div>
-        <h2 class="section-heading mb-4">{% trans "State-of-the-Art Dental Technology" %}</h2>
-        <div class="clinic-feature-row">
-          <div class="cfr-icon" style="color:#0284C7; font-size:1.3rem;">•</div>
-          <div><h6>{% trans "Digital OPG & CBCT Imaging" %}</h6><p>{% trans "Full-mouth panoramic X-rays and 3D cone-beam CT scans for accurate diagnosis and implant planning." %}</p></div>
+        <div class="cf-eyebrow-badge mb-2">{% trans "Technology" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "State-of-the-Art Dental Technology" %}</h2>
+        <div class="clinic-feature-row d-flex align-items-start gap-3 mb-3">
+          <div class="cfr-icon"><i class="bi bi-cpu text-primary fs-4"></i></div>
+          <div><h6 class="fw-bold mb-1">{% trans "Digital OPG & CBCT Imaging" %}</h6><p class="text-muted small mb-0">{% trans "Full-mouth panoramic X-rays and 3D cone-beam CT scans for accurate diagnosis and implant planning." %}</p></div>
         </div>
-        <div class="clinic-feature-row">
-          <div class="cfr-icon" style="color:#0284C7; font-size:1.3rem;">•</div>
-          <div><h6>{% trans "Laser Dentistry" %}</h6><p>{% trans "Minimally invasive soft-tissue procedures with dental lasers — faster healing, less discomfort, no stitches." %}</p></div>
+        <div class="clinic-feature-row d-flex align-items-start gap-3 mb-3">
+          <div class="cfr-icon"><i class="bi bi-lightning-charge text-primary fs-4"></i></div>
+          <div><h6 class="fw-bold mb-1">{% trans "Laser Dentistry" %}</h6><p class="text-muted small mb-0">{% trans "Minimally invasive soft-tissue procedures with dental lasers — faster healing, less discomfort, no stitches." %}</p></div>
         </div>
-        <div class="clinic-feature-row">
-          <div class="cfr-icon" style="color:#0284C7; font-size:1.3rem;">•</div>
-          <div><h6>{% trans "CAD/CAM Crowns (Same Day)" %}</h6><p>{% trans "Digital impressions and in-house crown milling let you walk out with a permanent ceramic crown in one visit." %}</p></div>
+        <div class="clinic-feature-row d-flex align-items-start gap-3 mb-3">
+          <div class="cfr-icon"><i class="bi bi-gem text-primary fs-4"></i></div>
+          <div><h6 class="fw-bold mb-1">{% trans "CAD/CAM Crowns (Same Day)" %}</h6><p class="text-muted small mb-0">{% trans "Digital impressions and in-house crown milling let you walk out with a permanent ceramic crown in one visit." %}</p></div>
         </div>
-        <div class="clinic-feature-row">
-          <div class="cfr-icon" style="color:#0284C7; font-size:1.3rem;">•</div>
-          <div><h6>{% trans "Teeth Whitening Systems" %}</h6><p>{% trans "Professional in-office Zoom! whitening and at-home kits for a dazzling, natural-looking smile." %}</p></div>
+        <div class="clinic-feature-row d-flex align-items-start gap-3">
+          <div class="cfr-icon"><i class="bi bi-stars text-primary fs-4"></i></div>
+          <div><h6 class="fw-bold mb-1">{% trans "Teeth Whitening Systems" %}</h6><p class="text-muted small mb-0">{% trans "Professional in-office Zoom! whitening and at-home kits for a dazzling, natural-looking smile." %}</p></div>
         </div>
       </div>
       <div class="col-lg-7">
@@ -164,11 +165,12 @@
 </section>
 
 <!-- GALLERY -->
-<section class="section-py" style="background:var(--nd-gray-bg);">
+<section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="nd-eyebrow justify-content-center">{% trans "Take a Look Around" %}</div>
-      <h2 class="section-heading">{% trans "Clinic Gallery" %}</h2>
+      <div class="cf-eyebrow-badge justify-content-center mb-2">{% trans "Take a Look Around" %}</div>
+      <h2 class="cf-section-title mb-2">{% trans "Clinic Gallery" %}</h2>
+      <p class="cf-section-subtitle mb-0">{% trans "Explore our modern clinical spaces, sterilization facilities, and patient reception lounge." %}</p>
     </div>
     <div class="clinic-gallery">
       <div class="gallery-item">
@@ -205,8 +207,12 @@
     <h2>{% trans "Experience World-Class Dentistry" %}</h2>
     <p>{% trans "Visit our clinic and see the difference premium care makes. Book your consultation today." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="{% url 'appointments:book' %}" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
-      <a href="{% url 'main:doctors' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold">{% trans "Meet Our Doctors" %}</a>
+      <a href="{% url 'appointments:book' %}" class="btn btn-light rounded-pill px-4 py-2.5 fw-bold text-dark shadow-sm d-inline-flex align-items-center gap-2">
+        <i class="bi bi-calendar-check-fill text-primary"></i>{% trans "Book Appointment" %}
+      </a>
+      <a href="{% url 'main:doctors' %}" class="btn btn-outline-light rounded-pill px-4 py-2.5 fw-bold d-inline-flex align-items-center gap-2">
+        <i class="bi bi-people-fill"></i>{% trans "Meet Our Doctors" %}
+      </a>
     </div>
   </div>
 </div>

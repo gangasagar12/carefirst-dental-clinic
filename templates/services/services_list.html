@@ -540,6 +540,9 @@
 <!-- 4. FAQ SECTION -->
 {% include 'components/faq.html' with faq_type='services' %}
 
+<!-- 5. PATIENT STORIES & REVIEWS (GOOGLE SHOWCASE) -->
+{% include 'components/google_reviews.html' %}
+
 {% endblock %}
 
 {% block extra_scripts %}
@@ -567,5 +570,4 @@
     });
   });
 </script>
-{% include 'components/google_reviews.html' %}
 {% endblock %}

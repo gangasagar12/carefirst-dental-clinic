@@ -21,7 +21,7 @@ class PricingItemTranslationOptions(TranslationOptions):
 class SpecialOfferTranslationOptions(TranslationOptions):
     fields = ('title', 'description', 'highlight_text', 'sub_text', 'badge_text', 'features', 'button_text')
 
-from .models import AboutPageSettings, Branch, CoreValue, Technology, Testimonial, ClinicGallery, FAQ
+from .models import AboutPageSettings, Branch, CoreValue, Technology, Testimonial, ClinicGallery, FAQ, SEOFAQCategory, SEOFAQ
 
 @register(AboutPageSettings)
 class AboutPageSettingsTranslationOptions(TranslationOptions):
@@ -54,4 +54,12 @@ class ClinicGalleryTranslationOptions(TranslationOptions):
 
 @register(FAQ)
 class FAQTranslationOptions(TranslationOptions):
+    fields = ('question', 'answer')
+
+@register(SEOFAQCategory)
+class SEOFAQCategoryTranslationOptions(TranslationOptions):
+    fields = ('name', 'description')
+
+@register(SEOFAQ)
+class SEOFAQTranslationOptions(TranslationOptions):
     fields = ('question', 'answer')

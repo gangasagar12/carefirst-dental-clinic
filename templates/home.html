@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=1.0">
 <link rel="stylesheet" href="{% static 'main/css/pricing_table.css' %}?v=2.1">
-<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'main/css/services.css' %}?v=5.0">
 <link rel="stylesheet" href="{% static 'main/css/about.css' %}?v=1.1">
 <link rel="stylesheet" href="{% static 'main/css/google_reviews.css' %}">
 <link rel="stylesheet" href="{% static 'main/css/gallery.css' %}?v=1.2">
@@ -1040,59 +1040,6 @@
   </div>
 </section>
 
-<!-- 2. TRUST STATS STRIP -->
-<section class="cf-stats-strip">
-  <div class="container">
-    <div class="cf-stats-container">
-      <div class="row g-0 align-items-center">
-        <div class="col-6 col-lg-3">
-          <div class="cf-stat-box">
-            <div class="cf-stat-icon-wrap">
-              <i class="bi bi-emoji-smile-fill"></i>
-            </div>
-            <div>
-              <div class="cf-stat-num">5,000+</div>
-              <p class="cf-stat-lbl">{% trans "Happy Patients Treated" %}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-lg-3">
-          <div class="cf-stat-box">
-            <div class="cf-stat-icon-wrap">
-              <i class="bi bi-person-badge-fill"></i>
-            </div>
-            <div>
-              <div class="cf-stat-num">12+</div>
-              <p class="cf-stat-lbl">{% trans "Dental Specialists" %}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-lg-3">
-          <div class="cf-stat-box">
-            <div class="cf-stat-icon-wrap">
-              <i class="bi bi-shield-fill-check"></i>
-            </div>
-            <div>
-              <div class="cf-stat-num">100%</div>
-              <p class="cf-stat-lbl">{% trans "Painless Care Protocol" %}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-lg-3">
-          <div class="cf-stat-box">
-            <div class="cf-stat-icon-wrap">
-              <i class="bi bi-star-fill text-warning"></i>
-            </div>
-            <div>
-              <div class="cf-stat-num">5.0 ★</div>
-              <p class="cf-stat-lbl">{% trans "Google Maps Rating" %}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 {% if active_offer %}
 <!-- SPECIAL OFFER BANNER -->
@@ -1333,25 +1280,7 @@
     <div class="row g-4">
       {% for service in services %}
       <div class="col-md-6 col-lg-4">
-        <a href="{% url 'main:service_detail' service.slug %}" class="cf-dark-service-card d-block text-decoration-none">
-          <div class="cf-dsc-bg" style="background-image: url('{% if service.image %}{{ service.image.url }}{% else %}{% static "images/services1.avif" %}{% endif %}');"></div>
-          <div class="cf-dsc-overlay"></div>
-          <div class="cf-dsc-content">
-            <span class="cf-dsc-cat">
-              {{ service.category_label|default:service.get_category_display }}
-            </span>
-            <h4 class="cf-dsc-title">{{ service.title }}</h4>
-            <p class="cf-dsc-desc">{{ service.get_short_description }}</p>
-            <div class="cf-dsc-footer d-flex justify-content-between align-items-center">
-              <span class="cf-dsc-link">{% trans "LEARN MORE" %}</span>
-              {% if service.get_dynamic_price %}
-              <span class="cf-dsc-price">{% trans "From" %} NPR {{ service.get_dynamic_price }}</span>
-              {% else %}
-              <span class="cf-dsc-price">{% trans "Consultation" %}</span>
-              {% endif %}
-            </div>
-          </div>
-        </a>
+        {% include 'components/service_card.html' with service=service %}
       </div>
       {% endfor %}
     </div>

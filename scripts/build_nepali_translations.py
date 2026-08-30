@@ -1,21 +1,27 @@
 import os
 import re
+import sys
 import time
 from pathlib import Path
 import polib
 from deep_translator import GoogleTranslator
 
+sys.stdout.reconfigure(encoding='utf-8')
+
 CURATED_NEPALI_DICTIONARY = {
     # Core Clinic Info & Navigation
     "CareFirst Dental Clinic": "केयरफर्स्ट डेन्टल क्लिनिक",
     "Carefirst Dental Clinic": "केयरफर्स्ट डेन्टल क्लिनिक",
-    "CareFirst Dental": "CareFirst Dental",
-    "Carefirst Dental": "CareFirst Dental",
+    "CareFirst Dental": "केयरफर्स्ट डेन्टल",
+    "Carefirst Dental": "केयरफर्स्ट डेन्टल",
     "CareFirst": "केयरफर्स्ट",
     "Carefirst": "केयरफर्स्ट",
     "Home": "गृहपृष्ठ",
     "About": "हाम्रो बारेमा",
     "About Us": "हाम्रो बारेमा",
+    "Our Clinic": "हाम्रो क्लिनिक",
+    "Why Choose Us": "हामीलाई किन रोज्ने?",
+    "Why Choose CareFirst": "केयरफर्स्ट किन रोज्ने?",
     "Services": "दन्त सेवाहरू",
     "Treatments": "उपचारहरू",
     "Our Doctors": "हाम्रा चिकित्सकहरू",
@@ -24,6 +30,7 @@ CURATED_NEPALI_DICTIONARY = {
     "Meet the Doctors": "हाम्रा डाक्टरहरूलाई भेट्नुहोस्",
     "Meet All Doctors": "सबै डाक्टरहरू हेर्नुहोस्",
     "Smile Gallery": "स्माइल ग्यालरी",
+    "Clinic Gallery": "क्लिनिक ग्यालरी",
     "Video": "भिडियो",
     "Videos": "भिडियोहरू",
     "Pricing": "शुल्क विवरण",
@@ -45,14 +52,19 @@ CURATED_NEPALI_DICTIONARY = {
     "Learn More": "थप जान्नुहोस्",
     "From": "बाट",
     "Starting from": "सुरुवाती मूल्य",
+    "Starting From": "सुरुवाती मूल्य",
     "Consultation": "परामर्श",
     "Book Slot": "समय लिनुहोस्",
     "Details": "विवरण",
     "Painless Anesthesia Protocol": "दुखाइरहित एनेस्थेसिया विधि",
     "Class-B Sterile Equipment": "क्लास-बी पूर्ण जीवाणुरहित उपकरण",
     "Digital Diagnosis & Planning": "डिजिटल दन्त परीक्षण र योजना",
+    "Most Popular": "सबैभन्दा लोकप्रिय",
+    "Expert Diagnosis & Care": "विशेषज्ञ निदान तथा उपचार",
+    "Comfortable & Pain-Free": "आरामदायी र दुखाइरहित",
+    "Transparent Pricing": "पारदर्शी शुल्क",
 
-    # 4 Home Intro Features (Refined Native Nepali)
+    # 4 Home Intro Features
     "Pain-Free Anesthesia": "दुखाइरहित एनेस्थेसिया",
     "Gentle techniques designed to eliminate dental anxiety during all treatments.": "सबै उपचारको क्रममा दन्त डर र चिन्ता हटाउन अपनाइने कोमल विधिहरू।",
     "Class-B Autoclave": "क्लास-बी अटोक्लेभ",
@@ -65,7 +77,7 @@ CURATED_NEPALI_DICTIONARY = {
     "Kathmandu's Trusted Dental Clinic": "काठमाडौँको भरपर्दो दन्त क्लिनिक",
     "Need an appointment? Open Booking Desk →": "अपोइन्टमेन्ट चाहिन्छ? बुकिङ डेस्क खोल्नुहोस् →",
 
-    # Key Headings (Complete Semantic Units)
+    # Key Headings
     "Why Patients Trust CareFirst Dental": "बिरामीहरूले CareFirst Dental लाई किन विश्वास गर्छन्?",
     "A Trusted Dental Experience in the Heart of Kathmandu": "काठमाडौँको मुटुमा एक भरपर्दो दन्त सेवा अनुभव",
     "Expert Dental Care, Beautiful & Confident Smiles.": "विशेषज्ञ दन्त सेवा, सुन्दर तथा आत्मविश्वासी मुस्कान।",
@@ -84,56 +96,21 @@ CURATED_NEPALI_DICTIONARY = {
     "Latest Articles": "नवीनतम लेखहरू",
     "Frequently Asked Questions": "बारम्बार सोधिने प्रश्नहरू",
     "Got Questions? We Have Answers.": "केही प्रश्न छन्? हामीसँग उत्तर छन्।",
+    "FREQUENTLY ASKED QUESTIONS": "बारम्बार सोधिने प्रश्नहरू",
+    "Answers to Your Questions": "तपाईंका प्रश्नहरूको उत्तर",
+    "Everything you need to know before your appointment.": "तपाईंको अपोइन्टमेन्ट अघि जान्नुपर्ने सम्पूर्ण जानकारी।",
     "Find Us in Kathmandu": "हामीलाई काठमाडौँमा भेट्नुहोस्",
     "Browse Our Clinic Spaces": "हाम्रो क्लिनिक परिसर हेर्नुहोस्",
     "Treatment Categories": "उपचारका विधाहरू",
     "Every Smile Has a Story Worth Telling": "प्रत्येक मुस्कानको आफ्नै विशेष कथा हुन्छ",
+    "What Our Patients Say": "हाम्रा बिरामीहरूको अनुभव",
+    "Trusted by Patients • Rated on Google": "बिरामीहरूद्वारा विश्वासिलो • गुगलमा उत्कृष्ट मूल्याङ्कन",
+    "Read All Reviews": "सबै समीक्षाहरू पढ्नुहोस्",
+    "Leave a Review": "समीक्षा लेख्नुहोस्",
+    "Still have questions?": "अझै केही प्रश्नहरू छन्?",
+    "Our friendly reception team is ready to assist you on WhatsApp or phone.": "हाम्रो स्वागत कक्ष टोली तपाईंलाई ह्वाट्सएप वा फोनमा सहयोग गर्न तयार छ।",
 
-    # Service Headings & Procedures
-    "What Are Crowns & Bridges?": "क्राउन र ब्रिज (क्याप) के हुन्?",
-    "Types of Crowns": "क्राउन (क्याप) का प्रकारहरू",
-    "Our Treatment Process": "हाम्रो उपचार प्रक्रिया",
-    "Smile Restorations": "मुस्कान पुनर्स्थापना सेवा",
-    "What is a Dental Filling?": "दाँत भर्ने सेवा (डेन्टल फिलिङ) के हो?",
-    "Before & After Filling Cases": "फिलिङ उपचार अघि र पछिको नतिजा",
-    "Types of Dental Filling Materials": "दाँत भर्ने सामग्रीका प्रकारहरू",
-    "Our Filling Treatment Process": "दाँत भर्ने हाम्रो उपचार प्रक्रिया",
-    "Dental Filling Treatment Gallery": "दाँत फिलिङ उपचार ग्यालरी",
-    "What Are Dental Implants?": "डेन्टल इम्प्लान्ट (दाँत प्रत्यारोपण) के हुन्?",
-    "Our Implant Treatment Process": "इम्प्लान्ट उपचारको हाम्रो प्रक्रिया",
-    "Smile Transformation Timeline": "मुस्कान रूपान्तरण समयतालिका",
-    "Before & After Implant Cases": "इम्प्लान्ट उपचार अघि र पछिका परिणामहरू",
-    "What Are Dentures?": "डेन्चर (नक्कली दाँत) के हुन्?",
-    "Types of Dentures": "डेन्चरका प्रकारहरू",
-    "Our Denture Treatment Process": "डेन्चर निर्माण तथा उपचार प्रक्रिया",
-    "Denture Treatment Gallery": "डेन्चर उपचार ग्यालरी",
-    "What is a Digital Dental X-Ray?": "डिजिटल दन्त एक्स-रे के हो?",
-    "Our Digital X-Ray Process": "हाम्रो डिजिटल एक्स-रे प्रक्रिया",
-    "Diagnostic Suite & Technology Gallery": "निदान तथा प्रविधि ग्यालरी",
-    "What is General Dentistry?": "सामान्य दन्त चिकित्सा के हो?",
-    "Before & After Results": "उपचार अघि र पछिका परिणामहरू",
-    "Our Patient Care Process": "हाम्रो बिरामी सेवा प्रक्रिया",
-    "Related Videos": "सम्बन्धित भिडियोहरू",
-    "What is Braces Treatment?": "ब्रेसेस (तार बाँध्ने) उपचार के हो?",
-    "Types of Braces Available": "उपलब्ध ब्रेसेसका प्रकारहरू",
-    "Compare Braces Options": "ब्रेसेस विकल्पहरूको तुलना गर्नुहोस्",
-    "Which Braces Are Right for You?": "तपाईंको लागि कुन ब्रेसेस उपयुक्त छ?",
-    "Smile Transformation Gallery": "मुस्कान रूपान्तरण ग्यालरी",
-    "Our Orthodontic Treatment Journey": "हाम्रो अर्थोडोन्टिक उपचार यात्रा",
-    "What is Gum Disease?": "गिजाको समस्या (रोग) के हो?",
-    "Stages of Gum Disease": "गिजाको समस्याका चरणहरू",
-    "What is Root Canal Treatment?": "रूट क्यानल उपचार (RCT) के हो?",
-    "What is a Root Canal?": "रूट क्यानल उपचार (RCT) के हो?",
-    "Benefits of Root Canal Treatment": "रूट क्यानल उपचारका फाइदाहरू",
-    "Our Root Canal Process": "हाम्रो रूट क्यानल उपचार प्रक्रिया",
-    "Clinical Gallery": "क्लिनिकल ग्यालरी",
-    "What is Scaling & Polishing?": "दाँत सफाइ र पोलिसिङ (स्केलिङ) के हो?",
-    "What is Tooth Extraction?": "दाँत निकाल्ने सेवा के हो?",
-    "When is Extraction Required?": "दाँत कुन अवस्थामा निकाल्नुपर्छ?",
-    "Step-by-Step Treatment Process": "चरणबद्ध उपचार प्रक्रिया",
-    "Rated 5.0 / 5.0 based on Google Reviews": "गुगल रिभ्युका आधारमा ५.० / ५.० रेटिङ प्राप्त",
-
-    # Terminology Overrides
+    # Service Terminology
     "General Dentistry": "साधारण दन्त चिकित्सा",
     "General Dental Check-up": "साधारण दन्त परीक्षण",
     "General Dental Consultation": "साधारण दन्त परामर्श",
@@ -154,8 +131,38 @@ CURATED_NEPALI_DICTIONARY = {
     "Periodontal Treatment (Gum)": "गिजाको विशेष उपचार",
     "Periodontal Treatment": "गिजाको उपचार",
     "Teeth Whitening": "दाँत चम्काउने (ह्वाइटनिङ)",
-}
 
+    # Button CTAs
+    "Book Consultation": "परामर्श बुक गर्नुहोस्",
+    "Book Check-up": "चेक-अप बुक गर्नुहोस्",
+    "Book Assessment": "परीक्षण बुक गर्नुहोस्",
+    "Book Evaluation": "मूल्याङ्कन बुक गर्नुहोस्",
+    "Book Urgent Care": "आकस्मिक सेवा लिनुहोस्",
+    "Book Tooth Restoration": "दाँत पुनर्स्थापना बुक गर्नुहोस्",
+    "Book Diagnostic Scan": "डिजिटल स्क्यान बुक गर्नुहोस्",
+    "Book Your Cleaning Now": "दाँत सफाइ बुक गर्नुहोस्",
+    "View Smile Gallery": "स्माइल ग्यालरी हेर्नुहोस्",
+    "Call Now": "अहिले फोन गर्नुहोस्",
+    "Send Message": "सन्देश पठाउनुहोस्",
+    "View Complete Treatment Directory & Packages": "सम्पूर्ण उपचार सूची तथा प्याकेजहरू हेर्नुहोस्",
+    "Explore Smile Gallery": "स्माइल ग्यालरी हेर्नुहोस्",
+
+    # FAQ Questions from Components
+    "What payment methods do you accept?": "तपाईंहरू कुन-कुन भुक्तानी विधिहरू स्वीकार गर्नुहुन्छ?",
+    "We accept Cash, major Credit/Debit Cards, Fonepay, eSewa, and Khalti.": "हामी नगद, सबै प्रमुख क्रेडिट/डेबिट कार्डहरू, फोनपे (Fonepay), इसेवा (eSewa), र खल्ती (Khalti) स्वीकार गर्दछौं।",
+    "How much does a dental implant cost in Nepal?": "नेपालमा डेन्टल इम्प्लान्टको लागत कति पर्छ?",
+    "How much do braces cost in Nepal?": "नेपालमा दाँतमा तार बाँध्ने (ब्रेसेस) को शुल्क कति पर्छ?",
+    "Do you offer installment (EMI) options?": "के तपाईंहरू किस्ताबन्दी (EMI) सुविधा उपलब्ध गराउनुहुन्छ?",
+    "Yes, we offer flexible installment plans for major treatments like orthodontics (braces) and dental implants.": "हो, हामी अर्थोडोन्टिक्स (ब्रेसेस) र डेन्टल इम्प्लान्ट जस्ता प्रमुख उपचारहरूका लागि लचिलो किस्ताबन्दी सुविधा प्रदान गर्दछौं।",
+    "Do you accept dental insurance?": "के तपाईंहरू दन्त बीमा स्वीकार गर्नुहुन्छ?",
+    "Are consultation fees adjustable against treatment?": "के परामर्श शुल्क उपचार खर्चमा समायोजन हुन्छ?",
+    "Are there any hidden fees?": "के कुनै लुकेको शुल्क छ?",
+    "Not at all. We believe in transparent pricing. You will be given a clear cost estimate before any treatment begins.": "बिल्कुल छैन। हामी १००% पारदर्शी शुल्कमा विश्वास गर्दछौं। कुनै पनि उपचार सुरु गर्नुअघि तपाईंलाई स्पष्ट लागत अनुमान दिइनेछ।",
+    "Is teeth cleaning painful?": "के दाँत सफा गर्दा (स्केलिङ) दुख्छ?",
+    "No, professional scaling using modern ultrasonic technology is completely safe and generally painless.": "छैन, आधुनिक अल्ट्रासोनिक प्रविधि प्रयोग गरी गरिने व्यावसायिक दाँत सफाइ पूर्णतया सुरक्षित र सामान्यतया दुखाइरहित हुन्छ।",
+    "How often should I visit the dentist for a check-up?": "मैले कति समयको अन्तरालमा दन्त चिकित्सकलाई भेट्नुपर्छ?",
+    "We recommend visiting every 6 months for a comprehensive routine check-up and professional cleaning to prevent tooth decay and gum disease.": "दाँत किराले खाने र गिजाको समस्याबाट बच्न हामी हरेक ६ महिनामा एक पटक नियमित चेक-अप र सफाइ गराउन सिफारिस गर्दछौं।"
+}
 
 def extract_strings_from_workspace():
     base_dir = Path(__file__).resolve().parent.parent
@@ -184,6 +191,8 @@ def extract_strings_from_workspace():
 
     return extracted
 
+def has_nepali_chars(text):
+    return bool(re.search(r'[\u0900-\u097F]', text))
 
 def clean_and_translate(text, translator):
     if text in CURATED_NEPALI_DICTIONARY:
@@ -221,7 +230,6 @@ def clean_and_translate(text, translator):
         except Exception:
             return text
 
-
 def build_and_compile():
     base_dir = Path(__file__).resolve().parent.parent
     locale_dir = base_dir / 'locale' / 'ne' / 'LC_MESSAGES'
@@ -234,13 +242,10 @@ def build_and_compile():
         try:
             old_po = polib.pofile(str(po_path), encoding='utf-8')
             for entry in old_po:
-                if entry.msgid and entry.msgstr:
-                    if '%(' in entry.msgid and '%(' in entry.msgstr:
-                        orig_vars = set(re.findall(r'%\(([a-zA-Z0-9_]+)\)', entry.msgid))
-                        trans_vars = set(re.findall(r'%\(([a-zA-Z0-9_]+)\)', entry.msgstr))
-                        if orig_vars != trans_vars:
-                            continue
-                    existing_map[entry.msgid] = entry.msgstr
+                if entry.msgid and entry.msgstr and entry.msgstr.strip():
+                    # Check if entry is genuinely translated in Nepali (has Devanagari or is a curated phrase)
+                    if has_nepali_chars(entry.msgstr) or entry.msgid in CURATED_NEPALI_DICTIONARY:
+                        existing_map[entry.msgid] = entry.msgstr
         except Exception as e:
             print(f"Warning reading existing po: {e}")
 
@@ -250,22 +255,24 @@ def build_and_compile():
     translator = GoogleTranslator(source='en', target='ne')
     final_dict = {}
 
+    # Seed curated dictionary
     for k, v in CURATED_NEPALI_DICTIONARY.items():
         final_dict[k] = v
 
+    # Seed verified existing translations
     for k, v in existing_map.items():
         if k not in final_dict and v.strip():
             final_dict[k] = v
 
     to_translate = [s for s in extracted_strings if s not in final_dict or not final_dict[s].strip()]
-    print(f"Strings to translate via deep-translator: {len(to_translate)}")
+    print(f"Strings to translate via Google Translator: {len(to_translate)}")
 
     for i, s in enumerate(to_translate):
         translated = clean_and_translate(s, translator)
         final_dict[s] = translated
-        if (i + 1) % 15 == 0 or (i + 1) == len(to_translate):
+        if (i + 1) % 25 == 0 or (i + 1) == len(to_translate):
             print(f"  Translated {i + 1}/{len(to_translate)} strings...")
-        time.sleep(0.04)
+        time.sleep(0.02)
 
     po = polib.POFile(encoding='utf-8')
     po.metadata = {
@@ -273,7 +280,7 @@ def build_and_compile():
         'Report-Msgid-Bugs-To': 'info@carefirst.com',
         'POT-Creation-Date': '2026-08-30 10:00+0545',
         'PO-Revision-Date': '2026-08-30 10:00+0545',
-        'Last-Translator': 'DeepTranslator & Medical Board <info@carefirst.com>',
+        'Last-Translator': 'CareFirst Dental Clinic <info@carefirst.com>',
         'Language-Team': 'Nepali <ne@carefirst.com>',
         'Language': 'ne',
         'MIME-Version': '1.0',
@@ -293,7 +300,6 @@ def build_and_compile():
     po.save(str(po_path))
     po.save_as_mofile(str(mo_path))
     print(f"Successfully compiled {len(po)} total translations into {po_path} and {mo_path}")
-
 
 if __name__ == '__main__':
     build_and_compile()
