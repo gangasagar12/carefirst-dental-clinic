@@ -157,11 +157,18 @@ CURATED_NEPALI_DICTIONARY = {
     "Do you accept dental insurance?": "के तपाईंहरू दन्त बीमा स्वीकार गर्नुहुन्छ?",
     "Are consultation fees adjustable against treatment?": "के परामर्श शुल्क उपचार खर्चमा समायोजन हुन्छ?",
     "Are there any hidden fees?": "के कुनै लुकेको शुल्क छ?",
-    "Not at all. We believe in transparent pricing. You will be given a clear cost estimate before any treatment begins.": "बिल्कुल छैन। हामी १००% पारदर्शी शुल्कमा विश्वास गर्दछौं। कुनै पनि उपचार सुरु गर्नुअघि तपाईंलाई स्पष्ट लागत अनुमान दिइनेछ।",
-    "Is teeth cleaning painful?": "के दाँत सफा गर्दा (स्केलिङ) दुख्छ?",
-    "No, professional scaling using modern ultrasonic technology is completely safe and generally painless.": "छैन, आधुनिक अल्ट्रासोनिक प्रविधि प्रयोग गरी गरिने व्यावसायिक दाँत सफाइ पूर्णतया सुरक्षित र सामान्यतया दुखाइरहित हुन्छ।",
-    "How often should I visit the dentist for a check-up?": "मैले कति समयको अन्तरालमा दन्त चिकित्सकलाई भेट्नुपर्छ?",
-    "We recommend visiting every 6 months for a comprehensive routine check-up and professional cleaning to prevent tooth decay and gum disease.": "दाँत किराले खाने र गिजाको समस्याबाट बच्न हामी हरेक ६ महिनामा एक पटक नियमित चेक-अप र सफाइ गराउन सिफारिस गर्दछौं।"
+    # Review and Patient Stories Section
+    "Exceptional care, in our patients' own words.": "उत्कृष्ट दन्त सेवा, हाम्रा बिरामीहरूको आफ्नै शब्दमा।",
+    "PATIENT STORIES & REVIEWS": "बिरामी कथाहरू र समीक्षाहरू",
+    "From independent Google ratings to real patient experiences, discover why thousands of patients trust CareFirst Dental Clinic in Kathmandu.": "स्वतन्त्र गुगल मूल्याङ्कनदेखि वास्तविक बिरामी अनुभवहरूसम्म, थाहा पाउनुहोस् किन हजारौं बिरामीहरूले काठमाडौँको केयरफर्स्ट डेन्टल क्लिनिकमा विश्वास गर्छन्।",
+    "Google Business Rating": "गुगल व्यापार मूल्याङ्कन",
+    "100% Verified": "१००% प्रमाणित",
+    "Google Reviews": "गुगल समीक्षाहरू",
+    "Rated 5.0 / 5.0 based on": "५.० / ५.० मूल्याङ्कन प्राप्त",
+    "Real Patient Testimonials": "वास्तविक बिरामीहरूका अनुभव",
+    "Verified Reviews": "प्रमाणित समीक्षाहरू",
+    "Write a Review on Google": "गुगलमा समीक्षा लेख्नुहोस्",
+    "View on Google Maps": "गुगल म्यापमा हेर्नुहोस्",
 }
 
 def extract_strings_from_workspace():
@@ -172,7 +179,10 @@ def extract_strings_from_workspace():
     template_dir = base_dir / 'templates'
     for f in template_dir.rglob('*.html'):
         content = f.read_text(encoding='utf-8', errors='ignore')
-        for m in re.findall(r'{%\s*trans\s+[\'"]([^\'"]+)[\'"]\s*%}', content):
+        for m in re.findall(r'{%\s*trans\s+"([^"]+)"\s*%}', content):
+            if m.strip():
+                extracted.add(m.strip())
+        for m in re.findall(r"{%\s*trans\s+'([^']+)'\s*%}", content):
             if m.strip():
                 extracted.add(m.strip())
         for _, body in re.findall(r'{%\s*blocktrans\b(.*?)%}(.*?){%\s*endblocktrans\s*%}', content, re.DOTALL):
@@ -185,7 +195,10 @@ def extract_strings_from_workspace():
         if 'venv' in str(py_file) or '.git' in str(py_file) or 'scratch' in str(py_file):
             continue
         content = py_file.read_text(encoding='utf-8', errors='ignore')
-        for m in re.findall(r'_\([\'"]([^\'"]+)[\'"]\)', content):
+        for m in re.findall(r'_\("([^"]+)"\)', content):
+            if m.strip():
+                extracted.add(m.strip())
+        for m in re.findall(r"_\('([^']+)'\)", content):
             if m.strip():
                 extracted.add(m.strip())
 

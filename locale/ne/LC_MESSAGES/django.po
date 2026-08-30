@@ -230,6 +230,9 @@ msgstr "100% दुखाइ-मुक्त प्रोटोकलहरू"
 msgid "100% Transparent Fees"
 msgstr "100% पारदर्शी शुल्क"
 
+msgid "100% Verified"
+msgstr "१००% प्रमाणित"
+
 msgid ""
 "100% strict sterilization protocols following international hospital "
 "standards."
@@ -3493,6 +3496,9 @@ msgstr ""
 msgid "Exceptional Chewing Strength"
 msgstr "असाधारण च्युइंग शक्ति"
 
+msgid "Exceptional care, in our patients' own words."
+msgstr "उत्कृष्ट दन्त सेवा, हाम्रा बिरामीहरूको आफ्नै शब्दमा।"
+
 msgid "Exceptional strength"
 msgstr "असाधारण शक्ति"
 
@@ -3935,8 +3941,9 @@ msgid ""
 "From independent Google ratings to real patient experiences, discover why "
 "thousands of patients trust CareFirst Dental Clinic in Kathmandu."
 msgstr ""
-"स्वतन्त्र गुगल मूल्याङ्कनदेखि वास्तविक बिरामी अनुभवहरू, पत्ता लगाउनुहोस् किन"
-" हजारौं बिरामीहरूले काठमाडौंको केयरफर्स्ट डेन्टल क्लिनिकमा विश्वास गर्छन्।"
+"स्वतन्त्र गुगल मूल्याङ्कनदेखि वास्तविक बिरामी अनुभवहरूसम्म, थाहा पाउनुहोस् "
+"किन हजारौं बिरामीहरूले काठमाडौँको केयरफर्स्ट डेन्टल क्लिनिकमा विश्वास "
+"गर्छन्।"
 
 msgid ""
 "From initial shade mapping to the final polish, our predictable 3-step "
@@ -4163,6 +4170,9 @@ msgstr "ग्लास आयनोमर पुनर्स्थापना"
 
 msgid "Good for front and back teeth"
 msgstr "अगाडि र पछाडिको दाँतको लागि राम्रो"
+
+msgid "Google Business Rating"
+msgstr "गुगल व्यापार मूल्याङ्कन"
 
 msgid "Google Reviews"
 msgstr "गुगल समीक्षाहरू"
@@ -6809,7 +6819,7 @@ msgid "Raster Field"
 msgstr "रास्टर फिल्ड"
 
 msgid "Rated 5.0 / 5.0 based on"
-msgstr "5.0 / 5.0 को आधारमा मूल्याङ्कन गरियो"
+msgstr "५.० / ५.० मूल्याङ्कन प्राप्त"
 
 msgid "Rated 5.0 / 5.0 based on Google Reviews"
 msgstr "गुगल रिभ्युका आधारमा ५.० / ५.० रेटिङ प्राप्त"
@@ -6878,6 +6888,9 @@ msgstr ""
 
 msgid "Real Patient Results & Modern Facility"
 msgstr "वास्तविक रोगी परिणाम र आधुनिक सुविधा"
+
+msgid "Real Patient Testimonials"
+msgstr "वास्तविक बिरामीहरूका अनुभव"
 
 msgid "Real Results"
 msgstr "वास्तविक परिणामहरू"
@@ -8871,6 +8884,9 @@ msgstr "प्रमाणित बिरामी"
 msgid "Verified Patient Consent on Record"
 msgstr "रेकर्डमा प्रमाणित बिरामीको सहमति"
 
+msgid "Verified Reviews"
+msgstr "प्रमाणित समीक्षाहरू"
+
 msgid "Verified patient feedback on Google Maps"
 msgstr "गुगल नक्सामा बिरामी प्रतिक्रिया प्रमाणित"
 
@@ -8927,6 +8943,9 @@ msgstr "स्माइल ग्यालरी हेर्नुहोस्"
 
 msgid "View Smile Transformations"
 msgstr "मुस्कान परिवर्तनहरू हेर्नुहोस्"
+
+msgid "View on Google Maps"
+msgstr "गुगल म्यापमा हेर्नुहोस्"
 
 msgid "Virtually invisible"
 msgstr "वस्तुतः अदृश्य"
@@ -9788,6 +9807,9 @@ msgstr ""
 
 msgid "Write a Google Review"
 msgstr "Google समीक्षा लेख्नुहोस्"
+
+msgid "Write a Review on Google"
+msgstr "गुगलमा समीक्षा लेख्नुहोस्"
 
 msgid "Written & Clinically Reviewed by"
 msgstr "द्वारा लिखित र चिकित्सकीय समीक्षा"
