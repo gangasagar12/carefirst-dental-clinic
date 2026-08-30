@@ -3,7 +3,7 @@ from .models import Service, Doctor, PricingCategory, PricingItem, SpecialOffer
 
 @register(Service)
 class ServiceTranslationOptions(TranslationOptions):
-    fields = ('title', 'category_label', 'features', 'detail_content')
+    fields = ('title', 'category_label', 'features', 'short_description', 'detail_content')
 
 @register(Doctor)
 class DoctorTranslationOptions(TranslationOptions):
