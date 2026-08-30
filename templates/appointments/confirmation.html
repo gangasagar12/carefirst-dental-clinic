@@ -29,7 +29,7 @@
       </div>
 
       <h2 class="fw-bold mb-1" style="font-family: var(--cf-font-head); color: var(--cf-navy);">
-        {% trans "Thank You" %}, {{ appointment.full_name }}!
+        {% blocktrans with name=appointment.full_name %}Thank You, {{ name }}!{% endblocktrans %}
       </h2>
       <p class="text-muted mb-3">
         {% trans "Your appointment request has been successfully submitted to our clinic." %}

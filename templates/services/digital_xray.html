@@ -235,14 +235,13 @@
         <li class="breadcrumb-item active text-info fw-bold">{% trans "Digital Dental X-Ray" %}</li>
       </ol>
     </nav>
-    <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
-      <i class="bi bi-camera-fill text-info"></i> {% trans "ADVANCED DIGITAL RADIOGRAPHY" %}
+    <div class="cf-eyebrow-badge">{% trans "ADVANCED DIGITAL RADIOGRAPHY" %}
     </div>
     <h1>{% trans "Digital Dental X-Ray & Diagnostics" %}</h1>
     <p class="hero-sub mx-auto">{% trans "High-definition, low-radiation imaging that enables our specialists to see beyond the tooth surface for accurate diagnosis in Shankhamul, Kathmandu." %}</p>
     <div class="mt-4">
       <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary">
-        <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book a Diagnostic Scan" %}
+         {% trans "Book a Diagnostic Scan" %}
       </a>
     </div>
   </div>
@@ -253,17 +252,15 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-info-circle-fill"></i> {% trans "PRECISION DIAGNOSTICS" %}
+        <div class="cf-eyebrow-badge">{% trans "PRECISION DIAGNOSTICS" %}
         </div>
-        <h2 class="cf-section-title mb-4">{% trans "What is a" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Digital Dental X-Ray?" %}</span></h2>
+        <h2 class="cf-section-title mb-4">{% trans "What is a Digital Dental X-Ray?" %}</h2>
         <p class="cf-body-text mb-4">
           {% blocktrans %}A digital dental X-ray is an advanced diagnostic imaging technology that utilizes ultra-sensitive electronic sensors instead of traditional chemical film. It captures crystal-clear images of your teeth, roots, and jawbone instantly on our HD clinical monitors with zero waiting time.{% endblocktrans %}
         </p>
         
         <div class="p-4 rounded-4" style="background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%); border-left: 4px solid #0284C7; border: 1px solid rgba(2, 132, 199, 0.15); border-left-width: 4px;">
-          <h5 class="fw-bold mb-2" style="font-family: var(--cf-font-head); color: #0B2545;">
-            <i class="bi bi-shield-check text-primary me-2"></i>{% trans "Why are Dental X-Rays Essential?" %}
+          <h5 class="fw-bold mb-2" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Why are Dental X-Rays Essential?" %}
           </h5>
           <p class="mb-0 text-muted" style="font-size: 0.925rem; line-height: 1.7; font-weight: 500;">
             {% blocktrans %}Over 50% of serious dental issues—such as root canal infections, bone loss from gum disease, and interdental cavities—develop beneath the surface where visual inspection cannot reach. Digital radiography enables early detection before severe pain or tooth loss occurs.{% endblocktrans %}
@@ -275,7 +272,7 @@
           <img loading="lazy" src="{% static 'images/dental_x-ray.jpg' %}" alt="Dentist Reviewing Digital X-Ray" class="w-100 h-100 object-fit-cover" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
           <div class="position-absolute bottom-0 start-0 m-3 p-3 text-white rounded-3" style="background: rgba(11, 37, 69, 0.88); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15);">
             <div class="d-flex align-items-center gap-2">
-              <i class="bi bi-patch-check-fill text-info fs-5"></i>
+              <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
               <div>
                 <strong class="d-block text-white small">{% trans "Up to 90% Less Radiation" %}</strong>
                 <small class="text-white-50" style="font-size: 0.75rem;">{% trans "Safe for Children & Adults" %}</small>
@@ -294,28 +291,27 @@
     <div class="row g-5">
       <!-- When do you need one -->
       <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-bullseye"></i> {% trans "INDICATIONS" %}
+        <div class="cf-eyebrow-badge">{% trans "INDICATIONS" %}
         </div>
         <h3 class="fw-bold mb-3" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "When Do You Need an X-Ray?" %}</h3>
         <p class="text-muted mb-4" style="font-weight: 500; font-size: 0.95rem;">{% trans "We rely on digital imaging across various diagnostic workflows:" %}</p>
         <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
           <li class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm border border-light">
-            <i class="bi bi-search text-primary fs-5 mt-1"></i>
+            <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
             <div>
               <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Routine Check-ups" %}</strong>
               <small class="text-muted" style="font-weight: 500;">{% trans "Annual screening to monitor bone levels and check for unseen decay." %}</small>
             </div>
           </li>
           <li class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm border border-light">
-            <i class="bi bi-lightning text-primary fs-5 mt-1"></i>
+            <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
             <div>
               <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Unexplained Tooth Pain" %}</strong>
               <small class="text-muted" style="font-weight: 500;">{% trans "Pinpointing the exact root nerve source of pain or swelling." %}</small>
             </div>
           </li>
           <li class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm border border-light">
-            <i class="bi bi-tools text-primary fs-5 mt-1"></i>
+            <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
             <div>
               <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Root Canals & Implants" %}</strong>
               <small class="text-muted" style="font-weight: 500;">{% trans "Mapping root canal anatomy and measuring jawbone density for dental implants." %}</small>
@@ -326,33 +322,32 @@
       
       <!-- What it detects -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-eye-fill"></i> {% trans "DIAGNOSTIC POWER" %}
+        <div class="cf-eyebrow-badge">{% trans "DIAGNOSTIC POWER" %}
         </div>
         <h3 class="fw-bold mb-3" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "What Digital X-Rays Reveal" %}</h3>
         
         <div class="row g-3">
           <div class="col-sm-6">
             <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-primary">
-              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-circle-half text-primary me-2"></i>{% trans "Interdental Cavities" %}</h6>
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Interdental Cavities" %}</h6>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Decay forming between tight teeth where mirrors cannot reach." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-info">
-              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-droplet-half text-info me-2"></i>{% trans "Periapical Abscesses" %}</h6>
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Periapical Abscesses" %}</h6>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Infections and cysts developing at the root tips inside the jaw." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-primary">
-              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-bar-chart-fill text-primary me-2"></i>{% trans "Bone Density Loss" %}</h6>
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Bone Density Loss" %}</h6>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Measuring bone degradation caused by untreated periodontal disease." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-info">
-              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-lock-fill text-info me-2"></i>{% trans "Impacted Wisdom Teeth" %}</h6>
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Impacted Wisdom Teeth" %}</h6>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Determining exact angles and nerve proximity of trapped teeth." %}</p>
             </div>
           </div>
@@ -368,31 +363,29 @@
     <div class="row g-5">
       <!-- Types of X-Rays -->
       <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-images"></i> {% trans "IMAGING MODES" %}
+        <div class="cf-eyebrow-badge">{% trans "IMAGING MODES" %}
         </div>
         <h3 class="fw-bold mb-4" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Types of Digital X-Rays" %}</h3>
         
         <div class="compare-card">
-          <h5 class="fw-bold text-primary mb-2" style="color: #0284C7 !important;"><i class="bi bi-record-circle me-2"></i> {% trans "Periapical (IOPA) X-Ray" %}</h5>
+          <h5 class="fw-bold text-primary mb-2" style="color: #0284C7 !important;"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Periapical (IOPA) X-Ray" %}</h5>
           <p class="text-muted small mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Captures the entire tooth from crown to root apex. Essential for diagnosing root canal infections and assessing bone health." %}</p>
         </div>
         
         <div class="compare-card">
-          <h5 class="fw-bold text-primary mb-2" style="color: #0284C7 !important;"><i class="bi bi-view-list me-2"></i> {% trans "Bitewing X-Ray" %}</h5>
+          <h5 class="fw-bold text-primary mb-2" style="color: #0284C7 !important;"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Bitewing X-Ray" %}</h5>
           <p class="text-muted small mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Displays upper and lower back teeth simultaneously. The clinical gold standard for detecting decay between molar teeth." %}</p>
         </div>
         
         <div class="compare-card">
-          <h5 class="fw-bold text-primary mb-2" style="color: #0284C7 !important;"><i class="bi bi-aspect-ratio me-2"></i> {% trans "Panoramic X-Ray (OPG)" %}</h5>
+          <h5 class="fw-bold text-primary mb-2" style="color: #0284C7 !important;"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Panoramic X-Ray (OPG)" %}</h5>
           <p class="text-muted small mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "A single wide scan of the entire upper and lower jaw, joints (TMJ), and sinuses. Used for implants, wisdom teeth, and orthodontics." %}</p>
         </div>
       </div>
 
       <!-- Benefits & Safety -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-shield-shaded"></i> {% trans "SAFETY & SPEED" %}
+        <div class="cf-eyebrow-badge">{% trans "SAFETY & SPEED" %}
         </div>
         <h3 class="fw-bold mb-4" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Why Digital X-Rays Are Superior" %}</h3>
         <div class="row g-4 mt-1">
@@ -437,15 +430,14 @@
       
       <!-- Patient Care Process -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
-          <i class="bi bi-diagram-3-fill text-info"></i> {% trans "DIAGNOSTIC WORKFLOW" %}
+        <div class="cf-eyebrow-badge">{% trans "DIAGNOSTIC WORKFLOW" %}
         </div>
-        <h2 class="cf-section-title text-white mb-4">{% trans "Our Digital X-Ray" %} <span class="text-info">{% trans "Process" %}</span></h2>
+        <h2 class="cf-section-title text-white mb-4">{% trans "Our Digital X-Ray Process" %}</h2>
         
         <div class="row g-4">
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-clipboard2-check-fill"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">01</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "1. Clinical Assessment" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Evaluating symptoms to determine needed views." %}</p>
@@ -454,7 +446,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-shield-check"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">02</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "2. Protective Setup" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Fitting lead apron and sensor positioning." %}</p>
@@ -463,7 +455,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-camera-fill"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">03</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "3. Fast Digital Capture" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Painless capture in less than 3 seconds." %}</p>
@@ -472,7 +464,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-display-fill"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">04</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "4. Chairside Review" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Instant high-definition monitor display." %}</p>
@@ -481,7 +473,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-patch-question-fill"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">05</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "5. Transparent Review" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Our dentist explains findings with you." %}</p>
@@ -490,7 +482,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-list-check"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">06</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "6. Targeted Care Plan" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Creating a clear, personalized treatment plan." %}</p>
@@ -534,7 +526,7 @@
                 {% trans "* Note: The exact imaging needed is determined clinically so you only receive necessary diagnostic views." %}
               </p>
               <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary w-100 justify-content-center">
-                <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book Diagnostic Scan" %}
+                 {% trans "Book Diagnostic Scan" %}
               </a>
             </div>
 
@@ -549,10 +541,9 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center">
-        <i class="bi bi-images"></i> {% trans "CLINICAL FACILITY & TECHNOLOGY" %}
+      <div class="cf-eyebrow-badge">{% trans "CLINICAL FACILITY & TECHNOLOGY" %}
       </div>
-      <h2 class="cf-section-title">{% trans "Diagnostic Suite" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "& Technology Gallery" %}</span></h2>
+      <h2 class="cf-section-title">{% trans "Diagnostic Suite & Technology Gallery" %}</h2>
       <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 620px;">{% trans "Explore the modern low-radiation diagnostic equipment and chairside digital imaging we use to safeguard your smile in Kathmandu." %}</p>
     </div>
     
@@ -633,8 +624,7 @@
       
       <!-- Radiation Safety Left -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-shield-check"></i> {% trans "SAFETY & PEACE OF MIND" %}
+        <div class="cf-eyebrow-badge">{% trans "SAFETY & PEACE OF MIND" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: #0B2545;">
           {% trans "Radiation Safety: The CareFirst Standard" %}
@@ -663,7 +653,7 @@
 
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <i class="bi bi-clock-fill"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Fast 2-Minute Scan" %}</strong>
@@ -705,8 +695,7 @@
       
       <!-- Testimonials -->
       <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-chat-quote-fill"></i> {% trans "PATIENT STORIES" %}
+        <div class="cf-eyebrow-badge">{% trans "PATIENT STORIES" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Accurate Diagnostic Care" %}</h3>
         
@@ -728,8 +717,7 @@
 
       <!-- FAQ -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-question-circle-fill"></i> {% trans "COMMON QUESTIONS" %}
+        <div class="cf-eyebrow-badge">{% trans "COMMON QUESTIONS" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
@@ -804,10 +792,10 @@
     <p class="fs-5 text-white-50 mb-4">{% trans "Experiencing tooth pain or need a comprehensive check-up? Book an appointment today for a precise digital evaluation." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
       <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
-        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Diagnostic Scan" %}
+        {% trans "Book Diagnostic Scan" %}
       </a>
       <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "+977 980-7464136" %}
+        {% trans "+977 980-7464136" %}
       </a>
     </div>
   </div>

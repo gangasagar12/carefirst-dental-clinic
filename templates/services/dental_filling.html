@@ -292,14 +292,13 @@
         <li class="breadcrumb-item active text-info fw-bold">{% trans "Dental Filling" %}</li>
       </ol>
     </nav>
-    <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
-      <i class="bi bi-bandaid-fill text-info"></i> {% trans "TOOTH-COLORED RESTORATIONS" %}
+    <div class="cf-eyebrow-badge">{% trans "TOOTH-COLORED RESTORATIONS" %}
     </div>
     <h1>{% trans "Seamless Dental Fillings" %}</h1>
     <p class="hero-sub mx-auto">{% trans "Invisible, durable composite restorations to stop tooth decay, relieve sensitivity, and preserve your natural tooth structure in Shankhamul, Kathmandu." %}</p>
     <div class="mt-4">
       <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary">
-        <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book a Tooth Restoration" %}
+         {% trans "Book a Tooth Restoration" %}
       </a>
     </div>
   </div>
@@ -310,17 +309,15 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-info-circle-fill"></i> {% trans "CONSERVATIVE RESTORATION" %}
+        <div class="cf-eyebrow-badge">{% trans "CONSERVATIVE RESTORATION" %}
         </div>
-        <h2 class="cf-section-title mb-4">{% trans "What is a" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Dental Filling?" %}</span></h2>
+        <h2 class="cf-section-title mb-4">{% trans "What is a Dental Filling?" %}</h2>
         <p class="cf-body-text mb-4">
           {% blocktrans %}A dental filling is a minimally invasive restorative treatment used to repair tooth damage caused by decay, enamel chipping, or wear. The infected portion of the tooth is gently cleared, and the cavity is restored with biocompatible composite resin that matches the natural shade and strength of your enamel.{% endblocktrans %}
         </p>
         
         <div class="p-4 rounded-4" style="background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%); border-left: 4px solid #0284C7; border: 1px solid rgba(2, 132, 199, 0.15); border-left-width: 4px;">
-          <h5 class="fw-bold mb-2" style="font-family: var(--cf-font-head); color: #0B2545;">
-            <i class="bi bi-shield-check text-primary me-2"></i>{% trans "When is a Dental Filling Needed?" %}
+          <h5 class="fw-bold mb-2" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "When is a Dental Filling Needed?" %}
           </h5>
           <ul class="list-unstyled mb-0 d-flex flex-column gap-2 text-muted" style="font-size: 0.925rem; font-weight: 500;">
             <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-primary"></i> {% trans "Treating active cavities before bacteria penetrate the nerve pulp." %}</li>
@@ -334,7 +331,7 @@
           <img loading="lazy" src="{% static 'images/filling_intro.png' %}" alt="Painless tooth restoration" class="w-100 h-100 object-fit-cover" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
           <div class="position-absolute bottom-0 start-0 m-3 p-3 text-white rounded-3" style="background: rgba(11, 37, 69, 0.88); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15);">
             <div class="d-flex align-items-center gap-2">
-              <i class="bi bi-patch-check-fill text-info fs-5"></i>
+              <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
               <div>
                 <strong class="d-block text-white small">{% trans "100% Invisible Shade Match" %}</strong>
                 <small class="text-white-50" style="font-size: 0.75rem;">{% trans "Mercury-Free Composite Resin" %}</small>
@@ -351,10 +348,9 @@
 <section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center">
-        <i class="bi bi-stars"></i> {% trans "REAL CLINICAL OUTCOMES" %}
+      <div class="cf-eyebrow-badge">{% trans "REAL CLINICAL OUTCOMES" %}
       </div>
-      <h2 class="cf-section-title">{% trans "Before &" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "After Filling Cases" %}</span></h2>
+      <h2 class="cf-section-title">{% trans "Before & After Filling Cases" %}</h2>
       <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "See how composite resin restorations seamlessly replace decayed enamel and blend naturally." %}</p>
     </div>
     <div class="row g-4">
@@ -407,14 +403,13 @@
       <!-- Signs & Symptoms -->
       <div class="col-lg-6">
         <div class="bg-white p-4 p-md-5 rounded-4 h-100 shadow-sm border" style="border: 1.5px solid #E2E8F0 !important;">
-          <div class="cf-eyebrow-badge">
-            <i class="bi bi-exclamation-triangle-fill"></i> {% trans "WATCH FOR THESE" %}
+          <div class="cf-eyebrow-badge">{% trans "WATCH FOR THESE" %}
           </div>
           <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Signs You Need a Filling" %}</h3>
           <p class="text-muted mb-4 small" style="font-weight: 500;">{% blocktrans %}Early decay doesn't always cause constant throbbing. Look for these warning signs:{% endblocktrans %}</p>
           <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
             <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
-              <i class="bi bi-snow text-primary fs-5 mt-1"></i>
+              <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
               <div>
                 <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Tooth Sensitivity" %}</strong>
                 <small class="text-muted" style="font-weight: 500;">{% trans "Sharp discomfort when drinking hot tea, cold water, or sweet foods." %}</small>
@@ -448,8 +443,7 @@
       <!-- Causes -->
       <div class="col-lg-6">
         <div class="bg-white p-4 p-md-5 rounded-4 h-100 shadow-sm border" style="border: 1.5px solid #E2E8F0 !important;">
-          <div class="cf-eyebrow-badge">
-            <i class="bi bi-bug-fill"></i> {% trans "PRIMARY CAUSES" %}
+          <div class="cf-eyebrow-badge">{% trans "PRIMARY CAUSES" %}
           </div>
           <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Why Cavities Form" %}</h3>
           <p class="text-muted mb-4 small" style="font-weight: 500;">{% trans "Tooth decay is a progressive bacterial process. Common drivers include:" %}</p>
@@ -462,7 +456,7 @@
               </div>
             </li>
             <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
-              <i class="bi bi-cup-straw text-primary fs-5 mt-1"></i>
+              <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
               <div>
                 <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Frequent Snacking & Sugars" %}</strong>
                 <small class="text-muted" style="font-weight: 500;">{% trans "Frequent exposure to sweet beverages prevents saliva from neutralizing acid." %}</small>
@@ -494,10 +488,9 @@
 <section class="section-py" style="background: #F8FAFC;">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center">
-        <i class="bi bi-layers-fill"></i> {% trans "ADVANCED MATERIALS" %}
+      <div class="cf-eyebrow-badge">{% trans "ADVANCED MATERIALS" %}
       </div>
-      <h2 class="cf-section-title">{% trans "Types of Dental" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Filling Materials" %}</span></h2>
+      <h2 class="cf-section-title">{% trans "Types of Dental Filling Materials" %}</h2>
       <p class="cf-body-text text-muted mt-2 max-w-600 mx-auto">{% trans "We use 100% biocompatible, mercury-free filling materials engineered for natural aesthetics and chewing longevity." %}</p>
     </div>
     
@@ -511,9 +504,9 @@
             <h4 class="vfc-title">{% trans "Composite (Tooth-Colored)" %}</h4>
             <p class="vfc-desc">{% trans "Our most popular restoration. Formulated with ceramic-infused micro-hybrid resin that mimics natural tooth translucency and bonds directly to enamel." %}</p>
             <div class="vfc-highlights">
-              <span><i class="bi bi-check-circle-fill"></i> {% trans "100% Natural Appearance" %}</span>
-              <span><i class="bi bi-check-circle-fill"></i> {% trans "Strong Enamel Bonding" %}</span>
-              <span><i class="bi bi-check-circle-fill"></i> {% trans "Mercury & BPA Free" %}</span>
+              <span><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "100% Natural Appearance" %}</span>
+              <span><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "Strong Enamel Bonding" %}</span>
+              <span><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "Mercury & BPA Free" %}</span>
             </div>
           </div>
         </div>
@@ -527,9 +520,9 @@
             <h4 class="vfc-title">{% trans "Glass Ionomer Cement" %}</h4>
             <p class="vfc-desc">{% blocktrans %}Releases continuous fluoride into surrounding enamel to safeguard against recurring decay. Ideal for gumline cavities, root surfaces, and pediatric teeth.{% endblocktrans %}</p>
             <div class="vfc-highlights">
-              <span><i class="bi bi-check-circle-fill"></i> {% trans "Continuous Fluoride Release" %}</span>
-              <span><i class="bi bi-check-circle-fill"></i> {% trans "Excellent Gumline Protection" %}</span>
-              <span><i class="bi bi-check-circle-fill"></i> {% trans "Ideal for Children's Teeth" %}</span>
+              <span><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "Continuous Fluoride Release" %}</span>
+              <span><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "Excellent Gumline Protection" %}</span>
+              <span><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "Ideal for Children's Teeth" %}</span>
             </div>
           </div>
         </div>
@@ -543,9 +536,9 @@
             <h4 class="vfc-title">{% trans "Ceramic Inlays & Onlays" %}</h4>
             <p class="vfc-desc">{% trans "Custom laboratory-milled porcelain restorations for extensively broken teeth that require more structural support than a standard direct filling." %}</p>
             <div class="vfc-highlights">
-              <span><i class="bi bi-check-circle-fill"></i> {% trans "Exceptional Chewing Strength" %}</span>
-              <span><i class="bi bi-check-circle-fill"></i> {% trans "10+ Year Durability" %}</span>
-              <span><i class="bi bi-check-circle-fill"></i> {% trans "Preserves Healthy Cusps" %}</span>
+              <span><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "Exceptional Chewing Strength" %}</span>
+              <span><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "10+ Year Durability" %}</span>
+              <span><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "Preserves Healthy Cusps" %}</span>
             </div>
           </div>
         </div>
@@ -562,15 +555,14 @@
       
       <!-- Patient Care Process -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
-          <i class="bi bi-diagram-3-fill text-info"></i> {% trans "CLINICAL WORKFLOW" %}
+        <div class="cf-eyebrow-badge">{% trans "CLINICAL WORKFLOW" %}
         </div>
-        <h2 class="cf-section-title text-white mb-4">{% trans "Our Filling" %} <span class="text-info">{% trans "Treatment Process" %}</span></h2>
+        <h2 class="cf-section-title text-white mb-4">{% trans "Our Filling Treatment Process" %}</h2>
         
         <div class="row g-4">
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-search"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">01</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "1. Examination & Scan" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Digital check to assess cavity depth." %}</p>
@@ -579,7 +571,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-bandaid-fill"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">02</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "2. Gentle Numbing" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Comfortable local anesthetic for zero pain." %}</p>
@@ -588,7 +580,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-shield-x"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">03</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "3. Decay Removal" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Microscopic cleaning of infected dentin." %}</p>
@@ -597,7 +589,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-stars"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">04</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "4. Enamel Bonding" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Etching and priming for maximum adhesion." %}</p>
@@ -606,7 +598,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-layers-fill"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">05</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "5. Layered Composite" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Applying resin cured with blue LED light." %}</p>
@@ -615,7 +607,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-check2-circle"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">06</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "6. Occlusal Polish" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Shaping bite alignment and silky polish." %}</p>
@@ -669,7 +661,7 @@
                 {% trans "* Note: The exact cost depends on cavity depth and material selected, quoted upfront with no hidden fees." %}
               </p>
               <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary w-100 justify-content-center">
-                <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Schedule Tooth Filling" %}
+                 {% trans "Schedule Tooth Filling" %}
               </a>
             </div>
 
@@ -687,8 +679,7 @@
       
       <!-- Recovery & Care Left -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-heart-pulse-fill"></i> {% trans "AFTERCARE & COMFORT" %}
+        <div class="cf-eyebrow-badge">{% trans "AFTERCARE & COMFORT" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: #0B2545;">
           {% trans "What to Expect After Your Dental Filling" %}
@@ -697,7 +688,7 @@
         <div class="d-flex flex-column gap-3">
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <i class="bi bi-clock-fill"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Wait Until Numbness Fades" %}</strong>
@@ -717,7 +708,7 @@
 
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <i class="bi bi-emoji-smile-fill"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Temporary Mild Sensitivity" %}</strong>
@@ -759,8 +750,7 @@
       
       <!-- Testimonials -->
       <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-chat-quote-fill"></i> {% trans "PATIENT STORIES" %}
+        <div class="cf-eyebrow-badge">{% trans "PATIENT STORIES" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Invisible Restorations" %}</h3>
         
@@ -782,8 +772,7 @@
 
       <!-- FAQ -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-question-circle-fill"></i> {% trans "COMMON QUESTIONS" %}
+        <div class="cf-eyebrow-badge">{% trans "COMMON QUESTIONS" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
@@ -846,10 +835,9 @@
 <section class="section-py" style="background: #F8FAFC; border-top: 1px solid #E2E8F0;">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center">
-        <i class="bi bi-images"></i> {% trans "CLINICAL GALLERY" %}
+      <div class="cf-eyebrow-badge">{% trans "CLINICAL GALLERY" %}
       </div>
-      <h2 class="cf-section-title">{% trans "Dental Filling" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Treatment Gallery" %}</span></h2>
+      <h2 class="cf-section-title">{% trans "Dental Filling Treatment Gallery" %}</h2>
       <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "A visual overview of our composite filling procedures, shade-matching process, and patient results at CareFirst Dental Clinic." %}</p>
     </div>
 
@@ -948,10 +936,10 @@
     <p class="fs-5 text-white-50 mb-4">{% trans "Early conservative treatment stops decay and preserves your natural tooth. Schedule your appointment today for a painless, invisible filling." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
       <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
-        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Tooth Restoration" %}
+        {% trans "Book Tooth Restoration" %}
       </a>
       <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "+977 980-7464136" %}
+        {% trans "+977 980-7464136" %}
       </a>
     </div>
   </div>

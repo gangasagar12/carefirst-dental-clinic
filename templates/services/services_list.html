@@ -400,8 +400,7 @@
         <li class="breadcrumb-item active text-info fw-bold">{% trans "Treatments" %}</li>
       </ol>
     </nav>
-    <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
-      <i class="bi bi-patch-check-fill text-info"></i> {% trans "COMPREHENSIVE DENTAL CARE" %}
+    <div class="cf-eyebrow-badge">{% trans "COMPREHENSIVE DENTAL CARE" %}
     </div>
     <h1>{% blocktrans %}Expert Care for <span class="text-info">Every Smile</span>{% endblocktrans %}</h1>
     <p class="hero-sub">
@@ -442,9 +441,7 @@
   <div class="container">
     
     <div class="text-center mx-auto mb-5" style="max-width: 700px;">
-      <div class="cf-eyebrow-badge">
-        <i class="bi bi-compass-fill"></i>
-        {% trans "TREATMENT RECOMMENDATIONS" %}
+      <div class="cf-eyebrow-badge">{% trans "TREATMENT RECOMMENDATIONS" %}
       </div>
       <h2 class="cf-section-title mb-3">{% trans "Not Sure Where to Start?" %}</h2>
       <p class="fs-5 text-muted mb-0" style="line-height: 1.7; font-weight: 500;">
@@ -469,7 +466,7 @@
             <li><i class="bi bi-check2-circle"></i> {% trans "Composite Tooth Fillings" %}</li>
           </ul>
           <a href="{% url 'appointments:book' %}?treatment=scaling-and-polishing" class="recommend-btn">
-            <span>{% trans "Book Checkup" %}</span> <i class="bi bi-arrow-right"></i>
+            <span>{% trans "Book Checkup" %}</span> 
           </a>
         </div>
       </div>
@@ -490,7 +487,7 @@
             <li><i class="bi bi-check2-circle"></i> {% trans "Wisdom Tooth Extractions" %}</li>
           </ul>
           <a href="{% url 'appointments:book' %}?treatment=root-canal-treatment" class="recommend-btn">
-            <span>{% trans "Relieve Tooth Pain" %}</span> <i class="bi bi-arrow-right"></i>
+            <span>{% trans "Relieve Tooth Pain" %}</span> 
           </a>
         </div>
       </div>
@@ -511,7 +508,7 @@
             <li><i class="bi bi-check2-circle"></i> {% trans "Dental Implants & Dentures" %}</li>
           </ul>
           <a href="{% url 'main:smile_transformations' %}" class="recommend-btn">
-            <span>{% trans "Explore Smile Gallery" %}</span> <i class="bi bi-arrow-right"></i>
+            <span>{% trans "Explore Smile Gallery" %}</span> 
           </a>
         </div>
       </div>

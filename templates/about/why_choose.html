@@ -32,21 +32,21 @@
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
         <div class="nd-eyebrow">{% trans "Our Difference" %}</div>
-        <h2 class="section-heading mb-4">{% trans "A Dental Experience" %}<span class="accent">{% trans "Unlike Any Other" %}</span></h2>
+        <h2 class="section-heading mb-4">{% trans "A Dental Experience Unlike Any Other" %}</h2>
         <p class="text-muted mb-4" style="line-height:1.85;">{% trans "Choosing the right dental clinic is a big decision. At Carefirst Dental Clinic, we go beyond standard care — combining cutting-edge technology with genuine compassion, transparent pricing, and proven clinical excellence to give you the best dental experience in Kathmandu." %}</p>
         <ul class="nd-checklist mb-5">
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Experienced & Certified Specialists" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Latest Digital Dental Technology" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "ISO Sterilization & Safety Standards" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Personalized Treatment Plans" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Transparent, No-Hidden-Cost Pricing" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Comfortable, Anxiety-Free Environment" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Family & Pediatric Dentistry" %}</li>
-          <li><i class="bi bi-check-circle-fill"></i>{% trans "Emergency Dental Services" %}</li>
+          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Experienced & Certified Specialists" %}</li>
+          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Latest Digital Dental Technology" %}</li>
+          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "ISO Sterilization & Safety Standards" %}</li>
+          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Personalized Treatment Plans" %}</li>
+          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Transparent, No-Hidden-Cost Pricing" %}</li>
+          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Comfortable, Anxiety-Free Environment" %}</li>
+          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Family & Pediatric Dentistry" %}</li>
+          <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span>{% trans "Emergency Dental Services" %}</li>
         </ul>
         <div class="d-flex flex-wrap gap-3">
           <a href="{% url 'appointments:book' %}" class="cf-btn-primary"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Appointment" %}</a>
-          <a href="{% url 'main:doctors' %}" class="btn btn-outline-primary rounded-pill px-4 py-2.5 fw-bold"><i class="bi bi-people-fill me-2"></i>{% trans "Meet Our Doctors" %}</a>
+          <a href="{% url 'main:doctors' %}" class="btn btn-outline-primary rounded-pill px-4 py-2.5 fw-bold">{% trans "Meet Our Doctors" %}</a>
         </div>
       </div>
       <div class="col-lg-6">
@@ -67,42 +67,42 @@
     <div class="row g-4">
       <div class="col-md-6 col-lg-4">
         <div class="nd-value-card h-100">
-          <div class="vc-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+          <div class="vc-icon" style="font-size:1.1rem; font-weight:800; color:#0284C7;">01</div>
           <h5>{% trans "Compassionate Care" %}</h5>
           <p>{% trans "We treat every patient as family. Our gentle, patient-first approach makes even the most anxious patients feel at ease throughout their visit." %}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
         <div class="nd-value-card h-100">
-          <div class="vc-icon"><i class="bi bi-cpu-fill"></i></div>
+          <div class="vc-icon" style="font-size:1.1rem; font-weight:800; color:#0284C7;">02</div>
           <h5>{% trans "Advanced Technology" %}</h5>
           <p>{% trans "From digital X-rays and CBCT scans to laser dentistry and same-day CAD/CAM crowns — we use the best tools available for precise, comfortable treatment." %}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
         <div class="nd-value-card h-100">
-          <div class="vc-icon"><i class="bi bi-shield-check-fill"></i></div>
+          <div class="vc-icon" style="font-size:1.1rem; font-weight:800; color:#0284C7;">03</div>
           <h5>{% trans "Patient Safety First" %}</h5>
           <p>{% trans "Class-B autoclave sterilization, barrier-protected surfaces, and WHO-compliant infection protocols — your safety is our top priority, always." %}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
         <div class="nd-value-card h-100">
-          <div class="vc-icon"><i class="bi bi-person-lines-fill"></i></div>
+          <div class="vc-icon" style="font-size:1.1rem; font-weight:800; color:#0284C7;">04</div>
           <h5>{% trans "Personalized Treatment" %}</h5>
           <p>{% trans "No two patients are alike. We craft individualized treatment plans based on thorough consultation, detailed diagnostics, and your unique goals." %}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
         <div class="nd-value-card h-100">
-          <div class="vc-icon"><i class="bi bi-chat-dots-fill"></i></div>
+          <div class="vc-icon" style="font-size:1.1rem; font-weight:800; color:#0284C7;">05</div>
           <h5>{% trans "Transparent Consultations" %}</h5>
           <p>{% trans "We walk you through every diagnosis, treatment option, and cost — no surprises, no hidden fees. Informed consent is the foundation of our practice." %}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
         <div class="nd-value-card h-100">
-          <div class="vc-icon"><i class="bi bi-award-fill"></i></div>
+          <div class="vc-icon" style="font-size:1.1rem; font-weight:800; color:#0284C7;">06</div>
           <h5>{% trans "Clinical Excellence" %}</h5>
           <p>{% trans "Our specialists hold MDS degrees, international fellowships, and attend global dental conferences to deliver treatments that meet world-class standards." %}</p>
         </div>
@@ -117,21 +117,21 @@
     <div class="row g-5 align-items-center">
       <div class="col-lg-6 order-lg-2">
         <div class="nd-eyebrow">{% trans "Innovation" %}</div>
-        <h2 class="section-heading mb-4">{% trans "Powered by" %}<span class="accent">{% trans "Advanced Dental Technology" %}</span></h2>
+        <h2 class="section-heading mb-4">{% trans "Powered by Advanced Dental Technology" %}</h2>
         <div class="clinic-feature-row">
-          <div class="cfr-icon"><i class="bi bi-camera-fill"></i></div>
+          <div class="cfr-icon" style="color:#0284C7; font-size:1.2rem;">◆</div>
           <div><h6>{% trans "3D CBCT & Digital OPG" %}</h6><p>{% trans "Highly accurate 3-dimensional imaging for implant planning, orthodontics, and complex diagnoses." %}</p></div>
         </div>
         <div class="clinic-feature-row">
-          <div class="cfr-icon"><i class="bi bi-gem"></i></div>
+          <div class="cfr-icon" style="color:#0284C7; font-size:1.2rem;">◆</div>
           <div><h6>{% trans "Same-Day CAD/CAM Crowns" %}</h6><p>{% trans "In-house crown milling from digital impressions — no temporaries, no second appointment." %}</p></div>
         </div>
         <div class="clinic-feature-row">
-          <div class="cfr-icon"><i class="bi bi-lightbulb-fill"></i></div>
+          <div class="cfr-icon" style="color:#0284C7; font-size:1.2rem;">◆</div>
           <div><h6>{% trans "Dental Laser Systems" %}</h6><p>{% trans "Laser-assisted gum treatment and surgery for faster healing and greater precision." %}</p></div>
         </div>
         <div class="clinic-feature-row">
-          <div class="cfr-icon"><i class="bi bi-vinyl-fill"></i></div>
+          <div class="cfr-icon" style="color:#0284C7; font-size:1.2rem;">◆</div>
           <div><h6>{% trans "Invisible Aligners" %}</h6><p>{% trans "Clear aligner therapy (Invisalign-compatible) with digital outcome simulation before you start." %}</p></div>
         </div>
       </div>
@@ -217,7 +217,7 @@
     <p>{% trans "Take the first step towards a healthier, more confident smile. Book your free consultation today." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
       <a href="{% url 'appointments:book' %}" class="btn-nd-white btn"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Free Consultation" %}</a>
-      <a href="{% url 'main:clinic' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold"><i class="bi bi-building me-2"></i>{% trans "Tour Our Clinic" %}</a>
+      <a href="{% url 'main:clinic' %}" class="btn btn-outline-light rounded-pill px-4 fw-semibold">{% trans "Tour Our Clinic" %}</a>
     </div>
   </div>
 </div>

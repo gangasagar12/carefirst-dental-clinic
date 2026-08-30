@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CareFirst Dental 1.0\n"
 "Report-Msgid-Bugs-To: info@carefirst.com\n"
-"POT-Creation-Date: 2026-08-30 10:00+0545\n"
-"PO-Revision-Date: 2026-08-30 10:00+0545\n"
-"Last-Translator: DeepTranslator & Medical Board <info@carefirst.com>\n"
+"POT-Creation-Date: 2026-08-20 15:30+0545\n"
+"PO-Revision-Date: 2026-08-20 15:30+0545\n"
+"Last-Translator: CareFirst AI Translator <info@carefirst.com>\n"
 "Language-Team: Nepali <ne@carefirst.com>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
@@ -13,33 +13,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid ""
-"\"I had a visible cavity on my upper front tooth and was anxious it would "
-"look fake. The CareFirst dental team matched the composite shade so "
-"accurately you cannot even tell where the filling begins. Truly painless and"
-" flawless work!\""
-msgstr ""
-"\"I had a visible cavity on my upper front tooth and was anxious it would "
-"look fake. The CareFirst dental team matched the composite shade so "
-"accurately you cannot even tell where the filling begins. Truly painless and"
-" flawless work!\""
-
-msgid ""
-"\"I had severe tooth pain without any visible cavity. The dentist took a "
-"quick digital X-ray and immediately spotted an infection near the root. The "
-"scan was completely painless, instant, and helped save my tooth with prompt "
-"treatment.\""
-msgstr ""
-"\"I had severe tooth pain without any visible cavity. The dentist took a "
-"quick digital X-ray and immediately spotted an infection near the root. The "
-"scan was completely painless, instant, and helped save my tooth with prompt "
-"treatment.\""
-
 msgid "%(app)s administration"
-msgstr "%(app)s प्रशासन"
+msgstr "%(एप) को प्रशासन"
 
 msgid "%(class_name)s %(instance)s"
-msgstr "%(class_name)s %(instance)s"
+msgstr "%(class_name)s %(उदाहरण)s"
 
 msgid "%(ct_name)s objects don’t have a get_absolute_url() method"
 msgstr "%(ct_name)s वस्तुहरूमा get_absolute_url() विधि छैन"
@@ -60,10 +38,10 @@ msgid "%(model_name)s with this %(field_labels)s already exists."
 msgstr "यो %(field_labels) सँग %(model_name)s पहिले नै अवस्थित छ।"
 
 msgid "%(name)s object with primary key %(key)r does not exist."
-msgstr "प्राथमिक कुञ्जी %(key)r भएको %(name)s वस्तु फेला परेन।"
+msgstr "प्राथमिक कुञ्जी %(कुञ्जी) r भएको %(नाम)को वस्तु अवस्थित छैन।"
 
 msgid "%(name)s with ID “%(key)s” doesn’t exist. Perhaps it was deleted?"
-msgstr "\"%(key)s\" ID भएको %(name)s अवस्थित छैन। सायद यो मेटिएको थियो?"
+msgstr "ID \"%(key)s\" भएको %(नाम)हरू अवस्थित छैनन्। सायद यो मेटिएको थियो?"
 
 msgid "%s does not appear to be a urlpattern object"
 msgstr "%s urlpattern वस्तु जस्तो देखिदैन"
@@ -75,7 +53,7 @@ msgid "', \"_('"
 msgstr "', \"_('"
 
 msgid "(Hidden field %(name)s) %(error)s"
-msgstr "(लुकेको फिल्ड %(name)s) %(error)s"
+msgstr "(लुकेको क्षेत्र %(नाम)s) %(त्रुटि)s"
 
 msgid ""
 "), implants do not slip, make noise, or cause bone damage the way dentures "
@@ -132,14 +110,6 @@ msgstr ""
 "आवश्यक निदानात्मक दृश्यहरू मात्र प्राप्त गर्नुहुन्छ।"
 
 msgid ""
-"* Note: The final treatment cost depends heavily on the patient's oral "
-"condition, the number of teeth being replaced, and the specific material "
-"chosen."
-msgstr ""
-"* नोट: अन्तिम उपचार लागत बिरामीको मौखिक अवस्था, दाँतको संख्या र छनौट गरिएको "
-"विशिष्ट सामग्रीमा धेरै निर्भर गर्दछ।"
-
-msgid ""
 "* Note: The final treatment cost depends on the complexity of the case "
 "(e.g., angle of impaction) and clinical evaluation."
 msgstr ""
@@ -163,15 +133,6 @@ msgstr ""
 "डेन्टल क्राउन अत्यधिक सिफारिस गरिन्छ।"
 
 msgid ""
-"* Note: The prices above reflect the root canal procedure and core filling. "
-"Because a root canal treated tooth becomes brittle, a Dental Crown is highly"
-" recommended to protect it. Crown charges are separate."
-msgstr ""
-"* नोट: माथि उल्लिखित शुल्कले रूट क्यानल उपचार र कोर फिलिङलाई जनाउँछ। रूट "
-"क्यानल गरिएको दाँत कमजोर हुने भएकाले यसको सुरक्षाका लागि डेन्टल क्राउन "
-"(क्याप) लगाउन विशेष सिफारिस गरिन्छ। क्राउनको शुल्क छुट्टै लाग्नेछ।"
-
-msgid ""
 "* Note: Total cost = Implant Fixture + Crown. E.g., Standard Implant with "
 "PFM Crown = NPR 55,000. Additional procedures like Bone Grafting (if "
 "required) incur separate charges based on clinical evaluation."
@@ -182,9 +143,6 @@ msgstr ""
 
 msgid "+977 980-7464136"
 msgstr "+९७७ ९८०-७४६४१३६"
-
-msgid ","
-msgstr ","
 
 msgid "0 of %(cnt)s selected"
 msgstr "%(cnt)s मध्ये ० चयन गरियो"
@@ -237,7 +195,8 @@ msgstr "100% पारदर्शी शुल्क"
 msgid ""
 "100% strict sterilization protocols following international hospital "
 "standards."
-msgstr "अन्तर्राष्ट्रिय अस्पताल मापदण्ड अनुसार १००% पूर्ण जीवाणुरहित विधि।"
+msgstr ""
+"अन्तर्राष्ट्रिय अस्पताल मापदण्डहरू पालना गर्दै 100% सख्त नसबंदी प्रोटोकल।"
 
 msgid ""
 "12 months of clear aligner treatment delivered a straight, beautiful smile —"
@@ -245,13 +204,6 @@ msgid ""
 msgstr ""
 "कुनै पनि देखिने तार नबाँधी १२ महिनाको पारदर्शी अलाइनर उपचारबाट मिलेको सुन्दर"
 " दाँत।"
-
-msgid ""
-"12 months of customized clear aligner trays delivered a straight, radiant "
-"smile — completely discreet without wires."
-msgstr ""
-"12 महिनाको अनुकूलित स्पष्ट पङ्क्तिबद्ध ट्रेहरूले एक सीधा, उज्ज्वल मुस्कान "
-"प्रदान गर्यो — तार बिना पूर्ण रूपमा विवेकी।"
 
 msgid "15+"
 msgstr "१५+"
@@ -412,13 +364,6 @@ msgid "8 Shades Whiter in One Session"
 msgstr "एकै सत्रमा ८ गुणा बढी सेतो दाँत"
 
 msgid ""
-"8 ultra-thin custom porcelain veneers placed in 2 visits — transforming "
-"discoloured, chipped teeth into a stunning Hollywood smile."
-msgstr ""
-"8 अति पातलो कस्टम पोर्सिलेन भेनियरहरू 2 भ्रमणहरूमा राखिएको छ — रङ्ग परेका, "
-"काटिएका दाँतहरूलाई हलिउडको आकर्षक मुस्कानमा रूपान्तरण गर्दै।"
-
-msgid ""
 "8 ultra-thin porcelain veneers placed in 2 visits — transforming "
 "discoloured, chipped teeth into a stunning Hollywood smile."
 msgstr ""
@@ -427,9 +372,6 @@ msgstr ""
 
 msgid "80k"
 msgstr "८० हजार"
-
-msgid ":"
-msgstr ":"
 
 msgid ":?.!"
 msgstr ":?.!"
@@ -440,14 +382,8 @@ msgstr "एक आरामदायक अनुभव मापदण्ड"
 msgid "A Dental Experience"
 msgstr "एक दन्त अनुभव"
 
-msgid "A Dental Experience Unlike Any Other"
-msgstr "अरूभन्दा फरक र उत्कृष्ट दन्त अनुभव"
-
 msgid "A JSON object"
 msgstr "JSON वस्तु"
-
-msgid "A Trusted Dental Experience in the Heart of Kathmandu"
-msgstr "काठमाडौँको मुटुमा एक भरपर्दो दन्त सेवा अनुभव"
 
 msgid "A blow to the mouth can damage the nerve even without visible cracks."
 msgstr "मुखमा प्रहारले नसालाई देख्न सक्ने दरार बिना पनि क्षति पुर्‍याउन सक्छ।"
@@ -472,29 +408,11 @@ msgstr ""
 "पुनर्स्थापना जसले प्राकृतिक कार्यक्षमता र उज्यालो मुस्कान फर्काउँछ।"
 
 msgid ""
-"A comprehensive aesthetic plan combining laser gum contouring, whitening, "
-"and 6 veneers for natural facial harmony."
-msgstr ""
-"A comprehensive aesthetic plan combining laser gum contouring, whitening, "
-"and 6 veneers for natural facial harmony."
-
-msgid ""
 "A comprehensive smile makeover combining gum contouring, whitening, and 6 "
 "veneers to create a perfectly harmonious, magazine-worthy smile."
 msgstr ""
 "गिजाको बनावट सुधार, ह्वाइटनिङ र ६ वटा भेनियर संयोजन गरेर तयार पारिएको पूर्ण "
 "आकर्षक मुस्कान।"
-
-msgid ""
-"A crown (or \\\"cap\\\") completely covers a damaged, weak, or severely "
-"decayed tooth to restore its original shape, size, strength, and appearance."
-" It is typically used after a root canal or when a large cavity threatens "
-"the health of the tooth."
-msgstr ""
-"मुकुट (वा \\\"टोपी\\\") ले क्षतिग्रस्त, कमजोर, वा गम्भीर रूपमा सडेको दाँतलाई"
-" यसको मूल आकार, आकार, बल र उपस्थिति पुनर्स्थापित गर्न पूर्ण रूपमा ढाक्छ। यो "
-"सामान्यतया रूट नहर पछि वा ठूलो गुफा दाँतको स्वास्थ्यलाई खतरामा पर्दा प्रयोग "
-"गरिन्छ।"
 
 msgid ""
 "A custom-milled, perfectly shade-matched Zirconia or Porcelain crown is "
@@ -519,18 +437,6 @@ msgstr ""
 "गरियो।"
 
 msgid ""
-"A dental filling is a minimally invasive restorative treatment used to "
-"repair tooth damage caused by decay, enamel chipping, or wear. The infected "
-"portion of the tooth is gently cleared, and the cavity is restored with "
-"biocompatible composite resin that matches the natural shade and strength of"
-" your enamel."
-msgstr ""
-"डेन्टल फिलिंग भनेको क्षय, इनामेल चिप्लिङ, वा पहिरनले दाँतको क्षतिलाई मर्मत "
-"गर्न प्रयोग गरिने न्यूनतम आक्रामक पुनर्स्थापना उपचार हो। दाँतको संक्रमित "
-"भागलाई बिस्तारै सफा गरिन्छ, र तपाईंको इनामेलको प्राकृतिक छाया र बलसँग मिल्ने"
-" बायोकम्प्याटिबल कम्पोजिट रेसिनले गुहालाई पुनर्स्थापित गरिन्छ।"
-
-msgid ""
 "A dental implant is a small, bio-compatible titanium post that is surgically"
 " placed into your jawbone beneath the gum line. It acts as an artificial "
 "tooth root, providing a permanent and incredibly strong foundation for a "
@@ -540,17 +446,6 @@ msgstr ""
 "शल्यक्रियाद्वारा गम रेखाको मुनि तपाईंको जबडाको हड्डीमा राखिन्छ। यसले कृत्रिम"
 " दाँतको जराको रूपमा कार्य गर्दछ, प्रतिस्थापन दाँत (मुकुट) वा पुलको लागि "
 "स्थायी र अविश्वसनीय रूपमा बलियो आधार प्रदान गर्दछ।"
-
-msgid ""
-"A digital dental X-ray is an advanced diagnostic imaging technology that "
-"utilizes ultra-sensitive electronic sensors instead of traditional chemical "
-"film. It captures crystal-clear images of your teeth, roots, and jawbone "
-"instantly on our HD clinical monitors with zero waiting time."
-msgstr ""
-"A digital dental X-ray is an advanced diagnostic imaging technology that "
-"utilizes ultra-sensitive electronic sensors instead of traditional chemical "
-"film. It captures crystal-clear images of your teeth, roots, and jawbone "
-"instantly on our HD clinical monitors with zero waiting time."
 
 msgid ""
 "A dry socket occurs if the blood clot that forms in the socket is dislodged "
@@ -576,19 +471,6 @@ msgid ""
 msgstr ""
 "तपाईंको आराम, नसबंदी सुरक्षा, र आत्मविश्वासको लागि डिजाइन गरिएको आधुनिक, "
 "शान्त वातावरण।"
-
-msgid ""
-"A perfectly aligned smile isn't just about aesthetics; it is essential for "
-"long-term oral health. Crooked and crowded teeth are difficult to clean, "
-"making them highly susceptible to decay and gum disease. By applying gentle,"
-" continuous pressure over time, braces slowly move teeth into their ideal "
-"positions."
-msgstr ""
-"एक पूर्ण पङ्क्तिबद्ध मुस्कान सौंदर्यशास्त्रको बारेमा मात्र होइन; यो "
-"दीर्घकालीन मौखिक स्वास्थ्यको लागि आवश्यक छ। बाङ्गो र भीडभाड भएका दाँतहरू सफा"
-" गर्न गाह्रो हुन्छ, जसले तिनीहरूलाई किड्ने र गिजाको रोगको लागि अत्यधिक "
-"संवेदनशील बनाउँछ। कोमल, निरन्तर दबाब समयको साथ लागू गरेर, कोष्ठकहरू बिस्तारै"
-" दाँतहरूलाई तिनीहरूको आदर्श स्थानमा सार्छन्।"
 
 msgid ""
 "A premium titanium implant was placed with a temporary crown during healing."
@@ -724,10 +606,7 @@ msgid "APPOINTMENT DESK"
 msgstr "अपोइन्टमेन्ट डेस्क"
 
 msgid "About"
-msgstr "हाम्रो बारेमा"
-
-msgid "About %(title)s"
-msgstr "%(title)s को बारेमा"
+msgstr "बारे"
 
 msgid "About Carefirst Dental Clinic"
 msgstr "केयरफर्स्ट डेन्टल क्लिनिकको बारेमा"
@@ -746,9 +625,6 @@ msgstr "हाम्रो बारेमा - केयरफर्स्ट �
 
 msgid "About the Clinic"
 msgstr "क्लिनिक को बारेमा"
-
-msgid "About {{ title }}"
-msgstr "About {{ title }}"
 
 msgid "Abscess (Pimple):"
 msgstr "फोड़ा (पिम्पल):"
@@ -861,25 +737,11 @@ msgid "Advanced Technology"
 msgstr "उन्नत प्रविधि"
 
 msgid ""
-"Advanced braces and clear aligners to correct crooked teeth and create a "
-"beautifully aligned smile."
-msgstr ""
-"बाङ्गो दाँत सच्याउन र सुन्दर ढंगले पङ्क्तिबद्ध मुस्कान सिर्जना गर्न उन्नत "
-"ब्रेसेस र स्पष्ट पङ्क्तिबद्धकर्ताहरू।"
-
-msgid ""
 "Advanced clinical treatment performed by certified dental specialists with "
 "pain-free protocols."
 msgstr ""
 "प्रमाणित विशेषज्ञ दन्त चिकित्सकहरूद्वारा दुखाइरहित विधिबाट गरिने उच्चस्तरीय "
 "उपचार।"
-
-msgid ""
-"Advanced clinical treatment performed by certified specialists with pain-"
-"free protocols."
-msgstr ""
-"पीडा-रहित प्रोटोकलहरूका साथ प्रमाणित विशेषज्ञहरूद्वारा गरिएको उन्नत क्लिनिकल"
-" उपचार।"
 
 msgid "Advanced digital imaging and computerized diagnostic equipment."
 msgstr "उन्नत डिजिटल इमेजिङ र कम्प्युटरकृत निदान उपकरण।"
@@ -889,16 +751,6 @@ msgstr "उन्नत विकल्पहरू"
 
 msgid "Advanced pocket reduction (Per Quadrant)"
 msgstr "उन्नत पकेट कटौती (प्रति चतुर्थांश)"
-
-msgid ""
-"Advanced technology, gentle clinical techniques, and personalized treatment "
-"plans in Shankhamul, Kathmandu."
-msgstr ""
-"Advanced technology, gentle clinical techniques, and personalized treatment "
-"plans in Shankhamul, Kathmandu."
-
-msgid "Advanced<br>Technology"
-msgstr "उन्नत<br>प्रविधि"
 
 msgid "Advantages"
 msgstr "फाइदाहरू"
@@ -1142,23 +994,6 @@ msgid "Assessment"
 msgstr "मूल्याङ्कन"
 
 msgid ""
-"At <strong class=\"text-green\">Carefirst Dental Clinic</strong>, we believe"
-" every patient deserves exceptional dental care in a warm, welcoming "
-"environment. Founded with a vision to deliver internationally-benchmarked "
-"dentistry to the people of Kathmandu, our clinic combines <strong>advanced "
-"technology</strong>, <strong>highly qualified specialists</strong>, and "
-"<strong>personalized treatment plans</strong> tailored to each patient's "
-"unique needs."
-msgstr ""
-"At <strong class=\"text-green\">Carefirst Dental Clinic</strong>, we believe"
-" every patient deserves exceptional dental care in a warm, welcoming "
-"environment. Founded with a vision to deliver internationally-benchmarked "
-"dentistry to the people of Kathmandu, our clinic combines <strong>advanced "
-"technology</strong>, <strong>highly qualified specialists</strong>, and "
-"<strong>personalized treatment plans</strong> tailored to each patient's "
-"unique needs."
-
-msgid ""
 "At CareFirst Dental Clinic, every detail of our clinical space in "
 "Shankhamul, Kathmandu has been designed to ensure patients feel relaxed, "
 "safe, and cared for. Our modern facility houses fully equipped digital "
@@ -1275,17 +1110,6 @@ msgstr ""
 "किनभने टाइटेनियम मानव हड्डीसँग प्राकृतिक रूपमा फ्युज हुन्छ (एक प्रक्रिया "
 "भनिन्छ"
 
-msgid ""
-"Because titanium fuses naturally with human bone (a process called "
-"osseointegration), implants do not slip, make noise, or cause bone damage "
-"the way dentures or conventional bridges might. They look, feel, and "
-"function exactly like natural teeth."
-msgstr ""
-"टाइटेनियम प्राकृतिक रूपमा मानव हड्डीसँग जोडिन्छ (जसलाई ओसियोइन्टिग्रेसन "
-"भनिन्छ), त्यसैले इम्प्लान्टहरू डेन्चर वा परम्परागत ब्रिज जस्तै चिप्लिने, "
-"आवाज निकाल्ने वा हड्डीलाई क्षति पुर्‍याउने गर्दैनन्। तिनीहरू दुरुस्तै "
-"प्राकृतिक दाँत जस्तै देखिन्छन्, महसुस हुन्छन् र काम गर्छन्।"
-
 msgid "Before"
 msgstr "अघि"
 
@@ -1294,15 +1118,6 @@ msgstr "पहिले र"
 
 msgid "Before & After"
 msgstr "अघि र पछि"
-
-msgid "Before & After Filling Cases"
-msgstr "फिलिङ उपचार अघि र पछिको नतिजा"
-
-msgid "Before & After Implant Cases"
-msgstr "इम्प्लान्ट उपचार अघि र पछिका परिणामहरू"
-
-msgid "Before & After Results"
-msgstr "उपचार अघि र पछिका परिणामहरू"
 
 msgid ""
 "Before any procedure begins, our doctors present an itemized treatment "
@@ -1336,9 +1151,6 @@ msgstr "दाँतका फाइदाहरू"
 
 msgid "Benefits of Orthodontic Treatment"
 msgstr "अर्थोडन्टिक उपचार को लाभ"
-
-msgid "Benefits of Root Canal Treatment"
-msgstr "रूट क्यानल उपचारका फाइदाहरू"
 
 msgid "Benefits of Timely Extraction"
 msgstr "समयमै निकासी को लाभ"
@@ -1451,9 +1263,6 @@ msgstr "पुस्तक मूल्याङ्कन"
 msgid "Book Free Consultation"
 msgstr "निःशुल्क परामर्श बुक गर्नुहोस्"
 
-msgid "Book Similar Consultation"
-msgstr "पुस्तक समान परामर्श"
-
 msgid "Book Slot"
 msgstr "समय लिनुहोस्"
 
@@ -1550,39 +1359,14 @@ msgstr "कोष्ठक विकल्प"
 msgid "Braces Treatment?"
 msgstr "ब्रेसेस उपचार?"
 
-msgid "Bridges fill gaps so adjacent teeth don't drift out of alignment."
-msgstr ""
-"पुलहरूले खाली ठाउँहरू भर्छन् त्यसैले छेउछाउका दाँतहरू पङ्क्तिबद्धताबाट बाहिर"
-" ननिस्कन्छन्।"
-
 msgid "Brighter Smile"
 msgstr "उज्यालो मुस्कान"
-
-msgid ""
-"Brought my 7-year-old here for her first filling and she didn't even cry! "
-"The pediatric dentist was amazing with children. Highly recommend for "
-"families."
-msgstr ""
-"Brought my 7-year-old here for her first filling and she didn't even cry! "
-"The pediatric dentist was amazing with children. Highly recommend for "
-"families."
 
 msgid "Browse Categories"
 msgstr "कोटिहरू ब्राउज गर्नुहोस्"
 
 msgid "Browse Our"
 msgstr "हाम्रो ब्राउज गर्नुहोस्"
-
-msgid "Browse Our Clinic Spaces"
-msgstr "हाम्रो क्लिनिक परिसर हेर्नुहोस्"
-
-msgid ""
-"Browse by treatment category and see how our specialists have helped "
-"patients across Kathmandu rediscover their confidence, one smile at a time."
-msgstr ""
-"उपचार कोटि द्वारा ब्राउज गर्नुहोस् र हेर्नुहोस् कसरी हाम्रा विशेषज्ञहरूले "
-"काठमाण्डौ भरका बिरामीहरूलाई उनीहरूको आत्मविश्वास पुन: पत्ता लगाउन मद्दत "
-"गरेका छन्, एक पटकमा एक मुस्कान।"
 
 msgid ""
 "Brush and floss your crowned teeth exactly like natural teeth to prevent "
@@ -1610,13 +1394,6 @@ msgstr "%(filter_title)s द्वारा"
 
 msgid "CAD/CAM Crowns (Same Day)"
 msgstr "CAD/CAM क्राउन (उही दिन)"
-
-msgid ""
-"CAD/CAM all-ceramic crown fabricated and bonded in a single visit — "
-"seamlessly matched in shade, strength, and translucency."
-msgstr ""
-"CAD/CAM all-ceramic crown fabricated and bonded in a single visit — "
-"seamlessly matched in shade, strength, and translucency."
 
 msgid ""
 "CAD/CAM same-day crown fabricated and placed in a single visit — perfectly "
@@ -1751,7 +1528,7 @@ msgid "CareFirst Assistant"
 msgstr "केयर फर्स्ट सहायक"
 
 msgid "CareFirst Dental"
-msgstr "CareFirst Dental"
+msgstr "केयरफर्स्ट डेन्टल"
 
 msgid "CareFirst Dental Clinic"
 msgstr "केयरफर्स्ट डेन्टल क्लिनिक"
@@ -1793,9 +1570,6 @@ msgstr "केयर फर्स्ट डेन्टल क्लिनिक
 msgid "Carefirst"
 msgstr "केयरफर्स्ट"
 
-msgid "Carefirst Dental"
-msgstr "CareFirst Dental"
-
 msgid "Carefirst Dental Clinic"
 msgstr "केयरफर्स्ट डेन्टल क्लिनिक"
 
@@ -1824,9 +1598,6 @@ msgstr "केस #01"
 
 msgid "Case #02"
 msgstr "केस #02"
-
-msgid "Case Journey"
-msgstr "केस यात्रा"
 
 msgid ""
 "Catching decay early with composite bonding is the most conservative way to "
@@ -2064,15 +1835,6 @@ msgstr "क्लिनिकल परीक्षा"
 msgid "Clinical Excellence"
 msgstr "क्लिनिकल उत्कृष्टता"
 
-msgid "Clinical Gallery"
-msgstr "क्लिनिकल ग्यालरी"
-
-msgid "Clinical Journey & Procedure"
-msgstr "Clinical Journey & Procedure"
-
-msgid "Clinical<br>Excellence"
-msgstr "क्लिनिकल<br>उत्कृष्टता"
-
 msgid "Closed"
 msgstr "बन्द"
 
@@ -2121,17 +1883,11 @@ msgstr "हामीले उपचार गर्ने सामान्य
 msgid "Compare"
 msgstr "तुलना गर्नुहोस्"
 
-msgid "Compare Braces Options"
-msgstr "ब्रेसेस विकल्पहरूको तुलना गर्नुहोस्"
-
 msgid "Compassionate Care"
 msgstr "दयालु हेरचाह"
 
 msgid "Compassionate care. Clinical excellence. Your smile is our legacy."
 msgstr "दयालु हेरचाह। क्लिनिकल उत्कृष्टता। तपाईंको मुस्कान हाम्रो विरासत हो।"
-
-msgid "Compassionate<br>Care"
-msgstr "Compassionate<br>Care"
 
 msgid "Complete"
 msgstr "पूरा"
@@ -2145,9 +1901,6 @@ msgstr "पूरा दाँत (CD)"
 msgid "Complete Denture Patient"
 msgstr "पूरा दाँत रोगी"
 
-msgid "Complete Fee Schedule"
-msgstr "सम्पूर्ण शुल्क तालिका"
-
 msgid "Complete Smile Transformation"
 msgstr "पूर्ण मुस्कान रूपान्तरण"
 
@@ -2159,13 +1912,6 @@ msgstr "मा सम्पन्न"
 
 msgid "Completed Visit"
 msgstr "भ्रमण पूरा भयो"
-
-msgid ""
-"Complex full-arch restoration combining implants, fixed zirconia bridge, and"
-" gum health therapy for lifelong confidence."
-msgstr ""
-"आजीवन आत्मविश्वासको लागि प्रत्यारोपण, निश्चित जिरकोनिया ब्रिज, र गम हेल्थ "
-"थेरापी संयोजन गरी जटिल पूर्ण-आर्क पुनर्स्थापना।"
 
 msgid "Complexity Handling"
 msgstr "जटिलता ह्यान्डलिंग"
@@ -2201,9 +1947,6 @@ msgstr "व्यापक"
 msgid "Comprehensive Dental Examination"
 msgstr "व्यापक दन्त परीक्षा"
 
-msgid "Comprehensive Dental Treatments"
-msgstr "सम्पूर्ण दन्त उपचार सेवाहरू"
-
 msgid ""
 "Comprehensive checkup and thorough discussion of your oral health goals."
 msgstr "तपाईंको मौखिक स्वास्थ्य लक्ष्यहरूको विस्तृत जाँच र विस्तृत छलफल।"
@@ -2221,13 +1964,6 @@ msgstr "व्यापक क्लिनिकल निदान जाँच
 msgid "Comprehensive dental care designed around your smile."
 msgstr "तपाईको मुस्कान वरिपरि डिजाइन गरिएको व्यापक दन्त हेरचाह।"
 
-msgid ""
-"Comprehensive dental check-ups, oral examinations, and preventive hygiene "
-"for total oral wellness."
-msgstr ""
-"व्यापक दन्त जाँच-अप, मौखिक परीक्षाहरू, र कुल मौखिक कल्याणको लागि निवारक "
-"स्वच्छता।"
-
 msgid "Comprehensive follow-up to ensure you heal quickly and safely."
 msgstr "तपाईं चाँडै र सुरक्षित रूपमा निको हुन सुनिश्चित गर्न व्यापक अनुगमन।"
 
@@ -2237,13 +1973,6 @@ msgid ""
 msgstr ""
 "व्यापक मौखिक मूल्याङ्कन, डिजिटल हाई-डेफिनिशन इन्ट्राओरल फोटोहरू, छाया मिलान,"
 " र पूर्ण मुस्कान सममिति विश्लेषण।"
-
-msgid ""
-"Comprehensive orthodontic realignment creating a wide, aesthetic arch and "
-"restoring normal chewing function."
-msgstr ""
-"व्यापक अर्थोडोन्टिक पुनर्गठनले फराकिलो, सौन्दर्य आर्क सिर्जना गर्दै र "
-"सामान्य च्युइङ प्रकार्य पुनर्स्थापना गर्दछ।"
 
 msgid "Comprehensive periodontal therapy for healthy gums."
 msgstr "स्वस्थ गिजाहरूको लागि व्यापक periodontal थेरापी।"
@@ -2273,7 +2002,7 @@ msgid "Constant, throbbing ache, especially when biting or at night."
 msgstr "लगातार, धड्कने दुखाइ, विशेष गरी टोक्दा वा रातमा।"
 
 msgid "Constraint “%(name)s” is violated."
-msgstr "Constraint “%(name)s” is violated."
+msgstr "प्रतिबन्ध \"%(नाम)s\" उल्लङ्घन गरिएको छ।"
 
 msgid "Consultation"
 msgstr "परामर्श"
@@ -2377,9 +2106,6 @@ msgstr "कस्मेटिक दन्तचिकित्सा — भे
 msgid "Cosmetic Teeth Whitening"
 msgstr "कस्मेटिक दाँत सेतो बनाउने"
 
-msgid "Cosmetic — Composite Bonding"
-msgstr "कस्मेटिक - समग्र बन्धन"
-
 msgid "Cosmetic — Composite Veneers"
 msgstr "कस्मेटिक — कम्पोजिट भेनियर"
 
@@ -2429,13 +2155,6 @@ msgid ""
 msgstr ""
 "बाङ्गो र खप्टिएको दाँतलाई मेटल ब्रेसेसद्वारा मिलाएर पूर्ण रूपमा पंक्तिबद्ध र"
 " सुन्दर मुस्कान बनाइएको।"
-
-msgid ""
-"Crooked and crowded teeth corrected with precision metal braces, resulting "
-"in a perfectly aligned, confident bite."
-msgstr ""
-"बाङ्गो र भीडभाड भएका दाँतहरू सटीक धातु कोष्ठकहरूद्वारा सच्याइन्छ, जसले गर्दा"
-" पूर्ण रूपमा पङ्क्तिबद्ध, आत्मविश्वासी टोकाइ हुन्छ।"
 
 msgid "Crossbite"
 msgstr "क्रसबाइट"
@@ -2527,13 +2246,6 @@ msgstr "कस्टम-फिट गरिएको एक्रिलिक �
 msgid "Custom-shaded to match your surrounding teeth perfectly."
 msgstr "तपाईंको वरपरका दाँतहरू पूर्ण रूपमा मिलाउन अनुकूलन-छायाँ।"
 
-msgid ""
-"Customized complete and partial dentures designed for maximum comfort, "
-"stability, and chewing function."
-msgstr ""
-"अधिकतम आराम, स्थिरता, र च्युइङ प्रकार्यको लागि डिजाइन गरिएको अनुकूलित पूर्ण "
-"र आंशिक दाँतहरू।"
-
 msgid "D.S."
 msgstr "D.S."
 
@@ -2616,9 +2328,6 @@ msgstr "तिम्रो मुस्कानमा समर्पित"
 msgid "Dedication to excellent oral hygiene and regular dental visits."
 msgstr "उत्कृष्ट मौखिक स्वच्छता र नियमित दन्त भ्रमणको लागि समर्पण।"
 
-msgid "Deep Bite & Crowding Correction"
-msgstr "Deep Bite & Crowding Correction"
-
 msgid "Deep Cavity Cleared & Sealed"
 msgstr "गहिरो गुहा खाली र सिल गरिएको"
 
@@ -2627,13 +2336,6 @@ msgstr "गहिरो सफाई"
 
 msgid "Deep Tooth Decay:"
 msgstr "गहिरो दाँत क्षय:"
-
-msgid ""
-"Deep dental decay cleaned and restored with nano-hybrid composite, perfectly"
-" matching natural tooth anatomy and shade."
-msgstr ""
-"गहिरो दाँतको क्षय सफा गरी नैनो-हाइब्रिड कम्पोजिटको साथ पुनर्स्थापना गरियो, "
-"प्राकृतिक दाँतको शरीर रचना र छायासँग मिल्दोजुल्दो।"
 
 msgid "Deepak S."
 msgstr "दिपक एस."
@@ -2654,10 +2356,7 @@ msgid "Dental Crowns"
 msgstr "दन्त मुकुट"
 
 msgid "Dental Filling"
-msgstr "दाँत भर्ने सेवा (कम्पोजिट फिलिङ)"
-
-msgid "Dental Filling Treatment Gallery"
-msgstr "दाँत फिलिङ उपचार ग्यालरी"
+msgstr "दाँत भर्ने सेवा"
 
 msgid "Dental Filling?"
 msgstr "दाँत भर्ने?"
@@ -2695,9 +2394,6 @@ msgstr "दन्त प्रविधि"
 msgid "Dental Tourism in"
 msgstr "दन्त पर्यटन मा"
 
-msgid "Dental Tourism in Kathmandu, Nepal"
-msgstr "काठमाडौँ, नेपालमा डेन्टल टुरिजम"
-
 msgid "Dental Trauma:"
 msgstr "दाँतको चोट:"
 
@@ -2717,9 +2413,6 @@ msgstr "दाँत"
 
 msgid "Denture Care Tips"
 msgstr "दाँत हेरचाह सुझावहरू"
-
-msgid "Denture Treatment Gallery"
-msgstr "डेन्चर उपचार ग्यालरी"
 
 msgid "Dentures"
 msgstr "नक्कली दाँत (डेन्चर)"
@@ -2769,9 +2462,6 @@ msgstr ""
 msgid "Designed for"
 msgstr "लागि डिजाइन गरिएको"
 
-msgid "Designed for Your Comfort & Safety"
-msgstr "तपाईंको आराम र सुरक्षाको लागि डिजाइन गरिएको"
-
 msgid ""
 "Designed for patients who have lost all of their teeth in a full dental arch"
 " (upper, lower, or both)."
@@ -2800,9 +2490,6 @@ msgstr "मधुमेह:"
 
 msgid "Diagnostic Suite"
 msgstr "डायग्नोस्टिक सुइट"
-
-msgid "Diagnostic Suite & Technology Gallery"
-msgstr "निदान तथा प्रविधि ग्यालरी"
 
 msgid "Digital Consultation & Scan"
 msgstr "डिजिटल परामर्श र स्क्यान"
@@ -2887,13 +2574,6 @@ msgstr "प्रत्यक्ष फोन कल क्लिक गरि�
 
 msgid "Direct Treatment Visit"
 msgstr "प्रत्यक्ष उपचार भ्रमण"
-
-msgid ""
-"Direct composite resin hand-layered and sculpted to close gaps, repair "
-"chips, and perfect midline symmetry in 90 minutes."
-msgstr ""
-"प्रत्यक्ष कम्पोजिट राल हात-स्तरित र 90 मिनेटमा खाली ठाउँहरू, मर्मत चिपहरू, र"
-" उत्तम मिडलाइन सममिति बन्द गर्न मूर्ति।"
 
 msgid "Directory indexes are not allowed here."
 msgstr "डाइरेक्टरी अनुक्रमणिका यहाँ अनुमति छैन।"
@@ -2991,32 +2671,6 @@ msgstr "के दाँत भर्दा दुख्छ?"
 msgid "Does professional teeth cleaning hurt?"
 msgstr "के व्यावसायिक दाँत सफाईले चोट पुर्‍याउँछ?"
 
-msgid "Don't Ignore Bleeding Gums!"
-msgstr "Don't Ignore Bleeding Gums!"
-
-msgid "Don't Settle For Missing Teeth"
-msgstr "हराएको दाँतको लागि बसोबास नगर्नुहोस्"
-
-msgid "Don't Suffer in Silence"
-msgstr "मौनतामा दुःख नदिनुहोस्"
-
-msgid "Don't Wait Until Tooth Decay Reaches the Nerve"
-msgstr "Don't Wait Until Tooth Decay Reaches the Nerve"
-
-msgid ""
-"Don't let a weak or missing tooth hold you back. Book a consultation for "
-"premium crowns and bridges."
-msgstr ""
-"कमजोर वा हराएको दाँतले तपाईंलाई पछाडि नराख्नुहोस्। प्रिमियम क्राउन र "
-"पुलहरूको लागि परामर्श बुक गर्नुहोस्।"
-
-msgid ""
-"Don't wait for pain to appear. Schedule your routine check-up today and keep"
-" your smile bright and healthy."
-msgstr ""
-"दुखाइ देखा पर्न को लागी प्रतीक्षा नगर्नुहोस्। आज आफ्नो नियमित चेक-अप तालिका "
-"बनाउनुहोस् र आफ्नो मुस्कान चम्किलो र स्वस्थ राख्नुहोस्।"
-
 msgid "Dr. Subash Banjade & Specialist Team"
 msgstr "डा. सुवास बन्जाडे र विशेषज्ञ टोली"
 
@@ -3032,13 +2686,6 @@ msgstr ""
 "गर्छन्। विभिन्न दन्त विशेषज्ञहरु मा वरिष्ठ सल्लाहकार डाक्टरहरु को एक टोली "
 "द्वारा समर्थित, डा. सुवासले प्रत्येक बिरामीलाई ध्यान, आरामदायी र व्यक्तिगत "
 "हेरचाह प्राप्त गरेको सुनिश्चित गर्दछ।"
-
-msgid ""
-"Drag the interactive VS slider on any case below to reveal real patient "
-"before and after results."
-msgstr ""
-"परिणाम अघि र पछि वास्तविक रोगी प्रकट गर्न तलको कुनै पनि अवस्थामा "
-"अन्तरक्रियात्मक VS स्लाइडर तान्नुहोस्।"
 
 msgid "Drag the slider to compare"
 msgstr "तुलना गर्न स्लाइडर तान्नुहोस्"
@@ -3098,13 +2745,6 @@ msgstr ""
 "प्रारम्भिक रूढ़िवादी उपचारले क्षय रोक्छ र तपाईंको प्राकृतिक दाँतलाई सुरक्षित"
 " राख्छ। पीडारहित, अदृश्य भर्नको लागि आज तपाईंको अपोइन्टमेन्ट अनुसूची "
 "गर्नुहोस्।"
-
-msgid ""
-"Early decay doesn't always cause constant throbbing. Look for these warning "
-"signs:"
-msgstr ""
-"प्रारम्भिक क्षयले सधैं निरन्तर धड्कन उत्पन्न गर्दैन। यी चेतावनी संकेतहरू "
-"खोज्नुहोस्:"
 
 msgid ""
 "Early detection and tooth-colored composite restorations before pain begins."
@@ -3403,9 +3043,6 @@ msgstr "साँझ सत्र (साँझ ४:०० – ७:३०)"
 msgid "Every Smile Has a"
 msgstr "हरेक मुस्कानमा एउटा हुन्छ"
 
-msgid "Every Smile Has a Story Worth Telling"
-msgstr "प्रत्येक मुस्कानको आफ्नै विशेष कथा हुन्छ"
-
 msgid ""
 "Every detail of our clinical practice is built around safety, precision, "
 "ethics, and patient comfort."
@@ -3432,13 +3069,6 @@ msgstr ""
 msgid "Everyone! However, you should definitely schedule an appointment if:"
 msgstr ""
 "सबैजना! यद्यपि, तपाईंले निश्चित रूपमा अपोइन्टमेन्ट अनुसूचित गर्नुपर्छ यदि:"
-
-msgid ""
-"Everything you need to know about dental treatments, safety, appointments, "
-"and pricing at CareFirst Dental Clinic."
-msgstr ""
-"केयरफर्स्ट डेन्टल क्लिनिकमा दन्त उपचार, सुरक्षा, अपोइन्टमेन्टहरू, र मूल्य "
-"निर्धारण बारे जान्न आवश्यक सबै कुरा।"
 
 msgid "Everything you need to know before your appointment."
 msgstr "तपाईंले आफ्नो अपोइन्टमेन्ट अघि जान्न आवश्यक सबै कुरा।"
@@ -3543,9 +3173,6 @@ msgstr ""
 msgid "Expert Aftercare:"
 msgstr "विशेषज्ञ पछि हेरचाह:"
 
-msgid "Expert Care for <span class=\"text-info\">Every Smile</span>"
-msgstr "<span class=\"text-info\">हरेक मुस्कान</span> को लागि विशेषज्ञ हेरचाह"
-
 msgid "Expert Care:"
 msgstr "विशेषज्ञ हेरचाह:"
 
@@ -3554,9 +3181,6 @@ msgstr "विशेषज्ञ क्लिनिकल बोर्ड"
 
 msgid "Expert Dental Care,"
 msgstr "विशेषज्ञ दन्त उपचार,"
-
-msgid "Expert Dental Care, Beautiful & Confident Smiles."
-msgstr "विशेषज्ञ दन्त सेवा, सुन्दर तथा आत्मविश्वासी मुस्कान।"
 
 msgid "Expert Diagnosis & Care"
 msgstr "विशेषज्ञ निदान र हेरचाह"
@@ -3657,9 +3281,6 @@ msgstr "FAQ"
 msgid "FOUNDATION OF DENTAL HEALTH"
 msgstr "दन्त स्वास्थ्य को आधार"
 
-msgid "FREQUENTLY ASKED QUESTIONS"
-msgstr "प्रायः सोधिने प्रश्नहरू"
-
 msgid "Failed"
 msgstr "असफल"
 
@@ -3718,9 +3339,6 @@ msgstr "उपचार शुल्कहरू भर्ने"
 msgid "Fills in the spaces created by missing teeth."
 msgstr "हराएको दाँतले सिर्जना गरेको खाली ठाउँहरू भर्छ।"
 
-msgid "Final Outcome"
-msgstr "अन्तिम नतिजा"
-
 msgid ""
 "Final Zirconia crown attached, perfectly matching the adjacent natural "
 "teeth."
@@ -3730,9 +3348,6 @@ msgstr ""
 
 msgid "Find Us in"
 msgstr "हामीलाई मा खोज्नुहोस्"
-
-msgid "Find Us in Kathmandu"
-msgstr "हामीलाई काठमाडौँमा भेट्नुहोस्"
 
 msgid ""
 "Firm, pale pink gums that fit snugly around the teeth. No bleeding during "
@@ -3780,8 +3395,7 @@ msgstr ""
 
 msgid ""
 "Flexible appointments 7 days a week, including routine and emergency care."
-msgstr ""
-"नियमित तथा आकस्मिक सेवाका लागि हप्ताको ७ दिन लचिलो अपोइन्टमेन्ट सुविधा।"
+msgstr "दिनचर्या र आपतकालीन हेरचाह सहित हप्ताको 7 दिन लचिलो अपोइन्टमेन्टहरू।"
 
 msgid "Floating point number"
 msgstr "फ्लोटिंग बिन्दु नम्बर"
@@ -3897,13 +3511,6 @@ msgid ""
 msgstr ""
 "डिजिटल एक्स-रे र CBCT स्क्यानदेखि लेजर दन्तचिकित्सा र उही दिनको CAD/CAM "
 "क्राउनहरू - हामी सटीक, सहज उपचारको लागि उपलब्ध उत्तम उपकरणहरू प्रयोग गर्छौं।"
-
-msgid ""
-"From independent Google ratings to real patient experiences, discover why "
-"thousands of patients trust CareFirst Dental Clinic in Kathmandu."
-msgstr ""
-"From independent Google ratings to real patient experiences, discover why "
-"thousands of patients trust CareFirst Dental Clinic in Kathmandu."
 
 msgid ""
 "From initial shade mapping to the final polish, our predictable 3-step "
@@ -4032,17 +3639,6 @@ msgstr "हामीले प्रस्ताव गर्ने सामा
 msgid "General Dentistry?"
 msgstr "सामान्य दन्त चिकित्सा?"
 
-msgid ""
-"General dentistry is the core pillar of lifelong oral wellness. It "
-"encompasses routine diagnostics, professional dental cleaning, cavity "
-"detection, and preventative care designed to keep your teeth and gums "
-"healthy and functional."
-msgstr ""
-"General dentistry is the core pillar of lifelong oral wellness. It "
-"encompasses routine diagnostics, professional dental cleaning, cavity "
-"detection, and preventative care designed to keep your teeth and gums "
-"healthy and functional."
-
 msgid "Genetics:"
 msgstr "आनुवंशिकी:"
 
@@ -4061,7 +3657,7 @@ msgstr "कोमल उपचार र वितरण"
 msgid ""
 "Gentle techniques designed to eliminate dental anxiety during all "
 "treatments."
-msgstr "सबै उपचारको क्रममा दन्त डर र चिन्ता हटाउन अपनाइने कोमल विधिहरू।"
+msgstr "सबै उपचारको क्रममा दन्त चिन्ता हटाउन डिजाइन गरिएको कोमल प्रविधिहरू।"
 
 msgid "Gentle techniques tailored for comfort."
 msgstr "कोमल प्रविधिहरू आरामको लागि अनुकूलित।"
@@ -4076,13 +3672,6 @@ msgstr ""
 msgid ""
 "Gentle, organized, and pain-free treatment in our modern clinical suites."
 msgstr "हाम्रो आधुनिक क्लिनिकल सुइटहरूमा कोमल, संगठित, र दुखाइ-रहित उपचार।"
-
-msgid ""
-"Gentle, painless removal of damaged, infected, or impacted wisdom teeth with"
-" quick recovery."
-msgstr ""
-"क्षतिग्रस्त, संक्रमित, वा प्रभावित बुद्धि दाँतहरू कोमल, पीडारहित हटाउने छिटो"
-" रिकभरीको साथ।"
 
 msgid "Geometry collection"
 msgstr "ज्यामिति संग्रह"
@@ -4109,17 +3698,6 @@ msgstr "Gingivitis"
 msgid "Gingivitis (Early Stage)"
 msgstr "Gingivitis (प्रारम्भिक चरण)"
 
-msgid ""
-"Gingivitis (the early stage) can be completely cured. However, periodontitis"
-" (advanced stage involving bone loss) cannot be \\\"cured\\\" but it can be "
-"managed and halted from progressing further with continuous professional "
-"care and excellent home hygiene."
-msgstr ""
-"Gingivitis (प्रारम्भिक चरण) पूर्ण रूपमा निको हुन सक्छ। यद्यपि, "
-"पिरियडोन्टाइटिस (हड्डी झर्ने उन्नत चरण) लाई \"निको\" गर्न सकिँदैन तर यसलाई "
-"निरन्तर व्यावसायिक हेरचाह र उत्कृष्ट घरको सरसफाइको साथ व्यवस्थापन गर्न र "
-"अगाडि बढ्नबाट रोक्न सकिन्छ।"
-
 msgid "Give Your Smile a Fresh Start"
 msgstr "आफ्नो मुस्कानलाई नयाँ सुरुवात दिनुहोस्"
 
@@ -4132,18 +3710,12 @@ msgstr "ग्लास आयनोमर पुनर्स्थापना"
 msgid "Good for front and back teeth"
 msgstr "अगाडि र पछाडिको दाँतको लागि राम्रो"
 
-msgid "Google Reviews"
-msgstr "गुगल समीक्षाहरू"
-
 msgid ""
 "Google is providing the live rating and review count. Open Google to read "
 "the verified patient reviews directly."
 msgstr ""
 "Google ले लाइभ मूल्याङ्कन र समीक्षा गणना प्रदान गर्दैछ। प्रमाणित बिरामी "
 "समीक्षाहरू सिधै पढ्न Google खोल्नुहोस्।"
-
-msgid "Got Questions? We Have Answers."
-msgstr "केही प्रश्न छन्? हामीसँग उत्तर छन्।"
 
 msgid "Gum & Periodontal Care"
 msgstr "गम र पिरियडोन्टल केयर"
@@ -4280,13 +3852,6 @@ msgid "High-definition digital 3D treatment planning"
 msgstr "उच्च परिभाषा डिजिटल 3D उपचार योजना"
 
 msgid ""
-"High-definition, low-radiation digital radiography for accurate and instant "
-"diagnosis."
-msgstr ""
-"High-definition, low-radiation digital radiography for accurate and instant "
-"diagnosis."
-
-msgid ""
 "High-definition, low-radiation imaging that enables our specialists to see "
 "beyond the tooth surface for accurate diagnosis in Shankhamul, Kathmandu."
 msgstr ""
@@ -4421,15 +3986,6 @@ msgstr "मानव-पठनीय सन्दर्भ ID जस्तै।
 msgid "Humanize"
 msgstr "मानवीकरण गर्नुहोस्"
 
-msgid ""
-"I got my dental implants done here and I'm amazed by the results. The "
-"doctors explained everything clearly, the clinic is spotlessly clean, and "
-"the staff is incredibly kind."
-msgstr ""
-"I got my dental implants done here and I'm amazed by the results. The "
-"doctors explained everything clearly, the clinic is spotlessly clean, and "
-"the staff is incredibly kind."
-
 msgid "IDEAL FOR:"
 msgstr "यसका लागि आदर्श:"
 
@@ -4510,17 +4066,6 @@ msgstr ""
 "यदि यो जाँच गरिएको छ भने, लग-इन गरिएका प्रयोगकर्ताहरूले मात्र पृष्ठ हेर्न "
 "सक्षम हुनेछन्।"
 
-msgid ""
-"If your jawbone isn't thick enough or is too soft, you may need bone "
-"grafting before implant surgery. A graft creates a solid base for the "
-"implant. Our 3D CBCT scan will reveal immediately if you have enough bone "
-"volume or if a graft is necessary."
-msgstr ""
-"यदि तपाईंको जबडाको हड्डी पर्याप्त बाक्लो छैन वा धेरै नरम छ भने, तपाईंलाई "
-"प्रत्यारोपण शल्यक्रिया अघि हड्डी कलम आवश्यक हुन सक्छ। ग्राफ्टले "
-"प्रत्यारोपणको लागि ठोस आधार बनाउँछ। हाम्रो 3D CBCT स्क्यानले तुरुन्तै थाहा "
-"पाउनेछ यदि तपाईंसँग पर्याप्त हड्डीको मात्रा छ वा ग्राफ्ट आवश्यक छ भने।"
-
 msgid "Ignored / Invalid"
 msgstr "बेवास्ता गरियो / अमान्य"
 
@@ -4568,17 +4113,6 @@ msgstr "इम्प्लान्ट-समर्थित पुल"
 
 msgid "Implants"
 msgstr "इम्प्लान्टहरू"
-
-msgid ""
-"Implants are made of biocompatible titanium, so true \\\"rejection\\\" or "
-"allergic reactions are exceedingly rare. \\\"Failure\\\" can happen if the "
-"bone doesn't fuse properly (often due to smoking or poor hygiene during "
-"healing), but it is very uncommon."
-msgstr ""
-"Implants are made of biocompatible titanium, so true \\\"rejection\\\" or "
-"allergic reactions are exceedingly rare. \\\"Failure\\\" can happen if the "
-"bone doesn't fuse properly (often due to smoking or poor hygiene during "
-"healing), but it is very uncommon."
 
 msgid "Important dates"
 msgstr "महत्त्वपूर्ण मितिहरू"
@@ -4651,9 +4185,6 @@ msgstr ""
 msgid "Informational Price Estimate"
 msgstr "सूचनात्मक मूल्य अनुमान"
 
-msgid "Initial Concern"
-msgstr "प्रारम्भिक चिन्ता"
-
 msgid "Initial assessment & X-rays"
 msgstr "प्रारम्भिक मूल्याङ्कन र एक्स-रे"
 
@@ -4688,7 +4219,7 @@ msgid "Instant high-definition monitor display."
 msgstr "तत्काल उच्च परिभाषा मनिटर प्रदर्शन।"
 
 msgid "Instant low-radiation digital radiography for accurate diagnosis."
-msgstr "सटीक परीक्षण र निदानका लागि तत्काल कम विकिरण डिजिटल एक्स-रे।"
+msgstr "सही निदानको लागि तत्काल कम विकिरण डिजिटल रेडियोग्राफी।"
 
 msgid "Integer"
 msgstr "पूर्णांक"
@@ -4723,7 +4254,7 @@ msgid "Introduction"
 msgstr "परिचय"
 
 msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
-msgstr "अवैध मिति स्ट्रिङ \"%(datestr)s\" दिइएको ढाँचा \"%(format)s\""
+msgstr "अमान्य मिति स्ट्रिङ \"%(datestr)s\" दिइएको ढाँचा \"%(ढाँचा)s\""
 
 msgid "Invalid geometry type."
 msgstr "अवैध ज्यामिति प्रकार।"
@@ -4840,7 +4371,7 @@ msgid "Kathmandu Central Clinic"
 msgstr "काठमाडौं केन्द्रीय क्लिनिक"
 
 msgid "Kathmandu's Trusted Dental Clinic"
-msgstr "काठमाडौँको भरपर्दो दन्त क्लिनिक"
+msgstr "काठमाडौंको ट्रस्टेड डेन्टल क्लिनिक"
 
 msgid ""
 "Kathmandu's state-of-the-art dental care center in Shankhamul. Dedicated to "
@@ -4889,9 +4420,6 @@ msgstr "छिटो निको र अधिक सटीकताको ल�
 
 msgid "Latest"
 msgstr "पछिल्लो"
-
-msgid "Latest Articles"
-msgstr "नवीनतम लेखहरू"
 
 msgid "Latest Dental Equipment & Tech"
 msgstr "नवीनतम दन्त उपकरण र प्रविधि"
@@ -5067,13 +4595,6 @@ msgstr "सरसफाइमा ध्यान दिनुहोस्:"
 msgid "Maintain the Routine"
 msgstr "दिनचर्या कायम राख्नुहोस्"
 
-msgid ""
-"Maintains the shape of your face, preventing the \\\"sunken\\\" look "
-"associated with missing teeth."
-msgstr ""
-"Maintains the shape of your face, preventing the \\\"sunken\\\" look "
-"associated with missing teeth."
-
 msgid "Maintenance"
 msgstr "मर्मतसम्भार"
 
@@ -5092,15 +4613,6 @@ msgstr ""
 "धेरै रोगीहरूले दाँत तानेको बारेमा चिन्तित महसुस गर्छन्। हामी यो बुझ्छौं, "
 "त्यसैले हामी तपाईंको निकासी सकेसम्म सहज, छिटो र तनावमुक्त छ भनी सुनिश्चित "
 "गर्न उन्नत नम्रिङ प्रविधिहरू र कोमल दृष्टिकोण प्रयोग गर्छौं।"
-
-msgid ""
-"Many serious dental issues like hidden tooth decay, gum recession, and early"
-" periodontal disease develop silently without pain. Routine visits allow our"
-" dentists to catch problems early, avoiding complex and costly treatments."
-msgstr ""
-"Many serious dental issues like hidden tooth decay, gum recession, and early"
-" periodontal disease develop silently without pain. Routine visits allow our"
-" dentists to catch problems early, avoiding complex and costly treatments."
 
 msgid "Many-to-many relationship"
 msgstr "धेरै-धेरै सम्बन्ध"
@@ -5133,28 +4645,22 @@ msgid "Meena Shrestha"
 msgstr "मीना श्रेष्ठ"
 
 msgid "Meet All Doctors"
-msgstr "सबै डाक्टरहरू हेर्नुहोस्"
+msgstr "सबै डाक्टरहरू भेट्नुहोस्"
 
 msgid "Meet Our"
 msgstr "हाम्रो भेट्नुहोस्"
-
-msgid "Meet Our Dental Specialists"
-msgstr "हाम्रा विशेषज्ञ दन्त चिकित्सकहरूलाई भेट्नुहोस्"
 
 msgid "Meet Our Dental Team"
 msgstr "हाम्रो दन्त टोलीलाई भेट्नुहोस्"
 
 msgid "Meet Our Doctors"
-msgstr "हाम्रा चिकित्सकहरूलाई भेट्नुहोस्"
+msgstr "हाम्रा डाक्टरहरूलाई भेट्नुहोस्"
 
 msgid "Meet Our Specialists"
 msgstr "हाम्रा विशेषज्ञहरूलाई भेट्नुहोस्"
 
 msgid "Meet the"
 msgstr "भेट्नुहोस्"
-
-msgid "Meet the Doctors"
-msgstr "हाम्रा डाक्टरहरूलाई भेट्नुहोस्"
 
 msgid "Mercury & BPA Free"
 msgstr "पारा र BPA नि: शुल्क"
@@ -5516,15 +5022,6 @@ msgstr ""
 "भित्री रङलाई उल्लेखनीय रूपमा हल्का छायामा परिवर्तन गर्न ब्लीचिङ एजेन्टहरू "
 "प्रयोग गर्दछ।"
 
-msgid ""
-"No. We use local anesthesia during the tooth preparation process so you "
-"won't feel any pain. You may experience some mild sensitivity for a few days"
-" after the procedure, which is normal."
-msgstr ""
-"No. We use local anesthesia during the tooth preparation process so you "
-"won't feel any pain. You may experience some mild sensitivity for a few days"
-" after the procedure, which is normal."
-
 msgid "None"
 msgstr "कुनै पनि छैन"
 
@@ -5698,7 +5195,7 @@ msgid "Open Daily (7:30 AM – 7:30 PM)"
 msgstr "दैनिक खोल्नुहोस् (7:30 AM - 7:30 PM)"
 
 msgid "Open Daily (7:30am – 7:30pm)"
-msgstr "दैनिक खुला (बिहान ७:३० – साँझ ७:३०)"
+msgstr "दैनिक खोल्नुहोस् (7:30am - 7:30pm)"
 
 msgid "Open Daily (Mon – Sun)"
 msgstr "दैनिक खोल्नुहोस् (सोम-रवि)"
@@ -5802,9 +5299,6 @@ msgstr "अर्थोडोन्टिक्स — ब्रेसेस"
 msgid "Orthodontics — Clear Aligners"
 msgstr "अर्थोडोन्टिक्स — पारदर्शी अलाइनर"
 
-msgid "Orthodontics — Severe Crowding"
-msgstr "Orthodontics — Severe Crowding"
-
 msgid "Osseointegration (3-6 mos)"
 msgstr "Osseointegration (3-6 mos)"
 
@@ -5820,17 +5314,11 @@ msgstr "हाम्रो क्लिनिक - केयरफर्स्�
 msgid "Our Denture"
 msgstr "हाम्रो दाँत"
 
-msgid "Our Denture Treatment Process"
-msgstr "डेन्चर निर्माण तथा उपचार प्रक्रिया"
-
 msgid "Our Difference"
 msgstr "हाम्रो भिन्नता"
 
 msgid "Our Digital X-Ray"
 msgstr "हाम्रो डिजिटल एक्स-रे"
-
-msgid "Our Digital X-Ray Process"
-msgstr "हाम्रो डिजिटल एक्स-रे प्रक्रिया"
 
 msgid "Our Doctors"
 msgstr "हाम्रा चिकित्सकहरू"
@@ -5838,14 +5326,8 @@ msgstr "हाम्रा चिकित्सकहरू"
 msgid "Our Filling"
 msgstr "हाम्रो भराई"
 
-msgid "Our Filling Treatment Process"
-msgstr "दाँत भर्ने हाम्रो उपचार प्रक्रिया"
-
 msgid "Our Implant"
 msgstr "हाम्रो प्रत्यारोपण"
-
-msgid "Our Implant Treatment Process"
-msgstr "इम्प्लान्ट उपचारको हाम्रो प्रक्रिया"
 
 msgid "Our Mission"
 msgstr "हाम्रो मिशन"
@@ -5853,14 +5335,8 @@ msgstr "हाम्रो मिशन"
 msgid "Our Orthodontic"
 msgstr "हाम्रो अर्थोडन्टिक"
 
-msgid "Our Orthodontic Treatment Journey"
-msgstr "हाम्रो अर्थोडोन्टिक उपचार यात्रा"
-
 msgid "Our Patient"
 msgstr "हाम्रो रोगी"
-
-msgid "Our Patient Care Process"
-msgstr "हाम्रो बिरामी सेवा प्रक्रिया"
 
 msgid "Our Practitioners"
 msgstr "हाम्रा अभ्यासकर्ताहरू"
@@ -5871,17 +5347,11 @@ msgstr "हाम्रो प्रिमियम दन्त सेवाह
 msgid "Our Root Canal"
 msgstr "हाम्रो रूट नहर"
 
-msgid "Our Root Canal Process"
-msgstr "हाम्रो रूट क्यानल उपचार प्रक्रिया"
-
 msgid "Our Story"
 msgstr "हाम्रो कथा"
 
 msgid "Our Treatment"
 msgstr "हाम्रो उपचार"
-
-msgid "Our Treatment Process"
-msgstr "हाम्रो उपचार प्रक्रिया"
 
 msgid "Our Vision"
 msgstr "हाम्रो भिजन"
@@ -5938,21 +5408,6 @@ msgid ""
 msgstr ""
 "हाम्रो विशेषज्ञ टोलीले असाधारण पछि हेरचाहको साथ सुरक्षित, पीडारहित निकासी "
 "सुनिश्चित गर्दछ।"
-
-msgid ""
-"Our friendly reception team is ready to assist you on WhatsApp or phone."
-msgstr ""
-"हाम्रो मित्रवत रिसेप्शन टोली तपाईंलाई WhatsApp वा फोनमा सहयोग गर्न तयार छ।"
-
-msgid ""
-"Our gallery of smile transformations showcases the real results achieved for"
-" real patients. From subtle whitening to complete smile makeovers, each case"
-" reflects our commitment to precision, artistry, and personalized care."
-msgstr ""
-"हाम्रो मुस्कान रूपान्तरणको ग्यालेरीले वास्तविक बिरामीहरूको लागि हासिल गरेको "
-"वास्तविक परिणामहरू प्रदर्शन गर्दछ। सूक्ष्म सेतो पार्ने देखि पूरा मुस्कान "
-"मेकओभर सम्म, प्रत्येक केसले परिशुद्धता, कलात्मकता, र व्यक्तिगत हेरचाहप्रति "
-"हाम्रो प्रतिबद्धता झल्काउँछ।"
 
 msgid ""
 "Our most popular restoration. Formulated with ceramic-infused micro-hybrid "
@@ -6014,17 +5469,6 @@ msgid "Outcome"
 msgstr "नतिजा"
 
 msgid ""
-"Over 50% of serious dental issues—such as root canal infections, bone loss "
-"from gum disease, and interdental cavities—develop beneath the surface where"
-" visual inspection cannot reach. Digital radiography enables early detection"
-" before severe pain or tooth loss occurs."
-msgstr ""
-"50% भन्दा बढी दाँतका गम्भीर समस्याहरू-जस्तै रूट नहरको संक्रमण, गिजाको रोगबाट"
-" हड्डीको क्षति, र इन्टरडेन्टल क्याभिटीहरू - दृश्य निरीक्षण पुग्न नसक्ने "
-"सतहको मुनि विकास हुन्छ। डिजिटल रेडियोग्राफीले गम्भीर दुखाइ वा दाँत हानि हुनु"
-" अघि प्रारम्भिक पत्ता लगाउन सक्षम बनाउँछ।"
-
-msgid ""
 "Over the next 3 to 6 months, the jawbone naturally grows and fuses tightly "
 "around the titanium post, locking it firmly in place."
 msgstr ""
@@ -6045,9 +5489,6 @@ msgstr "बिरामीका फाइदाहरू"
 
 msgid "PATIENT EDUCATION & VIDEOS"
 msgstr "बिरामी शिक्षा र भिडियोहरू"
-
-msgid "PATIENT EXPERIENCES"
-msgstr "PATIENT EXPERIENCES"
 
 msgid "PATIENT PREPARATION & EXPECTATIONS"
 msgstr "बिरामीको तयारी र अपेक्षाहरू"
@@ -6089,7 +5530,7 @@ msgid "Pain or Sensitivity"
 msgstr "दुखाइ वा संवेदनशीलता"
 
 msgid "Pain-Free Anesthesia"
-msgstr "दुखाइरहित एनेस्थेसिया"
+msgstr "दुखाइ-रहित एनेस्थेसिया"
 
 msgid "Pain-Free Diagnostics"
 msgstr "दुखाइ-मुक्त निदान"
@@ -6121,13 +5562,6 @@ msgstr "पीडारहित रूट नहर र 3D डिजिटल �
 
 msgid "Painless capture in less than 3 seconds."
 msgstr "3 सेकेन्ड भन्दा कममा पीडारहित क्याप्चर।"
-
-msgid ""
-"Painless single-sitting rotary therapy to eliminate infection and save your "
-"natural tooth."
-msgstr ""
-"Painless single-sitting rotary therapy to eliminate infection and save your "
-"natural tooth."
 
 msgid "Painless surgical insertion"
 msgstr "पीडारहित सर्जिकल प्रविष्टि"
@@ -6186,9 +5620,6 @@ msgstr "बिरामी विवरण:"
 msgid "Patient Education & Video Guides"
 msgstr "रोगी शिक्षा र भिडियो गाइडहरू"
 
-msgid "Patient Journey"
-msgstr "बिरामी यात्रा"
-
 msgid "Patient Name"
 msgstr "बिरामीको नाम"
 
@@ -6206,9 +5637,6 @@ msgstr "रोगी मुस्कान - पोस्ट पुनर्स�
 
 msgid "Patient Stories"
 msgstr "बिरामी कथाहरू"
-
-msgid "Patient Testimonials"
-msgstr "रोगी प्रशंसापत्र"
 
 msgid ""
 "Patient missing three adjacent back teeth, severely impacting chewing "
@@ -6228,9 +5656,6 @@ msgstr "रोगी-केन्द्रित अभ्यास"
 
 msgid "Patient-Focused Care"
 msgstr "रोगी-केन्द्रित हेरचाह"
-
-msgid "Patient<br>Safety"
-msgstr "Patient<br>Safety"
 
 msgid "Patients Speak"
 msgstr "बिरामीहरू बोल्छन्"
@@ -6322,21 +5747,11 @@ msgstr ""
 msgid "Permanent solutions for missing teeth."
 msgstr "हराएको दाँत को स्थायी समाधान।"
 
-msgid ""
-"Permanent titanium root replacements and crowns for long-lasting chewing "
-"strength and beauty."
-msgstr ""
-"स्थायी टाइटेनियम जरा प्रतिस्थापन र लामो समयसम्म चल्ने शक्ति र सौन्दर्यको "
-"लागि मुकुट।"
-
 msgid "Permissions"
 msgstr "अनुमतिहरू"
 
 msgid "Persistent Bad Breath:"
 msgstr "लगातार सास गन्हाउनु:"
-
-msgid "Persistent bad breath that won't go away."
-msgstr "निरन्तर गन्हाउने सास जुन जाँदैन।"
 
 msgid "Personal info"
 msgstr "व्यक्तिगत जानकारी"
@@ -6388,13 +5803,6 @@ msgid ""
 msgstr ""
 "पट्टिकाले गिजालाई जलाउँछ, जसले गर्दा तिनीहरू रातो, कोमल र सुन्निन्छ। ब्रस "
 "गर्दा रक्तश्राव हुन्छ। व्यावसायिक स्केलिंग संग उल्टाउन योग्य।"
-
-msgid ""
-"Please bring a valid ID, any previous dental records or X-rays if available,"
-" and a list of current medications."
-msgstr ""
-"कृपया वैध आईडी, कुनै पनि अघिल्लो दन्त रेकर्ड वा एक्स-रे उपलब्ध भएमा, र हालका"
-" औषधिहरूको सूची ल्याउनुहोस्।"
 
 msgid ""
 "Please bring a valid ID, any previous dental records or X-rays, and a list "
@@ -6478,9 +5886,6 @@ msgstr "PostgreSQL विस्तारहरू"
 msgid "Powered by"
 msgstr "द्वारा संचालित"
 
-msgid "Powered by Advanced Dental Technology"
-msgstr "उन्नत दन्त प्रविधिद्वारा सञ्चालित"
-
 msgid ""
 "Pragatinagar Road, Shankhamul-31, Kathmandu (Shankhamul / New Baneshwor)"
 msgstr "प्रगतिनगर मार्ग, शंखमूल-३१, काठमाडौँ (शंखमूल / नयाँ बानेश्वर)"
@@ -6563,13 +5968,6 @@ msgstr ""
 "प्रिमियम अखिल सिरेमिक क्राउन यसको जीवन जस्तो पारदर्शिता र सुन्दर "
 "सौन्दर्यशास्त्रका लागि परिचित छ।"
 
-msgid ""
-"Premium zirconia and ceramic crowns to strengthen weak teeth and restore "
-"missing gaps."
-msgstr ""
-"कमजोर दाँतहरू बलियो बनाउन र छुटेको खाली ठाउँहरू पुनर्स्थापित गर्न प्रिमियम "
-"जिरकोनिया र सिरेमिक क्राउनहरू।"
-
 msgid "Preserve Natural Teeth"
 msgstr "प्राकृतिक दाँत जोगाउनुहोस्"
 
@@ -6616,7 +6014,7 @@ msgid "Prevents other teeth from shifting out of position."
 msgstr "अन्य दाँतहरूलाई स्थितिबाट बाहिर जानबाट रोक्छ।"
 
 msgid "Pricing"
-msgstr "शुल्क विवरण"
+msgstr "मूल्य विवरण"
 
 msgid "Pricing Estimated"
 msgstr "अनुमानित मूल्य"
@@ -6663,13 +6061,6 @@ msgid ""
 msgstr "प्लाक, टार्टर र सतहको दाग हटाउन व्यावसायिक गहिरो सफाई।"
 
 msgid ""
-"Professional in-office Zoom! LED whitening delivered an 8-shade improvement "
-"in a single 90-minute appointment."
-msgstr ""
-"अफिसमा व्यावसायिक जुम! LED ह्वाइटिङले एकल ९० मिनेटको भेटमा ८-शेड सुधार "
-"प्रदान गर्‍यो।"
-
-msgid ""
 "Professional in-office Zoom! whitening and at-home kits for a dazzling, "
 "natural-looking smile."
 msgstr ""
@@ -6691,13 +6082,6 @@ msgstr "गहिरो एनेस्थेसिया"
 
 msgid "Prone to chipping"
 msgstr "चिप्लिने प्रवण"
-
-msgid ""
-"Proper aftercare is critical for a fast recovery and to prevent "
-"complications like 'dry socket'."
-msgstr ""
-"Proper aftercare is critical for a fast recovery and to prevent "
-"complications like 'dry socket'."
 
 msgid ""
 "Proper alignment can alleviate TMJ pain, headaches, and tension in the jaw "
@@ -6728,9 +6112,6 @@ msgstr ""
 msgid "Qualified Specialists,"
 msgstr "योग्य विशेषज्ञहरू,"
 
-msgid "Qualified Specialists, Dedicated to Your Smile"
-msgstr "तपाईंको मुस्कानप्रति समर्पित, योग्य विशेषज्ञहरू"
-
 msgid "Questions"
 msgstr "प्रश्नहरू"
 
@@ -6752,12 +6133,6 @@ msgstr "राम एस."
 msgid "Raster Field"
 msgstr "रास्टर फिल्ड"
 
-msgid "Rated 5.0 / 5.0 based on"
-msgstr "5.0 / 5.0 को आधारमा मूल्याङ्कन गरियो"
-
-msgid "Rated 5.0 / 5.0 based on Google Reviews"
-msgstr "गुगल रिभ्युका आधारमा ५.० / ५.० रेटिङ प्राप्त"
-
 msgid "Raw binary data"
 msgstr "कच्चा बाइनरी डाटा"
 
@@ -6769,16 +6144,6 @@ msgstr "पूरा लेख पढ्नुहोस्"
 
 msgid "Read Our Full Story"
 msgstr "हाम्रो पूर्ण कथा पढ्नुहोस्"
-
-msgid "Read Real Reviews on Google"
-msgstr "गुगलमा वास्तविक समीक्षाहरू पढ्नुहोस्"
-
-msgid ""
-"Read authentic experiences from patients who underwent root canal, cosmetic "
-"veneers, teeth whitening, and dental implants at CareFirst."
-msgstr ""
-"केयरफर्स्टमा रुट नहर, कस्मेटिक भिनियर, दाँत सेतो पार्ने र दन्त प्रत्यारोपण "
-"गरेका बिरामीहरूका प्रामाणिक अनुभवहरू पढ्नुहोस्।"
 
 msgid ""
 "Read expert articles on dental implants, orthodontics, teeth whitening, "
@@ -6832,9 +6197,6 @@ msgid ""
 msgstr ""
 "वास्तविक बिरामीहरू। वास्तविक परिणामहरू। तपाईको मुस्कानको लागि विशेषज्ञ "
 "दन्तचिकित्साले के गर्न सक्छ पत्ता लगाउनुहोस्।"
-
-msgid "Real treatments. Real transformations. Real people."
-msgstr "वास्तविक उपचार। वास्तविक परिवर्तनहरू। वास्तविक मान्छे।"
 
 msgid "Real-Time Appointment Stream"
 msgstr "वास्तविक-समय अपोइन्टमेन्ट स्ट्रिम"
@@ -6918,14 +6280,6 @@ msgstr "सम्बन्धित भिडियोहरू"
 
 msgid "Relaxing, Comfortable Environment"
 msgstr "आरामदायी, आरामदायी वातावरण"
-
-msgid ""
-"Releases continuous fluoride into surrounding enamel to safeguard against "
-"recurring decay. Ideal for gumline cavities, root surfaces, and pediatric "
-"teeth."
-msgstr ""
-"पुनरावर्ती क्षयबाट जोगाउनको लागि वरपरको इनामेलमा लगातार फ्लोराइड छोड्छ। "
-"गमलाइन गुफाहरू, जरा सतहहरू, र बाल दाँतहरूको लागि आदर्श।"
 
 msgid "Relief from Pain"
 msgstr "दुखाईबाट राहत"
@@ -7215,21 +6569,6 @@ msgstr "दाँत सफा गर्ने (स्केलिङ र पो
 
 msgid "Scaling and Polishing"
 msgstr "दाँत सफा गर्ने (स्केलिङ र पोलिसिङ)"
-
-msgid ""
-"Scaling and polishing (often referred to simply as a \\\"dental "
-"cleaning\\\") is a professional procedure designed to thoroughly clean the "
-"teeth and gums. Even with the best at-home brushing and flossing routine, "
-"plaque can accumulate in hard-to-reach areas and harden into tartar "
-"(calculus)—a substance so tough it can only be removed by a dental "
-"professional."
-msgstr ""
-"Scaling and polishing (often referred to simply as a \\\"dental "
-"cleaning\\\") is a professional procedure designed to thoroughly clean the "
-"teeth and gums. Even with the best at-home brushing and flossing routine, "
-"plaque can accumulate in hard-to-reach areas and harden into tartar "
-"(calculus)—a substance so tough it can only be removed by a dental "
-"professional."
 
 msgid "Schedule Assessment"
 msgstr "तालिका मूल्याङ्कन"
@@ -7549,13 +6888,6 @@ msgstr ""
 msgid "Single root canal"
 msgstr "एकल रूट नहर"
 
-msgid ""
-"Single titanium implant with customized ceramic crown placed seamlessly to "
-"replace a missing tooth with natural chewing power."
-msgstr ""
-"एकल टाइटेनियम प्रत्यारोपण अनुकूलित सिरेमिक क्राउन संग प्राकृतिक चपाउने शक्ति"
-" संग हराएको दाँत प्रतिस्थापन निर्बाध रूपमा राखिएको।"
-
 msgid "Single tooth periapical root scan"
 msgstr "एकल दाँत periapical रूट स्क्यान"
 
@@ -7598,17 +6930,8 @@ msgstr "मुस्कान बदलाव रोगी"
 msgid "Smile Makeovers"
 msgstr "स्माइल मेकओभरहरू"
 
-msgid "Smile Restorations"
-msgstr "मुस्कान पुनर्स्थापना सेवा"
-
 msgid "Smile Transformation"
 msgstr "मुस्कान रूपान्तरण"
-
-msgid "Smile Transformation Gallery"
-msgstr "मुस्कान रूपान्तरण ग्यालरी"
-
-msgid "Smile Transformation Timeline"
-msgstr "मुस्कान रूपान्तरण समयतालिका"
 
 msgid "Smile Transformations"
 msgstr "मुस्कान रूपान्तरण"
@@ -7643,13 +6966,6 @@ msgstr "केहि अज्ञात कुञ्जीहरू प्रद
 msgid "Specialized experts managing your treatment plan."
 msgstr "तपाईंको उपचार योजना प्रबन्ध गर्ने विशेष विशेषज्ञहरू।"
 
-msgid ""
-"Specialized therapies and deep root planing to stop gum bleeding and protect"
-" tooth foundation."
-msgstr ""
-"Specialized therapies and deep root planing to stop gum bleeding and protect"
-" tooth foundation."
-
 msgid "Specific permissions for this user."
 msgstr "यस प्रयोगकर्ताको लागि विशेष अनुमतिहरू।"
 
@@ -7664,9 +6980,6 @@ msgstr "कर्मचारी आन्तरिक नोटहरू (ब�
 
 msgid "Stages of"
 msgstr "को चरणहरू"
-
-msgid "Stages of Gum Disease"
-msgstr "गिजाको समस्याका चरणहरू"
 
 msgid "Stain-prone ties"
 msgstr "दाग-प्रवण सम्बन्धहरू"
@@ -7706,9 +7019,6 @@ msgstr "सुरुवाती मूल्य"
 
 msgid "State-of-the-Art"
 msgstr "अत्याधुनिक"
-
-msgid "State-of-the-Art Dental Technology"
-msgstr "अत्याधुनिक दन्त प्रविधि"
 
 msgid "Static Files"
 msgstr "स्थिर फाइलहरू"
@@ -7753,9 +7063,6 @@ msgstr ""
 msgid "Step-by-Step"
 msgstr "चरण-दर-चरण"
 
-msgid "Step-by-Step Treatment Process"
-msgstr "चरणबद्ध उपचार प्रक्रिया"
-
 msgid "Step-by-step"
 msgstr "चरण-दर-चरण"
 
@@ -7774,9 +7081,6 @@ msgid ""
 msgstr ""
 "नरम खानेकुराहरू (दही, सूप, मस्ड आलु) मा टाँस्नुहोस् र पहिलो दिनमा तातो तरल "
 "पदार्थहरू नखानुहोस्।"
-
-msgid "Still have questions?"
-msgstr "अझै प्रश्नहरू छन्?"
 
 msgid "Stop the Pain Today"
 msgstr "आज दुखाइ रोक्नुहोस्"
@@ -7810,10 +7114,6 @@ msgstr "कडा रबर बाँध अलगाव र अस्पता�
 msgid "Strict Sterilization"
 msgstr "कडा नसबंदी"
 
-msgid ""
-"Strict sterilization protocols following international hospital standards."
-msgstr "अन्तर्राष्ट्रिय अस्पताल मापदण्ड अनुसार १००% पूर्ण जीवाणुरहित विधि।"
-
 msgid "String (unlimited)"
 msgstr "स्ट्रिङ (असीमित)"
 
@@ -7837,13 +7137,6 @@ msgid "Subgingival Scaling (Per Quadrant)"
 msgstr "Subgingival स्केलिंग (प्रति चतुर्थांश)"
 
 msgid ""
-"Subgingival calculus and stubborn tobacco/coffee stains removed with "
-"ultrasonic scaling to restore fresh breath and gum pinkness."
-msgstr ""
-"Subgingival calculus and stubborn tobacco/coffee stains removed with "
-"ultrasonic scaling to restore fresh breath and gum pinkness."
-
-msgid ""
 "Subgingival scaling and root planing to remove tartar from deep below the "
 "gum line."
 msgstr "गम रेखा मुनिको गहिरोबाट टार्टर हटाउन सबगिंगिभल स्केलिङ र रूट प्लानिङ।"
@@ -7855,7 +7148,7 @@ msgid "Successfully Submitted"
 msgstr "सफलतापूर्वक पेस गरियो"
 
 msgid "Successfully deleted %(count)d %(items)s."
-msgstr "सफलतापूर्वक मेटियो %(count)d %(items)s।"
+msgstr "%(गणना)d %(वस्तुहरू) सफलतापूर्वक मेटाइयो।"
 
 msgid "Summary Review Viewed"
 msgstr "सारांश समीक्षा हेरियो"
@@ -8005,12 +7298,6 @@ msgstr "पाठ"
 msgid "Thank You"
 msgstr "धन्यवाद"
 
-msgid "Thank You, %(name)s!"
-msgstr "धन्यवाद, %(name)s!"
-
-msgid "Thank You, {{ name }}!"
-msgstr "धन्यवाद, __VAR_0___!"
-
 msgid ""
 "Thank you for reaching out to CareFirst Dental Clinic Kathmandu. We have "
 "logged your request."
@@ -8028,7 +7315,7 @@ msgid "That page number is not an integer"
 msgstr "त्यो पृष्ठ नम्बर पूर्णांक होइन"
 
 msgid "The %(name)s “%(obj)s” was deleted successfully."
-msgstr "The %(name)s “%(obj)s” was deleted successfully."
+msgstr "%(नाम)s \"%(obj)s\" सफलतापूर्वक मेटाइयो।"
 
 msgid "The Benefits"
 msgstr "फाइदाहरू"
@@ -8254,9 +7541,6 @@ msgstr "यो क्षेत्र आवश्यक छ।"
 msgid "This is not a valid IPv6 address."
 msgstr "यो मान्य IPv6 ठेगाना होइन।"
 
-msgid "This is the most common myth! A root canal doesn't cause pain; it"
-msgstr "यो सबैभन्दा सामान्य मिथक हो! रूट नहरले दुखाइ दिदैन; यो"
-
 msgid "This month"
 msgstr "यो महिना"
 
@@ -8333,9 +7617,6 @@ msgstr "हराएको दाँत (ब्रिज) को खाली �
 msgid "To protect a weak tooth from fracturing after a root canal."
 msgstr "रूट नहर पछि भाँचिएको देखि कमजोर दाँत जोगाउन।"
 
-msgid "To replace a large filling when there isn't enough tooth remaining."
-msgstr "पर्याप्त दाँत बाँकी नभएको बेला ठूलो फिलिंग बदल्न।"
-
 msgid "Today"
 msgstr "आज"
 
@@ -8380,13 +7661,6 @@ msgstr ""
 
 msgid "Tooth-Colored"
 msgstr "दाँत रंगीन"
-
-msgid ""
-"Tooth-colored composite fillings to repair cavities, chipped teeth, and "
-"restore natural aesthetics."
-msgstr ""
-"दाँत-रङको कम्पोजिट फिलिङहरू गुफाहरू, काटिएका दाँतहरू मर्मत गर्न र प्राकृतिक "
-"सौन्दर्य पुनर्स्थापना गर्न।"
 
 msgid "Tooth-colored, highly aesthetic"
 msgstr "दाँत-रंग, उच्च सौन्दर्य"
@@ -8452,9 +7726,6 @@ msgstr "पारदर्शी उपचार शुल्क"
 msgid "Transparent Treatment Fees & Pricing"
 msgstr "पारदर्शी उपचार शुल्क र मूल्य निर्धारण"
 
-msgid "Transparent Treatment Pricing"
-msgstr "पारदर्शी उपचार शुल्क विवरण"
-
 msgid ""
 "Transparent advice and only recommended procedures that genuinely benefit "
 "your oral health."
@@ -8474,9 +7745,6 @@ msgstr "पारदर्शी, कुनै लुकेको लागत �
 msgid "Travel & Dental Care"
 msgstr "यात्रा र दन्त हेरचाह"
 
-msgid "Treating Specialist"
-msgstr "Treating Specialist"
-
 msgid "Treating active cavities before bacteria penetrate the nerve pulp."
 msgstr "ब्याक्टेरिया स्नायु पल्पमा प्रवेश गर्नु अघि सक्रिय गुहाको उपचार।"
 
@@ -8495,9 +7763,6 @@ msgstr "उपचार / कारण:"
 
 msgid "Treatment / Service"
 msgstr "दन्त सेवा / उपचार"
-
-msgid "Treatment Categories"
-msgstr "उपचारका विधाहरू"
 
 msgid "Treatment Category"
 msgstr "उपचार कोटि"
@@ -8589,20 +7854,8 @@ msgstr "तपाईंको प्रश्न यहाँ लेख्नु
 msgid "Types of"
 msgstr "को प्रकारहरू"
 
-msgid "Types of Braces Available"
-msgstr "उपलब्ध ब्रेसेसका प्रकारहरू"
-
-msgid "Types of Crowns"
-msgstr "क्राउन (क्याप) का प्रकारहरू"
-
 msgid "Types of Dental"
 msgstr "दन्त चिकित्सा को प्रकार"
-
-msgid "Types of Dental Filling Materials"
-msgstr "दाँत भर्ने सामग्रीका प्रकारहरू"
-
-msgid "Types of Dentures"
-msgstr "डेन्चरका प्रकारहरू"
 
 msgid "Types of Digital X-Rays"
 msgstr "डिजिटल एक्स-रे को प्रकार"
@@ -8642,16 +7895,6 @@ msgstr "अल्ट्रा कम विकिरण सेन्सर"
 
 msgid "Ultrasonic Scaling"
 msgstr "अल्ट्रासोनिक स्केलिंग"
-
-msgid "Ultrasonic Stain & Tartar Removal"
-msgstr "Ultrasonic Stain & Tartar Removal"
-
-msgid ""
-"Ultrasonic deep cleaning to remove plaque, calculus, and coffee/tea stains "
-"for fresh breath."
-msgstr ""
-"ताजा सासको लागि पट्टिका, क्यालकुलस, र कफी/चियाको दाग हटाउन अल्ट्रासोनिक "
-"गहिरो सफाई।"
 
 msgid "Unanswered Question"
 msgstr "अनुत्तरित प्रश्न"
@@ -8794,12 +8037,6 @@ msgstr "प्रमाणित दन्त परामर्श"
 msgid "Verified Patient"
 msgstr "प्रमाणित बिरामी"
 
-msgid "Verified Patient Consent on Record"
-msgstr "रेकर्डमा प्रमाणित बिरामीको सहमति"
-
-msgid "Verified patient feedback on Google Maps"
-msgstr "Verified patient feedback on Google Maps"
-
 msgid "Very Low"
 msgstr "धेरै कम"
 
@@ -8937,19 +8174,6 @@ msgstr ""
 msgid "We Create Healthy, Long-Lasting Smiles"
 msgstr "हामी स्वस्थ, दिर्घकालिन मुस्कानहरू सिर्जना गर्छौं"
 
-msgid "We Create Healthy, Long-Lasting Smiles With Modern Gentle Care."
-msgstr ""
-"हामी आधुनिक र कोमल सेवाका साथ स्वस्थ र दीर्घकालीन मुस्कान निर्माण गर्दछौं।"
-
-msgid ""
-"We accept Cash, major Credit/Debit Cards, Fonepay QR, eSewa, and Khalti. We "
-"also provide flexible installment options (EMI) for major treatments like "
-"implants and braces."
-msgstr ""
-"हामी नगद, प्रमुख क्रेडिट/डेबिट कार्डहरू, फोनपे QR, eSewa र खल्ती स्वीकार "
-"गर्छौं। हामी प्रत्यारोपण र कोष्ठकहरू जस्ता प्रमुख उपचारहरूको लागि लचिलो "
-"किस्ता विकल्पहरू (EMI) पनि उपलब्ध गराउँछौं।"
-
 msgid "We accept Cash, major Credit/Debit Cards, Fonepay, eSewa, and Khalti."
 msgstr ""
 "हामी नगद, प्रमुख क्रेडिट/डेबिट कार्डहरू, फोनपे, eSewa, र खल्ती स्वीकार "
@@ -8977,11 +8201,6 @@ msgid ""
 msgstr ""
 "हामी हाल नयाँ उपचार भिडियोहरू सम्पादन गर्दैछौं। कृपया छिट्टै फेरि जाँच "
 "गर्नुहोस्!"
-
-msgid ""
-"We are open 7 days a week, Monday through Sunday, from 7:30 AM to 7:30 PM."
-msgstr ""
-"We are open 7 days a week, Monday through Sunday, from 7:30 AM to 7:30 PM."
 
 msgid "We are open daily (Monday to Sunday) from 7:30 AM to 7:30 PM."
 msgstr "हामी दैनिक (सोमबार देखि आइतबार) 7:30 AM देखि 7:30 PM सम्म खुला छौं।"
@@ -9154,13 +8373,6 @@ msgstr ""
 "व्यावहारिक रूपमा प्राप्त गर्न सकिने' मापदण्डलाई कडाइका साथ पालन गर्छौं।"
 
 msgid ""
-"We take a digital X-ray to evaluate the tooth's roots, surrounding bone, and"
-" proximity to nerves."
-msgstr ""
-"हामी दाँतको जरा, वरपरको हड्डी, र स्नायुको निकटताको मूल्याङ्कन गर्न डिजिटल "
-"एक्स-रे लिन्छौं।"
-
-msgid ""
 "We take a precise 3D scan of your mouth and send the data to our dental lab "
 "to custom-mill your crown or bridge."
 msgstr ""
@@ -9203,16 +8415,6 @@ msgstr ""
 "हामी तपाईंको जबडाको हड्डीको घनत्व मूल्याङ्कन गर्न, स्नायु पत्ता लगाउन, र "
 "इम्प्लान्टको सटीक प्लेसमेन्टको डिजिटल रूपमा योजना बनाउन CBCT 3D स्क्यानर "
 "प्रयोग गर्छौं।"
-
-msgid ""
-"We use a local anesthetic to numb your gums during the procedure, so you "
-"won't feel any pain. You may experience some mild soreness and tooth "
-"sensitivity for a few days afterward, which is normal and manageable."
-msgstr ""
-"हामी प्रक्रियाको क्रममा तपाईंको गिजा सुन्न गर्न स्थानीय एनेस्थेटिक प्रयोग "
-"गर्छौं, त्यसैले तपाईंले कुनै दुखाइ महसुस गर्नुहुने छैन। तपाईंले केही दिन पछि"
-" केही हल्का दुखाइ र दाँत संवेदनशीलता अनुभव गर्न सक्नुहुन्छ, जुन सामान्य र "
-"व्यवस्थित छ।"
 
 msgid ""
 "We use an advanced ultrasonic scaler that gently vibrates with water to "
@@ -9300,15 +8502,6 @@ msgstr "स्वागत कक्ष र बिरामी प्रति�
 msgid "What Are"
 msgstr "के हो"
 
-msgid "What Are Crowns & Bridges?"
-msgstr "क्राउन र ब्रिज (क्याप) के हुन्?"
-
-msgid "What Are Dental Implants?"
-msgstr "डेन्टल इम्प्लान्ट (दाँत प्रत्यारोपण) के हुन्?"
-
-msgid "What Are Dentures?"
-msgstr "डेन्चर (नक्कली दाँत) के हुन्?"
-
 msgid "What Digital X-Rays Reveal"
 msgstr "डिजिटल एक्स-रेहरूले के प्रकट गर्दछ"
 
@@ -9339,41 +8532,11 @@ msgstr "अब के हुन्छ?"
 msgid "What is"
 msgstr "के हो"
 
-msgid "What is Braces Treatment?"
-msgstr "ब्रेसेस (तार बाँध्ने) उपचार के हो?"
-
-msgid "What is General Dentistry?"
-msgstr "सामान्य दन्त चिकित्सा के हो?"
-
-msgid "What is Gum Disease?"
-msgstr "गिजाको समस्या (रोग) के हो?"
-
-msgid "What is Root Canal Treatment?"
-msgstr "रूट क्यानल उपचार (RCT) के हो?"
-
-msgid "What is Scaling & Polishing?"
-msgstr "दाँत सफाइ र पोलिसिङ (स्केलिङ) के हो?"
-
-msgid "What is Tooth Extraction?"
-msgstr "दाँत निकाल्ने सेवा के हो?"
-
 msgid "What is a"
 msgstr "ए के हो"
 
 msgid "What is a Bone Graft, and do I need one?"
 msgstr "बोन ग्राफ्ट भनेको के हो र के मलाई एउटा चाहिन्छ?"
-
-msgid "What is a Dental Filling?"
-msgstr "दाँत भर्ने सेवा (डेन्टल फिलिङ) के हो?"
-
-msgid "What is a Digital Dental X-Ray?"
-msgstr "डिजिटल दन्त एक्स-रे के हो?"
-
-msgid "What is a Root Canal?"
-msgstr "रूट क्यानल उपचार (RCT) के हो?"
-
-msgid "What is a \\\"dry socket\\\"?"
-msgstr "What is a \\\"dry socket\\\"?"
 
 msgid "What is the difference between Zirconia and E-max?"
 msgstr "Zirconia र E-max बीच के भिन्नता छ?"
@@ -9398,9 +8561,6 @@ msgstr "तपाई कस्तो प्रकारको भ्रमण �
 
 msgid "What's"
 msgstr "के हो"
-
-msgid "What's Included?"
-msgstr "के-के समावेश छ?"
 
 msgid "WhatsApp Available"
 msgstr "ह्वाट्सएप उपलब्ध छ"
@@ -9441,18 +8601,8 @@ msgstr "कहिले भ्रमण गर्ने"
 msgid "When is Extraction"
 msgstr "निकासी कहिले हुन्छ"
 
-msgid "When is Extraction Required?"
-msgstr "दाँत कुन अवस्थामा निकाल्नुपर्छ?"
-
 msgid "When is a Dental Filling Needed?"
 msgstr "दाँत भर्ने कहिले आवश्यक छ?"
-
-msgid ""
-"When not wearing them, store your dentures in water or a mild denture-"
-"soaking solution so they don't dry out and lose their shape."
-msgstr ""
-"When not wearing them, store your dentures in water or a mild denture-"
-"soaking solution so they don't dry out and lose their shape."
 
 msgid "When would you prefer to visit?"
 msgstr "तपाई कहिले भ्रमण गर्न रुचाउनुहुन्छ?"
@@ -9474,13 +8624,6 @@ msgstr ""
 "थाल्छ (resorb)। प्रत्यारोपणले वास्तविक जरा जस्तै काम गर्छ, हड्डीलाई उत्तेजित"
 " गर्छ र अनुहारको पतनलाई रोक्छ।"
 
-msgid ""
-"Where Expert Dentistry Meets<br>\n"
-"          <span class=\"text-gradient-green\">Patient-First Care</span>"
-msgstr ""
-"Where Expert Dentistry Meets<br>\n"
-"          <span class=\"text-gradient-green\">Patient-First Care</span>"
-
 msgid "Where is CareFirst Dental Clinic located?"
 msgstr "केयरफर्स्ट डेन्टल क्लिनिक कहाँ छ?"
 
@@ -9493,9 +8636,6 @@ msgstr ""
 
 msgid "Which Braces Are"
 msgstr "कुन कोष्ठकहरू हुन्"
-
-msgid "Which Braces Are Right for You?"
-msgstr "तपाईंको लागि कुन ब्रेसेस उपयुक्त छ?"
 
 msgid ""
 "While digital X-rays emit negligible radiation, elective X-rays are "
@@ -9531,15 +8671,6 @@ msgstr ""
 "प्राथमिकता दिइन्छ।"
 
 msgid ""
-"While we highly recommend booking an appointment to avoid waiting times, we "
-"do accept walk-in patients. Dental emergencies with acute pain or trauma are"
-" always given immediate priority."
-msgstr ""
-"हामी पर्खने समयहरूबाट बच्न अपोइन्टमेन्ट बुक गर्न सिफारिस गर्दा, हामी वाक-इन "
-"बिरामीहरूलाई स्वीकार गर्छौं। तीव्र दुखाइ वा आघात भएको दाँतको आपतकालिन "
-"अवस्थाहरूलाई सधैं तत्काल प्राथमिकता दिइन्छ।"
-
-msgid ""
 "While your permanent crown is being crafted, we place a temporary crown to "
 "protect your tooth."
 msgstr ""
@@ -9570,9 +8701,6 @@ msgstr "यो नियुक्ति कसको लागि हो?"
 msgid "Why Cavities Form"
 msgstr "किन गुफाहरू बन्छन्"
 
-msgid "Why Choose CareFirst"
-msgstr "Why Choose CareFirst"
-
 msgid "Why Choose CareFirst for Root Canal?"
 msgstr "रूट नहरको लागि किन केयरफर्स्ट छनौट गर्नुहोस्?"
 
@@ -9596,9 +8724,6 @@ msgstr "किन यो महत्त्वपूर्ण छ"
 
 msgid "Why Patients Trust"
 msgstr "किन बिरामीहरू विश्वास गर्छन्"
-
-msgid "Why Patients Trust CareFirst Dental"
-msgstr "बिरामीहरूले CareFirst Dental लाई किन विश्वास गर्छन्?"
 
 msgid "Why Patients Trust Us"
 msgstr "किन बिरामीहरूले हामीलाई विश्वास गर्छन्"
@@ -9701,17 +8826,8 @@ msgstr ""
 "शुल्कको साथ पारदर्शी अनुमानहरू अनुभव गर्नुहोस्, काठमाडौं भ्रमण गर्ने स्थानीय"
 " र अन्तर्राष्ट्रिय बिरामीहरूको लागि अनुकूल।"
 
-msgid "Write a Google Review"
-msgstr "Google समीक्षा लेख्नुहोस्"
-
 msgid "Written & Clinically Reviewed by"
 msgstr "द्वारा लिखित र चिकित्सकीय समीक्षा"
-
-msgid "Written & Clinically Reviewed by %(author)s"
-msgstr "%(author)s द्वारा लिखित र क्लिनिकल प्रमाणित"
-
-msgid "Written & Clinically Reviewed by {{ author }}"
-msgstr "Written & Clinically Reviewed by {{ author }}"
 
 msgid "X-Ray Assessment"
 msgstr "एक्स-रे मूल्याङ्कन"
@@ -9724,9 +8840,6 @@ msgstr "तपाईंको अपोइन्टमेन्ट सन्द�
 
 msgid "Years Clinical Experience"
 msgstr "वर्षको क्लिनिकल अनुभव"
-
-msgid "Years of<br>Excellence"
-msgstr "__VAR_0___उत्कृष्टता को वर्ष"
 
 msgid "Yellow or brown hard deposits along the gumline."
 msgstr "गमलाइनको छेउमा पहेंलो वा खैरो कडा जम्मा हुन्छ।"
@@ -9769,26 +8882,6 @@ msgstr ""
 "कोमल, बाल-अनुकूल बाल चिकित्सा दन्त स्याहार प्रदान गर्दछ।"
 
 msgid ""
-"Yes! Teeth have a \\\"memory\\\" and will naturally try to shift back to "
-"their original crooked positions over time. Wearing your retainer exactly as"
-" prescribed is the only way to guarantee your smile stays perfectly straight"
-" for life."
-msgstr ""
-"Yes! Teeth have a \\\"memory\\\" and will naturally try to shift back to "
-"their original crooked positions over time. Wearing your retainer exactly as"
-" prescribed is the only way to guarantee your smile stays perfectly straight"
-" for life."
-
-msgid ""
-"Yes! We use computer-regulated local anesthesia and gentle microscopic "
-"techniques to ensure root canals, implants, and extractions are virtually "
-"pain-free."
-msgstr ""
-"हो! हामी जरा नहरहरू, प्रत्यारोपणहरू, र निकासीहरू वस्तुतः पीडामुक्त छन् भनेर "
-"सुनिश्चित गर्न कम्प्युटर-नियन्त्रित स्थानीय एनेस्थेसिया र कोमल "
-"माइक्रोस्कोपिक प्रविधिहरू प्रयोग गर्छौं।"
-
-msgid ""
 "Yes! We use the latest anesthesia techniques to ensure that even root canals"
 " or implants are as comfortable as possible."
 msgstr ""
@@ -9823,13 +8916,6 @@ msgstr ""
 
 msgid "You are currently logged in as"
 msgstr "तपाईं हाल यस रूपमा लग इन हुनुहुन्छ"
-
-msgid ""
-"You can book an appointment by filling out our online form, calling us "
-"directly at +977 980-7464136, or messaging us on WhatsApp at 980-7464136."
-msgstr ""
-"तपाईंले हाम्रो अनलाइन फारम भरेर, हामीलाई सिधै +977 980-7464136 मा कल गरेर वा"
-" 980-7464136 मा WhatsApp मा सन्देश पठाएर अपोइन्टमेन्ट बुक गर्न सक्नुहुन्छ।"
 
 msgid ""
 "You can book an appointment by filling out our online form, calling us "
@@ -10014,26 +9100,6 @@ msgstr ""
 " दाँतहरूको लागि रुचाइएको छनोट बनाउँछ।"
 
 msgid ""
-"\\\"I had a large gap from a missing tooth and was always self-conscious. "
-"The Zirconia bridge Dr. Subash placed looks exactly like my real teeth. The "
-"color match is perfect, and I can finally chew on that side again!\\\""
-msgstr ""
-"\"मसँग हराएको दाँतबाट ठूलो खाडल थियो र सधैं आत्म-सचेत थिएँ। डा. सुवासले "
-"राखेको जिरकोनिया पुल मेरो वास्तविक दाँत जस्तै देखिन्छ। रङ मिल्दोजुल्दो छ, र "
-"म अन्ततः त्यो छेउमा फेरि चपाउन सक्छु!\""
-
-msgid ""
-"\\\"I had a terrible overbite and was afraid braces would hurt too much as "
-"an adult. The ceramic braces were barely noticeable, and the team at "
-"Carefirst Dental Clinic was so gentle. The 18 months flew by and my smile is"
-" perfect now!\\\""
-msgstr ""
-"\\\"मलाई डरलाग्दो ओभरबाइट भएको थियो र कोष्ठकहरूले वयस्कको रूपमा धेरै चोट "
-"पुर्याउने डर थियो। सिरेमिक कोष्ठकहरू मुश्किलले देख्न नसक्ने थिए, र "
-"केयरफर्स्ट डेन्टल क्लिनिकको टोली धेरै कोमल थियो। 18 महिना बित्यो र मेरो "
-"मुस्कान अहिले ठीक छ!\\\""
-
-msgid ""
 "\\\"I used to dread going to the dentist, but the team at CareFirst Dental "
 "Clinic is so gentle and reassuring. They take the time to explain everything"
 " during the check-up. Highly recommended!\\\""
@@ -10041,67 +9107,6 @@ msgstr ""
 "\\\"मलाई दन्तचिकित्सककहाँ जान डर लाग्थ्यो, तर केयरफर्स्ट डेन्टल क्लिनिकको "
 "टोली धेरै कोमल र आश्वस्त छ। उनीहरूले चेक-अपको क्रममा सबै कुरा बुझाउन समय "
 "निकाल्छन्। अत्यधिक सिफारिस गरिएको छ!\\\""
-
-msgid ""
-"\\\"I was so embarrassed about losing my teeth, but the team at Carefirst "
-"Dental Clinic was incredibly kind. My new complete dentures look just like "
-"my natural teeth used to, and I can finally eat comfortably again. Highly "
-"recommended!\\\""
-msgstr ""
-"\\\"म मेरो दाँत गुमाउँदा धेरै लज्जित भएँ, तर केयरफर्स्ट डेन्टल क्लिनिकको "
-"टोली अविश्वसनीय दयालु थियो। मेरो नयाँ पूर्ण दाँतहरू मेरो प्राकृतिक दाँत "
-"जस्तै देखिन्छन्, र म अन्तमा फेरि आरामसँग खान सक्छु। अत्यधिक सिफारिस गरिएको "
-"छ! \\\""
-
-msgid ""
-"\\\"I was terrified of getting a root canal because of all the horror "
-"stories I'd heard. However, the team at Carefirst Dental Clinic was "
-"incredible. It honestly felt no different than getting a regular filling, "
-"and the excruciating pain I had was gone immediately.\\\""
-msgstr ""
-"\\\"I was terrified of getting a root canal because of all the horror "
-"stories I'd heard. However, the team at Carefirst Dental Clinic was "
-"incredible. It honestly felt no different than getting a regular filling, "
-"and the excruciating pain I had was gone immediately.\\\""
-
-msgid ""
-"\\\"I was terrified of the surgery, but Carefirst Dental Clinic made the "
-"entire implant process completely painless. Now, a year later, I forget "
-"which tooth is the fake one! It feels just like my real teeth. Highly "
-"recommend.\\\""
-msgstr ""
-"\\\"I was terrified of the surgery, but Carefirst Dental Clinic made the "
-"entire implant process completely painless. Now, a year later, I forget "
-"which tooth is the fake one! It feels just like my real teeth. Highly "
-"recommend.\\\""
-
-msgid ""
-"\\\"My gums used to bleed every time I brushed, and several teeth felt "
-"loose. After deep cleaning and splinting at Carefirst Dental Clinic, my gums"
-" are firm again and my teeth are secure. They truly saved my smile.\\\""
-msgstr ""
-"\\\"मेरो गिजाले प्रत्येक चोटि ब्रस गर्दा रगत बग्ने गर्दथ्यो, र धेरै दाँतहरू "
-"ढीलो महसुस गरे। केयरफर्स्ट डेन्टल क्लिनिकमा गहिरो सफाई र स्प्लिन्ट गरेपछि, "
-"मेरो गिजा फेरि बलियो भयो र मेरो दाँत सुरक्षित छन्। तिनीहरूले साँच्चै मेरो "
-"मुस्कान बचाए।\""
-
-msgid ""
-"\\\"Our dentists will recommend the most suitable crown material based on "
-"your oral condition, tooth location, functional needs, aesthetic "
-"expectations, and budget.\\\""
-msgstr ""
-"\\\"हाम्रा दन्त चिकित्सकहरूले तपाईंको मौखिक अवस्था, दाँतको स्थान, कार्यात्मक"
-" आवश्यकताहरू, सौन्दर्य अपेक्षाहरू, र बजेटको आधारमा सबैभन्दा उपयुक्त मुकुट "
-"सामग्री सिफारिस गर्नेछन्।\""
-
-msgid ""
-"\\\"The installment plan made metal braces affordable for me. Every "
-"adjustment visit was quick, and the orthodontist explained exactly what they"
-" were doing. I can finally smile in photos without hiding my teeth.\\\""
-msgstr ""
-"\\\"किस्त योजनाले मेरो लागि धातुको कोष्ठकहरू किफायती बनाइदियो। प्रत्येक "
-"समायोजन भ्रमण द्रुत थियो, र अर्थोडोन्टिस्टले उनीहरू के गरिरहनुभएको थियो भनेर"
-" ठ्याक्कै व्याख्या गरे। म अन्ततः दाँत नछोकाइ तस्बिरहरूमा मुस्कुराउन सक्छु।\""
 
 msgid "_CallbackFileWrapper__fp"
 msgstr "_CallbackFileWrapper__fp"
@@ -10229,13 +9234,6 @@ msgstr "ह्यास"
 msgid "in the Heart of Kathmandu"
 msgstr "काठमाडौंको मुटुमा"
 
-msgid ""
-"it. We use profound local anesthesia so you won't feel anything during the "
-"procedure. It is very similar to having a routine filling placed."
-msgstr ""
-"it. We use profound local anesthesia so you won't feel anything during the "
-"procedure. It is very similar to having a routine filling placed."
-
 msgid "iterations"
 msgstr "पुनरावृत्ति"
 
@@ -10350,9 +9348,6 @@ msgstr "दर्ता आवश्यक छ"
 msgid "related `%(app_label)s.%(object_name)s` objects"
 msgstr "सम्बन्धित `%(app_label)s.%(object_name)s` वस्तुहरू"
 
-msgid "relieves"
-msgstr "राहत दिन्छ"
-
 msgid "salt"
 msgstr "नुन"
 
@@ -10447,9 +9442,6 @@ msgstr "काम कारक"
 msgid "yesterday"
 msgstr "हिजो"
 
-msgid "{{ rating }} Google rating from {{ count }} reviews"
-msgstr "{{ count }} रिभ्युहरूबाट {{ rating }} गुगल रेटिङ"
-
 msgid "“%(path)s” does not exist"
 msgstr "\"%(path)s\" अवस्थित छैन"
 
@@ -10476,6 +9468,3 @@ msgstr "\"%(value)s\" मान या त True वा False हुनुपर�
 
 msgid "“%(value)s” value must be either True, False, or None."
 msgstr "\"%(value)s\" मान या त True, False, वा None हुनुपर्छ।"
-
-msgid "…"
-msgstr "…"

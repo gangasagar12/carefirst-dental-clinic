@@ -141,7 +141,7 @@
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
         <div class="nd-eyebrow">{% trans "Introduction" %}</div>
-        <h2 class="section-heading mb-4">{% trans "What is" %} <span class="accent">{% trans "Tooth Extraction?" %}</span></h2>
+        <h2 class="section-heading mb-4">{% trans "What is Tooth Extraction?" %}</h2>
         <p class="text-muted" style="line-height:1.85;">
           {% trans "A tooth extraction is the removal of a tooth from its socket in the bone. At Carefirst Dental Clinic, our primary goal is always to save your natural teeth. However, when a tooth is too severely damaged to be repaired with a filling or root canal, extraction becomes necessary to protect your overall oral health." %}
         </p>
@@ -166,7 +166,7 @@
   <div class="container">
     <div class="text-center mb-5">
       <div class="nd-eyebrow justify-content-center">{% trans "Understanding the Need" %}</div>
-      <h2 class="section-heading">{% trans "When is Extraction" %} <span class="accent">{% trans "Required?" %}</span></h2>
+      <h2 class="section-heading">{% trans "When is Extraction Required?" %}</h2>
     </div>
     
     <div class="row g-5">
@@ -190,12 +190,12 @@
           <h4 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Types of Extractions" %}</h4>
           
           <div class="mb-4">
-            <h6 class="fw-bold text-success"><i class="bi bi-tooth me-2"></i> {% trans "Simple Extraction" %}</h6>
+            <h6 class="fw-bold text-success"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Simple Extraction" %}</h6>
             <p class="small text-muted mb-0">{% trans "Performed on a tooth that can be seen in the mouth. We loosen the tooth with an instrument called an elevator and remove it with dental forceps. It is very quick and requires only local anesthesia." %}</p>
           </div>
           
           <div>
-            <h6 class="fw-bold text-danger"><i class="bi bi-bandaid me-2"></i> {% trans "Surgical Extraction" %}</h6>
+            <h6 class="fw-bold text-danger"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Surgical Extraction" %}</h6>
             <p class="small text-muted mb-0">{% trans "Required for a tooth that has broken off at the gum line or has not erupted yet (like a wisdom tooth). A small incision is made in the gum to access and carefully remove the tooth. Stitches may be placed afterward." %}</p>
           </div>
         </div>
@@ -267,7 +267,7 @@
       <!-- Step-by-Step -->
       <div class="col-lg-7">
         <div class="nd-eyebrow justify-content-start text-white-50 border-white">{% trans "The Procedure" %}</div>
-        <h2 class="section-heading text-white mb-5">{% trans "Step-by-Step" %} <span class="text-warning">{% trans "Treatment Process" %}</span></h2>
+        <h2 class="section-heading text-white mb-5">{% trans "Step-by-Step Treatment Process" %}</h2>
         
         <div class="d-flex mb-4 position-relative">
           <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
@@ -370,7 +370,7 @@
   <div class="container">
     <div class="text-center mb-5">
       <div class="nd-eyebrow justify-content-center">{% trans "Real Results" %}</div>
-      <h2 class="section-heading">{% trans "Clinical" %} <span class="accent">{% trans "Gallery" %}</span></h2>
+      <h2 class="section-heading">{% trans "Clinical Gallery" %}</h2>
       <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "See the safe and precise approach we take for tooth extractions." %}</p>
     </div>
     
@@ -424,19 +424,19 @@
         <p class="text-muted mb-4">{% blocktrans %}Proper aftercare is critical for a fast recovery and to prevent complications like 'dry socket'.{% endblocktrans %}</p>
         
         <div class="ex-tip-card border-success">
-          <h6 class="fw-bold"><i class="bi bi-bandaid-fill text-success me-2"></i> {% trans "Bite on Gauze" %}</h6>
+          <h6 class="fw-bold"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Bite on Gauze" %}</h6>
           <p class="small text-muted mb-0">{% trans "Keep steady pressure on the gauze pad for 30-45 minutes immediately after the procedure to allow the blood clot to form." %}</p>
         </div>
         <div class="ex-tip-card border-danger">
-          <h6 class="fw-bold"><i class="bi bi-slash-circle text-danger me-2"></i> {% trans "Do NOT Spit or Use a Straw" %}</h6>
+          <h6 class="fw-bold"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Do NOT Spit or Use a Straw" %}</h6>
           <p class="small text-muted mb-0">{% trans "For the first 24 hours, avoid aggressive rinsing, spitting, or drinking through a straw. The suction can dislodge the blood clot." %}</p>
         </div>
         <div class="ex-tip-card">
-          <h6 class="fw-bold"><i class="bi bi-snow text-primary me-2"></i> {% trans "Apply Ice" %}</h6>
+          <h6 class="fw-bold"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Apply Ice" %}</h6>
           <p class="small text-muted mb-0">{% trans "Apply an ice pack to your cheek in 15-minute intervals to minimize swelling, especially after a surgical extraction." %}</p>
         </div>
         <div class="ex-tip-card border-warning">
-          <h6 class="fw-bold"><i class="bi bi-cup-hot text-warning me-2"></i> {% trans "Eat Soft Foods" %}</h6>
+          <h6 class="fw-bold"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Eat Soft Foods" %}</h6>
           <p class="small text-muted mb-0">{% trans "Stick to soft foods (yogurt, soup, mashed potatoes) and avoid hot liquids on the first day." %}</p>
         </div>
       </div>
@@ -519,10 +519,10 @@
     <p>{% trans "Our expert team ensures a safe, painless extraction with exceptional aftercare." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
       <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
-        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Evaluation" %}
+        {% trans "Book Evaluation" %}
       </a>
       <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+        {% trans "Call Now" %}
       </a>
     </div>
   </div>

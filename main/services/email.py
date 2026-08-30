@@ -212,6 +212,7 @@ def get_email_html_template(patient_name, inquiry_type='contact', details=None):
         <p style="margin: 0; font-size: 13px; color: #991B1B; line-height: 1.5;">
           <strong>🚨 Need Urgent Care?</strong> If you are experiencing acute tooth pain or swelling, please call our emergency line directly at <strong>{contact['phone']}</strong> for immediate assistance.
         </p>
+        
       </div>
 
     </div>

@@ -233,14 +233,13 @@
         <li class="breadcrumb-item active text-info fw-bold">{% trans "General Dentistry" %}</li>
       </ol>
     </nav>
-    <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
-      <i class="bi bi-heart-pulse-fill text-info"></i> {% trans "ESSENTIAL ORAL HEALTHCARE" %}
+    <div class="cf-eyebrow-badge">{% trans "ESSENTIAL ORAL HEALTHCARE" %}
     </div>
     <h1>{% trans "General Dentistry & Routine Checkups" %}</h1>
     <p class="hero-sub mx-auto">{% trans "Comprehensive clinical check-ups, early cavity detection, and preventive care to protect your lifelong natural smile in Shankhamul, Kathmandu." %}</p>
     <div class="mt-4">
       <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary">
-        <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book a Routine Check-up" %}
+         {% trans "Book a Routine Check-up" %}
       </a>
     </div>
   </div>
@@ -251,17 +250,15 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-info-circle-fill"></i> {% trans "FOUNDATION OF DENTAL HEALTH" %}
+        <div class="cf-eyebrow-badge">{% trans "FOUNDATION OF DENTAL HEALTH" %}
         </div>
-        <h2 class="cf-section-title mb-4">{% trans "What is" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "General Dentistry?" %}</span></h2>
+        <h2 class="cf-section-title mb-4">{% trans "What is General Dentistry?" %}</h2>
         <p class="cf-body-text mb-4">
           {% blocktrans %}General dentistry is the core pillar of lifelong oral wellness. It encompasses routine diagnostics, professional dental cleaning, cavity detection, and preventative care designed to keep your teeth and gums healthy and functional.{% endblocktrans %}
         </p>
         
         <div class="p-4 rounded-4" style="background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%); border-left: 4px solid #0284C7; border: 1px solid rgba(2, 132, 199, 0.15); border-left-width: 4px;">
-          <h5 class="fw-bold mb-2" style="font-family: var(--cf-font-head); color: #0B2545;">
-            <i class="bi bi-shield-check text-primary me-2"></i>{% trans "Why Regular 6-Month Check-ups Matter" %}
+          <h5 class="fw-bold mb-2" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Why Regular 6-Month Check-ups Matter" %}
           </h5>
           <p class="mb-0 text-muted" style="font-size: 0.925rem; line-height: 1.7; font-weight: 500;">
             {% blocktrans %}Many serious dental issues like hidden tooth decay, gum recession, and early periodontal disease develop silently without pain. Routine visits allow our dentists to catch problems early, avoiding complex and costly treatments.{% endblocktrans %}
@@ -273,7 +270,7 @@
           <img loading="lazy" src="{% static 'images/services1.avif' %}" alt="Routine Dental Check-up" class="w-100 h-100 object-fit-cover" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
           <div class="position-absolute bottom-0 start-0 m-3 p-3 text-white rounded-3" style="background: rgba(11, 37, 69, 0.88); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15);">
             <div class="d-flex align-items-center gap-2">
-              <i class="bi bi-patch-check-fill text-info fs-5"></i>
+              <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
               <div>
                 <strong class="d-block text-white small">{% trans "Pain-Free Diagnostics" %}</strong>
                 <small class="text-white-50" style="font-size: 0.75rem;">{% trans "Gentle Clinical Care" %}</small>
@@ -292,28 +289,27 @@
     <div class="row g-5">
       <!-- Who Should Visit -->
       <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-person-check-fill"></i> {% trans "CANDIDACY" %}
+        <div class="cf-eyebrow-badge">{% trans "CANDIDACY" %}
         </div>
         <h3 class="fw-bold mb-3" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Who Should Visit?" %}</h3>
         <p class="text-muted mb-4" style="font-weight: 500; font-size: 0.95rem;">{% trans "Everyone! However, you should definitely schedule an appointment if:" %}</p>
         <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
           <li class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm border border-light">
-            <i class="bi bi-calendar-x text-primary fs-5 mt-1"></i>
+            <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
             <div>
               <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Overdue Check-up" %}</strong>
               <small class="text-muted" style="font-weight: 500;">{% trans "It has been more than 6 months since your last professional dental examination." %}</small>
             </div>
           </li>
           <li class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm border border-light">
-            <i class="bi bi-bandaid text-primary fs-5 mt-1"></i>
+            <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
             <div>
               <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Pain or Sensitivity" %}</strong>
               <small class="text-muted" style="font-weight: 500;">{% trans "You experience tooth sensitivity to hot/cold, mild toothache, or bleeding gums when brushing." %}</small>
             </div>
           </li>
           <li class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm border border-light">
-            <i class="bi bi-shield-check text-primary fs-5 mt-1"></i>
+            <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
             <div>
               <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Preventive Baseline" %}</strong>
               <small class="text-muted" style="font-weight: 500;">{% trans "You want to protect your teeth against plaque and establish healthy oral habits." %}</small>
@@ -324,33 +320,32 @@
       
       <!-- Common Problems -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-clipboard2-pulse-fill"></i> {% trans "DIAGNOSIS & RELIEF" %}
+        <div class="cf-eyebrow-badge">{% trans "DIAGNOSIS & RELIEF" %}
         </div>
         <h3 class="fw-bold mb-3" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Common Problems We Treat" %}</h3>
         
         <div class="row g-3">
           <div class="col-sm-6">
             <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-primary">
-              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-circle-half text-primary me-2"></i>{% trans "Tooth Decay & Cavities" %}</h6>
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Tooth Decay & Cavities" %}</h6>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Early detection and tooth-colored composite restorations before pain begins." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-info">
-              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-snow text-info me-2"></i>{% trans "Tooth Sensitivity" %}</h6>
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Tooth Sensitivity" %}</h6>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Treating sharp pain from sweet, hot, or cold foods through enamel desensitization." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-primary">
-              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-droplet-half text-primary me-2"></i>{% trans "Gum Bleeding & Gingivitis" %}</h6>
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Gum Bleeding & Gingivitis" %}</h6>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Targeting early gum inflammation and bacterial tartar to restore healthy pink gums." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-4 border-info">
-              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><i class="bi bi-wind text-info me-2"></i>{% trans "Halitosis (Bad Breath)" %}</h6>
+              <h6 class="fw-bold mb-2 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Halitosis (Bad Breath)" %}</h6>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Identifying underlying bacterial deposits and deep cleaning inaccessible pockets." %}</p>
             </div>
           </div>
@@ -364,10 +359,9 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center">
-        <i class="bi bi-stars"></i> {% trans "REAL CLINICAL OUTCOMES" %}
+      <div class="cf-eyebrow-badge">{% trans "REAL CLINICAL OUTCOMES" %}
       </div>
-      <h2 class="cf-section-title">{% trans "Before &" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "After Results" %}</span></h2>
+      <h2 class="cf-section-title">{% trans "Before & After Results" %}</h2>
       <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "See how routine general dentistry restorations resolve decay and bring back healthy teeth." %}</p>
     </div>
     <div class="row g-4">
@@ -418,35 +412,34 @@
     <div class="row g-5">
       <!-- Services Offered -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-grid-3x3-gap-fill"></i> {% trans "WHAT WE DO" %}
+        <div class="cf-eyebrow-badge">{% trans "WHAT WE DO" %}
         </div>
         <h3 class="fw-bold mb-4" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "General Dentistry Services We Offer" %}</h3>
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="gen-card">
-              <div class="gen-icon-wrapper"><i class="bi bi-search"></i></div>
+              <div class="gen-icon-wrapper" style="color:#0284C7; font-size:1.4rem; font-weight:bold;">•</div>
               <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Routine Check-up" %}</h5>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Comprehensive visual inspection of your teeth, gums, and oral tissues." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="gen-card">
-              <div class="gen-icon-wrapper"><i class="bi bi-chat-dots"></i></div>
+              <div class="gen-icon-wrapper" style="color:#0284C7; font-size:1.4rem; font-weight:bold;">•</div>
               <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Consultation & Advice" %}</h5>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Discussing your concerns and providing customized oral hygiene instruction." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="gen-card">
-              <div class="gen-icon-wrapper"><i class="bi bi-camera"></i></div>
+              <div class="gen-icon-wrapper" style="color:#0284C7; font-size:1.4rem; font-weight:bold;">•</div>
               <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Digital Diagnostics" %}</h5>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "High-definition diagnostic checks, including low-radiation digital X-rays." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="gen-card">
-              <div class="gen-icon-wrapper"><i class="bi bi-shield-check"></i></div>
+              <div class="gen-icon-wrapper" style="color:#0284C7; font-size:1.4rem; font-weight:bold;">•</div>
               <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Preventive Care" %}</h5>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Fluoride treatments, dental sealants, and personalized oral hygiene planning." %}</p>
             </div>
@@ -456,27 +449,26 @@
 
       <!-- Benefits & Why Choose CareFirst -->
       <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-award-fill"></i> {% trans "WHY CHOOSE US" %}
+        <div class="cf-eyebrow-badge">{% trans "WHY CHOOSE US" %}
         </div>
         <h3 class="fw-bold mb-4" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "The CareFirst Difference" %}</h3>
         <ul class="list-unstyled d-flex flex-column gap-3 mb-4">
           <li class="d-flex align-items-start gap-3">
-            <i class="bi bi-person-badge-fill text-primary fs-5 mt-1"></i>
+            <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545;">{% trans "Experienced Senior Dentists" %}</strong>
               <small class="text-muted" style="font-weight: 500;">{% trans "Led by Dr. Subash Banjade and our senior clinical specialist team." %}</small>
             </div>
           </li>
           <li class="d-flex align-items-start gap-3">
-            <i class="bi bi-display-fill text-primary fs-5 mt-1"></i>
+            <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545;">{% trans "Modern Diagnostic Suite" %}</strong>
               <small class="text-muted" style="font-weight: 500;">{% trans "Advanced digital imaging and computerized diagnostic equipment." %}</small>
             </div>
           </li>
           <li class="d-flex align-items-start gap-3">
-            <i class="bi bi-heart-fill text-primary fs-5 mt-1"></i>
+            <span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545;">{% trans "Gentle & Comfortable Care" %}</strong>
               <small class="text-muted" style="font-weight: 500;">{% trans "Pain-free procedures in a relaxing, anxiety-free medical clinic." %}</small>
@@ -485,7 +477,7 @@
         </ul>
 
         <div class="p-4 rounded-4" style="background: linear-gradient(180deg, #F0F7FD 0%, #E8F3FC 100%); border: 1.5px solid rgba(2, 132, 199, 0.2);">
-          <h6 class="fw-bold mb-2 text-navy" style="color: #0B2545;"><i class="bi bi-shield-check text-primary me-2"></i>{% trans "Preserve Natural Teeth" %}</h6>
+          <h6 class="fw-bold mb-2 text-navy" style="color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "Preserve Natural Teeth" %}</h6>
           <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Routine visits lower your lifetime dental costs, prevent emergencies, and ensure you keep your natural teeth strong for life." %}</p>
         </div>
       </div>
@@ -500,15 +492,14 @@
       
       <!-- Patient Care Process -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
-          <i class="bi bi-diagram-3-fill text-info"></i> {% trans "CLINICAL WORKFLOW" %}
+        <div class="cf-eyebrow-badge">{% trans "CLINICAL WORKFLOW" %}
         </div>
-        <h2 class="cf-section-title text-white mb-4">{% trans "Our Patient" %} <span class="text-info">{% trans "Care Process" %}</span></h2>
+        <h2 class="cf-section-title text-white mb-4">{% trans "Our Patient Care Process" %}</h2>
         
         <div class="row g-4">
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-calendar2-check-fill"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">01</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "1. Appointment Booking" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Schedule a convenient visit online or by phone." %}</p>
@@ -517,7 +508,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-chat-text-fill"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">02</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "2. Consultation" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Discuss symptoms, medical history & concerns." %}</p>
@@ -526,7 +517,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-search"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">03</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "3. Oral Examination" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Thorough visual and digital clinical check." %}</p>
@@ -535,7 +526,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-clipboard2-pulse-fill"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">04</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "4. Accurate Diagnosis" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Clear explanation of any underlying issues." %}</p>
@@ -544,7 +535,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-list-check"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">05</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "5. Custom Plan" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Transparent plan with exact pricing options." %}</p>
@@ -553,7 +544,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-arrow-repeat"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">06</div>
               <div>
                 <h6 class="fw-bold mb-1 text-white">{% trans "6. Follow-up Care" %}</h6>
                 <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Scheduling routine maintenance checks." %}</p>
@@ -597,7 +588,7 @@
                 {% trans "* Note: Listed prices cover basic examination. Any additional procedures (e.g. X-rays, restorations) will be quoted upfront." %}
               </p>
               <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary w-100 justify-content-center">
-                <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Schedule Check-up" %}
+                 {% trans "Schedule Check-up" %}
               </a>
             </div>
 
@@ -615,8 +606,7 @@
       
       <!-- What to Expect / Preparation Left -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-person-heart"></i> {% trans "PATIENT PREPARATION & EXPECTATIONS" %}
+        <div class="cf-eyebrow-badge">{% trans "PATIENT PREPARATION & EXPECTATIONS" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); color: #0B2545;">
           {% trans "What to Expect During Your General Check-up" %}
@@ -625,7 +615,7 @@
         <div class="d-flex flex-column gap-3">
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <i class="bi bi-clock-fill"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "20–30 Minutes Duration" %}</strong>
@@ -635,7 +625,7 @@
 
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <i class="bi bi-emoji-smile-fill"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "100% Pain-Free & Gentle" %}</strong>
@@ -645,7 +635,7 @@
 
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <i class="bi bi-heart-half"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "No Judgement Promise" %}</strong>
@@ -687,8 +677,7 @@
       
       <!-- Testimonials -->
       <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-chat-quote-fill"></i> {% trans "PATIENT REVIEWS" %}
+        <div class="cf-eyebrow-badge">{% trans "PATIENT REVIEWS" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "What Our Patients Say" %}</h3>
         
@@ -710,8 +699,7 @@
 
       <!-- FAQ -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">
-          <i class="bi bi-question-circle-fill"></i> {% trans "COMMON QUESTIONS" %}
+        <div class="cf-eyebrow-badge">{% trans "COMMON QUESTIONS" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
@@ -796,10 +784,10 @@
     <p class="fs-5 text-white-50 mb-4">{% blocktrans %}Don't wait for pain to appear. Schedule your routine check-up today and keep your smile bright and healthy.{% endblocktrans %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
       <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
-        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Check-up" %}
+        {% trans "Book Check-up" %}
       </a>
       <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "+977 980-7464136" %}
+        {% trans "+977 980-7464136" %}
       </a>
     </div>
   </div>

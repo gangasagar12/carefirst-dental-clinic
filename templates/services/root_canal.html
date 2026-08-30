@@ -196,8 +196,7 @@
         <li class="breadcrumb-item active text-warning fw-bold">{% trans "Root Canal Treatment" %}</li>
       </ol>
     </nav>
-    <div class="cf-eyebrow-badge bg-white bg-opacity-10 text-white border-white border-opacity-25 mb-3">
-      <i class="bi bi-droplet-half text-warning"></i> {% trans "ENDODONTIC THERAPY" %}
+    <div class="cf-eyebrow-badge">{% trans "ENDODONTIC THERAPY" %}
     </div>
     <h1 class="fw-bold">{% trans "Root Canal Treatment" %}</h1>
     <p class="hero-sub mx-auto">{% trans "Eliminate severe toothache and save your natural tooth with our comfortable, painless endodontic therapy." %}</p>
@@ -212,8 +211,8 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="cf-eyebrow-badge justify-content-start"><i class="bi bi-info-circle"></i> {% trans "Introduction" %}</div>
-        <h2 class="cf-section-title mb-4">{% trans "What is a" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Root Canal?" %}</span></h2>
+        <div class="cf-eyebrow-badge">{% trans "Introduction" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "What is Root Canal Treatment?" %}</h2>
         <p class="cf-body-text text-muted mb-4">
           {% trans "A root canal (endodontic therapy) is a treatment used to repair and save a tooth that is badly decayed or infected. During the procedure, the nerve and pulp inside the tooth are removed, and the inside of the tooth is thoroughly cleaned and sealed." %}
         </p>
@@ -238,7 +237,7 @@
       <!-- Signs & Symptoms -->
       <div class="col-lg-6">
         <div class="bg-white p-5 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
-          <div class="cf-eyebrow-badge justify-content-start"><i class="bi bi-exclamation-triangle"></i> {% trans "Warning Signs" %}</div>
+          <div class="cf-eyebrow-badge">{% trans "Warning Signs" %}</div>
           <h3 class="cf-section-title mb-4">{% trans "Signs You Need an RCT" %}</h3>
           <p class="text-muted mb-4 small">{% trans "If the nerve of your tooth is infected, you will likely experience one or more of these symptoms:" %}</p>
           <ul class="symptom-list mb-0">
@@ -254,7 +253,7 @@
       <!-- Causes -->
       <div class="col-lg-6">
         <div class="bg-white p-5 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
-          <div class="cf-eyebrow-badge justify-content-start"><i class="bi bi-bug"></i> {% trans "The Root Cause" %}</div>
+          <div class="cf-eyebrow-badge">{% trans "The Root Cause" %}</div>
           <h3 class="cf-section-title mb-4">{% trans "Common Causes" %}</h3>
           <p class="text-muted mb-4 small">{% trans "The pulp (nerve) of the tooth can become inflamed or infected due to several reasons:" %}</p>
           <ul class="symptom-list mb-0">
@@ -274,8 +273,8 @@
 <section class="section-py bg-light">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-star"></i> {% trans "Advantages" %}</div>
-      <h2 class="cf-section-title">{% trans "Benefits of" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Root Canal Treatment" %}</span></h2>
+      <div class="cf-eyebrow-badge">{% trans "Advantages" %}</div>
+      <h2 class="cf-section-title">{% trans "Benefits of Root Canal Treatment" %}</h2>
     </div>
     <div class="row g-4">
       <div class="col-lg-3 col-md-6">
@@ -314,7 +313,7 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-award"></i> {% trans "THE CAREFIRST STANDARD" %}</div>
+      <div class="cf-eyebrow-badge">{% trans "THE CAREFIRST STANDARD" %}</div>
       <h2 class="cf-section-title">{% trans "Why Choose CareFirst for Root Canal?" %}</h2>
       <p class="cf-body-text text-muted mt-3 mx-auto" style="max-width: 600px;">{% trans "We combine advanced technology, clinical expertise, and compassionate care to deliver the highest standard of root canal treatment." %}</p>
     </div>
@@ -416,12 +415,12 @@
       <!-- Patient Care Process -->
       <div class="col-lg-7">
         <div class="cf-eyebrow-badge justify-content-start border-white text-white" style="background: rgba(255,255,255,0.1);"><i class="bi bi-list-ol"></i> {% trans "The Procedure" %}</div>
-        <h2 class="cf-section-title text-white mb-5">{% trans "Our Root Canal" %} <span class="text-warning">{% trans "Process" %}</span></h2>
+        <h2 class="cf-section-title text-white mb-5">{% trans "Our Root Canal Process" %}</h2>
         
         <div class="row g-4 mb-5">
           <div class="col-md-6">
             <div class="d-flex">
-              <div class="fs-3 text-info me-3"><i class="bi bi-camera"></i></div>
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">01</div>
               <div>
                 <h6 class="fw-bold mb-1 text-info">1. X-Ray & Diagnosis</h6>
                 <p class="text-white small opacity-75">{% trans "Mapping the shape of the root canals." %}</p>
@@ -525,7 +524,7 @@
 
             <div class="text-center">
               <p class="small text-muted mb-4 fst-italic">
-                {% trans "* Note: The prices above reflect the root canal procedure and core filling. Because a root canal treated tooth becomes brittle, a Dental Crown is highly recommended to protect it." %} <strong>{% trans "Crown charges are separate." %}</strong>
+                {% trans "* Note: The prices above reflect the root canal procedure and core filling. Because a root canal treated tooth becomes brittle, a Dental Crown is highly recommended to protect it. Crown charges are separate." %}
               </p>
               <a href="{% url 'main:contact' %}#book" class="cf-btn-primary w-100 rounded-pill py-3 fw-bold">{% trans "Schedule Assessment" %}</a>
             </div>
@@ -541,8 +540,8 @@
 <section class="section-py bg-light">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-images"></i> {% trans "Real Results" %}</div>
-      <h2 class="cf-section-title">{% trans "Clinical" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Gallery" %}</span></h2>
+      <div class="cf-eyebrow-badge">{% trans "Real Results" %}</div>
+      <h2 class="cf-section-title">{% trans "Clinical Gallery" %}</h2>
       <p class="cf-body-text text-muted mx-auto mt-3" style="max-width: 600px;">{% trans "See the technology and results behind our successful endodontic therapies." %}</p>
     </div>
     
@@ -618,7 +617,7 @@
       
       <!-- Testimonials -->
       <div class="col-lg-5">
-        <div class="cf-eyebrow-badge justify-content-start"><i class="bi bi-chat-quote"></i> {% trans "Patient Stories" %}</div>
+        <div class="cf-eyebrow-badge">{% trans "Patient Stories" %}</div>
         <h3 class="cf-section-title mb-4">{% trans "Relief from Pain" %}</h3>
         
         <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative mb-4">
@@ -637,7 +636,7 @@
 
       <!-- FAQ -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge justify-content-start"><i class="bi bi-patch-question"></i> {% trans "FAQ" %}</div>
+        <div class="cf-eyebrow-badge">{% trans "FAQ" %}</div>
         <h3 class="cf-section-title mb-4">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
           <div class="accordion-item">
@@ -707,10 +706,10 @@
     <p>{% trans "A severe toothache is a dental emergency. Contact us immediately to save your tooth and stop the pain." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
       <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-2 fw-bold text-dark shadow">
-        <i class="bi bi-calendar-check-fill me-2 text-primary"></i>{% trans "Book Urgent Care" %}
+        {% trans "Book Urgent Care" %}
       </a>
       <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+        {% trans "Call Now" %}
       </a>
     </div>
   </div>

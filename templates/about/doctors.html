@@ -20,7 +20,7 @@
         <li class="breadcrumb-item active text-warning fw-bold">{% trans "Meet Our Doctors" %}</li>
       </ol>
     </nav>
-    <h1 class="display-4 fw-bold text-white mb-2"><i class="bi bi-people-fill me-3 text-warning"></i>{% trans "Meet Our Specialists" %}</h1>
+    <h1 class="display-4 fw-bold text-white mb-2">{% trans "Meet Our Specialists" %}</h1>
     <p class="hero-sub mx-auto text-white opacity-75" style="font-size: 1.15rem;">{% trans "Certified surgeons and dental specialists committed to ethical, precision-driven, and pain-free oral healthcare." %}</p>
   </div>
 </section>
@@ -30,8 +30,8 @@
   <div class="container">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
-        <div class="cf-eyebrow-badge"><i class="bi bi-shield-check"></i> {% trans "Clinical Excellence" %}</div>
-        <h2 class="cf-section-title mb-4">{% trans "Qualified Specialists," %}<br><span class="text-primary" style="color: #0284C7 !important;">{% trans "Dedicated to Your Smile" %}</span></h2>
+        <div class="cf-eyebrow-badge"> {% trans "Clinical Excellence" %}</div>
+        <h2 class="cf-section-title mb-4">{% trans "Qualified Specialists, Dedicated to Your Smile" %}</h2>
         <p class="text-muted" style="line-height:1.85;">
           {% trans "At Carefirst Dental Clinic, every practitioner holds recognized medical qualifications, active Nepal Medical Council (NMC) registration, and continuous advanced training in international clinical protocols." %}
         </p>
@@ -43,7 +43,7 @@
         <div class="row g-3 mt-2">
           <div class="col-sm-6">
             <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-light border">
-              <i class="bi bi-patch-check-fill text-primary fs-3"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
               <div>
                 <h6 class="fw-bold text-dark mb-1" style="font-size: 0.95rem;">{% trans "NMC Verified" %}</h6>
                 <p class="text-muted small mb-0">{% trans "Fully licensed and certified practitioners." %}</p>
@@ -52,7 +52,7 @@
           </div>
           <div class="col-sm-6">
             <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-light border">
-              <i class="bi bi-cpu-fill text-primary fs-3"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
               <div>
                 <h6 class="fw-bold text-dark mb-1" style="font-size: 0.95rem;">{% trans "Digital Technology" %}</h6>
                 <p class="text-muted small mb-0">{% trans "3D scans and precision guided treatments." %}</p>
@@ -61,7 +61,7 @@
           </div>
           <div class="col-sm-6">
             <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-light border">
-              <i class="bi bi-heart-pulse-fill text-primary fs-3"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
               <div>
                 <h6 class="fw-bold text-dark mb-1" style="font-size: 0.95rem;">{% trans "Painless Care" %}</h6>
                 <p class="text-muted small mb-0">{% trans "Gentle techniques tailored for comfort." %}</p>
@@ -70,7 +70,7 @@
           </div>
           <div class="col-sm-6">
             <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-light border">
-              <i class="bi bi-shield-shaded text-primary fs-3"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
               <div>
                 <h6 class="fw-bold text-dark mb-1" style="font-size: 0.95rem;">{% trans "Hospital-Grade Safety" %}</h6>
                 <p class="text-muted small mb-0">{% trans "Class-B autoclave sterilization protocol." %}</p>
@@ -85,7 +85,7 @@
           <img loading="lazy" src="{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}" alt="CareFirst Dental Clinic Team" class="img-fluid rounded-4 w-100" style="object-fit: cover; max-height: 480px;">
           <div class="position-absolute bottom-0 start-0 m-4 p-3 bg-white rounded-3 shadow-sm border text-start d-none d-sm-block">
             <div class="d-flex align-items-center gap-2">
-              <i class="bi bi-award-fill text-warning fs-3"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
               <div>
                 <h6 class="fw-bold text-dark mb-0" style="font-size: 0.9rem;">{% trans "Expert Clinical Board" %}</h6>
                 <small class="text-muted">{% trans "Kathmandu, Nepal" %}</small>
@@ -102,8 +102,8 @@
 <section class="section-py" style="background: #F8FAFC;" id="team">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center"><i class="bi bi-person-lines-fill"></i> {% trans "Our Practitioners" %}</div>
-      <h2 class="cf-section-title">{% trans "Meet the" %} <span class="text-primary" style="color: #0284C7 !important;">{% trans "Doctors" %}</span></h2>
+      <div class="cf-eyebrow-badge justify-content-center"> {% trans "Our Practitioners" %}</div>
+      <h2 class="cf-section-title">{% trans "Meet the Doctors" %}</h2>
       <p class="text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "Select a specialist below to view their qualifications, clinical background, and book a direct consultation." %}</p>
     </div>
 
@@ -119,11 +119,11 @@
     {% else %}
       <!-- No doctors in DB fallback state -->
       <div class="bg-white rounded-4 p-5 text-center shadow-sm border mx-auto" style="max-width: 500px;">
-        <i class="bi bi-people text-primary fs-1 mb-3 d-block"></i>
+        
         <h5 class="fw-bold mb-2">{% trans "Doctor profiles coming soon" %}</h5>
         <p class="text-muted small">{% trans "Our team details are currently being updated. Please visit our clinic or call us to speak directly with a specialist." %}</p>
         <a href="{% url 'main:about' %}" class="cf-btn-primary mt-3 px-4 py-2 rounded-pill fw-bold text-white text-decoration-none">
-          <i class="bi bi-arrow-left me-2"></i>{% trans "Back to About Us" %}
+          {% trans "Back to About Us" %}
         </a>
       </div>
     {% endif %}

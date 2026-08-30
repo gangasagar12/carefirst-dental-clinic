@@ -890,12 +890,11 @@
     <div class="row align-items-center g-4">
       <div class="col-lg-7">
         <div class="cf-hero-badge mb-2">
-          <i class="bi bi-shield-fill-check text-warning"></i> {% trans "Kathmandu's Trusted Dental Clinic" %}
+          • {% trans "Kathmandu's Trusted Dental Clinic" %}
         </div>
         
         <h1 class="cf-hero-title">
-          {% trans "Expert Dental Care," %}<br>
-          <span style="color: #38BDF8;">{% trans "Beautiful & Confident" %}</span> {% trans "Smiles." %}
+          {% trans "Expert Dental Care, Beautiful & Confident Smiles." %}
         </h1>
 
         <p class="cf-hero-lead mb-3">
@@ -968,7 +967,7 @@
 
             <div class="text-center mt-2 pt-1 border-top">
               <a href="{% url 'appointments:book' %}" class="fw-bold text-primary text-decoration-none" style="font-size: 0.75rem;">
-                <i class="bi bi-calendar-check-fill me-1"></i> {% trans "Need an appointment? Open Booking Desk →" %}
+                {% trans "Need an appointment? Open Booking Desk →" %}
               </a>
             </div>
           </form>
@@ -1022,11 +1021,11 @@
       <!-- Right: Clinic Story & Key Clinical Highlights -->
       <div class="col-lg-6">
         <div class="cf-eyebrow-badge mb-3">
-          <i class="bi bi-hospital"></i> {% trans "ABOUT CAREFIRST DENTAL CLINIC" %}
+          {% trans "ABOUT CAREFIRST DENTAL CLINIC" %}
         </div>
         
         <h2 class="cf-section-title mb-3">
-          {% trans "We Create Healthy, Long-Lasting Smiles" %} <span class="accent">{% trans "With Modern Gentle Care." %}</span>
+          {% trans "We Create Healthy, Long-Lasting Smiles With Modern Gentle Care." %}
         </h2>
 
         <p class="text-muted fs-6 mb-4" style="line-height: 1.8;">
@@ -1037,7 +1036,7 @@
         <div class="row g-3 mb-4">
           <div class="col-sm-6">
             <div class="cf-intro-feature-pill">
-              <i class="bi bi-heart-pulse-fill cf-intro-feature-icon"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:12px;"></span>
               <h5 class="cf-intro-feature-title">{% trans "Pain-Free Anesthesia" %}</h5>
               <p class="cf-intro-feature-desc">{% trans "Gentle techniques designed to eliminate dental anxiety during all treatments." %}</p>
             </div>
@@ -1045,15 +1044,15 @@
 
           <div class="col-sm-6">
             <div class="cf-intro-feature-pill">
-              <i class="bi bi-shield-check cf-intro-feature-icon"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:12px;"></span>
               <h5 class="cf-intro-feature-title">{% trans "Class-B Autoclave" %}</h5>
-              <p class="cf-intro-feature-desc">{% trans "100% strict sterilization protocols following international hospital standards." %}</p>
+              <p class="cf-intro-feature-desc">{% trans "Strict sterilization protocols following international hospital standards." %}</p>
             </div>
           </div>
 
           <div class="col-sm-6">
             <div class="cf-intro-feature-pill">
-              <i class="bi bi-camera-fill cf-intro-feature-icon"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:12px;"></span>
               <h5 class="cf-intro-feature-title">{% trans "Digital RVG & OPG" %}</h5>
               <p class="cf-intro-feature-desc">{% trans "Instant low-radiation digital radiography for accurate diagnosis." %}</p>
             </div>
@@ -1061,7 +1060,7 @@
 
           <div class="col-sm-6">
             <div class="cf-intro-feature-pill">
-              <i class="bi bi-clock-history cf-intro-feature-icon"></i>
+              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:12px;"></span>
               <h5 class="cf-intro-feature-title">{% trans "Open Daily (7:30am – 7:30pm)" %}</h5>
               <p class="cf-intro-feature-desc">{% trans "Flexible appointments 7 days a week, including routine and emergency care." %}</p>
             </div>
@@ -1070,10 +1069,10 @@
 
         <div class="d-flex flex-wrap gap-3 align-items-center pt-2">
           <a href="{% url 'main:about' %}" class="cf-btn-primary">
-            {% trans "Read Our Full Story" %} <i class="bi bi-arrow-right"></i>
+            {% trans "Read Our Full Story" %}
           </a>
           <a href="{% url 'main:doctors' %}" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-bold" style="border-color: #CBD5E1;">
-            <i class="bi bi-people me-1"></i> {% trans "Meet All Doctors" %}
+            {% trans "Meet All Doctors" %}
           </a>
         </div>
       </div>
@@ -1086,10 +1085,10 @@
   <div class="container">
     <div class="text-center mb-5">
       <div class="cf-eyebrow-badge justify-content-center mb-2">
-        <i class="bi bi-grid-fill"></i> {% trans "CLINICAL SPECIALIZATIONS" %}
+        {% trans "CLINICAL SPECIALIZATIONS" %}
       </div>
       <h2 class="cf-section-title">
-        {% trans "Comprehensive" %} <span class="accent">{% trans "Dental Treatments" %}</span>
+        {% trans "Comprehensive Dental Treatments" %}
       </h2>
       <p class="cf-section-subtitle">
         {% trans "Precision restorative, cosmetic, surgical, and preventive dental solutions tailored for you and your family. Hover to pause and explore." %}
@@ -1129,11 +1128,11 @@
 
           <ul class="cf-sfc-features">
             {% for feature in service.get_features_list|slice:":3" %}
-            <li><i class="bi bi-check-circle-fill"></i> <span>{{ feature }}</span></li>
+            <li><span style="color:#0284C7; font-size:1.1rem; line-height:1; margin-right:6px;">•</span> <span>{{ feature }}</span></li>
             {% empty %}
-            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Painless Anesthesia Protocol" %}</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Class-B Sterile Equipment" %}</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Digital Diagnosis & Planning" %}</span></li>
+            <li><span style="color:#0284C7; font-size:1.1rem; line-height:1; margin-right:6px;">•</span> <span>{% trans "Painless Anesthesia Protocol" %}</span></li>
+            <li><span style="color:#0284C7; font-size:1.1rem; line-height:1; margin-right:6px;">•</span> <span>{% trans "Class-B Sterile Equipment" %}</span></li>
+            <li><span style="color:#0284C7; font-size:1.1rem; line-height:1; margin-right:6px;">•</span> <span>{% trans "Digital Diagnosis & Planning" %}</span></li>
             {% endfor %}
           </ul>
 
@@ -1142,7 +1141,7 @@
               <i class="bi bi-calendar-check-fill"></i> {% trans "Book Slot" %}
             </a>
             <a href="{% url 'main:service_detail' service.slug %}" class="cf-sfc-btn-detail">
-              <span>{% trans "Details" %}</span> <i class="bi bi-arrow-right"></i>
+              <span>{% trans "Details" %}</span>
             </a>
           </div>
         </div>
@@ -1178,11 +1177,11 @@
 
           <ul class="cf-sfc-features">
             {% for feature in service.get_features_list|slice:":3" %}
-            <li><i class="bi bi-check-circle-fill"></i> <span>{{ feature }}</span></li>
+            <li><span style="color:#0284C7; font-size:1.1rem; line-height:1; margin-right:6px;">•</span> <span>{{ feature }}</span></li>
             {% empty %}
-            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Painless Anesthesia Protocol" %}</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Class-B Sterile Equipment" %}</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Digital Diagnosis & Planning" %}</span></li>
+            <li><span style="color:#0284C7; font-size:1.1rem; line-height:1; margin-right:6px;">•</span> <span>{% trans "Painless Anesthesia Protocol" %}</span></li>
+            <li><span style="color:#0284C7; font-size:1.1rem; line-height:1; margin-right:6px;">•</span> <span>{% trans "Class-B Sterile Equipment" %}</span></li>
+            <li><span style="color:#0284C7; font-size:1.1rem; line-height:1; margin-right:6px;">•</span> <span>{% trans "Digital Diagnosis & Planning" %}</span></li>
             {% endfor %}
           </ul>
 
@@ -1191,7 +1190,7 @@
               <i class="bi bi-calendar-check-fill"></i> {% trans "Book Slot" %}
             </a>
             <a href="{% url 'main:service_detail' service.slug %}" class="cf-sfc-btn-detail">
-              <span>{% trans "Details" %}</span> <i class="bi bi-arrow-right"></i>
+              <span>{% trans "Details" %}</span>
             </a>
           </div>
         </div>
@@ -1204,7 +1203,7 @@
   <div class="container mt-5 pt-5 border-top" style="border-color: #E2E8F0 !important;">
     <div class="text-center mb-5">
       <div class="cf-eyebrow-badge justify-content-center mb-2">
-        <i class="bi bi-grid-3x3-gap-fill"></i> {% trans "ALL 11 SPECIALIZED PROCEDURES" %}
+        {% trans "ALL 11 SPECIALIZED PROCEDURES" %}
       </div>
       <h3 class="cf-section-title mb-2" style="font-size: 2rem;">
         {% trans "Explore All Clinical Treatments" %}
@@ -1227,7 +1226,7 @@
             <h4 class="cf-dsc-title">{{ service.title }}</h4>
             <p class="cf-dsc-desc">{{ service.get_short_description }}</p>
             <div class="cf-dsc-footer d-flex justify-content-between align-items-center">
-              <span class="cf-dsc-link">{% trans "LEARN MORE" %} <i class="bi bi-arrow-right"></i></span>
+              <span class="cf-dsc-link">{% trans "LEARN MORE" %}</span>
               {% if service.get_dynamic_price %}
               <span class="cf-dsc-price">{% trans "From" %} NPR {{ service.get_dynamic_price }}</span>
               {% else %}
@@ -1242,7 +1241,7 @@
 
     <div class="text-center mt-5">
       <a href="{% url 'main:services_list' %}" class="cf-btn-primary px-5 py-3 shadow">
-        <i class="bi bi-collection-fill me-2"></i>{% trans "View Complete Treatment Directory & Packages" %}
+        {% trans "View Complete Treatment Directory & Packages" %}
       </a>
     </div>
   </div>
@@ -1252,11 +1251,12 @@
 <section class="section-py bg-white">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="cf-eyebrow-badge justify-content-center mb-2">
-        <i class="bi bi-award-fill"></i> {% trans "THE CAREFIRST STANDARD" %}
+      <div class="cf-eyebrow-badge
+       justify-content-center mb-2">
+        {% trans "THE CAREFIRST STANDARD" %}
       </div>
       <h2 class="cf-section-title">
-        {% trans "Why Patients Trust" %} <span class="accent">{% trans "CareFirst Dental" %}</span>
+        {% trans "Why Patients Trust CareFirst Dental" %}
       </h2>
       <p class="cf-section-subtitle">
         {% trans "Every detail of our clinical practice is built around safety, precision, ethics, and patient comfort." %}
@@ -1266,8 +1266,9 @@
     <div class="row g-4">
       <div class="col-md-6 col-lg-4">
         <div class="cf-pillar-card">
+          
           <div class="cf-pillar-icon-box">
-            <i class="bi bi-person-badge-fill"></i>
+            <span class="cf-std-num" style="font-size:1.1rem; font-weight:800; color:#0284C7;">01</span>
           </div>
           <h3 class="cf-pillar-title">{% trans "Senior Specialist Team" %}</h3>
           <p class="cf-pillar-text">{% trans "Treatments led by Dr. Subash Banjade and NMC-certified specialists with extensive clinical experience in endodontics, prosthodontics, and implantology." %}</p>
@@ -1277,7 +1278,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="cf-pillar-card">
           <div class="cf-pillar-icon-box">
-            <i class="bi bi-cpu-fill"></i>
+            <span class="cf-std-num" style="font-size:1.1rem; font-weight:800; color:#0284C7;">02</span>
           </div>
           <h3 class="cf-pillar-title">{% trans "Modern Digital Technology" %}</h3>
           <p class="cf-pillar-text">{% trans "Equipped with digital RVG sensors, ultrasonic scaling units, apex locators, and rotary endodontic systems for pinpoint treatment accuracy." %}</p>
@@ -1287,7 +1288,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="cf-pillar-card">
           <div class="cf-pillar-icon-box">
-            <i class="bi bi-bandaid-fill"></i>
+            <span class="cf-std-num" style="font-size:1.1rem; font-weight:800; color:#0284C7;">03</span>
           </div>
           <h3 class="cf-pillar-title">{% trans "Zero Dental Anxiety" %}</h3>
           <p class="cf-pillar-text">{% trans "We specialize in gentle, pain-free techniques and clear patient communication to make every visit calm and stress-free." %}</p>
@@ -1297,7 +1298,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="cf-pillar-card">
           <div class="cf-pillar-icon-box">
-            <i class="bi bi-shield-shaded"></i>
+            <span class="cf-std-num" style="font-size:1.1rem; font-weight:800; color:#0284C7;">04</span>
           </div>
           <h3 class="cf-pillar-title">{% trans "Hospital-Grade Sterilization" %}</h3>
           <p class="cf-pillar-text">{% trans "Strict 6-step infection control using Class-B autoclaves, ultrasonic cleaning, and individual sterile packaging for every patient." %}</p>
@@ -1307,7 +1308,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="cf-pillar-card">
           <div class="cf-pillar-icon-box">
-            <i class="bi bi-cash-stack"></i>
+            <span class="cf-std-num" style="font-size:1.1rem; font-weight:800; color:#0284C7;">05</span>
           </div>
           <h3 class="cf-pillar-title">{% trans "100% Transparent Fees" %}</h3>
           <p class="cf-pillar-text">{% trans "No hidden costs. Comprehensive written treatment plans and clear cost estimates in NPR and USD before starting any procedure." %}</p>
@@ -1317,7 +1318,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="cf-pillar-card">
           <div class="cf-pillar-icon-box">
-            <i class="bi bi-geo-alt-fill"></i>
+            <span class="cf-std-num" style="font-size:1.1rem; font-weight:800; color:#0284C7;">06</span>
           </div>
           <h3 class="cf-pillar-title">{% trans "Prime Kathmandu Location" %}</h3>
           <p class="cf-pillar-text">{% trans "Conveniently located at Pragatinagar Road, Shankhamul-31, easily accessible with parking, open 7 days a week from 7:30 AM to 7:30 PM." %}</p>
@@ -1332,10 +1333,10 @@
   <div class="container">
     <div class="text-center mb-5">
       <div class="cf-eyebrow-badge justify-content-center mb-2">
-        <i class="bi bi-people-fill"></i> {% trans "OUR MEDICAL TEAM" %}
+        {% trans "OUR MEDICAL TEAM" %}
       </div>
       <h2 class="cf-section-title">
-        {% trans "Meet Our" %} <span class="accent">{% trans "Dental Specialists" %}</span>
+        {% trans "Meet Our Dental Specialists" %}
       </h2>
       <p class="cf-section-subtitle">
         {% trans "Dedicated dental surgeons and specialists focused on gentle care, precision results, and patient education." %}
@@ -1356,7 +1357,7 @@
 
     <div class="text-center mt-5">
       <a href="{% url 'main:doctors' %}" class="cf-btn-primary px-5 py-3 shadow">
-        <i class="bi bi-mortarboard-fill me-2"></i>{% trans "View Full Clinical Profiles" %}
+        {% trans "View Full Clinical Profiles" %}
       </a>
     </div>
   </div>
@@ -1367,10 +1368,10 @@
   <div class="container">
     <div class="text-center mb-5 mx-auto" style="max-width: 760px;">
       <div class="cf-eyebrow-badge justify-content-center mb-2">
-        <i class="bi bi-tag-fill"></i> {% trans "CLEAR & AFFORDABLE FEES" %}
+        {% trans "CLEAR & AFFORDABLE FEES" %}
       </div>
       <h2 class="cf-section-title">
-        {% trans "Transparent" %} <span class="accent">{% trans "Treatment Pricing" %}</span>
+        {% trans "Transparent Treatment Pricing" %}
       </h2>
       <p class="cf-section-subtitle">
         {% trans "We believe in honest, predictable pricing. You receive a complete cost estimate before any procedure begins." %}
@@ -1397,7 +1398,7 @@
               {% for cat in pricing_categories|slice:":3" %}
               <tr class="section-header" style="background: #081C33; color: #FFFFFF;">
                 <td colspan="3" class="py-3 px-4 fw-bold">
-                  <i class="bi bi-check2-circle text-warning me-2"></i>{{ cat.name }}
+                  • {{ cat.name }}
                 </td>
               </tr>
               {% for item in cat.items.all %}
@@ -1418,7 +1419,7 @@
 
         <div class="text-center mt-4">
           <a href="{% url 'main:pricing' %}" class="cf-btn-primary px-5 py-3 shadow">
-            {% trans "View Complete Price List & Tourism Packages" %} <i class="bi bi-arrow-right ms-2"></i>
+            {% trans "View Complete Price List & Tourism Packages" %}
           </a>
         </div>
       </div>
@@ -1433,14 +1434,14 @@
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
       <div>
         <div class="cf-eyebrow-badge mb-2">
-          <i class="bi bi-play-circle-fill"></i> {% trans "PATIENT EDUCATION & VIDEOS" %}
+          {% trans "PATIENT EDUCATION & VIDEOS" %}
         </div>
         <h2 class="cf-section-title mb-1">{% trans "Watch Our Doctors & Procedure Guides" %}</h2>
         <p class="text-muted mb-0 fs-6">{% trans "Discover 3D procedure walk-throughs, patient transformations, and doctor-approved oral care advice." %}</p>
       </div>
       <div>
         <a href="{% url 'media_center:video_list' %}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">
-          {% trans "Explore All Videos" %} <i class="bi bi-arrow-right ms-1"></i>
+          {% trans "Explore All Videos" %}
         </a>
       </div>
     </div>
@@ -1480,7 +1481,7 @@
     {% if latest_videos|length > 6 %}
     <div class="text-center mt-5" id="cfVideoLoadMoreWrap">
       <button type="button" class="btn btn-outline-primary rounded-pill px-4 py-2.5 fw-bold shadow-sm" id="cfBtnLoadMoreVideos" onclick="toggleMoreHomeVideos()">
-        <i class="bi bi-collection-play-fill me-2"></i> {% trans "View More Videos" %} ({{ latest_videos|length|add:"-6" }} {% trans "more" %})
+        <i class="bi bi-collection-play-fill me-2"></i> {% trans "View More Videos" %}
       </button>
     </div>
     {% endif %}
@@ -1494,7 +1495,7 @@
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-4">
       <div>
         <div class="cf-eyebrow-badge mb-2">
-          <i class="bi bi-images"></i> {% trans "SMILE GALLERY & CLINIC" %}
+          {% trans "SMILE GALLERY & CLINIC" %}
         </div>
         <h2 class="cf-section-title mb-1">{% trans "Real Patient Results & Modern Facility" %}</h2>
         <p class="text-muted mb-0 fs-6">{% trans "Explore our state-of-the-art clinic spaces and before/after smile makeovers." %}</p>
@@ -1502,10 +1503,10 @@
 
       <div class="gallery-tabs p-2 rounded-pill d-inline-flex bg-white border shadow-sm">
         <button class="btn rounded-pill px-4 py-2 fw-bold active-tab" data-target="#clinic-images-pane" style="background: #0284C7; color: #fff;">
-          <i class="bi bi-camera me-2"></i>{% trans "Clinic Spaces" %}
+          {% trans "Clinic Spaces" %}
         </button>
         <button class="btn rounded-pill px-4 py-2 fw-bold text-muted" data-target="#smile-transformations-pane">
-          <i class="bi bi-stars me-2"></i>{% trans "Smile Makeovers" %}
+          {% trans "Smile Makeovers" %}
         </button>
       </div>
     </div>
@@ -1527,14 +1528,14 @@
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
       <div>
         <div class="cf-eyebrow-badge mb-2">
-          <i class="bi bi-journal-medical"></i> {% trans "DENTAL BLOG & GUIDES" %}
+          {% trans "DENTAL BLOG & GUIDES" %}
         </div>
         <h2 class="cf-section-title mb-1">{% trans "Oral Health Tips & Guides" %}</h2>
         <p class="text-muted mb-0 fs-6">{% trans "Doctor-approved advice for healthy teeth, gums, and daily dental care." %}</p>
       </div>
       <div>
         <a href="{% url 'blogs:blog_list' %}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">
-          {% trans "View All Articles" %} <i class="bi bi-arrow-right ms-1"></i>
+          {% trans "View All Articles" %}
         </a>
       </div>
     </div>
@@ -1559,7 +1560,7 @@
             </a>
             <p class="small mb-4 flex-grow-1" style="color: #475569 !important; line-height: 1.6;">{{ post.excerpt|truncatewords:15 }}</p>
             <a href="{% url 'blogs:post_detail' post.slug %}" class="text-primary fw-bold text-decoration-none small d-inline-flex align-items-center gap-1" style="color: #0284C7 !important;">
-              <span>{% trans "Read Article" %}</span> <i class="bi bi-arrow-right"></i>
+              <span>{% trans "Read Article" %}</span>
             </a>
           </div>
         </div>
@@ -1585,7 +1586,7 @@
         <div class="p-4 rounded-4 shadow-sm bg-white border d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
           <div class="d-flex align-items-center gap-3">
             <div class="cf-contact-icon-wrap m-0" style="width: 50px; height: 50px; font-size: 1.4rem;">
-              <i class="bi bi-geo-alt-fill"></i>
+              <span class="cf-std-num" style="font-size:1.1rem; font-weight:800; color:#0284C7;">06</span>
             </div>
             <div>
               <h6 class="fw-bold mb-0 text-dark">{% trans "CareFirst Dental Clinic — Shankhamul, Kathmandu" %}</h6>
@@ -1674,7 +1675,7 @@
       if (isHidden) {
         btn.innerHTML = '<i class="bi bi-chevron-up me-2"></i> {% trans "Show Less Photos" %}';
       } else {
-        btn.innerHTML = '<i class="bi bi-images me-2"></i> {% trans "View More Clinic Photos" %} (' + extraItems.length + ' {% trans "more" %})';
+        btn.innerHTML = '<i class="bi bi-images me-2"></i> {% trans "View More Clinic Photos" %}';
       }
     };
 
@@ -1807,7 +1808,7 @@
     if (wrap) {
       wrap.innerHTML = `
         <a href="{% url 'media_center:video_list' %}" class="cf-btn-primary px-4 py-2.5 shadow-sm">
-          <span>{% trans "Explore Complete Video Library" %}</span> <i class="bi bi-arrow-right ms-2"></i>
+          <span>{% trans "Explore Complete Video Library" %}</span>
         </a>
       `;
     }

@@ -90,7 +90,7 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-7">
-        <h2 class="section-heading mb-4">{% trans "About" %} <span class="accent">{{ service.title }}</span></h2>
+        <h2 class="section-heading mb-4">{% blocktrans with title=service.title %}About {{ title }}{% endblocktrans %}</h2>
         <div class="service-content">
           {% if service.detail_content %}
             {{ service.detail_content|linebreaks }}
@@ -141,7 +141,7 @@
   <div class="container">
     <div class="row mb-4">
       <div class="col-12 text-center">
-        <h3 class="section-heading">{% trans "Related" %} <span class="accent">{% trans "Videos" %}</span></h3>
+        <h3 class="section-heading">{% trans "Related Videos" %}</h3>
       </div>
     </div>
     <div class="row g-4 justify-content-center">
@@ -187,7 +187,7 @@
     <div class="d-flex gap-3 justify-content-center flex-wrap">
       <a href="{% url 'main:contact' %}#book" class="btn nd-btn-primary"><i class="bi bi-calendar-check-fill me-2"></i>{% trans "Book Consultation" %}</a>
       <a href="tel:+9779807464136" class="btn btn-outline-light rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
+        {% trans "Call Now" %}
       </a>
     </div>
   </div>

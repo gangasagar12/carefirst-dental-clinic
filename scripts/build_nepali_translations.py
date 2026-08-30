@@ -1,24 +1,32 @@
 import os
 import re
+import time
 from pathlib import Path
 import polib
+from deep_translator import GoogleTranslator
 
-COMPREHENSIVE_NEPALI_DICTIONARY = {
+CURATED_NEPALI_DICTIONARY = {
     # Core Clinic Info & Navigation
     "CareFirst Dental Clinic": "केयरफर्स्ट डेन्टल क्लिनिक",
     "Carefirst Dental Clinic": "केयरफर्स्ट डेन्टल क्लिनिक",
+    "CareFirst Dental": "CareFirst Dental",
+    "Carefirst Dental": "CareFirst Dental",
     "CareFirst": "केयरफर्स्ट",
     "Carefirst": "केयरफर्स्ट",
     "Home": "गृहपृष्ठ",
+    "About": "हाम्रो बारेमा",
     "About Us": "हाम्रो बारेमा",
     "Services": "दन्त सेवाहरू",
     "Treatments": "उपचारहरू",
     "Our Doctors": "हाम्रा चिकित्सकहरू",
     "Doctors": "चिकित्सकहरू",
+    "Meet Our Doctors": "हाम्रा चिकित्सकहरूलाई भेट्नुहोस्",
+    "Meet the Doctors": "हाम्रा डाक्टरहरूलाई भेट्नुहोस्",
+    "Meet All Doctors": "सबै डाक्टरहरू हेर्नुहोस्",
     "Smile Gallery": "स्माइल ग्यालरी",
     "Video": "भिडियो",
     "Videos": "भिडियोहरू",
-    "Pricing": "मूल्य विवरण",
+    "Pricing": "शुल्क विवरण",
     "Blog": "ब्लग तथा लेख",
     "Contact": "सम्पर्क",
     "Contact Us": "सम्पर्क गर्नुहोस्",
@@ -44,11 +52,92 @@ COMPREHENSIVE_NEPALI_DICTIONARY = {
     "Class-B Sterile Equipment": "क्लास-बी पूर्ण जीवाणुरहित उपकरण",
     "Digital Diagnosis & Planning": "डिजिटल दन्त परीक्षण र योजना",
 
-    # Specialized Treatments (Accurate Medical Nepali)
+    # 4 Home Intro Features (Refined Native Nepali)
+    "Pain-Free Anesthesia": "दुखाइरहित एनेस्थेसिया",
+    "Gentle techniques designed to eliminate dental anxiety during all treatments.": "सबै उपचारको क्रममा दन्त डर र चिन्ता हटाउन अपनाइने कोमल विधिहरू।",
+    "Class-B Autoclave": "क्लास-बी अटोक्लेभ",
+    "Strict sterilization protocols following international hospital standards.": "अन्तर्राष्ट्रिय अस्पताल मापदण्ड अनुसार १००% पूर्ण जीवाणुरहित विधि।",
+    "100% strict sterilization protocols following international hospital standards.": "अन्तर्राष्ट्रिय अस्पताल मापदण्ड अनुसार १००% पूर्ण जीवाणुरहित विधि।",
+    "Digital RVG & OPG": "डिजिटल RVG र OPG",
+    "Instant low-radiation digital radiography for accurate diagnosis.": "सटीक परीक्षण र निदानका लागि तत्काल कम विकिरण डिजिटल एक्स-रे।",
+    "Open Daily (7:30am – 7:30pm)": "दैनिक खुला (बिहान ७:३० – साँझ ७:३०)",
+    "Flexible appointments 7 days a week, including routine and emergency care.": "नियमित तथा आकस्मिक सेवाका लागि हप्ताको ७ दिन लचिलो अपोइन्टमेन्ट सुविधा।",
+    "Kathmandu's Trusted Dental Clinic": "काठमाडौँको भरपर्दो दन्त क्लिनिक",
+    "Need an appointment? Open Booking Desk →": "अपोइन्टमेन्ट चाहिन्छ? बुकिङ डेस्क खोल्नुहोस् →",
+
+    # Key Headings (Complete Semantic Units)
+    "Why Patients Trust CareFirst Dental": "बिरामीहरूले CareFirst Dental लाई किन विश्वास गर्छन्?",
+    "A Trusted Dental Experience in the Heart of Kathmandu": "काठमाडौँको मुटुमा एक भरपर्दो दन्त सेवा अनुभव",
+    "Expert Dental Care, Beautiful & Confident Smiles.": "विशेषज्ञ दन्त सेवा, सुन्दर तथा आत्मविश्वासी मुस्कान।",
+    "We Create Healthy, Long-Lasting Smiles With Modern Gentle Care.": "हामी आधुनिक र कोमल सेवाका साथ स्वस्थ र दीर्घकालीन मुस्कान निर्माण गर्दछौं।",
+    "Comprehensive Dental Treatments": "सम्पूर्ण दन्त उपचार सेवाहरू",
+    "Meet Our Dental Specialists": "हाम्रा विशेषज्ञ दन्त चिकित्सकहरूलाई भेट्नुहोस्",
+    "Transparent Treatment Pricing": "पारदर्शी उपचार शुल्क विवरण",
+    "Complete Fee Schedule": "सम्पूर्ण शुल्क तालिका",
+    "Dental Tourism in Kathmandu, Nepal": "काठमाडौँ, नेपालमा डेन्टल टुरिजम",
+    "What's Included?": "के-के समावेश छ?",
+    "Qualified Specialists, Dedicated to Your Smile": "तपाईंको मुस्कानप्रति समर्पित, योग्य विशेषज्ञहरू",
+    "Designed for Your Comfort & Safety": "तपाईंको आराम र सुरक्षाको लागि डिजाइन गरिएको",
+    "State-of-the-Art Dental Technology": "अत्याधुनिक दन्त प्रविधि",
+    "A Dental Experience Unlike Any Other": "अरूभन्दा फरक र उत्कृष्ट दन्त अनुभव",
+    "Powered by Advanced Dental Technology": "उन्नत दन्त प्रविधिद्वारा सञ्चालित",
+    "Latest Articles": "नवीनतम लेखहरू",
+    "Frequently Asked Questions": "बारम्बार सोधिने प्रश्नहरू",
+    "Got Questions? We Have Answers.": "केही प्रश्न छन्? हामीसँग उत्तर छन्।",
+    "Find Us in Kathmandu": "हामीलाई काठमाडौँमा भेट्नुहोस्",
+    "Browse Our Clinic Spaces": "हाम्रो क्लिनिक परिसर हेर्नुहोस्",
+    "Treatment Categories": "उपचारका विधाहरू",
+    "Every Smile Has a Story Worth Telling": "प्रत्येक मुस्कानको आफ्नै विशेष कथा हुन्छ",
+
+    # Service Headings & Procedures
+    "What Are Crowns & Bridges?": "क्राउन र ब्रिज (क्याप) के हुन्?",
+    "Types of Crowns": "क्राउन (क्याप) का प्रकारहरू",
+    "Our Treatment Process": "हाम्रो उपचार प्रक्रिया",
+    "Smile Restorations": "मुस्कान पुनर्स्थापना सेवा",
+    "What is a Dental Filling?": "दाँत भर्ने सेवा (डेन्टल फिलिङ) के हो?",
+    "Before & After Filling Cases": "फिलिङ उपचार अघि र पछिको नतिजा",
+    "Types of Dental Filling Materials": "दाँत भर्ने सामग्रीका प्रकारहरू",
+    "Our Filling Treatment Process": "दाँत भर्ने हाम्रो उपचार प्रक्रिया",
+    "Dental Filling Treatment Gallery": "दाँत फिलिङ उपचार ग्यालरी",
+    "What Are Dental Implants?": "डेन्टल इम्प्लान्ट (दाँत प्रत्यारोपण) के हुन्?",
+    "Our Implant Treatment Process": "इम्प्लान्ट उपचारको हाम्रो प्रक्रिया",
+    "Smile Transformation Timeline": "मुस्कान रूपान्तरण समयतालिका",
+    "Before & After Implant Cases": "इम्प्लान्ट उपचार अघि र पछिका परिणामहरू",
+    "What Are Dentures?": "डेन्चर (नक्कली दाँत) के हुन्?",
+    "Types of Dentures": "डेन्चरका प्रकारहरू",
+    "Our Denture Treatment Process": "डेन्चर निर्माण तथा उपचार प्रक्रिया",
+    "Denture Treatment Gallery": "डेन्चर उपचार ग्यालरी",
+    "What is a Digital Dental X-Ray?": "डिजिटल दन्त एक्स-रे के हो?",
+    "Our Digital X-Ray Process": "हाम्रो डिजिटल एक्स-रे प्रक्रिया",
+    "Diagnostic Suite & Technology Gallery": "निदान तथा प्रविधि ग्यालरी",
+    "What is General Dentistry?": "सामान्य दन्त चिकित्सा के हो?",
+    "Before & After Results": "उपचार अघि र पछिका परिणामहरू",
+    "Our Patient Care Process": "हाम्रो बिरामी सेवा प्रक्रिया",
+    "Related Videos": "सम्बन्धित भिडियोहरू",
+    "What is Braces Treatment?": "ब्रेसेस (तार बाँध्ने) उपचार के हो?",
+    "Types of Braces Available": "उपलब्ध ब्रेसेसका प्रकारहरू",
+    "Compare Braces Options": "ब्रेसेस विकल्पहरूको तुलना गर्नुहोस्",
+    "Which Braces Are Right for You?": "तपाईंको लागि कुन ब्रेसेस उपयुक्त छ?",
+    "Smile Transformation Gallery": "मुस्कान रूपान्तरण ग्यालरी",
+    "Our Orthodontic Treatment Journey": "हाम्रो अर्थोडोन्टिक उपचार यात्रा",
+    "What is Gum Disease?": "गिजाको समस्या (रोग) के हो?",
+    "Stages of Gum Disease": "गिजाको समस्याका चरणहरू",
+    "What is Root Canal Treatment?": "रूट क्यानल उपचार (RCT) के हो?",
+    "What is a Root Canal?": "रूट क्यानल उपचार (RCT) के हो?",
+    "Benefits of Root Canal Treatment": "रूट क्यानल उपचारका फाइदाहरू",
+    "Our Root Canal Process": "हाम्रो रूट क्यानल उपचार प्रक्रिया",
+    "Clinical Gallery": "क्लिनिकल ग्यालरी",
+    "What is Scaling & Polishing?": "दाँत सफाइ र पोलिसिङ (स्केलिङ) के हो?",
+    "What is Tooth Extraction?": "दाँत निकाल्ने सेवा के हो?",
+    "When is Extraction Required?": "दाँत कुन अवस्थामा निकाल्नुपर्छ?",
+    "Step-by-Step Treatment Process": "चरणबद्ध उपचार प्रक्रिया",
+    "Rated 5.0 / 5.0 based on Google Reviews": "गुगल रिभ्युका आधारमा ५.० / ५.० रेटिङ प्राप्त",
+
+    # Terminology Overrides
     "General Dentistry": "साधारण दन्त चिकित्सा",
     "General Dental Check-up": "साधारण दन्त परीक्षण",
     "General Dental Consultation": "साधारण दन्त परामर्श",
-    "Dental Filling": "दाँत भर्ने सेवा",
+    "Dental Filling": "दाँत भर्ने सेवा (कम्पोजिट फिलिङ)",
     "Tooth Fillings & Restoration": "दाँत भर्ने तथा पुनर्स्थापना",
     "Root Canal Treatment": "रूट क्यानल उपचार (RCT)",
     "Root Canal Treatment (RCT)": "रूट क्यानल उपचार (RCT)",
@@ -56,10 +145,7 @@ COMPREHENSIVE_NEPALI_DICTIONARY = {
     "Crowns and Bridges": "दाँतको क्याप तथा ब्रिज",
     "Orthodontic Treatment (Braces)": "तार बाँध्ने उपचार (ब्रेसेस)",
     "Orthodontics & Braces": "तार बाँध्ने सेवा (अर्थोडोन्टिक्स / ब्रेसेस)",
-    "Orthodontics — Braces": "अर्थोडोन्टिक्स — ब्रेसेस",
-    "Orthodontics — Clear Aligners": "अर्थोडोन्टिक्स — पारदर्शी अलाइनर",
     "Dental Implants": "डेन्टल इम्प्लान्ट (दाँत प्रत्यारोपण)",
-    "Restorative — Dental Implant": "पुनर्स्थापना — डेन्टल इम्प्लान्ट",
     "Digital Dental X-Ray": "डिजिटल दन्त एक्स-रे",
     "Scaling & Polishing": "दाँत सफा गर्ने (स्केलिङ र पोलिसिङ)",
     "Scaling and Polishing": "दाँत सफा गर्ने (स्केलिङ र पोलिसिङ)",
@@ -68,111 +154,72 @@ COMPREHENSIVE_NEPALI_DICTIONARY = {
     "Periodontal Treatment (Gum)": "गिजाको विशेष उपचार",
     "Periodontal Treatment": "गिजाको उपचार",
     "Teeth Whitening": "दाँत चम्काउने (ह्वाइटनिङ)",
-    "Cosmetic Dentistry — Veneers": "कस्मेटिक दन्तचिकित्सा — भेनियर",
-    "Cosmetic — Teeth Whitening": "कस्मेटिक — दाँत ह्वाइटनिङ",
-    "Cosmetic — Composite Veneers": "कस्मेटिक — कम्पोजिट भेनियर",
-    "Restorative — Crowns & Bridge": "पुनर्स्थापना — दाँतको क्याप र ब्रिज",
-    "Full Smile Makeover": "पूर्ण मुस्कान मेकओभर",
-    "Full Arch Rehabilitation": "पूर्ण मुख पुनर्स्थापना",
-    "Restorative — Tooth-Colored Filling": "पुनर्स्थापना — दाँतकै रङको फिलिङ",
-    "Preventative — Scaling & Polishing": "रोकथाम — दाँत सफा गर्ने (स्केलिङ)",
-    "Pediatric Dentistry": "बाल दन्त चिकित्सा",
-
-    # Default Service Descriptions
-    "Advanced clinical treatment performed by certified dental specialists with pain-free protocols.": "प्रमाणित विशेषज्ञ दन्त चिकित्सकहरूद्वारा दुखाइरहित विधिबाट गरिने उच्चस्तरीय उपचार।",
-
-    # Before / After Transformation Cards
-    "BROWSE BY TREATMENT": "उपचार अनुसार हेर्नुहोस्",
-    "Treatment": "उपचार",
-    "Categories": "प्रकारहरू",
-    "All Treatments": "सबै उपचारहरू",
-    "Braces & Aligners": "ब्रेसेस र अलाइनर",
-    "Veneers": "भेनियरहरू",
-    "Whitening": "ह्वाइटनिङ",
-    "Implants": "इम्प्लान्टहरू",
-    "Smile Makeover": "मुस्कान मेकओभर",
-    "General Care": "सामान्य दन्त सेवा",
-    "Before": "अघि",
-    "After": "पछि",
-    "Aligned Smile in 18 Months": "१८ महिनामा मिलेको आकर्षक मुस्कान",
-    "Crooked and crowded teeth corrected with metal braces, resulting in a perfectly aligned, confident smile.": "बाङ्गो र खप्टिएको दाँतलाई मेटल ब्रेसेसद्वारा मिलाएर पूर्ण रूपमा पंक्तिबद्ध र सुन्दर मुस्कान बनाइएको।",
-    "Hollywood Smile with Porcelain Veneers": "पोर्सिलेन भेनियरद्वारा हलिउड मुस्कान",
-    "8 ultra-thin porcelain veneers placed in 2 visits — transforming discoloured, chipped teeth into a stunning Hollywood smile.": "२ पटकको भेटमा ८ वटा पातलो पोर्सिलेन भेनियर लगाएर पहेंलो र फुटेको दाँतलाई आकर्षक हलिउड मुस्कानमा रूपान्तरण गरिएको।",
-    "8 Shades Whiter in One Session": "एकै सत्रमा ८ गुणा बढी सेतो दाँत",
-    "Professional in-office Zoom! whitening delivered an 8-shade improvement in a single 90-minute appointment.": "मात्र ९० मिनेटको व्यावसायिक जुम ह्वाइटनिङ सत्रद्वारा दाँतलाई ८ गुणा बढी चम्किलो र सेतो बनाइएको।",
-    "Natural-Looking Tooth Replacement": "प्राकृतिक देखिने दाँत प्रत्यारोपण",
-    "Single dental implant with ceramic crown placed seamlessly to replace a missing molar — indistinguishable from natural teeth.": "झरेको बंगाराको ठाउँमा प्राकृतिक दाँत जस्तै देखिने सिर्यामिक क्यापसहितको एकल डेन्टल इम्प्लान्ट प्रत्यारोपण गरिएको।",
-    "Complete Smile Transformation": "पूर्ण मुस्कान रूपान्तरण",
-    "A comprehensive smile makeover combining gum contouring, whitening, and 6 veneers to create a perfectly harmonious, magazine-worthy smile.": "गिजाको बनावट सुधार, ह्वाइटनिङ र ६ वटा भेनियर संयोजन गरेर तयार पारिएको पूर्ण आकर्षक मुस्कान।",
-    "Same-Day Ceramic Crown": "एकै दिनमा सिर्यामिक क्याप (Crown)",
-    "CAD/CAM same-day crown fabricated and placed in a single visit — perfectly matched, strong, and beautiful.": "सीएडी/सीएएम प्रविधिबाट एकै दिनमा तयार गरी लगाइएको बलियो, मिलेको र सुन्दर सिर्यामिक क्याप।",
-    "Invisible Aligner Journey": "अदृश्य अलाइनर (Clear Aligner) उपचार",
-    "12 months of clear aligner treatment delivered a straight, beautiful smile — without a single visible brace.": "कुनै पनि देखिने तार नबाँधी १२ महिनाको पारदर्शी अलाइनर उपचारबाट मिलेको सुन्दर दाँत।",
-    "Instant Smile Makeover — One Visit": "एकै पटकमा तत्काल मुस्कान सुधार",
-    "Composite resin veneers shaped and polished in a single appointment to close gaps and perfect smile symmetry.": "दाँतको बीचको खाली ठाउँ भर्न र मिलेको मुस्कान बनाउन एकै पटकमा कम्पोजिट भेनियर तयार गरिएको।",
-    "Full-Mouth Reconstruction": "पूर्ण मुख पुनर्निर्माण",
-    "A complex full-arch case combining implants, crowns, and gum treatment — restoring both function and a youthful, radiant smile.": "इम्प्लान्ट, क्याप र गिजाको उपचार संयोजन गरेर गरिएको जटिल पूर्ण मुख पुनर्स्थापना जसले प्राकृतिक कार्यक्षमता र उज्यालो मुस्कान फर्काउँछ।",
-    "Seamless Decay Removal": "दाँतको किरा हटाएर प्राकृतिक फिलिङ",
-    "A deep cavity was cleaned and perfectly restored using composite resin, halting decay and blending naturally with the tooth.": "गहिरो किरा लागेको भागलाई सफा गरी कम्पोजिट दाँतकै रङबाट भरिएको, जसले किरा लाग्न रोक्छ र प्राकृतिक देखिन्छ।",
-    "Professional Deep Clean": "व्यावसायिक गहिरो दन्त सफाइ",
-    "Hardened tartar and plaque build-up were professionally removed to restore gum health and reveal a brighter, healthier smile.": "गिजा स्वस्थ राख्न र उज्यालो मुस्कान ल्याउन जमेको फोहोर, टार्टर र पहेँलोपन पूर्ण रूपमा सफा गरिएको।",
-
-    # Chatbot & Floating Widget
-    "Need dental help?": "दन्त सल्लाह चाहिन्छ?",
-    "CareFirst AI • Online": "केयरफर्स्ट एआई • अनलाइन",
-    "Online": "अनलाइन",
-    "Ask here!": "यहाँ सोध्नुहोस्!",
-    "Ask CareFirst AI Receptionist": "केयरफर्स्ट एआई रिसेप्शनिस्टसँग सोध्नुहोस्",
-    "Verified Care Guidance": "प्रमाणित दन्त परामर्श",
-    "Type your question here...": "तपाईंको प्रश्न यहाँ लेख्नुहोस्...",
-
-    # Forms & Booking
-    "Your Name": "तपाईंको नाम",
-    "Your Name *": "तपाईंको नाम *",
-    "Full Name": "पूरा नाम",
-    "Your Email Address": "तपाईंको इमेल ठेगाना",
-    "Your Email Address *": "तपाईंको इमेल ठेगाना *",
-    "Email": "इमेल",
-    "Email Address *": "इमेल ठेगाना *",
-    "Contact Number": "सम्पर्क फोन नम्बर",
-    "Contact Number *": "सम्पर्क फोन नम्बर *",
-    "Phone": "फोन नम्बर",
-    "Appointment date": "अपोइन्टमेन्ट मिति",
-    "Appointment date *": "अपोइन्टमेन्ट मिति *",
-    "Requested Date": "रोजेको मिति",
-    "Preferred Time": "रोजेको समय",
-    "Morning (7:30 AM – 11:30 AM)": "बिहानी सत्र (बिहान ७:३० – ११:३०)",
-    "Afternoon (11:30 AM – 4:00 PM)": "दिउँसो सत्र (११:३० – दिउँसो ४:००)",
-    "Evening (4:00 PM – 7:30 PM)": "साँझ सत्र (साँझ ४:०० – ७:३०)",
-    "Treatment / Service": "दन्त सेवा / उपचार",
-    "Subject": "विषय",
-    "Message": "सन्देश",
-    "Your Message": "तपाईंको सन्देश",
-    "Your Message *": "तपाईंको सन्देश *",
-    "Tell us how we can help you...": "हामी तपाईंलाई कसरी मद्दत गर्न सक्छौं, लेख्नुहोस्...",
-    "Book Appointment Now": "अहिले नै अपोइन्टमेन्ट लिनुहोस्",
-    "Send Message Now": "सन्देश पठाउनुहोस्",
-    "Send Message": "सन्देश पठाउनुहोस्",
-    "Step 01": "चरण ०१",
-    "Step 02": "चरण ०२",
-    "Step 03": "चरण ०३",
-    "Step 04": "चरण ०४",
-    "Step 05": "चरण ०५",
-    "Treatment": "उपचार",
-    "Visit Type": "भ्रमणको प्रकार",
-    "Date & Time": "मिति र समय",
-    "Your Details": "तपाईंको विवरण",
-    "Review": "पुनरावलोकन",
-    "How can we help your smile?": "तपाईंको मुस्कानको लागि हामी कसरी सहयोग गर्न सक्छौं?",
-    "Tooth Pain / Other Concern": "दाँत दुख्ने / अन्य समस्या",
-    "Clinical Evaluation with Doctor": "डाक्टरसँग प्रत्यक्ष क्लिनिकल परीक्षण",
-    "NMC Certified": "एनएमसी (NMC) प्रमाणित",
-    "NMC Verified Doctors": "प्रमाणित विशेषज्ञ दन्त चिकित्सक",
-    "Open Daily": "दैनिक खुला",
-    "Open Daily: 7:30 AM – 7:30 PM": "दैनिक खुला: बिहान ७:३० देखि साँझ ७:३० सम्म",
-    "Call Clinic": "क्लिनिकमा कल गर्नुहोस्",
-    "WhatsApp Available": "ह्वाट्सएप उपलब्ध छ",
 }
+
+
+def extract_strings_from_workspace():
+    base_dir = Path(__file__).resolve().parent.parent
+    extracted = set()
+
+    # 1. HTML templates
+    template_dir = base_dir / 'templates'
+    for f in template_dir.rglob('*.html'):
+        content = f.read_text(encoding='utf-8', errors='ignore')
+        for m in re.findall(r'{%\s*trans\s+[\'"]([^\'"]+)[\'"]\s*%}', content):
+            if m.strip():
+                extracted.add(m.strip())
+        for _, body in re.findall(r'{%\s*blocktrans\b(.*?)%}(.*?){%\s*endblocktrans\s*%}', content, re.DOTALL):
+            cleaned = body.strip()
+            if cleaned:
+                extracted.add(cleaned)
+
+    # 2. Python files
+    for py_file in base_dir.rglob('*.py'):
+        if 'venv' in str(py_file) or '.git' in str(py_file) or 'scratch' in str(py_file):
+            continue
+        content = py_file.read_text(encoding='utf-8', errors='ignore')
+        for m in re.findall(r'_\([\'"]([^\'"]+)[\'"]\)', content):
+            if m.strip():
+                extracted.add(m.strip())
+
+    return extracted
+
+
+def clean_and_translate(text, translator):
+    if text in CURATED_NEPALI_DICTIONARY:
+        return CURATED_NEPALI_DICTIONARY[text]
+
+    if text.isdigit() or len(text) <= 1 or text.startswith('http') or text.startswith('/'):
+        return text
+
+    placeholders = {}
+    counter = 0
+
+    def replacer(match):
+        nonlocal counter
+        ph = f"VARNUM{counter}TAG"
+        placeholders[ph] = match.group(0)
+        counter += 1
+        return ph
+
+    protected = re.sub(r'%\([a-zA-Z0-9_]+\)[sdrf]|%[sdrf]', replacer, text)
+    protected = re.sub(r'\{\{\s*[a-zA-Z0-9_|\."\'\s]+\s*\}\}', replacer, protected)
+    protected = re.sub(r'<[^>]+>', replacer, protected)
+
+    clean_input = protected.replace('“', '"').replace('”', '"').replace('’', "'").replace('‘', "'")
+
+    try:
+        translated = translator.translate(clean_input)
+        for ph, orig in placeholders.items():
+            translated = re.sub(re.escape(ph), orig, translated, flags=re.IGNORECASE)
+            translated = translated.replace(ph.lower(), orig).replace(ph.upper(), orig)
+        return translated.strip()
+    except Exception:
+        try:
+            raw_trans = translator.translate(text)
+            return raw_trans.strip()
+        except Exception:
+            return text
 
 
 def build_and_compile():
@@ -182,20 +229,51 @@ def build_and_compile():
     po_path = locale_dir / 'django.po'
     mo_path = locale_dir / 'django.mo'
 
-    existing_po = None
+    existing_map = {}
     if po_path.exists():
         try:
-            existing_po = polib.pofile(str(po_path), encoding='utf-8')
-        except Exception:
-            pass
+            old_po = polib.pofile(str(po_path), encoding='utf-8')
+            for entry in old_po:
+                if entry.msgid and entry.msgstr:
+                    if '%(' in entry.msgid and '%(' in entry.msgstr:
+                        orig_vars = set(re.findall(r'%\(([a-zA-Z0-9_]+)\)', entry.msgid))
+                        trans_vars = set(re.findall(r'%\(([a-zA-Z0-9_]+)\)', entry.msgstr))
+                        if orig_vars != trans_vars:
+                            continue
+                    existing_map[entry.msgid] = entry.msgstr
+        except Exception as e:
+            print(f"Warning reading existing po: {e}")
+
+    extracted_strings = extract_strings_from_workspace()
+    print(f"Total unique strings extracted from workspace: {len(extracted_strings)}")
+
+    translator = GoogleTranslator(source='en', target='ne')
+    final_dict = {}
+
+    for k, v in CURATED_NEPALI_DICTIONARY.items():
+        final_dict[k] = v
+
+    for k, v in existing_map.items():
+        if k not in final_dict and v.strip():
+            final_dict[k] = v
+
+    to_translate = [s for s in extracted_strings if s not in final_dict or not final_dict[s].strip()]
+    print(f"Strings to translate via deep-translator: {len(to_translate)}")
+
+    for i, s in enumerate(to_translate):
+        translated = clean_and_translate(s, translator)
+        final_dict[s] = translated
+        if (i + 1) % 15 == 0 or (i + 1) == len(to_translate):
+            print(f"  Translated {i + 1}/{len(to_translate)} strings...")
+        time.sleep(0.04)
 
     po = polib.POFile(encoding='utf-8')
     po.metadata = {
         'Project-Id-Version': 'CareFirst Dental 1.0',
         'Report-Msgid-Bugs-To': 'info@carefirst.com',
-        'POT-Creation-Date': '2026-08-20 15:30+0545',
-        'PO-Revision-Date': '2026-08-20 15:30+0545',
-        'Last-Translator': 'CareFirst AI Translator <info@carefirst.com>',
+        'POT-Creation-Date': '2026-08-30 10:00+0545',
+        'PO-Revision-Date': '2026-08-30 10:00+0545',
+        'Last-Translator': 'DeepTranslator & Medical Board <info@carefirst.com>',
         'Language-Team': 'Nepali <ne@carefirst.com>',
         'Language': 'ne',
         'MIME-Version': '1.0',
@@ -204,25 +282,17 @@ def build_and_compile():
         'Plural-Forms': 'nplurals=2; plural=(n != 1);',
     }
 
-    merged = {}
-    if existing_po:
-        for entry in existing_po:
-            if entry.msgid and entry.msgstr:
-                merged[entry.msgid] = entry.msgstr
-
-    for k, v in COMPREHENSIVE_NEPALI_DICTIONARY.items():
-        merged[k] = v
-
-    for k in sorted(merged.keys()):
+    for k in sorted(final_dict.keys()):
+        val = final_dict[k]
         entry = polib.POEntry(
             msgid=k,
-            msgstr=merged[k]
+            msgstr=val
         )
         po.append(entry)
 
     po.save(str(po_path))
     po.save_as_mofile(str(mo_path))
-    print(f"Successfully compiled {len(po)} phrases into standard UTF-8 gettext .mo file at {mo_path}")
+    print(f"Successfully compiled {len(po)} total translations into {po_path} and {mo_path}")
 
 
 if __name__ == '__main__':
