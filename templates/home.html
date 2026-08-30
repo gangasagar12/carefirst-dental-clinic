@@ -23,16 +23,18 @@
     color: #FFFFFF !important;
     border: none !important;
     border-radius: 50px !important;
-    padding: 13px 30px !important;
+    padding: 12px 28px !important;
     font-weight: 700 !important;
-    font-size: 0.98rem !important;
+    font-size: 0.95rem !important;
     font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
     box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35) !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     display: inline-flex !important;
     align-items: center !important;
+    justify-content: center !important;
     gap: 8px !important;
     text-decoration: none !important;
+    white-space: nowrap !important;
   }
   .cf-btn-primary:hover,
   .nd-btn-primary:hover {
@@ -47,16 +49,19 @@
     color: #FFFFFF !important;
     border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
     border-radius: 50px !important;
-    padding: 12px 28px !important;
+    padding: 11px 26px !important;
     font-weight: 700 !important;
-    font-size: 0.98rem !important;
+    font-size: 0.95rem !important;
     font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
     backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
     transition: all 0.3s ease !important;
     display: inline-flex !important;
     align-items: center !important;
+    justify-content: center !important;
     gap: 8px !important;
     text-decoration: none !important;
+    white-space: nowrap !important;
   }
   .cf-btn-outline:hover {
     background: #FFFFFF !important;
@@ -66,18 +71,66 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
   }
 
-  .section-py { padding: 85px 0; }
-  .section-py-sm { padding: 50px 0; }
+  .cf-btn-outline-primary {
+    background: transparent !important;
+    color: #0284C7 !important;
+    border: 1.5px solid #0284C7 !important;
+    border-radius: 50px !important;
+    padding: 10px 24px !important;
+    font-weight: 700 !important;
+    font-size: 0.92rem !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+  }
+  .cf-btn-outline-primary:hover {
+    background: #0284C7 !important;
+    color: #FFFFFF !important;
+    border-color: #0284C7 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.25) !important;
+  }
 
-  /* Headings */
+  .section-py { padding: 80px 0; }
+  .section-py-sm { padding: 50px 0; }
+  @media (max-width: 991.98px) {
+    .section-py { padding: 55px 0; }
+    .section-py-sm { padding: 35px 0; }
+  }
+
+  /* Eyebrow Pill Badges */
+  .cf-eyebrow-badge,
+  .nd-eyebrow {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(2, 132, 199, 0.1) !important;
+    color: #0284C7 !important;
+    padding: 6px 16px !important;
+    border-radius: 50px !important;
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 0.8rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    border: 1px solid rgba(2, 132, 199, 0.25) !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* Headings & Subtitles */
   .nd-section-title,
   .cf-section-title {
-    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-size: clamp(1.85rem, 3.2vw, 2.5rem);
     font-weight: 800;
     color: #081C33;
     font-family: var(--cf-font-head, 'Outfit', sans-serif);
     line-height: 1.25;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     letter-spacing: -0.02em;
   }
   .nd-section-title .accent,
@@ -86,12 +139,22 @@
   }
   .nd-section-subtitle,
   .cf-section-subtitle {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     color: #64748B !important;
-    max-width: 720px;
+    max-width: 700px;
     margin: 0 auto;
     line-height: 1.65;
     font-weight: 400;
+  }
+
+  /* Feature Bullet */
+  .cf-feature-bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0284C7;
+    margin-bottom: 12px;
   }
 
   /* Card Elevate */
@@ -99,7 +162,7 @@
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   }
   .cf-card-hover:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     box-shadow: 0 20px 45px rgba(8, 28, 51, 0.10) !important;
     border-color: rgba(2, 132, 199, 0.35) !important;
   }
@@ -796,7 +859,7 @@
   .cf-video-title {
     font-size: 1.15rem;
     font-weight: 800;
-    color: #0E5A4F;
+    color: #081C33;
     font-family: var(--cf-font-head, 'Outfit', sans-serif);
     line-height: 1.38;
     margin-bottom: 10px;
@@ -903,10 +966,10 @@
 
         <!-- Hero CTAs -->
         <div class="d-flex flex-wrap gap-3 align-items-center mb-2">
-          <a href="{% url 'appointments:book' %}" class="cf-btn-primary py-2 px-4">
+          <a href="{% url 'appointments:book' %}" class="cf-btn-primary">
             <i class="bi bi-calendar-check-fill"></i> {% trans "Book Consultation" %}
           </a>
-          <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="cf-btn-outline py-2 px-4">
+          <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="cf-btn-outline">
             <i class="bi bi-whatsapp text-success"></i> {% trans "WhatsApp: 980-7464136" %}
           </a>
         </div>
@@ -977,6 +1040,60 @@
   </div>
 </section>
 
+<!-- 2. TRUST STATS STRIP -->
+<section class="cf-stats-strip">
+  <div class="container">
+    <div class="cf-stats-container">
+      <div class="row g-0 align-items-center">
+        <div class="col-6 col-lg-3">
+          <div class="cf-stat-box">
+            <div class="cf-stat-icon-wrap">
+              <i class="bi bi-emoji-smile-fill"></i>
+            </div>
+            <div>
+              <div class="cf-stat-num">5,000+</div>
+              <p class="cf-stat-lbl">{% trans "Happy Patients Treated" %}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="cf-stat-box">
+            <div class="cf-stat-icon-wrap">
+              <i class="bi bi-person-badge-fill"></i>
+            </div>
+            <div>
+              <div class="cf-stat-num">12+</div>
+              <p class="cf-stat-lbl">{% trans "Dental Specialists" %}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="cf-stat-box">
+            <div class="cf-stat-icon-wrap">
+              <i class="bi bi-shield-fill-check"></i>
+            </div>
+            <div>
+              <div class="cf-stat-num">100%</div>
+              <p class="cf-stat-lbl">{% trans "Painless Care Protocol" %}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="cf-stat-box">
+            <div class="cf-stat-icon-wrap">
+              <i class="bi bi-star-fill text-warning"></i>
+            </div>
+            <div>
+              <div class="cf-stat-num">5.0 ★</div>
+              <p class="cf-stat-lbl">{% trans "Google Maps Rating" %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% if active_offer %}
 <!-- SPECIAL OFFER BANNER -->
 <section class="py-4 bg-light border-bottom mt-4">
@@ -1036,7 +1153,7 @@
         <div class="row g-3 mb-4">
           <div class="col-sm-6">
             <div class="cf-intro-feature-pill">
-              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:12px;"></span>
+              <span class="cf-feature-bullet"></span>
               <h5 class="cf-intro-feature-title">{% trans "Pain-Free Anesthesia" %}</h5>
               <p class="cf-intro-feature-desc">{% trans "Gentle techniques designed to eliminate dental anxiety during all treatments." %}</p>
             </div>
@@ -1044,7 +1161,7 @@
 
           <div class="col-sm-6">
             <div class="cf-intro-feature-pill">
-              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:12px;"></span>
+              <span class="cf-feature-bullet"></span>
               <h5 class="cf-intro-feature-title">{% trans "Class-B Autoclave" %}</h5>
               <p class="cf-intro-feature-desc">{% trans "Strict sterilization protocols following international hospital standards." %}</p>
             </div>
@@ -1052,7 +1169,7 @@
 
           <div class="col-sm-6">
             <div class="cf-intro-feature-pill">
-              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:12px;"></span>
+              <span class="cf-feature-bullet"></span>
               <h5 class="cf-intro-feature-title">{% trans "Digital RVG & OPG" %}</h5>
               <p class="cf-intro-feature-desc">{% trans "Instant low-radiation digital radiography for accurate diagnosis." %}</p>
             </div>
@@ -1060,7 +1177,7 @@
 
           <div class="col-sm-6">
             <div class="cf-intro-feature-pill">
-              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:12px;"></span>
+              <span class="cf-feature-bullet"></span>
               <h5 class="cf-intro-feature-title">{% trans "Open Daily (7:30am – 7:30pm)" %}</h5>
               <p class="cf-intro-feature-desc">{% trans "Flexible appointments 7 days a week, including routine and emergency care." %}</p>
             </div>
@@ -1071,7 +1188,7 @@
           <a href="{% url 'main:about' %}" class="cf-btn-primary">
             {% trans "Read Our Full Story" %}
           </a>
-          <a href="{% url 'main:doctors' %}" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-bold" style="border-color: #CBD5E1;">
+          <a href="{% url 'main:doctors' %}" class="cf-btn-outline-primary">
             {% trans "Meet All Doctors" %}
           </a>
         </div>
@@ -1437,10 +1554,10 @@
           {% trans "PATIENT EDUCATION & VIDEOS" %}
         </div>
         <h2 class="cf-section-title mb-1">{% trans "Watch Our Doctors & Procedure Guides" %}</h2>
-        <p class="text-muted mb-0 fs-6">{% trans "Discover 3D procedure walk-throughs, patient transformations, and doctor-approved oral care advice." %}</p>
+        <p class="cf-section-subtitle mb-0">{% trans "Discover 3D procedure walk-throughs, patient transformations, and doctor-approved oral care advice." %}</p>
       </div>
       <div>
-        <a href="{% url 'media_center:video_list' %}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">
+        <a href="{% url 'media_center:video_list' %}" class="cf-btn-outline-primary">
           {% trans "Explore All Videos" %}
         </a>
       </div>
@@ -1480,7 +1597,7 @@
 
     {% if latest_videos|length > 6 %}
     <div class="text-center mt-5" id="cfVideoLoadMoreWrap">
-      <button type="button" class="btn btn-outline-primary rounded-pill px-4 py-2.5 fw-bold shadow-sm" id="cfBtnLoadMoreVideos" onclick="toggleMoreHomeVideos()">
+      <button type="button" class="cf-btn-outline-primary shadow-sm" id="cfBtnLoadMoreVideos" onclick="toggleMoreHomeVideos()">
         <i class="bi bi-collection-play-fill me-2"></i> {% trans "View More Videos" %}
       </button>
     </div>
@@ -1498,7 +1615,7 @@
           {% trans "SMILE GALLERY & CLINIC" %}
         </div>
         <h2 class="cf-section-title mb-1">{% trans "Real Patient Results & Modern Facility" %}</h2>
-        <p class="text-muted mb-0 fs-6">{% trans "Explore our state-of-the-art clinic spaces and before/after smile makeovers." %}</p>
+        <p class="cf-section-subtitle mb-0">{% trans "Explore our state-of-the-art clinic spaces and before/after smile makeovers." %}</p>
       </div>
 
       <div class="gallery-tabs p-2 rounded-pill d-inline-flex bg-white border shadow-sm">
@@ -1523,7 +1640,7 @@
 </section>
 
 <!-- 11. LATEST DENTAL HEALTH ARTICLES -->
-<section class="section-py" style="background: #F8FAFC;">
+<section class="section-py" style="background: #FFFFFF;">
   <div class="container">
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
       <div>
@@ -1531,10 +1648,10 @@
           {% trans "DENTAL BLOG & GUIDES" %}
         </div>
         <h2 class="cf-section-title mb-1">{% trans "Oral Health Tips & Guides" %}</h2>
-        <p class="text-muted mb-0 fs-6">{% trans "Doctor-approved advice for healthy teeth, gums, and daily dental care." %}</p>
+        <p class="cf-section-subtitle mb-0">{% trans "Doctor-approved advice for healthy teeth, gums, and daily dental care." %}</p>
       </div>
       <div>
-        <a href="{% url 'blogs:blog_list' %}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">
+        <a href="{% url 'blogs:blog_list' %}" class="cf-btn-outline-primary">
           {% trans "View All Articles" %}
         </a>
       </div>
@@ -1585,8 +1702,8 @@
       <div class="col-lg-10 col-xl-9">
         <div class="p-4 rounded-4 shadow-sm bg-white border d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
           <div class="d-flex align-items-center gap-3">
-            <div class="cf-contact-icon-wrap m-0" style="width: 50px; height: 50px; font-size: 1.4rem;">
-              <span class="cf-std-num" style="font-size:1.1rem; font-weight:800; color:#0284C7;">06</span>
+            <div class="cf-contact-icon-wrap m-0 d-flex align-items-center justify-content-center rounded-circle" style="width: 50px; height: 50px; font-size: 1.4rem; background: rgba(2, 132, 199, 0.1);">
+              <i class="bi bi-hospital-fill text-primary"></i>
             </div>
             <div>
               <h6 class="fw-bold mb-0 text-dark">{% trans "CareFirst Dental Clinic — Shankhamul, Kathmandu" %}</h6>

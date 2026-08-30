@@ -193,8 +193,8 @@
 
     <!-- Direct Booking CTA -->
     <div class="d-flex gap-2 align-items-center mt-auto pt-2">
-      <a href="{% url 'appointments:book' %}?doctor={{ doc.id }}" class="cf-btn-primary flex-grow-1 text-center py-2 px-3 rounded-pill fw-bold text-white text-decoration-none shadow-sm" style="font-size: 0.92rem;">
-        <i class="bi bi-calendar-check me-1"></i>{% trans "Book Consultation" %}
+      <a href="{% url 'appointments:book' %}?doctor={{ doc.id }}" class="cf-btn-primary flex-grow-1 text-center justify-content-center">
+        <i class="bi bi-calendar-check-fill me-1"></i>{% trans "Book Consultation" %}
       </a>
       {% if doc.linkedin %}
       <a href="{{ doc.linkedin }}" target="_blank" rel="noopener" class="btn btn-outline-secondary rounded-circle d-inline-flex align-items-center justify-content-center" style="width:38px;height:38px;font-size:1rem;color:#0A66C2;" title="LinkedIn">

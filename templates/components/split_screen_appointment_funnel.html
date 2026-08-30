@@ -59,7 +59,7 @@
 
   .cf-app-heading {
     font-family: var(--cf-font-head, 'Outfit', sans-serif);
-    font-size: 2.35rem;
+    font-size: clamp(1.85rem, 2.5vw, 2.35rem);
     font-weight: 800;
     color: #0B2545;
     line-height: 1.2;
@@ -68,18 +68,19 @@
   }
 
   .cf-app-sub {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #64748B;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
+    line-height: 1.6;
   }
 
   /* Form Labels & Inputs Matching Clean Reference */
   .cf-app-label {
     font-family: var(--cf-font-body, 'Inter', sans-serif);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
     color: #1E293B;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     display: block;
   }
 
@@ -91,9 +92,9 @@
   .cf-app-input {
     background: #FFFFFF !important;
     border: 1.5px solid #E2E8F0 !important;
-    border-radius: 8px !important;
-    padding: 13px 16px !important;
-    font-size: 0.935rem !important;
+    border-radius: 10px !important;
+    padding: 12px 16px !important;
+    font-size: 0.92rem !important;
     color: #0F172A !important;
     transition: all 0.2s ease !important;
     box-shadow: 0 2px 6px rgba(11, 37, 69, 0.02) !important;
@@ -117,30 +118,30 @@
     resize: vertical;
   }
 
-  /* Submit Button Matching Reference Coral/Terracotta Button */
+  /* Submit Button Matching Brand Primary System */
   .cf-app-submit-btn {
-    background: #E07A5F;
-    background: linear-gradient(135deg, #E07A5F 0%, #D96B43 100%);
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
     color: #FFFFFF !important;
-    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
     font-weight: 700;
-    font-size: 1.05rem;
-    padding: 14px 34px;
-    border-radius: 8px;
+    font-size: 0.98rem;
+    padding: 13px 34px;
+    border-radius: 50px;
     border: none;
     cursor: pointer;
-    box-shadow: 0 6px 18px rgba(224, 122, 95, 0.35);
-    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    text-decoration: none !important;
   }
 
   .cf-app-submit-btn:hover {
-    background: linear-gradient(135deg, #D96B43 0%, #C85A32 100%);
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%) !important;
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(224, 122, 95, 0.45);
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
     color: #FFFFFF !important;
   }
 

@@ -223,19 +223,21 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(14, 90, 79, 0.08);
-    color: #0E5A4F;
+    background: rgba(2, 132, 199, 0.1);
+    color: #0284C7;
+    border: 1px solid rgba(2, 132, 199, 0.25);
     padding: 6px 16px;
     border-radius: 50px;
     font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
   .psr-main-title {
-    font-family: 'Outfit', 'Inter', sans-serif;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
     font-size: clamp(2rem, 3.5vw, 2.75rem);
     font-weight: 800;
-    color: #0F172A;
+    color: #081C33;
     line-height: 1.2;
     margin-bottom: 1rem;
   }
@@ -259,10 +261,10 @@
     }
   }
   .psr-big-rating {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
     font-size: clamp(3.2rem, 5vw, 4.2rem);
     font-weight: 900;
-    color: #0F172A;
+    color: #081C33;
     line-height: 1;
   }
   .psr-big-stars {
@@ -274,26 +276,26 @@
   }
   .psr-google-primary-btn {
     background: #FFFFFF;
-    color: #0F172A;
+    color: #081C33;
     border: 1px solid #CBD5E1;
     transition: all 0.25s ease;
   }
   .psr-google-primary-btn:hover {
-    background: #0F172A;
+    background: #081C33;
     color: #FFFFFF;
-    border-color: #0F172A;
+    border-color: #081C33;
     transform: translateY(-2px);
   }
   .psr-google-outline-btn {
     background: transparent;
-    color: #0E5A4F;
-    border: 1px solid #CBD5E1;
+    color: #0284C7;
+    border: 1px solid #BAE6FD;
     transition: all 0.25s ease;
   }
   .psr-google-outline-btn:hover {
-    background: #0E5A4F;
+    background: #0284C7;
     color: #FFFFFF;
-    border-color: #0E5A4F;
+    border-color: #0284C7;
     transform: translateY(-2px);
   }
 
@@ -325,13 +327,15 @@
   /* CONTINUOUS FLOW CARDS (RIGHT TO LEFT MARQUEE)            */
   /* ======================================================== */
   .psr-stories-badge {
-    color: #0E5A4F;
+    color: #0284C7;
     font-size: 0.85rem;
     letter-spacing: 0.1em;
   }
   .psr-stories-title {
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
     font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-    color: #0F172A;
+    color: #081C33;
+    font-weight: 800;
   }
 
   /* Continuous Flow Card Style */
@@ -350,8 +354,8 @@
   }
   .ts-flow-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 16px 36px rgba(14, 90, 79, 0.12);
-    border-color: #0E5A4F;
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.14);
+    border-color: #0284C7;
   }
   .ts-flow-header {
     display: flex;
@@ -363,7 +367,7 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #0E5A4F 0%, #081C33 100%);
+    background: linear-gradient(135deg, #0284C7 0%, #081C33 100%);
     color: #FFFFFF;
     display: flex;
     align-items: center;
@@ -372,7 +376,7 @@
     font-weight: 800;
     flex-shrink: 0;
     overflow: hidden;
-    box-shadow: 0 3px 8px rgba(14, 90, 79, 0.25);
+    box-shadow: 0 3px 8px rgba(2, 132, 199, 0.25);
     border: 2px solid #E2E8F0;
   }
   .ts-flow-avatar img {
@@ -381,8 +385,8 @@
     object-fit: cover;
   }
   .ts-flow-name {
-    color: #0F172A;
-    font-family: 'Outfit', sans-serif;
+    color: #081C33;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
     font-weight: 700;
     font-size: 1.05rem;
     margin: 0;
@@ -432,8 +436,8 @@
   }
   .ts-flow-detail-btn {
     background: transparent;
-    color: #0E5A4F;
-    border: 1px solid #E2E8F0;
+    color: #0284C7;
+    border: 1px solid #BAE6FD;
     font-size: 0.8rem;
     font-weight: 700;
     border-radius: 50px;
@@ -441,9 +445,9 @@
     transition: all 0.2s ease;
   }
   .ts-flow-detail-btn:hover {
-    background: #0E5A4F;
+    background: #0284C7;
     color: #FFFFFF;
-    border-color: #0E5A4F;
+    border-color: #0284C7;
   }
 
   /* Linear continuous scrolling animation override for Swiper */
