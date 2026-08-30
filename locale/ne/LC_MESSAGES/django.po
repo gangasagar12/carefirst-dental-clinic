@@ -237,7 +237,7 @@ msgid "100% Natural Appearance"
 msgstr "100% प्राकृतिक रूप"
 
 msgid "100% Pain-Free & Gentle"
-msgstr "100% दुखाइ मुक्त र कोमल"
+msgstr "१००% दुखाइरहित र कोमल"
 
 msgid "100% Pain-Free Protocols"
 msgstr "100% दुखाइ-मुक्त प्रोटोकलहरू"
@@ -316,7 +316,7 @@ msgid "2. Ultrasonic Plaque & Tartar Removal"
 msgstr "२. अल्ट्रासोनिक मेसिनद्वारा फोहोर सफाइ"
 
 msgid "20–30 Minutes Duration"
-msgstr "20-30 मिनेट अवधि"
+msgstr "२०–३० मिनेट अवधि"
 
 msgid "2x Premium Titanium"
 msgstr "२x प्रिमियम टाइटेनियम"
@@ -1128,6 +1128,9 @@ msgstr "नीलो एलईडी बत्तीको साथ ठीक �
 msgid "Appointment"
 msgstr "नियुक्ति"
 
+msgid "Appointment Booking"
+msgstr "अपोइन्टमेन्ट बुकिङ"
+
 msgid "Appointment Booking Started"
 msgstr "अपोइन्टमेन्ट बुकिङ सुरु भयो"
 
@@ -1450,6 +1453,9 @@ msgstr "विकास महर्जन"
 
 msgid "Bite Correction"
 msgstr "काट्ने सुधार"
+
+msgid "Bite Registration"
+msgstr "बाइट दर्ता"
 
 msgid "Bite force is fully restored, allowing you to chew tough foods easily."
 msgstr ""
@@ -1953,6 +1959,9 @@ msgstr ""
 msgid "Chairside Digital Review"
 msgstr "चेयरसाइड डिजिटल समीक्षा"
 
+msgid "Chairside Review"
+msgstr "चेयरसाइड समीक्षा"
+
 msgid "Change"
 msgstr "परिवर्तन गर्नुहोस्"
 
@@ -2067,6 +2076,9 @@ msgstr "सफा र संगठित"
 msgid "Clean Daily"
 msgstr "दैनिक सफा गर्नुहोस्"
 
+msgid "Cleaning & Disinfection"
+msgstr "सफाइ र कीटाणुशोधन"
+
 msgid "Clear"
 msgstr "खाली गर्नुहोस्"
 
@@ -2131,6 +2143,9 @@ msgstr "क्लिनिक भ्रमण"
 msgid "Clinical"
 msgstr "क्लिनिकल"
 
+msgid "Clinical Assessment"
+msgstr "क्लिनिकल मूल्याङ्कन"
+
 msgid "Clinical Director"
 msgstr "क्लिनिकल निर्देशक"
 
@@ -2148,6 +2163,9 @@ msgstr "क्लिनिकल ग्यालरी"
 
 msgid "Clinical Journey & Procedure"
 msgstr "क्लिनिकल यात्रा र प्रक्रिया"
+
+msgid "Clinical Workflow"
+msgstr "क्लिनिकल कार्यप्रवाह"
 
 msgid "Clinical<br>Excellence"
 msgstr "क्लिनिकल<br>उत्कृष्टता"
@@ -2363,6 +2381,9 @@ msgstr "परामर्श र सल्लाह"
 msgid "Consultation & Custom Plan"
 msgstr "परामर्श र कस्टम योजना"
 
+msgid "Consultation & Impressions"
+msgstr "परामर्श र प्रभावहरू"
+
 msgid "Consultation & Treatment Planning"
 msgstr "परामर्श र उपचार योजना"
 
@@ -2532,6 +2553,9 @@ msgstr "भीडभाड दाँत"
 msgid "Crown Material"
 msgstr "क्राउन सामाग्री"
 
+msgid "Crown Placement"
+msgstr "क्याप (क्राउन) लगाउने"
+
 msgid "Crown charges are separate."
 msgstr "क्राउन शुल्कहरू अलग छन्।"
 
@@ -2580,6 +2604,9 @@ msgstr "हाल:"
 
 msgid "Custom Aesthetics:"
 msgstr "अनुकूलन सौन्दर्यशास्त्र:"
+
+msgid "Custom Plan"
+msgstr "अनुकूलन योजना"
 
 msgid "Custom Solutions"
 msgstr "अनुकूलन समाधान"
@@ -2676,6 +2703,9 @@ msgstr "को मिति"
 
 msgid "Date:"
 msgstr "मिति:"
+
+msgid "Decay Removal"
+msgstr "किरा लागेको भाग हटाउने"
 
 msgid "Decay forming between tight teeth where mirrors cannot reach."
 msgstr "कडा दाँतहरू बीचको क्षय जहाँ ऐना पुग्न सक्दैन।"
@@ -2916,6 +2946,9 @@ msgstr "डिजिटल उपकरण"
 
 msgid "Digital Exam"
 msgstr "डिजिटल परीक्षा"
+
+msgid "Digital Impressions"
+msgstr "डिजिटल प्रभावहरू"
 
 msgid "Digital Impressions:"
 msgstr "डिजिटल ३D स्क्यान:"
@@ -3309,6 +3342,9 @@ msgstr "खाली सूची र \"%(class_name)s.allow_empty\" False छ�
 msgid "Enabled"
 msgstr "सक्षम गरियो"
 
+msgid "Enamel Bonding"
+msgstr "इनामेल बन्डिङ"
+
 msgid "Encrypted Staff Workspace"
 msgstr "ईन्क्रिप्टेड कर्मचारी कार्यस्थान"
 
@@ -3528,6 +3564,9 @@ msgstr ""
 
 msgid "Everything you need to know before your appointment."
 msgstr "तपाईंको अपोइन्टमेन्ट अघि जान्नुपर्ने सम्पूर्ण जानकारी।"
+
+msgid "Examination & Scan"
+msgstr "परीक्षण र स्क्यान"
 
 msgid "Example: Experiencing sensitivity in upper molar for 3 days..."
 msgstr "उदाहरण: माथिल्लो दालमा 3 दिनको लागि संवेदनशीलता अनुभव गर्दै..."
@@ -3768,6 +3807,9 @@ msgstr "परिवार-मैत्री दन्त हेरचाह"
 msgid "Fast 2-Minute Scan"
 msgstr "द्रुत 2-मिनेट स्क्यान"
 
+msgid "Fast Digital Capture"
+msgstr "द्रुत डिजिटल क्याप्चर"
+
 msgid "Fast Recovery"
 msgstr "द्रुत रिकभरी"
 
@@ -3809,10 +3851,16 @@ msgid "Filling Materials"
 msgstr "भरिने सामग्री"
 
 msgid "Filling Treatment Charges"
-msgstr "उपचार शुल्कहरू भर्ने"
+msgstr "दाँत भर्ने सेवा शुल्क"
 
 msgid "Fills in the spaces created by missing teeth."
 msgstr "हराएको दाँतले सिर्जना गरेको खाली ठाउँहरू भर्छ।"
+
+msgid "Final Cementation"
+msgstr "अन्तिम सिमेन्टेसन"
+
+msgid "Final Delivery"
+msgstr "अन्तिम डेलिभरी"
 
 msgid "Final Outcome"
 msgstr "अन्तिम नतिजा"
@@ -3900,7 +3948,7 @@ msgid "Follow-up / Routine Check"
 msgstr "फलो-अप / नियमित जाँच"
 
 msgid "Follow-up Care"
-msgstr "फलो-अप केयर"
+msgstr "फलो-अप हेरचाह"
 
 msgid "Food repeatedly catching in the exact same interdental pocket."
 msgstr "खाना बारम्बार ठ्याक्कै उही इन्टरडेन्टल खल्ती मा समात्दै।"
@@ -4147,6 +4195,9 @@ msgstr "कोमल र आरामदायी हेरचाह"
 
 msgid "Gentle Clinical Care"
 msgstr "कोमल क्लिनिकल केयर"
+
+msgid "Gentle Numbing"
+msgstr "कोमल लठ्याउने कार्य"
 
 msgid "Gentle Technique"
 msgstr "कोमल प्रविधि"
@@ -5017,6 +5068,9 @@ msgstr "नवीनतम डिजिटल दन्त प्रविधि
 msgid "Latest Modern Instruments"
 msgstr "नवीनतम आधुनिक उपकरणहरू"
 
+msgid "Layered Composite"
+msgstr "स्तरित कम्पोजिट"
+
 msgid "Layered Composite Bonding"
 msgstr "स्तरित कम्पोजिट बन्धन"
 
@@ -5112,6 +5166,9 @@ msgstr "लिङ्क प्रतिलिपि गरियो!"
 
 msgid "Live booking tracking & patient inquiry sync"
 msgstr "प्रत्यक्ष बुकिंग ट्र्याकिङ र रोगी सोधपुछ सिंक"
+
+msgid "Local Anesthesia"
+msgstr "स्थानीय एनेस्थेसिया"
 
 msgid ""
 "Located in Shankhamul, Kathmandu, CareFirst Dental Clinic is a premier "
@@ -5531,7 +5588,7 @@ msgid "No Elastics"
 msgstr "इलास्टिक छैन"
 
 msgid "No Judgement Promise"
-msgstr "कुनै न्याय प्रतिज्ञा"
+msgstr "कुनै न्याय नगरिने वाचा"
 
 msgid "No Show"
 msgstr "शो छैन"
@@ -5759,6 +5816,9 @@ msgstr "हाम्रो उद्देश्य र शुरुआत"
 msgid "OUR RESULTS"
 msgstr "हाम्रा परिणामहरू"
 
+msgid "Occlusal Polish"
+msgstr "अक्लुजल पालिस"
+
 msgid "October"
 msgstr "अक्टोबर"
 
@@ -5865,6 +5925,9 @@ msgstr "सञ्चालन समय"
 msgid "Optional"
 msgstr "ऐच्छिक"
 
+msgid "Oral Examination"
+msgstr "मौखिक परीक्षा"
+
 msgid "Oral Examination & Diagnosis"
 msgstr "मौखिक परीक्षा र निदान"
 
@@ -5962,7 +6025,7 @@ msgid "Our Filling"
 msgstr "हाम्रो भराई"
 
 msgid "Our Filling Treatment Process"
-msgstr "दाँत भर्ने हाम्रो उपचार प्रक्रिया"
+msgstr "हाम्रो दाँत भर्ने उपचार प्रक्रिया"
 
 msgid "Our Implant"
 msgstr "हाम्रो प्रत्यारोपण"
@@ -5995,7 +6058,7 @@ msgid "Our Root Canal"
 msgstr "हाम्रो रूट नहर"
 
 msgid "Our Root Canal Process"
-msgstr "हाम्रो रूट क्यानल उपचार प्रक्रिया"
+msgstr "हाम्रो रूट क्यानल प्रक्रिया"
 
 msgid "Our Story"
 msgstr "हाम्रो कथा"
@@ -6173,7 +6236,7 @@ msgid "PATIENT EXPERIENCES"
 msgstr "बिरामी अनुभवहरू"
 
 msgid "PATIENT PREPARATION & EXPECTATIONS"
-msgstr "बिरामीको तयारी र अपेक्षाहरू"
+msgstr "बिरामी तयारी र अपेक्षाहरू"
 
 msgid "PATIENT REVIEWS"
 msgstr "बिरामी समीक्षाहरू"
@@ -6393,7 +6456,7 @@ msgid "Periapical (IOPA) X-Ray"
 msgstr "Periapical (IOPA) एक्स-रे"
 
 msgid "Periapical Abscesses"
-msgstr "Periapical abscesses"
+msgstr "Periapical Abscesses"
 
 msgid ""
 "Periodic 6-month preventive maintenance, plaque removal, and healthy smile "
@@ -6693,6 +6756,9 @@ msgstr ""
 "कमजोर दाँतहरू बलियो बनाउन र छुटेको खाली ठाउँहरू पुनर्स्थापित गर्न प्रिमियम "
 "जिरकोनिया र सिरेमिक क्राउनहरू।"
 
+msgid "Preparation"
+msgstr "दाँतको तयारी"
+
 msgid "Preserve Natural Teeth"
 msgstr "प्राकृतिक दाँत जोगाउनुहोस्"
 
@@ -6837,6 +6903,9 @@ msgstr ""
 
 msgid "Protecting the tooth from future fracture."
 msgstr "दाँतलाई भविष्यको फ्र्याक्चरबाट बचाउने।"
+
+msgid "Protective Setup"
+msgstr "सुरक्षा तयारी"
 
 msgid "Protective Shielding"
 msgstr "सुरक्षात्मक ढाल"
@@ -7247,6 +7316,9 @@ msgstr "तपाईंको लागि सही?"
 msgid "Root Canal (RCT)"
 msgstr "रूट नहर (RCT)"
 
+msgid "Root Canal Filling"
+msgstr "रूट क्यानल भर्ने कार्य"
+
 msgid "Root Canal Patient — Shankhamul"
 msgstr "रूट नहर रोगी - शंखमुल"
 
@@ -7380,6 +7452,9 @@ msgstr "अनुसूची प्रत्यारोपण परामर�
 
 msgid "Schedule Tooth Filling"
 msgstr "दाँत भर्ने तालिका बनाउनुहोस्"
+
+msgid "Schedule Your Check-up"
+msgstr "अनुसूची चेक-अप"
 
 msgid "Schedule Your Cleaning"
 msgstr "आफ्नो सफाई अनुसूची"
@@ -8103,6 +8178,9 @@ msgstr ""
 msgid "Tap to Watch on"
 msgstr "हेर्न ट्याप गर्नुहोस्"
 
+msgid "Targeted Care Plan"
+msgstr "लक्षित हेरचाह योजना"
+
 msgid ""
 "Targeting early gum inflammation and bacterial tartar to restore healthy "
 "pink gums."
@@ -8140,6 +8218,9 @@ msgstr "तापमान संवेदनशीलता:"
 
 msgid "Temporary Mild Sensitivity"
 msgstr "अस्थायी हल्का संवेदनशीलता"
+
+msgid "Temporary Placement"
+msgstr "अस्थायी क्याप"
 
 msgid "Tender, swollen, or darkened gums near the painful tooth."
 msgstr "दुख्ने दाँत नजिकको कोमल, सुन्निएको, वा गाढा गिजाहरू।"
@@ -8511,6 +8592,9 @@ msgstr "दाँत दुख्ने / अन्य समस्या"
 msgid "Tooth Protection"
 msgstr "दाँतको सुरक्षा"
 
+msgid "Tooth Restoration"
+msgstr "दाँत पुनर्स्थापना"
+
 msgid "Tooth Sensitivity"
 msgstr "दाँत संवेदनशीलता"
 
@@ -8580,7 +8664,7 @@ msgid "Transparent"
 msgstr "पारदर्शी"
 
 msgid "Transparent & Fair Diagnostic Rates"
-msgstr "पारदर्शी र निष्पक्ष निदान दर"
+msgstr "पारदर्शी र उचित डायग्नोस्टिक दरहरू"
 
 msgid "Transparent Consultations"
 msgstr "पारदर्शी परामर्श"
@@ -8590,6 +8674,9 @@ msgstr "पारदर्शी अनुमान, शून्य आश्�
 
 msgid "Transparent Pricing"
 msgstr "पारदर्शी शुल्क"
+
+msgid "Transparent Review"
+msgstr "पारदर्शी समीक्षा"
 
 msgid "Transparent Treatment Fees"
 msgstr "पारदर्शी उपचार शुल्क"
@@ -9085,6 +9172,9 @@ msgstr ""
 " मुस्कान परिवर्तन, दन्त प्रत्यारोपण प्रक्रियाहरू, र मौखिक स्वास्थ्य सुझावहरू"
 " हेर्नुहोस्।"
 
+msgid "Wax Try-In"
+msgstr "मोम परीक्षण"
+
 msgid "We Create Healthy, Long-Lasting Smiles"
 msgstr "हामी स्वस्थ, दिर्घकालिन मुस्कानहरू सिर्जना गर्छौं"
 
@@ -9549,7 +9639,7 @@ msgid "What to Expect After Your Dental Filling"
 msgstr "तपाईंको दन्त भरिने पछि के आशा गर्ने"
 
 msgid "What to Expect During Your General Check-up"
-msgstr "तपाईको सामान्य चेक-अपको समयमा के आशा गर्ने"
+msgstr "साधारण जाँचको बेला के अपेक्षा गर्ने"
 
 msgid "What type of visit would you prefer?"
 msgstr "तपाई कस्तो प्रकारको भ्रमण रुचाउनु हुन्छ?"
@@ -9877,11 +9967,14 @@ msgstr "%(author)s द्वारा लिखित र क्लिनिक�
 msgid "Written & Clinically Reviewed by {{ author }}"
 msgstr "{{ author }} द्वारा लिखित र चिकित्सकीय समीक्षा"
 
+msgid "X-Ray & Diagnosis"
+msgstr "एक्स-रे र निदान"
+
 msgid "X-Ray Assessment"
 msgstr "एक्स-रे मूल्याङ्कन"
 
 msgid "X-Ray Diagnostics Pricing"
-msgstr "एक्स-रे निदान मूल्य निर्धारण"
+msgstr "एक्स-रे डायग्नोस्टिक्स मूल्य निर्धारण"
 
 msgid "YOUR APPOINTMENT REFERENCE ID"
 msgstr "तपाईंको अपोइन्टमेन्ट सन्दर्भ आईडी"

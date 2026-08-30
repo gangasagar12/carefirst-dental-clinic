@@ -60,9 +60,20 @@
     font-family: var(--cf-font-head, 'Outfit', sans-serif) !important;
     font-size: clamp(1.65rem, 2.4vw, 2.1rem) !important;
     font-weight: 800 !important;
-    color: #0B2545 !important;
+    color: #0B2545;
     line-height: 1.25 !important;
     letter-spacing: -0.02em !important;
+  }
+  .cf-section-title.text-white,
+  .text-white.cf-section-title {
+    color: #FFFFFF !important;
+  }
+
+  .cf-eyebrow-badge.badge-light,
+  .badge-light.cf-eyebrow-badge {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #38BDF8 !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
   }
 
   .cf-body-text {
@@ -156,6 +167,12 @@
     color: #FFFFFF !important;
     padding: 28px 24px !important;
     text-align: center !important;
+  }
+  .pricing-header h3 {
+    color: #FFFFFF !important;
+  }
+  .pricing-header p {
+    color: rgba(255, 255, 255, 0.9) !important;
   }
   .pricing-row {
     display: flex !important;
@@ -430,62 +447,61 @@
       
       <!-- Patient Care Process -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge">{% trans "DIAGNOSTIC WORKFLOW" %}
-        </div>
+        <div class="cf-eyebrow-badge badge-light">{% trans "DIAGNOSTIC WORKFLOW" %}</div>
         <h2 class="cf-section-title text-white mb-4">{% trans "Our Digital X-Ray Process" %}</h2>
         
         <div class="row g-4">
           <div class="col-md-6">
-            <div class="d-flex">
-              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">01</div>
+            <div class="d-flex align-items-start">
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:36px; line-height:1.2;">01</div>
               <div>
-                <h6 class="fw-bold mb-1 text-white">{% trans "1. Clinical Assessment" %}</h6>
-                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Evaluating symptoms to determine needed views." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "Clinical Assessment" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500; line-height: 1.5;">{% trans "Evaluating symptoms to determine needed views." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="d-flex">
-              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">02</div>
+            <div class="d-flex align-items-start">
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:36px; line-height:1.2;">02</div>
               <div>
-                <h6 class="fw-bold mb-1 text-white">{% trans "2. Protective Setup" %}</h6>
-                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Fitting lead apron and sensor positioning." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "Protective Setup" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500; line-height: 1.5;">{% trans "Fitting lead apron and sensor positioning." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="d-flex">
-              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">03</div>
+            <div class="d-flex align-items-start">
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:36px; line-height:1.2;">03</div>
               <div>
-                <h6 class="fw-bold mb-1 text-white">{% trans "3. Fast Digital Capture" %}</h6>
-                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Painless capture in less than 3 seconds." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "Fast Digital Capture" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500; line-height: 1.5;">{% trans "Painless capture in less than 3 seconds." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="d-flex">
-              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">04</div>
+            <div class="d-flex align-items-start">
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:36px; line-height:1.2;">04</div>
               <div>
-                <h6 class="fw-bold mb-1 text-white">{% trans "4. Chairside Review" %}</h6>
-                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Instant high-definition monitor display." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "Chairside Review" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500; line-height: 1.5;">{% trans "Instant high-definition monitor display." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="d-flex">
-              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">05</div>
+            <div class="d-flex align-items-start">
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:36px; line-height:1.2;">05</div>
               <div>
-                <h6 class="fw-bold mb-1 text-white">{% trans "5. Transparent Review" %}</h6>
-                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Our dentist explains findings with you." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "Transparent Review" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500; line-height: 1.5;">{% trans "Our dentist explains findings with you." %}</p>
               </div>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="d-flex">
-              <div class="fs-4 fw-bold text-info me-3" style="min-width:32px;">06</div>
+            <div class="d-flex align-items-start">
+              <div class="fs-4 fw-bold text-info me-3" style="min-width:36px; line-height:1.2;">06</div>
               <div>
-                <h6 class="fw-bold mb-1 text-white">{% trans "6. Targeted Care Plan" %}</h6>
-                <p class="text-white-50 small mb-0" style="font-weight: 500;">{% trans "Creating a clear, personalized treatment plan." %}</p>
+                <h6 class="fw-bold mb-1 text-white">{% trans "Targeted Care Plan" %}</h6>
+                <p class="text-white-50 small mb-0" style="font-weight: 500; line-height: 1.5;">{% trans "Creating a clear, personalized treatment plan." %}</p>
               </div>
             </div>
           </div>
