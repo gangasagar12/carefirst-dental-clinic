@@ -100,9 +100,9 @@ msgid ""
 "* Note: Prices are per unit (per tooth). A 3-tooth bridge made of PFM would "
 "be NPR 6,000 x 3 = NPR 18,000. Final costs depend on clinical evaluation."
 msgstr ""
-"* नोट: मूल्यहरू प्रति एकाइ (प्रति दाँत) हो। PFM बाट बनेको 3-दाँतको पुल NPR "
-"6,000 x 3 = NPR 18,000 हुनेछ। अन्तिम लागत क्लिनिकल मूल्याङ्कन मा निर्भर "
-"गर्दछ।"
+"* नोट: शुल्क प्रति एकाइ (प्रति दाँत) को हो। उदाहरणका लागि, PFM क्यापबाट "
+"बनेको ३-दाँतको ब्रिजको शुल्क NPR ६,००० × ३ = NPR १८,००० हुनेछ। अन्तिम शुल्क "
+"क्लिनिकल परीक्षणमा निर्भर गर्दछ।"
 
 msgid ""
 "* Note: Prices shown represent the base cost for a full upper and lower arch"
@@ -191,17 +191,32 @@ msgstr "1. अपोइन्टमेन्ट बुकिङ"
 msgid "1. Clinical Assessment"
 msgstr "1. क्लिनिकल मूल्याङ्कन"
 
+msgid "1. Clinical Examination & Consultation"
+msgstr "१. क्लिनिकल परीक्षण तथा परामर्श"
+
 msgid "1. Consultation"
 msgstr "1. परामर्श"
+
+msgid "1. Consultation & 3D Imaging"
+msgstr "१. परामर्श तथा ३D डिजिटल स्क्यान"
 
 msgid "1. Consultation & Impressions"
 msgstr "1. परामर्श र प्रभावहरू"
 
+msgid "1. Consultation & Treatment Planning"
+msgstr "१. दन्त परामर्श तथा उपचार योजना"
+
 msgid "1. Examination & Scan"
 msgstr "1. परीक्षा र स्क्यान"
 
+msgid "1. Examination & X-Ray"
+msgstr "१. दन्त परीक्षण तथा डिजिटल एक्स-रे"
+
+msgid "1. Oral Assessment & Diagnosis"
+msgstr "१. मौखिक परीक्षण तथा निदान"
+
 msgid "1. Preparation"
-msgstr "1. तयारी"
+msgstr "१. दाँतको तयारी (Preparation)"
 
 msgid "1. The Fixture (Implant Post)"
 msgstr "1. फिक्स्चर (इम्प्लान्ट पोस्ट)"
@@ -261,6 +276,12 @@ msgstr "१५+ वर्ष अभ्यास"
 msgid "2. Bite Registration"
 msgstr "2. बाइट दर्ता"
 
+msgid "2. Cavity Cleaning & Decay Removal"
+msgstr "२. किराले खाएको भाग सफाइ"
+
+msgid "2. Cleaning & Shaping"
+msgstr "२. नसा सफाइ तथा आकार निर्धारण"
+
 msgid "2. Consultation"
 msgstr "2. परामर्श"
 
@@ -268,10 +289,13 @@ msgid "2. Digital Diagnosis"
 msgstr "2. डिजिटल निदान"
 
 msgid "2. Digital Impressions"
-msgstr "2. डिजिटल छापहरू"
+msgstr "२. डिजिटल ३D स्क्यान (Digital Impressions)"
 
 msgid "2. Gentle Numbing"
 msgstr "2. हल्का सुन्न"
+
+msgid "2. Implant Placement Surgery"
+msgstr "२. इम्प्लान्ट प्रत्यारोपण शल्यक्रिया"
 
 msgid "2. Local Anesthesia"
 msgstr "2. स्थानीय एनेस्थेसिया"
@@ -285,35 +309,53 @@ msgstr "2. सर्जिकल प्लेसमेन्ट"
 msgid "2. The Abutment"
 msgstr "2. अपहरण"
 
+msgid "2. Tooth Extraction (If needed)"
+msgstr "२. दाँत निकाल्ने (आवश्यक परेमा)"
+
+msgid "2. Ultrasonic Plaque & Tartar Removal"
+msgstr "२. अल्ट्रासोनिक मेसिनद्वारा फोहोर सफाइ"
+
 msgid "20–30 Minutes Duration"
 msgstr "20-30 मिनेट अवधि"
 
 msgid "2x Premium Titanium"
 msgstr "२x प्रिमियम टाइटेनियम"
 
+msgid "3. Composite Layering & Bonding"
+msgstr "३. कम्पोजिट फिलिङ तथा लेयरिङ"
+
 msgid "3. Decay Removal"
 msgstr "3. क्षय हटाउने"
+
+msgid "3. Deep Stain Polishing"
+msgstr "३. दाँतको दाग तथा पहेँलोपन पोलिसिङ"
 
 msgid "3. Fast Digital Capture"
 msgstr "3. द्रुत डिजिटल क्याप्चर"
 
+msgid "3. Healing & Osseointegration"
+msgstr "३. हड्डीसँग जोड्ने अवधि (Healing)"
+
 msgid "3. Healing (Osseointegration)"
 msgstr "३. निको पार्ने (Osseointegration)"
+
+msgid "3. Obturation (Filling)"
+msgstr "३. जराको नसा भर्ने (Obturation)"
 
 msgid "3. Oral Examination"
 msgstr "3. मौखिक परीक्षा"
 
 msgid "3. Placement"
-msgstr "3. नियुक्ति"
+msgstr "३. इम्प्लान्ट प्रत्यारोपण (Implant Placement)"
 
 msgid "3. Temporary Placement"
-msgstr "3. अस्थायी नियुक्ति"
+msgstr "३. अस्थायी क्याप (Temporary Placement)"
 
 msgid "3. The Crown"
 msgstr "3. क्राउन"
 
 msgid "3. Wax Try-In"
-msgstr "3. मोम प्रयास गर्नुहोस्"
+msgstr "३. मोमको दाँत परीक्षण (Wax Try-In)"
 
 msgid "3D CBCT & Digital OPG"
 msgstr "3D CBCT र डिजिटल OPG"
@@ -342,17 +384,32 @@ msgstr "4. सही निदान"
 msgid "4. Chairside Review"
 msgstr "4. चेयरसाइड समीक्षा"
 
+msgid "4. Crown Placement"
+msgstr "४. क्याप लगाउने (Crown Placement)"
+
 msgid "4. Enamel Bonding"
 msgstr "4. इनामेल बन्धन"
 
 msgid "4. Final Cementation"
-msgstr "4. अन्तिम सिमेन्टेशन"
+msgstr "४. स्थायी सिमेन्टेसन (Final Cementation)"
 
 msgid "4. Final Delivery"
 msgstr "4. अन्तिम डेलिभरी"
 
+msgid "4. Final Denture Delivery"
+msgstr "४. स्थायी नक्कली दाँत डेलिभरी"
+
+msgid "4. Fluoride Protection & Home Care Advice"
+msgstr "४. फ्लोराइड सुरक्षा तथा दाँत हेरचाह सल्लाह"
+
 msgid "4. Healing"
 msgstr "4. उपचार"
+
+msgid "4. Permanent Crown Attachment"
+msgstr "४. स्थायी क्याप जडान"
+
+msgid "4. Polishing & Bite Check"
+msgstr "४. पोलिसिङ तथा टोकाइ (Bite) परीक्षण"
 
 msgid "4. Root Canal Filling"
 msgstr "४. रूट नहर भर्ने"
@@ -909,7 +966,7 @@ msgid "Aesthetic Harmony"
 msgstr "सौन्दर्य सद्भाव"
 
 msgid "Aesthetic Matching:"
-msgstr "सौन्दर्य मिलान:"
+msgstr "प्राकृतिक रङ मिलान:"
 
 msgid "Aesthetic Restoration"
 msgstr "सौन्दर्य पुनर्स्थापना"
@@ -1001,7 +1058,7 @@ msgid "Allows you to chew food properly, improving digestion and nutrition."
 msgstr "तपाईलाई खाना राम्रोसँग चपाउन, पाचन र पोषण सुधार गर्न अनुमति दिन्छ।"
 
 msgid "Allows you to eat your favorite foods without pain or hesitation."
-msgstr "तपाईंलाई पीडा वा हिचकिचाहट बिना आफ्नो मनपर्ने खाना खान अनुमति दिन्छ।"
+msgstr "बिना कुनै दुखाइ आफ्नो मनपर्ने खाना मज्जाले खान मद्दत गर्दछ।"
 
 msgid ""
 "Always remove your dentures before sleeping to give your gums a chance to "
@@ -1241,7 +1298,7 @@ msgid "Back"
 msgstr "पछाडि"
 
 msgid "Back teeth and molars where strength is the top priority."
-msgstr "पछाडिको दाँत र दाढ़ जहाँ बल शीर्ष प्राथमिकता हो।"
+msgstr "पछाडिको बंगारा जहाँ दाँतको मजबुती मुख्य प्राथमिकता हुन्छ।"
 
 msgid "Back to About Us"
 msgstr "हाम्रो बारे मा फर्कनुहोस्"
@@ -1535,7 +1592,7 @@ msgid "Boolean (Either True, False or None)"
 msgstr "बुलियन (या त साँचो, गलत वा कुनै पनि होइन)"
 
 msgid "Both front and back teeth. Best all-round performance."
-msgstr "अगाडि र पछाडि दुवै दाँत। उत्कृष्ट अलराउन्ड प्रदर्शन।"
+msgstr "अगाडि र पछाडि दुवै दाँतका लागि उत्कृष्ट र टिकाउ समाधान।"
 
 msgid "Braces & Aligners"
 msgstr "ब्रेसेस र अलाइनर"
@@ -2422,7 +2479,7 @@ msgid "Cost-Effective"
 msgstr "लागत-प्रभावी"
 
 msgid "Cost-effective"
-msgstr "लागत प्रभावी"
+msgstr "किफायती शुल्क"
 
 msgid "Could not find job {} in the database! Skipping execution..."
 msgstr "डाटाबेसमा काम {} फेला पार्न सकेन! कार्यान्वयन छोड्दै..."
@@ -2861,7 +2918,7 @@ msgid "Digital Exam"
 msgstr "डिजिटल परीक्षा"
 
 msgid "Digital Impressions:"
-msgstr "डिजिटल छापहरू:"
+msgstr "डिजिटल ३D स्क्यान:"
 
 msgid "Digital OPG & CBCT Imaging"
 msgstr "डिजिटल OPG र CBCT इमेजिङ"
@@ -3079,7 +3136,7 @@ msgid "Durable (replaced weekly)"
 msgstr "टिकाउ (साप्ताहिक प्रतिस्थापन)"
 
 msgid "Durable, non-aesthetic"
-msgstr "टिकाऊ, गैर-सौंदर्य"
+msgstr "अत्यधिक बलियो, पछाडिको दाँतका लागि उपयुक्त"
 
 msgid "Duration"
 msgstr "अवधि"
@@ -3097,10 +3154,10 @@ msgid "During: Ultrasonic Deep Cleaning"
 msgstr "समयमा: अल्ट्रासोनिक गहिरो सफाई"
 
 msgid "E-MAX CROWN"
-msgstr "E-MAX क्राउन"
+msgstr "इ-म्याक्स क्याप (E-max Crown)"
 
 msgid "E-max Crown"
-msgstr "ई-अधिकतम क्राउन"
+msgstr "इ-म्याक्स क्याप (E-max Crown)"
 
 msgid "E.g., pregnancy can make gums more sensitive."
 msgstr "उदाहरणका लागि, गर्भावस्थाले गिजालाई बढी संवेदनशील बनाउन सक्छ।"
@@ -3962,10 +4019,10 @@ msgstr ""
 "सुरक्षा र सन्तुष्टिलाई प्राथमिकता दिन्छ।"
 
 msgid "Front and back teeth where strength and aesthetics are needed."
-msgstr "अगाडि र पछाडिको दाँत जहाँ बल र सौन्दर्यता चाहिन्छ।"
+msgstr "अगाडि र पछाडिका दाँत जहाँ मजबुती र सौन्दर्य दुवै आवश्यक हुन्छ।"
 
 msgid "Front teeth and visible areas for the best aesthetics."
-msgstr "अगाडिको दाँत र उत्कृष्ट सौन्दर्यशास्त्रका लागि देखिने क्षेत्रहरू।"
+msgstr "अगाडिका देखिने दाँतहरूका लागि सर्वोत्तम सौन्दर्य।"
 
 msgid "Full Arch (All-on-4 / All-on-6)"
 msgstr "पूर्ण आर्क (सबै-मा-4 / सबै-मा-6)"
@@ -4169,7 +4226,7 @@ msgid "Glass Ionomer Restoration"
 msgstr "ग्लास आयनोमर पुनर्स्थापना"
 
 msgid "Good for front and back teeth"
-msgstr "अगाडि र पछाडिको दाँतको लागि राम्रो"
+msgstr "अगाडि र पछाडिका दुवै दाँतका लागि उपयुक्त"
 
 msgid "Google Business Rating"
 msgstr "गुगल व्यापार मूल्याङ्कन"
@@ -4314,7 +4371,7 @@ msgid "High Success Rate"
 msgstr "उच्च सफलता दर"
 
 msgid "High strength, natural aesthetic"
-msgstr "उच्च शक्ति, प्राकृतिक सौन्दर्य"
+msgstr "उच्च मजबुती, प्राकृतिक सौन्दर्य"
 
 msgid "High-Intensity LED Curing & Aesthetic Composite Dental Restorations"
 msgstr "उच्च तीव्रता एलईडी क्युरिङ र एस्थेटिक कम्पोजिट दन्त पुनर्स्थापना"
@@ -4387,7 +4444,7 @@ msgid "Highly aesthetic"
 msgstr "उच्च सौन्दर्य"
 
 msgid "Highly durable"
-msgstr "अत्यधिक टिकाउ"
+msgstr "अत्यधिक टिकाउ र बलियो"
 
 msgid "Hold down “Control”, or “Command” on a Mac, to select more than one."
 msgstr "एक भन्दा बढी चयन गर्न म्याकमा \"नियन्त्रण\", वा \"कमाण्ड\" होल्ड गर्नुहोस्।"
@@ -4525,10 +4582,10 @@ msgid "Ideal for Children's Teeth"
 msgstr "बालबालिकाको दाँतको लागि आदर्श"
 
 msgid "Ideal for all teeth"
-msgstr "सबै दाँत को लागी आदर्श"
+msgstr "सबै दाँतका लागि उपयुक्त"
 
 msgid "Ideal for back molars"
-msgstr "पछाडि मोलर्स को लागी आदर्श"
+msgstr "पछाडिका बंगाराका लागि उपयुक्त"
 
 msgid ""
 "Ideal for patients who prefer a more discreet appearance while maintaining "
@@ -5101,14 +5158,14 @@ msgid "Low-radiation instant high-definition diagnostics."
 msgstr "कम विकिरण तत्काल उच्च परिभाषा निदान।"
 
 msgid "METAL CROWN"
-msgstr "धातु मुकुट"
+msgstr "मेटल क्याप (धातु क्राउन)"
 
 msgid ""
 "Made from high-strength zirconia ceramic. Extremely durable with excellent "
 "natural appearance."
 msgstr ""
-"उच्च-शक्ति जिरकोनिया सिरेमिकबाट बनेको। उत्कृष्ट प्राकृतिक उपस्थिति संग धेरै "
-"टिकाऊ।"
+"अत्यन्त बलियो जिर्कोनिया सिरामिकबाट बनेको, जीवनभर टिक्ने र प्राकृतिक दाँत "
+"जस्तै देखिने प्रिमियम क्याप।"
 
 msgid "Main Dental Operatory Suite"
 msgstr "मुख्य दन्त अपरेटरी सुइट"
@@ -5237,7 +5294,7 @@ msgid "Metal Braces Patient"
 msgstr "मेटल ब्रेसेस रोगी"
 
 msgid "Metal Crown"
-msgstr "धातु मुकुट"
+msgstr "मेटल क्याप (धातु क्राउन)"
 
 msgid "Metal-free, highly aesthetic"
 msgstr "धातु-मुक्त, उच्च सौन्दर्य"
@@ -5325,7 +5382,7 @@ msgid "Monday"
 msgstr "सोमबार"
 
 msgid "More affordable than all-ceramic"
-msgstr "सबै सिरेमिक भन्दा बढी किफायती"
+msgstr "अल-सिरामिक भन्दा किफायती"
 
 msgid "More information is available with DEBUG=True."
 msgstr "थप जानकारी DEBUG=True मा उपलब्ध छ।"
@@ -5414,10 +5471,10 @@ msgid "Natural Shade Selection"
 msgstr "प्राकृतिक छाया चयन"
 
 msgid "Natural tooth-colored appearance"
-msgstr "प्राकृतिक दाँत-रंगको उपस्थिति"
+msgstr "दाँतको प्राकृतिक रङ मिल्ने"
 
 msgid "Natural translucency"
-msgstr "प्राकृतिक पारदर्शिता"
+msgstr "प्राकृतिक दाँतको जस्तै चमक"
 
 msgid "Natural-Looking Tooth Replacement"
 msgstr "प्राकृतिक देखिने दाँत प्रत्यारोपण"
@@ -5722,8 +5779,8 @@ msgid ""
 "On your return visit, we verify the fit, shade, and bite, then permanently "
 "bond the crown in place."
 msgstr ""
-"तपाईंको फिर्ता भ्रमणमा, हामी फिट, छाया, र काटेको प्रमाणित गर्छौं, त्यसपछि "
-"स्थायी रूपमा मुकुटलाई ठाउँमा बाँध्छौं।"
+"अर्को पटक आउँदा क्यापको फिटिङ, रङ र टोकाइ (Bite) जाँच गरी स्थायी रूपमा "
+"टाँसिन्छ।"
 
 msgid ""
 "Once crowned, the tooth can handle normal biting and chewing forces "
@@ -5971,8 +6028,8 @@ msgid ""
 "Our crowns are milled by expert technicians ensuring a perfect, micro-"
 "precise fit."
 msgstr ""
-"हाम्रा मुकुटहरू एक उत्तम, सूक्ष्म-सटीक फिट सुनिश्चित गर्ने विशेषज्ञ "
-"प्राविधिकहरूद्वारा मिलाइएका छन्।"
+"हाम्रा क्यापहरू आधुनिक ल्याबका प्राविधिकहरूद्वारा माइक्रो-सटीक नापमा निर्माण"
+" गरिन्छ।"
 
 msgid ""
 "Our dental specialists are available to explain procedures and create custom"
@@ -6128,10 +6185,10 @@ msgid "PATIENT STORIES & REVIEWS"
 msgstr "बिरामी कथाहरू र समीक्षाहरू"
 
 msgid "PFM CROWN"
-msgstr "PFM क्राउन"
+msgstr "PFM क्याप (दाँतको रङ मिल्ने)"
 
 msgid "PFM Crown"
-msgstr "PFM क्राउन"
+msgstr "PFM क्याप (दाँतको रङ मिल्ने)"
 
 msgid "PM"
 msgstr "PM"
@@ -6321,7 +6378,7 @@ msgstr ""
 " उपयुक्त जो लगभग अदृश्य र हटाउन सकिने समाधान चाहन्छन्।"
 
 msgid "Perfect for front teeth"
-msgstr "अगाडिको दाँतको लागि उत्तम"
+msgstr "अगाडिका दाँतका लागि उत्तम"
 
 msgid ""
 "Performed on a tooth that can be seen in the mouth. We loosen the tooth with"
@@ -6508,14 +6565,14 @@ msgid "Popular Reads"
 msgstr "लोकप्रिय पढाइहरू"
 
 msgid "Porcelain Fused to Metal"
-msgstr "पोर्सिलेन धातुमा फ्यूज गरियो"
+msgstr "दाँतको रङ मिल्ने पोर्सिलेन र धातुको मजबुत मिश्रण"
 
 msgid ""
 "Porcelain fused to metal for strength and natural appearance. A perfect "
 "balance of durability and aesthetics."
 msgstr ""
-"पोर्सिलेन बल र प्राकृतिक उपस्थितिको लागि धातुमा फ्यूज गरियो। स्थायित्व र "
-"सौन्दर्य को एक सही सन्तुलन।"
+"दाँतको रङ मिल्ने पोर्सिलेन र धातुको बलियो मिश्रण, जसले प्राकृतिक र आकर्षक "
+"मुस्कान दिन्छ।"
 
 msgid "Positive big integer"
 msgstr "धनात्मक ठूलो पूर्णांक"
@@ -6608,7 +6665,7 @@ msgid "Preferred Visit Date"
 msgstr "रुचाइएको भ्रमण मिति"
 
 msgid "Premium All-Ceramic"
-msgstr "प्रिमियम सबै सिरेमिक"
+msgstr "प्रिमियम अल-सिरामिक"
 
 msgid "Premium Denture"
 msgstr "प्रिमियम दाँत"
@@ -6626,8 +6683,8 @@ msgid ""
 "Premium all-ceramic crown known for its lifelike translucency and beautiful "
 "aesthetics."
 msgstr ""
-"प्रिमियम अखिल सिरेमिक क्राउन यसको जीवन जस्तो पारदर्शिता र सुन्दर "
-"सौन्दर्यशास्त्रका लागि परिचित छ।"
+"अगाडिका दाँतहरूलाई प्राकृतिक चमक र उत्कृष्ट सौन्दर्य दिने प्रिमियम "
+"अल-सिरामिक क्याप।"
 
 msgid ""
 "Premium zirconia and ceramic crowns to strengthen weak teeth and restore "
@@ -6670,7 +6727,7 @@ msgid "Prevents Gum Disease"
 msgstr "गिजाको रोगबाट बचाउँछ"
 
 msgid "Prevents Shifting"
-msgstr "स्थानान्तरण रोक्छ"
+msgstr "दाँत हल्लिन वा सर्नबाट रोक्छ"
 
 msgid "Prevents Spread"
 msgstr "फैलिनबाट रोक्छ"
@@ -6789,7 +6846,8 @@ msgstr "समग्र स्वास्थ्यको सुरक्षा 
 
 msgid "Provides a protective shield for brittle or root-canal treated teeth."
 msgstr ""
-"भंगुर वा जरा-नहर उपचार गरिएका दाँतहरूको लागि सुरक्षात्मक ढाल प्रदान गर्दछ।"
+"रूट क्यानल गरिएको वा कमजोर दाँतलाई भाँचिनबाट जोगाउन सुरक्षा कवच प्रदान "
+"गर्दछ।"
 
 msgid "Qualified Specialists,"
 msgstr "योग्य विशेषज्ञहरू,"
@@ -7100,7 +7158,7 @@ msgid "Reset password"
 msgstr "पासवर्ड रिसेट गर्नुहोस्"
 
 msgid "Resistant to wear and fracture"
-msgstr "लगाउने र भाँच्न प्रतिरोधी"
+msgstr "घोटिन र भाँचिनबाट सुरक्षित"
 
 msgid "Restorations"
 msgstr "पुनर्स्थापनाहरू"
@@ -7139,7 +7197,7 @@ msgid "Restored Appearance"
 msgstr "पुनर्स्थापित उपस्थिति"
 
 msgid "Restores Chewing"
-msgstr "च्युइङ पुनर्स्थापित गर्दछ"
+msgstr "चपाउने शक्ति पुनर्स्थापना गर्दछ"
 
 msgid "Restores Function"
 msgstr "प्रकार्य पुनर्स्थापित गर्दछ"
@@ -7897,7 +7955,7 @@ msgid "Strong Enamel Bonding"
 msgstr "बलियो इनामेल बन्धन"
 
 msgid "Strong and durable"
-msgstr "बलियो र टिकाउ"
+msgstr "मजबुत र दीर्घकालीन"
 
 msgid ""
 "Strong local anesthesia is administered so you feel only pressure, not pain,"
@@ -7943,7 +8001,7 @@ msgid "Sunita M."
 msgstr "सुनिता एम."
 
 msgid "Superior aesthetics"
-msgstr "उत्कृष्ट सौन्दर्यशास्त्र"
+msgstr "उत्कृष्ट सौन्दर्य"
 
 msgid "Suresh K."
 msgstr "सुरेश के."
@@ -8287,8 +8345,8 @@ msgid ""
 "The tooth is numbed, and a thin layer of enamel is shaped to make room for "
 "the crown to fit over it perfectly."
 msgstr ""
-"दाँत सुन्निएको छ, र इनामेलको पातलो तहलाई मुकुटमा पूर्ण रूपमा फिट हुनको लागि "
-"ठाउँ बनाउनको लागि आकार दिइन्छ।"
+"दाँतलाई लठ्याएर क्याप राम्रोसँग बस्नका लागि इनामेलको पातलो तहलाई उपयुक्त "
+"आकार दिइन्छ।"
 
 msgid "The tooth suddenly darkening from the inside out."
 msgstr "दाँत एक्कासी भित्रबाट कालो हुन थाल्यो।"
@@ -8451,7 +8509,7 @@ msgid "Tooth Pain / Other Concern"
 msgstr "दाँत दुख्ने / अन्य समस्या"
 
 msgid "Tooth Protection"
-msgstr "दाँत संरक्षण"
+msgstr "दाँतको सुरक्षा"
 
 msgid "Tooth Sensitivity"
 msgstr "दाँत संवेदनशीलता"
@@ -8490,7 +8548,7 @@ msgstr ""
 "टूथब्रशले दाँतको सतहको ६०% मात्र सफा गर्छ; कडा खाडलहरूलाई फ्लसिङ चाहिन्छ।"
 
 msgid "Top-tier Labs:"
-msgstr "शीर्ष-स्तरीय प्रयोगशालाहरू:"
+msgstr "अन्तर्राष्ट्रिय स्तरका ल्याब:"
 
 msgid "Total run time of this job (in seconds)."
 msgstr "यो कामको कुल चल्ने समय (सेकेन्डमा)।"
@@ -9005,7 +9063,7 @@ msgid "Warning Signs"
 msgstr "चेतावनी संकेत"
 
 msgid "Warranty:"
-msgstr "वारेन्टी:"
+msgstr "वारेन्टी तथा ग्यारेन्टी:"
 
 msgid "Watch & Learn Before Your Visit"
 msgstr "तपाईंको भ्रमण गर्नु अघि हेर्नुहोस् र सिक्नुहोस्"
@@ -9245,7 +9303,9 @@ msgstr ""
 "र स्पष्ट रोगी सञ्चारमा विशेषज्ञ छौं।"
 
 msgid "We stand by the quality of our premium Zirconia and E-max crowns."
-msgstr "हामी हाम्रो प्रिमियम Zirconia र E-max क्राउनको गुणस्तरमा खडा छौं।"
+msgstr ""
+"हामी हाम्रा प्रिमियम जिर्कोनिया र इ-म्याक्स क्यापहरूको गुणस्तरमा पूर्ण "
+"विश्वस्त छौं।"
 
 msgid ""
 "We strictly adhere to the 'As Low As Reasonably Achievable' standard, taking"
@@ -9265,15 +9325,13 @@ msgid ""
 "We take a precise 3D scan of your mouth and send the data to our dental lab "
 "to custom-mill your crown or bridge."
 msgstr ""
-"हामी तपाइँको मुखको सटीक 3D स्क्यान लिन्छौं र तपाइँको मुकुट वा पुल अनुकूलन "
-"गर्न हाम्रो दन्त प्रयोगशालामा डाटा पठाउँछौं।"
+"हामी तपाईंको मुखको सटीक ३D स्क्यान गरी दाँतको क्याप वा ब्रिज निर्माणका लागि "
+"आधुनिक दन्त ल्याबमा पठाउँछौं।"
 
 msgid ""
 "We take lighting and natural translucency into account for an invisible "
 "restoration."
-msgstr ""
-"हामी अदृश्य पुनर्स्थापनाको लागि प्रकाश र प्राकृतिक पारदर्शितालाई ध्यानमा "
-"राख्छौं।"
+msgstr "हामी प्राकृतिक प्रकाश र चमक मिलाएर दाँतको रङ दुरुस्त मिलाउँछौं।"
 
 msgid ""
 "We take multiple detailed impressions to ensure your denture fits snugly "
@@ -9343,8 +9401,7 @@ msgid ""
 "We use precise 3D scanners instead of messy, uncomfortable putty to mold "
 "your teeth."
 msgstr ""
-"हामी तपाईंको दाँत मोल्ड गर्न गन्दा, असहज पुट्टीको सट्टा सटीक 3D स्क्यानरहरू "
-"प्रयोग गर्छौं।"
+"हामी परम्परागत फोहोर पेस्टको साटो सटीक ३D डिजिटल स्क्यानर प्रयोग गर्दछौं।"
 
 msgid ""
 "We use profound local anesthesia and advanced rotary endodontics to ensure "
@@ -9644,8 +9701,8 @@ msgid ""
 "While your permanent crown is being crafted, we place a temporary crown to "
 "protect your tooth."
 msgstr ""
-"जब तपाईंको स्थायी मुकुट बनाइन्छ, हामी तपाईंको दाँतको सुरक्षा गर्न अस्थायी "
-"मुकुट राख्छौं।"
+"स्थायी क्याप तयार नहुन्जेल दाँतको पूर्ण सुरक्षाका लागि अस्थायी क्याप "
+"लगाइन्छ।"
 
 msgid "Whitening"
 msgstr "ह्वाइटनिङ"
@@ -9675,7 +9732,7 @@ msgid "Why Choose CareFirst"
 msgstr "केयरफर्स्ट किन रोज्ने?"
 
 msgid "Why Choose CareFirst Dental Clinic?"
-msgstr "केयरफर्स्ट डेन्टल क्लिनिक किन छनौट गर्ने?"
+msgstr "केयरफर्स्ट डेन्टल क्लिनिक किन रोज्ने?"
 
 msgid "Why Choose CareFirst for Root Canal?"
 msgstr "रूट नहरको लागि किन केयरफर्स्ट छनौट गर्नुहोस्?"
@@ -9684,7 +9741,7 @@ msgid "Why Choose CareFirst?"
 msgstr "किन केयरफर्स्ट छनौट गर्ने?"
 
 msgid "Why Choose Carefirst Dental Clinic?"
-msgstr "केयरफर्स्ट डेन्टल क्लिनिक किन छनौट गर्ने?"
+msgstr "केयरफर्स्ट डेन्टल क्लिनिक किन रोज्ने?"
 
 msgid "Why Choose Implants Over Bridges or Dentures?"
 msgstr "किन ब्रिज वा डेन्चर माथि इम्प्लान्टहरू छनौट गर्ने?"
@@ -10098,7 +10155,7 @@ msgstr ""
 "प्रयोग गर्नुहोस्।"
 
 msgid "ZIRCONIA CROWN"
-msgstr "ZIRCONIA क्राउन"
+msgstr "प्रिमियम जिर्कोनिया क्याप"
 
 msgid "Zero Dental Anxiety"
 msgstr "शून्य दन्त चिन्ता"
@@ -10107,7 +10164,7 @@ msgid "Zirconia Bridge Patient"
 msgstr "Zirconia ब्रिज रोगी"
 
 msgid "Zirconia Crown"
-msgstr "Zirconia क्राउन"
+msgstr "प्रिमियम जिर्कोनिया क्याप"
 
 msgid ""
 "Zirconia is incredibly strong and durable, making it excellent for back "
