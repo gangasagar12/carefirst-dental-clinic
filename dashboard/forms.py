@@ -149,8 +149,9 @@ class LoyaltyProgramForm(BootstrapFormMixin, forms.ModelForm):
         fields = [
             'name', 'tagline', 'description', 'required_completed_treatments',
             'reward_type', 'discount_percentage', 'fixed_discount_amount',
-            'maximum_discount_amount', 'expiry_days', 'allow_all_services_by_default',
-            'allow_consultations_eligible', 'eligible_services', 'excluded_services', 'is_active'
+            'maximum_discount_amount', 'expiry_days', 'require_payment_verification',
+            'allow_all_services_by_default', 'allow_consultations_eligible',
+            'eligible_services', 'excluded_services', 'is_active'
         ]
         widgets = {
             'description': forms.Textarea(attrs={'rows': 3}),

@@ -1,0 +1,552 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static i18n %}
+
+{% block dashboard_content %}
+<div class="container-fluid py-4">
+
+  <!-- Header & Navigation -->
+  <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+    <div>
+      <div class="d-flex align-items-center gap-2 mb-1">
+        <span class="badge bg-warning text-dark px-3 py-1.5 rounded-pill fw-bold">
+          <i class="bi bi-shield-check me-1"></i> {% trans "Human Staff Gate" %}
+        </span>
+        <span class="badge bg-primary text-white px-2.5 py-1 rounded-pill small">
+          {{ program.name }} ({{ program.required_completed_treatments }} Visits → {{ program.get_reward_label }})
+        </span>
+      </div>
+      <h2 class="h3 fw-bold mb-1" style="color: #07192F;">{% trans "Loyalty Verification Desk" %}</h2>
+      <p class="text-muted small mb-0">
+        {% trans "Doctor marks treatment completed → Receptionist reviews eligibility & payment before granting loyalty progress." %}
+      </p>
+    </div>
+
+    <!-- Quick Navigation Links -->
+    <div class="d-flex gap-2 flex-wrap">
+      <a href="{% url 'dashboard:loyalty_reception' %}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+        <i class="bi bi-search me-1"></i> {% trans "Patient Lookup" %}
+      </a>
+      <a href="{% url 'dashboard:loyalty_verification_logs' %}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+        <i class="bi bi-journal-text me-1"></i> {% trans "Verification Audit Log" %}
+      </a>
+    </div>
+  </div>
+
+  <!-- Loyalty Suite Sub-Nav -->
+  <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
+    <div class="card-body p-2 bg-light">
+      <ul class="nav nav-pills nav-fill gap-1">
+        <li class="nav-item">
+          <a class="nav-link rounded-3 fw-bold py-2 text-dark" href="{% url 'dashboard:loyalty_reception' %}">
+            <i class="bi bi-person-badge me-1.5 text-primary"></i> {% trans "Reception Desk" %}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active rounded-3 fw-bold py-2 shadow-sm" href="{% url 'dashboard:loyalty_verification_queue' %}" style="background-color: #0284C7;">
+            <i class="bi bi-check2-circle me-1.5"></i> {% trans "Verification Queue" %}
+            {% if counts.awaiting > 0 %}
+              <span class="badge bg-danger rounded-pill ms-1">{{ counts.awaiting }}</span>
+            {% endif %}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded-3 fw-bold py-2 text-dark" href="{% url 'dashboard:loyalty_verification_logs' %}">
+            <i class="bi bi-shield-shaded me-1.5 text-info"></i> {% trans "Verification Logs" %}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded-3 fw-bold py-2 text-dark" href="{% url 'dashboard:loyalty_rewards' %}">
+            <i class="bi bi-gift-fill me-1.5 text-warning"></i> {% trans "Rewards Ledger" %}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded-3 fw-bold py-2 text-dark" href="{% url 'dashboard:loyalty_transactions' %}">
+            <i class="bi bi-clock-history me-1.5 text-secondary"></i> {% trans "Activity Stream" %}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded-3 fw-bold py-2 text-dark" href="{% url 'dashboard:loyalty_program' %}">
+            <i class="bi bi-sliders me-1.5 text-success"></i> {% trans "Program Settings" %}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- KPI Status Row -->
+  <div class="row g-3 mb-4">
+    <div class="col-sm-6 col-lg-4">
+      <a href="?status=awaiting_verification" class="text-decoration-none">
+        <div class="card border-0 shadow-sm rounded-4 p-3 h-100 {% if status_filter == 'awaiting_verification' %}border-start border-warning border-4 bg-white{% else %}bg-light opacity-75{% endif %}">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="text-muted small fw-bold text-uppercase">{% trans "Awaiting Staff Review" %}</span>
+              <h3 class="fw-bold mb-0 text-warning">{{ counts.awaiting }}</h3>
+            </div>
+            <div class="p-3 bg-warning bg-opacity-10 text-warning rounded-circle">
+              <i class="bi bi-hourglass-split fs-4"></i>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+      <a href="?status=verified" class="text-decoration-none">
+        <div class="card border-0 shadow-sm rounded-4 p-3 h-100 {% if status_filter == 'verified' %}border-start border-success border-4 bg-white{% else %}bg-light opacity-75{% endif %}">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="text-muted small fw-bold text-uppercase">{% trans "Verified Eligible (+1 Granted)" %}</span>
+              <h3 class="fw-bold mb-0 text-success">{{ counts.verified }}</h3>
+            </div>
+            <div class="p-3 bg-success bg-opacity-10 text-success rounded-circle">
+              <i class="bi bi-check-circle-fill fs-4"></i>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+      <a href="?status=not_eligible" class="text-decoration-none">
+        <div class="card border-0 shadow-sm rounded-4 p-3 h-100 {% if status_filter == 'not_eligible' %}border-start border-danger border-4 bg-white{% else %}bg-light opacity-75{% endif %}">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="text-muted small fw-bold text-uppercase">{% trans "Marked Not Eligible" %}</span>
+              <h3 class="fw-bold mb-0 text-danger">{{ counts.not_eligible }}</h3>
+            </div>
+            <div class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle">
+              <i class="bi bi-x-circle-fill fs-4"></i>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Filter & Search Bar -->
+  <div class="card border-0 shadow-sm rounded-4 mb-4">
+    <div class="card-body p-3">
+      <form method="GET" class="row g-2 align-items-center">
+        <input type="hidden" name="status" value="{{ status_filter }}">
+        <div class="col-md-8">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+            <input type="text" name="q" value="{{ q }}" class="form-control border-start-0" placeholder="{% trans 'Search by patient name, phone number, appointment # or service...' %}">
+            {% if q %}
+              <a href="?status={{ status_filter }}" class="btn btn-outline-secondary">{% trans "Clear" %}</a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <div class="btn-group w-100">
+            <a href="?status=awaiting_verification{% if q %}&q={{ q }}{% endif %}" class="btn btn-sm {% if status_filter == 'awaiting_verification' %}btn-warning fw-bold{% else %}btn-outline-secondary{% endif %}">
+              {% trans "Awaiting" %} ({{ counts.awaiting }})
+            </a>
+            <a href="?status=verified{% if q %}&q={{ q }}{% endif %}" class="btn btn-sm {% if status_filter == 'verified' %}btn-success fw-bold{% else %}btn-outline-secondary{% endif %}">
+              {% trans "Verified" %}
+            </a>
+            <a href="?status=not_eligible{% if q %}&q={{ q }}{% endif %}" class="btn btn-sm {% if status_filter == 'not_eligible' %}btn-danger fw-bold{% else %}btn-outline-secondary{% endif %}">
+              {% trans "Not Eligible" %}
+            </a>
+            <a href="?status=all{% if q %}&q={{ q }}{% endif %}" class="btn btn-sm {% if status_filter == 'all' %}btn-primary fw-bold{% else %}btn-outline-secondary{% endif %}">
+              {% trans "All" %}
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Verification Queue Table / Cards -->
+  <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+    <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
+      <h5 class="fw-bold mb-0" style="color: #07192F;">
+        {% if status_filter == 'awaiting_verification' %}
+          <i class="bi bi-clock text-warning me-2"></i>{% trans "Visits Awaiting Staff Verification" %}
+        {% elif status_filter == 'verified' %}
+          <i class="bi bi-check2-all text-success me-2"></i>{% trans "Completed & Verified Loyalty Visits" %}
+        {% elif status_filter == 'not_eligible' %}
+          <i class="bi bi-slash-circle text-danger me-2"></i>{% trans "Completed Visits Marked Not Eligible" %}
+        {% else %}
+          <i class="bi bi-list-task text-primary me-2"></i>{% trans "All Completed Clinical Visits" %}
+        {% endif %}
+      </h5>
+      <span class="text-muted small">{% trans "Showing" %} {{ appointments.paginator.count }} {% trans "records" %}</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="bg-light text-muted small text-uppercase">
+          <tr>
+            <th class="ps-4">{% trans "Patient & Contact" %}</th>
+            <th>{% trans "Service / Treatment" %}</th>
+            <th>{% trans "Completion Time" %}</th>
+            <th>{% trans "Payment" %}</th>
+            <th>{% trans "Loyalty Progress Preview" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th class="text-end pe-4">{% trans "Staff Decision" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for app in appointments %}
+          <tr>
+            <!-- Patient Column -->
+            <td class="ps-4">
+              <div class="d-flex align-items-center gap-2">
+                <div class="avatar-circle bg-primary bg-opacity-10 text-primary fw-bold rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                  {{ app.full_name|slice:":1"|upper }}
+                </div>
+                <div>
+                  <div class="fw-bold text-dark">
+                    <a href="{% url 'dashboard:appointment_detail' app.id %}" class="text-decoration-none text-dark">
+                      {{ app.full_name }}
+                    </a>
+                  </div>
+                  <div class="small text-muted font-monospace">
+                    <i class="bi bi-telephone text-primary me-1"></i>{{ app.phone }}
+                    {% if app.appointment_number %}
+                      • <span class="badge bg-light text-secondary border">{{ app.appointment_number }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </td>
+
+            <!-- Service Column -->
+            <td>
+              <div class="fw-semibold text-dark">
+                {{ app.service.title|default:app.get_treatment_display }}
+              </div>
+              <div class="small text-muted">
+                {% if app.doctor %}
+                  <i class="bi bi-person-badge text-secondary me-1"></i>{{ app.doctor.name }}
+                {% else %}
+                  <span class="text-muted">{% trans "CareFirst Clinical Team" %}</span>
+                {% endif %}
+              </div>
+            </td>
+
+            <!-- Completion Date Column -->
+            <td>
+              <div class="small fw-semibold text-dark">{{ app.preferred_date|date:"d M Y" }}</div>
+              <div class="small text-muted">
+                {% if app.completed_at %}
+                  <i class="bi bi-check-all text-success me-1"></i>{{ app.completed_at|date:"h:i A" }}
+                {% else %}
+                  {{ app.get_preferred_time_display|default:"Routine slot" }}
+                {% endif %}
+              </div>
+            </td>
+
+            <!-- Payment Status Column -->
+            <td>
+              {% if app.payment_status == 'paid' %}
+                <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2.5 py-1 rounded-pill">
+                  <i class="bi bi-check-circle-fill me-1"></i>{% trans "Paid" %}
+                </span>
+              {% elif app.payment_status == 'waived' %}
+                <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 px-2.5 py-1 rounded-pill">
+                  <i class="bi bi-tag-fill me-1"></i>{% trans "Waived" %}
+                </span>
+              {% else %}
+                <span class="badge bg-warning bg-opacity-10 text-dark border border-warning border-opacity-25 px-2.5 py-1 rounded-pill">
+                  <i class="bi bi-clock-history me-1"></i>{% trans "Pending" %}
+                </span>
+              {% endif %}
+            </td>
+
+            <!-- Loyalty Progress Preview -->
+            <td>
+              <div class="d-flex align-items-center gap-2">
+                <span class="fw-bold font-monospace text-primary">
+                  {{ app.preview_current_progress }} / {{ program.required_completed_treatments }}
+                </span>
+                <i class="bi bi-arrow-right text-muted small"></i>
+                <span class="fw-bold font-monospace {% if app.preview_will_unlock %}text-warning{% else %}text-success{% endif %}">
+                  {{ app.preview_new_progress }} / {{ program.required_completed_treatments }}
+                </span>
+              </div>
+              {% if app.preview_will_unlock %}
+                <span class="badge bg-warning text-dark px-2 py-0.5 rounded-pill small mt-1">
+                  🎉 {% trans "Unlocks 10% Reward" %}
+                </span>
+              {% else %}
+                <small class="text-muted d-block">{% trans "Adds +1 loyalty visit" %}</small>
+              {% endif %}
+            </td>
+
+            <!-- Status Column -->
+            <td>
+              {% if app.loyalty_status == 'awaiting_verification' %}
+                <span class="badge bg-warning text-dark px-2.5 py-1.5 rounded-pill">
+                  <i class="bi bi-hourglass-split me-1"></i>{% trans "Awaiting Review" %}
+                </span>
+              {% elif app.loyalty_status == 'verified' %}
+                <span class="badge bg-success text-white px-2.5 py-1.5 rounded-pill">
+                  <i class="bi bi-check-circle me-1"></i>{% trans "Verified (+1)" %}
+                </span>
+                {% if app.loyalty_verified_by %}
+                  <small class="text-muted d-block mt-0.5 font-monospace" style="font-size: 0.72rem;">by {{ app.loyalty_verified_by.username }}</small>
+                {% endif %}
+              {% elif app.loyalty_status == 'not_eligible' %}
+                <span class="badge bg-danger text-white px-2.5 py-1.5 rounded-pill">
+                  <i class="bi bi-x-circle me-1"></i>{% trans "Not Eligible" %}
+                </span>
+                {% if app.loyalty_rejection_reason %}
+                  <small class="text-danger d-block mt-0.5" style="font-size: 0.72rem;">{{ app.loyalty_rejection_reason }}</small>
+                {% endif %}
+              {% else %}
+                <span class="badge bg-secondary text-white px-2 py-1 rounded-pill">{% trans "None" %}</span>
+              {% endif %}
+            </td>
+
+            <!-- Action Column -->
+            <td class="text-end pe-4">
+              {% if app.loyalty_status == 'awaiting_verification' %}
+                <div class="d-inline-flex gap-1">
+                  <!-- Approve Button -->
+                  <button type="button" 
+                          class="btn btn-success btn-sm rounded-pill px-3 fw-bold"
+                          data-bs-toggle="modal" 
+                          data-bs-target="#modalApprove{{ app.id }}">
+                    <i class="bi bi-check-lg me-1"></i>{% trans "Verify & Add" %}
+                  </button>
+
+                  <!-- Reject Button -->
+                  <button type="button" 
+                          class="btn btn-outline-danger btn-sm rounded-pill px-2.5"
+                          data-bs-toggle="modal" 
+                          data-bs-target="#modalReject{{ app.id }}">
+                    <i class="bi bi-x-lg me-1"></i>{% trans "Not Eligible" %}
+                  </button>
+                </div>
+              {% else %}
+                <div class="d-inline-flex gap-1">
+                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-outline-secondary btn-sm rounded-pill px-2.5">
+                    <i class="bi bi-eye"></i>
+                  </a>
+                  <!-- Re-evaluate / Override Button for staff -->
+                  <button type="button" 
+                          class="btn btn-outline-primary btn-sm rounded-pill px-2"
+                          data-bs-toggle="modal" 
+                          data-bs-target="#modalApprove{{ app.id }}"
+                          title="{% trans 'Re-evaluate or Grant' %}">
+                    <i class="bi bi-arrow-repeat"></i>
+                  </button>
+                </div>
+              {% endif %}
+            </td>
+          </tr>
+
+          <!-- MODAL: CONFIRM LOYALTY PROGRESS VERIFICATION -->
+          <div class="modal fade" id="modalApprove{{ app.id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content rounded-4 border-0 shadow">
+                <form method="POST" action="{% url 'dashboard:loyalty_verify_appointment' app.id %}">
+                  {% csrf_token %}
+                  <div class="modal-header bg-success bg-opacity-10 border-bottom border-success border-opacity-25 p-3 px-4">
+                    <h5 class="modal-title fw-bold text-success d-flex align-items-center gap-2">
+                      <i class="bi bi-check-circle-fill"></i> {% trans "Confirm Loyalty Progress" %}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-body p-4">
+                    <p class="text-muted small mb-3">
+                      {% trans "Please confirm that this patient completed an eligible treatment visit and is authorized to receive loyalty progress." %}
+                    </p>
+
+                    <!-- Summary Card -->
+                    <div class="bg-light p-3 rounded-3 border mb-3">
+                      <div class="row g-2 small">
+                        <div class="col-4 text-muted">{% trans "Patient:" %}</div>
+                        <div class="col-8 fw-bold text-dark">{{ app.full_name }} ({{ app.phone }})</div>
+
+                        <div class="col-4 text-muted">{% trans "Service:" %}</div>
+                        <div class="col-8 fw-bold text-dark">{{ app.service.title|default:app.get_treatment_display }}</div>
+
+                        <div class="col-4 text-muted">{% trans "Appointment #:" %}</div>
+                        <div class="col-8 font-monospace text-secondary">{{ app.appointment_number|default:app.id }}</div>
+
+                        <div class="col-4 text-muted">{% trans "Date:" %}</div>
+                        <div class="col-8">{{ app.preferred_date|date:"d M Y" }}</div>
+                      </div>
+                    </div>
+
+                    <!-- Progress Indicator Box -->
+                    <div class="p-3 rounded-3 text-center mb-3 {% if app.preview_will_unlock %}bg-warning bg-opacity-10 border border-warning{% else %}bg-primary bg-opacity-10 border border-primary border-opacity-25{% endif %}">
+                      <span class="small text-muted fw-bold text-uppercase d-block mb-1">{% trans "Action Effect" %}</span>
+                      <div class="fs-4 fw-bold font-monospace text-dark mb-1">
+                        +1 Eligible Loyalty Visit
+                      </div>
+                      <div class="fs-5 font-monospace text-primary fw-bold">
+                        {{ app.preview_current_progress }} / {{ program.required_completed_treatments }} 
+                        <i class="bi bi-arrow-right mx-2 text-dark"></i> 
+                        <span class="{% if app.preview_will_unlock %}text-warning fw-bolder{% else %}text-success{% endif %}">
+                          {{ app.preview_new_progress }} / {{ program.required_completed_treatments }}
+                        </span>
+                      </div>
+                      {% if app.preview_will_unlock %}
+                        <div class="badge bg-warning text-dark px-3 py-1 rounded-pill mt-2 fw-bold">
+                          🎉 {% trans "This action will UNLOCK a 10% OFF Reward!" %}
+                        </div>
+                      {% endif %}
+                    </div>
+
+                    <!-- Payment Status Verification Field -->
+                    <div class="mb-3">
+                      <label class="form-label small fw-bold text-dark">{% trans "Payment Status Confirmation" %}</label>
+                      <select name="payment_status" class="form-select form-select-sm">
+                        <option value="paid" {% if app.payment_status == 'paid' %}selected{% endif %}>{% trans "Payment Completed / Verified" %}</option>
+                        <option value="waived" {% if app.payment_status == 'waived' %}selected{% endif %}>{% trans "Payment Waived / Free Checkup" %}</option>
+                        <option value="pending" {% if app.payment_status == 'pending' %}selected{% endif %}>{% trans "Payment Pending" %}</option>
+                      </select>
+                      {% if program.require_payment_verification %}
+                        <small class="text-danger d-block mt-1">
+                          <i class="bi bi-exclamation-triangle-fill me-1"></i> {% trans "Program rule requires payment completion before loyalty progress can be granted." %}
+                        </small>
+                      {% endif %}
+                    </div>
+
+                    <!-- Staff Notes -->
+                    <div class="mb-2">
+                      <label class="form-label small fw-bold text-dark">{% trans "Optional Staff Notes" %}</label>
+                      <input type="text" name="notes" class="form-control form-control-sm" placeholder="{% trans 'e.g. Scaling treatment completed smoothly' %}">
+                    </div>
+                  </div>
+
+                  <div class="modal-footer bg-light p-3 border-top d-flex justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                    <button type="submit" class="btn btn-success btn-sm rounded-pill px-4 fw-bold">
+                      <i class="bi bi-check2-circle me-1"></i> {% trans "Confirm Verification" %}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- MODAL: REJECT LOYALTY PROGRESS (NOT ELIGIBLE) -->
+          <div class="modal fade" id="modalReject{{ app.id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content rounded-4 border-0 shadow">
+                <form method="POST" action="{% url 'dashboard:loyalty_reject_appointment' app.id %}">
+                  {% csrf_token %}
+                  <div class="modal-header bg-danger bg-opacity-10 border-bottom border-danger border-opacity-25 p-3 px-4">
+                    <h5 class="modal-title fw-bold text-danger d-flex align-items-center gap-2">
+                      <i class="bi bi-x-circle-fill"></i> {% trans "Mark Service as Not Eligible" %}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-body p-4">
+                    <p class="text-muted small mb-3">
+                      {% trans "A mandatory reason is required to mark this visit as ineligible. No loyalty points or notifications will be generated." %}
+                    </p>
+
+                    <div class="bg-light p-3 rounded-3 border mb-3 small">
+                      <span class="text-muted d-block">{% trans "Patient:" %} <strong class="text-dark">{{ app.full_name }}</strong></span>
+                      <span class="text-muted d-block">{% trans "Treatment:" %} <strong class="text-dark">{{ app.service.title|default:app.get_treatment_display }}</strong></span>
+                    </div>
+
+                    <!-- Mandatory Rejection Reason -->
+                    <div class="mb-3">
+                      <label class="form-label small fw-bold text-dark">
+                        {% trans "Ineligibility Reason" %} <span class="text-danger">*</span>
+                      </label>
+                      <select name="reason" class="form-select form-select-sm mb-2" id="reasonSelect{{ app.id }}" required onchange="toggleCustomReason(this, 'customReasonWrap{{ app.id }}')">
+                        <option value="">{% trans "-- Select Reason --" %}</option>
+                        <option value="Follow-up visit">{% trans "Follow-up visit (Routine check)" %}</option>
+                        <option value="Free consultation">{% trans "Free consultation / Basic checkup" %}</option>
+                        <option value="Promotional / Discounted service">{% trans "Promotional or already-discounted service" %}</option>
+                        <option value="Duplicate record">{% trans "Duplicate record / Already counted" %}</option>
+                        <option value="Treatment not completed">{% trans "Treatment was cancelled or not completed" %}</option>
+                        <option value="Payment issue">{% trans "Payment issue / Incomplete payment" %}</option>
+                        <option value="other">{% trans "Other Reason (Specify below)" %}</option>
+                      </select>
+                    </div>
+
+                    <!-- Custom Reason Text Input (Shown when Other is selected) -->
+                    <div class="mb-3 d-none" id="customReasonWrap{{ app.id }}">
+                      <label class="form-label small fw-bold text-dark">{% trans "Specify Custom Reason" %}</label>
+                      <input type="text" name="custom_reason" class="form-control form-control-sm" placeholder="{% trans 'Enter specific ineligibility reason...' %}">
+                    </div>
+
+                    <!-- Internal Notes -->
+                    <div class="mb-2">
+                      <label class="form-label small fw-bold text-dark">{% trans "Internal Audit Notes" %}</label>
+                      <textarea name="notes" rows="2" class="form-control form-control-sm" placeholder="{% trans 'Internal context for clinical audit log...' %}"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer bg-light p-3 border-top d-flex justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                    <button type="submit" class="btn btn-danger btn-sm rounded-pill px-4 fw-bold">
+                      <i class="bi bi-x-circle me-1"></i> {% trans "Confirm Rejection" %}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center py-5">
+              <div class="p-4">
+                <i class="bi bi-check2-circle text-success" style="font-size: 3rem;"></i>
+                <h5 class="fw-bold text-dark mt-3 mb-1">{% trans "All Caught Up!" %}</h5>
+                <p class="text-muted small mb-0">
+                  {% if status_filter == 'awaiting_verification' %}
+                    {% trans "There are currently zero completed treatments awaiting human loyalty verification." %}
+                  {% else %}
+                    {% trans "No appointment records match the selected filter." %}
+                  {% endif %}
+                </p>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    {% if appointments.has_other_pages %}
+    <div class="card-footer bg-white p-3 border-top d-flex justify-content-between align-items-center">
+      <span class="small text-muted">
+        {% trans "Page" %} {{ appointments.number }} {% trans "of" %} {{ appointments.paginator.num_pages }}
+      </span>
+      <ul class="pagination pagination-sm mb-0">
+        {% if appointments.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ appointments.previous_page_number }}&status={{ status_filter }}&q={{ q }}">{% trans "Previous" %}</a></li>
+        {% endif %}
+        {% for num in appointments.paginator.page_range %}
+          {% if appointments.number == num %}
+            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% elif num > appointments.number|add:'-3' and num < appointments.number|add:'3' %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}&status={{ status_filter }}&q={{ q }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if appointments.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ appointments.next_page_number }}&status={{ status_filter }}&q={{ q }}">{% trans "Next" %}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+
+</div>
+
+<script>
+function toggleCustomReason(selectEl, wrapId) {
+  const wrap = document.getElementById(wrapId);
+  if (wrap) {
+    if (selectEl.value === 'other') {
+      wrap.classList.remove('d-none');
+    } else {
+      wrap.classList.add('d-none');
+    }
+  }
+}
+</script>
+{% endblock %}

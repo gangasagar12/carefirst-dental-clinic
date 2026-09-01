@@ -157,29 +157,30 @@ def appointment_detail(request, pk):
     
     if request.method == 'POST':
         new_status = request.POST.get('status')
+        new_payment = request.POST.get('payment_status')
+
+        if new_payment in dict(Appointment.PAYMENT_STATUS_CHOICES):
+            appointment.payment_status = new_payment
+
         if new_status in dict(Appointment.STATUS_CHOICES):
             was_completed = appointment.status == 'completed'
+            was_checked_in = appointment.status == 'checked_in'
             appointment.status = new_status
-            if new_status == 'completed' and not was_completed:
+            
+            if new_status == 'checked_in' and not was_checked_in:
+                appointment.checked_in_at = timezone.now()
+            elif new_status == 'completed' and not was_completed:
                 appointment.completed_at = timezone.now()
+                if appointment.loyalty_status in ['none', '']:
+                    appointment.loyalty_status = 'awaiting_verification'
+
             appointment.save()
 
-            # Automatic Loyalty Progress Integration on Treatment Completion
             if new_status == 'completed' and not was_completed:
-                res = record_treatment_completion(appointment=appointment, staff_user=request.user)
-                if res.get('success'):
-                    if res.get('reward_unlocked'):
-                        messages.success(
-                            request, 
-                            f"🎉 Appointment completed & Reward Unlocked for {appointment.full_name}! (10% OFF Ref: {res['reward_unlocked'].reward_reference})"
-                        )
-                    elif not res.get('already_processed'):
-                        messages.success(
-                            request,
-                            f"Appointment completed. CareFirst Smile Rewards updated: {res['new_progress']}/3 visits credited!"
-                        )
-                elif res.get('message'):
-                    messages.info(request, f"Status updated. Loyalty Note: {res['message']}")
+                messages.success(
+                    request,
+                    f"Visit marked as Completed. Placed in 'Awaiting Loyalty Verification' queue for receptionist review."
+                )
             else:
                 messages.success(request, f"Appointment status updated to '{appointment.get_status_display()}'.")
             return redirect('dashboard:appointment_detail', pk=pk)
@@ -193,6 +194,7 @@ def appointment_detail(request, pk):
         'active_page': 'appointments',
         'appointment': appointment,
         'status_choices': Appointment.STATUS_CHOICES,
+        'payment_status_choices': Appointment.PAYMENT_STATUS_CHOICES,
         'loyalty_profile': loyalty_profile,
         'active_rewards': loyalty_profile.active_rewards() if loyalty_profile else [],
     }
@@ -206,27 +208,28 @@ def appointment_update_status(request, pk):
         new_status = request.POST.get('status')
         if new_status in dict(Appointment.STATUS_CHOICES):
             was_completed = appointment.status == 'completed'
+            was_checked_in = appointment.status == 'checked_in'
             appointment.status = new_status
-            if new_status == 'completed' and not was_completed:
+            if new_status == 'checked_in' and not was_checked_in:
+                appointment.checked_in_at = timezone.now()
+            elif new_status == 'completed' and not was_completed:
                 appointment.completed_at = timezone.now()
+                if appointment.loyalty_status in ['none', '']:
+                    appointment.loyalty_status = 'awaiting_verification'
             appointment.save()
 
-            loyalty_msg = ""
-            if new_status == 'completed' and not was_completed:
-                res = record_treatment_completion(appointment=appointment, staff_user=request.user)
-                if res.get('reward_unlocked'):
-                    loyalty_msg = f" (🎉 Reward Unlocked: {res['reward_unlocked'].reward_reference})"
-                elif res.get('success') and not res.get('already_processed'):
-                    loyalty_msg = f" (Smile Rewards: {res['new_progress']}/3)"
+            msg = f"Appointment status updated to '{appointment.get_status_display()}'."
+            if new_status == 'completed':
+                msg += " (Awaiting Loyalty Verification)"
 
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
                 return JsonResponse({
                     'success': True, 
                     'status': new_status, 
                     'status_display': appointment.get_status_display(),
-                    'loyalty_msg': loyalty_msg
+                    'loyalty_status': appointment.loyalty_status
                 })
-            messages.success(request, f"Appointment status updated to '{appointment.get_status_display()}'.{loyalty_msg}")
+            messages.success(request, msg)
     return redirect(request.META.get('HTTP_REFERER', 'dashboard:appointments'))
 
 
@@ -846,10 +849,14 @@ def gallery_delete(request, pk):
     return redirect('dashboard:sliders')
 
 
-# ── CareFirst Smile Rewards (Loyalty & Rewards Suite) ─────────────────────────
-
-from loyalty.models import LoyaltyProgram, PatientLoyaltyProfile, LoyaltyReward, LoyaltyTransaction, LoyaltyNotificationLog
-from loyalty.services import record_treatment_completion, apply_reward_to_bill, expire_stale_rewards
+from loyalty.models import (
+    LoyaltyProgram, PatientLoyaltyProfile, LoyaltyReward, 
+    LoyaltyTransaction, LoyaltyNotificationLog, LoyaltyVerificationAuditLog
+)
+from loyalty.services import (
+    verify_and_grant_loyalty_progress, reject_loyalty_progress, 
+    record_treatment_completion, apply_reward_to_bill, expire_stale_rewards
+)
 from .forms import LoyaltyProgramForm
 
 
@@ -1136,5 +1143,185 @@ def loyalty_transactions_list(request):
         'transaction_types': LoyaltyTransaction.TRANSACTION_TYPES,
     }
     return render(request, 'dashboard/loyalty_transactions.html', context)
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_verification_queue(request):
+    """
+    HUMAN VERIFICATION DESK:
+    Displays completed treatments awaiting receptionist verification for loyalty points.
+    Enforces human review before any loyalty points or notifications are granted.
+    """
+    program = LoyaltyProgram.get_active_program()
+    status_filter = request.GET.get('status', 'awaiting_verification')
+    q = request.GET.get('q', '').strip()
+
+    queryset = Appointment.objects.filter(status='completed').select_related('service', 'doctor', 'loyalty_verified_by')
+
+    if status_filter == 'awaiting_verification':
+        queryset = queryset.filter(loyalty_status='awaiting_verification')
+    elif status_filter == 'verified':
+        queryset = queryset.filter(loyalty_status='verified')
+    elif status_filter == 'not_eligible':
+        queryset = queryset.filter(loyalty_status='not_eligible')
+    elif status_filter == 'all':
+        queryset = queryset.filter(loyalty_status__in=['awaiting_verification', 'verified', 'not_eligible'])
+
+    if q:
+        norm_q = normalize_phone(q)
+        queryset = queryset.filter(
+            Q(phone__icontains=q) |
+            Q(full_name__icontains=q) |
+            Q(appointment_number__icontains=q) |
+            Q(service__title__icontains=q)
+        )
+
+    queryset = queryset.order_by('-completed_at', '-created_at')
+    paginator = Paginator(queryset, 20)
+    page_number = request.GET.get('page', 1)
+    appointments = paginator.get_page(page_number)
+
+    # Attach current loyalty progress preview for each appointment
+    for app in appointments:
+        norm_phone = normalize_phone(app.phone)
+        prof = PatientLoyaltyProfile.objects.filter(normalized_phone=norm_phone, program=program).first()
+        app.patient_profile = prof
+        current_p = prof.current_progress if prof else 0
+        app.preview_current_progress = current_p
+        app.preview_new_progress = current_p + 1
+        app.preview_will_unlock = (current_p + 1) >= program.required_completed_treatments
+
+    counts = {
+        'awaiting': Appointment.objects.filter(status='completed', loyalty_status='awaiting_verification').count(),
+        'verified': Appointment.objects.filter(status='completed', loyalty_status='verified').count(),
+        'not_eligible': Appointment.objects.filter(status='completed', loyalty_status='not_eligible').count(),
+    }
+
+    context = {
+        'title': 'CareFirst Smile Rewards — Human Verification Desk',
+        'active_page': 'loyalty',
+        'active_tab': 'verification',
+        'program': program,
+        'appointments': appointments,
+        'status_filter': status_filter,
+        'counts': counts,
+        'q': q,
+    }
+    return render(request, 'dashboard/loyalty_verification_queue.html', context)
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_verify_appointment(request, pk):
+    """
+    POST Action: Receptionist approves completed service for loyalty progress (+1 visit).
+    """
+    if request.method != 'POST':
+        return redirect('dashboard:loyalty_verification_queue')
+
+    appointment = get_object_or_404(Appointment, pk=pk)
+    notes = request.POST.get('notes', '').strip()
+    payment_status = request.POST.get('payment_status', appointment.payment_status)
+
+    if payment_status in dict(Appointment.PAYMENT_STATUS_CHOICES):
+        appointment.payment_status = payment_status
+        appointment.save(update_fields=['payment_status'])
+
+    res = verify_and_grant_loyalty_progress(
+        appointment=appointment,
+        staff_user=request.user,
+        notes=notes,
+        payment_status=payment_status
+    )
+
+    if res.get('success'):
+        if res.get('reward_unlocked'):
+            reward = res['reward_unlocked']
+            messages.success(
+                request,
+                f"🎉 Loyalty Verified for {appointment.full_name}! Threshold reached: Unlocked Reward {reward.reward_reference} ({reward.get_reward_display()}). Patient notified!"
+            )
+        elif res.get('already_processed'):
+            messages.info(request, res['message'])
+        else:
+            messages.success(
+                request,
+                f"✓ Loyalty Verified for {appointment.full_name} (+1 Visit). Progress updated: {res['previous_progress']}/3 → {res['new_progress']}/3. Notification dispatched!"
+            )
+    else:
+        messages.error(request, f"Verification Failed: {res.get('message', 'Unknown error')}")
+
+    return redirect(request.META.get('HTTP_REFERER', 'dashboard:loyalty_verification_queue'))
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_reject_appointment(request, pk):
+    """
+    POST Action: Receptionist marks completed service as NOT eligible for loyalty points.
+    Requires mandatory rejection reason.
+    """
+    if request.method != 'POST':
+        return redirect('dashboard:loyalty_verification_queue')
+
+    appointment = get_object_or_404(Appointment, pk=pk)
+    reason = request.POST.get('reason', '').strip()
+    custom_reason = request.POST.get('custom_reason', '').strip()
+    final_reason = custom_reason if reason == 'other' and custom_reason else reason
+    notes = request.POST.get('notes', '').strip()
+
+    if not final_reason:
+        messages.error(request, "A valid reason is required to mark a treatment as not eligible.")
+        return redirect('dashboard:loyalty_verification_queue')
+
+    res = reject_loyalty_progress(
+        appointment=appointment,
+        reason=final_reason,
+        staff_user=request.user,
+        notes=notes
+    )
+
+    if res.get('success'):
+        messages.warning(request, f"✕ Appointment #{appointment.id} marked as Not Eligible ({final_reason}). No loyalty points were granted.")
+    else:
+        messages.error(request, f"Action failed: {res.get('message')}")
+
+    return redirect(request.META.get('HTTP_REFERER', 'dashboard:loyalty_verification_queue'))
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_verification_logs(request):
+    """
+    Audit log of all human verification decisions (Approvals, Rejections, and Overrides).
+    """
+    q = request.GET.get('q', '').strip()
+    decision_filter = request.GET.get('decision', '').strip()
+
+    queryset = LoyaltyVerificationAuditLog.objects.select_related('patient', 'appointment', 'service', 'verified_by').order_by('-verified_at')
+
+    if q:
+        norm_q = normalize_phone(q)
+        queryset = queryset.filter(
+            Q(patient__normalized_phone__icontains=norm_q) |
+            Q(patient__full_name__icontains=q) |
+            Q(patient__phone__icontains=q) |
+            Q(service_name__icontains=q) |
+            Q(rejection_reason__icontains=q)
+        )
+    if decision_filter:
+        queryset = queryset.filter(decision=decision_filter)
+
+    paginator = Paginator(queryset, 25)
+    page_number = request.GET.get('page', 1)
+    logs = paginator.get_page(page_number)
+
+    context = {
+        'title': 'Loyalty Human Verification Audit Logs',
+        'active_page': 'loyalty',
+        'active_tab': 'verification_logs',
+        'logs': logs,
+        'q': q,
+        'decision_filter': decision_filter,
+    }
+    return render(request, 'dashboard/loyalty_verification_logs.html', context)
+
 
 
