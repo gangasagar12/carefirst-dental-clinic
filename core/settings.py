@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'media_center',
     'chatbot',
     'dashboard',
+    'loyalty.apps.LoyaltyConfig',
     'django.contrib.sitemaps',
 ]
 
