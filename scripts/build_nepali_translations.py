@@ -259,6 +259,21 @@ CURATED_NEPALI_DICTIONARY = {
     "We accept Cash, Fonepay QR, eSewa, Khalti, and all major Credit/Debit Cards. For extensive procedures like dental implants, full-mouth reconstructions, and orthodontic braces, we provide flexible multi-stage installment payment schedules.": "हामी नगद, फोनपे QR, इसेवा, खल्ती र सबै प्रमुख कार्डहरू स्वीकार गर्छौं। साथै इम्प्लान्ट र ब्रेसिज जस्ता प्रमुख उपचारका लागि सहज किस्ताबन्दी सुविधा पनि उपलब्ध छ।",
     "Everything you need to know about our treatments, safety protocols, and appointments.": "हाम्रा उपचार, सुरक्षा मापदण्ड र अपोइन्टमेन्ट सम्बन्धी सम्पूर्ण जानकारी।",
 
+    # CareFirst Smile Rewards System
+    "CareFirst Smile Rewards": "केयरफर्स्ट स्माइल रिवार्ड्स",
+    "Your care deserves a little extra.": "तपाईंको नियमित दन्त स्याहार थप सम्मान र बचतको हकदार छ।",
+    "Your Care Deserves a Little Extra.": "तपाईंको नियमित दन्त स्याहार थप सम्मान र बचतको हकदार छ।",
+    "Receive exclusive savings on your ongoing oral health. Complete 3 eligible paid dental treatments and automatically unlock 10% OFF on your next visit.": "आफ्नो दन्त स्वास्थ्यमा विशेष बचत प्राप्त गर्नुहोस्। ३ पटक योग्य उपचार पूरा गर्नुहोस् र अर्को उपचारमा स्वतः १०% छुट प्राप्त गर्नुहोस्।",
+    "Visit & Treat": "उपचार गराउनुहोस्",
+    "Complete eligible treatments with our specialist doctors.": "हाम्रा विशेषज्ञ डाक्टरहरूसँग योग्य उपचार सम्पन्न गर्नुहोस्।",
+    "Auto Track": "स्वतः रेकर्ड",
+    "System tracks your progress automatically via your phone.": "तपाईंको फोन नम्बरबाट सिस्टमले स्वतः प्रगति ट्रयाक गर्छ।",
+    "Unlock 10%": "१०% छुट अनलक",
+    "Redeem at reception with zero apps or cards needed.": "कुनै एप वा कार्ड बिना सिधै रिसेप्सनमा छुट प्राप्त गर्नुहोस्।",
+    "No Patient Login Required": "बिरामी लगइन वा पासवर्ड चाहिँदैन",
+    "Ready for Your Next Visit?": "अर्को उपचारको लागि तयार हुनुहुन्छ?",
+    "Schedule your consultation or treatment in 60 seconds.": "६० सेकेन्डमा आफ्नो दन्त परामर्श वा उपचारको समय तय गर्नुहोस्।",
+
     # Cleaned Service Workflows & Steps
     "CLINICAL WORKFLOW": "क्लिनिकल कार्यप्रवाह",
     "Clinical Workflow": "क्लिनिकल कार्यप्रवाह",

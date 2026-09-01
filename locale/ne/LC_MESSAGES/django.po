@@ -10946,3 +10946,46 @@ msgstr "\"%(value)s\" मान या त True, False, वा None हुनु
 
 msgid "…"
 msgstr "…"
+
+msgid "CareFirst Smile Rewards"
+msgstr "केयरफर्स्ट स्माइल रिवार्ड्स"
+
+msgid "Your care deserves a little extra."
+msgstr "तपाईंको नियमित दन्त स्याहार थप सम्मान र बचतको हकदार छ।"
+
+msgid "Your Care Deserves a Little Extra."
+msgstr "तपाईंको नियमित दन्त स्याहार थप सम्मान र बचतको हकदार छ।"
+
+msgid ""
+"Receive exclusive savings on your ongoing oral health. Complete 3 eligible "
+"paid dental treatments and automatically unlock 10% OFF on your next visit."
+msgstr ""
+"आफ्नो दन्त स्वास्थ्यमा विशेष बचत प्राप्त गर्नुहोस्। ३ पटक योग्य उपचार पूरा "
+"गर्नुहोस् र अर्को उपचारमा स्वतः १०% छुट प्राप्त गर्नुहोस्।"
+
+msgid "Visit & Treat"
+msgstr "उपचार गराउनुहोस्"
+
+msgid "Complete eligible treatments with our specialist doctors."
+msgstr "हाम्रा विशेषज्ञ डाक्टरहरूसँग योग्य उपचार सम्पन्न गर्नुहोस्।"
+
+msgid "Auto Track"
+msgstr "स्वतः रेकर्ड"
+
+msgid "System tracks your progress automatically via your phone."
+msgstr "तपाईंको फोन नम्बरबाट सिस्टमले स्वतः प्रगति ट्रयाक गर्छ।"
+
+msgid "Unlock 10%"
+msgstr "१०% छुट अनलक"
+
+msgid "Redeem at reception with zero apps or cards needed."
+msgstr "कुनै एप वा कार्ड बिना सिधै रिसेप्सनमा छुट प्राप्त गर्नुहोस्।"
+
+msgid "No Patient Login Required"
+msgstr "बिरामी लगइन वा पासवर्ड चाहिँदैन"
+
+msgid "Ready for Your Next Visit?"
+msgstr "अर्को उपचारको लागि तयार हुनुहुन्छ?"
+
+msgid "Schedule your consultation or treatment in 60 seconds."
+msgstr "६० सेकेन्डमा आफ्नो दन्त परामर्श वा उपचारको समय तय गर्नुहोस्।"
