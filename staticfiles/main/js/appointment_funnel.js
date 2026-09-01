@@ -3,7 +3,7 @@
  * Multi-Step Frontend Controller & Attribution Engine
  */
 
-(function() {
+(function () {
   'use strict';
 
   // State
@@ -60,7 +60,7 @@
   // Initialize UTM & Session Attribution
   function initAttribution() {
     const urlParams = new URLSearchParams(window.location.search);
-    
+
     // UTM parameters
     funnelState.utmSource = urlParams.get('utm_source') || sessionStorage.getItem('cf_utm_source') || '';
     funnelState.utmMedium = urlParams.get('utm_medium') || sessionStorage.getItem('cf_utm_medium') || '';
@@ -125,7 +125,7 @@
           metadata: metadata
         })
       });
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // Step Navigation
@@ -375,7 +375,7 @@
   }
 
   // DOM Loaded Listener
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     initAttribution();
 
     // Treatment Card clicks
@@ -429,7 +429,7 @@
         altInput: true,
         altFormat: 'F j, Y (l)',
         defaultDate: new Date().fp_incr(1), // defaults to tomorrow
-        onChange: function(selectedDates, dateStr) {
+        onChange: function (selectedDates, dateStr) {
           funnelState.preferredDate = dateStr;
           if (selectedDates[0]) {
             funnelState.preferredDateFormatted = selectedDates[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -443,7 +443,7 @@
   });
 
   // Global window hook for edit chips in Review Step
-  window.cfGoToFunnelStep = function(step) {
+  window.cfGoToFunnelStep = function (step) {
     goToStep(step);
   };
 
