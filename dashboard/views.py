@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
-from django.db.models import Count, Q
+from django.db.models import Count, Q, Sum
 from django.utils import timezone
 from datetime import timedelta
 from django.http import JsonResponse
@@ -868,7 +868,7 @@ def loyalty_reception(request):
     all_patients_count = PatientLoyaltyProfile.objects.count()
     active_rewards_count = LoyaltyReward.objects.filter(status='available', expires_at__gt=timezone.now()).count()
     redeemed_rewards_count = LoyaltyReward.objects.filter(status='applied').count()
-    lifetime_treatments = PatientLoyaltyProfile.objects.aggregate(total=models.Sum('total_completed_eligible_treatments'))['total'] or 0
+    lifetime_treatments = PatientLoyaltyProfile.objects.aggregate(total=Sum('total_completed_eligible_treatments'))['total'] or 0
 
     if q:
         norm_q = normalize_phone(q)
