@@ -4,14 +4,15 @@ from .models import (
     PatientLoyaltyProfile,
     LoyaltyTransaction,
     LoyaltyReward,
-    LoyaltyNotificationLog
+    LoyaltyNotificationLog,
+    LoyaltyVerificationAuditLog
 )
 
 
 @admin.register(LoyaltyProgram)
 class LoyaltyProgramAdmin(admin.ModelAdmin):
-    list_display = ('name', 'required_completed_treatments', 'reward_type', 'discount_percentage', 'expiry_days', 'is_active')
-    list_filter = ('is_active', 'reward_type')
+    list_display = ('name', 'required_completed_treatments', 'reward_type', 'discount_percentage', 'expiry_days', 'require_payment_verification', 'is_active')
+    list_filter = ('is_active', 'reward_type', 'require_payment_verification')
     search_fields = ('name', 'description')
     filter_horizontal = ('eligible_services', 'excluded_services')
 
@@ -26,7 +27,7 @@ class PatientLoyaltyProfileAdmin(admin.ModelAdmin):
 
 @admin.register(LoyaltyTransaction)
 class LoyaltyTransactionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'patient', 'transaction_type', 'progress_added', 'treatment_name', 'invoice_reference', 'created_at')
+    list_display = ('id', 'patient', 'transaction_type', 'progress_added', 'previous_progress', 'new_progress', 'treatment_name', 'invoice_reference', 'created_at')
     search_fields = ('patient__full_name', 'patient__phone', 'invoice_reference', 'treatment_name')
     list_filter = ('transaction_type', 'created_at')
     readonly_fields = ('created_at',)
@@ -46,3 +47,12 @@ class LoyaltyNotificationLogAdmin(admin.ModelAdmin):
     search_fields = ('patient__full_name', 'recipient', 'subject')
     list_filter = ('channel', 'event_type', 'status', 'sent_at')
     readonly_fields = ('sent_at',)
+
+
+@admin.register(LoyaltyVerificationAuditLog)
+class LoyaltyVerificationAuditLogAdmin(admin.ModelAdmin):
+    list_display = ('id', 'patient', 'decision', 'previous_progress', 'new_progress', 'reward_unlocked', 'service_name', 'verified_by', 'verified_at')
+    search_fields = ('patient__full_name', 'patient__phone', 'service_name', 'rejection_reason')
+    list_filter = ('decision', 'reward_unlocked', 'verified_at')
+    readonly_fields = ('verified_at',)
+

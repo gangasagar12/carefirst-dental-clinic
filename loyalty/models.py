@@ -110,6 +110,11 @@ class LoyaltyProgram(models.Model):
         verbose_name=_("Count Free/Basic Consultations as Eligible Visits"),
         help_text=_("Usually set to False to count only clinical treatment visits.")
     )
+    require_payment_verification = models.BooleanField(
+        default=False,
+        verbose_name=_("Require Payment Completion Before Loyalty Verification"),
+        help_text=_("Option A (Unchecked): Treatment completed + Receptionist verified. Option B (Checked): Treatment completed + Payment completed + Receptionist verified.")
+    )
 
     # Status
     is_active = models.BooleanField(default=True, verbose_name=_("Program Active Status"))
@@ -286,6 +291,8 @@ class LoyaltyTransaction(models.Model):
 
     transaction_type = models.CharField(max_length=40, choices=TRANSACTION_TYPES, verbose_name=_("Action Type"))
     progress_added = models.IntegerField(default=0, verbose_name=_("Progress Added (+/-)"))
+    previous_progress = models.PositiveIntegerField(default=0, verbose_name=_("Previous Progress"))
+    new_progress = models.PositiveIntegerField(default=0, verbose_name=_("New Progress"))
     notes = models.TextField(blank=True, verbose_name=_("Audit Notes"))
 
     created_by = models.ForeignKey(
@@ -434,3 +441,67 @@ class LoyaltyNotificationLog(models.Model):
 
     def __str__(self):
         return f"[{self.get_channel_display()}] {self.patient.full_name} - {self.get_event_type_display()} ({self.status})"
+
+
+class LoyaltyVerificationAuditLog(models.Model):
+    """
+    Mandatory audit log for human verification decisions by Receptionist/Admin.
+    Tracks both approvals (+1 progress) and rejections (with explicit mandatory reasons).
+    """
+    DECISION_CHOICES = [
+        ('approved', _('Loyalty Progress Approved (+1 Visit)')),
+        ('rejected', _('Marked Not Eligible (0 Progress)')),
+        ('overridden', _('Admin Override / Adjustment')),
+    ]
+
+    patient = models.ForeignKey(
+        PatientLoyaltyProfile,
+        on_delete=models.CASCADE,
+        related_name='verification_logs',
+        verbose_name=_("Patient Profile")
+    )
+    appointment = models.ForeignKey(
+        'appointments.Appointment',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='loyalty_verification_logs',
+        verbose_name=_("Appointment")
+    )
+    service = models.ForeignKey(
+        'main.Service',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name=_("Service")
+    )
+    service_name = models.CharField(max_length=200, blank=True, verbose_name=_("Treatment / Service Name"))
+
+    decision = models.CharField(max_length=20, choices=DECISION_CHOICES, db_index=True, verbose_name=_("Decision"))
+    previous_progress = models.PositiveIntegerField(default=0, verbose_name=_("Previous Progress"))
+    new_progress = models.PositiveIntegerField(default=0, verbose_name=_("New Progress"))
+    reward_unlocked = models.BooleanField(default=False, verbose_name=_("Triggered Reward Unlock"))
+
+    payment_status_at_verification = models.CharField(max_length=30, blank=True, verbose_name=_("Payment Status at Decision"))
+    rejection_reason = models.CharField(max_length=255, blank=True, verbose_name=_("Ineligibility / Rejection Reason"))
+    notes = models.TextField(blank=True, verbose_name=_("Staff Notes"))
+
+    verified_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='loyalty_verifications',
+        verbose_name=_("Verified By (Staff)")
+    )
+    verified_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name=_("Verified At"))
+
+    class Meta:
+        ordering = ['-verified_at']
+        verbose_name = _("Loyalty Verification Audit Log")
+        verbose_name_plural = _("Loyalty Verification Audit Logs")
+
+    def __str__(self):
+        verifier = self.verified_by.username if self.verified_by else "Staff"
+        return f"[{self.get_decision_display()}] {self.patient.full_name} ({self.previous_progress} -> {self.new_progress}) by {verifier} on {self.verified_at.strftime('%Y-%m-%d %H:%M')}"
+

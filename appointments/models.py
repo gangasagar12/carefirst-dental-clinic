@@ -8,10 +8,24 @@ class Appointment(models.Model):
         ('new', _('New Request')),
         ('pending', _('Pending Staff Review')),
         ('confirmed', _('Confirmed Slot')),
+        ('checked_in', _('Patient Checked In / Arrived')),
+        ('completed', _('Completed Visit')),
         ('rescheduled', _('Rescheduled')),
         ('cancelled', _('Cancelled')),
-        ('completed', _('Completed Visit')),
         ('no_show', _('No Show')),
+    ]
+
+    LOYALTY_STATUS_CHOICES = [
+        ('none', _('Not Applicable')),
+        ('awaiting_verification', _('Awaiting Loyalty Verification')),
+        ('verified', _('Loyalty Progress Granted (+1)')),
+        ('not_eligible', _('Marked Not Eligible')),
+    ]
+
+    PAYMENT_STATUS_CHOICES = [
+        ('pending', _('Payment Pending')),
+        ('paid', _('Payment Completed')),
+        ('waived', _('Payment Waived / Free Checkup')),
     ]
     
     TIME_CHOICES = [
@@ -107,7 +121,38 @@ class Appointment(models.Model):
     reschedule_reason = models.CharField(max_length=255, blank=True, verbose_name=_("Reschedule Reason"))
     internal_note = models.TextField(blank=True, verbose_name=_("Staff Internal Notes (Hidden from Patient)"))
     confirmed_at = models.DateTimeField(null=True, blank=True, verbose_name=_("Confirmed At"))
+    checked_in_at = models.DateTimeField(null=True, blank=True, verbose_name=_("Checked In At"))
     completed_at = models.DateTimeField(null=True, blank=True, verbose_name=_("Completed At"))
+
+    # Human-Verified Loyalty & Payment Workflow
+    payment_status = models.CharField(
+        max_length=20, 
+        choices=PAYMENT_STATUS_CHOICES, 
+        default='pending', 
+        db_index=True, 
+        verbose_name=_("Payment Status")
+    )
+    loyalty_status = models.CharField(
+        max_length=30, 
+        choices=LOYALTY_STATUS_CHOICES, 
+        default='none', 
+        db_index=True, 
+        verbose_name=_("Loyalty Verification Status")
+    )
+    loyalty_verified_at = models.DateTimeField(null=True, blank=True, verbose_name=_("Loyalty Verified At"))
+    loyalty_verified_by = models.ForeignKey(
+        'auth.User', 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True, 
+        related_name='verified_appointments', 
+        verbose_name=_("Loyalty Verified By")
+    )
+    loyalty_rejection_reason = models.CharField(
+        max_length=255, 
+        blank=True, 
+        verbose_name=_("Loyalty Ineligibility Reason")
+    )
 
     created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name=_("Created At"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
