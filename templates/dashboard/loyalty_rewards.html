@@ -1,0 +1,189 @@
+{% extends "dashboard/base_dashboard.html" %}
+{% load static i18n %}
+
+{% block content %}
+<div class="container-fluid px-0">
+
+  <!-- LOYALTY SUB NAV TABS -->
+  <div class="d-flex flex-wrap gap-2 mb-4 border-bottom pb-3">
+    <a href="{% url 'dashboard:loyalty_reception' %}" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">
+      <i class="bi bi-search me-1"></i> Receptionist Phone Search Desk
+    </a>
+    <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm">
+      <i class="bi bi-gift me-1"></i> Rewards Ledger
+    </a>
+    <a href="{% url 'dashboard:loyalty_transactions' %}" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">
+      <i class="bi bi-clock-history me-1"></i> Activity Audit Stream
+    </a>
+    <a href="{% url 'dashboard:loyalty_program' %}" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">
+      <i class="bi bi-sliders me-1"></i> Program Rules & Settings
+    </a>
+  </div>
+
+  <!-- SEARCH & FILTER BAR -->
+  <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
+    <div class="card-body p-3">
+      <form method="GET" class="row g-2 align-items-center">
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-search"></i></span>
+            <input type="text" name="q" value="{{ q }}" class="form-control border-start-0" placeholder="Search reference, phone, or patient name...">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <select name="status" class="form-select">
+            <option value="">-- All Reward Statuses --</option>
+            {% for code, label in status_choices %}
+            <option value="{{ code }}" {% if status_filter == code %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-3 d-flex gap-2">
+          <button type="submit" class="btn btn-primary rounded-pill px-4 fw-semibold w-100">
+            Filter Ledger
+          </button>
+          {% if q or status_filter %}
+          <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-light rounded-pill px-3" title="Clear Filters">
+            <i class="bi bi-x-lg"></i>
+          </a>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- REWARDS TABLE -->
+  <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th class="ps-4">Reward Reference</th>
+            <th>Patient Details</th>
+            <th>Benefit</th>
+            <th>Status</th>
+            <th>Unlocked Date</th>
+            <th>Expiry Date</th>
+            <th>Redemption Details</th>
+            <th class="text-end pe-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for reward in rewards %}
+          <tr>
+            <td class="ps-4">
+              <span class="font-monospace fw-bold text-dark">{{ reward.reward_reference }}</span>
+            </td>
+            <td>
+              <div class="fw-bold text-dark">{{ reward.patient.full_name }}</div>
+              <div class="text-muted small"><i class="bi bi-telephone-fill text-primary me-1"></i>{{ reward.patient.phone }}</div>
+            </td>
+            <td>
+              <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill fw-bold">
+                {{ reward.get_reward_display }}
+              </span>
+            </td>
+            <td>
+              {% if reward.status == 'available' %}
+                <span class="badge bg-success rounded-pill px-3 py-1">Available</span>
+              {% elif reward.status == 'applied' %}
+                <span class="badge bg-info text-dark rounded-pill px-3 py-1">Applied</span>
+              {% elif reward.status == 'expired' %}
+                <span class="badge bg-secondary rounded-pill px-3 py-1">Expired</span>
+              {% else %}
+                <span class="badge bg-danger rounded-pill px-3 py-1">Cancelled</span>
+              {% endif %}
+            </td>
+            <td class="text-muted small">
+              {{ reward.unlocked_at|date:"d M Y" }}
+            </td>
+            <td>
+              {% if reward.status == 'available' %}
+                <div class="fw-semibold text-dark">{{ reward.expires_at|date:"d M Y" }}</div>
+                <div class="text-success small fw-bold">{{ reward.days_remaining }} days left</div>
+              {% else %}
+                <span class="text-muted small">{{ reward.expires_at|date:"d M Y" }}</span>
+              {% endif %}
+            </td>
+            <td class="small">
+              {% if reward.status == 'applied' %}
+                <div class="fw-bold text-dark">Invoice: {{ reward.applied_invoice_ref|default:"N/A" }}</div>
+                <div class="text-muted">Disc: NPR {{ reward.discount_amount_applied|default:0|floatformat:2 }}</div>
+                <div class="text-secondary opacity-75">Used: {{ reward.used_at|date:"d M Y" }}</div>
+              {% elif reward.status == 'cancelled' %}
+                <span class="text-danger small">{{ reward.cancellation_reason|default:"Manual override" }}</span>
+              {% else %}
+                <span class="text-muted">—</span>
+              {% endif %}
+            </td>
+            <td class="text-end pe-4">
+              {% if reward.status == 'available' %}
+              <div class="btn-group">
+                <a href="{% url 'dashboard:loyalty_reception' %}?q={{ reward.patient.phone }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 me-1">
+                  Redeem
+                </a>
+                <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-2" data-bs-toggle="modal" data-bs-target="#cancelRewardModal{{ reward.id }}" title="Cancel Reward">
+                  <i class="bi bi-slash-circle"></i>
+                </button>
+              </div>
+
+              <!-- CANCEL MODAL -->
+              <div class="modal fade" id="cancelRewardModal{{ reward.id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content rounded-4 border-0 shadow text-start">
+                    <form method="POST" action="{% url 'dashboard:loyalty_reward_cancel' reward.id %}">
+                      {% csrf_token %}
+                      <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold text-dark">Cancel Active Reward</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+                      <div class="modal-body p-4">
+                        <p class="text-muted">Are you sure you want to cancel reward <strong>{{ reward.reward_reference }}</strong> for <strong>{{ reward.patient.full_name }}</strong>?</p>
+                        <div class="mb-3">
+                          <label class="form-label fw-semibold text-dark">Reason for Cancellation</label>
+                          <input type="text" name="reason" class="form-control" placeholder="e.g. Ineligible booking duplicate, client refund" required>
+                        </div>
+                      </div>
+                      <div class="modal-footer border-0 pt-0">
+                        <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger rounded-pill px-4 fw-bold">Confirm Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {% else %}
+                <span class="text-muted small">—</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="8" class="text-center p-5 text-muted">
+              <i class="bi bi-gift fs-2 opacity-50 d-block mb-2"></i>
+              No loyalty rewards found matching current filters.
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGINATION -->
+    {% if rewards.has_other_pages %}
+    <div class="p-3 border-top d-flex justify-content-between align-items-center">
+      <div class="text-muted small">Page {{ rewards.number }} of {{ rewards.paginator.num_pages }}</div>
+      <ul class="pagination pagination-sm mb-0">
+        {% if rewards.has_previous %}
+        <li class="page-item"><a class="page-link rounded-pill px-3 me-1" href="?page={{ rewards.previous_page_number }}{% if q %}&q={{ q }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}">Previous</a></li>
+        {% endif %}
+        {% if rewards.has_next %}
+        <li class="page-item"><a class="page-link rounded-pill px-3" href="?page={{ rewards.next_page_number }}{% if q %}&q={{ q }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}">Next</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}
