@@ -1,128 +1,198 @@
-
 {% load static i18n %}
 <!-- FAQ SECTION -->
-<section class="section-py position-relative" id="faq-section" style="background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.85)), url('{% static "images/rct_feat_digital.png" %}'); background-size: cover; background-position: center; background-attachment: fixed;">
+<section class="section-py position-relative" id="faq-section" style="background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.92)), url('{% static "images/rct_feat_digital.png" %}'); background-size: cover; background-position: center; background-attachment: fixed;">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="text-center mb-5">
-          <div class="nd-eyebrow justify-content-center fw-bolder text-dark">{% trans "Answers to Your Questions" %}</div>
-          <h2 class="section-heading fw-bolder text-dark">{% trans "Frequently Asked Questions" %}</h2>
-          <p class="text-dark fw-semibold fs-5 mt-3">{% trans "Everything you need to know before your appointment." %}</p>
+          <div class="cf-eyebrow-badge justify-content-center fw-bolder">{% trans "Answers to Your Questions" %}</div>
+          <h2 class="section-heading fw-bolder text-dark" style="font-family: var(--cf-font-head, 'Outfit', sans-serif); font-size: clamp(2rem, 3.5vw, 2.75rem); color: #081C33;">
+            {% trans "Frequently Asked Questions" %}
+          </h2>
+          <p class="text-secondary fw-semibold fs-5 mt-2">
+            {% trans "Everything you need to know about our treatments, safety protocols, and appointments." %}
+          </p>
         </div>
         
-        <div class="accordion" id="nikoFaqGlobal">
+        <div class="accordion" id="cfFaqGlobal">
 
           {% if faq_type == 'pricing' %}
           <!-- PRICING FAQ -->
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqPrice1">
               <button class="accordion-button bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice1" aria-expanded="true">
-                <i class="bi bi-credit-card me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "What payment methods do you accept?" %}
+                <i class="bi bi-credit-card me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "What payment methods do you accept?" %}
               </button>
             </h2>
-            <div id="cPrice1" class="accordion-collapse collapse show" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "We accept Cash, major Credit/Debit Cards, Fonepay, eSewa, and Khalti." %}
+            <div id="cPrice1" class="accordion-collapse collapse show" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
+                {% trans "We accept Cash, major Credit/Debit Cards, Fonepay QR, eSewa, and Khalti." %}
               </div>
             </div>
           </div>
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqPrice1_a">
               <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice1_a" aria-expanded="false">
-                <i class="bi bi-tag me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "How much does a dental implant cost in Nepal?" %}
+                <i class="bi bi-tag me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How much does a dental implant cost in Nepal?" %}
               </button>
             </h2>
-            <div id="cPrice1_a" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "The cost of a dental implant in Nepal varies depending on the implant brand and the complexity of the case. Contact us for a detailed cost estimate during your consultation." %}
+            <div id="cPrice1_a" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
+                {% trans "The cost of a dental implant in Nepal typically starts from NPR 45,000 to 65,000 depending on the implant system (Korean, German, Swiss) and whether bone grafting is needed. We offer a transparent, written quote during consultation." %}
               </div>
             </div>
           </div>
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqPrice1_b">
               <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice1_b" aria-expanded="false">
-                <i class="bi bi-tag me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "How much do braces cost in Nepal?" %}
+                <i class="bi bi-tag me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How much do braces cost in Nepal?" %}
               </button>
             </h2>
-            <div id="cPrice1_b" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "The cost of braces (orthodontic treatment) in Nepal depends on the type of braces you choose (metal, ceramic, or clear aligners) and the duration of the treatment. We offer easy EMI installment options." %}
+            <div id="cPrice1_b" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
+                {% trans "The cost of orthodontic treatment varies by type: Traditional metal braces start from NPR 45,000, aesthetic ceramic braces from NPR 60,000, and invisible aligners from NPR 120,000. We provide easy monthly installment (EMI) plans." %}
               </div>
             </div>
           </div>
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqPrice2">
               <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice2" aria-expanded="false">
-                <i class="bi bi-wallet2 me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Do you offer installment (EMI) options?" %}
+                <i class="bi bi-wallet2 me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "Do you offer installment (EMI) options?" %}
               </button>
             </h2>
-            <div id="cPrice2" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "Yes, we offer flexible installment plans for major treatments like orthodontics (braces) and dental implants." %}
+            <div id="cPrice2" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
+                {% trans "Yes, we offer flexible installment plans for major multi-visit treatments like orthodontics (braces), full-mouth rehabilitations, and dental implants." %}
               </div>
             </div>
           </div>
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqPrice3">
               <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice3" aria-expanded="false">
-                <i class="bi bi-shield-plus me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Do you accept dental insurance?" %}
+                <i class="bi bi-shield-plus me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "Do you accept dental insurance?" %}
               </button>
             </h2>
-            <div id="cPrice3" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "We accept select corporate dental insurance plans. We provide all necessary stamped billing and clinical documentation so you can easily claim reimbursement from your provider." %}
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
-            <h2 class="accordion-header" id="faqPrice4">
-              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice4" aria-expanded="false">
-                <i class="bi bi-person-badge me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Are consultation fees adjustable against treatment?" %}
-              </button>
-            </h2>
-            <div id="cPrice4" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "In many cases, if you proceed with a major treatment plan (like implants or braces) on the same day, the initial consultation fee may be waived or adjusted into the total treatment cost." %}
+            <div id="cPrice3" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
+                {% trans "We accept corporate dental insurance plans and provide all official stamped diagnostic invoices, treatment breakdowns, and clinical reports needed for prompt reimbursement." %}
               </div>
             </div>
           </div>
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqPrice5">
               <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cPrice5" aria-expanded="false">
-                <i class="bi bi-info-circle me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Are there any hidden fees?" %}
+                <i class="bi bi-info-circle me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "Are there any hidden fees?" %}
               </button>
             </h2>
-            <div id="cPrice5" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "Not at all. We believe in transparent pricing. You will be given a clear cost estimate before any treatment begins." %}
+            <div id="cPrice5" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
+                {% trans "Not at all. We believe in 100% transparent pricing. You will be provided a complete written cost breakdown before any clinical work commences." %}
               </div>
             </div>
           </div>
 
           {% elif faq_type == 'services' %}
-          <!-- SERVICES FAQ -->
+          <!-- COMPREHENSIVE SERVICES FAQ -->
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqServ1">
               <button class="accordion-button bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cServ1" aria-expanded="true">
-                <i class="bi bi-shield-check me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "Are your treatments really pain-free?" %}
+                <i class="bi bi-question-circle-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How do I know which dental treatment is right for me?" %}
               </button>
             </h2>
-            <div id="cServ1" class="accordion-collapse collapse show" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "Yes! We use the latest anesthesia techniques to ensure that even root canals or implants are as comfortable as possible." %}
+            <div id="cServ1" class="accordion-collapse collapse show" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "If you are unsure of your exact dental needs, we begin with a comprehensive clinical examination and high-definition digital X-rays. Dr. Subash Banjade and our specialist team will evaluate your teeth and gums, show you the scan findings, and outline all viable treatment pathways (preventive, restorative, or cosmetic) along with exact costs before you make any decision." %}
               </div>
             </div>
           </div>
+
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqServ2">
               <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cServ2" aria-expanded="false">
-                <i class="bi bi-clock-history me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "What happens during a consultation?" %}
+                <i class="bi bi-shield-check me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "Are clinical treatments at CareFirst really pain-free?" %}
               </button>
             </h2>
-            <div id="cServ2" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "Our specialists will thoroughly examine your teeth, take digital X-rays if necessary, and discuss a detailed treatment plan." %}
+            <div id="cServ2" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "Yes! We specialize in gentle, pain-free dentistry. We use topical numbing gels prior to local anesthesia, ultra-fine micro-needles, and rotary endodontic equipment. Most patients report feeling zero discomfort even during major procedures like root canal therapy, tooth extractions, and dental implant placements." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqServ3">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cServ3" aria-expanded="false">
+                <i class="bi bi-calendar2-range-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How many visits are required for root canals, crowns, and implants?" %}
+              </button>
+            </h2>
+            <div id="cServ3" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "Routine procedures like cleanings (scaling) and composite tooth fillings are completed in a single 30–60 minute session. Root canal treatments are typically performed in 1 to 2 sessions. Dental crowns and bridges require 2 visits (preparation and final placement within 3–5 days). Dental implants involve precision placement followed by 2–3 months of osseointegration before securing the permanent lifelike crown." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqServ4">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cServ4" aria-expanded="false">
+                <i class="bi bi-hourglass-split me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How long do dental fillings, crowns, and implants last?" %}
+              </button>
+            </h2>
+            <div id="cServ4" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "With routine brushing, flossing, and 6-month checkups: composite tooth fillings typically last 7–10 years; premium zirconia crowns and bridges last 10–15+ years; and dental implants are designed to last a lifetime (25+ years) with global clinical success rates above 98%." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqServ5">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cServ5" aria-expanded="false">
+                <i class="bi bi-hospital-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "What sterilization and infection control standards do you follow?" %}
+              </button>
+            </h2>
+            <div id="cServ5" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "We adhere strictly to international CDC and WHO infection control protocols. All reusable instruments undergo a 4-step medical sterilization process culminating in high-vacuum Class-B autoclaving. Individual sterile pouches are unwrapped directly in front of each patient, and all operatory surfaces are disinfected between every appointment." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqServ6">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cServ6" aria-expanded="false">
+                <i class="bi bi-cash-stack me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "Do you provide transparent cost estimates before starting?" %}
+              </button>
+            </h2>
+            <div id="cServ6" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "Yes, absolutely. We have a zero-hidden-fee policy. After your initial diagnostic evaluation, our team will provide a clear written treatment plan showing the exact costs for every step so you have total financial clarity before treatment begins." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqServ7">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cServ7" aria-expanded="false">
+                <i class="bi bi-telephone-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "What should I do if I have a sudden dental emergency?" %}
+              </button>
+            </h2>
+            <div id="cServ7" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "If you are experiencing severe toothache, acute swelling, continuous bleeding, or trauma from an accident, call our emergency line immediately at +977 980-7464136 or message our WhatsApp desk. We maintain priority slots daily for immediate same-day pain relief." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqServ8">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cServ8" aria-expanded="false">
+                <i class="bi bi-wallet-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "What payment options and installment (EMI) plans do you offer?" %}
+              </button>
+            </h2>
+            <div id="cServ8" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "We accept Cash, Fonepay QR, eSewa, Khalti, and all major Credit/Debit Cards. For extensive procedures like dental implants, full-mouth reconstructions, and orthodontic braces, we provide flexible multi-stage installment payment schedules." %}
               </div>
             </div>
           </div>
@@ -132,24 +202,24 @@
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqGal1">
               <button class="accordion-button bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGal1" aria-expanded="true">
-                <i class="bi bi-stars me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "How long do cosmetic treatments take?" %}
+                <i class="bi bi-stars me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How long do cosmetic treatments take?" %}
               </button>
             </h2>
-            <div id="cGal1" class="accordion-collapse collapse show" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "Teeth whitening can be done in 1 hour. Veneers typically require 2-3 visits over a span of 1-2 weeks." %}
+            <div id="cGal1" class="accordion-collapse collapse show" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
+                {% trans "Professional teeth whitening can be completed in a single 1-hour session. Veneers and aesthetic smile makeovers typically require 2–3 visits over 1 to 2 weeks." %}
               </div>
             </div>
           </div>
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqGal2">
               <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGal2" aria-expanded="false">
-                <i class="bi bi-calendar-heart me-3 fs-4" style="color: var(--nd-green);"></i> {% trans "How long do the results last?" %}
+                <i class="bi bi-calendar-heart me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How long do smile transformation results last?" %}
               </button>
             </h2>
-            <div id="cGal2" class="accordion-collapse collapse" data-bs-parent="#nikoFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "With proper care, teeth whitening can last for months, while veneers and implants can last for many years or even a lifetime." %}
+            <div id="cGal2" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
+                {% trans "With proper oral hygiene and regular cleanings, in-office teeth whitening lasts 1–3 years, while premium porcelain veneers and zirconia restorations can last 15–20+ years." %}
               </div>
             </div>
           </div>
@@ -163,8 +233,8 @@
               </button>
             </h2>
             <div id="cCon1" class="accordion-collapse collapse show" data-bs-parent="#cfFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "You can book an appointment by filling out our online form, calling us directly at +977 980-7464136, or messaging us on WhatsApp at 980-7464136." %}
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
+                {% trans "You can book an appointment by filling out our online booking form, calling us directly at +977 980-7464136, or messaging us on WhatsApp at 980-7464136." %}
               </div>
             </div>
           </div>
@@ -175,7 +245,7 @@
               </button>
             </h2>
             <div id="cCon2" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
                 {% trans "While we highly recommend booking an appointment to avoid waiting times, we do accept walk-in patients. Dental emergencies with acute pain or trauma are always given immediate priority." %}
               </div>
             </div>
@@ -187,7 +257,7 @@
               </button>
             </h2>
             <div id="cCon3" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
                 {% trans "We are open 7 days a week, Monday through Sunday, from 7:30 AM to 7:30 PM." %}
               </div>
             </div>
@@ -199,7 +269,7 @@
               </button>
             </h2>
             <div id="cCon4" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
                 {% trans "Please bring a valid ID, any previous dental records or X-rays if available, and a list of current medications." %}
               </div>
             </div>
@@ -214,7 +284,7 @@
               </button>
             </h2>
             <div id="cGen1" class="accordion-collapse collapse show" data-bs-parent="#cfFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
                 {% trans "You can book an appointment by filling out our online form, calling us directly at +977 980-7464136, or messaging us on WhatsApp at 980-7464136." %}
               </div>
             </div>
@@ -226,8 +296,8 @@
               </button>
             </h2>
             <div id="cGen2" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
-                {% trans "Yes! We use computer-regulated local anesthesia and gentle microscopic techniques to ensure root canals, implants, and extractions are virtually pain-free." %}
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
+                {% trans "Yes! We use computer-regulated local anesthesia, topical numbing, and gentle microscopic techniques to ensure root canals, implants, and extractions are virtually pain-free." %}
               </div>
             </div>
           </div>
@@ -238,7 +308,7 @@
               </button>
             </h2>
             <div id="cGen3" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
                 {% trans "We accept Cash, major Credit/Debit Cards, Fonepay QR, eSewa, and Khalti. We also provide flexible installment options (EMI) for major treatments like implants and braces." %}
               </div>
             </div>
@@ -250,7 +320,7 @@
               </button>
             </h2>
             <div id="cGen4" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.05rem; line-height: 1.6;">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
                 {% trans "We are open 7 days a week, Monday through Sunday, from 7:30 AM to 7:30 PM." %}
               </div>
             </div>
@@ -272,26 +342,26 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How do I book an appointment?",
+      "name": "How do I book an appointment at CareFirst Dental Clinic?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You can book an appointment by filling out our online form, calling us directly at +977 9848631371, or sending a WhatsApp message."
+        "text": "You can book an appointment by filling out our online form, calling us directly at +977 980-7464136, or messaging us on WhatsApp at 980-7464136."
       }
     },
     {
       "@type": "Question",
-      "name": "Are your treatments really pain-free?",
+      "name": "Are clinical treatments really pain-free?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes! We use the latest anesthesia techniques to ensure that even root canals or implants are as comfortable as possible."
+        "text": "Yes! We use advanced computer-regulated local anesthesia, topical numbing gels, and rotary equipment to ensure all treatments from root canals to implants are virtually pain-free."
       }
     },
     {
       "@type": "Question",
-      "name": "What payment methods do you accept?",
+      "name": "What payment methods and installment plans do you accept?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We accept Cash, major Credit/Debit Cards, Fonepay, eSewa, and Khalti. We also provide flexible installment options (EMI) for major treatments."
+        "text": "We accept Cash, major Credit/Debit Cards, Fonepay QR, eSewa, and Khalti, along with flexible installment options (EMI) for major treatments."
       }
     },
     {
@@ -299,23 +369,15 @@
       "name": "What are your opening hours?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We are open every day from 8 am to 8 pm."
+        "text": "CareFirst Dental Clinic in Shankhamul, Kathmandu is open 7 days a week from 7:30 AM to 7:30 PM."
       }
     },
     {
       "@type": "Question",
-      "name": "How much does a dental implant cost in Nepal?",
+      "name": "How long do dental fillings, crowns, and implants last?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The cost of a dental implant in Nepal varies depending on the implant brand and the complexity of the case. Contact us for a detailed cost estimate during your consultation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much do braces cost in Nepal?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The cost of braces (orthodontic treatment) in Nepal depends on the type of braces you choose (metal, ceramic, or clear aligners) and the duration of the treatment. We offer easy EMI installment options."
+        "text": "Composite fillings last 7-10 years, zirconia crowns last 10-15+ years, and dental implants are designed to last a lifetime with proper oral hygiene and regular checkups."
       }
     }
   ]
