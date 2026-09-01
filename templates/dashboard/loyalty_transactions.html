@@ -6,17 +6,23 @@
 
   <!-- LOYALTY SUB NAV TABS -->
   <div class="d-flex flex-wrap gap-2 mb-4 border-bottom pb-3">
-    <a href="{% url 'dashboard:loyalty_reception' %}" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">
-      <i class="bi bi-search me-1"></i> Receptionist Phone Search Desk
+    <a href="{% url 'dashboard:loyalty_reception' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
+      <i class="bi bi-search me-1"></i> Reception Desk
     </a>
-    <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">
+    <a href="{% url 'dashboard:loyalty_verification_queue' %}" class="btn btn-outline-warning text-dark border-warning rounded-pill px-3 fw-semibold">
+      <i class="bi bi-shield-check me-1 text-warning"></i> Verification Queue
+    </a>
+    <a href="{% url 'dashboard:loyalty_verification_logs' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
+      <i class="bi bi-shield-shaded me-1"></i> Verification Logs
+    </a>
+    <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
       <i class="bi bi-gift me-1"></i> Rewards Ledger
     </a>
-    <a href="{% url 'dashboard:loyalty_transactions' %}" class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm">
-      <i class="bi bi-clock-history me-1"></i> Activity Audit Stream
+    <a href="{% url 'dashboard:loyalty_transactions' %}" class="btn btn-primary rounded-pill px-3 fw-semibold shadow-sm">
+      <i class="bi bi-clock-history me-1"></i> Activity Stream
     </a>
-    <a href="{% url 'dashboard:loyalty_program' %}" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">
-      <i class="bi bi-sliders me-1"></i> Program Rules & Settings
+    <a href="{% url 'dashboard:loyalty_program' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
+      <i class="bi bi-sliders me-1"></i> Program Settings
     </a>
   </div>
 
