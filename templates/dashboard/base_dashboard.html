@@ -61,6 +61,10 @@
           <span class="badge bg-danger cf-nav-badge">{{ unread_messages_count }}</span>
           {% endif %}
         </a>
+        <a href="{% url 'dashboard:loyalty_reception' %}" class="cf-nav-link {% if active_page == 'loyalty' %}active{% endif %}">
+          <i class="bi bi-gift-fill text-warning"></i>
+          <span>Smile Rewards</span>
+        </a>
 
         <p class="cf-nav-section-title">Clinical Management</p>
         <a href="{% url 'dashboard:services' %}" class="cf-nav-link {% if active_page == 'services' %}active{% endif %}">

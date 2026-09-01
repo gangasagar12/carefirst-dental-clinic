@@ -120,6 +120,50 @@
 
       <hr class="my-4">
 
+      <!-- CAREFIRST SMILE REWARDS WIDGET -->
+      <div class="p-3 rounded-4 bg-light border mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="fw-bold small text-primary text-uppercase"><i class="bi bi-gift-fill me-1 text-warning"></i> Smile Rewards</span>
+          {% if loyalty_profile %}
+          <span class="badge bg-primary rounded-pill">{{ loyalty_profile.current_progress }} / {{ loyalty_profile.program.required_completed_treatments }}</span>
+          {% endif %}
+        </div>
+
+        {% if loyalty_profile %}
+        <div class="d-flex align-items-center gap-2 my-2">
+          {% for is_filled in loyalty_profile.progress_dots %}
+            {% if is_filled %}
+            <span class="d-inline-block rounded-circle bg-primary text-white text-center" style="width: 24px; height: 24px; line-height: 24px; font-size: 11px;"><i class="bi bi-check"></i></span>
+            {% else %}
+            <span class="d-inline-block rounded-circle bg-white border border-secondary text-center" style="width: 24px; height: 24px; line-height: 24px; font-size: 10px;">○</span>
+            {% endif %}
+          {% endfor %}
+          <span class="small text-muted ms-1">Cycle {{ loyalty_profile.current_cycle }}</span>
+        </div>
+
+        {% if active_rewards %}
+          <div class="mt-2 pt-2 border-top">
+            <span class="badge bg-success text-white mb-1"><i class="bi bi-gift-fill me-1"></i> Active Reward Available!</span>
+            {% for r in active_rewards %}
+            <div class="small fw-bold text-dark d-flex justify-content-between align-items-center mt-1">
+              <span>{{ r.get_reward_display }} ({{ r.reward_reference }})</span>
+              <a href="{% url 'dashboard:loyalty_reception' %}?q={{ appointment.phone }}" class="btn btn-sm btn-success py-0 px-2 rounded-pill font-monospace" style="font-size: 11px;">Apply</a>
+            </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="small text-muted mb-0 mt-1">
+            Setting status to <strong>Completed</strong> will automatically add +1 progress.
+          </p>
+        {% endif %}
+
+        {% else %}
+        <p class="small text-muted mb-0">
+          Patient is not yet enrolled. Marking this visit <strong>Completed</strong> will automatically enroll them and add +1 progress.
+        </p>
+        {% endif %}
+      </div>
+
       <h5 class="fw-bold small text-muted text-uppercase mb-3">Direct Patient Actions</h5>
       <div class="d-grid gap-2">
         {% if appointment.phone %}
