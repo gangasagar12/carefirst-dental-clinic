@@ -1,0 +1,374 @@
+{% extends "dashboard/base_dashboard.html" %}
+{% load static i18n %}
+
+{% block content %}
+<div class="container-fluid px-0">
+
+  <!-- TOP STATS ROW -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-lg-3">
+      <div class="cf-stat-card p-3 rounded-4 bg-white shadow-sm border">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <div class="text-muted small fw-semibold text-uppercase">Enrolled Patients</div>
+            <h3 class="fw-bolder mb-0 text-dark mt-1">{{ all_patients_count }}</h3>
+          </div>
+          <div class="p-3 bg-primary-subtle text-primary rounded-4 fs-4">
+            <i class="bi bi-people-fill"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="cf-stat-card p-3 rounded-4 bg-white shadow-sm border">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <div class="text-muted small fw-semibold text-uppercase">Active Rewards</div>
+            <h3 class="fw-bolder mb-0 text-success mt-1">{{ active_rewards_count }}</h3>
+          </div>
+          <div class="p-3 bg-success-subtle text-success rounded-4 fs-4">
+            <i class="bi bi-gift-fill"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="cf-stat-card p-3 rounded-4 bg-white shadow-sm border">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <div class="text-muted small fw-semibold text-uppercase">Redeemed Rewards</div>
+            <h3 class="fw-bolder mb-0 text-info mt-1">{{ redeemed_rewards_count }}</h3>
+          </div>
+          <div class="p-3 bg-info-subtle text-info rounded-4 fs-4">
+            <i class="bi bi-check2-circle"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="cf-stat-card p-3 rounded-4 bg-white shadow-sm border">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <div class="text-muted small fw-semibold text-uppercase">Lifetime Visits</div>
+            <h3 class="fw-bolder mb-0 text-dark mt-1">{{ lifetime_treatments }}</h3>
+          </div>
+          <div class="p-3 bg-warning-subtle text-warning rounded-4 fs-4">
+            <i class="bi bi-heart-pulse-fill"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOYALTY SUB NAV TABS -->
+  <div class="d-flex flex-wrap gap-2 mb-4 border-bottom pb-3">
+    <a href="{% url 'dashboard:loyalty_reception' %}" class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm">
+      <i class="bi bi-search me-1"></i> Receptionist Phone Search Desk
+    </a>
+    <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">
+      <i class="bi bi-gift me-1"></i> Rewards Ledger
+    </a>
+    <a href="{% url 'dashboard:loyalty_transactions' %}" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">
+      <i class="bi bi-clock-history me-1"></i> Activity Audit Stream
+    </a>
+    <a href="{% url 'dashboard:loyalty_program' %}" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">
+      <i class="bi bi-sliders me-1"></i> Program Rules & Settings
+    </a>
+  </div>
+
+  <!-- MAIN RECEPTION SEARCH -->
+  <div class="row g-4">
+    <div class="col-lg-7">
+      
+      <!-- SEARCH BOX -->
+      <div class="card border-0 shadow-sm rounded-4 mb-4" style="background: linear-gradient(135deg, #07192F 0%, #0B2545 100%); color: #ffffff;">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div>
+              <span class="badge bg-primary text-white text-uppercase px-3 py-1 mb-2">No-Portal Loyalty Desk</span>
+              <h4 class="fw-bold mb-1">Search Patient by Phone Number</h4>
+              <p class="text-white-50 small mb-0">Look up patient rewards instantly without requiring any login or coupon code.</p>
+            </div>
+            <i class="bi bi-phone-vibrate fs-1 text-primary-subtle opacity-50 d-none d-sm-block"></i>
+          </div>
+
+          <form method="GET" action="{% url 'dashboard:loyalty_reception' %}" class="d-flex gap-2 mt-3">
+            <div class="input-group input-group-lg shadow-sm">
+              <span class="input-group-text bg-white border-0 text-muted"><i class="bi bi-search fs-5"></i></span>
+              <input type="text" name="q" value="{{ q }}" class="form-control border-0 fs-5" placeholder="Enter phone (e.g. 980-7464136) or patient name..." autofocus>
+              <button type="submit" class="btn btn-info px-4 fw-bold text-dark">
+                Search Patient
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- PATIENT PROFILE CARD -->
+      {% if patient %}
+      <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+        <div class="card-header bg-white border-bottom p-4 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill fw-bold mb-1">
+              <i class="bi bi-person-check-fill me-1"></i> Patient Verified
+            </span>
+            <h4 class="fw-bolder text-dark mb-0 mt-1">{{ patient.full_name }}</h4>
+            <div class="text-muted small mt-1">
+              <i class="bi bi-telephone-fill text-primary me-1"></i> <strong>{{ patient.phone }}</strong>
+              {% if patient.email %} • <i class="bi bi-envelope-fill text-secondary ms-2 me-1"></i> {{ patient.email }}{% endif %}
+              • <span class="badge bg-light text-secondary border ms-1">{{ patient.patient_id }}</span>
+            </div>
+          </div>
+          <button class="btn btn-outline-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#recordVisitModal">
+            <i class="bi bi-plus-circle me-1"></i> Record Treatment
+          </button>
+        </div>
+
+        <div class="card-body p-4">
+          <!-- PROGRESS BAR & DOTS -->
+          <div class="p-4 rounded-4 bg-light border mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div>
+                <span class="fw-bold text-uppercase text-primary small">Cycle {{ patient.current_cycle }} Progress</span>
+                <h5 class="fw-bolder text-dark mb-0">{{ patient.current_progress }} of {{ program.required_completed_treatments }} Eligible Treatments Completed</h5>
+              </div>
+              <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill shadow-sm">
+                {{ patient.progress_percentage }}%
+              </span>
+            </div>
+
+            <!-- VISUAL DOTS -->
+            <div class="d-flex align-items-center gap-3 my-3">
+              {% for is_filled in patient.progress_dots %}
+                {% if is_filled %}
+                <div class="d-flex align-items-center justify-content-center rounded-circle text-white shadow-sm" style="width: 46px; height: 46px; background: #0284C7; font-size: 1.25rem;">
+                  <i class="bi bi-check-lg"></i>
+                </div>
+                {% else %}
+                <div class="d-flex align-items-center justify-content-center rounded-circle border-2 border-secondary-subtle text-muted" style="width: 46px; height: 46px; background: #ffffff; border: 2px dashed #94A3B8; font-size: 1rem;">
+                  <i class="bi bi-circle"></i>
+                </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <p class="text-muted small mb-0">
+              {% if patient.current_progress == 0 and patient.total_rewards_earned > 0 %}
+                🎉 Reward unlocked! Cycle reset. Next completed treatment begins cycle {{ patient.current_cycle }}.
+              {% elif patient.current_progress == 1 %}
+                Complete 2 more treatments to unlock {{ program.get_reward_label }}.
+              {% elif patient.current_progress == 2 %}
+                <strong>Just 1 more eligible treatment to unlock {{ program.get_reward_label }}!</strong>
+              {% else %}
+                Complete eligible treatments to unlock exclusive savings.
+              {% endif %}
+            </p>
+          </div>
+
+          <!-- ACTIVE AVAILABLE REWARDS -->
+          <h5 class="fw-bold text-dark mb-3"><i class="bi bi-gift-fill text-success me-2"></i>Active Available Rewards</h5>
+          
+          {% if patient.active_rewards %}
+            {% for reward in patient.active_rewards %}
+            <div class="p-3 mb-3 rounded-4 border border-success-subtle bg-success-subtle bg-opacity-25 d-flex flex-wrap justify-content-between align-items-center gap-3">
+              <div>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-success text-white px-3 py-1 rounded-pill fw-bold fs-6">
+                    {{ reward.get_reward_display }}
+                  </span>
+                  <span class="font-monospace fw-bold text-dark">{{ reward.reward_reference }}</span>
+                </div>
+                <div class="text-muted small mt-1">
+                  <i class="bi bi-clock-history me-1"></i> Valid until: <strong>{{ reward.expires_at|date:"d M Y" }}</strong> 
+                  <span class="text-success fw-bold ms-1">({{ reward.days_remaining }} days remaining)</span>
+                </div>
+              </div>
+
+              <!-- 1-CLICK REDEMPTION BUTTON -->
+              <button class="btn btn-success fw-bold px-4 py-2 rounded-pill shadow-sm" 
+                      data-bs-toggle="modal" 
+                      data-bs-target="#applyRewardModal" 
+                      data-reward-id="{{ reward.id }}"
+                      data-reward-ref="{{ reward.reward_reference }}"
+                      data-reward-label="{{ reward.get_reward_display }}"
+                      data-patient-phone="{{ patient.phone }}"
+                      data-patient-name="{{ patient.full_name }}">
+                <i class="bi bi-check2-circle me-1"></i> Apply Reward to Invoice
+              </button>
+            </div>
+            {% endfor %}
+          {% else %}
+            <div class="alert alert-secondary border-0 rounded-4 p-3 mb-0 text-muted small">
+              <i class="bi bi-info-circle me-2"></i>No available reward at this moment. Patient will unlock a reward after completing {{ program.required_completed_treatments }} eligible visits.
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      {% elif q %}
+      <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white">
+        <i class="bi bi-search fs-1 text-muted opacity-50 mb-2"></i>
+        <h5 class="fw-bold text-dark">No Loyalty Profile Found for "{{ q }}"</h5>
+        <p class="text-muted small">This patient may be a new walk-in. You can record their first visit below to automatically enroll them.</p>
+        <div>
+          <button class="btn btn-primary rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#recordVisitModal">
+            <i class="bi bi-person-plus-fill me-1"></i> Record Treatment & Enroll Patient
+          </button>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- RIGHT COLUMN: RECENT LOYALTY ACTIVITY -->
+    <div class="col-lg-5">
+      <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+        <div class="card-header bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
+          <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-activity text-primary me-2"></i>Recent Loyalty Activity</h6>
+          <a href="{% url 'dashboard:loyalty_transactions' %}" class="small text-decoration-none fw-semibold">View All →</a>
+        </div>
+        <div class="card-body p-0">
+          <div class="list-group list-group-flush">
+            {% for tx in recent_transactions %}
+            <div class="list-group-item p-3 border-bottom">
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <span class="fw-bold text-dark">{{ tx.patient.full_name }}</span>
+                <span class="badge {% if tx.transaction_type == 'reward_unlocked' %}bg-success{% elif tx.transaction_type == 'reward_applied' %}bg-info text-dark{% else %}bg-primary-subtle text-primary{% endif %} rounded-pill">
+                  {{ tx.get_transaction_type_display }}
+                </span>
+              </div>
+              <p class="text-muted small mb-1">{{ tx.notes }}</p>
+              <div class="text-secondary opacity-75 small">
+                <i class="bi bi-clock me-1"></i>{{ tx.created_at|date:"d M Y, h:i A" }}
+                {% if tx.created_by %}• by {{ tx.created_by.username }}{% endif %}
+              </div>
+            </div>
+            {% empty %}
+            <div class="p-4 text-center text-muted small">No loyalty transactions recorded yet.</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL: APPLY REWARD TO INVOICE -->
+<div class="modal fade" id="applyRewardModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 border-0 shadow">
+      <form method="POST" action="{% url 'dashboard:loyalty_apply_reward' %}">
+        {% csrf_token %}
+        <input type="hidden" name="reward_id" id="modalRewardId">
+        <input type="hidden" name="phone" id="modalRewardPhone">
+
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold text-dark">Apply CareFirst Smile Reward</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body p-4">
+          <div class="p-3 bg-success-subtle rounded-4 mb-3">
+            <div class="text-success fw-bold small text-uppercase">Reward To Redeem</div>
+            <h4 class="text-success fw-bolder mb-0" id="modalRewardLabel">10% OFF</h4>
+            <div class="text-muted small" id="modalRewardRef">Ref: CF-RWD-XXXX</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Invoice / Receipt Reference</label>
+            <input type="text" name="invoice_ref" class="form-control form-control-lg" placeholder="e.g. CF-INV-2026-0891" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Total Bill Amount (NPR)</label>
+            <input type="number" step="0.01" name="bill_amount" id="modalBillAmount" class="form-control form-control-lg" placeholder="e.g. 5000" required>
+            <div class="form-text small">System will automatically calculate and deduct the discount.</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Internal Staff Note (Optional)</label>
+            <textarea name="notes" class="form-control" rows="2" placeholder="e.g. Applied against Root Canal treatment"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-success rounded-pill px-4 fw-bold">Confirm & Apply Discount</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: RECORD WALK-IN TREATMENT -->
+<div class="modal fade" id="recordVisitModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 border-0 shadow">
+      <form method="POST" action="{% url 'dashboard:loyalty_record_visit' %}">
+        {% csrf_token %}
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold text-dark">Record Completed Treatment Visit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body p-4">
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Patient Phone Number *</label>
+            <input type="text" name="phone" value="{% if patient %}{{ patient.phone }}{% else %}{{ q }}{% endif %}" class="form-control form-control-lg" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Patient Full Name</label>
+            <input type="text" name="full_name" value="{% if patient %}{{ patient.full_name }}{% endif %}" class="form-control" placeholder="Patient Name">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Clinical Service Provided</label>
+            <select name="service_id" class="form-select">
+              <option value="">-- Select Service --</option>
+              {% for s in services %}
+              <option value="{{ s.id }}">{{ s.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Invoice / Receipt Number</label>
+            <input type="text" name="invoice_ref" class="form-control" placeholder="e.g. REC-2026-1042">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Amount Paid (NPR)</label>
+            <input type="number" step="0.01" name="amount_paid" class="form-control" placeholder="e.g. 2500">
+          </div>
+        </div>
+
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary rounded-pill px-4 fw-bold">Save & Add +1 Progress</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const applyModal = document.getElementById('applyRewardModal');
+  if (applyModal) {
+    applyModal.addEventListener('show.bs.modal', function(event) {
+      const button = event.relatedTarget;
+      const rewardId = button.getAttribute('data-reward-id');
+      const rewardRef = button.getAttribute('data-reward-ref');
+      const rewardLabel = button.getAttribute('data-reward-label');
+      const phone = button.getAttribute('data-patient-phone');
+
+      document.getElementById('modalRewardId').value = rewardId;
+      document.getElementById('modalRewardPhone').value = phone;
+      document.getElementById('modalRewardLabel').textContent = rewardLabel;
+      document.getElementById('modalRewardRef').textContent = 'Ref: ' + rewardRef;
+    });
+  }
+});
+</script>
+{% endblock %}
