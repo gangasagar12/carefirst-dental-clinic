@@ -12,6 +12,8 @@ from django.core.paginator import Paginator
 from appointments.models import Appointment
 from main.models import Service, Doctor, PricingCategory, PricingItem, SpecialOffer, Testimonial, SiteSettings, ContactMessage, HeroSlide, ClinicGallery
 from media_center.models import Video
+from loyalty.models import PatientLoyaltyProfile, LoyaltyReward, normalize_phone
+from loyalty.services import record_treatment_completion, apply_reward_to_bill
 from .forms import (
     AppointmentForm, ServiceForm, DoctorForm, PricingCategoryForm,
     PricingItemForm, SpecialOfferForm, TestimonialForm, VideoForm, SiteSettingsForm,
@@ -156,16 +158,43 @@ def appointment_detail(request, pk):
     if request.method == 'POST':
         new_status = request.POST.get('status')
         if new_status in dict(Appointment.STATUS_CHOICES):
+            was_completed = appointment.status == 'completed'
             appointment.status = new_status
+            if new_status == 'completed' and not was_completed:
+                appointment.completed_at = timezone.now()
             appointment.save()
-            messages.success(request, f"Appointment status updated to '{appointment.get_status_display()}'.")
+
+            # Automatic Loyalty Progress Integration on Treatment Completion
+            if new_status == 'completed' and not was_completed:
+                res = record_treatment_completion(appointment=appointment, staff_user=request.user)
+                if res.get('success'):
+                    if res.get('reward_unlocked'):
+                        messages.success(
+                            request, 
+                            f"🎉 Appointment completed & Reward Unlocked for {appointment.full_name}! (10% OFF Ref: {res['reward_unlocked'].reward_reference})"
+                        )
+                    elif not res.get('already_processed'):
+                        messages.success(
+                            request,
+                            f"Appointment completed. CareFirst Smile Rewards updated: {res['new_progress']}/3 visits credited!"
+                        )
+                elif res.get('message'):
+                    messages.info(request, f"Status updated. Loyalty Note: {res['message']}")
+            else:
+                messages.success(request, f"Appointment status updated to '{appointment.get_status_display()}'.")
             return redirect('dashboard:appointment_detail', pk=pk)
+
+    # Fetch patient's loyalty profile & active rewards for receptionist display
+    norm_phone = normalize_phone(appointment.phone)
+    loyalty_profile = PatientLoyaltyProfile.objects.filter(normalized_phone=norm_phone).first()
 
     context = {
         'title': f"Appointment #{appointment.id} - {appointment.full_name}",
         'active_page': 'appointments',
         'appointment': appointment,
         'status_choices': Appointment.STATUS_CHOICES,
+        'loyalty_profile': loyalty_profile,
+        'active_rewards': loyalty_profile.active_rewards() if loyalty_profile else [],
     }
     return render(request, 'dashboard/appointment_detail.html', context)
 
@@ -176,11 +205,28 @@ def appointment_update_status(request, pk):
         appointment = get_object_or_404(Appointment, pk=pk)
         new_status = request.POST.get('status')
         if new_status in dict(Appointment.STATUS_CHOICES):
+            was_completed = appointment.status == 'completed'
             appointment.status = new_status
+            if new_status == 'completed' and not was_completed:
+                appointment.completed_at = timezone.now()
             appointment.save()
+
+            loyalty_msg = ""
+            if new_status == 'completed' and not was_completed:
+                res = record_treatment_completion(appointment=appointment, staff_user=request.user)
+                if res.get('reward_unlocked'):
+                    loyalty_msg = f" (🎉 Reward Unlocked: {res['reward_unlocked'].reward_reference})"
+                elif res.get('success') and not res.get('already_processed'):
+                    loyalty_msg = f" (Smile Rewards: {res['new_progress']}/3)"
+
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                return JsonResponse({'success': True, 'status': new_status, 'status_display': appointment.get_status_display()})
-            messages.success(request, f"Appointment status updated to '{appointment.get_status_display()}'.")
+                return JsonResponse({
+                    'success': True, 
+                    'status': new_status, 
+                    'status_display': appointment.get_status_display(),
+                    'loyalty_msg': loyalty_msg
+                })
+            messages.success(request, f"Appointment status updated to '{appointment.get_status_display()}'.{loyalty_msg}")
     return redirect(request.META.get('HTTP_REFERER', 'dashboard:appointments'))
 
 
