@@ -845,3 +845,296 @@ def gallery_delete(request, pk):
     messages.success(request, "Gallery photo removed.")
     return redirect('dashboard:sliders')
 
+
+# ── CareFirst Smile Rewards (Loyalty & Rewards Suite) ─────────────────────────
+
+from loyalty.models import LoyaltyProgram, PatientLoyaltyProfile, LoyaltyReward, LoyaltyTransaction, LoyaltyNotificationLog
+from loyalty.services import record_treatment_completion, apply_reward_to_bill, expire_stale_rewards
+from .forms import LoyaltyProgramForm
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_reception(request):
+    """
+    Primary Receptionist Desk & Patient Lookup:
+    Enables quick phone number search, visual progress indicator, available rewards,
+    and 1-click reward redemption for invoices without requiring any patient login.
+    """
+    expire_stale_rewards()
+    program = LoyaltyProgram.get_active_program()
+    q = request.GET.get('q', '').strip()
+
+    patient_result = None
+    all_patients_count = PatientLoyaltyProfile.objects.count()
+    active_rewards_count = LoyaltyReward.objects.filter(status='available', expires_at__gt=timezone.now()).count()
+    redeemed_rewards_count = LoyaltyReward.objects.filter(status='applied').count()
+    lifetime_treatments = PatientLoyaltyProfile.objects.aggregate(total=models.Sum('total_completed_eligible_treatments'))['total'] or 0
+
+    if q:
+        norm_q = normalize_phone(q)
+        patient_result = PatientLoyaltyProfile.objects.filter(
+            Q(normalized_phone__icontains=norm_q) |
+            Q(phone__icontains=q) |
+            Q(full_name__icontains=q) |
+            Q(patient_id__icontains=q)
+        ).first()
+
+    recent_transactions = LoyaltyTransaction.objects.select_related('patient', 'service').order_by('-created_at')[:10]
+    services = Service.objects.filter(is_active=True).order_by('order')
+
+    context = {
+        'title': 'CareFirst Smile Rewards — Reception Desk',
+        'active_page': 'loyalty',
+        'active_tab': 'reception',
+        'program': program,
+        'q': q,
+        'patient': patient_result,
+        'all_patients_count': all_patients_count,
+        'active_rewards_count': active_rewards_count,
+        'redeemed_rewards_count': redeemed_rewards_count,
+        'lifetime_treatments': lifetime_treatments,
+        'recent_transactions': recent_transactions,
+        'services': services,
+    }
+    return render(request, 'dashboard/loyalty_reception.html', context)
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_patient_lookup(request):
+    """AJAX endpoint for instant phone/patient search at reception."""
+    q = request.GET.get('q', '').strip()
+    if not q:
+        return JsonResponse({'success': False, 'error': 'No query provided'})
+
+    norm_q = normalize_phone(q)
+    patient = PatientLoyaltyProfile.objects.filter(
+        Q(normalized_phone__icontains=norm_q) |
+        Q(phone__icontains=q) |
+        Q(full_name__icontains=q) |
+        Q(patient_id__icontains=q)
+    ).first()
+
+    if not patient:
+        return JsonResponse({'success': False, 'found': False, 'message': 'No patient loyalty profile found for this query.'})
+
+    active_rewards = []
+    for r in patient.active_rewards():
+        active_rewards.append({
+            'id': r.id,
+            'reference': r.reward_reference,
+            'label': r.get_reward_display(),
+            'discount_percentage': float(r.discount_percentage),
+            'expires_at': r.expires_at.strftime('%d %b %Y'),
+            'days_remaining': r.days_remaining,
+        })
+
+    return JsonResponse({
+        'success': True,
+        'found': True,
+        'patient': {
+            'id': patient.id,
+            'patient_id': patient.patient_id,
+            'full_name': patient.full_name,
+            'phone': patient.phone,
+            'current_progress': patient.current_progress,
+            'required_treatments': patient.program.required_completed_treatments,
+            'current_cycle': patient.current_cycle,
+            'progress_dots': patient.progress_dots,
+            'total_completed': patient.total_completed_eligible_treatments,
+            'total_rewards_earned': patient.total_rewards_earned,
+            'total_rewards_redeemed': patient.total_rewards_redeemed,
+            'active_rewards': active_rewards,
+        }
+    })
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_apply_reward(request):
+    """Processes 1-click reward redemption on an invoice."""
+    if request.method != 'POST':
+        return redirect('dashboard:loyalty_reception')
+
+    reward_id = request.POST.get('reward_id')
+    phone = request.POST.get('phone', '').strip()
+    invoice_ref = request.POST.get('invoice_ref', '').strip()
+    bill_amount = request.POST.get('bill_amount', '0').strip()
+    notes = request.POST.get('notes', '').strip()
+
+    res = apply_reward_to_bill(
+        reward_id_or_ref=reward_id,
+        patient_phone=phone,
+        invoice_ref=invoice_ref,
+        total_bill_amount=bill_amount,
+        staff_user=request.user,
+        notes=notes
+    )
+
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return JsonResponse(res)
+
+    if res.get('success'):
+        messages.success(request, res.get('message', 'Reward successfully redeemed!'))
+    else:
+        messages.error(request, res.get('error', 'Could not apply reward.'))
+
+    return redirect(f"/dashboard/loyalty/?q={phone}")
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_record_visit(request):
+    """Manually records a completed treatment visit for walk-in patients."""
+    if request.method != 'POST':
+        return redirect('dashboard:loyalty_reception')
+
+    phone = request.POST.get('phone', '').strip()
+    full_name = request.POST.get('full_name', '').strip()
+    service_id = request.POST.get('service_id')
+    treatment_name = request.POST.get('treatment_name', '').strip()
+    invoice_ref = request.POST.get('invoice_ref', '').strip()
+    amount_paid = request.POST.get('amount_paid', '0').strip()
+    notes = request.POST.get('notes', '').strip()
+
+    service_obj = Service.objects.filter(pk=service_id).first() if service_id else None
+
+    res = record_treatment_completion(
+        phone=phone,
+        full_name=full_name,
+        service=service_obj,
+        treatment_name=treatment_name,
+        invoice_ref=invoice_ref,
+        amount_paid=amount_paid,
+        staff_user=request.user,
+        notes=notes
+    )
+
+    if res.get('success'):
+        if res.get('reward_unlocked'):
+            messages.success(request, f"🎉 3rd visit completed! Reward Unlocked for {full_name} ({res['reward_unlocked'].reward_reference} - 10% OFF)")
+        elif not res.get('already_processed'):
+            messages.success(request, f"Loyalty visit recorded: {res['new_progress']}/3 completed visits.")
+    else:
+        messages.error(request, res.get('message', 'Failed to record treatment visit.'))
+
+    return redirect(f"/dashboard/loyalty/?q={phone}")
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_rewards_list(request):
+    """Complete audit ledger of all issued, redeemed, and expired rewards."""
+    expire_stale_rewards()
+    q = request.GET.get('q', '').strip()
+    status_filter = request.GET.get('status', '').strip()
+
+    queryset = LoyaltyReward.objects.select_related('patient', 'program', 'applied_by').order_by('-unlocked_at')
+
+    if q:
+        norm_q = normalize_phone(q)
+        queryset = queryset.filter(
+            Q(reward_reference__icontains=q) |
+            Q(patient__normalized_phone__icontains=norm_q) |
+            Q(patient__phone__icontains=q) |
+            Q(patient__full_name__icontains=q) |
+            Q(applied_invoice_ref__icontains=q)
+        )
+    if status_filter:
+        queryset = queryset.filter(status=status_filter)
+
+    paginator = Paginator(queryset, 20)
+    page_number = request.GET.get('page', 1)
+    rewards = paginator.get_page(page_number)
+
+    context = {
+        'title': 'Rewards Audit Ledger — CareFirst Smile Rewards',
+        'active_page': 'loyalty',
+        'active_tab': 'rewards',
+        'rewards': rewards,
+        'q': q,
+        'status_filter': status_filter,
+        'status_choices': LoyaltyReward.STATUS_CHOICES,
+    }
+    return render(request, 'dashboard/loyalty_rewards.html', context)
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_reward_cancel(request, pk):
+    """Staff override to cancel an active reward with audit reason."""
+    if request.method == 'POST':
+        reward = get_object_or_404(LoyaltyReward, pk=pk)
+        reason = request.POST.get('reason', '').strip() or "Staff manual override"
+        reward.status = 'cancelled'
+        reward.cancellation_reason = reason
+        reward.save(update_fields=['status', 'cancellation_reason'])
+
+        LoyaltyTransaction.objects.create(
+            patient=reward.patient,
+            program=reward.program,
+            treatment_name=f"Cancelled Reward: {reward.reward_reference}",
+            transaction_type='reward_cancelled',
+            progress_added=0,
+            notes=f"Reward {reward.reward_reference} cancelled by {request.user.username}. Reason: {reason}",
+            created_by=request.user
+        )
+        messages.success(request, f"Reward {reward.reward_reference} was cancelled.")
+    return redirect('dashboard:loyalty_rewards')
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_program_settings(request):
+    """Admin configuration UI for CareFirst Smile Rewards rules."""
+    program = LoyaltyProgram.get_active_program()
+
+    if request.method == 'POST':
+        form = LoyaltyProgramForm(request.POST, instance=program)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "CareFirst Smile Rewards configuration updated successfully.")
+            return redirect('dashboard:loyalty_program')
+    else:
+        form = LoyaltyProgramForm(instance=program)
+
+    context = {
+        'title': 'Loyalty Program Rules & Settings',
+        'active_page': 'loyalty',
+        'active_tab': 'program',
+        'form': form,
+        'program': program,
+    }
+    return render(request, 'dashboard/loyalty_programs.html', context)
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def loyalty_transactions_list(request):
+    """Complete immutable audit stream of all points, rewards, and redemptions."""
+    q = request.GET.get('q', '').strip()
+    tx_type = request.GET.get('type', '').strip()
+
+    queryset = LoyaltyTransaction.objects.select_related('patient', 'service', 'created_by').order_by('-created_at')
+
+    if q:
+        norm_q = normalize_phone(q)
+        queryset = queryset.filter(
+            Q(patient__normalized_phone__icontains=norm_q) |
+            Q(patient__phone__icontains=q) |
+            Q(patient__full_name__icontains=q) |
+            Q(invoice_reference__icontains=q) |
+            Q(treatment_name__icontains=q)
+        )
+    if tx_type:
+        queryset = queryset.filter(transaction_type=tx_type)
+
+    paginator = Paginator(queryset, 25)
+    page_number = request.GET.get('page', 1)
+    transactions = paginator.get_page(page_number)
+
+    context = {
+        'title': 'Loyalty Activity Ledger & Audit Logs',
+        'active_page': 'loyalty',
+        'active_tab': 'transactions',
+        'transactions': transactions,
+        'q': q,
+        'tx_type': tx_type,
+        'transaction_types': LoyaltyTransaction.TRANSACTION_TYPES,
+    }
+    return render(request, 'dashboard/loyalty_transactions.html', context)
+
+

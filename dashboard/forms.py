@@ -2,6 +2,7 @@ from django import forms
 from appointments.models import Appointment
 from main.models import Service, Doctor, PricingCategory, PricingItem, SpecialOffer, Testimonial, SiteSettings, ContactMessage, HeroSlide, ClinicGallery
 from media_center.models import Video
+from loyalty.models import LoyaltyProgram
 
 
 class BootstrapFormMixin:
@@ -140,3 +141,20 @@ class ClinicGalleryForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = ClinicGallery
         fields = ['caption', 'image', 'order']
+
+
+class LoyaltyProgramForm(BootstrapFormMixin, forms.ModelForm):
+    class Meta:
+        model = LoyaltyProgram
+        fields = [
+            'name', 'tagline', 'description', 'required_completed_treatments',
+            'reward_type', 'discount_percentage', 'fixed_discount_amount',
+            'maximum_discount_amount', 'expiry_days', 'allow_all_services_by_default',
+            'allow_consultations_eligible', 'eligible_services', 'excluded_services', 'is_active'
+        ]
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 3}),
+            'eligible_services': forms.SelectMultiple(attrs={'class': 'form-select', 'size': 5}),
+            'excluded_services': forms.SelectMultiple(attrs={'class': 'form-select', 'size': 5}),
+        }
+

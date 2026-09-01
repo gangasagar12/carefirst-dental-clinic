@@ -71,6 +71,16 @@ urlpatterns = [
     path('gallery/new/', views.gallery_create, name='gallery_create'),
     path('gallery/<int:pk>/delete/', views.gallery_delete, name='gallery_delete'),
     
+    # Loyalty & Rewards System (No-Portal)
+    path('loyalty/', views.loyalty_reception, name='loyalty_reception'),
+    path('loyalty/lookup/', views.loyalty_patient_lookup, name='loyalty_lookup'),
+    path('loyalty/apply-reward/', views.loyalty_apply_reward, name='loyalty_apply_reward'),
+    path('loyalty/record-visit/', views.loyalty_record_visit, name='loyalty_record_visit'),
+    path('loyalty/rewards/', views.loyalty_rewards_list, name='loyalty_rewards'),
+    path('loyalty/rewards/<int:pk>/cancel/', views.loyalty_reward_cancel, name='loyalty_reward_cancel'),
+    path('loyalty/program/', views.loyalty_program_settings, name='loyalty_program'),
+    path('loyalty/transactions/', views.loyalty_transactions_list, name='loyalty_transactions'),
+
     # Settings
     path('settings/', views.settings_view, name='settings'),
 ]
