@@ -2,17 +2,19 @@ import datetime
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.urls import reverse
+from .utils import generate_booking_id, generate_secure_access_token
 
 class Appointment(models.Model):
     STATUS_CHOICES = [
-        ('new', _('New Request')),
-        ('pending', _('Pending Staff Review')),
-        ('confirmed', _('Confirmed Slot')),
+        ('pending', _('Pending Confirmation')),
+        ('confirmed', _('Confirmed')),
         ('checked_in', _('Patient Checked In / Arrived')),
         ('completed', _('Completed Visit')),
         ('rescheduled', _('Rescheduled')),
         ('cancelled', _('Cancelled')),
         ('no_show', _('No Show')),
+        ('new', _('New Request')),
     ]
 
     LOYALTY_STATUS_CHOICES = [
@@ -58,15 +60,37 @@ class Appointment(models.Model):
         ('other', _('Other / Unsure')),
     ]
 
-    # Human-readable Unique Request Identifier
+    # Human-readable Unique Booking Reference ID
+    booking_id = models.CharField(
+        max_length=60, 
+        unique=True, 
+        null=True,
+        blank=True, 
+        db_index=True, 
+        verbose_name=_("Booking Reference ID"),
+        help_text=_("Human-readable unique reference e.g. CF-APT-20260902-A7X92")
+    )
+
+    # Cryptographically Secure Access Token (No predictable sequential IDs)
+    access_token = models.CharField(
+        max_length=100,
+        unique=True,
+        null=True,
+        blank=True,
+        db_index=True,
+        verbose_name=_("Secure Access Token"),
+        help_text=_("Cryptographically secure random token for patient access without login")
+    )
+
+    # Legacy reference compatibility field
     appointment_number = models.CharField(
-        max_length=50, 
+        max_length=60, 
         unique=True, 
         null=True,
         blank=True, 
         db_index=True, 
         verbose_name=_("Appointment Request ID"),
-        help_text=_("Human-readable reference ID e.g. CF-2026-000123")
+        help_text=_("Legacy reference ID compatible with booking_id")
     )
 
     full_name = models.CharField(max_length=200, verbose_name=_("Full Name"))
@@ -102,7 +126,7 @@ class Appointment(models.Model):
     branch = models.ForeignKey('main.Branch', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("Preferred Branch"))
     
     message = models.TextField(blank=True, verbose_name=_("Patient Notes / Special Requirements"))
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new', db_index=True, verbose_name=_("Status"))
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending', db_index=True, verbose_name=_("Status"))
 
     # Marketing Attribution & Tracking
     utm_source = models.CharField(max_length=100, blank=True, verbose_name=_("UTM Source"))
@@ -155,7 +179,7 @@ class Appointment(models.Model):
     )
 
     created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name=_("Created At"))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated Update At"))
 
     class Meta:
         ordering = ['-created_at']
@@ -164,14 +188,65 @@ class Appointment(models.Model):
 
     def save(self, *args, **kwargs):
         is_new = self.pk is None
-        super().save(*args, **kwargs)
+        if not self.booking_id:
+            self.booking_id = generate_booking_id()
+        if not self.access_token:
+            self.access_token = generate_secure_access_token()
         if not self.appointment_number:
-            year = timezone.now().year
-            self.appointment_number = f"CF-{year}-{self.id:06d}"
-            Appointment.objects.filter(pk=self.pk).update(appointment_number=self.appointment_number)
+            self.appointment_number = self.booking_id
+
+        super().save(*args, **kwargs)
+
+    @property
+    def display_booking_id(self) -> str:
+        return self.booking_id or self.appointment_number or f"CF-APT-{self.id:06d}"
+
+    def get_manage_url(self) -> str:
+        token = self.access_token or self.booking_id or str(self.id)
+        return reverse('appointments:manage', kwargs={'access_token': token})
+
+    def get_confirmation_url(self) -> str:
+        token = self.access_token or self.booking_id or str(self.id)
+        return reverse('appointments:confirmation', kwargs={'access_token': token})
+
+    def get_pdf_url(self) -> str:
+        token = self.access_token or self.booking_id or str(self.id)
+        return reverse('appointments:download_pdf', kwargs={'access_token': token})
+
+    def get_calendar_ics_url(self) -> str:
+        token = self.access_token or self.booking_id or str(self.id)
+        return reverse('appointments:calendar_ics', kwargs={'access_token': token})
+
+    def get_status_badge_class(self) -> str:
+        mapping = {
+            'pending': 'bg-warning text-dark border border-warning',
+            'confirmed': 'bg-success text-white',
+            'checked_in': 'bg-info text-white',
+            'completed': 'bg-primary text-white',
+            'rescheduled': 'bg-primary-subtle text-primary border border-primary',
+            'cancelled': 'bg-danger text-white',
+            'no_show': 'bg-secondary text-white',
+            'new': 'bg-warning text-dark',
+        }
+        return mapping.get(self.status, 'bg-secondary text-white')
+
+    def get_status_explanation(self) -> str:
+        if self.status in ['pending', 'new']:
+            return _("Your appointment request has been received. Our team will review and confirm your appointment shortly.")
+        elif self.status == 'confirmed':
+            return _("Your appointment has been confirmed! Please arrive approximately 10 minutes before your scheduled slot.")
+        elif self.status == 'checked_in':
+            return _("Patient is checked in at the clinic reception.")
+        elif self.status == 'completed':
+            return _("This clinical treatment visit has been completed.")
+        elif self.status == 'rescheduled':
+            return _("Your appointment has been rescheduled. Please note your updated time slot.")
+        elif self.status == 'cancelled':
+            return _("This appointment request has been cancelled.")
+        return _("Appointment logged in clinical registry.")
 
     def __str__(self):
-        ref = self.appointment_number or f"#{self.id}"
+        ref = self.display_booking_id
         return f"[{ref}] {self.full_name} - {self.preferred_date} ({self.get_status_display()})"
 
 
