@@ -90,10 +90,7 @@
             <span class="badge bg-white text-dark rounded-pill px-3 py-1 mb-2 fw-semibold">
               <i class="bi bi-shield-lock-fill text-primary me-1"></i> {% trans "Secure Appointment Pass" %}
             </span>
-            <h1 class="h3 fw-bold mb-1 text-white">{{ appointment.full_name }}</h1>
-            <p class="text-white-50 mb-0 small">
-              {% trans "Booking Reference ID:" %} <span class="text-white cf-mono-id fw-bold">{{ appointment.display_booking_id }}</span>
-            </p>
+            <h1 class="h3 fw-bold mb-0 text-white">{{ appointment.full_name }}</h1>
           </div>
           <div class="col-md-5 text-md-end">
             {% if appointment.status == 'confirmed' %}
