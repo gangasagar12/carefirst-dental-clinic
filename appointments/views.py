@@ -329,18 +329,52 @@ def track_funnel_event_api(request):
     return JsonResponse({'success': True})
 
 
-def appointment_confirmation_view(request, appointment_number: str):
+def get_appointment_by_token_or_404(token: str) -> Appointment:
     """
-    Displays post-submission confirmation receipt with Request ID and instant WhatsApp / Call buttons.
+    Safely retrieves an Appointment instance by access_token, booking_id, or legacy appointment_number.
     """
-    appointment = get_object_or_404(Appointment, appointment_number=appointment_number)
+    appointment = Appointment.objects.filter(access_token=token).first()
+    if not appointment:
+        appointment = Appointment.objects.filter(booking_id=token).first()
+    if not appointment:
+        appointment = Appointment.objects.filter(appointment_number=token).first()
+    if not appointment and token.isdigit():
+        appointment = Appointment.objects.filter(id=int(token)).first()
+    
+    if not appointment:
+        from django.http import Http404
+        raise Http404("Appointment not found or invalid access pass.")
+    return appointment
+
+
+def appointment_confirmation_view(request, access_token: str):
+    """
+    Displays the dedicated, professional post-submission Appointment Confirmation page
+    featuring the unique Booking ID, Status Badge, Patient & Treatment Details,
+    embedded QR Pass, PDF download, and Calendar export options.
+    """
+    appointment = get_appointment_by_token_or_404(access_token)
     settings = SiteSettings.objects.first()
 
-    # Pre-filled WhatsApp message for patient
+    # Pre-generate QR code base64
+    from .qr_services import generate_qr_base64, get_appointment_verification_url
+    verification_url = get_appointment_verification_url(appointment, request=request)
+    qr_code_base64 = generate_qr_base64(verification_url)
+
+    # Calendar links
+    from .calendar_services import generate_google_calendar_url
+    google_calendar_url = generate_google_calendar_url(appointment, request=request)
+    ical_url = appointment.get_calendar_ics_url()
+    pdf_url = appointment.get_pdf_url()
+    manage_url = appointment.get_manage_url()
+
+    # WhatsApp pre-filled text
+    service_name = appointment.service.title if appointment.service else (appointment.get_treatment_display() or 'Dental Consultation')
+    date_str = appointment.preferred_date.strftime('%B %d, %Y') if appointment.preferred_date else 'Flexible'
     whatsapp_text = (
         f"Hello CareFirst Dental Clinic, I have submitted an appointment request "
-        f"({appointment.appointment_number}) for {appointment.service.title if appointment.service else 'Dental Care'} "
-        f"on {appointment.preferred_date.strftime('%B %d, %Y')}. I would like to check on my confirmation."
+        f"({appointment.display_booking_id}) for {service_name} on {date_str}. "
+        f"I would like to check on my confirmation status."
     )
     import urllib.parse
     whatsapp_url = f"https://wa.me/9779807464136?text={urllib.parse.quote(whatsapp_text)}"
@@ -348,6 +382,135 @@ def appointment_confirmation_view(request, appointment_number: str):
     context = {
         'appointment': appointment,
         'settings': settings,
+        'qr_code_base64': qr_code_base64,
+        'google_calendar_url': google_calendar_url,
+        'ical_url': ical_url,
+        'pdf_url': pdf_url,
+        'manage_url': manage_url,
         'whatsapp_url': whatsapp_url,
+        'today_iso': timezone.now().date().isoformat(),
     }
     return render(request, 'appointments/confirmation.html', context)
+
+
+def appointment_manage_view(request, access_token: str):
+    """
+    Displays the patient self-service management page for tracking live status,
+    rescheduling requests, cancellation requests, PDF downloads, and clinic communication.
+    """
+    appointment = get_appointment_by_token_or_404(access_token)
+    settings = SiteSettings.objects.first()
+
+    from .qr_services import generate_qr_base64, get_appointment_verification_url
+    verification_url = get_appointment_verification_url(appointment, request=request)
+    qr_code_base64 = generate_qr_base64(verification_url)
+
+    from .calendar_services import generate_google_calendar_url
+    google_calendar_url = generate_google_calendar_url(appointment, request=request)
+    ical_url = appointment.get_calendar_ics_url()
+    pdf_url = appointment.get_pdf_url()
+
+    service_name = appointment.service.title if appointment.service else (appointment.get_treatment_display() or 'Dental Care')
+    date_str = appointment.preferred_date.strftime('%B %d, %Y') if appointment.preferred_date else 'Flexible'
+    whatsapp_text = (
+        f"Hello CareFirst Dental Clinic, regarding my appointment "
+        f"({appointment.display_booking_id}) for {service_name} on {date_str}, "
+        f"I have an inquiry."
+    )
+    import urllib.parse
+    whatsapp_url = f"https://wa.me/9779807464136?text={urllib.parse.quote(whatsapp_text)}"
+
+    context = {
+        'appointment': appointment,
+        'settings': settings,
+        'qr_code_base64': qr_code_base64,
+        'google_calendar_url': google_calendar_url,
+        'ical_url': ical_url,
+        'pdf_url': pdf_url,
+        'whatsapp_url': whatsapp_url,
+        'today_iso': timezone.now().date().isoformat(),
+    }
+    return render(request, 'appointments/manage.html', context)
+
+
+def appointment_download_pdf_view(request, access_token: str):
+    """
+    Generates and streams a official Appointment Confirmation PDF document.
+    """
+    from django.http import HttpResponse
+    from .pdf_services import generate_appointment_confirmation_pdf
+
+    appointment = get_appointment_by_token_or_404(access_token)
+    pdf_bytes = generate_appointment_confirmation_pdf(appointment, request=request)
+
+    filename = f"CareFirst_Appointment_{appointment.display_booking_id}.pdf"
+    response = HttpResponse(pdf_bytes, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    return response
+
+
+def appointment_calendar_ics_view(request, access_token: str):
+    """
+    Streams an RFC-5545 iCalendar (.ics) file for 1-click import into Apple / Outlook / Mobile calendars.
+    """
+    from django.http import HttpResponse
+    from .calendar_services import generate_icalendar_content
+
+    appointment = get_appointment_by_token_or_404(access_token)
+    ics_text = generate_icalendar_content(appointment, request=request)
+
+    filename = f"CareFirst_Appointment_{appointment.display_booking_id}.ics"
+    response = HttpResponse(ics_text, content_type='text/calendar; charset=utf-8')
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    return response
+
+
+@require_POST
+def appointment_request_reschedule_view(request, access_token: str):
+    """
+    Handles patient self-service reschedule requests and flags the appointment for receptionist review.
+    """
+    from django.contrib import messages
+    appointment = get_appointment_by_token_or_404(access_token)
+
+    new_date_str = request.POST.get('preferred_date', '').strip()
+    new_time = request.POST.get('preferred_time', 'morning').strip()
+    reason = request.POST.get('reschedule_reason', '').strip()
+
+    if new_date_str:
+        try:
+            new_date = datetime.date.fromisoformat(new_date_str)
+            if new_date >= timezone.now().date():
+                appointment.original_date = appointment.preferred_date
+                appointment.original_time = appointment.preferred_time
+                appointment.preferred_date = new_date
+                appointment.preferred_time = new_time
+                appointment.reschedule_reason = reason
+                appointment.status = 'rescheduled'
+                appointment.save()
+
+                messages.success(request, f"Your reschedule request for {new_date.strftime('%B %d, %Y')} has been submitted. Our team will verify and confirm your updated slot.")
+            else:
+                messages.error(request, "Selected appointment date cannot be in the past.")
+        except ValueError:
+            messages.error(request, "Invalid date format submitted.")
+
+    return redirect('appointments:manage', access_token=appointment.access_token)
+
+
+@require_POST
+def appointment_request_cancel_view(request, access_token: str):
+    """
+    Handles patient self-service cancellation requests.
+    """
+    from django.contrib import messages
+    appointment = get_appointment_by_token_or_404(access_token)
+
+    cancel_reason = request.POST.get('cancel_reason', '').strip()
+    appointment.status = 'cancelled'
+    if cancel_reason:
+        appointment.internal_note = f"Patient Cancel Reason: {cancel_reason}\n" + (appointment.internal_note or '')
+    appointment.save()
+
+    messages.info(request, f"Your appointment request ({appointment.display_booking_id}) has been cancelled. You are welcome to book anytime when ready.")
+    return redirect('appointments:manage', access_token=appointment.access_token)
