@@ -367,6 +367,148 @@ Reply directly to: {instance.email}
         print(f"Error sending clinic notification email: {e}")
         return False
 
+def send_appointment_status_update_email(appointment, old_status: str, new_status: str):
+    """
+    Sends an immediate status update email to the patient when their appointment status changes.
+    """
+    if not appointment.email or not is_valid_email(appointment.email):
+        return False
+
+    contact = get_clinic_contact_info()
+    from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', contact['email'])
+    name = appointment.full_name or "Valued Patient"
+    booking_id = appointment.display_booking_id
+    service_title = appointment.service.title if appointment.service else (appointment.get_treatment_display() or "Dental Treatment")
+    date_str = appointment.preferred_date.strftime("%B %d, %Y (%A)") if appointment.preferred_date else "Flexible"
+    time_str = appointment.get_preferred_time_display() or "Flexible Slot"
+    manage_url = f"https://carefirstdental.com{appointment.get_manage_url()}"
+
+    if new_status == 'confirmed':
+        subject = f"🟢 Appointment Confirmed – CareFirst Dental Clinic [{booking_id}]"
+        badge_color = "#059669"
+        status_heading = "Your Appointment Has Been Confirmed!"
+        status_msg = f"Great news! Your dental visit for <strong>{service_title}</strong> on <strong>{date_str}</strong> at <strong>{time_str}</strong> has been officially confirmed by our reception desk. Please arrive 10 minutes before your slot."
+    elif new_status == 'rescheduled':
+        subject = f"🔵 Appointment Schedule Updated – CareFirst Dental Clinic [{booking_id}]"
+        badge_color = "#0284C7"
+        status_heading = "Your Appointment Schedule Was Updated"
+        status_msg = f"Your appointment schedule for <strong>{service_title}</strong> has been updated to <strong>{date_str}</strong> at <strong>{time_str}</strong>."
+    elif new_status == 'cancelled':
+        subject = f"🔴 Appointment Request Cancelled – CareFirst Dental Clinic [{booking_id}]"
+        badge_color = "#DC2626"
+        status_heading = "Appointment Request Cancelled"
+        status_msg = f"Your appointment request ({booking_id}) has been cancelled. If you still require dental consultation, you are always welcome to rebook online."
+    elif new_status == 'completed':
+        subject = f"✨ Thank You for Visiting CareFirst Dental Clinic [{booking_id}]"
+        badge_color = "#07192F"
+        status_heading = "Treatment Completed – Thank You!"
+        status_msg = f"Thank you for visiting CareFirst Dental Clinic today for your <strong>{service_title}</strong>. We hope you had a gentle and comfortable experience."
+    else:
+        return False
+
+    plain_body = f"""Hello {name},
+
+{status_heading}
+
+Booking ID: {booking_id}
+Service:    {service_title}
+Date:       {date_str}
+Time:       {time_str}
+Status:     {appointment.get_status_display()}
+
+{status_msg}
+
+View and manage your appointment online:
+{manage_url}
+
+Need assistance? Contact our reception desk:
+Phone: {contact['phone']}
+WhatsApp: https://wa.me/{contact['whatsapp']}
+Location: {contact['address']}
+
+CareFirst Dental Clinic Kathmandu
+"""
+
+    html_body = f"""<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #F8FAFC; margin: 0; padding: 24px; color: #1E293B;">
+  <div style="max-width: 600px; margin: 0 auto; background: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #E2E8F0;">
+    
+    <!-- HEADER -->
+    <div style="background: linear-gradient(135deg, #07192F 0%, #0284C7 100%); padding: 32px 24px; text-align: center; color: #FFFFFF;">
+      <h2 style="margin: 0; font-size: 22px; font-weight: bold; letter-spacing: -0.5px;">CareFirst Dental Clinic</h2>
+      <p style="margin: 6px 0 0 0; font-size: 13px; color: #BAE6FD;">Excellence in Gentle & Modern Dentistry • Kathmandu</p>
+    </div>
+
+    <!-- BODY CONTENT -->
+    <div style="padding: 32px 28px;">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <span style="background: {badge_color}; color: #FFFFFF; font-size: 12px; font-weight: bold; padding: 6px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px;">
+          {appointment.get_status_display()}
+        </span>
+        <h3 style="color: #07192F; font-size: 20px; margin: 16px 0 8px 0;">{status_heading}</h3>
+        <p style="color: #64748B; font-size: 14px; margin: 0;">Hello {name}, here is an update regarding your dental appointment.</p>
+      </div>
+
+      <!-- DETAILS BOX -->
+      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+          <tr>
+            <td style="padding: 6px 0; color: #64748B; width: 40%;">Booking ID:</td>
+            <td style="padding: 6px 0; font-family: monospace; font-weight: bold; color: #07192F;">{booking_id}</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: #64748B;">Service:</td>
+            <td style="padding: 6px 0; font-weight: bold; color: #0284C7;">{service_title}</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: #64748B;">Scheduled Date:</td>
+            <td style="padding: 6px 0; font-weight: bold; color: #0F172A;">{date_str}</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: #64748B;">Time Slot:</td>
+            <td style="padding: 6px 0; font-weight: bold; color: #0F172A;">{time_str}</td>
+          </tr>
+        </table>
+      </div>
+
+      <p style="font-size: 14px; line-height: 1.6; color: #334155; margin-bottom: 28px;">
+        {status_msg}
+      </p>
+
+      <!-- CTA BUTTON -->
+      <div style="text-align: center; margin-bottom: 32px;">
+        <a href="{manage_url}" style="background: #0284C7; color: #FFFFFF; text-decoration: none; font-weight: bold; font-size: 14px; padding: 14px 32px; border-radius: 50px; display: inline-block; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);">
+          View Appointment Details & Pass
+        </a>
+      </div>
+
+      <!-- CLINIC ASSISTANCE -->
+      <div style="border-top: 1px solid #E2E8F0; padding-top: 20px; font-size: 12px; color: #64748B; text-align: center;">
+        <p style="margin: 0 0 6px 0;"><strong>Need assistance?</strong> Call <strong>{contact['phone']}</strong> or WhatsApp us directly.</p>
+        <p style="margin: 0;">CareFirst Dental Clinic • Pragatinagar Road, Shankhamul-31, Kathmandu</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>"""
+
+    try:
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            body=plain_body,
+            from_email=from_email,
+            to=[appointment.email]
+        )
+        msg.attach_alternative(html_body, "text/html")
+        msg.send(fail_silently=False)
+        return True
+    except Exception as e:
+        print(f"Error sending status update email: {e}")
+        return False
+
+
 def queue_email_confirmation(name, email, inquiry_type, obj_id, details=None):
     """
     Creates a pending EmailNotification record for the patient and triggers instant dispatch.
@@ -428,3 +570,4 @@ def send_pending_email_messages(notification_id=None, html_content=None):
         except Exception as e:
             notification.status = 'failed'
             notification.save()
+

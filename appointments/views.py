@@ -490,6 +490,13 @@ def appointment_request_reschedule_view(request, access_token: str):
                 appointment.save()
 
                 messages.success(request, f"Your reschedule request for {new_date.strftime('%B %d, %Y')} has been submitted. Our team will verify and confirm your updated slot.")
+
+                try:
+                    from main.services.email import send_clinic_admin_alert, send_appointment_status_update_email
+                    send_clinic_admin_alert(appointment, 'appointment')
+                    send_appointment_status_update_email(appointment, 'pending', 'rescheduled')
+                except Exception as e:
+                    print(f"Error sending reschedule alerts: {e}")
             else:
                 messages.error(request, "Selected appointment date cannot be in the past.")
         except ValueError:
@@ -511,6 +518,13 @@ def appointment_request_cancel_view(request, access_token: str):
     if cancel_reason:
         appointment.internal_note = f"Patient Cancel Reason: {cancel_reason}\n" + (appointment.internal_note or '')
     appointment.save()
+
+    try:
+        from main.services.email import send_clinic_admin_alert, send_appointment_status_update_email
+        send_clinic_admin_alert(appointment, 'appointment')
+        send_appointment_status_update_email(appointment, 'pending', 'cancelled')
+    except Exception as e:
+        print(f"Error sending cancellation alerts: {e}")
 
     messages.info(request, f"Your appointment request ({appointment.display_booking_id}) has been cancelled. You are welcome to book anytime when ready.")
     return redirect('appointments:manage', access_token=appointment.access_token)
