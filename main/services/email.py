@@ -115,16 +115,39 @@ def get_email_html_template(patient_name, inquiry_type='contact', details=None):
     
     app_details_html = ""
     if inquiry_type == 'appointment':
+        booking_id = details.get('booking_id', app_num)
+        token = details.get('access_token', '')
+        manage_btn = ""
+        if token:
+            manage_url = f"https://carefirstdental.com/appointment/manage/{token}/"
+            manage_btn = f"""
+            <div style="text-align: center; margin-top: 16px;">
+              <a href="{manage_url}" style="display: inline-block; background: #0284C7; color: #FFFFFF; text-decoration: none; font-weight: bold; font-size: 13px; padding: 10px 24px; border-radius: 50px; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);">
+                📄 View Appointment & Digital Pass
+              </a>
+            </div>
+            """
+
         app_details_html = f"""
-        <div style="background: #F1F5F9; border-radius: 12px; padding: 18px 22px; margin: 22px 0; border-left: 4px solid #0284C7;">
-          <h4 style="margin: 0 0 12px 0; color: #081C33; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px;">📅 Your Appointment Details</h4>
+        <div style="background: #F8FAFC; border-radius: 12px; padding: 18px 22px; margin: 22px 0; border: 1.5px solid #E2E8F0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #E2E8F0; padding-bottom: 10px;">
+            <div>
+              <span style="font-size: 10px; color: #64748B; text-transform: uppercase; font-weight: bold; display: block;">Booking ID</span>
+              <span style="font-family: monospace; font-size: 15px; font-weight: bold; color: #07192F;">{booking_id}</span>
+            </div>
+            <div>
+              <span style="background: #FEF3C7; color: #92400E; font-size: 11px; font-weight: bold; padding: 4px 12px; border-radius: 50px; border: 1px solid #FCD34D;">
+                Pending Confirmation
+              </span>
+            </div>
+          </div>
           <table style="width: 100%; font-size: 14px; border-collapse: collapse; color: #334155;">
-            <tr><td style="padding: 5px 0; font-weight: bold; width: 38%;">Reference ID:</td><td style="color: #0284C7; font-weight: bold;">{app_num}</td></tr>
-            <tr><td style="padding: 5px 0; font-weight: bold;">Treatment:</td><td>{treatment}</td></tr>
-            <tr><td style="padding: 5px 0; font-weight: bold;">Preferred Date:</td><td>{pref_date}</td></tr>
-            <tr><td style="padding: 5px 0; font-weight: bold;">Time Slot:</td><td>{pref_time}</td></tr>
-            <tr><td style="padding: 5px 0; font-weight: bold;">Specialist:</td><td>{doctor}</td></tr>
+            <tr><td style="padding: 5px 0; font-weight: bold; width: 38%; color: #64748B;">Service:</td><td style="color: #0284C7; font-weight: bold;">{treatment}</td></tr>
+            <tr><td style="padding: 5px 0; font-weight: bold; color: #64748B;">Preferred Date:</td><td style="font-weight: bold; color: #0F172A;">{pref_date}</td></tr>
+            <tr><td style="padding: 5px 0; font-weight: bold; color: #64748B;">Time Slot:</td><td style="color: #0F172A;">{pref_time}</td></tr>
+            <tr><td style="padding: 5px 0; font-weight: bold; color: #64748B;">Dentist:</td><td>{doctor}</td></tr>
           </table>
+          {manage_btn}
         </div>
         """
 
