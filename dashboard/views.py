@@ -122,6 +122,8 @@ def appointments_list(request):
             Q(full_name__icontains=q) |
             Q(phone__icontains=q) |
             Q(email__icontains=q) |
+            Q(booking_id__icontains=q) |
+            Q(access_token__icontains=q) |
             Q(appointment_number__icontains=q)
         )
     if status_filter:
@@ -163,6 +165,7 @@ def appointment_detail(request, pk):
             appointment.payment_status = new_payment
 
         if new_status in dict(Appointment.STATUS_CHOICES):
+            old_status = appointment.status
             was_completed = appointment.status == 'completed'
             was_checked_in = appointment.status == 'checked_in'
             appointment.status = new_status
@@ -175,6 +178,14 @@ def appointment_detail(request, pk):
                     appointment.loyalty_status = 'awaiting_verification'
 
             appointment.save()
+
+            # Trigger automated status update email to patient if status changed
+            if old_status != new_status:
+                try:
+                    from main.services.email import send_appointment_status_update_email
+                    send_appointment_status_update_email(appointment, old_status, new_status)
+                except Exception as e:
+                    print(f"Error sending status update email: {e}")
 
             if new_status == 'completed' and not was_completed:
                 messages.success(
@@ -190,7 +201,7 @@ def appointment_detail(request, pk):
     loyalty_profile = PatientLoyaltyProfile.objects.filter(normalized_phone=norm_phone).first()
 
     context = {
-        'title': f"Appointment #{appointment.id} - {appointment.full_name}",
+        'title': f"Appointment {appointment.display_booking_id} - {appointment.full_name}",
         'active_page': 'appointments',
         'appointment': appointment,
         'status_choices': Appointment.STATUS_CHOICES,
@@ -207,6 +218,7 @@ def appointment_update_status(request, pk):
         appointment = get_object_or_404(Appointment, pk=pk)
         new_status = request.POST.get('status')
         if new_status in dict(Appointment.STATUS_CHOICES):
+            old_status = appointment.status
             was_completed = appointment.status == 'completed'
             was_checked_in = appointment.status == 'checked_in'
             appointment.status = new_status
@@ -217,6 +229,14 @@ def appointment_update_status(request, pk):
                 if appointment.loyalty_status in ['none', '']:
                     appointment.loyalty_status = 'awaiting_verification'
             appointment.save()
+
+            # Trigger automated status update email to patient if status changed
+            if old_status != new_status:
+                try:
+                    from main.services.email import send_appointment_status_update_email
+                    send_appointment_status_update_email(appointment, old_status, new_status)
+                except Exception as e:
+                    print(f"Error sending status update email: {e}")
 
             msg = f"Appointment status updated to '{appointment.get_status_display()}'."
             if new_status == 'completed':

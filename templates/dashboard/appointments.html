@@ -68,7 +68,7 @@
         {% for app in appointments %}
         <tr>
           <td>
-            <span class="badge bg-light text-primary border font-monospace">{{ app.appointment_number|default:app.id }}</span>
+            <span class="badge bg-light text-primary border font-monospace">{{ app.display_booking_id }}</span>
           </td>
           <td>
             <div class="fw-bold text-dark">{{ app.full_name }}</div>
@@ -105,11 +105,17 @@
           </td>
           <td class="text-end">
             <div class="d-inline-flex gap-1">
-              <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-3" title="View Full Details">
+              <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-3" title="View Full Clinical Details">
                 <i class="bi bi-eye"></i>
               </a>
+              <a href="{{ app.get_manage_url }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-3" title="View Public Patient Pass & QR">
+                <i class="bi bi-qr-code"></i>
+              </a>
+              <a href="{{ app.get_pdf_url }}" class="btn btn-sm btn-outline-secondary rounded-3" title="Download PDF Confirmation">
+                <i class="bi bi-file-earmark-pdf"></i>
+              </a>
               {% if app.phone %}
-              <a href="https://wa.me/{{ app.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ app.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic%20regarding%20your%20appointment." target="_blank" class="btn-cf-whatsapp" title="WhatsApp Patient">
+              <a href="https://wa.me/{{ app.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ app.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic%20regarding%20your%20appointment%20({{ app.display_booking_id }})." target="_blank" class="btn-cf-whatsapp" title="WhatsApp Patient">
                 <i class="bi bi-whatsapp"></i>
               </a>
               {% endif %}
