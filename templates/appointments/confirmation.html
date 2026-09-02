@@ -1,111 +1,335 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 
-{% block title %}{% trans "Appointment Request Received" %} — Carefirst Dental Clinic{% endblock %}
+{% block title %}{% trans "Appointment Confirmation" %} — {{ appointment.display_booking_id }} | CareFirst Dental Clinic{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=1.0">
+<link rel="stylesheet" href="{% static 'main/css/appointment_funnel.css' %}?v=2.0">
+<style>
+  .cf-conf-container {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .cf-conf-hero {
+    background: linear-gradient(135deg, #07192F 0%, #0B2545 60%, #0284C7 100%);
+    color: #ffffff;
+    padding: 3.5rem 1rem 4.5rem;
+    border-radius: 0 0 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .cf-conf-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(2, 132, 199, 0.25) 0%, rgba(2, 132, 199, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .cf-conf-main-card {
+    background: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 45px rgba(7, 25, 47, 0.08);
+    border: 1px solid #E2E8F0;
+    margin-top: -3rem;
+    overflow: hidden;
+  }
+  .cf-booking-badge {
+    background: #F8FAFC;
+    border: 1.5px dashed #0284C7;
+    border-radius: 1rem;
+    padding: 0.85rem 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'JetBrains Mono', monospace, monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #07192F;
+    letter-spacing: 0.5px;
+  }
+  .cf-qr-box {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    text-align: center;
+  }
+  .cf-info-section-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #0284C7;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .cf-detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid #F1F5F9;
+  }
+  .cf-detail-item:last-child {
+    border-bottom: none;
+  }
+  .cf-detail-label {
+    font-size: 0.9rem;
+    color: #64748B;
+    font-weight: 500;
+  }
+  .cf-detail-val {
+    font-size: 0.95rem;
+    color: #0F172A;
+    font-weight: 600;
+    text-align: right;
+  }
+  .cf-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="cf-funnel-page">
+<div class="bg-light pb-5">
 
-  <!-- Hero Banner -->
-  <section class="cf-funnel-hero text-center" style="padding-bottom: 80px;">
-    <div class="container">
-      <h1 class="mb-2">{% trans "Appointment Request Received" %}</h1>
-      <p class="cf-funnel-hero-sub">
-        {% trans "Thank you for reaching out to CareFirst Dental Clinic Kathmandu. We have logged your request." %}
+  <!-- HERO BANNER -->
+  <section class="cf-conf-hero text-center">
+    <div class="container position-relative">
+      <div class="d-inline-flex align-items-center justify-content-center bg-white text-primary rounded-circle shadow-sm mb-3" style="width: 64px; height: 64px; font-size: 1.75rem;">
+        <i class="bi bi-check2-circle text-primary"></i>
+      </div>
+      <h1 class="fw-bold mb-2 text-white h2">{% trans "Appointment Request Received" %}</h1>
+      <p class="text-white-50 fs-6 max-w-2xl mx-auto mb-0">
+        {% blocktrans with name=appointment.full_name %}Thank you, <strong>{{ name }}</strong>. We have received your appointment request.{% endblocktrans %}
       </p>
     </div>
   </section>
 
-  <!-- Confirmation Receipt Card -->
-  <div class="container">
-    <div class="cf-confirmation-card">
-      
-      <div class="cf-check-halo">
-        <i class="bi bi-check-lg"></i>
-      </div>
+  <!-- MAIN CONFIRMATION CARD -->
+  <div class="container cf-conf-container">
+    <div class="cf-conf-main-card p-4 p-md-5">
 
-      <h2 class="fw-bold mb-1" style="font-family: var(--cf-font-head); color: var(--cf-navy);">
-        {% blocktrans with name=appointment.full_name %}Thank You, {{ name }}!{% endblocktrans %}
-      </h2>
-      <p class="text-muted mb-3">
-        {% trans "Your appointment request has been successfully submitted to our clinic." %}
-      </p>
-
-      <div>
-        <span class="text-muted small d-block">{% trans "YOUR APPOINTMENT REFERENCE ID" %}</span>
-        <div class="cf-request-badge">{{ appointment.appointment_number }}</div>
-      </div>
-
-      <!-- Summary Details Table -->
-      <div class="cf-review-card text-start my-4">
-        <div class="cf-review-row">
-          <span class="cf-review-label">{% trans "Treatment:" %}</span>
-          <span class="cf-review-val">
-            {% if appointment.service %}{{ appointment.service.title }}{% else %}{{ appointment.get_treatment_display|default:"General Dental Consultation" }}{% endif %}
-          </span>
+      <!-- TOP RIBBON: BOOKING ID & STATUS -->
+      <div class="row align-items-center g-3 mb-4 pb-4 border-bottom">
+        <div class="col-lg-7">
+          <span class="text-muted small text-uppercase fw-bold d-block mb-1">{% trans "Unique Booking Reference ID" %}</span>
+          <div class="cf-booking-badge shadow-sm">
+            <span>{{ appointment.display_booking_id }}</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill py-0 px-2 border-0" onclick="navigator.clipboard.writeText('{{ appointment.display_booking_id }}'); this.innerHTML='<i class=\'bi bi-check\'></i> Copied'; setTimeout(() => this.innerHTML='<i class=\'bi bi-clipboard\'></i>', 2000);" title="{% trans 'Copy Booking ID' %}">
+              <i class="bi bi-clipboard"></i>
+            </button>
+          </div>
         </div>
-
-        <div class="cf-review-row">
-          <span class="cf-review-label">{% trans "Visit Type:" %}</span>
-          <span class="cf-review-val">{{ appointment.get_appointment_type_display }}</span>
-        </div>
-
-        <div class="cf-review-row">
-          <span class="cf-review-label">{% trans "Preferred Date:" %}</span>
-          <span class="cf-review-val">{{ appointment.preferred_date|date:"F j, Y (l)" }}</span>
-        </div>
-
-        <div class="cf-review-row">
-          <span class="cf-review-label">{% trans "Preferred Time:" %}</span>
-          <span class="cf-review-val">{{ appointment.get_preferred_time_display|default:"Flexible" }}</span>
-        </div>
-
-        {% if appointment.doctor %}
-        <div class="cf-review-row">
-          <span class="cf-review-label">{% trans "Doctor:" %}</span>
-          <span class="cf-review-val">Dr. {{ appointment.doctor.name }}</span>
-        </div>
-        {% endif %}
-
-        <div class="cf-review-row">
-          <span class="cf-review-label">{% trans "Contact Phone:" %}</span>
-          <span class="cf-review-val">{{ appointment.phone }}</span>
-        </div>
-
-        <div class="cf-review-row">
-          <span class="cf-review-label">{% trans "Status:" %}</span>
-          <span class="cf-review-val text-primary fw-bold">
-            <i class="bi bi-hourglass-split me-1"></i> {{ appointment.get_status_display }}
-          </span>
+        <div class="col-lg-5 text-lg-end">
+          <span class="text-muted small text-uppercase fw-bold d-block mb-1">{% trans "Current Status" %}</span>
+          {% if appointment.status == 'confirmed' %}
+            <span class="cf-status-pill bg-success text-white shadow-sm">
+              <i class="bi bi-check-circle-fill"></i> {% trans "Confirmed" %}
+            </span>
+          {% elif appointment.status == 'completed' %}
+            <span class="cf-status-pill bg-primary text-white shadow-sm">
+              <i class="bi bi-award-fill"></i> {% trans "Completed Visit" %}
+            </span>
+          {% elif appointment.status == 'rescheduled' %}
+            <span class="cf-status-pill bg-info text-white shadow-sm">
+              <i class="bi bi-arrow-repeat"></i> {% trans "Rescheduled" %}
+            </span>
+          {% elif appointment.status == 'cancelled' %}
+            <span class="cf-status-pill bg-danger text-white shadow-sm">
+              <i class="bi bi-x-circle-fill"></i> {% trans "Cancelled" %}
+            </span>
+          {% else %}
+            <span class="cf-status-pill bg-warning text-dark border border-warning shadow-sm">
+              <i class="bi bi-hourglass-split"></i> {% trans "Pending Confirmation" %}
+            </span>
+          {% endif %}
         </div>
       </div>
 
-      <div class="alert alert-warning border-0 rounded-4 text-start small mb-4">
-        <i class="bi bi-info-circle-fill text-warning me-1"></i>
-        {% trans "Note: Submitting this request logs your time preference with our clinical desk. Our staff will call or WhatsApp you shortly to confirm availability and lock your exact appointment slot." %}
+      <!-- STATUS EXPLANATION ALERT BOX -->
+      <div class="alert {% if appointment.status == 'confirmed' %}alert-success border-success{% elif appointment.status == 'cancelled' %}alert-danger border-danger{% else %}alert-warning border-warning{% endif %} rounded-4 p-3 mb-4 d-flex align-items-start gap-3">
+        <i class="bi {% if appointment.status == 'confirmed' %}bi-patch-check-fill text-success fs-4{% elif appointment.status == 'cancelled' %}bi-exclamation-octagon-fill text-danger fs-4{% else %}bi-info-circle-fill text-warning fs-4{% endif %} flex-shrink-0 mt-1"></i>
+        <div>
+          <h6 class="fw-bold mb-1">
+            {% if appointment.status == 'confirmed' %}
+              {% trans "Your Appointment is Confirmed!" %}
+            {% elif appointment.status == 'cancelled' %}
+              {% trans "Appointment Cancelled" %}
+            {% else %}
+              {% trans "Pending Clinic Confirmation" %}
+            {% endif %}
+          </h6>
+          <p class="mb-0 small text-dark opacity-75">
+            {{ appointment.get_status_explanation }}
+          </p>
+        </div>
       </div>
 
-      <!-- Action CTAs -->
-      <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-        <a href="{{ whatsapp_url }}" target="_blank" rel="noopener" class="btn btn-success btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center justify-content-center gap-2 shadow-sm">
-          <i class="bi bi-whatsapp fs-5"></i> {% trans "Connect on WhatsApp" %}
-        </a>
-        <a href="tel:+9779807464136" class="btn btn-outline-primary btn-lg rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center justify-content-center gap-2">
-          <i class="bi bi-telephone-fill"></i> {% trans "Call Clinic Desk" %}
-        </a>
+      <!-- BODY GRID: DETAILS & QR CODE -->
+      <div class="row g-4">
+        
+        <!-- LEFT COLUMN: PATIENT & CLINICAL DETAILS -->
+        <div class="col-md-7 col-lg-8">
+          
+          <!-- APPOINTMENT DETAILS -->
+          <div class="mb-4">
+            <div class="cf-info-section-title">
+              <i class="bi bi-calendar2-check"></i> {% trans "Appointment Details" %}
+            </div>
+            <div class="bg-light p-3 rounded-4">
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Selected Service:" %}</span>
+                <span class="cf-detail-val text-primary fw-bold">
+                  {% if appointment.service %}{{ appointment.service.title }}{% else %}{{ appointment.get_treatment_display|default:"General Dental Consultation" }}{% endif %}
+                </span>
+              </div>
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Appointment Date:" %}</span>
+                <span class="cf-detail-val">{{ appointment.preferred_date|date:"F j, Y (l)" }}</span>
+              </div>
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Time Slot:" %}</span>
+                <span class="cf-detail-val">{{ appointment.get_preferred_time_display|default:"Flexible Slot" }}</span>
+              </div>
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Visit Type:" %}</span>
+                <span class="cf-detail-val">{{ appointment.get_appointment_type_display }}</span>
+              </div>
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Clinic Branch:" %}</span>
+                <span class="cf-detail-val">{% if appointment.branch %}{{ appointment.branch.name }}{% else %}CareFirst Main Clinic (Shankhamul, Kathmandu){% endif %}</span>
+              </div>
+              {% if appointment.doctor %}
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Attending Dentist:" %}</span>
+                <span class="cf-detail-val">Dr. {{ appointment.doctor.name }}</span>
+              </div>
+              {% endif %}
+              {% if appointment.pricing_option %}
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Material / Option:" %}</span>
+                <span class="cf-detail-val">{{ appointment.pricing_option }}</span>
+              </div>
+              {% endif %}
+              {% if appointment.estimated_amount %}
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Price Estimate:" %}</span>
+                <span class="cf-detail-val text-success">NPR {{ appointment.estimated_amount }}</span>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- PATIENT INFORMATION -->
+          <div class="mb-4">
+            <div class="cf-info-section-title">
+              <i class="bi bi-person-badge"></i> {% trans "Patient Information" %}
+            </div>
+            <div class="bg-light p-3 rounded-4">
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Full Name:" %}</span>
+                <span class="cf-detail-val">{{ appointment.full_name }}</span>
+              </div>
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Phone Number:" %}</span>
+                <span class="cf-detail-val">{{ appointment.phone }}</span>
+              </div>
+              {% if appointment.email %}
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Email Address:" %}</span>
+                <span class="cf-detail-val">{{ appointment.email }}</span>
+              </div>
+              {% endif %}
+              {% if appointment.message %}
+              <div class="cf-detail-item">
+                <span class="cf-detail-label">{% trans "Notes / Message:" %}</span>
+                <span class="cf-detail-val text-wrap">{{ appointment.message }}</span>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: QR CODE & DESK PASS -->
+        <div class="col-md-5 col-lg-4">
+          <div class="cf-qr-box shadow-sm sticky-top" style="top: 2rem;">
+            <span class="text-muted small text-uppercase fw-bold d-block mb-2">{% trans "Digital Verification Pass" %}</span>
+            <div class="p-2 bg-white rounded-3 d-inline-block shadow-sm mb-3">
+              <img src="{{ qr_code_base64 }}" alt="CareFirst Appointment QR Code" class="img-fluid" style="width: 160px; height: 160px;">
+            </div>
+            <p class="small text-muted mb-3" style="line-height: 1.4;">
+              {% trans "Please keep this confirmation and show the Booking ID or QR code when visiting the clinic." %}
+            </p>
+            <div class="d-grid gap-2">
+              <a href="{{ pdf_url }}" class="btn btn-primary rounded-pill fw-semibold shadow-sm">
+                <i class="bi bi-file-earmark-pdf-fill me-1"></i> {% trans "Download PDF" %}
+              </a>
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary rounded-pill fw-semibold w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  <i class="bi bi-calendar-plus me-1"></i> {% trans "Add to Calendar" %}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3">
+                  <li>
+                    <a class="dropdown-item py-2" href="{{ google_calendar_url }}" target="_blank" rel="noopener">
+                      <i class="bi bi-google me-2 text-danger"></i> Google Calendar
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2" href="{{ ical_url }}">
+                      <i class="bi bi-apple me-2 text-dark"></i> Apple / Outlook (.ics)
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="mt-4">
-        <a href="{% url 'main:home' %}" class="text-muted small text-decoration-none">
-          <i class="bi bi-arrow-left me-1"></i> {% trans "Return to Homepage" %}
-        </a>
+      <!-- BOTTOM ACTION TOOLBAR -->
+      <div class="mt-4 pt-4 border-top">
+        <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-between align-items-center">
+          <div class="d-flex flex-wrap gap-2">
+            <a href="{{ whatsapp_url }}" target="_blank" rel="noopener" class="btn btn-success rounded-pill px-4 fw-semibold shadow-sm">
+              <i class="bi bi-whatsapp me-1"></i> {% trans "Connect on WhatsApp" %}
+            </a>
+            <a href="tel:+9779807464136" class="btn btn-outline-primary rounded-pill px-4 fw-semibold">
+              <i class="bi bi-telephone-fill me-1"></i> {% trans "Call Reception Desk" %}
+            </a>
+          </div>
+          <a href="{{ manage_url }}" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">
+            <i class="bi bi-gear-fill me-1"></i> {% trans "Manage Appointment" %}
+          </a>
+        </div>
       </div>
 
     </div>
+
+    <!-- CLINIC ASSISTANCE BANNER -->
+    <div class="text-center mt-4 text-muted small">
+      <p class="mb-1">
+        <i class="bi bi-geo-alt-fill text-primary"></i> <strong>CareFirst Dental Clinic</strong> • Pragatinagar Road, Shankhamul-31, Kathmandu
+      </p>
+      <p class="mb-0 opacity-75">
+        Open Daily: 7:30 AM – 7:30 PM • Emergency Support: +977 980-7464136 • Clinical Director: Dr. Subash Banjade (NMC #31229)
+      </p>
+    </div>
+
   </div>
 
 </div>
