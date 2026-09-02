@@ -11521,3 +11521,51 @@ msgid ""
 msgstr ""
 "नियमित जाँच तथा सामान्य दन्त उपचारसम्बन्धी बारम्बार सोधिने प्रश्नहरूको उत्तर"
 " यहाँ पाउनुहोस्।"
+
+msgid "Clear & Transparent Pricing (Per Tooth)"
+msgstr "स्पष्ट र पारदर्शी मूल्य निर्धारण (प्रति दाँत)"
+
+msgid ""
+"At Carefirst Dental Clinic, we craft modern dentures that are comfortable, "
+"functional, and look incredibly natural. Whether you are missing a few teeth"
+" or an entire arch, we provide personalized solutions to help you eat, "
+"speak, and smile with confidence again."
+msgstr ""
+"केयरफर्स्ट डेन्टल क्लिनिकमा, हामी आरामदायी, कार्यात्मक, र अविश्वसनीय रूपमा "
+"प्राकृतिक देखिने आधुनिक दाँतहरू बनाउँछौं। तपाईंले केही दाँत वा पूरै चाप "
+"छुटेको भए पनि, हामी तपाईंलाई फेरि आत्मविश्वासका साथ खान, बोल्न र हाँस्न "
+"मद्दत गर्न व्यक्तिगत समाधानहरू प्रदान गर्छौं।"
+
+msgid ""
+"Please contact us for more information regarding this specific service."
+msgstr ""
+"यस विशिष्ट सेवाको बारेमा थप जानकारीको लागि कृपया हामीलाई सम्पर्क गर्नुहोस्।"
+
+msgid "Best For: Older Teens & Adults"
+msgstr "सबै भन्दा राम्रो को लागी: पुरानो किशोर र वयस्कहरु"
+
+msgid ""
+"<span class=\"badge bg-dark text-white rounded-pill px-3 py-2\">{% "
+"blocktrans %}Best For: Patients seeking comfort & speed"
+msgstr ""
+"<span class=\"badge bg-dark text-white rounded-pill px-3 py-2\">{% "
+"blocktrans %}का लागि उत्तम: आराम र गति खोज्ने बिरामीहरू"
+
+msgid ""
+"<span class=\"badge bg-dark text-white rounded-pill px-3 py-2\">{% "
+"blocktrans %}Best For: Adults & Teens with mild/moderate issues"
+msgstr ""
+"<span class=\"badge bg-dark text-white rounded-pill px-3 py-2\">{% "
+"blocktrans %}Best For: Adults & Teens with mild/moderate issues"
+
+msgid "Accurate & Detailed Imaging"
+msgstr "सटीक र विस्तृत इमेजिङ"
+
+msgid "Safe & Low Radiation"
+msgstr "सुरक्षित र कम विकिरण"
+
+msgid "Infection Control & Hygiene"
+msgstr "संक्रमण नियन्त्रण र स्वच्छता"
+
+msgid "For Standard Scaling & Polishing"
+msgstr "मानक स्केलिंग र पालिसिङ को लागी"

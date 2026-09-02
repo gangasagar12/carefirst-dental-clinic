@@ -95,7 +95,9 @@
             {{ service.detail_content|linebreaks }}
           {% else %}
             <p>Our experienced team provides comprehensive {{ service.title|lower }} services using state-of-the-art technology. We prioritize your comfort and deliver exceptional results.</p>
-            <p>Please contact us for more information regarding this specific service.</p>
+            <p>
+          {% blocktrans %}Please contact us for more information regarding this specific service.{% endblocktrans %}
+        </p>
           {% endif %}
         </div>
         <div class="mt-5">

@@ -262,12 +262,16 @@
         <div class="pricing-table h-100">
           <div class="pricing-header">
             <h3 class="fw-bold text-white mb-0">{% trans "Treatment Charges" %}</h3>
-            <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing</p>
+            <p class="text-white-50 small mb-0 mt-2">
+          {% blocktrans %}Clear & Transparent Pricing{% endblocktrans %}
+        </p>
           </div>
           <div class="pricing-body text-center">
             <p class="text-muted mb-1 text-uppercase fw-bold small tracking-wide">{% trans "Starting From" %}</p>
             <div class="price-amount" style="color: #0B2545; font-weight: 800; font-size: 3rem;"><span class="price-currency" style="font-size: 1.2rem; vertical-align: super; color: #0284C7;">{% trans "NPR" %}</span> {{ dynamic_prices.scaling_polishing|default:"2,000" }}</div>
-            <p class="text-muted fw-bold mb-4">For Standard Scaling & Polishing</p>
+            <p class="text-muted fw-bold mb-4">
+          {% blocktrans %}For Standard Scaling & Polishing{% endblocktrans %}
+        </p>
             
             <ul class="text-start text-muted small mb-4 px-3" style="list-style:none; padding:0;">
               <li class="mb-3"> {% trans "Full mouth ultrasonic scaling" %}</li>

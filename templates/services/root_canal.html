@@ -368,8 +368,8 @@
               <h4 class="vfc-title" style="color: var(--cf-accent-dark);">{% trans "Digital Diagnosis" %}</h4>
               <p class="vfc-desc">{% trans "High-resolution digital X-rays help us map out your root canals precisely, increasing the success rate significantly." %}</p>
               <div class="vfc-highlights" style="color: var(--cf-accent-dark);">
-                <span> Accurate & Detailed Imaging</span>
-                <span> Safe & Low Radiation</span>
+                <span>{% blocktrans %}Accurate & Detailed Imaging{% endblocktrans %}</span>
+                <span>{% blocktrans %}Safe & Low Radiation{% endblocktrans %}</span>
               </div>
             </div>
           </div>
@@ -414,7 +414,7 @@
               <p class="vfc-desc">{% trans "Your safety is our top priority. We follow strict sterilization protocols and maintain the highest standards of infection control." %}</p>
               <div class="vfc-highlights" style="color: var(--cf-primary-dark);">
                 <span> {% trans "Fully Sterilized" %}</span>
-                <span> Infection Control & Hygiene</span>
+                <span>{% blocktrans %}Infection Control & Hygiene{% endblocktrans %}</span>
               </div>
             </div>
           </div>
@@ -513,7 +513,9 @@
         <div class="cf-pricing-card h-100 shadow-lg sticky-top" style="top: 100px;">
           <div class="cf-pricing-header text-center">
             <h3 class="fw-bold text-white mb-0">{% trans "Treatment Charges" %}</h3>
-            <p class="text-white-50 small mb-0 mt-2">Clear & Transparent Pricing</p>
+            <p class="text-white-50 small mb-0 mt-2">
+          {% blocktrans %}Clear & Transparent Pricing{% endblocktrans %}
+        </p>
           </div>
           <div class="cf-pricing-body text-center p-4">
             
