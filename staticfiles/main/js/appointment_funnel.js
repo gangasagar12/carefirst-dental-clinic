@@ -352,11 +352,12 @@
       const res = await response.json();
 
       if (res.success) {
-        // Redirect to dedicated receipt confirmation page
+        // Redirect to dedicated professional confirmation page
         if (res.redirect_url) {
           window.location.href = res.redirect_url;
         } else {
-          window.location.href = `/appointment/confirmation/${res.appointment_number}/`;
+          const targetToken = res.access_token || res.booking_id || res.appointment_number;
+          window.location.href = `/appointment/confirmation/${targetToken}/`;
         }
       } else {
         alert(res.error || 'Could not submit your request. Please check details or call us directly.');
