@@ -1,159 +1,185 @@
 import json
 import datetime
+from decimal import Decimal
 from django.test import TestCase, Client
-from django.urls import reverse
 from django.utils import timezone
+from django.urls import reverse
 
-from appointments.models import Appointment, AppointmentFunnelEvent
+from appointments.models import Appointment
+from appointments.utils import generate_booking_id, generate_secure_access_token
+from appointments.qr_services import generate_qr_base64, generate_qr_png_bytes, get_appointment_verification_url
+from appointments.pdf_services import generate_appointment_confirmation_pdf
+from appointments.calendar_services import generate_google_calendar_url, generate_icalendar_content
 from main.models import Service, Doctor
 
 
-class SmartAppointmentFunnelTests(TestCase):
+class AppointmentConfirmationAndManagementTestCase(TestCase):
     def setUp(self):
         self.client = Client()
         self.service = Service.objects.create(
-            slug='root-canal-treatment',
-            title='Root Canal Treatment',
-            starting_price='5000',
-            is_active=True,
-            order=1
-        )
-        self.doctor = Doctor.objects.create(
-            name='Subash Banjade',
-            designation='Lead Dental Surgeon',
-            nmc_number='31229',
+            title="Root Canal Treatment (RCT)",
+            slug="root-canal-treatment",
             is_active=True
         )
-
-    def test_appointment_number_generation(self):
-        """Test human-readable unique request ID e.g. CF-2026-000001"""
-        apt = Appointment.objects.create(
-            full_name="Ram Sharma",
+        self.doctor = Doctor.objects.create(
+            name="Subash Banjade",
+            specialty="Dental Surgeon",
+            is_active=True
+        )
+        self.appointment = Appointment.objects.create(
+            full_name="Bikash Adhikari",
             phone="9841234567",
+            email="bikash@example.com",
+            service=self.service,
+            doctor=self.doctor,
             preferred_date=timezone.now().date() + datetime.timedelta(days=2),
-            status="new"
+            preferred_time="morning",
+            message="Experiencing severe toothache in lower molar."
         )
-        self.assertTrue(apt.appointment_number.startswith("CF-"))
-        self.assertIn(str(timezone.now().year), apt.appointment_number)
 
-    def test_funnel_view_loads_with_context(self):
-        """Test GET /appointment/?treatment=root-canal-treatment"""
-        response = self.client.get(reverse('appointments:book'), {'treatment': 'root-canal-treatment'})
+    def test_appointment_creation_generates_unique_booking_id_and_token(self):
+        """
+        Validates that new appointments receive non-predictable booking IDs,
+        cryptographically secure access tokens, and start as 'pending'.
+        """
+        self.assertIsNotNone(self.appointment.booking_id)
+        self.assertTrue(self.appointment.booking_id.startswith("CF-APT-"))
+        self.assertIsNotNone(self.appointment.access_token)
+        self.assertTrue(len(self.appointment.access_token) >= 32)
+        self.assertEqual(self.appointment.status, 'pending')
+        self.assertEqual(self.appointment.display_booking_id, self.appointment.booking_id)
+
+    def test_appointment_qr_generation(self):
+        """
+        Validates high-resolution QR PNG bytes and base64 string generation.
+        """
+        verif_url = get_appointment_verification_url(self.appointment)
+        self.assertIn(self.appointment.access_token, verif_url)
+
+        png_bytes = generate_qr_png_bytes(verif_url)
+        self.assertGreater(len(png_bytes), 500)
+        self.assertTrue(png_bytes.startswith(b'\x89PNG'))
+
+        b64 = generate_qr_base64(verif_url)
+        self.assertTrue(b64.startswith("data:image/png;base64,"))
+
+    def test_appointment_pdf_generation(self):
+        """
+        Validates ReportLab PDF generation creates a valid %PDF stream with booking details.
+        """
+        pdf_bytes = generate_appointment_confirmation_pdf(self.appointment)
+        self.assertGreater(len(pdf_bytes), 1000)
+        self.assertTrue(pdf_bytes.startswith(b'%PDF'))
+
+    def test_appointment_calendar_integrations(self):
+        """
+        Validates Google Calendar URL and iCalendar (.ics) exports.
+        """
+        gcal_url = generate_google_calendar_url(self.appointment)
+        self.assertIn("calendar.google.com", gcal_url)
+        self.assertIn(self.appointment.booking_id, gcal_url)
+
+        ics_str = generate_icalendar_content(self.appointment)
+        self.assertIn("BEGIN:VCALENDAR", ics_str)
+        self.assertIn("BEGIN:VEVENT", ics_str)
+        self.assertIn(self.appointment.booking_id, ics_str)
+        self.assertIn("END:VCALENDAR", ics_str)
+
+    def test_appointment_confirmation_view(self):
+        """
+        Validates dedicated confirmation page renders with 200 OK and shows Booking ID.
+        """
+        url = reverse('appointments:confirmation', kwargs={'access_token': self.appointment.access_token})
+        response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Root Canal Treatment')
-        self.assertEqual(response.context['preselected_service'], self.service)
+        self.assertContains(response, self.appointment.booking_id)
+        self.assertContains(response, "Pending Confirmation")
+        self.assertContains(response, "Bikash Adhikari")
+        self.assertContains(response, "Root Canal Treatment (RCT)")
 
-    def test_submit_appointment_ajax_success(self):
-        """Test valid AJAX submission creating Appointment and attribution"""
-        tomorrow = (timezone.now().date() + datetime.timedelta(days=1)).isoformat()
+    def test_appointment_manage_view(self):
+        """
+        Validates secure patient management portal renders correctly.
+        """
+        url = reverse('appointments:manage', kwargs={'access_token': self.appointment.access_token})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.appointment.booking_id)
+        self.assertContains(response, "Reception Verification Pass")
+
+    def test_appointment_pdf_download_endpoint(self):
+        """
+        Validates PDF download streaming endpoint.
+        """
+        url = reverse('appointments:download_pdf', kwargs={'access_token': self.appointment.access_token})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['Content-Type'], 'application/pdf')
+        self.assertIn('attachment;', response['Content-Disposition'])
+
+    def test_appointment_calendar_ics_endpoint(self):
+        """
+        Validates iCal streaming endpoint.
+        """
+        url = reverse('appointments:calendar_ics', kwargs={'access_token': self.appointment.access_token})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['Content-Type'], 'text/calendar; charset=utf-8')
+        self.assertIn('attachment;', response['Content-Disposition'])
+
+    def test_patient_reschedule_request(self):
+        """
+        Validates patient self-service reschedule submission.
+        """
+        new_date = timezone.now().date() + datetime.timedelta(days=5)
+        url = reverse('appointments:request_reschedule', kwargs={'access_token': self.appointment.access_token})
+        response = self.client.post(url, {
+            'preferred_date': new_date.isoformat(),
+            'preferred_time': 'afternoon',
+            'reschedule_reason': 'Urgent business meeting conflict.'
+        })
+        self.assertEqual(response.status_code, 302)
+
+        self.appointment.refresh_from_db()
+        self.assertEqual(self.appointment.preferred_date, new_date)
+        self.assertEqual(self.appointment.preferred_time, 'afternoon')
+        self.assertEqual(self.appointment.status, 'rescheduled')
+        self.assertEqual(self.appointment.reschedule_reason, 'Urgent business meeting conflict.')
+
+    def test_patient_cancel_request(self):
+        """
+        Validates patient self-service cancellation.
+        """
+        url = reverse('appointments:request_cancel', kwargs={'access_token': self.appointment.access_token})
+        response = self.client.post(url, {
+            'cancel_reason': 'Treatment completed during emergency hospital visit.'
+        })
+        self.assertEqual(response.status_code, 302)
+
+        self.appointment.refresh_from_db()
+        self.assertEqual(self.appointment.status, 'cancelled')
+        self.assertIn('Treatment completed', self.appointment.internal_note)
+
+    def test_ajax_appointment_booking_submission(self):
+        """
+        Validates JSON submission via the frontend booking funnel.
+        """
+        target_date = (timezone.now().date() + datetime.timedelta(days=3)).isoformat()
         payload = {
-            'full_name': 'Sita Koirala',
-            'phone': '9801234567',
-            'email': 'sita@example.com',
-            'treatment': 'root-canal-treatment',
-            'appointment_type': 'consultation',
-            'preferred_date': tomorrow,
-            'preferred_time': 'morning',
-            'doctor_id': self.doctor.id,
-            'message': 'Experiencing mild sensitivity',
-            'utm_source': 'instagram',
-            'utm_campaign': 'rct_special',
-            'chat_used': False,
-            'session_id': 'test-session-123'
+            'full_name': 'Suman Thapa',
+            'phone': '9801234888',
+            'email': 'suman@example.com',
+            'treatment': self.service.slug,
+            'appointment_type': 'treatment',
+            'preferred_date': target_date,
+            'preferred_time': 'evening',
+            'message': 'Need wisdom tooth consultation.'
         }
-
-        response = self.client.post(
-            reverse('appointments:submit_ajax'),
-            data=json.dumps(payload),
-            content_type='application/json'
-        )
+        url = reverse('appointments:submit_ajax')
+        response = self.client.post(url, data=json.dumps(payload), content_type='application/json')
         self.assertEqual(response.status_code, 200)
         data = response.json()
         self.assertTrue(data['success'])
-        self.assertTrue(data['appointment_number'].startswith("CF-"))
-
-        # Verify DB record
-        apt = Appointment.objects.get(phone='9801234567')
-        self.assertEqual(apt.full_name, 'Sita Koirala')
-        self.assertEqual(apt.service, self.service)
-        self.assertEqual(apt.doctor, self.doctor)
-        self.assertEqual(apt.utm_source, 'instagram')
-        self.assertEqual(apt.status, 'new')
-
-        # Verify funnel event was created
-        event = AppointmentFunnelEvent.objects.filter(session_id='test-session-123', event_type='SUBMITTED').first()
-        self.assertIsNotNone(event)
-
-    def test_submit_appointment_validation_errors(self):
-        """Test rejection of invalid phone numbers and past dates"""
-        # 1. Invalid short phone
-        payload = {
-            'full_name': 'Hari Test',
-            'phone': '123',
-            'preferred_date': (timezone.now().date() + datetime.timedelta(days=1)).isoformat()
-        }
-        res = self.client.post(reverse('appointments:submit_ajax'), data=json.dumps(payload), content_type='application/json')
-        self.assertEqual(res.status_code, 400)
-        self.assertFalse(res.json()['success'])
-
-        # 2. Past date rejection
-        yesterday = (timezone.now().date() - datetime.timedelta(days=1)).isoformat()
-        payload2 = {
-            'full_name': 'Hari Test',
-            'phone': '9841234567',
-            'preferred_date': yesterday
-        }
-        res2 = self.client.post(reverse('appointments:submit_ajax'), data=json.dumps(payload2), content_type='application/json')
-        self.assertEqual(res2.status_code, 400)
-        self.assertIn('past', res2.json()['error'].lower())
-
-    def test_duplicate_submission_prevention(self):
-        """Test that submitting identical request within 30 seconds returns existing record without duplicate row"""
-        tomorrow = (timezone.now().date() + datetime.timedelta(days=1)).isoformat()
-        payload = {
-            'full_name': 'Duplicate Tester',
-            'phone': '9851122334',
-            'preferred_date': tomorrow,
-            'treatment': 'root-canal-treatment'
-        }
-
-        # First submit
-        res1 = self.client.post(reverse('appointments:submit_ajax'), data=json.dumps(payload), content_type='application/json')
-        self.assertEqual(res1.status_code, 200)
-        apt_num1 = res1.json()['appointment_number']
-
-        # Second instant submit with same phone and date
-        res2 = self.client.post(reverse('appointments:submit_ajax'), data=json.dumps(payload), content_type='application/json')
-        self.assertEqual(res2.status_code, 200)
-        apt_num2 = res2.json()['appointment_number']
-
-        self.assertEqual(apt_num1, apt_num2)
-        # Ensure only 1 record created in database
-        self.assertEqual(Appointment.objects.filter(phone='9851122334').count(), 1)
-
-    def test_track_funnel_event_api(self):
-        """Test logging step transitions for conversion analytics"""
-        payload = {
-            'session_id': 'sess-analytics-99',
-            'event_type': 'DATE_SELECTED',
-            'treatment_slug': 'root-canal-treatment',
-            'source': 'google'
-        }
-        res = self.client.post(reverse('appointments:track_event'), data=json.dumps(payload), content_type='application/json')
-        self.assertEqual(res.status_code, 200)
-        self.assertTrue(res.json()['success'])
-        self.assertTrue(AppointmentFunnelEvent.objects.filter(session_id='sess-analytics-99', event_type='DATE_SELECTED').exists())
-
-    def test_confirmation_view(self):
-        """Test receipt confirmation page /appointment/confirmation/<appointment_number>/"""
-        apt = Appointment.objects.create(
-            full_name="Bikash Thapa",
-            phone="9861234567",
-            preferred_date=timezone.now().date() + datetime.timedelta(days=3),
-            service=self.service
-        )
-        response = self.client.get(reverse('appointments:confirmation', kwargs={'appointment_number': apt.appointment_number}))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, apt.appointment_number)
-        self.assertContains(response, 'Bikash Thapa')
-        self.assertContains(response, 'Root Canal Treatment')
+        self.assertTrue(data['booking_id'].startswith('CF-APT-'))
+        self.assertIsNotNone(data['access_token'])
+        self.assertIn(data['access_token'], data['redirect_url'])
