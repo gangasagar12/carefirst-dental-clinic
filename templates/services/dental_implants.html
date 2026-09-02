@@ -255,6 +255,23 @@
     color: #64748B;
     margin-top: 5px;
   }
+
+  .ba-vs-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #0284C7;
+    font-weight: 800;
+    font-size: 0.78rem;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border: 2px solid #0284C7;
+    letter-spacing: 0.5px;
+  }
 </style>
 {% endblock %}
 
@@ -270,7 +287,7 @@
         <li class="breadcrumb-item active text-warning">{% trans "Dental Implants" %}</li>
       </ol>
     </nav>
-    <h1><i class="bi bi-gear-wide-connected me-3 text-warning"></i>{% trans "Dental Implants" %}</h1>
+    <h1>{% trans "Dental Implants" %}</h1>
     <p class="hero-sub mx-auto">{% trans "The most advanced, permanent, and natural-looking solution for replacing missing teeth." %}</p>
     <div class="mt-4">
       <a href="{% url 'main:contact' %}#book" class="cf-btn-primary py-3 px-5 rounded-pill fw-bold shadow-lg d-inline-block text-white text-decoration-none" style="font-size: 1.1rem;">{% trans "Schedule an Implant Consultation" %}</a>
@@ -325,9 +342,9 @@
         <p class="text-muted mb-4">{% trans "Most people who are healthy enough to undergo a routine dental extraction are good candidates for implants. You need:" %}</p>
         
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span><strong>{% trans "Healthy Gums:" %}</strong> {% trans "Free from periodontal disease." %}</span></li>
-          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span><strong>{% trans "Adequate Bone:" %}</strong> {% trans "Enough jawbone to anchor the implant (or willing to undergo a bone graft)." %}</span></li>
-          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span><strong>{% trans "Commitment:" %}</strong> {% trans "Dedication to excellent oral hygiene and regular dental visits." %}</span></li>
+          <li> <span><strong>{% trans "Healthy Gums:" %}</strong> {% trans "Free from periodontal disease." %}</span></li>
+          <li> <span><strong>{% trans "Adequate Bone:" %}</strong> {% trans "Enough jawbone to anchor the implant (or willing to undergo a bone graft)." %}</span></li>
+          <li> <span><strong>{% trans "Commitment:" %}</strong> {% trans "Dedication to excellent oral hygiene and regular dental visits." %}</span></li>
         </ul>
         
         <div class="alert alert-warning mt-4 small border-warning">
@@ -389,28 +406,28 @@
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="imp-card">
-              <div class="imp-icon-wrapper"><i class="bi bi-emoji-smile"></i></div>
+              <div class="imp-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Look & Feel Natural" %}</h6>
               <p class="small text-muted mb-0">{% trans "They are designed to fuse with bone, so they feel exactly like your own teeth." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="imp-card">
-              <div class="imp-icon-wrapper"><i class="bi bi-mic"></i></div>
+              <div class="imp-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Improved Speech" %}</h6>
               <p class="small text-muted mb-0">{% trans "No slipping or sliding means you can speak clearly without mumbling." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="imp-card">
-              <div class="imp-icon-wrapper"><i class="bi bi-apple"></i></div>
+              <div class="imp-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Eat Anything" %}</h6>
               <p class="small text-muted mb-0">{% trans "Bite force is fully restored, allowing you to chew tough foods easily." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="imp-card">
-              <div class="imp-icon-wrapper"><i class="bi bi-shield-check"></i></div>
+              <div class="imp-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Lifetime Durability" %}</h6>
               <p class="small text-muted mb-0">{% trans "With proper care, the implant post can last a lifetime, making it a cost-effective long-term investment." %}</p>
             </div>
@@ -435,31 +452,31 @@
           <div class="timeline-line"></div>
           
           <div class="timeline-step">
-            <div class="timeline-dot"><i class="bi bi-search"></i></div>
+            <div class="timeline-dot"></div>
             <h5 class="fw-bold text-white mb-1">1. 3D Scan & Consultation</h5>
             <p class="text-white-50 mb-0">{% trans "We use a CBCT 3D scanner to assess your jawbone density, locate nerves, and digitally plan the precise placement of the implant." %}</p>
           </div>
           
           <div class="timeline-step">
-            <div class="timeline-dot"><i class="bi bi-tools"></i></div>
+            <div class="timeline-dot"></div>
             <h5 class="fw-bold text-white mb-1">{% trans "2. Surgical Placement" %}</h5>
             <p class="text-white-50 mb-0">{% trans "Under local anesthesia (totally painless), the titanium implant is gently placed into the jawbone. The gums are sutured back over it." %}</p>
           </div>
           
           <div class="timeline-step">
-            <div class="timeline-dot"><i class="bi bi-hourglass-split"></i></div>
+            <div class="timeline-dot"></div>
             <h5 class="fw-bold text-white mb-1">{% trans "3. Healing (Osseointegration)" %}</h5>
             <p class="text-white-50 mb-0">{% trans "Over the next 3 to 6 months, the jawbone naturally grows and fuses tightly around the titanium post, locking it firmly in place." %}</p>
           </div>
           
           <div class="timeline-step">
-            <div class="timeline-dot"><i class="bi bi-plug"></i></div>
+            <div class="timeline-dot"></div>
             <h5 class="fw-bold text-white mb-1">{% trans "4. Abutment Placement" %}</h5>
             <p class="text-white-50 mb-0">{% trans "Once healed, a small connector (abutment) is attached to the top of the implant to hold your new crown." %}</p>
           </div>
           
           <div class="timeline-step">
-            <div class="timeline-dot"><i class="bi bi-stars"></i></div>
+            <div class="timeline-dot"></div>
             <h5 class="fw-bold text-white mb-1">{% trans "5. Final Crown Placement" %}</h5>
             <p class="text-white-50 mb-0">{% trans "A custom-milled, perfectly shade-matched Zirconia or Porcelain crown is cemented onto the abutment. Your new tooth is complete!" %}</p>
           </div>
@@ -549,7 +566,7 @@
           <div class="col-md-4">
             <div class="trans-step-img-wrapper" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/implant-case1.png' %}'">
               <img loading="lazy" src="{% static 'images/implant-case1.png' %}" alt="Step 1: Before Treatment" class="trans-step-img">
-              <div class="trans-step-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+              <div class="trans-step-overlay"></div>
             </div>
             <div class="trans-step-label">{% trans "Step 1: Before Treatment" %}</div>
             <p class="small text-muted text-center mt-2">{% trans "Patient presented with a missing upper front tooth affecting aesthetics and speech." %}</p>
@@ -557,7 +574,7 @@
           <div class="col-md-4">
             <div class="trans-step-img-wrapper" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/implant-case2.png' %}'">
               <img loading="lazy" src="{% static 'images/implant-case2.png' %}" alt="Step 2: During Treatment" class="trans-step-img">
-              <div class="trans-step-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+              <div class="trans-step-overlay"></div>
             </div>
             <div class="trans-step-label">{% trans "Step 2: Implant Placement" %}</div>
             <p class="small text-muted text-center mt-2">{% trans "A premium titanium implant was placed with a temporary crown during healing." %}</p>
@@ -565,7 +582,7 @@
           <div class="col-md-4">
             <div class="trans-step-img-wrapper" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/implent-case3.png' %}'">
               <img loading="lazy" src="{% static 'images/implent-case3.png' %}" alt="Step 3: Final Result" class="trans-step-img">
-              <div class="trans-step-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+              <div class="trans-step-overlay"></div>
             </div>
             <div class="trans-step-label">{% trans "Step 3: Final Result" %}</div>
             <p class="small text-muted text-center mt-2">{% trans "Final Zirconia crown attached, perfectly matching the adjacent natural teeth." %}</p>
@@ -577,7 +594,7 @@
             <div><span class="text-muted small d-block">{% trans "Treatment Duration" %}</span><strong class="text-dark">{% trans "4 Months" %}</strong></div>
             <div><span class="text-muted small d-block">{% trans "Implant Type" %}</span><strong class="text-dark">{% trans "Premium Titanium" %}</strong></div>
             <div><span class="text-muted small d-block">{% trans "Crown Material" %}</span><strong class="text-dark">{% trans "All-Ceramic Zirconia" %}</strong></div>
-            <div><span class="text-muted small d-block">{% trans "Outcome" %}</span><strong class="text-success"><i class="bi bi-check-circle-fill me-1"></i>{% trans "100% Function Restored" %}</strong></div>
+            <div><span class="text-muted small d-block">{% trans "Outcome" %}</span><strong class="text-success">{% trans "100% Function Restored" %}</strong></div>
           </div>
           <button class="btn btn-outline-success rounded-pill px-4">{% trans "View Full Case Study" %}</button>
         </div>
@@ -595,7 +612,7 @@
           <div class="col-md-4">
             <div class="trans-step-img-wrapper" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/implantcase2.png' %}'">
               <img loading="lazy" src="{% static 'images/implantcase2.png' %}" alt="Step 1: Before Treatment" class="trans-step-img">
-              <div class="trans-step-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+              <div class="trans-step-overlay"></div>
             </div>
             <div class="trans-step-label">{% trans "Step 1: Before Treatment" %}</div>
             <p class="small text-muted text-center mt-2">{% trans "Patient missing three adjacent back teeth, severely impacting chewing ability." %}</p>
@@ -603,7 +620,7 @@
           <div class="col-md-4">
             <div class="trans-step-img-wrapper" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/implantcase2.jpg' %}'">
               <img loading="lazy" src="{% static 'images/implantcase2.jpg' %}" alt="Step 2: During Treatment" class="trans-step-img">
-              <div class="trans-step-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+              <div class="trans-step-overlay"></div>
             </div>
             <div class="trans-step-label">{% trans "Step 2: Implant Placement" %}</div>
             <p class="small text-muted text-center mt-2">{% trans "Two implants placed to act as pillars for a 3-unit implant-supported bridge." %}</p>
@@ -611,7 +628,7 @@
           <div class="col-md-4">
             <div class="trans-step-img-wrapper" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/implantcase3.png' %}'">
               <img loading="lazy" src="{% static 'images/implantcase3.png' %}" alt="Step 3: Final Result" class="trans-step-img">
-              <div class="trans-step-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+              <div class="trans-step-overlay"></div>
             </div>
             <div class="trans-step-label">{% trans "Step 3: Final Result" %}</div>
             <p class="small text-muted text-center mt-2">{% trans "Custom porcelain bridge permanently secured, restoring full bite strength." %}</p>
@@ -623,7 +640,7 @@
             <div><span class="text-muted small d-block">{% trans "Treatment Duration" %}</span><strong class="text-dark">{% trans "6 Months" %}</strong></div>
             <div><span class="text-muted small d-block">{% trans "Implant Type" %}</span><strong class="text-dark">{% trans "2x Premium Titanium" %}</strong></div>
             <div><span class="text-muted small d-block">{% trans "Crown Material" %}</span><strong class="text-dark">{% trans "Porcelain Fused to Metal" %}</strong></div>
-            <div><span class="text-muted small d-block">{% trans "Outcome" %}</span><strong class="text-success"><i class="bi bi-check-circle-fill me-1"></i>{% trans "Seamless Chewing Restored" %}</strong></div>
+            <div><span class="text-muted small d-block">{% trans "Outcome" %}</span><strong class="text-success">{% trans "Seamless Chewing Restored" %}</strong></div>
           </div>
           <button class="btn btn-outline-success rounded-pill px-4">{% trans "View Full Case Study" %}</button>
         </div>
@@ -657,34 +674,34 @@
     <div class="timeline-horizontal-wrapper mt-5">
       <div class="timeline-horizontal">
         <div class="th-step">
-          <div class="th-dot"><i class="bi bi-chat-dots"></i></div>
+          <div class="th-dot"></div>
           <div class="th-title">{% trans "1. Consultation" %}</div>
           <div class="th-desc">{% trans "Initial assessment & X-rays" %}</div>
         </div>
         <div class="th-step">
-          <div class="th-dot"><i class="bi bi-display"></i></div>
+          <div class="th-dot"></div>
           <div class="th-title">{% trans "2. Digital Diagnosis" %}</div>
           <div class="th-desc">3D CBCT scanning & planning</div>
         </div>
         <div class="th-step">
           <div class="th-dot" style="background:var(--cf-primary-dark); color:#fff; border-color:var(--cf-primary-dark);">
-            <i class="bi bi-tools"></i>
+            
           </div>
           <div class="th-title" style="color:var(--cf-primary-dark);">{% trans "3. Placement" %}</div>
           <div class="th-desc">{% trans "Painless surgical insertion" %}</div>
         </div>
         <div class="th-step">
-          <div class="th-dot"><i class="bi bi-hourglass-split"></i></div>
+          <div class="th-dot"></div>
           <div class="th-title">{% trans "4. Healing" %}</div>
           <div class="th-desc">{% trans "Osseointegration (3-6 mos)" %}</div>
         </div>
         <div class="th-step">
-          <div class="th-dot"><i class="bi bi-nut"></i></div>
+          <div class="th-dot"></div>
           <div class="th-title">{% trans "5. Crown Placement" %}</div>
           <div class="th-desc">{% trans "Attaching the abutment & crown" %}</div>
         </div>
         <div class="th-step">
-          <div class="th-dot"><i class="bi bi-emoji-smile"></i></div>
+          <div class="th-dot"></div>
           <div class="th-title">{% trans "6. Final Smile" %}</div>
           <div class="th-desc">{% trans "Complete restoration of function" %}</div>
         </div>
@@ -704,14 +721,14 @@
         <div class="cf-eyebrow-badge">{% trans "Recovery" %}</div>
         <h3 class="cf-section-title mb-4">{% trans "Aftercare Tips" %}</h3>
         <ul class="symptom-list mb-5">
-          <li><i class="bi bi-snow text-primary fs-5"></i> <span><strong>{% trans "Ice Packs:" %}</strong> {% trans "Apply ice for the first 24 hours to reduce swelling." %}</span></li>
-          <li><i class="bi bi-cup-hot text-warning fs-5"></i> <span><strong>{% trans "Soft Diet:" %}</strong> {% trans "Eat soft, cool foods for the first few days after surgery." %}</span></li>
-          <li><i class="bi bi-bandaid text-danger fs-5"></i> <span><strong>{% trans "Avoid Smoking:" %}</strong> {% trans "Smoking drastically increases the risk of implant failure during the healing phase." %}</span></li>
+          <li> <span><strong>{% trans "Ice Packs:" %}</strong> {% trans "Apply ice for the first 24 hours to reduce swelling." %}</span></li>
+          <li> <span><strong>{% trans "Soft Diet:" %}</strong> {% trans "Eat soft, cool foods for the first few days after surgery." %}</span></li>
+          <li> <span><strong>{% trans "Avoid Smoking:" %}</strong> {% trans "Smoking drastically increases the risk of implant failure during the healing phase." %}</span></li>
         </ul>
 
         <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative">
-          <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
-          <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          
+          <div class="text-warning mb-2"></div>
           <p class="fst-italic text-muted small position-relative z-1">{% blocktrans %}\"I was terrified of the surgery, but Carefirst Dental Clinic made the entire implant process completely painless. Now, a year later, I forget which tooth is the fake one! It feels just like my real teeth. Highly recommend.\"{% endblocktrans %}</p>
           <div class="d-flex align-items-center gap-3 mt-3">
             <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px; font-size: 0.8rem;">{% trans "A.B." %}</div>
@@ -797,8 +814,6 @@
     {% include 'components/related_services_row.html' %}
   </div>
 </section>
-
-{% include 'components/google_reviews.html' %}
 
 <!-- 9. CTA STRIP -->
 <div class="nd-cta-strip" id="book">

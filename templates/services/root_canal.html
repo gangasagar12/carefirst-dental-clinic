@@ -189,6 +189,23 @@
     align-items: center;
     gap: 8px;
   }
+
+  .ba-vs-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #0284C7;
+    font-weight: 800;
+    font-size: 0.78rem;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border: 2px solid #0284C7;
+    letter-spacing: 0.5px;
+  }
 </style>
 {% endblock %}
 
@@ -249,11 +266,11 @@
           <h3 class="cf-section-title mb-4">{% trans "Signs You Need an RCT" %}</h3>
           <p class="text-muted mb-4 small">{% trans "If the nerve of your tooth is infected, you will likely experience one or more of these symptoms:" %}</p>
           <ul class="symptom-list mb-0">
-            <li><i class="bi bi-lightning-charge text-danger fs-5"></i> <span><strong>{% trans "Severe Tooth Pain:" %}</strong> {% trans "Constant, throbbing ache, especially when biting or at night." %}</span></li>
-            <li><i class="bi bi-snow text-primary fs-5"></i> <span><strong>{% trans "Temperature Sensitivity:" %}</strong> {% trans "Lingering pain after eating hot or cold foods." %}</span></li>
-            <li><i class="bi bi-circle text-warning fs-5"></i> <span><strong>{% trans "Swollen Gums:" %}</strong> {% trans "Tender, swollen, or darkened gums near the painful tooth." %}</span></li>
-            <li><i class="bi bi-heart pulse text-danger fs-5"></i> <span><strong>{% trans "Abscess (Pimple):" %}</strong> {% trans "A recurring pimple on the gums that may ooze pus." %}</span></li>
-            <li><i class="bi bi-palette text-secondary fs-5"></i> <span><strong>{% trans "Tooth Discoloration:" %}</strong> {% trans "The tooth suddenly darkening from the inside out." %}</span></li>
+            <li> <span><strong>{% trans "Severe Tooth Pain:" %}</strong> {% trans "Constant, throbbing ache, especially when biting or at night." %}</span></li>
+            <li> <span><strong>{% trans "Temperature Sensitivity:" %}</strong> {% trans "Lingering pain after eating hot or cold foods." %}</span></li>
+            <li> <span><strong>{% trans "Swollen Gums:" %}</strong> {% trans "Tender, swollen, or darkened gums near the painful tooth." %}</span></li>
+            <li> <span><strong>{% trans "Abscess (Pimple):" %}</strong> {% trans "A recurring pimple on the gums that may ooze pus." %}</span></li>
+            <li> <span><strong>{% trans "Tooth Discoloration:" %}</strong> {% trans "The tooth suddenly darkening from the inside out." %}</span></li>
           </ul>
         </div>
       </div>
@@ -265,10 +282,10 @@
           <h3 class="cf-section-title mb-4">{% trans "Common Causes" %}</h3>
           <p class="text-muted mb-4 small">{% trans "The pulp (nerve) of the tooth can become inflamed or infected due to several reasons:" %}</p>
           <ul class="symptom-list mb-0">
-            <li><i class="bi bi-bug text-danger fs-5"></i> <span><strong>{% trans "Deep Tooth Decay:" %}</strong> {% trans "Untreated cavities that reach the inner pulp chamber." %}</span></li>
-            <li><i class="bi bi-x-circle text-secondary fs-5"></i> <span><strong>{% trans "Cracked/Broken Tooth:" %}</strong> {% trans "Physical cracks allow bacteria to enter the nerve." %}</span></li>
-            <li><i class="bi bi-cone text-warning fs-5"></i> <span><strong>{% trans "Dental Trauma:" %}</strong> {% trans "A blow to the mouth can damage the nerve even without visible cracks." %}</span></li>
-            <li><i class="bi bi-arrow-repeat text-primary fs-5"></i> <span><strong>{% trans "Repeated Procedures:" %}</strong> {% trans "Multiple deep fillings on the same tooth over time." %}</span></li>
+            <li> <span><strong>{% trans "Deep Tooth Decay:" %}</strong> {% trans "Untreated cavities that reach the inner pulp chamber." %}</span></li>
+            <li> <span><strong>{% trans "Cracked/Broken Tooth:" %}</strong> {% trans "Physical cracks allow bacteria to enter the nerve." %}</span></li>
+            <li> <span><strong>{% trans "Dental Trauma:" %}</strong> {% trans "A blow to the mouth can damage the nerve even without visible cracks." %}</span></li>
+            <li> <span><strong>{% trans "Repeated Procedures:" %}</strong> {% trans "Multiple deep fillings on the same tooth over time." %}</span></li>
           </ul>
         </div>
       </div>
@@ -287,28 +304,28 @@
     <div class="row g-4">
       <div class="col-lg-3 col-md-6">
         <div class="rct-card border-0 shadow-sm">
-          <div class="rct-icon-wrapper"><i class="bi bi-heart"></i></div>
+          <div class="rct-icon-wrapper"></div>
           <h6 class="fw-bold">{% trans "Saves the Natural Tooth" %}</h6>
           <p class="small text-muted mb-0">{% trans "Nothing looks, feels, or functions quite as well as your natural tooth structure." %}</p>
         </div>
       </div>
       <div class="col-lg-3 col-md-6">
         <div class="rct-card border-0 shadow-sm">
-          <div class="rct-icon-wrapper"><i class="bi bi-emoji-smile"></i></div>
+          <div class="rct-icon-wrapper"></div>
           <h6 class="fw-bold">{% trans "Eliminates Pain" %}</h6>
           <p class="small text-muted mb-0">{% trans "Immediately removes the source of the infection, curing severe, throbbing toothaches." %}</p>
         </div>
       </div>
       <div class="col-lg-3 col-md-6">
         <div class="rct-card border-0 shadow-sm">
-          <div class="rct-icon-wrapper"><i class="bi bi-slash-circle"></i></div>
+          <div class="rct-icon-wrapper"></div>
           <h6 class="fw-bold">{% trans "Prevents Extraction" %}</h6>
           <p class="small text-muted mb-0">{% trans "Avoids the gap caused by extraction and the need for expensive implants or bridges." %}</p>
         </div>
       </div>
       <div class="col-lg-3 col-md-6">
         <div class="rct-card border-0 shadow-sm">
-          <div class="rct-icon-wrapper"><i class="bi bi-activity"></i></div>
+          <div class="rct-icon-wrapper"></div>
           <h6 class="fw-bold">{% trans "Restores Function" %}</h6>
           <p class="small text-muted mb-0">{% trans "Once crowned, the tooth can handle normal biting and chewing forces indefinitely." %}</p>
         </div>
@@ -336,8 +353,8 @@
               <h4 class="vfc-title" style="color: var(--cf-primary-dark);">Gentle & Pain-Free</h4>
               <p class="vfc-desc">{% trans "We use profound local anesthesia and advanced rotary endodontics to ensure your procedure is as comfortable as a regular filling." %}</p>
               <div class="vfc-highlights" style="color: var(--cf-primary-dark);">
-                <span><i class="bi bi-check-circle"></i> Pain-Free & Comfortable</span>
-                <span><i class="bi bi-check-circle"></i> {% trans "Safe Anesthesia" %}</span>
+                <span> Pain-Free & Comfortable</span>
+                <span> {% trans "Safe Anesthesia" %}</span>
               </div>
             </div>
           </div>
@@ -351,8 +368,8 @@
               <h4 class="vfc-title" style="color: var(--cf-accent-dark);">{% trans "Digital Diagnosis" %}</h4>
               <p class="vfc-desc">{% trans "High-resolution digital X-rays help us map out your root canals precisely, increasing the success rate significantly." %}</p>
               <div class="vfc-highlights" style="color: var(--cf-accent-dark);">
-                <span><i class="bi bi-check-circle"></i> Accurate & Detailed Imaging</span>
-                <span><i class="bi bi-check-circle"></i> Safe & Low Radiation</span>
+                <span> Accurate & Detailed Imaging</span>
+                <span> Safe & Low Radiation</span>
               </div>
             </div>
           </div>
@@ -366,8 +383,8 @@
               <h4 class="vfc-title" style="color: var(--cf-primary-dark);">{% trans "Experienced Dentists" %}</h4>
               <p class="vfc-desc">{% trans "Our team has successfully performed hundreds of root canals, saving teeth that other clinics might extract." %}</p>
               <div class="vfc-highlights" style="color: var(--cf-primary-dark);">
-                <span><i class="bi bi-check-circle"></i> {% trans "Highly Skilled Experts" %}</span>
-                <span><i class="bi bi-check-circle"></i> {% trans "High Success Rate" %}</span>
+                <span> {% trans "Highly Skilled Experts" %}</span>
+                <span> {% trans "High Success Rate" %}</span>
               </div>
             </div>
           </div>
@@ -381,8 +398,8 @@
               <h4 class="vfc-title" style="color: var(--cf-accent-dark);">{% trans "Advanced Technology" %}</h4>
               <p class="vfc-desc">{% trans "We use the latest rotary machines, apex locators, and modern instruments for precise, efficient treatments." %}</p>
               <div class="vfc-highlights" style="color: var(--cf-accent-dark);">
-                <span><i class="bi bi-check-circle"></i> {% trans "Rotary Endodontics" %}</span>
-                <span><i class="bi bi-check-circle"></i> {% trans "Latest Modern Instruments" %}</span>
+                <span> {% trans "Rotary Endodontics" %}</span>
+                <span> {% trans "Latest Modern Instruments" %}</span>
               </div>
             </div>
           </div>
@@ -396,8 +413,8 @@
               <h4 class="vfc-title" style="color: var(--cf-primary-dark);">Sterilization & Safety</h4>
               <p class="vfc-desc">{% trans "Your safety is our top priority. We follow strict sterilization protocols and maintain the highest standards of infection control." %}</p>
               <div class="vfc-highlights" style="color: var(--cf-primary-dark);">
-                <span><i class="bi bi-check-circle"></i> {% trans "Fully Sterilized" %}</span>
-                <span><i class="bi bi-check-circle"></i> Infection Control & Hygiene</span>
+                <span> {% trans "Fully Sterilized" %}</span>
+                <span> Infection Control & Hygiene</span>
               </div>
             </div>
           </div>
@@ -406,7 +423,7 @@
         <!-- Info Card -->
         <div class="col-12 mt-4">
           <div class="mlc-info-card rounded-4" style="border: 1px solid rgba(14,90,79,0.3); background-color: var(--cf-primary-dark); padding: 25px 30px; display: flex; align-items: center; gap: 20px;">
-            <i class="bi bi-shield-check fs-1 text-warning"></i>
+            
             <p class="text-white mb-0" style="font-size: 1.05rem; line-height: 1.6;">{% trans "Your comfort, safety, and long-term oral health are our highest priorities. Our experienced dental team combines advanced technology with compassionate care to deliver successful root canal treatments." %}</p>
           </div>
         </div>
@@ -422,7 +439,7 @@
       
       <!-- Patient Care Process -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge justify-content-start border-white text-white" style="background: rgba(255,255,255,0.1);"><i class="bi bi-list-ol"></i> {% trans "The Procedure" %}</div>
+        <div class="cf-eyebrow-badge justify-content-start border-white text-white" style="background: rgba(255,255,255,0.1);"> {% trans "The Procedure" %}</div>
         <h2 class="cf-section-title text-white mb-5">{% trans "Our Root Canal Process" %}</h2>
         
         <div class="row g-4 mb-5">
@@ -437,7 +454,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex align-items-start">
-              <div class="fs-3 text-warning me-3" style="line-height:1;"><i class="bi bi-bandaid"></i></div>
+              <div class="fs-3 text-warning me-3" style="line-height:1;"></div>
               <div>
                 <h6 class="fw-bold mb-1 text-warning">{% trans "Local Anesthesia" %}</h6>
                 <p class="text-white small opacity-75">{% trans "Numbing the tooth completely." %}</p>
@@ -446,7 +463,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex align-items-start">
-              <div class="fs-3 text-success me-3" style="line-height:1;"><i class="bi bi-eraser"></i></div>
+              <div class="fs-3 text-success me-3" style="line-height:1;"></div>
               <div>
                 <h6 class="fw-bold mb-1 text-success">{% trans "Cleaning & Disinfection" %}</h6>
                 <p class="text-white small opacity-75">{% trans "Removing the infected nerve tissue." %}</p>
@@ -455,7 +472,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex align-items-start">
-              <div class="fs-3 text-danger me-3" style="line-height:1;"><i class="bi bi-box"></i></div>
+              <div class="fs-3 text-danger me-3" style="line-height:1;"></div>
               <div>
                 <h6 class="fw-bold mb-1 text-danger">{% trans "Root Canal Filling" %}</h6>
                 <p class="text-white small opacity-75">{% trans "Sealing the roots with gutta-percha." %}</p>
@@ -464,7 +481,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex align-items-start">
-              <div class="fs-3 text-light me-3" style="line-height:1;"><i class="bi bi-shield-plus"></i></div>
+              <div class="fs-3 text-light me-3" style="line-height:1;"></div>
               <div>
                 <h6 class="fw-bold mb-1 text-light">{% trans "Tooth Restoration" %}</h6>
                 <p class="text-white small opacity-75">{% trans "Placing a core build-up filling." %}</p>
@@ -473,7 +490,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex align-items-start">
-              <div class="fs-3 me-3" style="color: #FBBF24; line-height:1;"><i class="bi bi-shield-check"></i></div>
+              <div class="fs-3 me-3" style="color: #FBBF24; line-height:1;"></div>
               <div>
                 <h6 class="fw-bold mb-1" style="color: #FBBF24;">{% trans "Crown Placement" %}</h6>
                 <p class="text-white small opacity-75">{% trans "Protecting the tooth from future fracture." %}</p>
@@ -484,9 +501,9 @@
         
         <h4 class="cf-section-title text-warning mb-3 border-top border-secondary pt-4">Recovery & Aftercare</h4>
         <ul class="list-unstyled text-white opacity-75 small">
-          <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i><strong class="text-white">{% trans "Avoid Hard Foods:" %}</strong> {% trans "Do not chew hard foods on the treated tooth until the final crown is placed." %}</li>
-          <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i><strong class="text-white">{% trans "Manage Sensitivity:" %}</strong> {% trans "Mild tenderness for a few days is normal; use prescribed over-the-counter painkillers." %}</li>
-          <li><i class="bi bi-check-circle-fill text-warning me-2"></i><strong class="text-white">{% trans "Maintain Hygiene:" %}</strong> {% trans "Continue brushing and flossing around the tooth gently to prevent new decay." %}</li>
+          <li class="mb-2"><strong class="text-white">{% trans "Avoid Hard Foods:" %}</strong> {% trans "Do not chew hard foods on the treated tooth until the final crown is placed." %}</li>
+          <li class="mb-2"><strong class="text-white">{% trans "Manage Sensitivity:" %}</strong> {% trans "Mild tenderness for a few days is normal; use prescribed over-the-counter painkillers." %}</li>
+          <li><strong class="text-white">{% trans "Maintain Hygiene:" %}</strong> {% trans "Continue brushing and flossing around the tooth gently to prevent new decay." %}</li>
         </ul>
 
       </div>
@@ -558,7 +575,7 @@
       <div class="col-md-4">
         <div class="rct-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static "images/rct_gallery_xray.jpg" %}'">
           <img loading="lazy" src="{% static "images/rct_gallery_xray.jpg" %}" alt="Digital X-Ray Diagnosis">
-          <div class="rct-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="rct-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "3D Root Mapping" %}</div>
         </div>
       </div>
@@ -566,7 +583,7 @@
       <div class="col-md-4">
         <div class="rct-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static "images/rct_gallery_microscope.jpg" %}'">
           <img loading="lazy" src="{% static "images/rct_gallery_microscope.jpg" %}" alt="Dental Microscope">
-          <div class="rct-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="rct-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Microscopic Precision" %}</div>
         </div>
       </div>
@@ -574,7 +591,7 @@
       <div class="col-md-4">
         <div class="rct-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static "images/rct_gallery_isolation.jpg" %}'">
           <img loading="lazy" src="{% static "images/rct_gallery_isolation.jpg" %}" alt="Rubber Dam Isolation">
-          <div class="rct-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="rct-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Sterile Isolation" %}</div>
         </div>
       </div>
@@ -582,7 +599,7 @@
       <div class="col-md-4">
         <div class="rct-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static "images/rct_gallery_tools.jpg" %}'">
           <img loading="lazy" src="{% static "images/rct_gallery_tools.jpg" %}" alt="Endodontic Rotary Files">
-          <div class="rct-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="rct-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Modern Rotary Instruments" %}</div>
         </div>
       </div>
@@ -590,7 +607,7 @@
       <div class="col-md-4">
         <div class="rct-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static "images/rct_feat_tech.png" %}'">
           <img loading="lazy" src="{% static "images/rct_feat_tech.png" %}" alt="Advanced Dental Technology">
-          <div class="rct-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="rct-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Advanced Apex Locators" %}</div>
         </div>
       </div>
@@ -598,7 +615,7 @@
       <div class="col-md-4">
         <div class="rct-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static "images/rct_feat_experienced.jpeg" %}'">
           <img loading="lazy" src="{% static "images/rct_feat_experienced.jpeg" %}" alt="Comfortable Treatment">
-          <div class="rct-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="rct-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Pain-Free Patient Care" %}</div>
         </div>
       </div>
@@ -621,29 +638,13 @@
 <!-- 7. FAQ & TESTIMONIALS -->
 <section class="section-py bg-white">
   <div class="container">
-    <div class="row g-5">
-      
-      <!-- Testimonials -->
-      <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">{% trans "Patient Stories" %}</div>
-        <h3 class="cf-section-title mb-4">{% trans "Relief from Pain" %}</h3>
-        
-        <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative mb-4">
-          <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
-          <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-          <p class="fst-italic text-muted small position-relative z-1">{% blocktrans %}\"I was terrified of getting a root canal because of all the horror stories I'd heard. However, the team at Carefirst Dental Clinic was incredible. It honestly felt no different than getting a regular filling, and the excruciating pain I had was gone immediately.\"{% endblocktrans %}</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
-            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px; font-size: 0.8rem;">{% trans "J.K." %}</div>
-            <div>
-              <h6 class="fw-bold mb-0" style="font-size: 0.9rem;">{% trans "Janak K." %}</h6>
-              <p class="small text-muted mb-0" style="font-size: 0.75rem;">RCT & Crown Patient</p>
-            </div>
-          </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <div class="text-center mb-5">
+          <div class="cf-eyebrow-badge">{% trans "COMMON QUESTIONS" %}</div>
+          <h2 class="cf-section-title">{% trans "Frequently Asked Questions" %}</h2>
+          <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "Find answers to commonly asked questions regarding our treatments and procedures." %}</p>
         </div>
-      </div>
-
-      <!-- FAQ -->
-      <div class="col-lg-7">
         <div class="cf-eyebrow-badge">{% trans "FAQ" %}</div>
         <h3 class="cf-section-title mb-4">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
@@ -704,8 +705,6 @@
     {% include 'components/related_services_row.html' %}
   </div>
 </section>
-
-{% include 'components/google_reviews.html' %}
 
 <!-- 9. CTA STRIP -->
 <div class="nd-cta-strip" id="book">

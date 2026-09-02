@@ -294,6 +294,23 @@
     line-height: 1.6 !important;
     margin-bottom: 0 !important;
   }
+
+  .ba-vs-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #0284C7;
+    font-weight: 800;
+    font-size: 0.78rem;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border: 2px solid #0284C7;
+    letter-spacing: 0.5px;
+  }
 </style>
 {% endblock %}
 
@@ -337,9 +354,9 @@
           <h5 class="fw-bold mb-2" style="font-family: var(--cf-font-head); color: #0B2545;"><span style="color:#0284C7; margin-right:8px;">•</span>{% trans "When is a Dental Filling Needed?" %}
           </h5>
           <ul class="list-unstyled mb-0 d-flex flex-column gap-2 text-muted" style="font-size: 0.925rem; font-weight: 500;">
-            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-primary"></i> {% trans "Treating active cavities before bacteria penetrate the nerve pulp." %}</li>
-            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-primary"></i> {% trans "Repairing minor chips or fractures from biting hard foods." %}</li>
-            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-primary"></i> {% trans "Replacing worn or leaking old silver amalgam fillings." %}</li>
+            <li class="d-flex align-items-center gap-2"> {% trans "Treating active cavities before bacteria penetrate the nerve pulp." %}</li>
+            <li class="d-flex align-items-center gap-2"> {% trans "Repairing minor chips or fractures from biting hard foods." %}</li>
+            <li class="d-flex align-items-center gap-2"> {% trans "Replacing worn or leaking old silver amalgam fillings." %}</li>
           </ul>
         </div>
       </div>
@@ -378,7 +395,7 @@
           <div class="ba-images">
             <img loading="lazy" src="{% static 'main/images/gallery/cavity_before.png' %}" alt="Before cavity filling" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
             <img loading="lazy" src="{% static 'main/images/gallery/cavity_after.png' %}" alt="After cavity filling" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-            <div class="ba-divider"><div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div></div>
+            <div class="ba-divider"><div class="ba-vs-badge">VS</div></div>
             <span class="ba-label before">{% trans "Before" %}</span>
             <span class="ba-label after">{% trans "After" %}</span>
           </div>
@@ -396,7 +413,7 @@
           <div class="ba-images">
             <img loading="lazy" src="{% static 'images/fill_gallery_1.png' %}" alt="Decay preparation" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
             <img loading="lazy" src="{% static 'images/fill_gallery_2.png' %}" alt="Polished composite restoration" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-            <div class="ba-divider"><div class="ba-divider-icon"><i class="bi bi-arrows-expand-horizontal"></i></div></div>
+            <div class="ba-divider"><div class="ba-vs-badge">VS</div></div>
             <span class="ba-label before">{% trans "Before" %}</span>
             <span class="ba-label after">{% trans "After" %}</span>
           </div>
@@ -433,21 +450,21 @@
               </div>
             </li>
             <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
-              <i class="bi bi-lightning-fill text-danger fs-5 mt-1"></i>
+              
               <div>
                 <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Pain When Biting" %}</strong>
                 <small class="text-muted" style="font-weight: 500;">{% trans "A sharp ache or pressure when chewing down on a specific tooth." %}</small>
               </div>
             </li>
             <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
-              <i class="bi bi-record-circle text-warning fs-5 mt-1"></i>
+              
               <div>
                 <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Visible Holes or Dark Spots" %}</strong>
                 <small class="text-muted" style="font-weight: 500;">{% trans "Pits you can feel with your tongue or brown/black stains on enamel." %}</small>
               </div>
             </li>
             <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
-              <i class="bi bi-magnet text-secondary fs-5 mt-1"></i>
+              
               <div>
                 <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Constant Food Traps" %}</strong>
                 <small class="text-muted" style="font-weight: 500;">{% trans "Food repeatedly catching in the exact same interdental pocket." %}</small>
@@ -466,7 +483,7 @@
           <p class="text-muted mb-4 small" style="font-weight: 500;">{% trans "Tooth decay is a progressive bacterial process. Common drivers include:" %}</p>
           <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
             <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
-              <i class="bi bi-bacteria text-danger fs-5 mt-1"></i>
+              
               <div>
                 <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Plaque Acid Production" %}</strong>
                 <small class="text-muted" style="font-weight: 500;">{% trans "Mouth bacteria convert dietary sugars into enamel-dissolving acids." %}</small>
@@ -480,14 +497,14 @@
               </div>
             </li>
             <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
-              <i class="bi bi-brush text-info fs-5 mt-1"></i>
+              
               <div>
                 <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Inadequate Interdental Flossing" %}</strong>
                 <small class="text-muted" style="font-weight: 500;">{% trans "Toothbrushes only clean 60% of tooth surfaces; tight gaps require flossing." %}</small>
               </div>
             </li>
             <li class="d-flex align-items-start gap-3 p-2 bg-light rounded-3">
-              <i class="bi bi-calendar-x text-secondary fs-5 mt-1"></i>
+              
               <div>
                 <strong class="d-block text-navy" style="font-size: 0.95rem; color: #0B2545;">{% trans "Skipped 6-Month Check-ups" %}</strong>
                 <small class="text-muted" style="font-weight: 500;">{% trans "Allows microscopic enamel decay to expand into deeper dentin layers." %}</small>
@@ -704,7 +721,7 @@
         <div class="d-flex flex-column gap-3">
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
+              <span class="badge bg-primary text-white rounded-circle p-1 me-2" style="width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;">•</span>
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Wait Until Numbness Fades" %}</strong>
@@ -714,7 +731,7 @@
 
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <i class="bi bi-shield-check"></i>
+              
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Immediate Chewing Function" %}</strong>
@@ -724,7 +741,7 @@
 
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
+              <span class="badge bg-primary text-white rounded-circle p-1 me-2" style="width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;">•</span>
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Temporary Mild Sensitivity" %}</strong>
@@ -738,7 +755,7 @@
       <div class="col-lg-5">
         <div class="p-4 p-md-5 rounded-4 shadow-sm text-white position-relative overflow-hidden" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%); border: 1.5px solid rgba(255,255,255,0.15);">
           <div class="d-flex align-items-center gap-2 text-info fw-bold text-uppercase small mb-3">
-            <i class="bi bi-award-fill"></i> {% trans "CLINICAL DIRECTOR'S PHILOSOPHY" %}
+             {% trans "CLINICAL DIRECTOR'S PHILOSOPHY" %}
           </div>
           <blockquote class="fs-5 text-white-50 fst-italic mb-4" style="line-height: 1.7; border-left: 3px solid #0284C7; padding-left: 16px;">
             “{% trans "Catching decay early with composite bonding is the most conservative way to preserve your natural smile. It prevents the need for invasive root canals or crowns." %}”
@@ -762,32 +779,13 @@
 <!-- 7. FAQ & TESTIMONIALS -->
 <section class="section-py" style="background: #F8FAFC; border-top: 1px solid #E2E8F0;">
   <div class="container">
-    <div class="row g-5">
-      
-      <!-- Testimonials -->
-      <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">{% trans "PATIENT STORIES" %}
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <div class="text-center mb-5">
+          <div class="cf-eyebrow-badge">{% trans "COMMON QUESTIONS" %}</div>
+          <h2 class="cf-section-title">{% trans "Frequently Asked Questions" %}</h2>
+          <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "Find answers to commonly asked questions regarding our treatments and procedures." %}</p>
         </div>
-        <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Invisible Restorations" %}</h3>
-        
-        <div class="p-4 rounded-4 shadow-sm position-relative mb-4 bg-white" style="border: 1.5px solid rgba(2, 132, 199, 0.2);">
-          <i class="bi bi-quote position-absolute text-primary opacity-10" style="font-size: 5rem; top: -10px; right: 20px;"></i>
-          <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-          <p class="fst-italic text-muted position-relative z-1 mb-3" style="font-size: 0.95rem; line-height: 1.7; font-weight: 500;">
-            {% blocktrans %}"I had a visible cavity on my upper front tooth and was anxious it would look fake. The CareFirst dental team matched the composite shade so accurately you cannot even tell where the filling begins. Truly painless and flawless work!"{% endblocktrans %}
-          </p>
-          <div class="d-flex align-items-center gap-3">
-            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white shadow-sm" style="width: 40px; height: 40px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 0.85rem;">R.K.</div>
-            <div>
-              <h6 class="fw-bold mb-0 text-navy" style="font-size: 0.95rem; color: #0B2545;">Ramesh K.</h6>
-              <p class="small text-muted mb-0" style="font-size: 0.8rem; font-weight: 500;">{% trans "Composite Filling Patient — New Baneshwor" %}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ -->
-      <div class="col-lg-7">
         <div class="cf-eyebrow-badge">{% trans "COMMON QUESTIONS" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Frequently Asked Questions" %}</h3>
@@ -863,7 +861,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_procedure_curing.jpg' %}'">
           <img loading="lazy" src="{% static 'images/fill_procedure_curing.jpg' %}" alt="Blue LED composite curing" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"></div>
           <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Blue LED Composite Curing" %}</div>
         </div>
       </div>
@@ -872,7 +870,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_tooth_shade_match.jpg' %}'">
           <img loading="lazy" src="{% static 'images/fill_tooth_shade_match.jpg' %}" alt="Tooth color shade matching" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"></div>
           <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Natural Shade Selection" %}</div>
         </div>
       </div>
@@ -881,7 +879,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_smile_result.jpg' %}'">
           <img loading="lazy" src="{% static 'images/fill_smile_result.jpg' %}" alt="Patient smile after filling" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"></div>
           <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Patient Smile — Post Restoration" %}</div>
         </div>
       </div>
@@ -890,7 +888,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_gallery_1.png' %}'">
           <img loading="lazy" src="{% static 'images/fill_gallery_1.png' %}" alt="Filling preparation" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"></div>
           <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Cavity Preparation" %}</div>
         </div>
       </div>
@@ -899,7 +897,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_gallery_3.png' %}'">
           <img loading="lazy" src="{% static 'images/fill_gallery_3.png' %}" alt="Composite placement" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"></div>
           <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Layered Composite Bonding" %}</div>
         </div>
       </div>
@@ -908,7 +906,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" style="border-radius: 16px; overflow: hidden; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#fillGalleryModal" onclick="document.getElementById('fillModalImg').src='{% static 'images/fill_gallery_5.png' %}'">
           <img loading="lazy" src="{% static 'images/fill_gallery_5.png' %}" alt="Final polished restoration" style="width:100%; height:230px; object-fit:cover; transition: transform 0.4s ease;" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay" style="position:absolute; inset:0; background:rgba(11,37,69,0.65); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s;"></div>
           <div class="p-3 bg-white text-center small fw-bold border-top" style="color: #0B2545;">{% trans "Polished Final Restoration" %}</div>
         </div>
       </div>
@@ -941,9 +939,6 @@
     {% include 'components/related_services_row.html' %}
   </div>
 </section>
-
-
-{% include 'components/google_reviews.html' %}
 
 <!-- 8. CTA STRIP -->
 <div class="nd-cta-strip" id="book">

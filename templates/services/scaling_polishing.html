@@ -89,6 +89,23 @@
     color: var(--cf-accent-dark);
     vertical-align: super;
   }
+
+  .ba-vs-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #0284C7;
+    font-weight: 800;
+    font-size: 0.78rem;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border: 2px solid #0284C7;
+    letter-spacing: 0.5px;
+  }
 </style>
 {% endblock %}
 
@@ -104,7 +121,7 @@
         <li class="breadcrumb-item active text-warning">Scaling & Polishing</li>
       </ol>
     </nav>
-    <h1 class="fw-bold"><i class="bi bi-stars me-3 text-warning"></i>Scaling & Polishing</h1>
+    <h1 class="fw-bold">Scaling & Polishing</h1>
     <p class="hero-sub mx-auto">{% trans "Professional deep cleaning to remove plaque, tartar, and surface stains." %}</p>
     <div class="mt-4">
       <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Book a Professional Clean from {{ service.starting_price }}</a>
@@ -129,9 +146,9 @@
         </p>
         
         <div class="d-flex flex-wrap gap-3 mt-4">
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Prevents Gum Disease" %}</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Removes Stubborn Stains" %}</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Cures Bad Breath" %}</span>
+          <span class="badge bg-light text-dark border p-2"> {% trans "Prevents Gum Disease" %}</span>
+          <span class="badge bg-light text-dark border p-2"> {% trans "Removes Stubborn Stains" %}</span>
+          <span class="badge bg-light text-dark border p-2"> {% trans "Cures Bad Breath" %}</span>
         </div>
       </div>
       <div class="col-lg-6">
@@ -151,11 +168,11 @@
         <h3 class="cf-section-title mb-4">{% trans "Signs You Need a Cleaning" %}</h3>
         <p class="text-muted mb-4">{% trans "You should schedule a scaling and polishing session if you notice any of these common warning signs:" %}</p>
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i> <span>{% trans "Gums that bleed easily when brushing or flossing." %}</span></li>
-          <li><i class="bi bi-record-circle text-warning fs-5"></i> <span>{% trans "Yellow or brown hard deposits along the gumline." %}</span></li>
+          <li> <span>{% trans "Gums that bleed easily when brushing or flossing." %}</span></li>
+          <li> <span>{% trans "Yellow or brown hard deposits along the gumline." %}</span></li>
           <li><span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span> <span>{% blocktrans %}Persistent bad breath that won't go away.{% endblocktrans %}</span></li>
-          <li><i class="bi bi-cup-hot text-dark fs-5"></i> <span>{% trans "Visible tea, coffee, or tobacco stains on the teeth." %}</span></li>
-          <li><i class="bi bi-calendar-check text-success fs-5"></i> <span>{% trans "It has been more than 6 months since your last cleaning." %}</span></li>
+          <li> <span>{% trans "Visible tea, coffee, or tobacco stains on the teeth." %}</span></li>
+          <li> <span>{% trans "It has been more than 6 months since your last cleaning." %}</span></li>
         </ul>
       </div>
       <!-- Benefits -->
@@ -165,28 +182,28 @@
           <div class="row g-4">
             <div class="col-md-6">
               <div class="sp-card border-0 shadow-none p-0 bg-transparent">
-                <div class="sp-icon-wrapper"><i class="bi bi-flower1"></i></div>
+                <div class="sp-icon-wrapper"></div>
                 <h6 class="fw-bold">{% trans "Healthy Gums" %}</h6>
                 <p class="small text-muted mb-0">{% trans "Reverses early-stage gingivitis and prevents advanced gum disease." %}</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="sp-card border-0 shadow-none p-0 bg-transparent">
-                <div class="sp-icon-wrapper"><i class="bi bi-sparkles"></i></div>
+                <div class="sp-icon-wrapper"></div>
                 <h6 class="fw-bold">{% trans "Brighter Smile" %}</h6>
                 <p class="small text-muted mb-0">{% trans "Effectively removes unsightly surface stains caused by food and drinks." %}</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="sp-card border-0 shadow-none p-0 bg-transparent">
-                <div class="sp-icon-wrapper"><i class="bi bi-wind"></i></div>
+                <div class="sp-icon-wrapper"></div>
                 <h6 class="fw-bold">{% trans "Fresh Breath" %}</h6>
                 <p class="small text-muted mb-0">{% trans "Eliminates the plaque and bacteria that are the primary cause of halitosis." %}</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="sp-card border-0 shadow-none p-0 bg-transparent">
-                <div class="sp-icon-wrapper"><i class="bi bi-heart-pulse"></i></div>
+                <div class="sp-icon-wrapper"></div>
                 <h6 class="fw-bold">{% trans "Systemic Health" %}</h6>
                 <p class="small text-muted mb-0">{% trans "Reduces oral inflammation, which is linked to heart disease and diabetes." %}</p>
               </div>
@@ -204,11 +221,11 @@
     <div class="row g-5 align-items-center">
       <!-- Process -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge justify-content-start border-white text-white" style="background: rgba(255,255,255,0.1);"><i class="bi bi-list-ol"></i> {% trans "Step-by-step" %}</div>
+        <div class="cf-eyebrow-badge justify-content-start border-white text-white" style="background: rgba(255,255,255,0.1);"> {% trans "Step-by-step" %}</div>
         <h2 class="cf-section-title text-white mb-5">{% trans "Our Treatment Process" %}</h2>
         
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
             <h5 class="fw-bold text-white mb-1">{% trans "Assessment" %}</h5>
@@ -216,7 +233,7 @@
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
             <h5 class="fw-bold text-white mb-1">{% trans "Ultrasonic Scaling" %}</h5>
@@ -224,7 +241,7 @@
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
             <h5 class="fw-bold text-white mb-1">{% trans "Professional Polishing" %}</h5>
@@ -232,7 +249,7 @@
           </div>
         </div>
         <div class="d-flex">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"></div>
           <div>
             <h5 class="fw-bold text-white mb-1">{% trans "Expert Flossing" %}</h5>
             <p class="text-white-50 mb-0">{% trans "We finish by expertly flossing between your teeth to ensure no plaque or polishing paste is left behind." %}</p>
@@ -253,9 +270,9 @@
             <p class="text-muted fw-bold mb-4">For Standard Scaling & Polishing</p>
             
             <ul class="text-start text-muted small mb-4 px-3" style="list-style:none; padding:0;">
-              <li class="mb-3"><i class="bi bi-check-circle-fill text-primary fs-5 align-middle me-2" style="color: #0284C7 !important;"></i> {% trans "Full mouth ultrasonic scaling" %}</li>
-              <li class="mb-3"><i class="bi bi-check-circle-fill text-primary fs-5 align-middle me-2" style="color: #0284C7 !important;"></i> {% trans "Stain-removing paste polish" %}</li>
-              <li class="mb-3"><i class="bi bi-check-circle-fill text-primary fs-5 align-middle me-2" style="color: #0284C7 !important;"></i> {% trans "Post-treatment oral hygiene instruction" %}</li>
+              <li class="mb-3"> {% trans "Full mouth ultrasonic scaling" %}</li>
+              <li class="mb-3"> {% trans "Stain-removing paste polish" %}</li>
+              <li class="mb-3"> {% trans "Post-treatment oral hygiene instruction" %}</li>
               <li class="mt-4 fst-italic text-center text-danger" style="font-size: 0.8rem; border-top: 1px dashed #E2E8F0; padding-top: 15px;">
                 {% trans "* Note: If severe gum disease is detected, Deep Periodontal Treatment may be recommended." %}
               </li>
@@ -405,8 +422,6 @@
   </div>
 </section>
 
-{% include 'components/google_reviews.html' %}
-
 <!-- 6. CTA STRIP -->
 <div class="nd-cta-strip" id="book">
   <div class="cta-inner container">
@@ -414,10 +429,10 @@
     <p>{% trans "Experience the incredibly smooth, clean feeling of professionally polished teeth." %}</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
       <a href="{% url 'main:contact' %}#appointment" class="btn btn-light rounded-pill px-4 py-2.5 fw-bold text-dark shadow-sm d-inline-flex align-items-center gap-2">
-        <i class="bi bi-calendar-check-fill text-primary"></i>{% trans "Book Your Cleaning Now" %}
+        {% trans "Book Your Cleaning Now" %}
       </a>
       <a href="{% url 'main:smile_transformations' %}" class="btn btn-outline-light rounded-pill px-4 py-2.5 fw-bold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-images"></i>{% trans "View Smile Gallery" %}
+        {% trans "View Smile Gallery" %}
       </a>
     </div>
   </div>

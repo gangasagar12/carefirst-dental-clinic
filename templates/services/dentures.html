@@ -132,6 +132,23 @@
   }
   .den-gallery-item:hover img { transform: scale(1.05); }
   .den-gallery-item:hover .den-gallery-overlay { opacity: 1; }
+
+  .ba-vs-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #0284C7;
+    font-weight: 800;
+    font-size: 0.78rem;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border: 2px solid #0284C7;
+    letter-spacing: 0.5px;
+  }
 </style>
 {% endblock %}
 
@@ -148,7 +165,7 @@
         <li class="breadcrumb-item active text-warning fw-bold">{% trans "Dentures" %}</li>
       </ol>
     </nav>
-    <h1 class="display-4 fw-bold text-white mb-3"><i class="bi bi-layers me-3 text-warning"></i>{% trans "Dentures" %}</h1>
+    <h1 class="display-4 fw-bold text-white mb-3">{% trans "Dentures" %}</h1>
     <p class="hero-sub mx-auto text-white opacity-75 mb-4" style="font-size: 1.25rem;">{% trans "Custom-crafted partial and complete dentures to restore your smile and confidence." %}</p>
     <div class="mt-5">
       <a href="{% url 'main:contact' %}#book" class="cf-btn-primary py-3 px-5 rounded-pill fw-bold shadow-lg d-inline-block text-white text-decoration-none" style="font-size: 1.1rem;">{% trans "Restore Your Smile Today" %}</a>
@@ -172,9 +189,9 @@
         
         <h5 class="fw-bold mt-4 mb-3" style="color:var(--cf-primary-dark);">{% trans "Who Needs Dentures?" %}</h5>
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>{% trans "Patients who have lost several or all of their teeth." %}</span></li>
-          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>{% trans "Individuals seeking an affordable alternative to dental implants." %}</span></li>
-          <li><i class="bi bi-check-circle-fill text-success fs-5"></i> <span>{% trans "Those who have experienced significant jaw bone loss and cannot support implants." %}</span></li>
+          <li> <span>{% trans "Patients who have lost several or all of their teeth." %}</span></li>
+          <li> <span>{% trans "Individuals seeking an affordable alternative to dental implants." %}</span></li>
+          <li> <span>{% trans "Those who have experienced significant jaw bone loss and cannot support implants." %}</span></li>
         </ul>
       </div>
       <div class="col-lg-6">
@@ -240,28 +257,28 @@
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="den-card">
-              <div class="den-icon-wrapper"><i class="bi bi-emoji-smile"></i></div>
+              <div class="den-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Restored Appearance" %}</h6>
               <p class="small text-muted mb-0">{% blocktrans %}Maintains the shape of your face, preventing the \"sunken\" look associated with missing teeth.{% endblocktrans %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="den-card">
-              <div class="den-icon-wrapper"><i class="bi bi-basket"></i></div>
+              <div class="den-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Improved Function" %}</h6>
               <p class="small text-muted mb-0">{% trans "Allows you to chew food properly, improving digestion and nutrition." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="den-card">
-              <div class="den-icon-wrapper"><i class="bi bi-chat-quote"></i></div>
+              <div class="den-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Clearer Speech" %}</h6>
               <p class="small text-muted mb-0">{% trans "Missing teeth can cause lisps or slurring. Dentures restore your ability to speak clearly." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="den-card">
-              <div class="den-icon-wrapper"><i class="bi bi-wallet2"></i></div>
+              <div class="den-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Cost-Effective" %}</h6>
               <p class="small text-muted mb-0">{% trans "Dentures are typically more affordable than full-mouth dental implants or large bridges." %}</p>
             </div>
@@ -275,10 +292,10 @@
         <h3 class="cf-section-title mb-4">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
         <p class="text-muted mb-4">{% trans "Creating comfortable, natural-looking dentures is an art. Here is why our patients love our prosthetics:" %}</p>
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Precision Fitting:" %}</strong> {% trans "We take multiple detailed impressions to ensure your denture fits snugly without irritating your gums." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Premium Materials:" %}</strong> {% trans "We use high-quality acrylics and ceramics that mimic the translucency of natural teeth." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Custom Aesthetics:" %}</strong> {% trans "You get to choose the shade and shape of the teeth to match your original smile." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Adjustment Period:" %}</strong> {% trans "We provide comprehensive follow-up visits to adjust the fit as your mouth gets used to the new appliance." %}</span></li>
+          <li> <span><strong>{% trans "Precision Fitting:" %}</strong> {% trans "We take multiple detailed impressions to ensure your denture fits snugly without irritating your gums." %}</span></li>
+          <li> <span><strong>{% trans "Premium Materials:" %}</strong> {% trans "We use high-quality acrylics and ceramics that mimic the translucency of natural teeth." %}</span></li>
+          <li> <span><strong>{% trans "Custom Aesthetics:" %}</strong> {% trans "You get to choose the shade and shape of the teeth to match your original smile." %}</span></li>
+          <li> <span><strong>{% trans "Adjustment Period:" %}</strong> {% trans "We provide comprehensive follow-up visits to adjust the fit as your mouth gets used to the new appliance." %}</span></li>
         </ul>
       </div>
     </div>
@@ -292,13 +309,13 @@
       
       <!-- Step-by-Step -->
       <div class="col-lg-7">
-        <div class="cf-eyebrow-badge d-inline-flex align-items-center gap-2 border-white text-white mb-3" style="background: rgba(255,255,255,0.15); width: fit-content; padding: 6px 16px; border-radius: 50px;"><i class="bi bi-list-ol"></i> {% trans "The Procedure" %}</div>
+        <div class="cf-eyebrow-badge d-inline-flex align-items-center gap-2 border-white text-white mb-3" style="background: rgba(255,255,255,0.15); width: fit-content; padding: 6px 16px; border-radius: 50px;"> {% trans "The Procedure" %}</div>
         <h2 class="cf-section-title text-white mb-5">{% trans "Our Denture Treatment Process" %}</h2>
         
         <div class="row g-4 mb-4">
           <div class="col-md-6">
             <div class="d-flex align-items-start">
-              <div class="fs-3 text-info me-3" style="line-height:1;"><i class="bi bi-1-circle-fill"></i></div>
+              <div class="fs-3 text-info me-3" style="line-height:1;"></div>
               <div>
                 <h6 class="fw-bold mb-1 text-info">{% trans "Consultation & Impressions" %}</h6>
                 <p class="text-white small opacity-75 mb-0">{% trans "We evaluate your gums, take initial molds of your mouth, and discuss which type of denture is best for you." %}</p>
@@ -307,7 +324,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex align-items-start">
-              <div class="fs-3 text-warning me-3" style="line-height:1;"><i class="bi bi-2-circle-fill"></i></div>
+              <div class="fs-3 text-warning me-3" style="line-height:1;"></div>
               <div>
                 <h6 class="fw-bold mb-1 text-warning">{% trans "Bite Registration" %}</h6>
                 <p class="text-white small opacity-75 mb-0">{% trans "We measure how your upper and lower jaws relate to each other to ensure your new teeth meet correctly." %}</p>
@@ -316,7 +333,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex align-items-start">
-              <div class="fs-3 text-success me-3" style="line-height:1;"><i class="bi bi-3-circle-fill"></i></div>
+              <div class="fs-3 text-success me-3" style="line-height:1;"></div>
               <div>
                 <h6 class="fw-bold mb-1 text-success">{% trans "Wax Try-In" %}</h6>
                 <p class="text-white small opacity-75 mb-0">{% trans "You try on a wax mockup to check fit, color, and smile shape before final casting." %}</p>
@@ -325,7 +342,7 @@
           </div>
           <div class="col-md-6">
             <div class="d-flex align-items-start">
-              <div class="fs-3 me-3" style="color: #FBBF24; line-height:1;"><i class="bi bi-4-circle-fill"></i></div>
+              <div class="fs-3 me-3" style="color: #FBBF24; line-height:1;"></div>
               <div>
                 <h6 class="fw-bold mb-1" style="color: #FBBF24;">{% trans "Final Delivery" %}</h6>
                 <p class="text-white small opacity-75 mb-0">{% trans "You receive your finished, custom-crafted dentures with precision adjustments for comfort." %}</p>
@@ -411,21 +428,21 @@
       <div class="col-md-4">
         <div class="den-gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/denture_before.png' %}'">
           <img loading="lazy" src="{% static 'images/denture_before.png' %}" alt="Missing Teeth Before">
-          <div class="den-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="den-gallery-overlay"></div>
           <div class="p-3 bg-light text-center small fw-bold text-dark border-top">{% trans "Before: Missing Teeth" %}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="den-gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/denture_during.png' %}'">
           <img loading="lazy" src="{% static 'images/denture_during.png' %}" alt="Denture Wax Try In">
-          <div class="den-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="den-gallery-overlay"></div>
           <div class="p-3 bg-light text-center small fw-bold text-dark border-top">{% trans "During: Denture Wax Try-in" %}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="den-gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/denture_after.png' %}'">
           <img loading="lazy" src="{% static 'images/denture_after.png' %}" alt="Smile After Dentures">
-          <div class="den-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="den-gallery-overlay"></div>
           <div class="p-3 bg-light text-center small fw-bold text-dark border-top">{% trans "After: Complete Smile Restoration" %}</div>
         </div>
       </div>
@@ -521,10 +538,10 @@
 
         <!-- Patient Testimonial -->
         <div class="bg-white p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative">
-          <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 6rem; top: -20px; right: 20px;"></i>
+          
           <div class="d-flex align-items-center mb-3">
             <div class="text-warning fs-5">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              
             </div>
           </div>
           <p class="fst-italic text-muted mb-3 position-relative z-1">{% blocktrans %}\"I was so embarrassed about losing my teeth, but the team at Carefirst Dental Clinic was incredibly kind. My new complete dentures look just like my natural teeth used to, and I can finally eat comfortably again. Highly recommended!\"{% endblocktrans %}</p>
@@ -551,8 +568,6 @@
     {% include 'components/related_services_row.html' %}
   </div>
 </section>
-
-{% include 'components/google_reviews.html' %}
 
 <!-- 9. CTA STRIP -->
 <div class="nd-cta-strip" id="book">

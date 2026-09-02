@@ -120,6 +120,23 @@
   }
   .ex-gallery-item:hover img { transform: scale(1.05); }
   .ex-gallery-item:hover .ex-gallery-overlay { opacity: 1; }
+
+  .ba-vs-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #0284C7;
+    font-weight: 800;
+    font-size: 0.78rem;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border: 2px solid #0284C7;
+    letter-spacing: 0.5px;
+  }
 </style>
 {% endblock %}
 
@@ -135,7 +152,7 @@
         <li class="breadcrumb-item active text-warning fw-bold">{% trans "Tooth Extraction" %}</li>
       </ol>
     </nav>
-    <h1 class="display-4 fw-bold text-white mb-3"><i class="bi bi-scissors me-3 text-warning"></i>{% trans "Tooth Extraction" %}</h1>
+    <h1 class="display-4 fw-bold text-white mb-3">{% trans "Tooth Extraction" %}</h1>
     <p class="hero-sub mx-auto text-white opacity-75 mb-4" style="font-size: 1.25rem;">{% trans "Safe, painless removal of severely damaged or problematic teeth." %}</p>
     <div class="mt-5">
       <a href="{% url 'main:contact' %}#book" class="btn btn-warning btn-lg text-dark py-3 px-5 rounded-pill fw-bold shadow-lg">{% trans "Get Immediate Relief" %}</a>
@@ -157,9 +174,9 @@
           {% trans "Many patients feel anxious about having a tooth pulled. We understand this, which is why we use advanced numbing techniques and a gentle approach to ensure your extraction is as comfortable, swift, and stress-free as possible." %}
         </p>
         <div class="d-flex flex-wrap gap-3 mt-4">
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Profound Anesthesia" %}</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Gentle Technique" %}</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Fast Recovery" %}</span>
+          <span class="badge bg-light text-dark border p-2"> {% trans "Profound Anesthesia" %}</span>
+          <span class="badge bg-light text-dark border p-2"> {% trans "Gentle Technique" %}</span>
+          <span class="badge bg-light text-dark border p-2"> {% trans "Fast Recovery" %}</span>
         </div>
       </div>
       <div class="col-lg-6">
@@ -183,11 +200,11 @@
         <div class="bg-white p-4 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
           <h4 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Reasons & Symptoms" %}</h4>
           <ul class="symptom-list">
-            <li><i class="bi bi-x-circle text-danger fs-5"></i> <span><strong>{% trans "Severe Decay:" %}</strong> {% trans "A cavity so deep that the tooth cannot be saved by a root canal." %}</span></li>
-            <li><i class="bi bi-shield-x text-danger fs-5"></i> <span><strong>{% trans "Advanced Gum Disease:" %}</strong> {% trans "Periodontitis has destroyed the bone supporting the tooth, making it loose." %}</span></li>
-            <li><i class="bi bi-bezier2 text-warning fs-5"></i> <span><strong>{% trans "Orthodontic Crowding:" %}</strong> {% trans "Removing a tooth to create space for braces to align the remaining teeth." %}</span></li>
-            <li><i class="bi bi-cone-striped text-warning fs-5"></i> <span><strong>{% trans "Impacted Wisdom Teeth:" %}</strong> {% trans "Third molars that are stuck under the gums, causing pain and infection." %}</span></li>
-            <li><i class="bi bi-lightning text-danger fs-5"></i> <span><strong>{% trans "Severe Trauma:" %}</strong> {% trans "A tooth fractured below the gumline." %}</span></li>
+            <li> <span><strong>{% trans "Severe Decay:" %}</strong> {% trans "A cavity so deep that the tooth cannot be saved by a root canal." %}</span></li>
+            <li> <span><strong>{% trans "Advanced Gum Disease:" %}</strong> {% trans "Periodontitis has destroyed the bone supporting the tooth, making it loose." %}</span></li>
+            <li> <span><strong>{% trans "Orthodontic Crowding:" %}</strong> {% trans "Removing a tooth to create space for braces to align the remaining teeth." %}</span></li>
+            <li> <span><strong>{% trans "Impacted Wisdom Teeth:" %}</strong> {% trans "Third molars that are stuck under the gums, causing pain and infection." %}</span></li>
+            <li> <span><strong>{% trans "Severe Trauma:" %}</strong> {% trans "A tooth fractured below the gumline." %}</span></li>
           </ul>
         </div>
       </div>
@@ -223,28 +240,28 @@
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="ex-card">
-              <div class="ex-icon-wrapper"><i class="bi bi-emoji-smile"></i></div>
+              <div class="ex-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Immediate Relief" %}</h6>
               <p class="small text-muted mb-0">{% trans "Removes the source of severe pain and swelling instantly." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="ex-card">
-              <div class="ex-icon-wrapper"><i class="bi bi-shield-plus"></i></div>
+              <div class="ex-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Prevents Spread" %}</h6>
               <p class="small text-muted mb-0">{% trans "Stops the infection from spreading to neighboring healthy teeth and bone." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="ex-card">
-              <div class="ex-icon-wrapper"><i class="bi bi-grid-3x3-gap"></i></div>
+              <div class="ex-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Creates Space" %}</h6>
               <p class="small text-muted mb-0">{% trans "Crucial for orthodontic patients who have severe overcrowding." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="ex-card">
-              <div class="ex-icon-wrapper"><i class="bi bi-heart-pulse"></i></div>
+              <div class="ex-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Protects Overall Health" %}</h6>
               <p class="small text-muted mb-0">{% trans "Untreated dental infections can lead to serious systemic health issues." %}</p>
             </div>
@@ -257,10 +274,10 @@
         <div class="nd-eyebrow">{% trans "Why Us?" %}</div>
         <h3 class="fw-bold mb-4" style="color:var(--cf-primary-dark);">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Comfort First:" %}</strong> {% trans "We ensure absolute numbness before beginning." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "3D Imaging (CBCT):" %}</strong> {% trans "For complex wisdom teeth, we use 3D scans to see exact nerve locations and prevent nerve damage." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Bone Preservation:" %}</strong> {% trans "We use gentle techniques that preserve the surrounding bone, making future implants easier." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Expert Aftercare:" %}</strong> {% trans "Comprehensive follow-up to ensure you heal quickly and safely." %}</span></li>
+          <li> <span><strong>{% trans "Comfort First:" %}</strong> {% trans "We ensure absolute numbness before beginning." %}</span></li>
+          <li> <span><strong>{% trans "3D Imaging (CBCT):" %}</strong> {% trans "For complex wisdom teeth, we use 3D scans to see exact nerve locations and prevent nerve damage." %}</span></li>
+          <li> <span><strong>{% trans "Bone Preservation:" %}</strong> {% trans "We use gentle techniques that preserve the surrounding bone, making future implants easier." %}</span></li>
+          <li> <span><strong>{% trans "Expert Aftercare:" %}</strong> {% trans "Comprehensive follow-up to ensure you heal quickly and safely." %}</span></li>
         </ul>
       </div>
     </div>
@@ -278,7 +295,7 @@
         <h2 class="section-heading text-white mb-5">{% trans "Step-by-Step Treatment Process" %}</h2>
         
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-1-circle-fill"></i></div>
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
             <h5 class="fw-bold text-white mb-1">{% trans "X-Ray Assessment" %}</h5>
@@ -286,7 +303,7 @@
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-2-circle-fill"></i></div>
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
             <h5 class="fw-bold text-white mb-1">{% trans "Anesthesia" %}</h5>
@@ -294,7 +311,7 @@
           </div>
         </div>
         <div class="d-flex mb-4 position-relative">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-3-circle-fill"></i></div>
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"></div>
           <div class="pb-4 border-start border-secondary position-absolute ms-3 h-100 top-50"></div>
           <div>
             <h5 class="fw-bold text-white mb-1">{% trans "Extraction" %}</h5>
@@ -302,7 +319,7 @@
           </div>
         </div>
         <div class="d-flex">
-          <div class="fs-2 text-warning me-4 bg-transparent z-1"><i class="bi bi-4-circle-fill"></i></div>
+          <div class="fs-2 text-warning me-4 bg-transparent z-1"></div>
           <div>
             <h5 class="fw-bold text-white mb-1">{% trans "Clot Formation" %}</h5>
             <p class="text-white-50 mb-0">{% trans "Gauze is placed over the socket. You will bite down to apply pressure, stopping the bleeding and helping a blood clot form." %}</p>
@@ -386,21 +403,21 @@
       <div class="col-md-4">
         <div class="ex-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/dental2_x-ray.jpg' %}'">
           <img loading="lazy" src="{% static 'images/dental2_x-ray.jpg' %}" alt="Accurate Diagnosis">
-          <div class="ex-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="ex-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Accurate Diagnosis" %}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="ex-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/toothextraction-hero.jpg' %}'">
           <img loading="lazy" src="{% static 'images/toothextraction-hero.jpg' %}" alt="Painless Procedure">
-          <div class="ex-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="ex-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Painless Procedure" %}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="ex-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/rct_feat_safety.png' %}'">
           <img loading="lazy" src="{% static 'images/rct_feat_safety.png' %}" alt="Strict Sterilization">
-          <div class="ex-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="ex-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-dark border-top">{% trans "Strict Sterilization" %}</div>
         </div>
       </div>
@@ -517,8 +534,6 @@
     {% include 'components/related_services_row.html' %}
   </div>
 </section>
-
-{% include 'components/google_reviews.html' %}
 
 <!-- 7. CTA STRIP -->
 <div class="nd-cta-strip" id="book">

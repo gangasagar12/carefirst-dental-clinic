@@ -415,13 +415,13 @@
     
     <!-- Filters -->
     <div class="service-filters" id="serviceFilters">
-      <button class="filter-btn active" data-filter="*"><i class="bi bi-grid-fill"></i> {% trans "All Services" %}</button>
-      <button class="filter-btn" data-filter=".general"><i class="bi bi-heart-pulse"></i> {% trans "General" %}</button>
-      <button class="filter-btn" data-filter=".preventive"><i class="bi bi-shield-check"></i> {% trans "Preventive" %}</button>
-      <button class="filter-btn" data-filter=".restorative"><i class="bi bi-bandaid-fill"></i> {% trans "Restorative" %}</button>
-      <button class="filter-btn" data-filter=".cosmetic"><i class="bi bi-stars"></i> {% trans "Cosmetic" %}</button>
-      <button class="filter-btn" data-filter=".orthodontics"><i class="bi bi-bezier2"></i> {% trans "Orthodontics" %}</button>
-      <button class="filter-btn" data-filter=".implants"><i class="bi bi-gear-wide-connected"></i> {% trans "Implants" %}</button>
+      <button class="filter-btn active" data-filter="*">{% trans "All Services" %}</button>
+      <button class="filter-btn" data-filter=".general">{% trans "General" %}</button>
+      <button class="filter-btn" data-filter=".preventive">{% trans "Preventive" %}</button>
+      <button class="filter-btn" data-filter=".restorative">{% trans "Restorative" %}</button>
+      <button class="filter-btn" data-filter=".cosmetic">{% trans "Cosmetic" %}</button>
+      <button class="filter-btn" data-filter=".orthodontics">{% trans "Orthodontics" %}</button>
+      <button class="filter-btn" data-filter=".implants">{% trans "Implants" %}</button>
     </div>
 
     <!-- Grid -->
@@ -519,7 +519,7 @@
       <div class="row align-items-center g-4">
         <div class="col-lg-8">
           <div class="d-flex align-items-center gap-2 text-info fw-bold text-uppercase small mb-2">
-            <i class="bi bi-award-fill"></i> {% trans "EXPERT CLINICAL ASSESSMENT" %}
+            {% trans "EXPERT CLINICAL ASSESSMENT" %}
           </div>
           <h3 class="fw-bold mb-2 text-white">{% trans "Get a Personalized Treatment Plan" %}</h3>
           <p class="text-white-50 mb-0" style="font-size: 1.02rem; line-height: 1.7;">
@@ -528,7 +528,7 @@
         </div>
         <div class="col-lg-4 text-lg-end">
           <a href="{% url 'appointments:book' %}" class="btn btn-light btn-lg rounded-pill px-4 py-3 fw-bold text-dark shadow">
-            <i class="bi bi-calendar2-check-fill text-primary me-2"></i>{% trans "Book Consultation" %}
+            {% trans "Book Consultation" %}
           </a>
         </div>
       </div>
@@ -539,9 +539,6 @@
 
 <!-- 4. FAQ SECTION -->
 {% include 'components/faq.html' with faq_type='services' %}
-
-<!-- 5. PATIENT STORIES & REVIEWS (GOOGLE SHOWCASE) -->
-{% include 'components/google_reviews.html' %}
 
 {% endblock %}
 

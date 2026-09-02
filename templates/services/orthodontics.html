@@ -294,6 +294,23 @@
   }
   .ortho-gallery-item:hover img { transform: scale(1.05); }
   .ortho-gallery-item:hover .ortho-gallery-overlay { opacity: 1; }
+
+  .ba-vs-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #0284C7;
+    font-weight: 800;
+    font-size: 0.78rem;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border: 2px solid #0284C7;
+    letter-spacing: 0.5px;
+  }
 </style>
 {% endblock %}
 
@@ -309,7 +326,7 @@
         <li class="breadcrumb-item active text-warning">{% trans "Orthodontics (Braces)" %}</li>
       </ol>
     </nav>
-    <h1><i class="bi bi-magnet me-3 text-warning"></i>Orthodontics & Braces</h1>
+    <h1>Orthodontics & Braces</h1>
     <p class="hero-sub mx-auto">{% trans "Transform your smile with expertly planned, precision-guided orthodontic treatments." %}</p>
     <div class="mt-4">
       <a href="{% url 'main:contact' %}#book" class="cf-btn-primary py-3 px-5 rounded-pill fw-bold shadow-lg d-inline-block text-white text-decoration-none" style="font-size: 1.1rem;">{% trans "Start Your Smile Journey" %}</a>
@@ -331,9 +348,9 @@
           {% blocktrans %}A perfectly aligned smile isn't just about aesthetics; it is essential for long-term oral health. Crooked and crowded teeth are difficult to clean, making them highly susceptible to decay and gum disease. By applying gentle, continuous pressure over time, braces slowly move teeth into their ideal positions.{% endblocktrans %}
         </p>
         <div class="d-flex flex-wrap gap-3 mt-4">
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Aesthetic Harmony" %}</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Improved Chewing" %}</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle text-success me-1"></i> {% trans "Easier Cleaning" %}</span>
+          <span class="badge bg-light text-dark border p-2"> {% trans "Aesthetic Harmony" %}</span>
+          <span class="badge bg-light text-dark border p-2"> {% trans "Improved Chewing" %}</span>
+          <span class="badge bg-light text-dark border p-2"> {% trans "Easier Cleaning" %}</span>
         </div>
       </div>
       <div class="col-lg-6">
@@ -353,13 +370,13 @@
         <p class="text-muted mb-4">{% trans "Orthodontic treatment is suitable for teenagers and adults alike. We can correct a wide range of malocclusions (bad bites) including:" %}</p>
         
         <div class="mb-4 d-flex flex-wrap justify-content-center gap-2">
-          <span class="problem-badge mx-0"><i class="bi bi-grid"></i> {% trans "Crowded Teeth" %}</span>
-          <span class="problem-badge mx-0"><i class="bi bi-arrows-expand"></i> {% trans "Gaps Between Teeth" %}</span>
-          <span class="problem-badge mx-0"><i class="bi bi-symmetry-vertical"></i> {% trans "Crooked Teeth" %}</span>
-          <span class="problem-badge mx-0"><i class="bi bi-arrow-down-right-square"></i> {% trans "Overbite" %}</span>
-          <span class="problem-badge mx-0"><i class="bi bi-arrow-up-left-square"></i> {% trans "Underbite" %}</span>
-          <span class="problem-badge mx-0"><i class="bi bi-bezier"></i> {% trans "Crossbite" %}</span>
-          <span class="problem-badge mx-0"><i class="bi bi-circle"></i> {% trans "Open Bite" %}</span>
+          <span class="problem-badge mx-0"> {% trans "Crowded Teeth" %}</span>
+          <span class="problem-badge mx-0"> {% trans "Gaps Between Teeth" %}</span>
+          <span class="problem-badge mx-0"> {% trans "Crooked Teeth" %}</span>
+          <span class="problem-badge mx-0"> {% trans "Overbite" %}</span>
+          <span class="problem-badge mx-0"> {% trans "Underbite" %}</span>
+          <span class="problem-badge mx-0"> {% trans "Crossbite" %}</span>
+          <span class="problem-badge mx-0"> {% trans "Open Bite" %}</span>
         </div>
       </div>
     </div>
@@ -385,9 +402,9 @@
             <h3 class="pbc-title" style="color: var(--cf-primary-dark);">{% trans "Traditional Metal Braces" %}</h3>
             <p class="pbc-desc">{% trans "The most common and effective option. Uses high-grade stainless steel brackets and archwires to straighten teeth and correct complex bite issues." %}</p>
             <div class="pbc-badges">
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Highly Durable" %}</span>
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Maximum Control" %}</span>
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Cost-Effective" %}</span>
+              <span class="pbc-badge"> {% trans "Highly Durable" %}</span>
+              <span class="pbc-badge"> {% trans "Maximum Control" %}</span>
+              <span class="pbc-badge"> {% trans "Cost-Effective" %}</span>
             </div>
             <p class="mb-3"><span class="badge bg-dark text-white rounded-pill px-3 py-2">{% trans "Best For: Children, Teens, Complex Cases" %}</span></p>
             <div class="pbc-ratings">
@@ -410,9 +427,9 @@
             <h3 class="pbc-title" style="color: var(--cf-accent-dark);">{% trans "Ceramic Braces" %}</h3>
             <p class="pbc-desc">{% trans "Functions just like metal braces but uses clear or tooth-colored ceramic brackets that blend in naturally with your teeth." %}</p>
             <div class="pbc-badges">
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Tooth-Colored" %}</span>
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Discreet Look" %}</span>
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Effective Alignment" %}</span>
+              <span class="pbc-badge"> {% trans "Tooth-Colored" %}</span>
+              <span class="pbc-badge"> {% trans "Discreet Look" %}</span>
+              <span class="pbc-badge"> {% trans "Effective Alignment" %}</span>
             </div>
             <p class="mb-3"><span class="badge bg-dark text-white rounded-pill px-3 py-2">Best For: Older Teens & Adults</span></p>
             <div class="pbc-ratings">
@@ -435,10 +452,10 @@
             <h3 class="pbc-title" style="color: #0d6efd;">{% trans "Self-Ligating Braces" %}</h3>
             <p class="pbc-desc">{% trans "Uses a specialized slide mechanism or clip instead of elastic ties to hold the wire, reducing friction and pressure on the teeth." %}</p>
             <div class="pbc-badges">
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "No Elastics" %}</span>
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Less Friction" %}</span>
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Faster Visits" %}</span>
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Easier to Clean" %}</span>
+              <span class="pbc-badge"> {% trans "No Elastics" %}</span>
+              <span class="pbc-badge"> {% trans "Less Friction" %}</span>
+              <span class="pbc-badge"> {% trans "Faster Visits" %}</span>
+              <span class="pbc-badge"> {% trans "Easier to Clean" %}</span>
             </div>
             <p class="mb-3"><span class="badge bg-dark text-white rounded-pill px-3 py-2">Best For: Patients seeking comfort & speed</span></p>
             <div class="pbc-ratings">
@@ -461,9 +478,9 @@
             <h3 class="pbc-title" style="color: #198754;">{% trans "Clear Aligners" %}</h3>
             <p class="pbc-desc">{% trans "Virtually invisible, custom-made plastic trays that you can remove to eat, brush, and floss. Slowly shifts teeth without wires." %}</p>
             <div class="pbc-badges">
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Nearly Invisible" %}</span>
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "Removable" %}</span>
-              <span class="pbc-badge"><i class="bi bi-check2"></i> {% trans "No Diet Restrictions" %}</span>
+              <span class="pbc-badge"> {% trans "Nearly Invisible" %}</span>
+              <span class="pbc-badge"> {% trans "Removable" %}</span>
+              <span class="pbc-badge"> {% trans "No Diet Restrictions" %}</span>
             </div>
             <p class="mb-3"><span class="badge bg-dark text-white rounded-pill px-3 py-2">Best For: Adults & Teens with mild/moderate issues</span></p>
             <div class="pbc-ratings">
@@ -609,7 +626,7 @@
         <div class="ortho-gallery-item shadow-sm">
           <img loading="lazy" src="{% static 'images/ortho_before.png' %}" alt="Orthodontic Before and After 1">
           <div class="ortho-gallery-overlay">
-            <i class="bi bi-zoom-in text-white fs-1"></i>
+            
           </div>
         </div>
       </div>
@@ -617,7 +634,7 @@
         <div class="ortho-gallery-item shadow-sm">
           <img loading="lazy" src="{% static 'images/ortho_during.png' %}" alt="Orthodontic Before and After 2">
           <div class="ortho-gallery-overlay">
-            <i class="bi bi-zoom-in text-white fs-1"></i>
+            
           </div>
         </div>
       </div>
@@ -625,7 +642,7 @@
         <div class="ortho-gallery-item shadow-sm">
           <img loading="lazy" src="{% static 'images/ortho_after.png' %}" alt="Orthodontic Before and After 3">
           <div class="ortho-gallery-overlay">
-            <i class="bi bi-zoom-in text-white fs-1"></i>
+            
           </div>
         </div>
       </div>
@@ -679,7 +696,7 @@
     
     <div class="mt-5 text-center">
       <div class="rounded-4 text-white" style="background-color: var(--cf-primary-dark); padding: 30px 40px; box-shadow: 0 10px 30px rgba(14,90,79,0.2);">
-        <i class="bi bi-stars fs-1 text-warning mb-3 d-block"></i>
+        
         <p class="mb-0 fs-5" style="line-height: 1.6;">{% trans "Our orthodontists will recommend the most suitable braces option based on your age, dental condition, bite alignment, lifestyle, aesthetic preferences, and treatment goals." %}</p>
       </div>
     </div>
@@ -697,28 +714,28 @@
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="ortho-card">
-              <div class="ortho-icon-wrapper"><i class="bi bi-stars"></i></div>
+              <div class="ortho-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Enhanced Appearance" %}</h6>
               <p class="small text-muted mb-0">{% trans "A straight, beautiful smile dramatically improves self-confidence and self-esteem." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="ortho-card">
-              <div class="ortho-icon-wrapper"><i class="bi bi-shield-check"></i></div>
+              <div class="ortho-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Prevents Decay" %}</h6>
               <p class="small text-muted mb-0">{% trans "Straight teeth are much easier to brush and floss, reducing the risk of cavities and gum disease." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="ortho-card">
-              <div class="ortho-icon-wrapper"><i class="bi bi-bezier2"></i></div>
+              <div class="ortho-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Bite Correction" %}</h6>
               <p class="small text-muted mb-0">{% trans "Fixing your bite reduces excessive wear on the tooth enamel over time." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="ortho-card">
-              <div class="ortho-icon-wrapper"><i class="bi bi-earbuds"></i></div>
+              <div class="ortho-icon-wrapper"></div>
               <h6 class="fw-bold">{% trans "Relieves Jaw Strain" %}</h6>
               <p class="small text-muted mb-0">{% trans "Proper alignment can alleviate TMJ pain, headaches, and tension in the jaw muscles." %}</p>
             </div>
@@ -732,10 +749,10 @@
         <h3 class="cf-section-title mb-4">{% trans "Why Choose Carefirst Dental Clinic?" %}</h3>
         <p class="text-muted mb-4">{% trans "Moving teeth safely requires expertise. Here is why patients trust us for their orthodontic journey:" %}</p>
         <ul class="symptom-list mb-0">
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Experienced Orthodontists:" %}</strong> {% trans "Specialized experts managing your treatment plan." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Digital Planning:" %}</strong> {% trans "Precise OPG/Ceph X-rays and digital models to map exact tooth movements." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Comfort Focus:" %}</strong> {% trans "We use high-quality, low-friction brackets to minimize soreness." %}</span></li>
-          <li><i class="bi bi-check2-circle text-success fs-5"></i> <span><strong>{% trans "Flexible Payment:" %}</strong> {% trans "Easy installment plans available over the course of your treatment." %}</span></li>
+          <li> <span><strong>{% trans "Experienced Orthodontists:" %}</strong> {% trans "Specialized experts managing your treatment plan." %}</span></li>
+          <li> <span><strong>{% trans "Digital Planning:" %}</strong> {% trans "Precise OPG/Ceph X-rays and digital models to map exact tooth movements." %}</span></li>
+          <li> <span><strong>{% trans "Comfort Focus:" %}</strong> {% trans "We use high-quality, low-friction brackets to minimize soreness." %}</span></li>
+          <li> <span><strong>{% trans "Flexible Payment:" %}</strong> {% trans "Easy installment plans available over the course of your treatment." %}</span></li>
         </ul>
       </div>
     </div>
@@ -815,42 +832,13 @@
 <!-- 7. FAQ & TESTIMONIALS -->
 <section class="section-py bg-white">
   <div class="container">
-    <div class="row g-5">
-      
-      <!-- Testimonials -->
-      <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">{% trans "Patient Stories" %}</div>
-        <h3 class="cf-section-title mb-4">{% trans "Life with Braces" %}</h3>
-        
-        <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative mb-4">
-          <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
-          <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-          <p class="fst-italic text-muted small position-relative z-1">{% blocktrans %}\"I had a terrible overbite and was afraid braces would hurt too much as an adult. The ceramic braces were barely noticeable, and the team at Carefirst Dental Clinic was so gentle. The 18 months flew by and my smile is perfect now!\"{% endblocktrans %}</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
-            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px; font-size: 0.8rem;">{% trans "P.T." %}</div>
-            <div>
-              <h6 class="fw-bold mb-0" style="font-size: 0.9rem;">{% trans "Pooja T." %}</h6>
-              <p class="small text-muted mb-0" style="font-size: 0.75rem;">{% trans "Ceramic Braces Patient" %}</p>
-            </div>
-          </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <div class="text-center mb-5">
+          <div class="cf-eyebrow-badge">{% trans "COMMON QUESTIONS" %}</div>
+          <h2 class="cf-section-title">{% trans "Frequently Asked Questions" %}</h2>
+          <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "Find answers to commonly asked questions regarding our treatments and procedures." %}</p>
         </div>
-        
-        <div class="bg-light p-4 rounded-4 shadow-sm border border-success border-opacity-25 position-relative">
-          <i class="bi bi-quote position-absolute text-success opacity-25" style="font-size: 5rem; top: -15px; right: 20px;"></i>
-          <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-          <p class="fst-italic text-muted small position-relative z-1">{% blocktrans %}\"The installment plan made metal braces affordable for me. Every adjustment visit was quick, and the orthodontist explained exactly what they were doing. I can finally smile in photos without hiding my teeth.\"{% endblocktrans %}</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
-            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px; font-size: 0.8rem;">{% trans "S.K." %}</div>
-            <div>
-              <h6 class="fw-bold mb-0" style="font-size: 0.9rem;">{% trans "Suresh K." %}</h6>
-              <p class="small text-muted mb-0" style="font-size: 0.75rem;">{% trans "Metal Braces Patient" %}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ -->
-      <div class="col-lg-7">
         <div class="cf-eyebrow-badge">{% trans "FAQ" %}</div>
         <h3 class="cf-section-title mb-4">{% trans "Frequently Asked Questions" %}</h3>
         <div class="accordion nd-accordion" id="faqAccordion">
@@ -923,8 +911,6 @@
     {% include 'components/related_services_row.html' %}
   </div>
 </section>
-
-{% include 'components/google_reviews.html' %}
 
 <!-- 9. CTA STRIP -->
 <div class="nd-cta-strip" id="book">

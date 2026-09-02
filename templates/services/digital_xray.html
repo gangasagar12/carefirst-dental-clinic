@@ -237,6 +237,23 @@
   .xray-gallery-item:hover .xray-gallery-overlay {
     opacity: 1 !important;
   }
+
+  .ba-vs-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #0284C7;
+    font-weight: 800;
+    font-size: 0.78rem;
+    font-family: var(--cf-font-head, 'Outfit', sans-serif);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border: 2px solid #0284C7;
+    letter-spacing: 0.5px;
+  }
 </style>
 {% endblock %}
 
@@ -408,28 +425,28 @@
         <div class="row g-4 mt-1">
           <div class="col-sm-6">
             <div class="xray-card">
-              <div class="xray-icon-wrapper"><i class="bi bi-shield-plus"></i></div>
+              <div class="xray-icon-wrapper"></div>
               <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Ultra-Low Radiation" %}</h5>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "Our digital sensors reduce radiation exposure by up to 90% compared to legacy film X-rays." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="xray-card">
-              <div class="xray-icon-wrapper"><i class="bi bi-lightning-charge-fill"></i></div>
+              <div class="xray-icon-wrapper"></div>
               <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Instant HD Preview" %}</h5>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "No waiting for darkroom chemicals. High-resolution images appear immediately on chairside monitors." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="xray-card">
-              <div class="xray-icon-wrapper"><i class="bi bi-zoom-in"></i></div>
+              <div class="xray-icon-wrapper"></div>
               <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Enhanced Zoom & Contrast" %}</h5>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "We can magnify images and optimize contrast to reveal microscopic cracks and early-stage cavities." %}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="xray-card">
-              <div class="xray-icon-wrapper"><i class="bi bi-person-check-fill"></i></div>
+              <div class="xray-icon-wrapper"></div>
               <h5 class="fw-bold text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Protective Shielding" %}</h5>
               <p class="small text-muted mb-0" style="font-weight: 500; line-height: 1.6;">{% trans "We provide lead aprons and thyroid collars for maximum patient protection during every exposure." %}</p>
             </div>
@@ -568,7 +585,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/digital_xray_sensor.jpg' %}'">
           <img loading="lazy" src="{% static 'images/digital_xray_sensor.jpg' %}" alt="Digital Radiography Sensor" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Ultra-Low Radiation Sensors" %}</div>
         </div>
       </div>
@@ -577,7 +594,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/digital_panoramic_opg.jpg' %}'">
           <img loading="lazy" src="{% static 'images/digital_panoramic_opg.jpg' %}" alt="Panoramic OPG Diagnostic Unit" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Panoramic OPG Scanner" %}</div>
         </div>
       </div>
@@ -586,7 +603,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/digital_xray_consultation.jpg' %}'">
           <img loading="lazy" src="{% static 'images/digital_xray_consultation.jpg' %}" alt="Chairside Patient Consultation" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Chairside Digital Review" %}</div>
         </div>
       </div>
@@ -595,7 +612,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/Dental1-X-Rays.jpeg' %}'">
           <img loading="lazy" src="{% static 'images/Dental1-X-Rays.jpeg' %}" alt="Reviewing X-Ray" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Instant Root Anatomy Check" %}</div>
         </div>
       </div>
@@ -604,7 +621,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/dental2_x-ray.jpg' %}'">
           <img loading="lazy" src="{% static 'images/dental2_x-ray.jpg' %}" alt="Modern Clinic Equipment" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Modern Diagnostic Suite" %}</div>
         </div>
       </div>
@@ -613,7 +630,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="xray-gallery-item shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="document.getElementById('modalImg').src='{% static 'images/dental3_x-ray.jpg' %}'">
           <img loading="lazy" src="{% static 'images/dental3_x-ray.jpg' %}" alt="Consultation" onerror="this.onerror=null; this.src='{% static 'main/img/hero_bg.jpeg' %}';">
-          <div class="xray-gallery-overlay"><i class="bi bi-zoom-in text-white fs-1"></i></div>
+          <div class="xray-gallery-overlay"></div>
           <div class="p-3 bg-white text-center small fw-bold text-navy border-top" style="color: #0B2545;">{% trans "Precision Treatment Planning" %}</div>
         </div>
       </div>
@@ -649,7 +666,7 @@
         <div class="d-flex flex-column gap-3">
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <i class="bi bi-shield-shaded"></i>
+              
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Minimal Background Radiation" %}</strong>
@@ -659,7 +676,7 @@
 
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <i class="bi bi-person-fill-check"></i>
+              
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "ALARA Protocol Compliance" %}</strong>
@@ -669,7 +686,7 @@
 
           <div class="p-3 bg-white rounded-4 shadow-sm border border-light d-flex align-items-start gap-3">
             <div class="rounded-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 1.1rem; flex-shrink: 0;">
-              <span class="cf-feature-bullet" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284C7; margin-bottom:8px;"></span>
+              <span class="badge bg-primary text-white rounded-circle p-1 me-2" style="width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;">•</span>
             </div>
             <div>
               <strong class="d-block text-navy" style="color: #0B2545; font-size: 0.95rem;">{% trans "Fast 2-Minute Scan" %}</strong>
@@ -683,7 +700,7 @@
       <div class="col-lg-5">
         <div class="p-4 p-md-5 rounded-4 shadow-sm text-white position-relative overflow-hidden" style="background: linear-gradient(135deg, #081C33 0%, #0B2545 60%, #0369A1 100%); border: 1.5px solid rgba(255,255,255,0.15);">
           <div class="d-flex align-items-center gap-2 text-info fw-bold text-uppercase small mb-3">
-            <i class="bi bi-award-fill"></i> {% trans "CLINICAL DIRECTOR'S PHILOSOPHY" %}
+             {% trans "CLINICAL DIRECTOR'S PHILOSOPHY" %}
           </div>
           <blockquote class="fs-5 text-white-50 fst-italic mb-4" style="line-height: 1.7; border-left: 3px solid #0284C7; padding-left: 16px;">
             “{% trans "Accurate dentistry begins with seeing what is beneath the surface. Digital imaging gives us the clarity to save natural teeth through early, conservative interventions." %}”
@@ -707,32 +724,13 @@
 <!-- 7. FAQ & TESTIMONIALS -->
 <section class="section-py" style="background: #F8FAFC; border-top: 1px solid #E2E8F0;">
   <div class="container">
-    <div class="row g-5">
-      
-      <!-- Testimonials -->
-      <div class="col-lg-5">
-        <div class="cf-eyebrow-badge">{% trans "PATIENT STORIES" %}
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <div class="text-center mb-5">
+          <div class="cf-eyebrow-badge">{% trans "COMMON QUESTIONS" %}</div>
+          <h2 class="cf-section-title">{% trans "Frequently Asked Questions" %}</h2>
+          <p class="cf-body-text text-muted mx-auto mt-2" style="max-width: 600px;">{% trans "Find answers to commonly asked questions regarding our treatments and procedures." %}</p>
         </div>
-        <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Accurate Diagnostic Care" %}</h3>
-        
-        <div class="p-4 rounded-4 shadow-sm position-relative mb-4 bg-white" style="border: 1.5px solid rgba(2, 132, 199, 0.2);">
-          <i class="bi bi-quote position-absolute text-primary opacity-10" style="font-size: 5rem; top: -10px; right: 20px;"></i>
-          <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-          <p class="fst-italic text-muted position-relative z-1 mb-3" style="font-size: 0.95rem; line-height: 1.7; font-weight: 500;">
-            {% blocktrans %}"I had severe tooth pain without any visible cavity. The dentist took a quick digital X-ray and immediately spotted an infection near the root. The scan was completely painless, instant, and helped save my tooth with prompt treatment."{% endblocktrans %}
-          </p>
-          <div class="d-flex align-items-center gap-3">
-            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white shadow-sm" style="width: 40px; height: 40px; background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); font-size: 0.85rem;">P.T.</div>
-            <div>
-              <h6 class="fw-bold mb-0 text-navy" style="font-size: 0.95rem; color: #0B2545;">Pradeep T.</h6>
-              <p class="small text-muted mb-0" style="font-size: 0.8rem; font-weight: 500;">{% trans "Root Canal Patient — Shankhamul" %}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ -->
-      <div class="col-lg-7">
         <div class="cf-eyebrow-badge">{% trans "COMMON QUESTIONS" %}
         </div>
         <h3 class="fw-bold mb-4 text-navy" style="font-family: var(--cf-font-head); color: #0B2545;">{% trans "Frequently Asked Questions" %}</h3>
@@ -798,8 +796,6 @@
     {% include 'components/related_services_row.html' %}
   </div>
 </section>
-
-{% include 'components/google_reviews.html' %}
 
 <!-- 8. CTA STRIP -->
 <div class="nd-cta-strip" id="book">
