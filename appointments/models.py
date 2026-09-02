@@ -203,19 +203,31 @@ class Appointment(models.Model):
 
     def get_manage_url(self) -> str:
         token = self.access_token or self.booking_id or str(self.id)
-        return reverse('appointments:manage', kwargs={'access_token': token})
+        try:
+            return reverse('appointments:manage', kwargs={'access_token': token})
+        except Exception:
+            return f"/appointment/manage/{token}/"
 
     def get_confirmation_url(self) -> str:
         token = self.access_token or self.booking_id or str(self.id)
-        return reverse('appointments:confirmation', kwargs={'access_token': token})
+        try:
+            return reverse('appointments:confirmation', kwargs={'access_token': token})
+        except Exception:
+            return f"/appointment/confirmation/{token}/"
 
     def get_pdf_url(self) -> str:
         token = self.access_token or self.booking_id or str(self.id)
-        return reverse('appointments:download_pdf', kwargs={'access_token': token})
+        try:
+            return reverse('appointments:download_pdf', kwargs={'access_token': token})
+        except Exception:
+            return f"/appointment/manage/{token}/pdf/"
 
     def get_calendar_ics_url(self) -> str:
         token = self.access_token or self.booking_id or str(self.id)
-        return reverse('appointments:calendar_ics', kwargs={'access_token': token})
+        try:
+            return reverse('appointments:calendar_ics', kwargs={'access_token': token})
+        except Exception:
+            return f"/appointment/manage/{token}/calendar.ics"
 
     def get_status_badge_class(self) -> str:
         mapping = {
