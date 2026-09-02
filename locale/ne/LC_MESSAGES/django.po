@@ -10989,3 +10989,535 @@ msgstr "अर्को उपचारको लागि तयार हु�
 
 msgid "Schedule your consultation or treatment in 60 seconds."
 msgstr "६० सेकेन्डमा आफ्नो दन्त परामर्श वा उपचारको समय तय गर्नुहोस्।"
+
+msgid "Appointment Confirmation"
+msgstr "Appointment Confirmation"
+
+msgid "Appointment Summary"
+msgstr "अपोइन्टमेन्ट सारांश"
+
+msgid "Confirmed"
+msgstr "पुष्टि भयो"
+
+msgid "Pending Confirmation"
+msgstr "पुष्टिको प्रतीक्षामा"
+
+msgid "Your Appointment is Confirmed!"
+msgstr "Your Appointment is Confirmed!"
+
+msgid "Appointment Cancelled"
+msgstr "Appointment Cancelled"
+
+msgid "Pending Clinic Confirmation"
+msgstr "Pending Clinic Confirmation"
+
+msgid "Appointment Details"
+msgstr "अपोइन्टमेन्ट विवरण"
+
+msgid "Selected Service:"
+msgstr "छनोट गरिएको सेवा:"
+
+msgid "Appointment Date:"
+msgstr "अपोइन्टमेन्ट मिति:"
+
+msgid "Time Slot:"
+msgstr "समय तालिका:"
+
+msgid "Clinic Branch:"
+msgstr "Clinic Branch:"
+
+msgid "Attending Dentist:"
+msgstr "उपचार गर्ने दन्तचिकित्सक:"
+
+msgid "Material / Option:"
+msgstr "Material / Option:"
+
+msgid "Price Estimate:"
+msgstr "Price Estimate:"
+
+msgid "Patient Information"
+msgstr "Patient Information"
+
+msgid "Full Name:"
+msgstr "Full Name:"
+
+msgid "Phone Number:"
+msgstr "फोन नम्बर:"
+
+msgid "Email Address:"
+msgstr "इमेल ठेगाना:"
+
+msgid "Notes / Message:"
+msgstr "Notes / Message:"
+
+msgid "Digital Verification Pass"
+msgstr "डिजिटल प्रमाणीकरण पास"
+
+msgid ""
+"Please keep this confirmation and show the Booking ID or QR code when "
+"visiting the clinic."
+msgstr ""
+"Please keep this confirmation and show the Booking ID or QR code when "
+"visiting the clinic."
+
+msgid "Download PDF"
+msgstr "Download PDF"
+
+msgid "Add to Calendar"
+msgstr "क्यालेन्डरमा थप्नुहोस्"
+
+msgid "Call Reception Desk"
+msgstr "रिसेप्शन डेस्कमा कल गर्नुहोस्"
+
+msgid "Manage Appointment"
+msgstr "Manage Appointment"
+
+msgid ""
+"Thank you, <strong>{{ name }}</strong>. We have received your appointment "
+"request."
+msgstr ""
+"Thank you, <strong>{{ name }}</strong>. We have received your appointment "
+"request."
+
+msgid "Secure Appointment Pass"
+msgstr "सुरक्षित अपोइन्टमेन्ट पास"
+
+msgid "Visit Completed"
+msgstr "Visit Completed"
+
+msgid "Pending Review"
+msgstr "Pending Review"
+
+msgid "Clinical & Visit Information"
+msgstr "क्लिनिकल तथा भ्रमण जानकारी"
+
+msgid "Branch Location:"
+msgstr "शाखा स्थान:"
+
+msgid "Patient Contact:"
+msgstr "Patient Contact:"
+
+msgid "Special Instructions / Notes"
+msgstr "विशेष निर्देशन / नोटहरू"
+
+msgid "Request Reschedule"
+msgstr "पुनर्तालिका अनुरोध गर्नुहोस्"
+
+msgid "Cancel Request"
+msgstr "अनुरोध रद्द गर्नुहोस्"
+
+msgid "Reception Verification Pass"
+msgstr "रिसेप्शन प्रमाणीकरण पास"
+
+msgid ""
+"Show this QR code or your Booking ID when you arrive at CareFirst Dental "
+"Clinic."
+msgstr ""
+"केयरफर्स्ट डेन्टल क्लिनिकमा आउँदा यो क्यूआर कोड वा बुकिङ नम्बर देखाउनुहोस्।"
+
+msgid "Download PDF Confirmation"
+msgstr "पुष्टिकरण पीडीएफ डाउनलोड गर्नुहोस्"
+
+msgid ""
+"Please select your new preferred date and time slot. Our clinic reception "
+"will review and confirm your updated schedule."
+msgstr ""
+"कृपया आफ्नो नयाँ मिति र समय छान्नुहोस्। हाम्रो क्लिनिक रिसेप्शनले समीक्षा "
+"गरी नयाँ समय पुष्टि गर्नेछ।"
+
+msgid "New Preferred Date"
+msgstr "New Preferred Date"
+
+msgid "Reason for Rescheduling (Optional)"
+msgstr "पुनर्तालिका गर्नुको कारण (ऐच्छिक)"
+
+msgid "e.g. Schedule conflict or personal emergency"
+msgstr "e.g. Schedule conflict or personal emergency"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Submit Request"
+msgstr "अनुरोध पठाउनुहोस्"
+
+msgid "Cancel Appointment Request"
+msgstr "Cancel Appointment Request"
+
+msgid ""
+"Are you sure you want to cancel your appointment request? If you need dental"
+" care at a later date, you can always submit a new booking."
+msgstr ""
+"Are you sure you want to cancel your appointment request? If you need dental"
+" care at a later date, you can always submit a new booking."
+
+msgid "Reason for Cancellation"
+msgstr "Reason for Cancellation"
+
+msgid "e.g. No longer required or resolved elsewhere"
+msgstr "e.g. No longer required or resolved elsewhere"
+
+msgid "Keep Appointment"
+msgstr "अपोइन्टमेन्ट कायमै राख्नुहोस्"
+
+msgid "Confirm Cancellation"
+msgstr "Confirm Cancellation"
+
+msgid "Book Your Appointment"
+msgstr "आफ्नो अपोइन्टमेन्ट बुक गर्नुहोस्"
+
+msgid "Clinical Compliance & Audit Trail"
+msgstr "Clinical Compliance & Audit Trail"
+
+msgid "Loyalty Human Verification Logs"
+msgstr "Loyalty Human Verification Logs"
+
+msgid ""
+"Immutable audit stream of all receptionist and admin verification decisions,"
+" approvals, and ineligibility rejections."
+msgstr ""
+"Immutable audit stream of all receptionist and admin verification decisions,"
+" approvals, and ineligibility rejections."
+
+msgid "Back to Verification Desk"
+msgstr "प्रमाणीकरण डेस्कमा फर्कनुहोस्"
+
+msgid "Reception Desk"
+msgstr "रिसेप्शन डेस्क"
+
+msgid "Verification Queue"
+msgstr "Verification Queue"
+
+msgid "Verification Logs"
+msgstr "प्रमाणीकरण लगहरू"
+
+msgid "Rewards Ledger"
+msgstr "Rewards Ledger"
+
+msgid "Activity Stream"
+msgstr "Activity Stream"
+
+msgid "Program Settings"
+msgstr "Program Settings"
+
+msgid "Search by patient name, phone, service, or rejection reason..."
+msgstr "Search by patient name, phone, service, or rejection reason..."
+
+msgid "All Decisions"
+msgstr "All Decisions"
+
+msgid "Approved (+1 Progress)"
+msgstr "Approved (+1 Progress)"
+
+msgid "Marked Not Eligible"
+msgstr "Marked Not Eligible"
+
+msgid "Admin Overridden"
+msgstr "Admin Overridden"
+
+msgid "Filter Logs"
+msgstr "Filter Logs"
+
+msgid "Human Verification Audit Stream"
+msgstr "Human Verification Audit Stream"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "events"
+msgstr "events"
+
+msgid "Timestamp"
+msgstr "Timestamp"
+
+msgid "Patient"
+msgstr "Patient"
+
+msgid "Service / Treatment"
+msgstr "Service / Treatment"
+
+msgid "Decision"
+msgstr "Decision"
+
+msgid "Progress Change"
+msgstr "प्रगति परिवर्तन"
+
+msgid "Reason / Notes"
+msgstr "Reason / Notes"
+
+msgid "Verified By"
+msgstr "Verified By"
+
+msgid "Appt #"
+msgstr "Appt #"
+
+msgid "Approved"
+msgstr "Approved"
+
+msgid "Reward Unlocked"
+msgstr "पुरस्कार अनलक भयो"
+
+msgid "Not Eligible"
+msgstr "Not Eligible"
+
+msgid "No Verification Logs Found"
+msgstr "No Verification Logs Found"
+
+msgid "All staff verification decisions will be permanently logged here."
+msgstr "All staff verification decisions will be permanently logged here."
+
+msgid "Page"
+msgstr "Page"
+
+msgid "of"
+msgstr "of"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Human Staff Gate"
+msgstr "Human Staff Gate"
+
+msgid "Loyalty Verification Desk"
+msgstr "Loyalty Verification Desk"
+
+msgid ""
+"Doctor marks treatment completed → Receptionist reviews eligibility & "
+"payment before granting loyalty progress."
+msgstr ""
+"Doctor marks treatment completed → Receptionist reviews eligibility & "
+"payment before granting loyalty progress."
+
+msgid "Patient Lookup"
+msgstr "Patient Lookup"
+
+msgid "Verification Audit Log"
+msgstr "Verification Audit Log"
+
+msgid "Awaiting Staff Review"
+msgstr "Awaiting Staff Review"
+
+msgid "Verified Eligible (+1 Granted)"
+msgstr "Verified Eligible (+1 Granted)"
+
+msgid "Search by patient name, phone number, appointment # or service..."
+msgstr "Search by patient name, phone number, appointment # or service..."
+
+msgid "Awaiting"
+msgstr "Awaiting"
+
+msgid "Verified"
+msgstr "Verified"
+
+msgid "Visits Awaiting Staff Verification"
+msgstr "Visits Awaiting Staff Verification"
+
+msgid "Completed & Verified Loyalty Visits"
+msgstr "Completed & Verified Loyalty Visits"
+
+msgid "Completed Visits Marked Not Eligible"
+msgstr "Completed Visits Marked Not Eligible"
+
+msgid "All Completed Clinical Visits"
+msgstr "All Completed Clinical Visits"
+
+msgid "Showing"
+msgstr "Showing"
+
+msgid "records"
+msgstr "records"
+
+msgid "Patient & Contact"
+msgstr "Patient & Contact"
+
+msgid "Completion Time"
+msgstr "Completion Time"
+
+msgid "Payment"
+msgstr "Payment"
+
+msgid "Loyalty Progress Preview"
+msgstr "Loyalty Progress Preview"
+
+msgid "Staff Decision"
+msgstr "Staff Decision"
+
+msgid "CareFirst Clinical Team"
+msgstr "CareFirst Clinical Team"
+
+msgid "Paid"
+msgstr "Paid"
+
+msgid "Waived"
+msgstr "Waived"
+
+msgid "Unlocks 10% Reward"
+msgstr "Unlocks 10% Reward"
+
+msgid "Adds +1 loyalty visit"
+msgstr "Adds +1 loyalty visit"
+
+msgid "Awaiting Review"
+msgstr "Awaiting Review"
+
+msgid "Verified (+1)"
+msgstr "Verified (+1)"
+
+msgid "Verify & Add"
+msgstr "Verify & Add"
+
+msgid "Re-evaluate or Grant"
+msgstr "Re-evaluate or Grant"
+
+msgid "Confirm Loyalty Progress"
+msgstr "Confirm Loyalty Progress"
+
+msgid ""
+"Please confirm that this patient completed an eligible treatment visit and "
+"is authorized to receive loyalty progress."
+msgstr ""
+"Please confirm that this patient completed an eligible treatment visit and "
+"is authorized to receive loyalty progress."
+
+msgid "Patient:"
+msgstr "Patient:"
+
+msgid "Service:"
+msgstr "Service:"
+
+msgid "Appointment #:"
+msgstr "Appointment #:"
+
+msgid "Action Effect"
+msgstr "Action Effect"
+
+msgid "This action will UNLOCK a 10% OFF Reward!"
+msgstr "This action will UNLOCK a 10% OFF Reward!"
+
+msgid "Payment Status Confirmation"
+msgstr "Payment Status Confirmation"
+
+msgid "Payment Completed / Verified"
+msgstr "Payment Completed / Verified"
+
+msgid "Payment Waived / Free Checkup"
+msgstr "Payment Waived / Free Checkup"
+
+msgid "Payment Pending"
+msgstr "Payment Pending"
+
+msgid ""
+"Program rule requires payment completion before loyalty progress can be "
+"granted."
+msgstr ""
+"Program rule requires payment completion before loyalty progress can be "
+"granted."
+
+msgid "Optional Staff Notes"
+msgstr "Optional Staff Notes"
+
+msgid "e.g. Scaling treatment completed smoothly"
+msgstr "e.g. Scaling treatment completed smoothly"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Confirm Verification"
+msgstr "Confirm Verification"
+
+msgid "Mark Service as Not Eligible"
+msgstr "Mark Service as Not Eligible"
+
+msgid ""
+"A mandatory reason is required to mark this visit as ineligible. No loyalty "
+"points or notifications will be generated."
+msgstr ""
+"A mandatory reason is required to mark this visit as ineligible. No loyalty "
+"points or notifications will be generated."
+
+msgid "Ineligibility Reason"
+msgstr "Ineligibility Reason"
+
+msgid "-- Select Reason --"
+msgstr "-- Select Reason --"
+
+msgid "Follow-up visit (Routine check)"
+msgstr "Follow-up visit (Routine check)"
+
+msgid "Free consultation / Basic checkup"
+msgstr "Free consultation / Basic checkup"
+
+msgid "Promotional or already-discounted service"
+msgstr "Promotional or already-discounted service"
+
+msgid "Duplicate record / Already counted"
+msgstr "Duplicate record / Already counted"
+
+msgid "Treatment was cancelled or not completed"
+msgstr "Treatment was cancelled or not completed"
+
+msgid "Payment issue / Incomplete payment"
+msgstr "Payment issue / Incomplete payment"
+
+msgid "Other Reason (Specify below)"
+msgstr "Other Reason (Specify below)"
+
+msgid "Specify Custom Reason"
+msgstr "Specify Custom Reason"
+
+msgid "Enter specific ineligibility reason..."
+msgstr "Enter specific ineligibility reason..."
+
+msgid "Internal Audit Notes"
+msgstr "Internal Audit Notes"
+
+msgid "Internal context for clinical audit log..."
+msgstr "Internal context for clinical audit log..."
+
+msgid "Confirm Rejection"
+msgstr "Confirm Rejection"
+
+msgid "All Caught Up!"
+msgstr "All Caught Up!"
+
+msgid ""
+"There are currently zero completed treatments awaiting human loyalty "
+"verification."
+msgstr ""
+"There are currently zero completed treatments awaiting human loyalty "
+"verification."
+
+msgid "No appointment records match the selected filter."
+msgstr "No appointment records match the selected filter."
+
+msgid ""
+"Find answers to commonly asked questions regarding our treatments and "
+"procedures."
+msgstr ""
+"हाम्रा उपचार तथा प्रक्रियाहरूसम्बन्धी बारम्बार सोधिने प्रश्नहरूको उत्तर यहाँ"
+" पाउनुहोस्।"
+
+msgid "Gentle & Compassionate Clinical Care"
+msgstr "कोमल र संवेदनशील क्लिनिकल हेरचाह"
+
+msgid "Everyone! However, you should schedule an appointment if:"
+msgstr "सबैजना! यद्यपि, तपाईंले निम्न अवस्थामा अपोइन्टमेन्ट लिनुपर्छ:"
+
+msgid ""
+"Our clinical team provides timely intervention for everyday oral health "
+"concerns:"
+msgstr ""
+"हाम्रो क्लिनिकल टोलीले दैनिक मुख स्वास्थ्य समस्याहरूको समयमै उपचार प्रदान "
+"गर्दछ:"
+
+msgid "Dental Surgeon & Clinical Director (NMC #31229)"
+msgstr "डेन्टल सर्जन तथा क्लिनिकल निर्देशक (NMC #३१२२९)"
+
+msgid ""
+"Find answers to commonly asked questions regarding routine check-ups and "
+"general dental procedures."
+msgstr ""
+"नियमित जाँच तथा सामान्य दन्त उपचारसम्बन्धी बारम्बार सोधिने प्रश्नहरूको उत्तर"
+" यहाँ पाउनुहोस्।"
