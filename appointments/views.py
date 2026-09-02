@@ -64,7 +64,7 @@ def appointment_funnel_view(request):
                 preferred_date=preferred_date,
                 preferred_time=preferred_time,
                 message=message,
-                status='new'
+                status='pending'
             )
 
             # Notifications
@@ -74,17 +74,19 @@ def appointment_funnel_view(request):
                 queue_whatsapp_confirmation(appointment.full_name, appointment.phone, 'appointment', appointment.id)
                 if appointment.email:
                     details = {
-                        'appointment_number': appointment.appointment_number or f"CF-{appointment.id:06d}",
-                        'preferred_date': str(appointment.preferred_date),
+                        'booking_id': appointment.display_booking_id,
+                        'appointment_number': appointment.display_booking_id,
+                        'access_token': appointment.access_token,
+                        'preferred_date': appointment.preferred_date.strftime('%B %d, %Y') if appointment.preferred_date else 'Flexible',
                         'preferred_time': appointment.get_preferred_time_display() or 'Flexible',
-                        'treatment': appointment.service.title if getattr(appointment, 'service', None) else 'General Consultation',
+                        'treatment': appointment.service.title if getattr(appointment, 'service', None) else 'General Dental Consultation',
                         'doctor': appointment.doctor.name if getattr(appointment, 'doctor', None) else 'CareFirst Clinical Team',
                     }
                     queue_email_confirmation(appointment.full_name, appointment.email, 'appointment', appointment.id, details=details)
             except Exception as e:
                 print(f"Notification error: {e}")
 
-            return redirect('appointments:confirmation', appointment_number=appointment.appointment_number)
+            return redirect('appointments:confirmation', access_token=appointment.access_token)
 
     treatment_slug = request.GET.get('treatment', '').strip().lower()
     doctor_id = request.GET.get('doctor', '').strip()
@@ -194,12 +196,14 @@ def submit_appointment_ajax(request):
     if recent_duplicate:
         return JsonResponse({
             'success': True,
-            'appointment_number': recent_duplicate.appointment_number,
+            'booking_id': recent_duplicate.display_booking_id,
+            'access_token': recent_duplicate.access_token,
+            'appointment_number': recent_duplicate.display_booking_id,
             'full_name': recent_duplicate.full_name,
-            'preferred_date': recent_duplicate.preferred_date.strftime('%B %d, %Y'),
+            'preferred_date': recent_duplicate.preferred_date.strftime('%B %d, %Y') if recent_duplicate.preferred_date else 'Flexible',
             'preferred_time': recent_duplicate.get_preferred_time_display() or 'Flexible',
             'treatment': recent_duplicate.service.title if recent_duplicate.service else 'General Dental Check-up',
-            'redirect_url': reverse('appointments:confirmation', kwargs={'appointment_number': recent_duplicate.appointment_number})
+            'redirect_url': recent_duplicate.get_confirmation_url()
         })
 
     # 3. Resolve Service & Doctor
@@ -236,7 +240,7 @@ def submit_appointment_ajax(request):
         preferred_time=preferred_time,
         doctor=doctor,
         message=message,
-        status='new',
+        status='pending',
         utm_source=utm_source,
         utm_medium=utm_medium,
         utm_campaign=utm_campaign,
@@ -257,7 +261,7 @@ def submit_appointment_ajax(request):
             event_type='SUBMITTED',
             treatment_slug=service.slug if service else treatment_slug,
             source=utm_source or 'website_direct',
-            metadata={'appointment_number': appointment.appointment_number}
+            metadata={'booking_id': appointment.display_booking_id, 'appointment_number': appointment.display_booking_id}
         )
 
     # 6. Queue WhatsApp & Email Notifications
@@ -271,7 +275,9 @@ def submit_appointment_ajax(request):
     if appointment.email:
         try:
             details = {
-                'appointment_number': appointment.appointment_number or f"CF-{appointment.id:06d}",
+                'booking_id': appointment.display_booking_id,
+                'appointment_number': appointment.display_booking_id,
+                'access_token': appointment.access_token,
                 'preferred_date': appointment.preferred_date.strftime('%B %d, %Y') if appointment.preferred_date else 'Flexible',
                 'preferred_time': appointment.get_preferred_time_display() or 'Flexible',
                 'treatment': appointment.service.title if appointment.service else (treatment_slug.title() or 'General Consultation'),
@@ -283,13 +289,15 @@ def submit_appointment_ajax(request):
 
     return JsonResponse({
         'success': True,
-        'appointment_number': appointment.appointment_number,
+        'booking_id': appointment.display_booking_id,
+        'access_token': appointment.access_token,
+        'appointment_number': appointment.display_booking_id,
         'full_name': appointment.full_name,
         'phone': appointment.phone,
         'preferred_date': appointment.preferred_date.strftime('%B %d, %Y'),
         'preferred_time': appointment.get_preferred_time_display() or 'Flexible',
         'treatment': appointment.service.title if appointment.service else (treatment_slug.title() or 'General Consultation'),
-        'redirect_url': reverse('appointments:confirmation', kwargs={'appointment_number': appointment.appointment_number})
+        'redirect_url': appointment.get_confirmation_url()
     })
 
 
