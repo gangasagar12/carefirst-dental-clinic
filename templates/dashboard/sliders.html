@@ -6,12 +6,12 @@
 <div class="cf-dash-card mb-5">
   <div class="cf-dash-card-header flex-wrap gap-3">
     <div>
-      <h3 class="cf-card-title"><i class="bi bi-images text-primary"></i> Homepage Hero Background Slider</h3>
+      <h3 class="cf-card-title"> Homepage Hero Background Slider</h3>
       <p class="small text-muted mb-0">Manage the rotating full-screen background banner slides on the clinic homepage.</p>
     </div>
     <div>
       <a href="{% url 'dashboard:slide_create' %}" class="btn btn-cf-primary btn-sm rounded-pill px-3">
-        <i class="bi bi-plus-lg me-1"></i> Add Hero Slide
+         Add Hero Slide
       </a>
     </div>
   </div>
@@ -25,12 +25,12 @@
           <img src="{{ slide.image.url }}" alt="{{ slide.title|default:'Slide' }}" class="w-100 h-100" style="object-fit: cover;">
           {% else %}
           <div class="w-100 h-100 d-flex align-items-center justify-content-center text-white-50">
-            <i class="bi bi-image fs-1"></i>
+            
           </div>
           {% endif %}
           <span class="badge position-absolute top-0 start-0 m-2 bg-dark text-white font-monospace">#{{ slide.order }}</span>
           {% if slide.is_active %}
-          <span class="badge position-absolute top-0 end-0 m-2 bg-success"><i class="bi bi-check-circle me-1"></i>Active</span>
+          <span class="badge position-absolute top-0 end-0 m-2 bg-success">Active</span>
           {% else %}
           <span class="badge position-absolute top-0 end-0 m-2 bg-secondary">Disabled</span>
           {% endif %}
@@ -49,10 +49,10 @@
 
             <div class="d-flex gap-1">
               <a href="{% url 'dashboard:slide_edit' slide.id %}" class="btn btn-sm btn-light border" title="Edit Slide">
-                <i class="bi bi-pencil-square"></i>
+                
               </a>
               <a href="{% url 'dashboard:slide_delete' slide.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this hero slide?');" title="Delete Slide">
-                <i class="bi bi-trash3"></i>
+                
               </a>
             </div>
           </div>
@@ -61,7 +61,7 @@
     </div>
     {% empty %}
     <div class="col-12 text-center py-4 text-muted bg-light rounded-4 border">
-      <i class="bi bi-images fs-2 d-block mb-2 text-primary"></i>
+      
       <h6 class="fw-bold">No Custom Hero Slides Uploaded</h6>
       <p class="small text-muted mb-0">Default clinic operatory and clinical showcase banners are currently rotating on the homepage.</p>
     </div>
@@ -73,12 +73,12 @@
 <div class="cf-dash-card">
   <div class="cf-dash-card-header flex-wrap gap-3">
     <div>
-      <h3 class="cf-card-title"><i class="bi bi-camera-fill text-primary"></i> Clinic Spaces & Facility Gallery</h3>
+      <h3 class="cf-card-title"> Clinic Spaces & Facility Gallery</h3>
       <p class="small text-muted mb-0">Photos featured in the Clinic Spaces section of the homepage and gallery.</p>
     </div>
     <div>
       <a href="{% url 'dashboard:gallery_create' %}" class="btn btn-cf-primary btn-sm rounded-pill px-3">
-        <i class="bi bi-plus-lg me-1"></i> Add Facility Photo
+         Add Facility Photo
       </a>
     </div>
   </div>
@@ -93,14 +93,14 @@
         <div class="p-2 d-flex justify-content-between align-items-center">
           <span class="small text-truncate fw-semibold text-dark" style="max-width: 140px;" title="{{ g.caption }}">{{ g.caption|default:"Facility Photo" }}</span>
           <a href="{% url 'dashboard:gallery_delete' g.id %}" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="return confirm('Remove this gallery photo?');">
-            <i class="bi bi-trash3"></i>
+            
           </a>
         </div>
       </div>
     </div>
     {% empty %}
     <div class="col-12 text-center py-4 text-muted bg-light rounded-4 border">
-      <i class="bi bi-camera fs-2 d-block mb-2 text-primary"></i>
+      
       <h6 class="fw-bold">No Custom Gallery Photos Uploaded</h6>
       <p class="small text-muted mb-0">Click 'Add Facility Photo' to upload clinic interior and equipment images.</p>
     </div>

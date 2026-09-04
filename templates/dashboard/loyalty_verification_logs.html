@@ -9,7 +9,7 @@
     <div>
       <div class="d-flex align-items-center gap-2 mb-1">
         <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 px-3 py-1 rounded-pill fw-bold">
-          <i class="bi bi-shield-shaded me-1"></i> {% trans "Clinical Compliance & Audit Trail" %}
+           {% trans "Clinical Compliance & Audit Trail" %}
         </span>
       </div>
       <h2 class="h3 fw-bold mb-1" style="color: #07192F;">{% trans "Loyalty Human Verification Logs" %}</h2>
@@ -20,7 +20,7 @@
 
     <div>
       <a href="{% url 'dashboard:loyalty_verification_queue' %}" class="btn btn-primary btn-sm rounded-pill px-3">
-        <i class="bi bi-arrow-left me-1"></i> {% trans "Back to Verification Desk" %}
+         {% trans "Back to Verification Desk" %}
       </a>
     </div>
   </div>
@@ -31,32 +31,32 @@
       <ul class="nav nav-pills nav-fill gap-1">
         <li class="nav-item">
           <a class="nav-link rounded-3 fw-bold py-2 text-dark" href="{% url 'dashboard:loyalty_reception' %}">
-            <i class="bi bi-person-badge me-1.5 text-primary"></i> {% trans "Reception Desk" %}
+             {% trans "Reception Desk" %}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link rounded-3 fw-bold py-2 text-dark" href="{% url 'dashboard:loyalty_verification_queue' %}">
-            <i class="bi bi-check2-circle me-1.5 text-warning"></i> {% trans "Verification Queue" %}
+             {% trans "Verification Queue" %}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link active rounded-3 fw-bold py-2 shadow-sm" href="{% url 'dashboard:loyalty_verification_logs' %}" style="background-color: #0284C7;">
-            <i class="bi bi-shield-shaded me-1.5"></i> {% trans "Verification Logs" %}
+             {% trans "Verification Logs" %}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link rounded-3 fw-bold py-2 text-dark" href="{% url 'dashboard:loyalty_rewards' %}">
-            <i class="bi bi-gift-fill me-1.5 text-warning"></i> {% trans "Rewards Ledger" %}
+             {% trans "Rewards Ledger" %}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link rounded-3 fw-bold py-2 text-dark" href="{% url 'dashboard:loyalty_transactions' %}">
-            <i class="bi bi-clock-history me-1.5 text-secondary"></i> {% trans "Activity Stream" %}
+             {% trans "Activity Stream" %}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link rounded-3 fw-bold py-2 text-dark" href="{% url 'dashboard:loyalty_program' %}">
-            <i class="bi bi-sliders me-1.5 text-success"></i> {% trans "Program Settings" %}
+             {% trans "Program Settings" %}
           </a>
         </li>
       </ul>
@@ -69,7 +69,7 @@
       <form method="GET" class="row g-2 align-items-center">
         <div class="col-md-7">
           <div class="input-group">
-            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+            <span class="input-group-text bg-white border-end-0"></span>
             <input type="text" name="q" value="{{ q }}" class="form-control border-start-0" placeholder="{% trans 'Search by patient name, phone, service, or rejection reason...' %}">
             {% if q %}
               <a href="{% url 'dashboard:loyalty_verification_logs' %}" class="btn btn-outline-secondary">{% trans "Clear" %}</a>
@@ -95,7 +95,7 @@
   <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
     <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
       <h5 class="fw-bold mb-0" style="color: #07192F;">
-        <i class="bi bi-journal-check text-primary me-2"></i>{% trans "Human Verification Audit Stream" %}
+        {% trans "Human Verification Audit Stream" %}
       </h5>
       <span class="text-muted small">{% trans "Total" %}: {{ logs.paginator.count }} {% trans "events" %}</span>
     </div>
@@ -133,7 +133,7 @@
               <div class="fw-semibold text-dark">{{ log.service_name|default:"General Clinical Care" }}</div>
               {% if log.appointment %}
                 <a href="{% url 'dashboard:appointment_detail' log.appointment.id %}" class="small text-primary text-decoration-none">
-                  <i class="bi bi-calendar-event me-1"></i>{% trans "Appt #" %}{{ log.appointment.appointment_number|default:log.appointment.id }}
+                  {% trans "Appt #" %}{{ log.appointment.appointment_number|default:log.appointment.id }}
                 </a>
               {% endif %}
             </td>
@@ -142,7 +142,7 @@
             <td>
               {% if log.decision == 'approved' %}
                 <span class="badge bg-success text-white px-2.5 py-1 rounded-pill">
-                  <i class="bi bi-check-circle-fill me-1"></i>{% trans "Approved" %}
+                  {% trans "Approved" %}
                 </span>
                 {% if log.reward_unlocked %}
                   <span class="badge bg-warning text-dark px-2 py-0.5 rounded-pill d-block mt-1 small">
@@ -151,7 +151,7 @@
                 {% endif %}
               {% elif log.decision == 'rejected' %}
                 <span class="badge bg-danger text-white px-2.5 py-1 rounded-pill">
-                  <i class="bi bi-x-circle-fill me-1"></i>{% trans "Not Eligible" %}
+                  {% trans "Not Eligible" %}
                 </span>
               {% else %}
                 <span class="badge bg-secondary text-white px-2.5 py-1 rounded-pill">
@@ -164,7 +164,7 @@
             <td>
               <div class="d-flex align-items-center gap-1 font-monospace fw-bold">
                 <span class="text-muted">{{ log.previous_progress }}/3</span>
-                <i class="bi bi-arrow-right text-muted small"></i>
+                
                 <span class="{% if log.decision == 'approved' %}text-success{% else %}text-muted{% endif %}">{{ log.new_progress }}/3</span>
               </div>
             </td>
@@ -173,7 +173,7 @@
             <td style="max-width: 250px;">
               {% if log.rejection_reason %}
                 <div class="text-danger small fw-semibold">
-                  <i class="bi bi-exclamation-circle me-1"></i>{{ log.rejection_reason }}
+                  {{ log.rejection_reason }}
                 </div>
               {% endif %}
               {% if log.notes %}
@@ -187,7 +187,7 @@
             <!-- Verified By -->
             <td class="text-end pe-4">
               <span class="badge bg-light text-dark border px-2.5 py-1 rounded-pill font-monospace">
-                <i class="bi bi-person-fill text-primary me-1"></i>{{ log.verified_by.username|default:"Staff" }}
+                {{ log.verified_by.username|default:"Staff" }}
               </span>
             </td>
           </tr>
@@ -195,7 +195,7 @@
           <tr>
             <td colspan="7" class="text-center py-5">
               <div class="p-4">
-                <i class="bi bi-journal-x text-muted" style="font-size: 3rem;"></i>
+                
                 <h5 class="fw-bold text-dark mt-3 mb-1">{% trans "No Verification Logs Found" %}</h5>
                 <p class="text-muted small mb-0">{% trans "All staff verification decisions will be permanently logged here." %}</p>
               </div>

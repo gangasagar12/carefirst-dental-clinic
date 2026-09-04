@@ -28,7 +28,7 @@
   <div class="cf-dash-wrapper" id="cfDashWrapper">
     <!-- SIDEBAR -->
     <aside class="cf-dash-sidebar" id="cfDashSidebar">
-      <div class="cf-dash-brand justify-content-between">
+      <div class="cf-dash-brand">
         <a href="{% url 'dashboard:home' %}" class="d-flex align-items-center gap-3 text-decoration-none">
           <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="Clinic Logo" class="cf-dash-brand-logo">
           <div>
@@ -36,81 +36,70 @@
             <p class="cf-dash-brand-subtitle">Command Center</p>
           </div>
         </a>
-        <button type="button" class="btn btn-sm text-white-50 p-1 d-none d-lg-flex align-items-center justify-content-center rounded-2 border border-white-10" onclick="toggleSidebarFullWidth()" title="Collapse Sidebar (Full Width Screen)">
-          <i class="bi bi-layout-sidebar-inset fs-5"></i>
-        </button>
       </div>
 
       <nav class="cf-dash-nav">
         <p class="cf-nav-section-title">Core Operations</p>
         <a href="{% url 'dashboard:home' %}" class="cf-nav-link {% if active_page == 'overview' %}active{% endif %}">
-          <i class="bi bi-grid-1x2-fill"></i>
+          
           <span>Dashboard Overview</span>
         </a>
         <a href="{% url 'dashboard:appointments' %}" class="cf-nav-link {% if active_page == 'appointments' %}active{% endif %}">
-          <i class="bi bi-calendar2-check-fill"></i>
+          
           <span>Appointments</span>
           {% if pending_appointments_count %}
           <span class="badge bg-warning text-dark cf-nav-badge">{{ pending_appointments_count }}</span>
           {% endif %}
         </a>
         <a href="{% url 'dashboard:inquiries' %}" class="cf-nav-link {% if active_page == 'inquiries' %}active{% endif %}">
-          <i class="bi bi-chat-square-dots-fill"></i>
+          
           <span>Inquiries & Messages</span>
           {% if unread_messages_count %}
           <span class="badge bg-danger cf-nav-badge">{{ unread_messages_count }}</span>
           {% endif %}
         </a>
         <a href="{% url 'dashboard:loyalty_reception' %}" class="cf-nav-link {% if active_page == 'loyalty' and active_tab != 'verification' %}active{% endif %}">
-          <i class="bi bi-gift-fill text-warning"></i>
+          
           <span>Smile Rewards</span>
         </a>
         <a href="{% url 'dashboard:loyalty_verification_queue' %}" class="cf-nav-link {% if active_page == 'loyalty' and active_tab == 'verification' %}active{% endif %}">
-          <i class="bi bi-shield-check text-info"></i>
+          
           <span>Loyalty Verification</span>
         </a>
 
         <p class="cf-nav-section-title">Clinical Management</p>
         <a href="{% url 'dashboard:services' %}" class="cf-nav-link {% if active_page == 'services' %}active{% endif %}">
-          <i class="bi bi-heart-pulse-fill"></i>
+          
           <span>Services Catalog</span>
         </a>
         <a href="{% url 'dashboard:pricing' %}" class="cf-nav-link {% if active_page == 'pricing' %}active{% endif %}">
-          <i class="bi bi-tag-fill"></i>
+          
           <span>Procedure Pricing</span>
         </a>
         <a href="{% url 'dashboard:doctors' %}" class="cf-nav-link {% if active_page == 'doctors' %}active{% endif %}">
-          <i class="bi bi-people-fill"></i>
+          
           <span>Doctors & Staff</span>
         </a>
 
         <p class="cf-nav-section-title">Marketing & Content</p>
         <a href="{% url 'dashboard:sliders' %}" class="cf-nav-link {% if active_page == 'sliders' %}active{% endif %}">
-          <i class="bi bi-images"></i>
+          
           <span>Hero Sliders & Gallery</span>
         </a>
         <a href="{% url 'dashboard:offers' %}" class="cf-nav-link {% if active_page == 'offers' %}active{% endif %}">
-          <i class="bi bi-stars"></i>
+          
           <span>Special Offers</span>
         </a>
         <a href="{% url 'dashboard:testimonials' %}" class="cf-nav-link {% if active_page == 'testimonials' %}active{% endif %}">
-          <i class="bi bi-chat-quote-fill"></i>
+          
           <span>Patient Reviews</span>
         </a>
         <a href="{% url 'dashboard:media' %}" class="cf-nav-link {% if active_page == 'media' %}active{% endif %}">
-          <i class="bi bi-play-circle-fill"></i>
+          
           <span>Video Library</span>
         </a>
 
-        <p class="cf-nav-section-title">System</p>
-        <a href="{% url 'dashboard:settings' %}" class="cf-nav-link {% if active_page == 'settings' %}active{% endif %}">
-          <i class="bi bi-gear-fill"></i>
-          <span>Clinic Settings</span>
-        </a>
-        <a href="{% url 'main:home' %}" target="_blank" class="cf-nav-link">
-          <i class="bi bi-box-arrow-up-right"></i>
-          <span>View Live Website</span>
-        </a>
+        
       </nav>
 
       <div class="cf-dash-user-bar">
@@ -123,8 +112,8 @@
             <div class="cf-user-role">Administrator</div>
           </div>
         </div>
-        <a href="{% url 'dashboard:logout' %}" class="btn btn-sm btn-outline-danger" title="Log Out" style="border-radius: 8px;">
-          <i class="bi bi-box-arrow-right"></i>
+        <a href="{% url 'dashboard:logout' %}" class="btn btn-sm btn-outline-danger px-2 py-1" title="Log Out" style="border-radius: 8px; font-size: 0.78rem; font-weight: 700;">
+          Log Out
         </a>
       </div>
     </aside>
@@ -135,18 +124,18 @@
       <header class="cf-dash-topbar">
         <div class="d-flex align-items-center gap-3">
           <!-- 3-LINE HAMBURGER / SLIDER FULL-WIDTH BUTTON -->
-          <button type="button" class="cf-sidebar-toggle-btn" id="cfSidebarToggleBtn" onclick="toggleSidebarFullWidth()" title="Toggle Sidebar (Full Screen Width)">
-            <i class="bi bi-list"></i>
+          <button type="button" class="cf-sidebar-toggle-btn" id="cfSidebarToggleBtn" onclick="toggleSidebarFullWidth()" title="Toggle Sidebar" aria-label="Toggle Sidebar">
+            <span class="cf-hamburger-bar"></span>
+            <span class="cf-hamburger-bar"></span>
+            <span class="cf-hamburger-bar"></span>
           </button>
           <h2 class="cf-dash-topbar-title">{{ title|default:"Dashboard" }}</h2>
         </div>
 
         <div class="cf-dash-actions">
-          <a href="{% url 'dashboard:appointments' %}" class="btn btn-light border btn-sm d-none d-md-inline-flex align-items-center gap-1 rounded-pill px-3 fw-bold">
-            <i class="bi bi-calendar-plus text-primary"></i> Bookings
+          <a href="{% url 'dashboard:appointments' %}" class="btn btn-light border btn-sm d-none d-md-inline-flex align-items-center gap-1 rounded-pill px-3 fw-bold">Bookings
           </a>
-          <a href="{% url 'main:home' %}" target="_blank" class="btn btn-cf-primary btn-sm rounded-pill px-3">
-            <i class="bi bi-globe me-1"></i> Patient Portal
+          <a href="{% url 'main:home' %}" target="_blank" class="btn btn-cf-primary btn-sm rounded-pill px-3">Patient Portal
           </a>
         </div>
       </header>
@@ -156,7 +145,7 @@
       <div class="px-4 pt-3">
         {% for message in messages %}
         <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show rounded-4 shadow-sm" role="alert">
-          <i class="bi bi-info-circle-fill me-2"></i> {{ message }}
+           {{ message }}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {% endfor %}

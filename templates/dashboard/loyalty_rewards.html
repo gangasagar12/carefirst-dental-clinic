@@ -7,22 +7,22 @@
   <!-- LOYALTY SUB NAV TABS -->
   <div class="d-flex flex-wrap gap-2 mb-4 border-bottom pb-3">
     <a href="{% url 'dashboard:loyalty_reception' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-search me-1"></i> Reception Desk
+       Reception Desk
     </a>
     <a href="{% url 'dashboard:loyalty_verification_queue' %}" class="btn btn-outline-warning text-dark border-warning rounded-pill px-3 fw-semibold">
-      <i class="bi bi-shield-check me-1 text-warning"></i> Verification Queue
+       Verification Queue
     </a>
     <a href="{% url 'dashboard:loyalty_verification_logs' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-shield-shaded me-1"></i> Verification Logs
+       Verification Logs
     </a>
     <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-primary rounded-pill px-3 fw-semibold shadow-sm">
-      <i class="bi bi-gift me-1"></i> Rewards Ledger
+       Rewards Ledger
     </a>
     <a href="{% url 'dashboard:loyalty_transactions' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-clock-history me-1"></i> Activity Stream
+       Activity Stream
     </a>
     <a href="{% url 'dashboard:loyalty_program' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-sliders me-1"></i> Program Settings
+       Program Settings
     </a>
   </div>
 
@@ -32,7 +32,7 @@
       <form method="GET" class="row g-2 align-items-center">
         <div class="col-md-5">
           <div class="input-group">
-            <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-search"></i></span>
+            <span class="input-group-text bg-white border-end-0 text-muted"></span>
             <input type="text" name="q" value="{{ q }}" class="form-control border-start-0" placeholder="Search reference, phone, or patient name...">
           </div>
         </div>
@@ -50,7 +50,7 @@
           </button>
           {% if q or status_filter %}
           <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-light rounded-pill px-3" title="Clear Filters">
-            <i class="bi bi-x-lg"></i>
+            
           </a>
           {% endif %}
         </div>
@@ -82,7 +82,7 @@
             </td>
             <td>
               <div class="fw-bold text-dark">{{ reward.patient.full_name }}</div>
-              <div class="text-muted small"><i class="bi bi-telephone-fill text-primary me-1"></i>{{ reward.patient.phone }}</div>
+              <div class="text-muted small">{{ reward.patient.phone }}</div>
             </td>
             <td>
               <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill fw-bold">
@@ -129,7 +129,7 @@
                   Redeem
                 </a>
                 <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-2" data-bs-toggle="modal" data-bs-target="#cancelRewardModal{{ reward.id }}" title="Cancel Reward">
-                  <i class="bi bi-slash-circle"></i>
+                  
                 </button>
               </div>
 
@@ -166,7 +166,7 @@
           {% empty %}
           <tr>
             <td colspan="8" class="text-center p-5 text-muted">
-              <i class="bi bi-gift fs-2 opacity-50 d-block mb-2"></i>
+              
               No loyalty rewards found matching current filters.
             </td>
           </tr>

@@ -5,12 +5,12 @@
 <div class="cf-dash-card">
   <div class="cf-dash-card-header flex-wrap gap-3">
     <div>
-      <h3 class="cf-card-title"><i class="bi bi-chat-square-dots-fill text-primary"></i> Patient Inquiries & Contact Messages</h3>
+      <h3 class="cf-card-title"> Patient Inquiries & Contact Messages</h3>
       <p class="small text-muted mb-0">Messages submitted via the contact form and consultation inquiry portal.</p>
     </div>
     <div class="d-flex gap-2">
       <a href="{% url 'dashboard:inquiries' %}" class="btn btn-sm btn-light border rounded-pill px-3">
-        <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+         Refresh
       </a>
     </div>
   </div>
@@ -19,7 +19,7 @@
   <form method="get" class="row g-2 mb-4 align-items-center">
     <div class="col-md-6">
       <div class="input-group">
-        <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+        <span class="input-group-text bg-light border-end-0"></span>
         <input type="text" name="q" value="{{ q }}" class="form-control border-start-0" placeholder="Search by sender name, email, subject, message...">
       </div>
     </div>
@@ -33,7 +33,7 @@
     <div class="col-sm-6 col-md-3 d-flex gap-2">
       <button type="submit" class="btn btn-cf-primary flex-grow-1">Filter Inbox</button>
       {% if q or status_filter %}
-      <a href="{% url 'dashboard:inquiries' %}" class="btn btn-light border" title="Clear Filters"><i class="bi bi-x-lg"></i></a>
+      <a href="{% url 'dashboard:inquiries' %}" class="btn btn-light border" title="Clear Filters"></a>
       {% endif %}
     </div>
   </form>
@@ -55,9 +55,9 @@
         <tr class="{% if not msg.is_read %}table-primary-subtle{% endif %}">
           <td>
             {% if msg.is_read %}
-            <span class="badge bg-light text-muted border"><i class="bi bi-envelope-open me-1"></i>Read</span>
+            <span class="badge bg-light text-muted border">Read</span>
             {% else %}
-            <span class="badge bg-danger text-white"><i class="bi bi-envelope-fill me-1"></i>New</span>
+            <span class="badge bg-danger text-white">New</span>
             {% endif %}
           </td>
           <td>
@@ -76,20 +76,20 @@
           </td>
           <td class="text-end text-nowrap">
             <a href="{% url 'dashboard:inquiry_toggle_read' msg.id %}" class="btn btn-sm btn-light border" title="Mark as {% if msg.is_read %}Unread{% else %}Read{% endif %}">
-              <i class="bi bi-{% if msg.is_read %}envelope{% else %}envelope-open{% endif %}"></i>
+              
             </a>
             <a href="mailto:{{ msg.email }}?subject=Re:%20{{ msg.subject|default:'Your Inquiry at CareFirst Dental Clinic'|urlencode }}" class="btn btn-sm btn-outline-primary" title="Reply via Email">
-              <i class="bi bi-reply-fill"></i>
+              
             </a>
             <a href="{% url 'dashboard:inquiry_delete' msg.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this message?');" title="Delete">
-              <i class="bi bi-trash3"></i>
+              
             </a>
           </td>
         </tr>
         {% empty %}
         <tr>
           <td colspan="5" class="text-center py-5 text-muted">
-            <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+            
             <h5>Inbox is Clear</h5>
             <p class="small mb-0">No patient messages found.</p>
           </td>
@@ -104,7 +104,7 @@
   <nav class="mt-4 d-flex justify-content-center">
     <ul class="pagination pagination-sm mb-0">
       {% if inquiries.has_previous %}
-      <li class="page-item"><a class="page-link" href="?page={{ inquiries.previous_page_number }}{% if q %}&q={{ q }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}"><i class="bi bi-chevron-left"></i></a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ inquiries.previous_page_number }}{% if q %}&q={{ q }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}"></a></li>
       {% endif %}
       {% for num in inquiries.paginator.page_range %}
       <li class="page-item {% if inquiries.number == num %}active{% endif %}">
@@ -112,7 +112,7 @@
       </li>
       {% endfor %}
       {% if inquiries.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ inquiries.next_page_number }}{% if q %}&q={{ q }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}"><i class="bi bi-chevron-right"></i></a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ inquiries.next_page_number }}{% if q %}&q={{ q }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}"></a></li>
       {% endif %}
     </ul>
   </nav>

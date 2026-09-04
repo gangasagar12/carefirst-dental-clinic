@@ -26,10 +26,10 @@
             {{ appointment.phone }}
             {% if appointment.phone %}
             <a href="https://wa.me/{{ appointment.phone|cut:'+'|cut:' '|cut:'-' }}" target="_blank" class="btn btn-sm btn-success py-0 px-2" style="border-radius: 6px;" title="Chat on WhatsApp">
-              <i class="bi bi-whatsapp"></i>
+              
             </a>
             <a href="tel:{{ appointment.phone }}" class="btn btn-sm btn-light border py-0 px-2" style="border-radius: 6px;" title="Call Patient">
-              <i class="bi bi-telephone"></i>
+              
             </a>
             {% endif %}
           </div>
@@ -80,7 +80,7 @@
 
       {% if appointment.message %}
       <div class="p-3 bg-light rounded-3 border mb-4">
-        <label class="small text-muted fw-bold d-block mb-1"><i class="bi bi-chat-left-text text-primary me-1"></i> Patient Notes & Concerns:</label>
+        <label class="small text-muted fw-bold d-block mb-1"> Patient Notes & Concerns:</label>
         <p class="mb-0 text-dark">{{ appointment.message }}</p>
       </div>
       {% endif %}
@@ -88,7 +88,7 @@
       <!-- Marketing Attribution info if present -->
       {% if appointment.utm_source or appointment.landing_page %}
       <div class="p-3 bg-light rounded-3 border">
-        <span class="small text-muted fw-bold d-block mb-2"><i class="bi bi-funnel text-primary me-1"></i> Marketing Attribution:</span>
+        <span class="small text-muted fw-bold d-block mb-2"> Marketing Attribution:</span>
         <div class="row g-2 small text-muted">
           {% if appointment.utm_source %}<div class="col-6">Source: <b class="text-dark">{{ appointment.utm_source }}</b></div>{% endif %}
           {% if appointment.utm_medium %}<div class="col-6">Medium: <b class="text-dark">{{ appointment.utm_medium }}</b></div>{% endif %}
@@ -102,7 +102,7 @@
   <!-- Right Column: Status Controls & Quick Actions -->
   <div class="col-lg-4">
     <div class="cf-dash-card">
-      <h4 class="cf-card-title mb-3"><i class="bi bi-sliders text-primary"></i> Update Workflow & Payment</h4>
+      <h4 class="cf-card-title mb-3"> Update Workflow & Payment</h4>
       <form method="post" class="mb-4">
         {% csrf_token %}
         <div class="mb-3">
@@ -124,7 +124,7 @@
         </div>
 
         <button type="submit" class="btn btn-cf-primary w-100">
-          <i class="bi bi-check2-circle me-1"></i> Save Workflow Changes
+           Save Workflow Changes
         </button>
       </form>
 
@@ -133,7 +133,7 @@
       <!-- CAREFIRST SMILE REWARDS HUMAN VERIFICATION WIDGET -->
       <div class="p-3 rounded-4 bg-light border mb-3">
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="fw-bold small text-primary text-uppercase"><i class="bi bi-gift-fill me-1 text-warning"></i> Smile Rewards</span>
+          <span class="fw-bold small text-primary text-uppercase"> Smile Rewards</span>
           {% if loyalty_profile %}
           <span class="badge bg-primary rounded-pill">{{ loyalty_profile.current_progress }} / {{ loyalty_profile.program.required_completed_treatments }}</span>
           {% endif %}
@@ -143,7 +143,7 @@
         <div class="d-flex align-items-center gap-2 my-2">
           {% for is_filled in loyalty_profile.progress_dots %}
             {% if is_filled %}
-            <span class="d-inline-block rounded-circle bg-primary text-white text-center" style="width: 24px; height: 24px; line-height: 24px; font-size: 11px;"><i class="bi bi-check"></i></span>
+            <span class="d-inline-block rounded-circle bg-primary text-white text-center" style="width: 24px; height: 24px; line-height: 24px; font-size: 11px;"></span>
             {% else %}
             <span class="d-inline-block rounded-circle bg-white border border-secondary text-center" style="width: 24px; height: 24px; line-height: 24px; font-size: 10px;">○</span>
             {% endif %}
@@ -158,30 +158,30 @@
           {% if appointment.loyalty_status == 'awaiting_verification' %}
             <div class="p-2.5 bg-warning bg-opacity-10 border border-warning rounded-3 mb-2">
               <div class="d-flex align-items-center gap-2 mb-2 text-warning fw-bold small">
-                <i class="bi bi-hourglass-split"></i> Awaiting Staff Verification
+                 Awaiting Staff Verification
               </div>
               <p class="small text-muted mb-2" style="font-size: 0.8rem;">
                 Treatment completed. Please verify eligibility and payment before granting +1 loyalty progress.
               </p>
               <div class="d-flex gap-2">
                 <a href="{% url 'dashboard:loyalty_verification_queue' %}?q={{ appointment.phone }}" class="btn btn-sm btn-success rounded-pill px-3 fw-bold flex-grow-1">
-                  <i class="bi bi-check-lg me-1"></i> Verify (+1)
+                   Verify (+1)
                 </a>
                 <a href="{% url 'dashboard:loyalty_verification_queue' %}?q={{ appointment.phone }}" class="btn btn-sm btn-outline-danger rounded-pill px-2">
-                  <i class="bi bi-x-lg"></i>
+                  
                 </a>
               </div>
             </div>
           {% elif appointment.loyalty_status == 'verified' %}
             <div class="p-2 bg-success bg-opacity-10 border border-success rounded-3 text-success small fw-semibold">
-              <i class="bi bi-check-circle-fill me-1"></i> Loyalty Verified (+1 Visit Granted)
+               Loyalty Verified (+1 Visit Granted)
               {% if appointment.loyalty_verified_by %}
                 <span class="d-block text-muted font-monospace mt-0.5" style="font-size: 0.75rem;">by {{ appointment.loyalty_verified_by.username }}</span>
               {% endif %}
             </div>
           {% elif appointment.loyalty_status == 'not_eligible' %}
             <div class="p-2 bg-danger bg-opacity-10 border border-danger rounded-3 text-danger small fw-semibold">
-              <i class="bi bi-x-circle-fill me-1"></i> Marked Not Eligible
+               Marked Not Eligible
               {% if appointment.loyalty_rejection_reason %}
                 <span class="d-block text-muted mt-0.5" style="font-size: 0.75rem;">Reason: {{ appointment.loyalty_rejection_reason }}</span>
               {% endif %}
@@ -195,7 +195,7 @@
 
         {% if active_rewards %}
           <div class="mt-2 pt-2 border-top">
-            <span class="badge bg-success text-white mb-1"><i class="bi bi-gift-fill me-1"></i> Active Reward Available!</span>
+            <span class="badge bg-success text-white mb-1"> Active Reward Available!</span>
             {% for r in active_rewards %}
             <div class="small fw-bold text-dark d-flex justify-content-between align-items-center mt-1">
               <span>{{ r.get_reward_display }} ({{ r.reward_reference }})</span>
@@ -210,14 +210,14 @@
       <div class="d-grid gap-2">
         {% if appointment.phone %}
         <a href="https://wa.me/{{ appointment.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ appointment.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic%20regarding%20your%20appointment%20on%20{{ appointment.preferred_date|date:'M d' }}." target="_blank" class="btn btn-success fw-bold d-flex align-items-center justify-content-center gap-2 py-2">
-          <i class="bi bi-whatsapp"></i> Chat on WhatsApp
+           Chat on WhatsApp
         </a>
         {% endif %}
         <a href="{% url 'dashboard:appointment_edit' appointment.id %}" class="btn btn-light border fw-bold d-flex align-items-center justify-content-center gap-2 py-2">
-          <i class="bi bi-pencil-square"></i> Edit Booking Details
+           Edit Booking Details
         </a>
         <a href="{% url 'dashboard:appointments' %}" class="btn btn-outline-secondary fw-semibold">
-          <i class="bi bi-arrow-left me-1"></i> Back to Appointments
+           Back to Appointments
         </a>
       </div>
     </div>

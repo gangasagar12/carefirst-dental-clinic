@@ -92,22 +92,34 @@ body.cf-dashboard-body {
   height: 40px;
   border-radius: 10px;
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 4px;
   background: #FFFFFF;
   border: 1.5px solid #E2E8F0;
-  color: #0B2545;
-  font-size: 1.35rem;
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(8, 28, 51, 0.04);
 }
 
+.cf-hamburger-bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: #0B2545;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
 .cf-sidebar-toggle-btn:hover {
   background: #F1F5F9;
-  color: #0284C7;
   border-color: #BAE6FD;
   transform: scale(1.05);
+}
+
+.cf-sidebar-toggle-btn:hover .cf-hamburger-bar {
+  background-color: #0284C7;
 }
 
 .cf-sidebar-toggle-btn:active {

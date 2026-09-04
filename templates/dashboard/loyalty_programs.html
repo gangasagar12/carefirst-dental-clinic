@@ -7,22 +7,22 @@
   <!-- LOYALTY SUB NAV TABS -->
   <div class="d-flex flex-wrap gap-2 mb-4 border-bottom pb-3">
     <a href="{% url 'dashboard:loyalty_reception' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-search me-1"></i> Reception Desk
+       Reception Desk
     </a>
     <a href="{% url 'dashboard:loyalty_verification_queue' %}" class="btn btn-outline-warning text-dark border-warning rounded-pill px-3 fw-semibold">
-      <i class="bi bi-shield-check me-1 text-warning"></i> Verification Queue
+       Verification Queue
     </a>
     <a href="{% url 'dashboard:loyalty_verification_logs' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-shield-shaded me-1"></i> Verification Logs
+       Verification Logs
     </a>
     <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-gift me-1"></i> Rewards Ledger
+       Rewards Ledger
     </a>
     <a href="{% url 'dashboard:loyalty_transactions' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-clock-history me-1"></i> Activity Stream
+       Activity Stream
     </a>
     <a href="{% url 'dashboard:loyalty_program' %}" class="btn btn-primary rounded-pill px-3 fw-semibold shadow-sm">
-      <i class="bi bi-sliders me-1"></i> Program Settings
+       Program Settings
     </a>
   </div>
 
@@ -104,7 +104,7 @@
 
             <div class="col-12 my-3">
               <hr>
-              <h5 class="fw-bold text-dark mb-2"><i class="bi bi-shield-check text-primary me-2"></i>Service Eligibility & Exclusions</h5>
+              <h5 class="fw-bold text-dark mb-2">Service Eligibility & Exclusions</h5>
             </div>
 
             <div class="col-md-6">
@@ -126,7 +126,7 @@
               <div class="form-check form-switch mb-3 p-3 bg-light rounded-3 border">
                 {{ form.require_payment_verification }}
                 <label class="form-check-label fw-bold text-dark ms-2" for="{{ form.require_payment_verification.id_for_label }}">
-                  <i class="bi bi-credit-card-2-front text-primary me-1"></i> Require Payment Completion Before Verification
+                   Require Payment Completion Before Verification
                 </label>
                 <div class="form-text small text-muted mt-1 ms-4">
                   <strong>Option A (Off - Recommended):</strong> Treatment completed + Receptionist verified.<br>

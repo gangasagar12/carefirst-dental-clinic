@@ -14,7 +14,7 @@
             <h3 class="fw-bolder mb-0 text-dark mt-1">{{ all_patients_count }}</h3>
           </div>
           <div class="p-3 bg-primary-subtle text-primary rounded-4 fs-4">
-            <i class="bi bi-people-fill"></i>
+            
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@
             <h3 class="fw-bolder mb-0 text-success mt-1">{{ active_rewards_count }}</h3>
           </div>
           <div class="p-3 bg-success-subtle text-success rounded-4 fs-4">
-            <i class="bi bi-gift-fill"></i>
+            
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
             <h3 class="fw-bolder mb-0 text-info mt-1">{{ redeemed_rewards_count }}</h3>
           </div>
           <div class="p-3 bg-info-subtle text-info rounded-4 fs-4">
-            <i class="bi bi-check2-circle"></i>
+            
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
             <h3 class="fw-bolder mb-0 text-dark mt-1">{{ lifetime_treatments }}</h3>
           </div>
           <div class="p-3 bg-warning-subtle text-warning rounded-4 fs-4">
-            <i class="bi bi-heart-pulse-fill"></i>
+            
           </div>
         </div>
       </div>
@@ -63,22 +63,22 @@
   <!-- LOYALTY SUB NAV TABS -->
   <div class="d-flex flex-wrap gap-2 mb-4 border-bottom pb-3">
     <a href="{% url 'dashboard:loyalty_reception' %}" class="btn btn-primary rounded-pill px-3 fw-semibold shadow-sm">
-      <i class="bi bi-search me-1"></i> Reception Desk
+       Reception Desk
     </a>
     <a href="{% url 'dashboard:loyalty_verification_queue' %}" class="btn btn-outline-warning text-dark border-warning rounded-pill px-3 fw-semibold">
-      <i class="bi bi-shield-check me-1 text-warning"></i> Verification Queue
+       Verification Queue
     </a>
     <a href="{% url 'dashboard:loyalty_verification_logs' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-shield-shaded me-1"></i> Verification Logs
+       Verification Logs
     </a>
     <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-gift me-1"></i> Rewards Ledger
+       Rewards Ledger
     </a>
     <a href="{% url 'dashboard:loyalty_transactions' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-clock-history me-1"></i> Activity Stream
+       Activity Stream
     </a>
     <a href="{% url 'dashboard:loyalty_program' %}" class="btn btn-outline-secondary rounded-pill px-3 fw-semibold">
-      <i class="bi bi-sliders me-1"></i> Program Settings
+       Program Settings
     </a>
   </div>
 
@@ -95,12 +95,12 @@
               <h4 class="fw-bold mb-1">Search Patient by Phone Number</h4>
               <p class="text-white-50 small mb-0">Look up patient rewards instantly without requiring any login or coupon code.</p>
             </div>
-            <i class="bi bi-phone-vibrate fs-1 text-primary-subtle opacity-50 d-none d-sm-block"></i>
+            
           </div>
 
           <form method="GET" action="{% url 'dashboard:loyalty_reception' %}" class="d-flex gap-2 mt-3">
             <div class="input-group input-group-lg shadow-sm">
-              <span class="input-group-text bg-white border-0 text-muted"><i class="bi bi-search fs-5"></i></span>
+              <span class="input-group-text bg-white border-0 text-muted"></span>
               <input type="text" name="q" value="{{ q }}" class="form-control border-0 fs-5" placeholder="Enter phone (e.g. 980-7464136) or patient name..." autofocus>
               <button type="submit" class="btn btn-info px-4 fw-bold text-dark">
                 Search Patient
@@ -116,17 +116,17 @@
         <div class="card-header bg-white border-bottom p-4 d-flex justify-content-between align-items-center">
           <div>
             <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill fw-bold mb-1">
-              <i class="bi bi-person-check-fill me-1"></i> Patient Verified
+               Patient Verified
             </span>
             <h4 class="fw-bolder text-dark mb-0 mt-1">{{ patient.full_name }}</h4>
             <div class="text-muted small mt-1">
-              <i class="bi bi-telephone-fill text-primary me-1"></i> <strong>{{ patient.phone }}</strong>
-              {% if patient.email %} • <i class="bi bi-envelope-fill text-secondary ms-2 me-1"></i> {{ patient.email }}{% endif %}
+               <strong>{{ patient.phone }}</strong>
+              {% if patient.email %} •  {{ patient.email }}{% endif %}
               • <span class="badge bg-light text-secondary border ms-1">{{ patient.patient_id }}</span>
             </div>
           </div>
           <button class="btn btn-outline-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#recordVisitModal">
-            <i class="bi bi-plus-circle me-1"></i> Record Treatment
+             Record Treatment
           </button>
         </div>
 
@@ -148,11 +148,11 @@
               {% for is_filled in patient.progress_dots %}
                 {% if is_filled %}
                 <div class="d-flex align-items-center justify-content-center rounded-circle text-white shadow-sm" style="width: 46px; height: 46px; background: #0284C7; font-size: 1.25rem;">
-                  <i class="bi bi-check-lg"></i>
+                  
                 </div>
                 {% else %}
                 <div class="d-flex align-items-center justify-content-center rounded-circle border-2 border-secondary-subtle text-muted" style="width: 46px; height: 46px; background: #ffffff; border: 2px dashed #94A3B8; font-size: 1rem;">
-                  <i class="bi bi-circle"></i>
+                  
                 </div>
                 {% endif %}
               {% endfor %}
@@ -172,7 +172,7 @@
           </div>
 
           <!-- ACTIVE AVAILABLE REWARDS -->
-          <h5 class="fw-bold text-dark mb-3"><i class="bi bi-gift-fill text-success me-2"></i>Active Available Rewards</h5>
+          <h5 class="fw-bold text-dark mb-3">Active Available Rewards</h5>
           
           {% if patient.active_rewards %}
             {% for reward in patient.active_rewards %}
@@ -185,7 +185,7 @@
                   <span class="font-monospace fw-bold text-dark">{{ reward.reward_reference }}</span>
                 </div>
                 <div class="text-muted small mt-1">
-                  <i class="bi bi-clock-history me-1"></i> Valid until: <strong>{{ reward.expires_at|date:"d M Y" }}</strong> 
+                   Valid until: <strong>{{ reward.expires_at|date:"d M Y" }}</strong> 
                   <span class="text-success fw-bold ms-1">({{ reward.days_remaining }} days remaining)</span>
                 </div>
               </div>
@@ -199,25 +199,25 @@
                       data-reward-label="{{ reward.get_reward_display }}"
                       data-patient-phone="{{ patient.phone }}"
                       data-patient-name="{{ patient.full_name }}">
-                <i class="bi bi-check2-circle me-1"></i> Apply Reward to Invoice
+                 Apply Reward to Invoice
               </button>
             </div>
             {% endfor %}
           {% else %}
             <div class="alert alert-secondary border-0 rounded-4 p-3 mb-0 text-muted small">
-              <i class="bi bi-info-circle me-2"></i>No available reward at this moment. Patient will unlock a reward after completing {{ program.required_completed_treatments }} eligible visits.
+              No available reward at this moment. Patient will unlock a reward after completing {{ program.required_completed_treatments }} eligible visits.
             </div>
           {% endif %}
         </div>
       </div>
       {% elif q %}
       <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white">
-        <i class="bi bi-search fs-1 text-muted opacity-50 mb-2"></i>
+        
         <h5 class="fw-bold text-dark">No Loyalty Profile Found for "{{ q }}"</h5>
         <p class="text-muted small">This patient may be a new walk-in. You can record their first visit below to automatically enroll them.</p>
         <div>
           <button class="btn btn-primary rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#recordVisitModal">
-            <i class="bi bi-person-plus-fill me-1"></i> Record Treatment & Enroll Patient
+             Record Treatment & Enroll Patient
           </button>
         </div>
       </div>
@@ -229,7 +229,7 @@
     <div class="col-lg-5">
       <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
         <div class="card-header bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
-          <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-activity text-primary me-2"></i>Recent Loyalty Activity</h6>
+          <h6 class="fw-bold mb-0 text-dark">Recent Loyalty Activity</h6>
           <a href="{% url 'dashboard:loyalty_transactions' %}" class="small text-decoration-none fw-semibold">View All →</a>
         </div>
         <div class="card-body p-0">
@@ -244,7 +244,7 @@
               </div>
               <p class="text-muted small mb-1">{{ tx.notes }}</p>
               <div class="text-secondary opacity-75 small">
-                <i class="bi bi-clock me-1"></i>{{ tx.created_at|date:"d M Y, h:i A" }}
+                {{ tx.created_at|date:"d M Y, h:i A" }}
                 {% if tx.created_by %}• by {{ tx.created_by.username }}{% endif %}
               </div>
             </div>
