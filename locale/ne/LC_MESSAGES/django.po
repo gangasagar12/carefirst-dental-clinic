@@ -11569,3 +11569,9 @@ msgstr "संक्रमण नियन्त्रण र स्वच्छ
 
 msgid "For Standard Scaling & Polishing"
 msgstr "मानक स्केलिंग र पालिसिङ को लागी"
+
+msgid "Staff Portal"
+msgstr "कर्मचारी पोर्टल"
+
+msgid "Staff & Doctor Portal"
+msgstr "कर्मचारी तथा डाक्टर पोर्टल"

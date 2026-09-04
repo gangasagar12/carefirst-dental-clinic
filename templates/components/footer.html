@@ -22,15 +22,7 @@
             {% trans "Kathmandu's state-of-the-art dental care center in Shankhamul. Dedicated to providing painless, precise, and international-standard treatments with advanced digital imaging and Class-B autoclave sterilization." %}
           </p>
 
-          <div class="footer-trust-badge p-3 rounded-3 mb-4" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);">
-            <div class="d-flex align-items-center gap-3">
-              <i class="bi bi-shield-fill-check fs-2 text-warning"></i>
-              <div>
-                <strong class="d-block text-white" style="font-size: 0.88rem;">{% trans "NMC Certified Leadership" %}</strong>
-                <span class="text-white-50" style="font-size: 0.78rem;">Dr. Subash Banjade (BDS, NMC #31229)</span>
-              </div>
-            </div>
-          </div>
+          
 
           <!-- Social Links -->
           <h6 class="text-white fw-bold mb-3" style="font-size: 0.9rem; letter-spacing: 0.5px; text-transform: uppercase;">{% trans "Connect With Us" %}</h6>
@@ -58,6 +50,10 @@
                 <li><a href="{% url 'main:services_list' %}">{% trans "Dental Crowns" %}</a></li>
                 <li><a href="{% url 'main:services_list' %}">{% trans "Tooth Extraction" %}</a></li>
                 <li><a href="{% url 'main:services_list' %}">{% trans "Digital RVG X-Ray" %}</a></li>
+                <a href="{% url 'dashboard:home' %}" class="btn btn-sm d-inline-flex align-items-center gap-1 text-white-50 px-2 py-1 text-decoration-none border border-secondary border-opacity-25 rounded-pill" style="background-color: rgba(255, 255, 255, 0.06); font-size: 0.76rem; transition: all 0.2s ease;" target="_blank" rel="noopener noreferrer" title="{% trans "Staff & Doctor Portal" %}">
+          <i class="bi bi-shield-lock text-warning"></i>
+          <span>{% trans "Staff Portal" %}</span>
+        </a>
                 <li><a href="{% url 'main:services_list' %}" class="fw-bold text-warning">{% trans "All 11 Treatments →" %}</a></li>
               </ul>
             </div>
@@ -147,9 +143,7 @@
       
       <div class="d-flex align-items-center gap-2 flex-wrap justify-content-center">
         <span class="text-white-50 small">Developed by <a href="https://www.inovixtech.com/" target="_blank" rel="noopener noreferrer" class="text-warning fw-bold text-decoration-none">Inovix Technologies Pvt.Ltd.</a></span>
-        <a href="{% url 'dashboard:home' %}" class="btn btn-sm" style="background-color: #1E293B; color: #FFFFFF; padding: 3px 10px; font-size: 0.78rem; border-radius: 20px;" target="_blank">
-         
-        </a>
+
       </div>
     </div>
   </div>
