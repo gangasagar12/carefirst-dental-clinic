@@ -33,10 +33,10 @@
             </a>
             <a href="{% url 'dashboard:pricing_category_edit' cat.id %}" class="btn btn-sm btn-light border" title="Edit Category">
               
-            </a>
+            <i class="bi bi-pencil-square"></i></a>
             <a href="{% url 'dashboard:pricing_category_delete' cat.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete category {{ cat.name }} and all its items?');" title="Delete Category">
               
-            </a>
+            <i class="bi bi-trash3"></i></a>
           </div>
         </div>
 
@@ -52,10 +52,10 @@
                 <div class="d-flex gap-1">
                   <a href="{% url 'dashboard:pricing_item_edit' item.id %}" class="btn btn-sm btn-light border py-1 px-2" title="Edit Item">
                     
-                  </a>
+                  <i class="bi bi-pencil-square"></i></a>
                   <a href="{% url 'dashboard:pricing_item_delete' item.id %}" class="btn btn-sm btn-outline-danger py-1 px-2" onclick="return confirm('Delete {{ item.name }}?');" title="Delete Item">
                     
-                  </a>
+                  <i class="bi bi-trash3"></i></a>
                 </div>
               </div>
             </li>

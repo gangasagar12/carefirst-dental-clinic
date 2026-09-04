@@ -52,10 +52,10 @@
               </a>
               <a href="{% url 'dashboard:video_edit' v.id %}" class="btn btn-sm btn-light border" title="Edit Video">
                 
-              </a>
+              <i class="bi bi-pencil-square"></i></a>
               <a href="{% url 'dashboard:video_delete' v.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete video {{ v.title }}?');" title="Delete">
                 
-              </a>
+              <i class="bi bi-trash3"></i></a>
             </div>
           </div>
         </div>

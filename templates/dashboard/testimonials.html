@@ -52,10 +52,10 @@
           <div class="d-flex gap-1">
             <a href="{% url 'dashboard:testimonial_edit' t.id %}" class="btn btn-sm btn-light border" title="Edit">
               
-            </a>
+            <i class="bi bi-pencil-square"></i></a>
             <a href="{% url 'dashboard:testimonial_delete' t.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete testimonial from {{ t.patient_name }}?');" title="Delete">
               
-            </a>
+            <i class="bi bi-trash3"></i></a>
           </div>
         </div>
       </div>
