@@ -102,6 +102,7 @@ def dashboard_home(request):
         'recent_messages': recent_messages,
         'treatment_stats': treatment_stats,
         'today': today,
+        'reminder_summary': get_upcoming_reminders_summary(),
     }
     return render(request, 'dashboard/index.html', context)
 
@@ -149,8 +150,38 @@ def appointments_list(request):
         'date_filter': date_filter,
         'doctor_filter': doctor_filter,
         'status_choices': Appointment.STATUS_CHOICES,
+        'reminder_summary': get_upcoming_reminders_summary(),
     }
     return render(request, 'dashboard/appointments.html', context)
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def appointments_send_reminders(request):
+    """
+    Manual one-click trigger for receptionist to dispatch 24h reminders for tomorrow's visits.
+    """
+    if request.method == 'POST':
+        date_str = request.POST.get('target_date', '').strip()
+        target_date = None
+        if date_str:
+            try:
+                target_date = datetime.date.fromisoformat(date_str)
+            except ValueError:
+                target_date = None
+
+        from appointments.reminder_services import send_24h_appointment_reminders
+        results = send_24h_appointment_reminders(target_date=target_date, dry_run=False, request=request)
+        total = results['total_appointments']
+        emails = results['emails_sent']
+        
+        if total == 0:
+            messages.info(request, f"No pending reminders found for {results['target_date']}. All upcoming visits have already been notified.")
+        else:
+            messages.success(
+                request,
+                f"Dispatched 24-hour reminders for {total} scheduled visit(s) on {results['target_date']} ({emails} emails sent successfully)."
+            )
+    return redirect(request.META.get('HTTP_REFERER', 'dashboard:appointments'))
 
 
 @user_passes_test(is_staff_user, login_url='/dashboard/login/')

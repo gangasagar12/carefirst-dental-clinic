@@ -13,6 +13,7 @@ urlpatterns = [
     
     # Appointments
     path('appointments/', views.appointments_list, name='appointments'),
+    path('appointments/reminders/send-now/', views.appointments_send_reminders, name='appointments_send_reminders'),
     path('appointments/<int:pk>/', views.appointment_detail, name='appointment_detail'),
     path('appointments/<int:pk>/status/', views.appointment_update_status, name='appointment_update_status'),
     path('appointments/<int:pk>/edit/', views.appointment_edit, name='appointment_edit'),
