@@ -183,3 +183,81 @@ class AppointmentConfirmationAndManagementTestCase(TestCase):
         self.assertTrue(data['booking_id'].startswith('CF-APT-'))
         self.assertIsNotNone(data['access_token'])
         self.assertIn(data['access_token'], data['redirect_url'])
+
+
+class WhatsAppAndAutomatedReminderTestCase(TestCase):
+    def setUp(self):
+        from django.contrib.auth.models import User
+        self.client = Client()
+        self.staff_user = User.objects.create_user(
+            username='staff_test',
+            password='Password123!',
+            is_staff=True
+        )
+        self.service = Service.objects.create(
+            title="Dental Scaling & Cleaning",
+            slug="dental-scaling-polishing",
+            is_active=True
+        )
+        self.doctor = Doctor.objects.create(
+            name="Dr. Subash Banjade",
+            specialty="Dental Surgeon",
+            is_active=True
+        )
+        self.tomorrow = timezone.localdate() + datetime.timedelta(days=1)
+        self.appointment_tomorrow = Appointment.objects.create(
+            full_name="Aayush Sharma",
+            phone="9841999888",
+            email="aayush@example.com",
+            service=self.service,
+            doctor=self.doctor,
+            preferred_date=self.tomorrow,
+            preferred_time="morning",
+            status="confirmed"
+        )
+
+    def test_whatsapp_phone_sanitizer(self):
+        from appointments.whatsapp_services import sanitize_nepal_phone_number
+        self.assertEqual(sanitize_nepal_phone_number("9841999888"), "9779841999888")
+        self.assertEqual(sanitize_nepal_phone_number("+977-9841999888"), "9779841999888")
+        self.assertEqual(sanitize_nepal_phone_number("09841999888"), "9779841999888")
+        self.assertEqual(sanitize_nepal_phone_number("01-4412345"), "97714412345")
+
+    def test_whatsapp_template_dictionary_generation(self):
+        from appointments.whatsapp_services import get_all_whatsapp_templates
+        templates = get_all_whatsapp_templates(self.appointment_tomorrow)
+        self.assertIn('confirmation', templates)
+        self.assertIn('reminder', templates)
+        self.assertIn('reschedule', templates)
+        self.assertIn('inquiry', templates)
+        
+        self.assertIn("Aayush Sharma", templates['confirmation']['message'])
+        self.assertIn(self.appointment_tomorrow.booking_id, templates['confirmation']['message'])
+        self.assertTrue(templates['confirmation']['url'].startswith("https://wa.me/9779841999888?text="))
+
+    def test_24h_reminder_service_execution(self):
+        from appointments.reminder_services import send_24h_appointment_reminders, get_upcoming_reminders_summary
+        
+        # Check summary before dispatch
+        summary = get_upcoming_reminders_summary()
+        self.assertGreaterEqual(summary['pending_count'], 1)
+
+        # Execute reminder engine
+        results = send_24h_appointment_reminders()
+        self.assertGreaterEqual(results['sent_count'], 1)
+
+        self.appointment_tomorrow.refresh_from_db()
+        self.assertTrue(self.appointment_tomorrow.reminder_sent)
+        self.assertIsNotNone(self.appointment_tomorrow.reminder_sent_at)
+        self.assertEqual(self.appointment_tomorrow.reminder_count, 1)
+
+    def test_dashboard_whatsapp_api_endpoint(self):
+        self.client.login(username='staff_test', password='Password123!')
+        url = reverse('dashboard:appointment_whatsapp_data', kwargs={'pk': self.appointment_tomorrow.id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data['booking_id'], self.appointment_tomorrow.booking_id)
+        self.assertEqual(data['patient_name'], self.appointment_tomorrow.full_name)
+        self.assertIn('confirmation', data['templates'])
+

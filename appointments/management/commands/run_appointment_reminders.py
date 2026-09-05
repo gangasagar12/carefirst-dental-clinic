@@ -35,7 +35,7 @@ class Command(BaseCommand):
             target_date = timezone.localdate() + datetime.timedelta(days=1)
 
         self.stdout.write(self.style.NOTICE(
-            f"🔍 Scanning appointments for 24h reminder (Target Date: {target_date}, Dry Run: {dry_run})..."
+            f"[SCAN] Scanning appointments for 24h reminder (Target Date: {target_date}, Dry Run: {dry_run})..."
         ))
 
         results = send_24h_appointment_reminders(target_date=target_date, dry_run=dry_run)
@@ -45,8 +45,9 @@ class Command(BaseCommand):
         wa = results['whatsapp_ready']
 
         self.stdout.write(self.style.SUCCESS(
-            f"✅ Reminder Scan Completed for {target_date}:\n"
+            f"[SUCCESS] Reminder Scan Completed for {target_date}:\n"
             f"   - Total Scheduled: {total}\n"
             f"   - Emails Dispatched: {emails}\n"
             f"   - WhatsApp Links Ready: {wa}"
         ))
+

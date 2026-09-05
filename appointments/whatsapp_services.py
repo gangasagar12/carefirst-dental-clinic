@@ -36,6 +36,11 @@ def clean_phone_for_whatsapp(phone: str) -> str:
     return digits
 
 
+# Function alias for backwards compatibility and test clarity
+sanitize_nepal_phone_number = clean_phone_for_whatsapp
+
+
+
 def get_patient_pass_url(appointment, request=None) -> str:
     """Build absolute or root URL for patient manage pass."""
     try:
@@ -162,3 +167,9 @@ def generate_whatsapp_templates(appointment, request=None) -> dict:
             },
         }
     }
+
+
+def get_all_whatsapp_templates(appointment, request=None) -> dict:
+    """Convenience helper returning the templates sub-dictionary."""
+    return generate_whatsapp_templates(appointment, request=request)["templates"]
+
