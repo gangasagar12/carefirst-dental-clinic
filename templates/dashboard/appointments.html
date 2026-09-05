@@ -2,15 +2,47 @@
 {% load static %}
 
 {% block content %}
+
+<!-- 1. UPCOMING 24H REMINDER ACTION BAR -->
+{% if reminder_summary.total_tomorrow > 0 %}
+<div class="alert alert-info border-0 rounded-4 shadow-sm p-4 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3" style="background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 100%); border-left: 5px solid #0284C7 !important;">
+  <div class="d-flex align-items-center gap-3">
+    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 46px; height: 46px; background: #0284C7; font-size: 1.2rem; flex-shrink: 0;">
+      <i class="bi bi-clock-history"></i>
+    </div>
+    <div>
+      <h5 class="fw-bold mb-1" style="color: #0B2545;">
+        24-Hour Pre-Visit Reminders for Tomorrow ({{ reminder_summary.tomorrow_date|date:"l, M d" }})
+      </h5>
+      <p class="small text-muted mb-0">
+        <strong>{{ reminder_summary.total_tomorrow }}</strong> visit(s) scheduled tomorrow &bull; 
+        <span class="text-success fw-bold">{{ reminder_summary.reminded_count }} Reminded</span> &bull; 
+        <span class="text-warning fw-bold">{{ reminder_summary.pending_count }} Pending</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center gap-2">
+    <form method="post" action="{% url 'dashboard:appointments_send_reminders' %}" class="d-inline">
+      {% csrf_token %}
+      <input type="hidden" name="target_date" value="{{ reminder_summary.tomorrow_date|date:'Y-m-d' }}">
+      <button type="submit" class="btn btn-cf-primary rounded-pill px-4 fw-bold shadow-sm" {% if reminder_summary.pending_count == 0 %}disabled title="All reminders already dispatched"{% endif %}>
+        <i class="bi bi-send-check me-1"></i> Send Tomorrow's Reminders Now ({{ reminder_summary.pending_count }})
+      </button>
+    </form>
+  </div>
+</div>
+{% endif %}
+
 <div class="cf-dash-card">
   <div class="cf-dash-card-header flex-wrap gap-3">
     <div>
-      <h3 class="cf-card-title"> Patient Appointments Manager</h3>
+      <h3 class="cf-card-title">Patient Appointments Manager</h3>
       <p class="small text-muted mb-0">Track, confirm, reschedule, and manage clinical visits across branches.</p>
     </div>
     <div class="d-flex gap-2">
       <a href="{% url 'dashboard:appointments' %}" class="btn btn-sm btn-light border rounded-pill px-3">
-         Refresh
+        Refresh
       </a>
     </div>
   </div>
@@ -19,8 +51,8 @@
   <form method="get" class="row g-2 mb-4 align-items-center">
     <div class="col-md-4">
       <div class="input-group">
-        <span class="input-group-text bg-light border-end-0"></span>
-        <input type="text" name="q" value="{{ q }}" class="form-control border-start-0" placeholder="Search by name, phone, email, ID...">
+        <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+        <input type="text" name="q" value="{{ q }}" class="form-control border-start-0" placeholder="Search by name, phone, email, Booking ID...">
       </div>
     </div>
     <div class="col-sm-6 col-md-2">
@@ -45,7 +77,7 @@
     <div class="col-sm-6 col-md-2 d-flex gap-2">
       <button type="submit" class="btn btn-cf-primary flex-grow-1">Filter</button>
       {% if q or status_filter or date_filter or doctor_filter %}
-      <a href="{% url 'dashboard:appointments' %}" class="btn btn-light border" title="Clear Filters"></a>
+      <a href="{% url 'dashboard:appointments' %}" class="btn btn-light border" title="Clear Filters"><i class="bi bi-x-lg"></i></a>
       {% endif %}
     </div>
   </form>
@@ -55,11 +87,12 @@
     <table class="cf-dash-table">
       <thead>
         <tr>
-          <th>Ref ID</th>
+          <th>Booking ID</th>
           <th>Patient</th>
           <th>Contact</th>
           <th>Service / Treatment</th>
           <th>Schedule</th>
+          <th>Reminder</th>
           <th>Status</th>
           <th class="text-end">Actions</th>
         </tr>
@@ -68,19 +101,19 @@
         {% for app in appointments %}
         <tr>
           <td>
-            <span class="badge bg-light text-primary border font-monospace">{{ app.display_booking_id }}</span>
+            <span class="badge bg-light text-primary border font-monospace fw-bold">{{ app.display_booking_id }}</span>
           </td>
           <td>
             <div class="fw-bold text-dark">{{ app.full_name }}</div>
             <div class="small text-muted">{{ app.get_appointment_type_display }}</div>
             {% if app.message %}
-            <div class="small text-primary mt-1" style="max-width: 240px; font-size: 0.78rem; line-height: 1.3;" title="{{ app.message }}">
-              "{{ app.message|truncatewords:8 }}"
+            <div class="small text-primary mt-1" style="max-width: 220px; font-size: 0.76rem; line-height: 1.3;" title="{{ app.message }}">
+              "{{ app.message|truncatewords:6 }}"
             </div>
             {% endif %}
           </td>
           <td>
-            <div class="text-dark">{{ app.phone }}</div>
+            <div class="text-dark fw-semibold">{{ app.phone }}</div>
             {% if app.email %}<div class="small text-muted">{{ app.email }}</div>{% endif %}
           </td>
           <td>
@@ -94,6 +127,17 @@
             <div class="small text-muted">{{ app.get_preferred_time_display|default:"Flexible Slot" }}</div>
           </td>
           <td>
+            {% if app.reminder_sent %}
+            <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill" title="Reminder dispatched on {{ app.reminder_sent_at|date:'M d, H:i' }}">
+              <i class="bi bi-check-circle-fill me-1"></i> Sent
+            </span>
+            {% else %}
+            <span class="badge bg-secondary-subtle text-muted rounded-pill">
+              Pending
+            </span>
+            {% endif %}
+          </td>
+          <td>
             <form method="post" action="{% url 'dashboard:appointment_update_status' app.id %}" class="d-inline">
               {% csrf_token %}
               <select name="status" class="form-select form-select-sm cf-badge-status status-{{ app.status }}" onchange="this.form.submit()" style="cursor: pointer; font-weight: 700; width: auto;">
@@ -104,28 +148,33 @@
             </form>
           </td>
           <td class="text-end">
-            <div class="d-inline-flex gap-1">
-              <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-3" title="View Full Clinical Details">
-                
+            <div class="d-inline-flex gap-1 align-items-center">
+              <!-- View Detail -->
+              <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-3 p-2 d-inline-flex align-items-center justify-content-center" title="View Full Details">
+                <i class="bi bi-eye text-primary"></i>
               </a>
-              <a href="{{ app.get_manage_url }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-3" title="View Public Patient Pass & QR">
-                
+              <!-- Patient Pass -->
+              <a href="{{ app.get_manage_url }}" target="_blank" class="btn btn-sm btn-light border rounded-3 p-2 d-inline-flex align-items-center justify-content-center" title="Open Digital Pass & QR">
+                <i class="bi bi-qr-code-scan text-dark"></i>
               </a>
-              <a href="{{ app.get_pdf_url }}" class="btn btn-sm btn-outline-secondary rounded-3" title="Download PDF Confirmation">
-                
+              <!-- PDF -->
+              <a href="{{ app.get_pdf_url }}" class="btn btn-sm btn-light border rounded-3 p-2 d-inline-flex align-items-center justify-content-center" title="Download PDF Confirmation">
+                <i class="bi bi-file-earmark-pdf text-danger"></i>
               </a>
+              <!-- 1-Click WhatsApp Dispatch Modal Button -->
               {% if app.phone %}
-              <a href="https://wa.me/{{ app.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ app.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic." target="_blank" class="btn-cf-whatsapp" title="WhatsApp Patient"><i class="bi bi-whatsapp"></i></a>
+              <button type="button" class="btn-cf-whatsapp d-inline-flex align-items-center justify-content-center" onclick="openWhatsAppModal('{{ app.id }}')" title="1-Click WhatsApp Quick Dispatch">
+                <i class="bi bi-whatsapp"></i>
+              </button>
               {% endif %}
             </div>
           </td>
         </tr>
         {% empty %}
         <tr>
-          <td colspan="7" class="text-center py-5 text-muted">
-            
-            <h5>No Appointments Found</h5>
-            <p class="small mb-0">No patient bookings match your active filters.</p>
+          <td colspan="8" class="text-center py-5 text-muted">
+            <i class="bi bi-inbox fs-2 d-block text-muted mb-2 opacity-50"></i>
+            No appointment records match your criteria.
           </td>
         </tr>
         {% endfor %}
@@ -135,21 +184,151 @@
 
   <!-- PAGINATION -->
   {% if appointments.has_other_pages %}
-  <nav class="mt-4 d-flex justify-content-center">
+  <div class="p-3 border-top d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <span class="small text-muted">Page {{ appointments.number }} of {{ appointments.paginator.num_pages }} ({{ appointments.paginator.count }} Total)</span>
     <ul class="pagination pagination-sm mb-0">
       {% if appointments.has_previous %}
-      <li class="page-item"><a class="page-link" href="?page={{ appointments.previous_page_number }}{% if q %}&q={{ q }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}"></a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ appointments.previous_page_number }}&q={{ q }}&status={{ status_filter }}&date={{ date_filter }}&doctor={{ doctor_filter }}">Previous</a></li>
       {% endif %}
-      {% for num in appointments.paginator.page_range %}
-      <li class="page-item {% if appointments.number == num %}active{% endif %}">
-        <a class="page-link" href="?page={{ num }}{% if q %}&q={{ q }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}">{{ num }}</a>
-      </li>
-      {% endfor %}
+      <li class="page-item active"><span class="page-link">{{ appointments.number }}</span></li>
       {% if appointments.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ appointments.next_page_number }}{% if q %}&q={{ q }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}"></a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ appointments.next_page_number }}&q={{ q }}&status={{ status_filter }}&date={{ date_filter }}&doctor={{ doctor_filter }}">Next</a></li>
       {% endif %}
     </ul>
-  </nav>
+  </div>
   {% endif %}
 </div>
+
+<!-- ========================================================================= -->
+<!-- 1-CLICK WHATSAPP DISPATCH MODAL -->
+<!-- ========================================================================= -->
+<div class="modal fade" id="whatsappQuickModal" tabindex="-1" aria-labelledby="whatsappQuickModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+      <div class="modal-header text-white" style="background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-whatsapp fs-4"></i>
+          <div>
+            <h5 class="modal-title fw-bold mb-0" id="whatsappQuickModalLabel">WhatsApp Quick Dispatch</h5>
+            <small class="text-white-50" id="waPatientHeader">CareFirst Reception Dispatch Center</small>
+          </div>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body p-4 bg-light">
+        <!-- Template Navigation Tabs -->
+        <ul class="nav nav-pills nav-fill mb-3 bg-white p-1 rounded-3 border shadow-sm" id="waTemplateTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active fw-bold py-2" id="tab-confirmation" type="button" onclick="switchWaTemplate('confirmation')">
+              Booking Confirmation
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold py-2" id="tab-reminder" type="button" onclick="switchWaTemplate('reminder')">
+              24h Pre-Visit Reminder
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold py-2" id="tab-reschedule" type="button" onclick="switchWaTemplate('reschedule')">
+              Schedule Update
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold py-2" id="tab-inquiry" type="button" onclick="switchWaTemplate('inquiry')">
+              General Follow-Up
+            </button>
+          </li>
+        </ul>
+
+        <!-- Live WhatsApp Message Preview Box -->
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-3">
+          <div class="card-header bg-white py-2 px-3 d-flex justify-content-between align-items-center border-bottom">
+            <span class="small text-muted fw-bold" id="waTemplateTitle">Message Preview</span>
+            <span class="badge bg-success-subtle text-success font-monospace" id="waPhoneDisplay">Phone: ...</span>
+          </div>
+          <div class="card-body p-3" style="background: #ECE5DD;">
+            <div class="p-3 bg-white rounded-3 shadow-sm position-relative" style="max-width: 100%; border-radius: 12px 12px 12px 0 !important;">
+              <pre id="waMessageText" class="mb-0" style="font-family: inherit; font-size: 0.9rem; white-space: pre-wrap; word-break: break-word; color: #111B21;"></pre>
+              <div class="text-end mt-2">
+                <small class="text-muted" style="font-size: 0.7rem;">{% now "H:i" %} &bull; CareFirst Clinic</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-3" onclick="copyWaText()">
+            <i class="bi bi-clipboard me-1"></i> <span id="copyBtnLabel">Copy Message Text</span>
+          </button>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-light border rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+            <a href="#" id="waSendBtn" target="_blank" class="btn btn-success rounded-pill px-4 fw-bold shadow-sm d-inline-flex align-items-center gap-2" style="background-color: #25D366; border-color: #25D366;">
+              <i class="bi bi-whatsapp"></i> Open & Send via WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+let currentWaData = null;
+let currentActiveTemplate = 'confirmation';
+
+function openWhatsAppModal(appId) {
+  const modalEl = document.getElementById('whatsappQuickModal');
+  const modal = new bootstrap.Modal(modalEl);
+  
+  document.getElementById('waPatientHeader').innerText = 'Loading appointment details...';
+  document.getElementById('waMessageText').innerText = 'Generating pre-formatted WhatsApp template...';
+  document.getElementById('waPhoneDisplay').innerText = 'Phone: Loading...';
+  modal.show();
+
+  fetch(`/dashboard/appointments/${appId}/whatsapp/`)
+    .then(res => res.json())
+    .then(data => {
+      currentWaData = data;
+      document.getElementById('waPatientHeader').innerText = `${data.patient_name} (Booking ID: ${data.booking_id})`;
+      document.getElementById('waPhoneDisplay').innerText = `Recipient: +${data.phone_clean}`;
+      switchWaTemplate('confirmation');
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById('waMessageText').innerText = 'Error loading WhatsApp template. Please check your network connection.';
+    });
+}
+
+function switchWaTemplate(templateKey) {
+  currentActiveTemplate = templateKey;
+  if (!currentWaData || !currentWaData.templates[templateKey]) return;
+
+  // Update tabs
+  ['confirmation', 'reminder', 'reschedule', 'inquiry'].forEach(k => {
+    const btn = document.getElementById(`tab-${k}`);
+    if (btn) {
+      if (k === templateKey) btn.classList.add('active');
+      else btn.classList.remove('active');
+    }
+  });
+
+  const tmpl = currentWaData.templates[templateKey];
+  document.getElementById('waTemplateTitle').innerText = `Template: ${tmpl.title}`;
+  document.getElementById('waMessageText').innerText = tmpl.message;
+  document.getElementById('waSendBtn').href = tmpl.url;
+}
+
+function copyWaText() {
+  const text = document.getElementById('waMessageText').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const label = document.getElementById('copyBtnLabel');
+    label.innerText = 'Copied to Clipboard!';
+    setTimeout(() => { label.innerText = 'Copy Message Text'; }, 2000);
+  });
+}
+</script>
 {% endblock %}
