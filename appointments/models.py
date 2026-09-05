@@ -178,6 +178,12 @@ class Appointment(models.Model):
         verbose_name=_("Loyalty Ineligibility Reason")
     )
 
+    # Automated 24-Hour & Communication Reminder Tracking
+    reminder_sent = models.BooleanField(default=False, db_index=True, verbose_name=_("24h Reminder Sent"))
+    reminder_sent_at = models.DateTimeField(null=True, blank=True, verbose_name=_("Reminder Sent At"))
+    reminder_channel = models.CharField(max_length=50, blank=True, default='email', verbose_name=_("Reminder Channel"))
+    reminder_count = models.PositiveIntegerField(default=0, verbose_name=_("Total Reminders Sent"))
+
     created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name=_("Created At"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated Update At"))
 
