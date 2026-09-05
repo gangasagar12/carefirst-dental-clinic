@@ -16,6 +16,7 @@ urlpatterns = [
     path('appointments/<int:pk>/', views.appointment_detail, name='appointment_detail'),
     path('appointments/<int:pk>/status/', views.appointment_update_status, name='appointment_update_status'),
     path('appointments/<int:pk>/edit/', views.appointment_edit, name='appointment_edit'),
+    path('appointments/<int:pk>/whatsapp/', views.appointment_whatsapp_data, name='appointment_whatsapp_data'),
     
     # Inquiries
     path('inquiries/', views.inquiries_list, name='inquiries'),

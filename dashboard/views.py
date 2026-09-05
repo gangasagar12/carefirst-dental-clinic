@@ -200,6 +200,10 @@ def appointment_detail(request, pk):
     norm_phone = normalize_phone(appointment.phone)
     loyalty_profile = PatientLoyaltyProfile.objects.filter(normalized_phone=norm_phone).first()
 
+    # Pre-generate WhatsApp message templates for 1-click dispatch
+    from appointments.whatsapp_services import generate_whatsapp_templates
+    whatsapp_data = generate_whatsapp_templates(appointment, request=request)
+
     context = {
         'title': f"Appointment {appointment.display_booking_id} - {appointment.full_name}",
         'active_page': 'appointments',
@@ -208,8 +212,20 @@ def appointment_detail(request, pk):
         'payment_status_choices': Appointment.PAYMENT_STATUS_CHOICES,
         'loyalty_profile': loyalty_profile,
         'active_rewards': loyalty_profile.active_rewards() if loyalty_profile else [],
+        'whatsapp_data': whatsapp_data,
     }
     return render(request, 'dashboard/appointment_detail.html', context)
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def appointment_whatsapp_data(request, pk):
+    """
+    Returns pre-formatted WhatsApp templates and clean phone numbers for an appointment in JSON.
+    """
+    appointment = get_object_or_404(Appointment.objects.select_related('doctor', 'service', 'branch'), pk=pk)
+    from appointments.whatsapp_services import generate_whatsapp_templates
+    data = generate_whatsapp_templates(appointment, request=request)
+    return JsonResponse(data)
 
 
 @user_passes_test(is_staff_user, login_url='/dashboard/login/')
