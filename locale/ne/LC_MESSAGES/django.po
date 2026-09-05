@@ -11575,3 +11575,40 @@ msgstr "कर्मचारी पोर्टल"
 
 msgid "Staff & Doctor Portal"
 msgstr "कर्मचारी तथा डाक्टर पोर्टल"
+
+msgid "WhatsApp Quick Dispatch"
+msgstr "ह्वाट्सएप द्रुत सन्देश प्रेषण"
+
+msgid "1-Click WhatsApp Quick Dispatch for Reception"
+msgstr "रिसेप्सनका लागि १-क्लिक ह्वाट्सएप द्रुत सन्देश"
+
+msgid "Booking Confirmation"
+msgstr "बुकिङ प्रमाणीकरण"
+
+msgid "24h Pre-Visit Reminder"
+msgstr "२४-घण्टा अगाडिको भ्रमण स्मरण"
+
+msgid "Schedule Update"
+msgstr "समय तालिका अद्यावधिक"
+
+msgid "General Consultation"
+msgstr "सामान्य परामर्श तथा सोधपुछ"
+
+msgid "Open & Send via WhatsApp"
+msgstr "ह्वाट्सएप खोलेर पठाउनुहोस्"
+
+msgid "Copy Message Text"
+msgstr "सन्देश प्रतिलिपि गर्नुहोस्"
+
+msgid "Copied to Clipboard!"
+msgstr "क्लिपबोर्डमा प्रतिलिपि भयो!"
+
+msgid "24h Pre-Appointment Reminders Ready"
+msgstr "२४-घण्टे अपोइन्टमेन्ट पूर्व स्मरण सन्देशहरू तयार छन्"
+
+msgid "Dispatch 24h Reminders Now"
+msgstr "२४ घण्टे स्मरण सन्देश अहिले पठाउनुहोस्"
+
+msgid "View Tomorrow's Visits"
+msgstr "भोलिका अपोइन्टमेन्टहरू हेर्नुहोस्"
+
