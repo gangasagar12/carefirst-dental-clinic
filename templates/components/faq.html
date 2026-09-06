@@ -198,28 +198,68 @@
           </div>
 
           {% elif faq_type == 'gallery' %}
-          <!-- GALLERY FAQ -->
+          <!-- GALLERY & CLINIC FACILITY FAQ -->
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqGal1">
               <button class="accordion-button bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGal1" aria-expanded="true">
-                <i class="bi bi-stars me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How long do cosmetic treatments take?" %}
+                <i class="bi bi-stars me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How long do cosmetic smile transformations take?" %}
               </button>
             </h2>
             <div id="cGal1" class="accordion-collapse collapse show" data-bs-parent="#cfFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
-                {% trans "Professional teeth whitening can be completed in a single 1-hour session. Veneers and aesthetic smile makeovers typically require 2–3 visits over 1 to 2 weeks." %}
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "Professional in-office teeth whitening is completed in a single 60-minute session. Composite bonding and cosmetic tooth-colored fillings are done in 1 visit, while porcelain veneers, dental crowns, and full-mouth rehabilitations typically require 2 to 3 visits over 1 to 2 weeks." %}
               </div>
             </div>
           </div>
+
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
             <h2 class="accordion-header" id="faqGal2">
               <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGal2" aria-expanded="false">
-                <i class="bi bi-calendar-heart me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How long do smile transformation results last?" %}
+                <i class="bi bi-calendar-heart me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How long do smile transformation and restoration results last?" %}
               </button>
             </h2>
             <div id="cGal2" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
-              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.65;">
-                {% trans "With proper oral hygiene and regular cleanings, in-office teeth whitening lasts 1–3 years, while premium porcelain veneers and zirconia restorations can last 15–20+ years." %}
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "With routine brushing, flossing, and 6-month checkups: in-office teeth whitening results last 1 to 3 years; composite aesthetic restorations last 7 to 10 years; and premium zirconia veneers and crowns can last 15 to 20+ years." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqGal3">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGal3" aria-expanded="false">
+                <i class="bi bi-camera-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "Are the before-and-after transformation photos authentic CareFirst patients?" %}
+              </button>
+            </h2>
+            <div id="cGal3" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "Yes, 100% of the photos and clinical transformations showcased in our gallery are authentic, unedited clinical records of patients treated by Dr. Subash Banjade and our clinical team at CareFirst Dental Clinic in Shankhamul, Kathmandu, published with patient consent." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqGal4">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGal4" aria-expanded="false">
+                <i class="bi bi-shield-shaded me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "What sterilization and clinical facilities are shown in the gallery?" %}
+              </button>
+            </h2>
+            <div id="cGal4" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "Our gallery showcases our hospital-grade Class-B vacuum autoclave sterilization room, digital high-definition RVG/OPG X-ray equipment, modern operatory suites with sterile pouch setups, and comfortable consultation suites." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqGal5">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cGal5" aria-expanded="false">
+                <i class="bi bi-geo-alt-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "Can I visit the clinic for an in-person walkthrough before booking?" %}
+              </button>
+            </h2>
+            <div id="cGal5" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "You are always welcome to visit our clinic in Shankhamul-31, Kathmandu (Near New Baneshwor) during opening hours (7:30 AM – 7:30 PM daily). Our reception team will be glad to give you a tour of our sterilization facilities and answer any questions." %}
               </div>
             </div>
           </div>
