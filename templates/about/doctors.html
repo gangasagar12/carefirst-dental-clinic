@@ -11,7 +11,7 @@
 {% block content %}
 
 <!-- 1. HERO BANNER -->
-<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.55) 0%, rgba(11,37,69,0.45) 60%, rgba(3,105,161,0.35) 100%), url('{% static "images/hero_section2.jpeg" %}') center/cover no-repeat;">
+<section class="service-hero text-center" style="background: linear-gradient(135deg, rgba(8,28,51,0.78) 0%, rgba(11,37,69,0.72) 60%, rgba(3,105,161,0.65) 100%), url('{% static "images/hero_section2.jpeg" %}') center/cover no-repeat; padding: 75px 0 65px;">
   <div class="hero-inner container">
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb justify-content-center mb-0">
@@ -20,8 +20,10 @@
         <li class="breadcrumb-item active text-warning fw-bold">{% trans "Meet Our Doctors" %}</li>
       </ol>
     </nav>
-    <h1 class="display-4 fw-bold text-white mb-2">{% trans "Meet Our Specialists" %}</h1>
-    <p class="hero-sub mx-auto text-white opacity-75" style="font-size: 1.15rem;">{% trans "Certified surgeons and dental specialists committed to ethical, precision-driven, and pain-free oral healthcare." %}</p>
+    <h1 class="display-4 fw-bold text-white mb-2" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">{% trans "Meet Our Specialists" %}</h1>
+    <p class="hero-sub mx-auto text-white fw-medium" style="font-size: 1.15rem; max-width: 680px; color: #FFFFFF !important; text-shadow: 0 1px 3px rgba(0,0,0,0.5); opacity: 0.95;">
+      {% trans "Certified surgeons and dental specialists committed to ethical, precision-driven, and pain-free oral healthcare." %}
+    </p>
   </div>
 </section>
 

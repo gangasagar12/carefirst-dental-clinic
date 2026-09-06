@@ -80,20 +80,22 @@
   letter-spacing: -0.02em;
 }
 
-.section-heading .accent,
-.cf-section-title .accent {
-  color: var(--cf-primary, #0284C7);
-}
-
-.hero-sub,
 .cf-section-subtitle {
   font-size: 1.05rem;
-  color: #64748B !important;
+  color: #64748B;
   max-width: 680px;
   margin: 0 auto;
   line-height: 1.65;
   font-weight: 400;
 }
+
+.about-hero .hero-sub,
+.service-hero .hero-sub,
+.hero-banner .hero-sub {
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
 
 /* ── Common CTA Strip ────────────────────────────────────── */
 .nd-cta-strip {
