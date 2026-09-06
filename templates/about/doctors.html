@@ -131,21 +131,9 @@
   </div>
 </section>
 
-<!-- 4. CTA STRIP -->
-<div class="nd-cta-strip" id="book">
-  <div class="cta-inner container">
-    <h2>{% trans "Ready to Consult with Our Specialists?" %}</h2>
-    <p>{% trans "Experience personalized dental care with transparent treatment plans and comfortable visits." %}</p>
-    <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="{% url 'main:contact' %}#appointment" class="btn btn-light rounded-pill px-4 py-2.5 fw-bold text-dark shadow-sm d-inline-flex align-items-center gap-2">
-        <i class="bi bi-calendar-check-fill text-primary"></i>{% trans "Book Consultation" %}
-      </a>
-      <a href="tel:+9779807464136" class="btn btn-outline-light rounded-pill px-4 py-2.5 fw-bold d-inline-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>{% trans "Call Now" %}
-      </a>
-    </div>
-  </div>
-</div>
+<!-- 4. DOCTORS & SPECIALISTS FAQ SECTION -->
+{% include 'components/faq.html' with faq_type='doctors' %}
 
 {% endblock %}
+
 

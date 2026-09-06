@@ -224,6 +224,86 @@
             </div>
           </div>
 
+          {% elif faq_type == 'doctors' %}
+          <!-- DOCTORS & SPECIALISTS FAQ -->
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqDoc1">
+              <button class="accordion-button bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cDoc1" aria-expanded="true">
+                <i class="bi bi-person-check-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How do I choose the right dental specialist for my condition?" %}
+              </button>
+            </h2>
+            <div id="cDoc1" class="accordion-collapse collapse show" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "If you have a general toothache, decay, or need a routine examination, you can book an initial consultation with our Clinical Director Dr. Subash Banjade or our general dental team. For specialized treatments such as braces or clear aligners, you will be seen by our Orthodontist; for gum surgery and dental implants, by our Periodontist & Implant Surgeon; and for complex nerve issues, by our Endodontist." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqDoc2">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cDoc2" aria-expanded="false">
+                <i class="bi bi-patch-check-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "Are all doctors at CareFirst verified by the Nepal Medical Council (NMC)?" %}
+              </button>
+            </h2>
+            <div id="cDoc2" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "Yes, 100% of our clinical practitioners and dental specialists hold verified, active registrations with the Nepal Medical Council (NMC). Every doctor has recognized university qualifications (BDS / MDS) and undergoes continuous medical education to maintain international clinical safety standards." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqDoc3">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cDoc3" aria-expanded="false">
+                <i class="bi bi-calendar2-check-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "Do I need a medical referral to consult with a dental specialist?" %}
+              </button>
+            </h2>
+            <div id="cDoc3" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "No prior referral is necessary. You can book an appointment directly with any specialist of your choice via our online appointment portal, direct phone line, or WhatsApp reception desk." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqDoc4">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cDoc4" aria-expanded="false">
+                <i class="bi bi-clock-history me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How long does a consultation with a specialist usually take?" %}
+              </button>
+            </h2>
+            <div id="cDoc4" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "A standard initial consultation takes approximately 30 to 45 minutes. This allows our specialists to perform a meticulous clinical checkup, capture digital high-definition X-rays, explain the diagnosis in plain language, and formulate a customized treatment plan with transparent costs." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqDoc5">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cDoc5" aria-expanded="false">
+                <i class="bi bi-journal-medical me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "Can I request a second opinion on a planned dental surgery or procedure?" %}
+              </button>
+            </h2>
+            <div id="cDoc5" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "Yes, absolutely. We frequently provide comprehensive second opinions for root canals, tooth extractions vs preservation options, dental implants, and orthodontic treatments. Please bring any existing X-rays or diagnostic reports with you." %}
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="faqDoc6">
+              <button class="accordion-button collapsed bg-white text-dark fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#cDoc6" aria-expanded="false">
+                <i class="bi bi-people-fill me-3 fs-4" style="color: var(--cf-primary, #0284C7);"></i> {% trans "How do your specialists coordinate on complex full-mouth treatments?" %}
+              </button>
+            </h2>
+            <div id="cDoc6" class="accordion-collapse collapse" data-bs-parent="#cfFaqGlobal">
+              <div class="accordion-body bg-white text-muted px-5 pb-4 pt-0" style="font-size: 1.02rem; line-height: 1.7;">
+                {% trans "Our clinical team practices integrated interdisciplinary dentistry under one roof. For complex smile makeovers or full-mouth rehabilitations, our endodontists, implantologists, and aesthetic specialists work together in coordinated phases to guarantee seamless, long-lasting outcomes." %}
+              </div>
+            </div>
+          </div>
+
           {% elif faq_type == 'contact' %}
           <!-- CONTACT FAQ -->
           <div class="accordion-item border-0 shadow-sm mb-3 rounded-4 overflow-hidden">
