@@ -1,3 +1,5 @@
+import datetime
+from datetime import timedelta
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -5,11 +7,12 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.db.models import Count, Q, Sum
 from django.utils import timezone
-from datetime import timedelta
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 
 from appointments.models import Appointment
+from appointments.reminder_services import get_upcoming_reminders_summary, send_24h_appointment_reminders
+from appointments.whatsapp_services import generate_whatsapp_templates
 from main.models import Service, Doctor, PricingCategory, PricingItem, SpecialOffer, Testimonial, SiteSettings, ContactMessage, HeroSlide, ClinicGallery
 from media_center.models import Video
 from loyalty.models import PatientLoyaltyProfile, LoyaltyReward, normalize_phone
@@ -19,6 +22,7 @@ from .forms import (
     PricingItemForm, SpecialOfferForm, TestimonialForm, VideoForm, SiteSettingsForm,
     HeroSlideForm, ClinicGalleryForm
 )
+
 
 
 def is_staff_user(user):

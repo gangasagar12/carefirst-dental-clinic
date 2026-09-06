@@ -22,7 +22,7 @@
     <a href="{% url 'dashboard:appointments' %}?date={{ reminder_summary.target_date|date:'Y-m-d' }}&status=confirmed" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">
       View Tomorrow's Visits
     </a>
-    <form method="post" action="{% url 'dashboard:trigger_appointment_reminders' %}" class="d-inline">
+    <form method="post" action="{% url 'dashboard:appointments_send_reminders' %}" class="d-inline">
       {% csrf_token %}
       <button type="submit" class="btn btn-sm btn-primary rounded-pill px-3 fw-bold shadow-sm d-flex align-items-center gap-1.5" onclick="return confirm('Dispatch automated 24-hour reminder messages and emails to {{ reminder_summary.pending_count }} patient(s)?');">
         <i class="bi bi-send-fill"></i> Dispatch 24h Reminders Now
