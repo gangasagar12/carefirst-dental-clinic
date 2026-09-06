@@ -149,14 +149,14 @@
     <!-- Specialty Badge (Dynamic) -->
     {% if doc.get_specialty_display %}
     <span class="cf-doc-spec-badge">
-      <i class="bi bi-patch-check-fill me-1"></i>{{ doc.get_specialty_display }}
+      {{ doc.get_specialty_display }}
     </span>
     {% endif %}
 
     <!-- NMC Badge (Dynamic) -->
     {% if doc.nmc_number %}
     <div class="cf-doc-nmc-pill">
-      <i class="bi bi-shield-check text-warning me-1"></i>NMC No: {{ doc.nmc_number }}
+      NMC No: {{ doc.nmc_number }}
     </div>
     {% endif %}
   </div>
