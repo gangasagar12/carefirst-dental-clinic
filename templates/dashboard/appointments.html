@@ -124,9 +124,9 @@
             <div class="small text-muted">{{ app.get_preferred_time_display|default:"Flexible Slot" }}</div>
           </td>
           <td>
-            <form method="post" action="{% url 'dashboard:appointment_update_status' app.id %}" class="d-inline">
+            <form method="post" action="{% url 'dashboard:appointment_update_status' app.id %}" class="d-inline position-relative">
               {% csrf_token %}
-              <select name="status" class="form-select form-select-sm cf-badge-status status-{{ app.status }}" onchange="this.form.submit()" style="cursor: pointer; font-weight: 700; width: auto;">
+              <select name="status" class="form-select form-select-sm cf-status-select status-{{ app.status }}" onchange="handleStatusChange(this, '{{ app.id }}')" title="Change appointment status">
                 {% for val, label in status_choices %}
                 <option value="{{ val }}" {% if app.status == val %}selected{% endif %}>{{ label }}</option>
                 {% endfor %}
@@ -315,6 +315,68 @@ function copyWaText() {
     label.innerText = 'Copied to Clipboard!';
     setTimeout(() => { label.innerText = 'Copy Message Text'; }, 2000);
   });
+}
+
+function handleStatusChange(selectEl, appId) {
+  const newStatus = selectEl.value;
+  const form = selectEl.closest('form');
+  const csrfToken = form.querySelector('[name=csrfmiddlewaretoken]').value;
+  
+  // Instant visual feedback
+  const allStatusClasses = ['status-new', 'status-pending', 'status-confirmed', 'status-checked_in', 'status-completed', 'status-rescheduled', 'status-cancelled', 'status-no_show'];
+  allStatusClasses.forEach(cls => selectEl.classList.remove(cls));
+  selectEl.classList.add(`status-${newStatus}`);
+  selectEl.disabled = true;
+
+  const formData = new FormData();
+  formData.append('status', newStatus);
+  formData.append('csrfmiddlewaretoken', csrfToken);
+
+  fetch(`/dashboard/appointments/${appId}/status/`, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    selectEl.disabled = false;
+    if (data.success) {
+      showDashboardToast(`Appointment status updated to <strong>${data.status_display}</strong>`, 'success');
+    } else {
+      showDashboardToast('Unable to update status. Reloading...', 'error');
+      setTimeout(() => { form.submit(); }, 700);
+    }
+  })
+  .catch(err => {
+    console.error('Status update fetch error:', err);
+    selectEl.disabled = false;
+    form.submit();
+  });
+}
+
+function showDashboardToast(message, type = 'success') {
+  let container = document.getElementById('cfToastContainer');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'cfToastContainer';
+    container.className = 'cf-toast-container';
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  toast.className = 'cf-live-toast';
+  const icon = type === 'success' ? '<i class="bi bi-check2-circle text-success fs-5"></i>' : '<i class="bi bi-exclamation-triangle text-danger fs-5"></i>';
+  toast.innerHTML = `${icon}<span>${message}</span>`;
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+    toast.style.transition = 'all 0.3s ease';
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
 }
 </script>
 {% endblock %}

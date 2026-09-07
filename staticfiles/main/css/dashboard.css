@@ -457,24 +457,69 @@ body.cf-dashboard-body {
   background-color: #F8FAFC;
 }
 
-/* ── Status Pills ── */
-.cf-badge-status {
+/* ── Status Pills & Interactive Dropdowns ── */
+.cf-badge-status,
+.cf-status-select {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 4px 10px;
+  padding: 5px 26px 5px 12px;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   font-weight: 700;
   text-transform: capitalize;
+  cursor: pointer;
+  outline: none;
+  border-width: 1.5px;
+  border-style: solid;
+  transition: all 0.2s ease;
+  background-position: right 8px center;
+  background-size: 10px 10px;
 }
 
-.status-new { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
-.status-pending { background: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD; }
-.status-confirmed { background: #DCFCE7; color: #15803D; border: 1px solid #BBF7D0; }
-.status-completed { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; }
-.status-cancelled { background: #FEE2E2; color: #B91C1C; border: 1px solid #FECACA; }
-.status-rescheduled { background: #F3E8FF; color: #7E22CE; border: 1px solid #E9D5FF; }
+.cf-status-select:focus {
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+.status-new { background-color: #FEF3C7; color: #B45309; border-color: #FDE68A; }
+.status-pending { background-color: #E0F2FE; color: #0369A1; border-color: #BAE6FD; }
+.status-confirmed { background-color: #DCFCE7; color: #15803D; border-color: #BBF7D0; }
+.status-checked_in { background-color: #E0E7FF; color: #4338CA; border-color: #C7D2FE; }
+.status-completed { background-color: #F1F5F9; color: #475569; border-color: #CBD5E1; }
+.status-rescheduled { background-color: #F3E8FF; color: #7E22CE; border-color: #E9D5FF; }
+.status-cancelled { background-color: #FEE2E2; color: #B91C1C; border-color: #FECACA; }
+.status-no_show { background-color: #FFE4E6; color: #9F1239; border-color: #FECDD3; }
+
+/* ── Live Toast Notification ── */
+.cf-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1090;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cf-live-toast {
+  background: #0B2545;
+  color: #FFFFFF;
+  padding: 11px 18px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(11, 37, 69, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  animation: cfSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 4px solid #10B981;
+}
+
+@keyframes cfSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ── Buttons & Actions ── */
 .btn-cf-primary {
