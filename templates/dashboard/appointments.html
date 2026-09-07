@@ -88,12 +88,10 @@
     <table class="cf-dash-table">
       <thead>
         <tr>
-          <th>Booking ID</th>
           <th>Patient</th>
           <th>Contact</th>
           <th>Service / Treatment</th>
           <th>Schedule</th>
-          <th>Reminder</th>
           <th>Status</th>
           <th class="text-end">Actions</th>
         </tr>
@@ -102,13 +100,11 @@
         {% for app in appointments %}
         <tr>
           <td>
-            <span class="badge bg-light text-primary border font-monospace fw-bold">{{ app.display_booking_id }}</span>
-          </td>
-          <td>
-            <div class="fw-bold text-dark">{{ app.full_name }}</div>
+            <div class="fw-bold text-dark fs-6">{{ app.full_name }}</div>
             <div class="small text-muted">{{ app.get_appointment_type_display }}</div>
+            <span class="badge bg-light text-primary border font-monospace mt-1" style="font-size: 0.72rem;">{{ app.display_booking_id }}</span>
             {% if app.message %}
-            <div class="small text-primary mt-1" style="max-width: 220px; font-size: 0.76rem; line-height: 1.3;" title="{{ app.message }}">
+            <div class="small text-primary mt-1" style="max-width: 240px; font-size: 0.76rem; line-height: 1.3;" title="{{ app.message }}">
               "{{ app.message|truncatewords:6 }}"
             </div>
             {% endif %}
@@ -126,17 +122,6 @@
           <td>
             <div class="fw-bold text-dark">{{ app.preferred_date|date:"M d, Y" }}</div>
             <div class="small text-muted">{{ app.get_preferred_time_display|default:"Flexible Slot" }}</div>
-          </td>
-          <td>
-            {% if app.reminder_sent %}
-            <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill" title="Reminder dispatched on {{ app.reminder_sent_at|date:'M d, H:i' }}">
-              <i class="bi bi-check-circle-fill me-1"></i> Sent
-            </span>
-            {% else %}
-            <span class="badge bg-secondary-subtle text-muted rounded-pill">
-              Pending
-            </span>
-            {% endif %}
           </td>
           <td>
             <form method="post" action="{% url 'dashboard:appointment_update_status' app.id %}" class="d-inline">
@@ -173,7 +158,7 @@
         </tr>
         {% empty %}
         <tr>
-          <td colspan="8" class="text-center py-5 text-muted">
+          <td colspan="6" class="text-center py-5 text-muted">
             <i class="bi bi-inbox fs-2 d-block text-muted mb-2 opacity-50"></i>
             No appointment records match your criteria.
           </td>
