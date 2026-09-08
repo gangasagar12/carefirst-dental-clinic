@@ -54,11 +54,13 @@
         {% for msg in inquiries %}
         <tr class="{% if not msg.is_read %}table-primary-subtle{% endif %}">
           <td>
-            {% if msg.is_read %}
-            <span class="badge bg-light text-muted border">Read</span>
-            {% else %}
-            <span class="badge bg-danger text-white">New</span>
-            {% endif %}
+            <a href="{% url 'dashboard:inquiry_toggle_read' msg.id %}" class="text-decoration-none" title="Click to toggle {% if msg.is_read %}Unread{% else %}Read{% endif %}">
+              {% if msg.is_read %}
+              <span class="badge bg-light text-muted border">Read</span>
+              {% else %}
+              <span class="badge bg-danger text-white">New</span>
+              {% endif %}
+            </a>
           </td>
           <td>
             <div class="fw-bold text-dark">{{ msg.name }}</div>
@@ -76,9 +78,6 @@
           </td>
           <td class="text-end text-nowrap">
             <div class="d-inline-flex gap-1 align-items-center">
-              <a href="{% url 'dashboard:inquiry_toggle_read' msg.id %}" class="btn btn-sm btn-light border rounded-3 p-2 d-inline-flex align-items-center justify-content-center" title="Mark as {% if msg.is_read %}Unread{% else %}Read{% endif %}">
-                <i class="bi {% if msg.is_read %}bi-envelope text-secondary{% else %}bi-envelope-check text-success{% endif %}"></i>
-              </a>
               <a href="mailto:{{ msg.email }}?subject=Re:%20{{ msg.subject|default:'Your Inquiry at CareFirst Dental Clinic'|urlencode }}" class="btn btn-sm btn-light border rounded-3 p-2 d-inline-flex align-items-center justify-content-center" title="Reply via Email">
                 <i class="bi bi-reply text-primary"></i>
               </a>
