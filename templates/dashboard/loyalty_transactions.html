@@ -49,8 +49,8 @@
             Filter Log
           </button>
           {% if q or tx_type %}
-          <a href="{% url 'dashboard:loyalty_transactions' %}" class="btn btn-light rounded-pill px-3" title="Clear">
-            
+          <a href="{% url 'dashboard:loyalty_transactions' %}" class="btn btn-light rounded-pill px-3 d-inline-flex align-items-center justify-content-center" title="Clear Filters">
+            <i class="bi bi-x-lg"></i>
           </a>
           {% endif %}
         </div>

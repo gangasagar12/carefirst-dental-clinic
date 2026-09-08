@@ -92,15 +92,15 @@
         </div>
         <div class="p-2 d-flex justify-content-between align-items-center">
           <span class="small text-truncate fw-semibold text-dark" style="max-width: 140px;" title="{{ g.caption }}">{{ g.caption|default:"Facility Photo" }}</span>
-          <a href="{% url 'dashboard:gallery_delete' g.id %}" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="return confirm('Remove this gallery photo?');">
-            
+          <a href="{% url 'dashboard:gallery_delete' g.id %}" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="return confirm('Remove this gallery photo?');" title="Delete Photo">
+            <i class="bi bi-trash3"></i>
           </a>
         </div>
       </div>
     </div>
     {% empty %}
     <div class="col-12 text-center py-4 text-muted bg-light rounded-4 border">
-      
+      <i class="bi bi-images fs-2 d-block text-muted mb-2 opacity-50"></i>
       <h6 class="fw-bold">No Custom Gallery Photos Uploaded</h6>
       <p class="small text-muted mb-0">Click 'Add Facility Photo' to upload clinic interior and equipment images.</p>
     </div>

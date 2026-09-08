@@ -26,10 +26,10 @@
             {{ appointment.phone }}
             {% if appointment.phone %}
             <a href="https://wa.me/{{ appointment.phone|cut:'+'|cut:' '|cut:'-' }}" target="_blank" class="btn btn-sm btn-success py-0 px-2" style="border-radius: 6px;" title="Chat on WhatsApp">
-              
+              <i class="bi bi-whatsapp"></i>
             </a>
             <a href="tel:{{ appointment.phone }}" class="btn btn-sm btn-light border py-0 px-2" style="border-radius: 6px;" title="Call Patient">
-              
+              <i class="bi bi-telephone"></i>
             </a>
             {% endif %}
           </div>
@@ -167,8 +167,8 @@
                 <a href="{% url 'dashboard:loyalty_verification_queue' %}?q={{ appointment.phone }}" class="btn btn-sm btn-success rounded-pill px-3 fw-bold flex-grow-1">
                    Verify (+1)
                 </a>
-                <a href="{% url 'dashboard:loyalty_verification_queue' %}?q={{ appointment.phone }}" class="btn btn-sm btn-outline-danger rounded-pill px-2">
-                  
+                <a href="{% url 'dashboard:loyalty_verification_queue' %}?q={{ appointment.phone }}" class="btn btn-sm btn-outline-danger rounded-pill px-2" title="Mark Ineligible">
+                  <i class="bi bi-x-circle"></i>
                 </a>
               </div>
             </div>
