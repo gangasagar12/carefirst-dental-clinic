@@ -362,9 +362,22 @@ def inquiries_list(request):
 @user_passes_test(is_staff_user, login_url='/dashboard/login/')
 def inquiry_toggle_read(request, pk):
     inquiry = get_object_or_404(ContactMessage, pk=pk)
-    inquiry.is_read = not inquiry.is_read
+    if request.method == 'POST' and 'status' in request.POST:
+        status_val = request.POST.get('status')
+        inquiry.is_read = (status_val == 'read')
+    else:
+        inquiry.is_read = not inquiry.is_read
     inquiry.save()
-    messages.success(request, f"Marked message from {inquiry.name} as {'read' if inquiry.is_read else 'unread'}.")
+
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest' or request.POST.get('ajax') == '1':
+        return JsonResponse({
+            'success': True,
+            'is_read': inquiry.is_read,
+            'status': 'read' if inquiry.is_read else 'unread',
+            'status_display': 'Read' if inquiry.is_read else 'New (Unread)'
+        })
+
+    messages.success(request, f"Marked message from {inquiry.name} as {'Read' if inquiry.is_read else 'Unread'}.")
     return redirect(request.META.get('HTTP_REFERER', 'dashboard:inquiries'))
 
 

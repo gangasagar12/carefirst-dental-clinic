@@ -54,13 +54,13 @@
         {% for msg in inquiries %}
         <tr class="{% if not msg.is_read %}table-primary-subtle{% endif %}">
           <td>
-            <a href="{% url 'dashboard:inquiry_toggle_read' msg.id %}" class="text-decoration-none" title="Click to toggle {% if msg.is_read %}Unread{% else %}Read{% endif %}">
-              {% if msg.is_read %}
-              <span class="badge bg-light text-muted border">Read</span>
-              {% else %}
-              <span class="badge bg-danger text-white">New</span>
-              {% endif %}
-            </a>
+            <form method="post" action="{% url 'dashboard:inquiry_toggle_read' msg.id %}" class="d-inline position-relative">
+              {% csrf_token %}
+              <select name="status" class="form-select form-select-sm cf-status-select {% if msg.is_read %}status-completed{% else %}status-new{% endif %}" onchange="handleInquiryStatusChange(this, '{{ msg.id }}')" title="Change message status" style="min-width: 140px;">
+                <option value="unread" {% if not msg.is_read %}selected{% endif %}>New (Unread)</option>
+                <option value="read" {% if msg.is_read %}selected{% endif %}>Read</option>
+              </select>
+            </form>
           </td>
           <td>
             <div class="fw-bold text-dark">{{ msg.name }}</div>
@@ -119,4 +119,76 @@
   </nav>
   {% endif %}
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function handleInquiryStatusChange(selectEl, msgId) {
+  const newStatus = selectEl.value;
+  const form = selectEl.closest('form');
+  const csrfToken = form.querySelector('[name=csrfmiddlewaretoken]').value;
+  const row = selectEl.closest('tr');
+
+  // Instant visual feedback
+  selectEl.classList.remove('status-completed', 'status-new');
+  if (newStatus === 'read') {
+    selectEl.classList.add('status-completed');
+    if (row) row.classList.remove('table-primary-subtle');
+  } else {
+    selectEl.classList.add('status-new');
+    if (row) row.classList.add('table-primary-subtle');
+  }
+  selectEl.disabled = true;
+
+  const formData = new FormData();
+  formData.append('status', newStatus);
+  formData.append('csrfmiddlewaretoken', csrfToken);
+
+  fetch(`/dashboard/inquiries/${msgId}/toggle-read/`, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    selectEl.disabled = false;
+    if (data.success) {
+      showDashboardToast(`Inquiry marked as <strong>${data.status_display}</strong>`, 'success');
+    } else {
+      showDashboardToast('Unable to update status. Reloading...', 'error');
+      setTimeout(() => { form.submit(); }, 700);
+    }
+  })
+  .catch(err => {
+    console.error('Status update error:', err);
+    selectEl.disabled = false;
+    form.submit();
+  });
+}
+
+function showDashboardToast(message, type = 'success') {
+  let container = document.getElementById('cfToastContainer');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'cfToastContainer';
+    container.className = 'cf-toast-container';
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  toast.className = 'cf-live-toast';
+  const icon = type === 'success' ? '<i class="bi bi-check2-circle text-success fs-5"></i>' : '<i class="bi bi-exclamation-triangle text-danger fs-5"></i>';
+  toast.innerHTML = `${icon}<span>${message}</span>`;
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+    toast.style.transition = 'all 0.3s ease';
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
+</script>
 {% endblock %}
