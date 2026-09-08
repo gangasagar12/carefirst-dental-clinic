@@ -463,9 +463,9 @@ body.cf-dashboard-body {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 5px 26px 5px 12px;
+  padding: 6px 28px 6px 14px;
   border-radius: 20px;
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: capitalize;
   cursor: pointer;
@@ -473,8 +473,10 @@ body.cf-dashboard-body {
   border-width: 1.5px;
   border-style: solid;
   transition: all 0.2s ease;
-  background-position: right 8px center;
-  background-size: 10px 10px;
+  background-position: right 10px center;
+  background-size: 11px 11px;
+  min-width: 165px;
+  width: auto;
 }
 
 .cf-status-select:focus {
