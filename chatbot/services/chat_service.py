@@ -123,7 +123,21 @@ class ChatService:
                 history=history
             )
         except Exception as e:
-            logger.warning(f"AI Provider execution error: {e}")
+            logger.warning(f"Primary AI Provider error: {e}. Trying fallback...")
+
+        # If primary failed, try fallback AI provider
+        if not ai_resp or not ai_resp.success or not ai_resp.content:
+            try:
+                from chatbot.providers import get_fallback_ai_provider
+                fallback_prov = get_fallback_ai_provider()
+                ai_resp = fallback_prov.generate_response(
+                    prompt=cleaned_msg,
+                    system_prompt=CAREFIRST_SYSTEM_PROMPT,
+                    context=tool_data,
+                    history=history
+                )
+            except Exception as fb_err:
+                logger.warning(f"Fallback AI Provider error: {fb_err}")
 
         final_content = ""
         cards = []
@@ -133,19 +147,20 @@ class ChatService:
             final_content = ai_resp.content
             cards, quick_actions = cls._generate_supplementary_ui(intent, tool_data, resolved_treatment, is_ne=is_ne)
         else:
-            # Fallback only if live AI endpoint is offline or rate-limited
+            # Dynamic database fallback only if all live AI network providers fail
             clinic = tool_data.get('clinic', {})
-            phone = clinic.get('primary_phone', '+977 9807464136')
+            phone = clinic.get('primary_phone', '+977 980-7464136')
+            loc = clinic.get('location', 'Shankhamul, Kathmandu')
             if is_ne:
                 final_content = (
-                    f"केयरफर्स्ट डेन्टल क्लिनिक (शंखमूल, काठमाडौँ) मा स्वागत छ।\n\n"
-                    f"तपाईंको प्रश्न सम्बन्धी थप जानकारी वा डाक्टरसँग भेट्न **{phone}** मा कल गर्नुहोस् वा अनलाइन अपोइन्टमेन्ट लिनुहोस्।"
+                    f"केयरफर्स्ट डेन्टल क्लिनिक ({loc}) मा स्वागत छ।\n\n"
+                    f"हाम्रा दन्त चिकित्सकहरूसँग परामर्श वा अपोइन्टमेन्टको लागि **{phone}** मा सम्पर्क गर्नुहोस् वा अनलाइन अपोइन्टमेन्ट लिनुहोस्।"
                 )
-                quick_actions = ["अपोइन्टमेन्ट लिनुहोस्", "क्लिनिकमा कल गर्नुहोस्", "शुल्क विवरण", "ह्वाट्सएप"]
+                quick_actions = ["अपोइन्टमेन्ट लिनुहोस्", "क्लिनिकमा कल गर्नुहोस्", "उपचार शुल्क", "ह्वाट्सएप"]
             else:
                 final_content = (
-                    f"Welcome to CareFirst Dental Clinic (Shankhamul, Kathmandu).\n\n"
-                    f"For personalized guidance or to consult Dr. Subash Banjade and our team, please contact us at **{phone}** or book an appointment online."
+                    f"Welcome to CareFirst Dental Clinic ({loc}).\n\n"
+                    f"For personalized guidance or to book a consultation, please contact us at **{phone}** or book an appointment online."
                 )
                 quick_actions = ["Book Appointment", "Call Clinic", "Treatment Pricing", "WhatsApp Us"]
 
@@ -161,6 +176,7 @@ class ChatService:
 
         cls._log_interaction(conversation, intent, resolved_treatment, 'answer')
         return cls._format_response(assistant_msg)
+
 
     @classmethod
     def _generate_supplementary_ui(

@@ -1,3 +1,4 @@
+import re
 import json
 import logging
 import requests
@@ -13,6 +14,7 @@ class GroqProvider(BaseAIProvider):
     """
 
     FALLBACK_MODELS = [
+        'qwen/qwen3.8-27b',
         'openai/gpt-oss-120b',
         'qwen/qwen3.6-27b',
         'openai/gpt-oss-20b',
@@ -20,7 +22,7 @@ class GroqProvider(BaseAIProvider):
         'groq/compound-mini',
     ]
 
-    def __init__(self, api_key: str = '', model_name: str = 'openai/gpt-oss-120b', timeout: int = 20):
+    def __init__(self, api_key: str = '', model_name: str = 'qwen/qwen3.8-27b', timeout: int = 20):
         super().__init__(model_name=model_name, timeout=timeout)
         self.api_key = api_key
         self.endpoint = "https://api.groq.com/openai/v1/chat/completions"
@@ -46,18 +48,18 @@ class GroqProvider(BaseAIProvider):
 
         context_str = ""
         if context:
-            context_str = f"\n[VERIFIED CAREFIRST CLINIC CONTEXT & REAL-TIME PRICING]:\n{json.dumps(context, indent=2)}\n"
+            context_str = f"\n[VERIFIED CAREFIRST CLINIC CONTEXT & REAL-TIME PRICING]:\n{json.dumps(context, indent=2, ensure_ascii=False)}\n"
 
         messages.append({
             "role": "user",
-            "content": f"{context_str}\nPatient Question: {prompt}"
+            "content": f"{context_str}\nUser Question: {prompt}"
         })
 
         models_to_try = [self.model_name] + [m for m in self.FALLBACK_MODELS if m != self.model_name]
         headers = {
             'Authorization': f'Bearer {self.api_key}',
             'Content-Type': 'application/json',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+            'User-Agent': 'CareFirstDentalAI/1.0'
         }
 
         last_error = ""
@@ -75,6 +77,8 @@ class GroqProvider(BaseAIProvider):
                     choices = data.get('choices', [])
                     if choices:
                         content = choices[0].get('message', {}).get('content', '').strip()
+                        # Clean out internal thinking tokens if present
+                        content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
                         if content:
                             return AIResponse(content=content, success=True, raw_data=data)
                 else:
@@ -88,3 +92,4 @@ class GroqProvider(BaseAIProvider):
 
     def classify_intent(self, user_message: str, current_treatment: Optional[str] = None) -> str:
         return "GENERAL_DENTAL_INFORMATION"
+
