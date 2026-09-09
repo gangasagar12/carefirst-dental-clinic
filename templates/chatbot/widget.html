@@ -56,11 +56,17 @@
   </div>
 
   <!-- Typing Indicator -->
-  <div class="px-3 pb-2 bg-light" id="cfChatTyping" style="display: none;">
-    <div class="cf-chat-typing">
-      <div class="cf-chat-dot"></div>
-      <div class="cf-chat-dot"></div>
-      <div class="cf-chat-dot"></div>
+  <div class="cf-chat-typing-wrap" id="cfChatTyping" style="display: none;">
+    <div class="cf-chat-typing-bubble">
+      <div class="cf-chat-typing-avatar">
+        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="CareFirst AI">
+      </div>
+      <span class="cf-chat-typing-label" id="cfTypingLabel">{% trans "CareFirst is typing" %}</span>
+      <div class="cf-chat-typing-dots">
+        <div class="cf-chat-dot"></div>
+        <div class="cf-chat-dot"></div>
+        <div class="cf-chat-dot"></div>
+      </div>
     </div>
   </div>
 

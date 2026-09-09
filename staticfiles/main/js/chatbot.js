@@ -42,24 +42,146 @@
     return cookieValue;
   }
 
-  // Safe Markdown parser for basic formatting
-  function renderMarkdown(text) {
+  function cleanLatexAndSymbols(text) {
     if (!text) return '';
+    return text
+      // Common LaTeX arrows and symbols
+      .replace(/\\(?:Longrightarrow|rightarrow|to)/g, ' ➔ ')
+      .replace(/\\(?:Longleftrightarrow|iff)/g, ' ⟺ ')
+      .replace(/\\times/g, ' × ')
+      .replace(/\\approx/g, ' ≈ ')
+      .replace(/\\pm/g, ' ± ')
+      .replace(/\\leq/g, ' ≤ ')
+      .replace(/\\geq/g, ' ≥ ')
+      .replace(/\\neq/g, ' ≠ ')
+      .replace(/\\cdot/g, ' · ')
+      .replace(/\\quad|\\qquad|\\;|\\,|\\!/g, ' ')
+      // LaTeX structural markup removal
+      .replace(/\\left\s*([\[\(\{])/g, '$1')
+      .replace(/\\right\s*([\]\)\}])/g, '$1')
+      .replace(/\\begin\{array\}\{[^}]*\}|\\end\{array\}/g, '')
+      .replace(/\\begin\{matrix\}|\\end\{matrix\}/g, '')
+      .replace(/\\begin\{pmatrix\}|\\end\{pmatrix\}/g, '')
+      .replace(/\\begin\{bmatrix\}|\\end\{bmatrix\}/g, '')
+      .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '$1/$2')
+      .replace(/\\text\{([^}]+)\}/g, '$1')
+      .replace(/\\textbf\{([^}]+)\}/g, '**$1**')
+      .replace(/\\textit\{([^}]+)\}/g, '*$1*')
+      .replace(/\\\((.*?)\\\)/g, '$1')
+      .replace(/\\\[(.*?)\\\]/g, '$1')
+      // Remove stray backslashes before plain letters or math symbols
+      .replace(/\\([a-zA-Z])/g, '$1');
+  }
+
+  function formatTable(rows) {
+    if (!rows || rows.length === 0) return '';
+    let html = '<div class="cf-md-table-wrap"><table class="cf-md-table">';
+    let isHeader = true;
+
+    for (let r = 0; r < rows.length; r++) {
+      let cells = rows[r].split('|').slice(1, -1).map(c => c.trim());
+      if (isHeader) {
+        html += '<thead><tr>';
+        cells.forEach(c => {
+          html += `<th>${c}</th>`;
+        });
+        html += '</tr></thead><tbody>';
+        isHeader = false;
+      } else {
+        html += '<tr>';
+        cells.forEach(c => {
+          html += `<td>${c}</td>`;
+        });
+        html += '</tr>';
+      }
+    }
+    html += '</tbody></table></div>';
+    return html;
+  }
+
+  // Safe & Rich Markdown parser for elegant ChatGPT-style formatting
+  function renderMarkdown(rawText) {
+    if (!rawText) return '';
+
+    let text = cleanLatexAndSymbols(rawText);
+
+    // Escape HTML special characters
     let escaped = text
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
 
-    // Bold
-    escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    // Italic
-    escaped = escaped.replace(/\*(.*?)\*/g, '<em>$1</em>');
-    // Inline code
-    escaped = escaped.replace(/`(.*?)`/g, '<code>$1</code>');
-    // Links
-    escaped = escaped.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-    // Line breaks
+    // 1. Code blocks (```code```)
+    escaped = escaped.replace(/```([a-zA-Z0-9]*)\n?([\s\S]*?)```/g, (match, lang, code) => {
+      return `<pre class="cf-md-code-block"><code>${code.trim()}</code></pre>`;
+    });
+
+    // 2. Tables (| col1 | col2 |)
+    const lines = escaped.split('\n');
+    let inTable = false;
+    let tableRows = [];
+    let processedLines = [];
+
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i].trim();
+      if (line.startsWith('|') && line.endsWith('|')) {
+        if (!inTable) {
+          inTable = true;
+          tableRows = [];
+        }
+        if (/^\|(\s*:?-+:?\s*\|)+$/.test(line)) {
+          continue;
+        }
+        tableRows.push(line);
+      } else {
+        if (inTable) {
+          processedLines.push(formatTable(tableRows));
+          inTable = false;
+          tableRows = [];
+        }
+        processedLines.push(lines[i]);
+      }
+    }
+    if (inTable) {
+      processedLines.push(formatTable(tableRows));
+    }
+
+    escaped = processedLines.join('\n');
+
+    // 3. Headings (#, ##, ###, ####)
+    escaped = escaped.replace(/^#{1,4}\s+(.+)$/gm, '<div class="cf-md-heading">$1</div>');
+
+    // 4. Horizontal Rules
+    escaped = escaped.replace(/^(\-{3,}|\_{3,}|\*{3,})$/gm, '<hr class="cf-md-hr">');
+
+    // 5. Blockquotes (> quote)
+    escaped = escaped.replace(/^>\s+(.+)$/gm, '<blockquote class="cf-md-quote">$1</blockquote>');
+
+    // 6. Strong / Bold (**text**)
+    escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong class="cf-md-bold">$1</strong>');
+
+    // 7. Italic (*text*)
+    escaped = escaped.replace(/(^|[^*])\*(?!\s)(.*?)(?!\s)\*(?=[^*]|$)/g, '$1<em>$2</em>');
+
+    // 8. Inline code (`code`)
+    escaped = escaped.replace(/`([^`]+)`/g, '<code class="bg-light px-1 py-0.5 rounded text-dark">$1</code>');
+
+    // 9. Links ([text](url))
+    escaped = escaped.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener" class="text-primary fw-bold text-decoration-underline">$1</a>');
+
+    // 10. Bullet lists (- item or * item or • item)
+    escaped = escaped.replace(/^[\-\*•]\s+(.+)$/gm, '<div class="cf-md-list-item">$1</div>');
+    escaped = escaped.replace(/^(\d+)\.\s+(.+)$/gm, '<div class="cf-md-list-item"><strong class="me-1">$1.</strong>$2</div>');
+
+    // 11. Clean line breaks
+    escaped = escaped.replace(/\n\n+/g, '<br><br>');
     escaped = escaped.replace(/\n/g, '<br>');
+
+    // Clean up redundant breaks around blocks
+    escaped = escaped.replace(/<\/div><br>/g, '</div>');
+    escaped = escaped.replace(/<br><div/g, '<div');
+    escaped = escaped.replace(/<\/table><\/div><br>/g, '</table></div>');
+    escaped = escaped.replace(/<br><div class="cf-md-table-wrap"/g, '<div class="cf-md-table-wrap"');
 
     return escaped;
   }
@@ -181,6 +303,11 @@
   function showTyping(show) {
     if (typingIndicator) {
       typingIndicator.style.display = show ? 'flex' : 'none';
+      const label = document.getElementById('cfTypingLabel');
+      if (label && show) {
+        const isNe = window.location.pathname.includes('/ne');
+        label.textContent = isNe ? 'केयरफर्स्ट टाइप गर्दैछ...' : 'CareFirst is typing...';
+      }
       if (show) scrollToBottom();
     }
   }
