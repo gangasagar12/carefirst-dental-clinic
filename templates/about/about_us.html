@@ -583,31 +583,15 @@
             {% trans "A Trusted Dental Experience in the Heart of Kathmandu" %}
           </h1>
           
-          <p class="cf-section-lead mb-4">
+          <p class="cf-section-lead mb-0">
             {% trans "CareFirst Dental Clinic is a highly-rated multispecialty dental practice in Shankhamul, Kathmandu, dedicated to providing patient-focused, ethical, and comprehensive oral healthcare for individuals and families." %}
           </p>
-
-          <div class="d-flex flex-wrap gap-3 pt-2">
-            <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary btn-lg">
-              <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book Appointment" %}
-            </a>
-            <a href="tel:+9779807464136" class="cf-btn-secondary btn-lg">
-              <i class="bi bi-telephone-fill me-1"></i> {% trans "Call Clinic: 980-7464136" %}
-            </a>
-          </div>
         </div>
 
-        <!-- Hero Image Right with Floating Trust Badge -->
+        <!-- Hero Image Right -->
         <div class="col-lg-6">
           <div class="position-relative rounded-4 overflow-hidden shadow-lg border" style="border-color: rgba(56, 189, 248, 0.4) !important; min-height: 420px; max-height: 480px;">
             <img src="{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}" alt="CareFirst Dental Clinic Shankhamul" class="w-100 h-100 object-fit-cover">
-            <div class="hero-floating-badge">
-              <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#F59E0B; margin-right:8px;"></span>
-              <div>
-                <strong class="d-block text-white" style="font-size: 0.95rem;">{% trans "Open Daily (Mon – Sun)" %}</strong>
-                <small class="text-info fw-bold">7:30 AM – 7:30 PM • {% trans "Shankhamul, Kathmandu" %}</small>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -617,30 +601,14 @@
 
 
   <!-- =========================================================================
-       2. OUR STORY (Storytelling Section: Image Left, Text Right)
+       2. OUR STORY & ABOUT THE CLINIC (Unified Content Section Without Images)
        ========================================================================= -->
   <section class="about-section-py bg-white">
     <div class="container">
-      <div class="row align-items-center g-5">
+      <div class="row g-5 align-items-start">
         
-        <!-- Story Image Left -->
-        <div class="col-lg-5">
-          <div class="position-relative rounded-4 overflow-hidden shadow-lg" style="height: 440px;">
-            <img src="/media/banners/desktop/about_intro.webp" alt="CareFirst Dental Clinic Story" class="w-100 h-100 object-fit-cover" onerror="this.onerror=null; this.src='/static/main/img/hero_bg.jpeg';">
-            <div class="position-absolute bottom-0 start-0 m-3 p-3 text-white rounded-3" style="background: rgba(11, 37, 69, 0.88); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15);">
-              <div class="d-flex align-items-center gap-2">
-                <span style="color:#38BDF8; font-size:1.2rem; margin-right:6px;">•</span>
-                <div>
-                  <strong class="d-block text-white small">{% trans "Ethical Healthcare" %}</strong>
-                  <small class="text-white-50" style="font-size: 0.75rem;">{% trans "Patient-Centered Practice" %}</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Story Content Right with Vertical Accent Line -->
-        <div class="col-lg-7">
+        <!-- Story Content Left -->
+        <div class="col-lg-6">
           <div class="cf-eyebrow-badge">
             {% trans "OUR PURPOSE & BEGINNING" %}
           </div>
@@ -657,20 +625,8 @@
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-
-  <!-- =========================================================================
-       3. ABOUT THE CLINIC (Text Left, Image Right + Info Grid)
-       ========================================================================= -->
-  <section class="about-section-py bg-light">
-    <div class="container">
-      <div class="row align-items-center g-5">
-        
-        <!-- Clinic Description Left -->
-        <div class="col-lg-7">
+        <!-- Clinic Description Right -->
+        <div class="col-lg-6">
           <div class="cf-eyebrow-badge">
             {% trans "CLINIC ENVIRONMENT" %}
           </div>
@@ -680,69 +636,53 @@
           <p class="cf-body-text mb-4">
             {% trans "Our clinic is designed to provide a calm and welcoming environment where patients of all ages can receive dental care comfortably. From consultation to treatment and follow-up, we focus on clear communication, respectful care, and individualized attention so that every visit feels organized and reassuring." %}
           </p>
-
-          <!-- 4-Pill Info Grid -->
-          <div class="row g-3 pt-2">
-            <div class="col-sm-6">
-              <div class="clinic-info-pill">
-                <div class="clinic-info-icon"><i class="bi bi-geo-alt-fill"></i></div>
-                <div>
-                  <strong class="d-block text-dark" style="font-size: 0.95rem;">Shankhamul-31</strong>
-                  <small class="text-muted">Kathmandu 44600</small>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="clinic-info-pill">
-                <div class="clinic-info-icon"><i class="bi bi-calendar-check-fill"></i></div>
-                <div>
-                  <strong class="d-block text-dark" style="font-size: 0.95rem;">Open Every Day</strong>
-                  <small class="text-muted">7:30 AM – 7:30 PM</small>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="clinic-info-pill">
-                <div class="clinic-info-icon"><i class="bi bi-people-fill"></i></div>
-                <div>
-                  <strong class="d-block text-dark" style="font-size: 0.95rem;">Specialist Doctors</strong>
-                  <small class="text-muted">Multispecialty Team</small>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="clinic-info-pill">
-                <div class="clinic-info-icon"><i class="bi bi-telephone-fill"></i></div>
-                <div>
-                  <strong class="d-block text-dark" style="font-size: 0.95rem;">Easy Appointments</strong>
-                  <small class="text-muted">Call & WhatsApp Support</small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Clinic Image Right -->
-        <div class="col-lg-5">
-          <div class="position-relative rounded-4 overflow-hidden shadow-lg" style="height: 460px;">
-            <img src="/media/clinic_gallery/clinic_gallery14.jpeg" alt="CareFirst Dental Clinic Facilities" class="w-100 h-100 object-fit-cover" onerror="this.onerror=null; this.src='/static/main/img/hero_bg.jpeg';">
-            <div class="position-absolute bottom-0 start-0 m-3 p-3 text-white rounded-3" style="background: rgba(11, 37, 69, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.18);">
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-shield-check text-info fs-4"></i>
-                <div>
-                  <strong class="d-block text-white" style="font-size: 0.9rem;">{% trans "Modern Sterilization Suite" %}</strong>
-                  <small class="text-white-50" style="font-size: 0.75rem;">{% trans "Clean & Comfortable Operatories" %}</small>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
       </div>
+
+      <!-- 4-Pill Info Grid Across Full Width Below -->
+      <div class="row g-3 pt-4 mt-3 border-top">
+        <div class="col-sm-6 col-lg-3">
+          <div class="clinic-info-pill">
+            <div class="clinic-info-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <div>
+              <strong class="d-block text-dark" style="font-size: 0.95rem;">Shankhamul-31</strong>
+              <small class="text-muted">Kathmandu 44600</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="clinic-info-pill">
+            <div class="clinic-info-icon"><i class="bi bi-calendar-check-fill"></i></div>
+            <div>
+              <strong class="d-block text-dark" style="font-size: 0.95rem;">Open Every Day</strong>
+              <small class="text-muted">7:30 AM – 7:30 PM</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="clinic-info-pill">
+            <div class="clinic-info-icon"><i class="bi bi-people-fill"></i></div>
+            <div>
+              <strong class="d-block text-dark" style="font-size: 0.95rem;">Specialist Doctors</strong>
+              <small class="text-muted">Multispecialty Team</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="clinic-info-pill">
+            <div class="clinic-info-icon"><i class="bi bi-telephone-fill"></i></div>
+            <div>
+              <strong class="d-block text-dark" style="font-size: 0.95rem;">Easy Appointments</strong>
+              <small class="text-muted">Call & WhatsApp Support</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
