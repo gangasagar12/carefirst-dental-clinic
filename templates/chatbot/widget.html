@@ -32,8 +32,8 @@
   <!-- Header -->
   <div class="cf-chat-header">
     <div class="cf-chat-header-brand">
-      <div class="cf-chat-avatar">
-        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="CareFirst Logo">
+      <div class="cf-chat-avatar" style="width:38px;height:38px;min-width:38px;min-height:38px;max-width:38px;max-height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;">
+        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="CareFirst Logo" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <div>
         <h3 class="cf-chat-header-title">Care<span style="color:#38BDF8;">First</span> Assistant</h3>
@@ -58,8 +58,8 @@
   <!-- Typing Indicator -->
   <div class="cf-chat-typing-wrap" id="cfChatTyping" style="display: none;">
     <div class="cf-chat-typing-bubble">
-      <div class="cf-chat-typing-avatar">
-        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="CareFirst AI">
+      <div class="cf-chat-typing-avatar" style="width:22px;height:22px;min-width:22px;min-height:22px;max-width:22px;max-height:22px;border-radius:50%;overflow:hidden;flex-shrink:0;">
+        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="CareFirst AI" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <span class="cf-chat-typing-label" id="cfTypingLabel">{% trans "CareFirst is typing" %}</span>
       <div class="cf-chat-typing-dots">

@@ -7,10 +7,14 @@
   'use strict';
 
   // State
-  let sessionId = localStorage.getItem('carefirst_chat_session') || generateUUID();
-  localStorage.setItem('carefirst_chat_session', sessionId);
+  // State & Persistent Storage
+  let sessionId = localStorage.getItem('carefirst_chat_session');
+  if (!sessionId) {
+    sessionId = generateUUID();
+    localStorage.setItem('carefirst_chat_session', sessionId);
+  }
 
-  let isOpen = false;
+  let isOpen = localStorage.getItem('carefirst_chat_open') === 'true';
   let isSending = false;
 
   // DOM Elements
@@ -42,6 +46,33 @@
     return cookieValue;
   }
 
+  function getLocalHistory() {
+    try {
+      return JSON.parse(localStorage.getItem('cf_chat_msgs_' + sessionId) || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function setLocalHistory(msgs) {
+    try {
+      localStorage.setItem('cf_chat_msgs_' + sessionId, JSON.stringify(msgs || []));
+    } catch (e) {}
+  }
+
+  function saveLocalMessage(msg) {
+    try {
+      const list = getLocalHistory();
+      // Avoid duplicate by id or timestamp/content
+      const exists = list.some(m => (m.id && m.id === msg.id) || (m.role === msg.role && m.content === msg.content && m.created_at === msg.created_at));
+      if (!exists) {
+        list.push(msg);
+        if (list.length > 50) list.shift();
+        setLocalHistory(list);
+      }
+    } catch (e) {}
+  }
+
   function cleanLatexAndSymbols(text) {
     if (!text) return '';
     return text
@@ -69,7 +100,6 @@
       .replace(/\\textit\{([^}]+)\}/g, '*$1*')
       .replace(/\\\((.*?)\\\)/g, '$1')
       .replace(/\\\[(.*?)\\\]/g, '$1')
-      // Remove stray backslashes before plain letters or math symbols
       .replace(/\\([a-zA-Z])/g, '$1');
   }
 
@@ -116,7 +146,7 @@
       return `<pre class="cf-md-code-block"><code>${code.trim()}</code></pre>`;
     });
 
-    // 2. Tables (| col1 | col2 |)
+    // 2. Multi-line Tables (| col1 | col2 |)
     const lines = escaped.split('\n');
     let inTable = false;
     let tableRows = [];
@@ -148,34 +178,50 @@
 
     escaped = processedLines.join('\n');
 
-    // 3. Headings (#, ##, ###, ####)
+    // 3. Inline Pipes format: convert | **Key** | Details | into modern key-value cards
+    escaped = escaped.replace(/\|\s*\*\*([^*]+)\*\*\s*\|\s*([^|\n]+)\s*\|?/g, (match, key, val) => {
+      return `<div class="cf-md-card"><div class="cf-md-card-head">${key.trim()}</div><div class="cf-md-card-body">${val.trim()}</div></div>`;
+    });
+
+    // 4. Headings (#, ##, ###, ####)
     escaped = escaped.replace(/^#{1,4}\s+(.+)$/gm, '<div class="cf-md-heading">$1</div>');
 
-    // 4. Horizontal Rules
+    // 5. Horizontal Rules
     escaped = escaped.replace(/^(\-{3,}|\_{3,}|\*{3,})$/gm, '<hr class="cf-md-hr">');
 
-    // 5. Blockquotes (> quote)
+    // 6. Blockquotes (> quote)
     escaped = escaped.replace(/^>\s+(.+)$/gm, '<blockquote class="cf-md-quote">$1</blockquote>');
 
-    // 6. Strong / Bold (**text**)
+    // 7. Strong / Bold (**text**)
     escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong class="cf-md-bold">$1</strong>');
 
-    // 7. Italic (*text*)
+    // 8. Italic (*text*)
     escaped = escaped.replace(/(^|[^*])\*(?!\s)(.*?)(?!\s)\*(?=[^*]|$)/g, '$1<em>$2</em>');
 
-    // 8. Inline code (`code`)
+    // 9. Inline code (`code`)
     escaped = escaped.replace(/`([^`]+)`/g, '<code class="bg-light px-1 py-0.5 rounded text-dark">$1</code>');
 
-    // 9. Links ([text](url))
+    // 10. Links ([text](url))
     escaped = escaped.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener" class="text-primary fw-bold text-decoration-underline">$1</a>');
 
-    // 10. Bullet lists (- item or * item or • item)
+    // 11. Bullet lists (- item or * item or • item)
     escaped = escaped.replace(/^[\-\*•]\s+(.+)$/gm, '<div class="cf-md-list-item">$1</div>');
     escaped = escaped.replace(/^(\d+)\.\s+(.+)$/gm, '<div class="cf-md-list-item"><strong class="me-1">$1.</strong>$2</div>');
 
-    // 11. Clean line breaks
-    escaped = escaped.replace(/\n\n+/g, '<br><br>');
-    escaped = escaped.replace(/\n/g, '<br>');
+    // 12. Paragraph separation
+    const paragraphs = escaped.split(/\n\s*\n/);
+    if (paragraphs.length > 1) {
+      escaped = paragraphs.map(p => {
+        let trimmed = p.trim();
+        if (!trimmed) return '';
+        if (trimmed.startsWith('<div') || trimmed.startsWith('<blockquote') || trimmed.startsWith('<pre') || trimmed.startsWith('<hr')) {
+          return trimmed;
+        }
+        return `<p class="cf-md-p">${trimmed.replace(/\n/g, '<br>')}</p>`;
+      }).join('');
+    } else {
+      escaped = escaped.replace(/\n/g, '<br>');
+    }
 
     // Clean up redundant breaks around blocks
     escaped = escaped.replace(/<\/div><br>/g, '</div>');
@@ -192,7 +238,7 @@
     }
   }
 
-  function appendMessage(role, content, timeStr, cards, quickActions, msgId) {
+  function appendMessage(role, content, timeStr, cards, quickActions, msgId, saveLocal = true) {
     if (!body) return;
 
     const row = document.createElement('div');
@@ -261,12 +307,25 @@
 
     const timeEl = document.createElement('div');
     timeEl.className = 'cf-chat-msg-time';
-    timeEl.textContent = timeStr || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const finalTime = timeStr || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    timeEl.textContent = finalTime;
     bubble.appendChild(timeEl);
 
     row.appendChild(bubble);
     body.appendChild(row);
     scrollToBottom();
+
+    // Save to local cache
+    if (saveLocal) {
+      saveLocalMessage({
+        role: role,
+        content: content,
+        created_at: finalTime,
+        cards: cards || [],
+        quick_actions: quickActions || [],
+        id: msgId || null
+      });
+    }
 
     // Render Quick Actions
     renderQuickActions(quickActions);
@@ -386,35 +445,49 @@
     }
   }
 
-  async function loadHistory() {
+  async function loadHistory(forceServer = false) {
+    // 1. First render from local cache instantly if available
+    const localMsgs = getLocalHistory();
+    if (localMsgs.length > 0 && !forceServer) {
+      if (body) {
+        body.innerHTML = '';
+        localMsgs.forEach(m => {
+          appendMessage(m.role, m.content, m.created_at, m.cards, m.quick_actions, m.id, false);
+        });
+      }
+    }
+
+    // 2. Sync with server in background
     try {
       const resp = await fetch(`/api/chat/history/?session_id=${encodeURIComponent(sessionId)}`);
       const data = await resp.json();
       if (data.success && data.messages && data.messages.length > 0) {
         if (body) body.innerHTML = '';
+        setLocalHistory(data.messages);
         data.messages.forEach(m => {
-          appendMessage(m.role, m.content, m.created_at, m.cards, m.quick_actions, m.id);
+          appendMessage(m.role, m.content, m.created_at, m.cards, m.quick_actions, m.id, false);
         });
-      } else {
-        // Initial welcome message
+      } else if (localMsgs.length === 0) {
+        // Only show initial welcome if no history exists anywhere
         const currentTreatment = document.body.getAttribute('data-treatment-slug') || '';
         let welcome = "Namaste! I'm **Ask CareFirst**, your dental assistant.\n\nI can help you explore our treatments, check current prices, estimate costs, or book an appointment.";
         let actions = ["Our Treatments", "Treatment Prices", "Book Appointment", "Opening Hours & Location"];
-        
+
         if (currentTreatment) {
           welcome = `Namaste! You're currently viewing **${currentTreatment.replace(/-/g, ' ').toUpperCase()}**.\n\nHow can I assist you with this treatment?`;
           actions = ["Pricing for this", "Procedure Steps", "Book Appointment", "Other Treatments"];
         }
 
-        appendMessage('assistant', welcome, null, null, actions);
+        appendMessage('assistant', welcome, null, null, actions, null, true);
       }
     } catch (e) {
-      console.warn("Could not load chat history", e);
+      console.warn("Could not sync chat history from server", e);
     }
   }
 
   function toggleChat(openState) {
     isOpen = typeof openState === 'boolean' ? openState : !isOpen;
+    localStorage.setItem('carefirst_chat_open', isOpen ? 'true' : 'false');
     if (panel) {
       if (isOpen) {
         panel.classList.add('active');
@@ -582,12 +655,38 @@
     resetInactivityTimer();
   }
 
-  // Initialize Dynamic Badge on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initContextAwareBadge);
-  } else {
+  // ── Automatic Chat Engine & History Restoration on DOM Ready ──
+  function initChatEngine() {
     initContextAwareBadge();
+
+    // 1. Immediately render local history so user never sees messages wiped out
+    const localMsgs = getLocalHistory();
+    if (localMsgs && localMsgs.length > 0) {
+      if (body) {
+        body.innerHTML = '';
+        localMsgs.forEach(m => {
+          appendMessage(m.role, m.content, m.created_at, m.cards, m.quick_actions, m.id, false);
+        });
+      }
+    }
+
+    // 2. Restore open state if it was open before refresh
+    if (isOpen) {
+      if (panel) panel.classList.add('active');
+      if (launcher) launcher.classList.add('is-open');
+      if (input) input.focus();
+    }
+
+    // 3. Background server history sync
+    loadHistory(false);
   }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChatEngine);
+  } else {
+    initChatEngine();
+  }
+
 
   // Event Listeners
   if (launcher) launcher.addEventListener('click', () => {

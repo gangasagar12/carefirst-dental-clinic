@@ -94,11 +94,11 @@ def get_history_api(request):
     if not session_id:
         return JsonResponse({'success': True, 'messages': []})
 
-    conversation = Conversation.objects.filter(session_id=session_id, status='active').first()
+    conversation = Conversation.objects.filter(session_id=session_id).order_by('-created_at').first()
     if not conversation:
         return JsonResponse({'success': True, 'messages': []})
 
-    messages = conversation.messages.order_by('created_at')[:30]
+    messages = conversation.messages.order_by('created_at')[:50]
     data = [
         {
             'id': m.id,
