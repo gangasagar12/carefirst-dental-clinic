@@ -56,16 +56,16 @@
   </div>
 
   <!-- Typing Indicator -->
-  <div class="cf-chat-typing-wrap" id="cfChatTyping" style="display: none;">
-    <div class="cf-chat-typing-bubble">
-      <div class="cf-chat-typing-avatar" style="width:22px;height:22px;min-width:22px;min-height:22px;max-width:22px;max-height:22px;border-radius:50%;overflow:hidden;flex-shrink:0;">
-        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="CareFirst AI" style="width:100%;height:100%;object-fit:cover;display:block;">
+  <div class="cf-chat-typing-wrap" id="cfChatTyping" style="display: none; padding: 6px 16px 10px 16px; background: transparent;">
+    <div class="cf-chat-typing-bubble" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 20px; box-shadow: 0 2px 6px rgba(8,28,51,0.04);">
+      <div class="cf-chat-typing-avatar" style="width: 16px; height: 16px; min-width: 16px; min-height: 16px; max-width: 16px; max-height: 16px; border-radius: 50%; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+        <img src="{% static 'main/img/care-first-logo.jpeg' %}" alt="CareFirst AI" style="width: 100%; height: 100%; object-fit: cover; display: block;">
       </div>
-      <span class="cf-chat-typing-label" id="cfTypingLabel">{% trans "CareFirst is typing" %}</span>
-      <div class="cf-chat-typing-dots">
-        <div class="cf-chat-dot"></div>
-        <div class="cf-chat-dot"></div>
-        <div class="cf-chat-dot"></div>
+      <span class="cf-chat-typing-label" id="cfTypingLabel" style="font-size: 0.76rem; font-weight: 600; color: #0284C7; letter-spacing: -0.1px;">{% trans "CareFirst is typing..." %}</span>
+      <div class="cf-chat-typing-dots" style="display: inline-flex; align-items: center; gap: 3px; margin-left: 2px;">
+        <div class="cf-chat-dot" style="width: 4px; height: 4px; border-radius: 50%; background: #0284C7;"></div>
+        <div class="cf-chat-dot" style="width: 4px; height: 4px; border-radius: 50%; background: #0284C7;"></div>
+        <div class="cf-chat-dot" style="width: 4px; height: 4px; border-radius: 50%; background: #0284C7;"></div>
       </div>
     </div>
   </div>

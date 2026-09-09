@@ -23,6 +23,50 @@ def is_nepali_text(text: str, current_page: str = '') -> bool:
     return bool(re.search(r'[\u0900-\u097F]', text))
 
 
+def sanitize_ai_response(content: str) -> str:
+    """
+    Sanitizes AI outputs:
+    - Removes internal <think>...</think> tags.
+    - Converts raw markdown table lines (| Col1 | Col2 |) into clean bullet points with bold titles.
+    - Removes raw LaTeX markup and backslash clutter.
+    - Normalizes paragraph line breaks.
+    """
+    if not content:
+        return ""
+
+    # 1. Remove thinking tags
+    text = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL)
+
+    # 2. Remove markdown table delimiter lines e.g. |---|---|---|
+    text = re.sub(r'^\|[\s\-:|]+\|?$', '', text, flags=re.MULTILINE)
+
+    # 3. Convert pipe-separated lines into clean bullet points
+    def replace_pipe_line(match):
+        line = match.group(0).strip()
+        cells = [c.strip() for c in line.split('|') if c.strip()]
+        if not cells:
+            return ""
+        if len(cells) == 1:
+            return cells[0]
+        elif len(cells) == 2:
+            return f"• **{cells[0]}**: {cells[1]}"
+        else:
+            return f"• **{cells[0]}**: " + " — ".join(cells[1:])
+
+    text = re.sub(r'^\|.+?\|?$', replace_pipe_line, text, flags=re.MULTILINE)
+
+    # 4. Remove LaTeX artifacts and stray backslashes
+    text = re.sub(r'\\(?:Longrightarrow|rightarrow|to)', ' ➔ ', text)
+    text = re.sub(r'\\(?:Longleftrightarrow|iff)', ' ⟺ ', text)
+    text = re.sub(r'\\(?:left|right|begin|end|frac|text|textbf|textit|quad|qquad|;|!)\b', '', text)
+    text = text.replace(r'\{', '').replace(r'\}', '').replace(r'\[', '').replace(r'\]', '')
+    text = re.sub(r'\\([a-zA-Z])', r'\1', text)
+
+    # 5. Clean up redundant empty lines
+    text = re.sub(r'\n{3,}', '\n\n', text).strip()
+    return text
+
+
 class ChatService:
     """
     CareFirst Dental AI Patient Assistant.
@@ -144,7 +188,7 @@ class ChatService:
         quick_actions = []
 
         if ai_resp and ai_resp.success and ai_resp.content:
-            final_content = ai_resp.content
+            final_content = sanitize_ai_response(ai_resp.content)
             cards, quick_actions = cls._generate_supplementary_ui(intent, tool_data, resolved_treatment, is_ne=is_ne)
         else:
             # Dynamic database fallback only if all live AI network providers fail

@@ -75,7 +75,7 @@
 
   function cleanLatexAndSymbols(text) {
     if (!text) return '';
-    return text
+    let cleaned = text
       // Common LaTeX arrows and symbols
       .replace(/\\(?:Longrightarrow|rightarrow|to)/g, ' ➔ ')
       .replace(/\\(?:Longleftrightarrow|iff)/g, ' ⟺ ')
@@ -90,43 +90,28 @@
       // LaTeX structural markup removal
       .replace(/\\left\s*([\[\(\{])/g, '$1')
       .replace(/\\right\s*([\]\)\}])/g, '$1')
-      .replace(/\\begin\{array\}\{[^}]*\}|\\end\{array\}/g, '')
-      .replace(/\\begin\{matrix\}|\\end\{matrix\}/g, '')
-      .replace(/\\begin\{pmatrix\}|\\end\{pmatrix\}/g, '')
-      .replace(/\\begin\{bmatrix\}|\\end\{bmatrix\}/g, '')
+      .replace(/\\begin\{[a-zA-Z0-9_*]+\}(\[[^\]]*\])?(\{[^}]*\})?/g, '')
+      .replace(/\\end\{[a-zA-Z0-9_*]+\}/g, '')
       .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '$1/$2')
-      .replace(/\\text\{([^}]+)\}/g, '$1')
-      .replace(/\\textbf\{([^}]+)\}/g, '**$1**')
-      .replace(/\\textit\{([^}]+)\}/g, '*$1*')
+      .replace(/\\(?:text|textbf|textit|mathrm|mathbf)\{([^}]+)\}/g, '$1')
       .replace(/\\\((.*?)\\\)/g, '$1')
       .replace(/\\\[(.*?)\\\]/g, '$1')
-      .replace(/\\([a-zA-Z])/g, '$1');
-  }
+      .replace(/\\([a-zA-Z])/g, '$1')
+      .replace(/[\{\}\\]/g, '');
 
-  function formatTable(rows) {
-    if (!rows || rows.length === 0) return '';
-    let html = '<div class="cf-md-table-wrap"><table class="cf-md-table">';
-    let isHeader = true;
+    // Convert raw pipe lines / table lines into clean bullet points with bold titles
+    cleaned = cleaned.replace(/^\|[\s\-:|]+\|?$/gm, '');
+    cleaned = cleaned.replace(/^\|(.+?)\|?$/gm, (match, content) => {
+      let cells = content.split('|').map(c => c.trim()).filter(Boolean);
+      if (!cells.length) return '';
+      if (cells.length === 1) return cells[0];
+      if (cells.length === 2) return `• **${cells[0]}**: ${cells[1]}`;
+      return `• **${cells[0]}**: ` + cells.slice(1).join(' — ');
+    });
 
-    for (let r = 0; r < rows.length; r++) {
-      let cells = rows[r].split('|').slice(1, -1).map(c => c.trim());
-      if (isHeader) {
-        html += '<thead><tr>';
-        cells.forEach(c => {
-          html += `<th>${c}</th>`;
-        });
-        html += '</tr></thead><tbody>';
-        isHeader = false;
-      } else {
-        html += '<tr>';
-        cells.forEach(c => {
-          html += `<td>${c}</td>`;
-        });
-        html += '</tr>';
-      }
-    }
-    html += '</tbody></table></div>';
-    return html;
+    // Remove any remaining stray pipes
+    cleaned = cleaned.replace(/\|/g, '');
+    return cleaned;
   }
 
   // Safe & Rich Markdown parser for elegant ChatGPT-style formatting
@@ -146,69 +131,32 @@
       return `<pre class="cf-md-code-block"><code>${code.trim()}</code></pre>`;
     });
 
-    // 2. Multi-line Tables (| col1 | col2 |)
-    const lines = escaped.split('\n');
-    let inTable = false;
-    let tableRows = [];
-    let processedLines = [];
-
-    for (let i = 0; i < lines.length; i++) {
-      let line = lines[i].trim();
-      if (line.startsWith('|') && line.endsWith('|')) {
-        if (!inTable) {
-          inTable = true;
-          tableRows = [];
-        }
-        if (/^\|(\s*:?-+:?\s*\|)+$/.test(line)) {
-          continue;
-        }
-        tableRows.push(line);
-      } else {
-        if (inTable) {
-          processedLines.push(formatTable(tableRows));
-          inTable = false;
-          tableRows = [];
-        }
-        processedLines.push(lines[i]);
-      }
-    }
-    if (inTable) {
-      processedLines.push(formatTable(tableRows));
-    }
-
-    escaped = processedLines.join('\n');
-
-    // 3. Inline Pipes format: convert | **Key** | Details | into modern key-value cards
-    escaped = escaped.replace(/\|\s*\*\*([^*]+)\*\*\s*\|\s*([^|\n]+)\s*\|?/g, (match, key, val) => {
-      return `<div class="cf-md-card"><div class="cf-md-card-head">${key.trim()}</div><div class="cf-md-card-body">${val.trim()}</div></div>`;
-    });
-
-    // 4. Headings (#, ##, ###, ####)
+    // 2. Headings (#, ##, ###, ####) -> Clean bold headings with margin
     escaped = escaped.replace(/^#{1,4}\s+(.+)$/gm, '<div class="cf-md-heading">$1</div>');
 
-    // 5. Horizontal Rules
+    // 3. Horizontal Rules
     escaped = escaped.replace(/^(\-{3,}|\_{3,}|\*{3,})$/gm, '<hr class="cf-md-hr">');
 
-    // 6. Blockquotes (> quote)
+    // 4. Blockquotes (> quote)
     escaped = escaped.replace(/^>\s+(.+)$/gm, '<blockquote class="cf-md-quote">$1</blockquote>');
 
-    // 7. Strong / Bold (**text**)
+    // 5. Strong / Bold (**text**)
     escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong class="cf-md-bold">$1</strong>');
 
-    // 8. Italic (*text*)
+    // 6. Italic (*text*)
     escaped = escaped.replace(/(^|[^*])\*(?!\s)(.*?)(?!\s)\*(?=[^*]|$)/g, '$1<em>$2</em>');
 
-    // 9. Inline code (`code`)
+    // 7. Inline code (`code`)
     escaped = escaped.replace(/`([^`]+)`/g, '<code class="bg-light px-1 py-0.5 rounded text-dark">$1</code>');
 
-    // 10. Links ([text](url))
+    // 8. Links ([text](url))
     escaped = escaped.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener" class="text-primary fw-bold text-decoration-underline">$1</a>');
 
-    // 11. Bullet lists (- item or * item or • item)
+    // 9. Bullet lists (- item or * item or • item)
     escaped = escaped.replace(/^[\-\*•]\s+(.+)$/gm, '<div class="cf-md-list-item">$1</div>');
     escaped = escaped.replace(/^(\d+)\.\s+(.+)$/gm, '<div class="cf-md-list-item"><strong class="me-1">$1.</strong>$2</div>');
 
-    // 12. Paragraph separation
+    // 10. Paragraph separation
     const paragraphs = escaped.split(/\n\s*\n/);
     if (paragraphs.length > 1) {
       escaped = paragraphs.map(p => {
@@ -226,8 +174,8 @@
     // Clean up redundant breaks around blocks
     escaped = escaped.replace(/<\/div><br>/g, '</div>');
     escaped = escaped.replace(/<br><div/g, '<div');
-    escaped = escaped.replace(/<\/table><\/div><br>/g, '</table></div>');
-    escaped = escaped.replace(/<br><div class="cf-md-table-wrap"/g, '<div class="cf-md-table-wrap"');
+    escaped = escaped.replace(/<\/p><br>/g, '</p>');
+    escaped = escaped.replace(/<br><p/g, '<p');
 
     return escaped;
   }
