@@ -7,7 +7,7 @@ CLINIC_NAME = "CareFirst Dental Clinic"
 CLINIC_PHONE = "+977 980-7464136"
 CLINIC_LANDLINE = "01-5916886"
 CLINIC_LOCATION = "Pragatinagar Road, Shankhamul-31, Kathmandu (Near New Baneshwor)"
-GOOGLE_MAPS_URL = "https://maps.app.goo.gl/9Z7Z1v6v4X"
+GOOGLE_MAPS_URL = "https://maps.google.com/?cid=8403623970546070943"
 
 
 def clean_phone_for_whatsapp(phone: str) -> str:
