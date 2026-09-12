@@ -559,14 +559,41 @@ body.cf-dashboard-body {
   color: #FFFFFF;
 }
 
-/* ── Mobile Sidebar Overlay ── */
+/* ── Mobile Sidebar Overlay & Cross-Platform Mobile Enhancements ── */
 .cf-sidebar-backdrop {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(8, 28, 51, 0.6);
+  background: rgba(8, 28, 51, 0.65);
   backdrop-filter: blur(4px);
-  z-index: 1035;
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1040;
+  transition: opacity 0.3s ease;
+}
+
+.cf-subnav-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--cf-dash-border);
+  scrollbar-width: thin;
+}
+
+.cf-subnav-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.cf-subnav-scroll::-webkit-scrollbar-thumb {
+  background: rgba(2, 132, 199, 0.2);
+  border-radius: 4px;
+}
+
+.cf-subnav-scroll .btn {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 @media (max-width: 991px) {
@@ -575,14 +602,19 @@ body.cf-dashboard-body {
     top: 0;
     left: 0;
     height: 100vh;
+    height: 100dvh;
     transform: translateX(-100%);
-    width: 280px !important;
-    min-width: 280px !important;
-    max-width: 280px !important;
+    width: min(84vw, 290px) !important;
+    min-width: min(84vw, 290px) !important;
+    max-width: min(84vw, 290px) !important;
     margin: 0 !important;
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
+    z-index: 1050;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    padding-bottom: env(safe-area-inset-bottom, 16px);
   }
   .cf-dash-sidebar.open {
     transform: translateX(0);
@@ -593,11 +625,107 @@ body.cf-dashboard-body {
   .cf-dash-main {
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
   }
   .cf-dash-topbar {
     padding: 0 16px;
+    height: 64px;
+    gap: 10px;
   }
   .cf-dash-content {
-    padding: 16px;
+    padding: 18px 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Prevent iOS Safari automatic input zooming */
+  .cf-dashboard-body input,
+  .cf-dashboard-body select,
+  .cf-dashboard-body textarea {
+    font-size: 16px !important;
+  }
+
+  .cf-dash-topbar {
+    height: 58px;
+    padding: 0 12px;
+  }
+
+  .cf-dash-topbar-title {
+    font-size: 1.05rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+  }
+
+  .cf-dash-actions {
+    gap: 8px;
+  }
+
+  .cf-dash-actions .btn {
+    padding: 5px 12px;
+    font-size: 0.78rem;
+  }
+
+  .cf-dash-content {
+    padding: 14px 10px;
+  }
+
+  .cf-dash-card {
+    padding: 16px 12px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+  }
+
+  .cf-dash-card-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  }
+
+  .cf-dash-card-header > div:last-child,
+  .cf-dash-card-header > a:last-child {
+    align-self: flex-start;
+  }
+
+  .cf-stat-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .cf-stat-value {
+    font-size: 1.5rem;
+  }
+
+  .cf-stat-label {
+    font-size: 0.72rem;
+  }
+
+  .cf-stat-sub {
+    font-size: 0.7rem;
+  }
+
+  .cf-dash-table th,
+  .cf-dash-table td {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+
+  .cf-dash-table .btn-sm {
+    padding: 4px 9px;
+    font-size: 0.76rem;
+  }
+
+  .modal-dialog {
+    margin: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cf-dash-topbar-title {
+    max-width: 130px;
+    font-size: 0.95rem !important;
   }
 }

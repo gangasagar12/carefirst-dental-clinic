@@ -108,15 +108,15 @@
     <div class="cf-dash-main">
       <!-- TOPBAR -->
       <header class="cf-dash-topbar">
-        <div class="d-flex align-items-center gap-3">
+        <div class="d-flex align-items-center gap-2.5 flex-grow-1" style="min-width: 0;">
           <!-- 3-LINE HAMBURGER / SLIDER FULL-WIDTH BUTTON -->
-          <button type="button" class="cf-sidebar-toggle-btn" id="cfSidebarToggleBtn" onclick="toggleSidebarFullWidth()" title="Toggle Sidebar" aria-label="Toggle Sidebar">
+          <button type="button" class="cf-sidebar-toggle-btn flex-shrink-0" id="cfSidebarToggleBtn" onclick="toggleSidebarFullWidth()" title="Toggle Sidebar" aria-label="Toggle Sidebar">
             <i class="bi bi-list fs-4"></i>
           </button>
-          <h2 class="cf-dash-topbar-title">{{ title|default:"Dashboard" }}</h2>
+          <h2 class="cf-dash-topbar-title text-truncate">{{ title|default:"Dashboard" }}</h2>
         </div>
 
-        <div class="cf-dash-actions">
+        <div class="cf-dash-actions flex-shrink-0">
           <a href="{% url 'dashboard:appointments' %}" class="btn btn-light border btn-sm d-none d-md-inline-flex align-items-center gap-1 rounded-pill px-3 fw-bold">Bookings
           </a>
           <a href="{% url 'main:home' %}" target="_blank" class="btn btn-cf-primary btn-sm rounded-pill px-3">Patient Portal
