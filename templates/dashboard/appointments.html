@@ -7,9 +7,6 @@
 {% if reminder_summary.total_tomorrow > 0 %}
 <div class="alert alert-info border-0 rounded-4 shadow-sm p-4 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3" style="background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 100%); border-left: 5px solid #0284C7 !important;">
   <div class="d-flex align-items-center gap-3">
-    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" style="width: 46px; height: 46px; background: #0284C7; font-size: 1.2rem; flex-shrink: 0;">
-      <i class="bi bi-clock-history"></i>
-    </div>
     <div>
       <h5 class="fw-bold mb-1" style="color: #0B2545;">
         24-Hour Pre-Visit Reminders for Tomorrow ({{ reminder_summary.tomorrow_date|date:"l, M d" }})
@@ -27,7 +24,7 @@
       {% csrf_token %}
       <input type="hidden" name="target_date" value="{{ reminder_summary.tomorrow_date|date:'Y-m-d' }}">
       <button type="submit" class="btn btn-cf-primary rounded-pill px-4 fw-bold shadow-sm" {% if reminder_summary.pending_count == 0 %}disabled title="All reminders already dispatched"{% endif %}>
-        <i class="bi bi-send-check me-1"></i> Send Tomorrow's Reminders Now ({{ reminder_summary.pending_count }})
+        Send Tomorrow's Reminders Now ({{ reminder_summary.pending_count }})
       </button>
     </form>
   </div>
@@ -36,7 +33,6 @@
 
 <div class="cf-dash-card">
   <div class="cf-dash-card-header flex-wrap gap-3">
-    
     <div>
       <h3 class="cf-card-title">Patient Appointments Manager</h3>
       <p class="small text-muted mb-0">Track, confirm, reschedule, and manage clinical visits across branches.</p>
@@ -51,10 +47,7 @@
   <!-- FILTERS BAR -->
   <form method="get" class="row g-2 mb-4 align-items-center">
     <div class="col-md-4">
-      <div class="input-group">
-        <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
-        <input type="text" name="q" value="{{ q }}" class="form-control border-start-0" placeholder="Search by name, phone, email, Booking ID...">
-      </div>
+      <input type="text" name="q" value="{{ q }}" class="form-control" placeholder="Search by name, phone, email, Booking ID...">
     </div>
     <div class="col-sm-6 col-md-2">
       <select name="status" class="form-select">
@@ -78,7 +71,7 @@
     <div class="col-sm-6 col-md-2 d-flex gap-2">
       <button type="submit" class="btn btn-cf-primary flex-grow-1">Filter</button>
       {% if q or status_filter or date_filter or doctor_filter %}
-      <a href="{% url 'dashboard:appointments' %}" class="btn btn-light border" title="Clear Filters"><i class="bi bi-x-lg"></i></a>
+      <a href="{% url 'dashboard:appointments' %}" class="btn btn-light border rounded-pill px-3 fw-semibold" title="Clear Filters">Clear</a>
       {% endif %}
     </div>
   </form>
@@ -133,23 +126,23 @@
             </form>
           </td>
           <td class="text-end">
-            <div class="d-inline-flex gap-1 align-items-center">
+            <div class="d-inline-flex gap-1.5 align-items-center">
               <!-- View Detail -->
-              <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-3 p-2 d-inline-flex align-items-center justify-content-center" title="View Full Details">
-                <i class="bi bi-eye text-primary"></i>
+              <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="View Full Details">
+                View
               </a>
               <!-- Patient Pass -->
-              <a href="{{ app.get_manage_url }}" target="_blank" class="btn btn-sm btn-light border rounded-3 p-2 d-inline-flex align-items-center justify-content-center" title="Open Digital Pass & QR">
-                <i class="bi bi-qr-code-scan text-dark"></i>
+              <a href="{{ app.get_manage_url }}" target="_blank" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary" title="Open Digital Pass & QR">
+                Pass
               </a>
               <!-- PDF -->
-              <a href="{{ app.get_pdf_url }}" class="btn btn-sm btn-light border rounded-3 p-2 d-inline-flex align-items-center justify-content-center" title="Download PDF Confirmation">
-                <i class="bi bi-file-earmark-pdf text-danger"></i>
+              <a href="{{ app.get_pdf_url }}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-danger" title="Download PDF Confirmation">
+                PDF
               </a>
               <!-- 1-Click WhatsApp Dispatch Modal Button -->
               {% if app.phone %}
-              <button type="button" class="btn-cf-whatsapp d-inline-flex align-items-center justify-content-center" onclick="openWhatsAppModal('{{ app.id }}')" title="1-Click WhatsApp Quick Dispatch">
-                <i class="bi bi-whatsapp"></i>
+              <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fw-semibold" onclick="openWhatsAppModal('{{ app.id }}')" title="1-Click WhatsApp Quick Dispatch">
+                WhatsApp
               </button>
               {% endif %}
             </div>
@@ -158,10 +151,10 @@
         {% empty %}
         <tr>
           <td colspan="6" class="text-center py-5 text-muted">
-            <i class="bi bi-inbox fs-2 d-block text-muted mb-2 opacity-50"></i>
             No appointment records match your criteria.
           </td>
         </tr>
+        {% endfor %}
         {% endfor %}
       </tbody>
     </table>
@@ -191,12 +184,9 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
       <div class="modal-header text-white" style="background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);">
-        <div class="d-flex align-items-center gap-2">
-          <i class="bi bi-whatsapp fs-4"></i>
-          <div>
-            <h5 class="modal-title fw-bold mb-0" id="whatsappQuickModalLabel">WhatsApp Quick Dispatch</h5>
-            <small class="text-white-50" id="waPatientHeader">CareFirst Reception Dispatch Center</small>
-          </div>
+        <div>
+          <h5 class="modal-title fw-bold mb-0" id="whatsappQuickModalLabel">WhatsApp Quick Dispatch</h5>
+          <small class="text-white-50" id="waPatientHeader">CareFirst Reception Dispatch Center</small>
         </div>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -244,12 +234,12 @@
 
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
           <button type="button" class="btn btn-outline-secondary rounded-pill px-3" onclick="copyWaText()">
-            <i class="bi bi-clipboard me-1"></i> <span id="copyBtnLabel">Copy Message Text</span>
+            <span id="copyBtnLabel">Copy Message Text</span>
           </button>
           <div class="d-flex gap-2">
             <button type="button" class="btn btn-light border rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-            <a href="#" id="waSendBtn" target="_blank" class="btn btn-success rounded-pill px-4 fw-bold shadow-sm d-inline-flex align-items-center gap-2" style="background-color: #25D366; border-color: #25D366;">
-              <i class="bi bi-whatsapp"></i> Open & Send via WhatsApp
+            <a href="#" id="waSendBtn" target="_blank" class="btn btn-success rounded-pill px-4 fw-bold shadow-sm" style="background-color: #25D366; border-color: #25D366;">
+              Open & Send via WhatsApp
             </a>
           </div>
         </div>
