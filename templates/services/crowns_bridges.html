@@ -152,33 +152,13 @@
     box-shadow: 0 12px 30px rgba(0,0,0,0.08);
   }
   .cgc-top-bar {
-    height: 16px;
+    height: 12px;
     background: var(--cf-primary-dark);
     border-radius: 15px 15px 0 0;
   }
-  .cgc-icon {
-    width: 70px;
-    height: 70px;
-    background: #f8f9fa;
-    border-radius: 50%;
-    position: absolute;
-    top: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 4px solid #fff;
-    overflow: hidden;
-  }
-  .cgc-icon i {
-    font-size: 2rem;
-    color: var(--cf-primary-dark);
-  }
   .cgc-header {
     text-align: center;
-    padding: 25px 15px 15px;
+    padding: 16px 15px 14px;
     font-weight: 800;
     color: var(--cf-primary-dark);
     font-size: 1.15rem;
@@ -368,7 +348,6 @@
       <div class="col-lg-3 col-md-6">
         <div class="crown-grid-card">
           <div class="cgc-top-bar"></div>
-          <div class="cgc-icon"></div>
           <div class="cgc-header">{% trans "METAL CROWN" %}</div>
           <img loading="lazy" src="{% static 'images/metal-crown.jpg' %}" alt="Metal Crown" class="cgc-image">
           <div class="cgc-body">
@@ -380,7 +359,6 @@
               <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "Cost-effective" %}</li>
             </ul>
             <div class="cgc-ideal">
-              <div class="cgc-ideal-icon"></div>
               <div class="cgc-ideal-text">
                 <strong>{% trans "IDEAL FOR:" %}</strong>
                 {% trans "Back teeth and molars where strength is the top priority." %}
@@ -394,7 +372,6 @@
       <div class="col-lg-3 col-md-6">
         <div class="crown-grid-card">
           <div class="cgc-top-bar" style="background: var(--cf-accent);"></div>
-          <div class="cgc-icon"></div>
           <div class="cgc-header" style="color: var(--cf-accent-dark);">{% trans "PFM CROWN" %}</div>
           <img loading="lazy" src="{% static 'images/pfm-crown.jpg' %}" alt="PFM Crown" class="cgc-image">
           <div class="cgc-body">
@@ -406,7 +383,6 @@
               <li> {% trans "More affordable than all-ceramic" %}</li>
             </ul>
             <div class="cgc-ideal">
-              <div class="cgc-ideal-icon"></div>
               <div class="cgc-ideal-text">
                 <strong>{% trans "IDEAL FOR:" %}</strong>
                 {% trans "Front and back teeth where strength and aesthetics are needed." %}
@@ -420,7 +396,6 @@
       <div class="col-lg-3 col-md-6">
         <div class="crown-grid-card">
           <div class="cgc-top-bar"></div>
-          <div class="cgc-icon"></div>
           <div class="cgc-header">{% trans "ZIRCONIA CROWN" %}</div>
           <img loading="lazy" src="{% static 'images/zirconia-crown.jpg' %}" alt="Zirconia Crown" class="cgc-image">
           <div class="cgc-body">
@@ -432,7 +407,6 @@
               <li><span style="color:#0284C7; font-size:1.1rem; margin-right:8px;">•</span> {% trans "Ideal for all teeth" %}</li>
             </ul>
             <div class="cgc-ideal">
-              <div class="cgc-ideal-icon"></div>
               <div class="cgc-ideal-text">
                 <strong>{% trans "IDEAL FOR:" %}</strong>
                 {% trans "Both front and back teeth. Best all-round performance." %}
@@ -446,7 +420,6 @@
       <div class="col-lg-3 col-md-6">
         <div class="crown-grid-card">
           <div class="cgc-top-bar" style="background: var(--cf-accent);"></div>
-          <div class="cgc-icon"></div>
           <div class="cgc-header" style="color: var(--cf-accent-dark);">{% trans "E-MAX CROWN" %}</div>
           <img loading="lazy" src="{% static 'images/e-max-crown.jpg' %}" alt="E-max Crown" class="cgc-image">
           <div class="cgc-body">
@@ -458,7 +431,6 @@
               <li> {% trans "Perfect for front teeth" %}</li>
             </ul>
             <div class="cgc-ideal">
-              <div class="cgc-ideal-icon"></div>
               <div class="cgc-ideal-text">
                 <strong>{% trans "IDEAL FOR:" %}</strong>
                 {% trans "Front teeth and visible areas for the best aesthetics." %}

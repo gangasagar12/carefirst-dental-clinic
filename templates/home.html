@@ -917,7 +917,7 @@
     <div class="row align-items-center g-4">
       <div class="col-lg-7">
         <div class="cf-hero-badge mb-2">
-          • {% trans "Kathmandu's Trusted Dental Clinic" %}
+          {% trans "Kathmandu's Trusted Dental Clinic" %}
         </div>
         
         <h1 class="cf-hero-title">
@@ -931,10 +931,10 @@
         <!-- Hero CTAs -->
         <div class="d-flex flex-wrap gap-3 align-items-center mb-2">
           <a href="{% url 'appointments:book' %}" class="cf-btn-primary">
-            <i class="bi bi-calendar-check-fill"></i> {% trans "Book Consultation" %}
+            {% trans "Book Consultation" %}
           </a>
           <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="cf-btn-outline">
-            <i class="bi bi-whatsapp text-success"></i> {% trans "WhatsApp: 980-7464136" %}
+             {% trans "WhatsApp: 980-7464136" %}
           </a>
         </div>
 
@@ -1489,7 +1489,7 @@
     {% if latest_videos|length > 6 %}
     <div class="text-center mt-5" id="cfVideoLoadMoreWrap">
       <button type="button" class="cf-btn-outline-primary shadow-sm" id="cfBtnLoadMoreVideos" onclick="toggleMoreHomeVideos()">
-        <i class="bi bi-collection-play-fill me-2"></i> {% trans "View More Videos" %}
+         {% trans "View More Videos" %}
       </button>
     </div>
     {% endif %}
@@ -1594,7 +1594,7 @@
         <div class="p-4 rounded-4 shadow-sm bg-white border d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
           <div class="d-flex align-items-center gap-3">
             <div class="cf-contact-icon-wrap m-0 d-flex align-items-center justify-content-center rounded-circle" style="width: 50px; height: 50px; font-size: 1.4rem; background: rgba(2, 132, 199, 0.1);">
-              <i class="bi bi-hospital-fill text-primary"></i>
+              
             </div>
             <div>
               <h6 class="fw-bold mb-0 text-dark">{% trans "CareFirst Dental Clinic — Shankhamul, Kathmandu" %}</h6>
@@ -1603,10 +1603,10 @@
           </div>
           <div class="d-flex gap-2">
             <a href="tel:+9779807464136" class="btn btn-outline-primary rounded-pill px-3 py-2 fw-bold text-nowrap">
-              <i class="bi bi-telephone-fill me-1"></i> +977 980-7464136
+               +977 980-7464136
             </a>
             <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success rounded-pill px-3 py-2 fw-bold text-nowrap">
-              <i class="bi bi-whatsapp me-1"></i> WhatsApp
+               WhatsApp
             </a>
           </div>
         </div>

@@ -1054,7 +1054,7 @@
 
             <div class="d-flex flex-wrap gap-3">
               <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary">
-                <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book Consultation with Dr. Subash" %}
+                </i> {% trans "Book Consultation with Dr. Subash" %}
               </a>
               <a href="{% url 'main:doctors' %}" class="cf-btn-secondary">
                 {% trans "Meet Our Dental Team" %} 
@@ -1069,9 +1069,6 @@
   </section>
 
 
-  <!-- =========================================================================
-       9. PATIENT EXPERIENCE HIGHLIGHT (Comfort, Cleanliness, Support)
-       ========================================================================= -->
   <section class="about-section-py experience-section-bg">
     <div class="container text-center">
       
@@ -1084,15 +1081,15 @@
 
       <div class="d-flex flex-wrap justify-content-center gap-3">
         <div class="exp-mini-badge">
-          <span style="color:#0284C7;">•</span>
+          <span style="color:#0284C7;"></span>
           <span>{% trans "Clean & Organized" %}</span>
         </div>
         <div class="exp-mini-badge">
-          <span style="color:#F59E0B;">•</span>
+          <span style="color:#F59E0B;"></span>
           <span>{% trans "Friendly Support Team" %}</span>
         </div>
         <div class="exp-mini-badge">
-          <span style="color:#EF4444;">•</span>
+          <span style="color:#EF4444;"></span>
           <span>{% trans "Clear Treatment Guidance" %}</span>
         </div>
       </div>
@@ -1223,30 +1220,6 @@
   <!-- 10. PATIENT STORIES & REVIEWS (UNIFIED MASTER SOCIAL PROOF) -->
   {% include 'components/patient_stories_reviews.html' %}
 
-  <!-- =========================================================================
-       11. FINAL CONVERSION CTA
-       ========================================================================= -->
-  <section class="final-cta-section">
-    <div class="container text-center position-relative z-1">
-      
-      <div class="mx-auto" style="max-width: 720px;">
-        <h2 class="cf-section-title text-white mb-3">{% trans "Ready to Take Care of Your Smile?" %}</h2>
-        <p class="fs-5 text-white-50 mb-4" style="line-height: 1.8;">
-          {% trans "Book a consultation with CareFirst Dental Clinic and experience patient-focused dental care in Shankhamul, Kathmandu." %}
-        </p>
-
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-          <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary btn-lg">
-            <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Book Appointment" %}
-          </a>
-          <a href="tel:+9779807464136" class="btn btn-outline-light btn-lg rounded-pill fw-bold px-4 py-2">
-            <i class="bi bi-telephone-fill me-1"></i> +977 980-7464136
-          </a>
-          <a href="https://wa.me/9779807464136" target="_blank" rel="noopener" class="btn btn-success btn-lg rounded-pill fw-bold px-4 py-2">
-            <i class="bi bi-whatsapp me-1"></i> WhatsApp Us
-          </a>
-        </div>
-      </div>
 
     </div>
   </section>
