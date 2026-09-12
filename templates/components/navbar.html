@@ -3,103 +3,10 @@
 <!-- Dedicated 3-Row Header Design System -->
 <style>
   /* ==========================================================================
-     3-ROW HEADER STRUCTURE:
-     Row 1: Dedicated Full-Width Flowing Marquee Ticker Row
-     Row 2: Deep Navy Utility Contact & Action Bar (Timings, Phone, Email, Socials, CTA, Lang)
-     Row 3: Main Navbar (Logo on Left + Spacious Menu on Right)
+     HEADER STRUCTURE:
+     Row 1: Deep Navy Utility Contact & Action Bar (Timings, Phone, Email, Socials, CTA, Lang)
+     Row 2: Main Navbar (Logo on Left + Spacious Menu on Right)
      ========================================================================== */
-
-  /* ===== ROW 1: Dedicated Marquee Announcement Ticker Row ===== */
-  .cf-header-row-marquee {
-    background-color: #020B16 !important;
-    background: linear-gradient(90deg, #020B16 0%, #06192E 50%, #020B16 100%) !important;
-    border-bottom: 1px solid rgba(56, 189, 248, 0.16) !important;
-    padding: 6px 0 !important;
-    font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
-    font-size: 0.8rem !important;
-    color: #E2E8F0 !important;
-    overflow: hidden !important;
-    position: relative !important;
-    z-index: 1045 !important;
-  }
-
-  .cf-marquee-inner {
-    display: flex !important;
-    align-items: center !important;
-    width: 100% !important;
-    gap: 14px !important;
-  }
-
-  .cf-marquee-badge {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-    font-weight: 800 !important;
-    color: #FFFFFF !important;
-    white-space: nowrap !important;
-    padding: 3px 12px !important;
-    background: rgba(2, 132, 199, 0.3) !important;
-    border: 1px solid rgba(56, 189, 248, 0.4) !important;
-    border-radius: 50px !important;
-    font-size: 0.74rem !important;
-    letter-spacing: 0.5px !important;
-    text-transform: uppercase !important;
-    flex-shrink: 0 !important;
-  }
-
-  .cf-marquee-badge i {
-    color: #F59E0B !important; /* Gold Star */
-  }
-
-  .cf-marquee-track-container {
-    flex: 1 1 auto !important;
-    overflow: hidden !important;
-    white-space: nowrap !important;
-    position: relative !important;
-    display: flex !important;
-    align-items: center !important;
-    mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent) !important;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent) !important;
-  }
-
-  .cf-marquee-track {
-    display: inline-flex !important;
-    align-items: center !important;
-    white-space: nowrap !important;
-    animation: cfMarqueeScroll3Row 30s linear infinite !important;
-    will-change: transform !important;
-  }
-
-  .cf-marquee-track-container:hover .cf-marquee-track {
-    animation-play-state: paused !important;
-  }
-
-  @keyframes cfMarqueeScroll3Row {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .cf-marquee-item {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-    color: #FFFFFF !important;
-    font-weight: 600 !important;
-    font-size: 0.8125rem !important;
-    padding: 0 4px !important;
-    white-space: nowrap !important;
-  }
-
-  .cf-marquee-item i {
-    color: #38BDF8 !important;
-  }
-
-  .cf-marquee-dot {
-    display: inline-block !important;
-    padding: 0 14px !important;
-    color: rgba(56, 189, 248, 0.5) !important;
-    font-size: 0.75rem !important;
-  }
 
 
   /* ===== ROW 2: Deep Navy Utility Contact & Action Bar ===== */
@@ -601,9 +508,6 @@
   }
 
   @media (max-width: 991.98px) {
-    .cf-header-row-marquee {
-      display: none !important;
-    }
     .cf-header-row-contact {
       padding: 5px 0 !important;
     }
@@ -721,48 +625,7 @@
   }
 </style>
 
-<!-- =========================================================================
-     ROW 1: Dedicated Full-Width Flowing Marquee Ticker Row
-     ========================================================================= -->
-<div class="cf-header-row-marquee">
-  <div class="container cf-marquee-inner">
-    <div class="cf-marquee-badge">
-      <i class="bi bi-star-fill"></i>
-      <span>{% trans "Announcements" %}</span>
-    </div>
-    <div class="cf-marquee-track-container" title="Clinic News">
-      <div class="cf-marquee-track">
-        <span class="cf-marquee-item"><i class="bi bi-geo-alt-fill"></i> {% trans "Pragatinagar Road, Shankhamul-31, Kathmandu (Shankhamul / New Baneshwor)" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-clock-fill"></i> {% trans "Open Daily (Mon–Sun): 7:30 AM – 7:30 PM" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-person-badge-fill"></i> {% trans "Best Dental Clinic in Kathmandu, Nepal" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-shield-fill-check"></i> {% trans "Free Initial Oral Consultation for New Patients" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-award-fill"></i> {% trans "Painless Root Canal & 3D Digital Dental Implants" %}</span>
-        
-        <span class="cf-marquee-dot">•</span>
-        <!-- Duplicate Loop for Seamless Infinite Scroll -->
-        <span class="cf-marquee-item"><i class="bi bi-geo-alt-fill"></i> {% trans "Pragatinagar Road, Shankhamul-31, Kathmandu (Shankhamul / New Baneshwor)" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-clock-fill"></i> {% trans "Open Daily (Mon–Sun): 7:30 AM – 7:30 PM" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-person-badge-fill"></i> {% trans "Best Dental Clinic in Kathmandu, Nepal" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-shield-fill-check"></i> {% trans "Free Initial Oral Consultation for New Patients" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-award-fill"></i> {% trans "Painless Root Canal & 3D Digital Dental Implants" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-person-badge-fill"></i> {% trans "Best Dental Clinic in Kathmandu, Nepal" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-shield-fill-check"></i> {% trans "Free Initial Oral Consultation for New Patients" %}</span>
-        <span class="cf-marquee-dot">•</span>
-        <span class="cf-marquee-item"><i class="bi bi-award-fill"></i> {% trans "Painless Root Canal & 3D Digital Dental Implants" %}</span>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <!-- =========================================================================
      ROW 2: Deep Navy Utility Contact & Action Bar
