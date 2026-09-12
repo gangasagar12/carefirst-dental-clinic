@@ -6,9 +6,6 @@
 <!-- AUTOMATED 24-HOUR REMINDER ACTION ALERT BANNER -->
 <div class="alert alert-info border-0 shadow-sm rounded-4 d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 p-3.5" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); color: #0369a1;">
   <div class="d-flex align-items-center gap-3">
-    <div class="rounded-circle bg-white p-2 d-flex align-items-center justify-content-center shadow-sm" style="width: 44px; height: 44px; color: #0284c7;">
-      <i class="bi bi-bell-fill fs-5"></i>
-    </div>
     <div>
       <h6 class="fw-bold mb-0 text-dark">
         24-Hour Pre-Appointment Reminders Ready ({{ reminder_summary.target_date|date:"l, M d" }})
@@ -24,8 +21,8 @@
     </a>
     <form method="post" action="{% url 'dashboard:appointments_send_reminders' %}" class="d-inline">
       {% csrf_token %}
-      <button type="submit" class="btn btn-sm btn-primary rounded-pill px-3 fw-bold shadow-sm d-flex align-items-center gap-1.5" onclick="return confirm('Dispatch automated 24-hour reminder messages and emails to {{ reminder_summary.pending_count }} patient(s)?');">
-        <i class="bi bi-send-fill"></i> Dispatch 24h Reminders Now
+      <button type="submit" class="btn btn-sm btn-primary rounded-pill px-3 fw-bold shadow-sm" onclick="return confirm('Dispatch automated 24-hour reminder messages and emails to {{ reminder_summary.pending_count }} patient(s)?');">
+        Dispatch 24h Reminders Now
       </button>
     </form>
   </div>
@@ -39,9 +36,8 @@
       <div class="cf-stat-info">
         <span class="cf-stat-label">Today's Bookings</span>
         <h3 class="cf-stat-value">{{ metrics.today_appointments }}</h3>
-        <span class="cf-stat-sub"> Active Scheduled Visits</span>
+        <span class="cf-stat-sub">Active Scheduled Visits</span>
       </div>
-      <div class="cf-stat-icon-wrap icon-blue"><i class="bi bi-calendar2-week"></i></div>
     </div>
   </div>
 
@@ -50,9 +46,8 @@
       <div class="cf-stat-info">
         <span class="cf-stat-label">Pending Reviews</span>
         <h3 class="cf-stat-value text-warning">{{ metrics.pending_appointments }}</h3>
-        <span class="cf-stat-sub text-muted"> Needs Confirmation</span>
+        <span class="cf-stat-sub text-muted">Needs Confirmation</span>
       </div>
-      <div class="cf-stat-icon-wrap icon-amber"><i class="bi bi-hourglass-split"></i></div>
     </div>
   </div>
 
@@ -61,9 +56,8 @@
       <div class="cf-stat-info">
         <span class="cf-stat-label">Confirmed Visits</span>
         <h3 class="cf-stat-value text-success">{{ metrics.confirmed_appointments }}</h3>
-        <span class="cf-stat-sub"> Ready for Treatment</span>
+        <span class="cf-stat-sub">Ready for Treatment</span>
       </div>
-      <div class="cf-stat-icon-wrap icon-green"><i class="bi bi-shield-check"></i></div>
     </div>
   </div>
 
@@ -72,9 +66,8 @@
       <div class="cf-stat-info">
         <span class="cf-stat-label">New Inquiries</span>
         <h3 class="cf-stat-value text-danger">{{ metrics.unread_messages }}</h3>
-        <span class="cf-stat-sub text-muted"> Unread Messages</span>
+        <span class="cf-stat-sub text-muted">Unread Messages</span>
       </div>
-      <div class="cf-stat-icon-wrap icon-rose"><i class="bi bi-chat-dots"></i></div>
     </div>
   </div>
 </div>
@@ -84,16 +77,11 @@
   <div class="d-flex flex-wrap gap-2 align-items-center justify-content-between">
     <span class="fw-bold text-dark">Quick Management Shortcuts:</span>
     <div class="d-flex flex-wrap gap-2">
-      <a href="{% url 'dashboard:service_create' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">Add Service
-      </a>
-      <a href="{% url 'dashboard:doctor_create' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">Add Doctor
-      </a>
-      <a href="{% url 'dashboard:pricing_item_create' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">Add Pricing Item
-      </a>
-      <a href="{% url 'dashboard:offer_create' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">Create Special Offer
-      </a>
-      <a href="{% url 'dashboard:video_create' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">Add Video Guide
-      </a>
+      <a href="{% url 'dashboard:service_create' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">Add Service</a>
+      <a href="{% url 'dashboard:doctor_create' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">Add Doctor</a>
+      <a href="{% url 'dashboard:pricing_item_create' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">Add Pricing Item</a>
+      <a href="{% url 'dashboard:offer_create' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">Create Special Offer</a>
+      <a href="{% url 'dashboard:video_create' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">Add Video Guide</a>
     </div>
   </div>
 </div>
@@ -105,10 +93,10 @@
     <div class="cf-dash-card">
       <div class="cf-dash-card-header">
         <h4 class="cf-card-title">
-           Recent Appointment Requests
+          Recent Appointment Requests
         </h4>
         <a href="{% url 'dashboard:appointments' %}" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold">
-          View All 
+          View All
         </a>
       </div>
 
@@ -151,10 +139,10 @@
                 </span>
               </td>
               <td>
-                <div class="d-flex gap-1">
-                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-3 d-inline-flex align-items-center justify-content-center p-2" title="Inspect Appointment"><i class="bi bi-eye"></i></a>
+                <div class="d-flex gap-1.5 align-items-center">
+                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="Inspect Appointment">View</a>
                   {% if app.phone %}
-                  <a href="https://wa.me/{{ app.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ app.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic%20regarding%20your%20appointment." target="_blank" class="btn-cf-whatsapp d-inline-flex align-items-center justify-content-center" title="WhatsApp Patient"><i class="bi bi-whatsapp"></i></a>
+                  <a href="https://wa.me/{{ app.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ app.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic%20regarding%20your%20appointment." target="_blank" class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fw-semibold" title="WhatsApp Patient">WhatsApp</a>
                   {% endif %}
                 </div>
               </td>
@@ -162,7 +150,6 @@
             {% empty %}
             <tr>
               <td colspan="5" class="text-center py-4 text-muted">
-                
                 No appointment requests logged yet.
               </td>
             </tr>
@@ -170,7 +157,6 @@
           </tbody>
         </table>
       </div>
-    </div>
   </div>
 
   <!-- Right Column: Recent Patient Inquiries -->
