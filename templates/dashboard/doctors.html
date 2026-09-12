@@ -64,12 +64,12 @@
             {% endif %}
           </td>
           <td class="text-end text-nowrap">
-            <div class="d-inline-flex gap-1 align-items-center">
-              <a href="{% url 'dashboard:doctor_edit' doc.id %}" class="btn btn-sm btn-light border rounded-3 p-2 d-inline-flex align-items-center justify-content-center" title="Edit Doctor Profile">
-                <i class="bi bi-pencil-square text-dark"></i>
+            <div class="d-inline-flex gap-1.5 align-items-center">
+              <a href="{% url 'dashboard:doctor_edit' doc.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="Edit Doctor Profile">
+                Edit
               </a>
-              <a href="{% url 'dashboard:doctor_delete' doc.id %}" class="btn btn-sm btn-light border rounded-3 p-2 d-inline-flex align-items-center justify-content-center" onclick="return confirm('Are you sure you want to remove Dr. {{ doc.name }}?');" title="Delete Specialist">
-                <i class="bi bi-trash3 text-danger"></i>
+              <a href="{% url 'dashboard:doctor_delete' doc.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" onclick="return confirm('Are you sure you want to remove Dr. {{ doc.name }}?');" title="Delete Specialist">
+                Delete
               </a>
             </div>
           </td>
@@ -77,7 +77,6 @@
         {% empty %}
         <tr>
           <td colspan="7" class="text-center py-5 text-muted">
-            <i class="bi bi-inbox fs-2 d-block text-muted mb-2 opacity-50"></i>
             <h5>No Doctors Added</h5>
             <p class="small mb-0">Click 'Add New Doctor' to create your first clinical specialist.</p>
           </td>
