@@ -981,7 +981,7 @@ msgid "Advanced Operatory Suite"
 msgstr "उन्नत अपरेटरी सुइट"
 
 msgid "Advanced Periodontitis"
-msgstr "उन्नत Periodontitis"
+msgstr "उन्नत पेरियोडोन्टाइटिस"
 
 msgid "Advanced Technology"
 msgstr "उन्नत प्रविधि"
@@ -3597,7 +3597,7 @@ msgid "EXPLORE MORE"
 msgstr "थप अन्वेषण गर्नुहोस्"
 
 msgid "Early Periodontitis"
-msgstr "प्रारम्भिक Periodontitis"
+msgstr "प्रारम्भिक पेरियोडोन्टाइटिस"
 
 msgid ""
 "Early conservative treatment stops decay and preserves your natural tooth. "
@@ -4729,10 +4729,10 @@ msgstr ""
 "गाइडहरू प्राप्त गर्नुहोस्।"
 
 msgid "Gingivitis"
-msgstr "Gingivitis"
+msgstr "जिन्जिभाइटिस"
 
 msgid "Gingivitis (Early Stage)"
-msgstr "Gingivitis (प्रारम्भिक चरण)"
+msgstr "जिन्जिभाइटिस (प्रारम्भिक चरण)"
 
 msgid ""
 "Gingivitis (the early stage) can be completely cured. However, periodontitis"
@@ -4774,13 +4774,13 @@ msgid "Got Questions? We Have Answers."
 msgstr "केही प्रश्न छन्? हामीसँग उत्तर छन्।"
 
 msgid "Gum & Periodontal Care"
-msgstr "गम र पिरियडोन्टल केयर"
+msgstr "गिजा तथा पेरियोडोन्टल स्याहार"
 
 msgid "Gum Bleeding & Gingivitis"
 msgstr "गम रगत बग्ने र जिन्जिभाइटिस"
 
 msgid "Gum Care & Periodontal Therapy"
-msgstr "गम केयर र पिरियडोन्टल थेरापी"
+msgstr "गिजाको स्याहार तथा पेरियोडोन्टल उपचार"
 
 msgid "Gum Disease"
 msgstr "गिजाको रोग"
@@ -7340,19 +7340,19 @@ msgid ""
 msgstr "आवधिक 6-महिना निवारक मर्मत, प्लेक हटाउने, र स्वस्थ मुस्कान जाँच।"
 
 msgid "Periodontal (Gum) Treatment"
-msgstr "Periodontal (Gum) उपचार"
+msgstr "गिजाको विशेष उपचार"
 
 msgid "Periodontal Patient"
 msgstr "पिरियडोन्टल रोगी"
 
 msgid "Periodontal Treatment"
-msgstr "गिजाको उपचार"
+msgstr "गिजाको विशेष उपचार"
 
 msgid "Periodontal Treatment (Gum)"
 msgstr "गिजाको विशेष उपचार"
 
 msgid "Periodontal Treatments We Offer"
-msgstr "हामीले प्रस्ताव गर्ने पिरियडोन्टल उपचारहरू"
+msgstr "हामीले प्रदान गर्ने गिजाका विशेष उपचारहरू"
 
 msgid ""
 "Periodontal disease (gum disease) is an infection of the tissues that hold "
@@ -7360,10 +7360,9 @@ msgid ""
 "habits that allow plaque—a sticky film of bacteria—to build up on the teeth "
 "and harden."
 msgstr ""
-"Periodontal Disease (gum disease) तपाईंको दाँतलाई ठाउँमा राख्ने तन्तुहरूको "
-"संक्रमण हो। यो सामान्यतया खराब ब्रस गर्ने र फ्लस गर्ने बानीको कारणले गर्दा "
-"हुन्छ जसले दाँतमा प्लाक—ब्याक्टेरियाको टाँसिएको फिलिम-लाई बनाउँछ र कडा "
-"बनाउँछ।"
+"गिजाको समस्या (पेरियोडोन्टल रोग) दाँतलाई अड्याउने तन्तु र हड्डीको संक्रमण "
+"हो। नियमित रूपमा राम्रोसँग दाँत नमाझ्दा दाँतमा जम्ने ब्याक्टेरिया र फोहोर "
+"(प्लाक तथा टार्टर) का कारण यो समस्या उत्पन्न हुन्छ।"
 
 msgid ""
 "Periodontal disease is chronic. We schedule frequent maintenance cleanings "
@@ -7373,7 +7372,7 @@ msgstr ""
 "बारम्बार मर्मत सफाई (हरेक 3-4 महिना) को तालिका बनाउँछौं।"
 
 msgid "Periodontitis (Advanced Stage)"
-msgstr "Periodontitis (उन्नत चरण)"
+msgstr "पेरियोडोन्टाइटिस (उन्नत चरण)"
 
 msgid ""
 "Periodontitis has destroyed the bone supporting the tooth, making it loose."
@@ -7870,7 +7869,8 @@ msgid ""
 "Protect the foundation of your smile with expert, comprehensive gum care "
 "therapies."
 msgstr ""
-"विशेषज्ञ, व्यापक गम हेरचाह उपचार संग आफ्नो मुस्कान को जग रक्षा गर्नुहोस्।"
+"विशेषज्ञ तथा प्रभावकारी गिजा उपचार सेवाका साथ आफ्नो सुन्दर मुस्कानको जग "
+"सुरक्षित राख्नुहोस्।"
 
 msgid "Protecting the tooth from future fracture."
 msgstr "दाँतलाई भविष्यको फ्र्याक्चरबाट बचाउने।"
@@ -8283,7 +8283,7 @@ msgid "Restorative — Tooth-Colored Filling"
 msgstr "पुनर्स्थापना — दाँतकै रङको फिलिङ"
 
 msgid "Restore Gum Health"
-msgstr "गम स्वास्थ्य पुनर्स्थापित गर्नुहोस्"
+msgstr "गिजाको स्वास्थ्य पुनर्स्थापना गर्नुहोस्"
 
 msgid "Restore Your Smile"
 msgstr "आफ्नो मुस्कान पुनर्स्थापित गर्नुहोस्"
@@ -9040,7 +9040,7 @@ msgid "Stages of"
 msgstr "को चरणहरू"
 
 msgid "Stages of Gum Disease"
-msgstr "गिजाको समस्याका चरणहरू"
+msgstr "गिजा समस्याका चरणहरू"
 
 msgid "Stain-prone ties"
 msgstr "दाग-प्रवण सम्बन्धहरू"
@@ -12682,3 +12682,9 @@ msgstr "पहिले: फोहोर र पहेँलोपन"
 
 msgid "After: Clean & Polished"
 msgstr "पछि: सफा र चम्किलो"
+
+msgid "Signs & Symptoms"
+msgstr "लक्षण तथा संकेतहरू"
+
+msgid "Causes & Risk Factors"
+msgstr "कारण तथा जोखिमका पक्षहरू"
