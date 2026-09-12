@@ -161,20 +161,88 @@
 /* Eyebrow Pill Badges */
 .cf-eyebrow-badge,
 .nd-eyebrow {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  background: rgba(2, 132, 199, 0.1) !important;
-  color: #0284C7 !important;
-  padding: 6px 16px !important;
-  border-radius: 50px !important;
-  font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif) !important;
-  font-size: 0.8rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 1px !important;
-  text-transform: uppercase !important;
-  border: 1px solid rgba(2, 132, 199, 0.25) !important;
-  margin-bottom: 14px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284C7;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-family: var(--cf-font-nav, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  margin-bottom: 14px;
+  transition: all 0.2s ease;
+}
+
+/* Light / White Theme Eyebrow Badges on Dark Backgrounds & Heroes */
+.cf-eyebrow-badge.text-white,
+.cf-eyebrow-badge.badge-light,
+.service-hero .cf-eyebrow-badge,
+.services-hero-banner .cf-eyebrow-badge,
+.about-hero .cf-eyebrow-badge,
+.gallery-hero .cf-eyebrow-badge,
+.hero-section .cf-eyebrow-badge {
+  background: rgba(255, 255, 255, 0.16) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.service-hero .cf-eyebrow-badge i,
+.services-hero-banner .cf-eyebrow-badge i,
+.about-hero .cf-eyebrow-badge i,
+.gallery-hero .cf-eyebrow-badge i,
+.hero-section .cf-eyebrow-badge i {
+  color: #F59E0B !important; /* Vivid Gold */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+/* Universal Hero Readability & Contrast Enhancement */
+.service-hero h1,
+.services-hero-banner h1,
+.about-hero h1,
+.gallery-hero h1,
+.hero-section h1 {
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+}
+
+.service-hero .hero-sub,
+.services-hero-banner .hero-sub,
+.about-hero .hero-sub,
+.gallery-hero .hero-sub,
+.hero-section .lead {
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55), 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+}
+
+.service-hero .breadcrumb,
+.services-hero-banner .breadcrumb,
+.about-hero .breadcrumb,
+.gallery-hero .breadcrumb {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6) !important;
+}
+
+.service-hero .breadcrumb-item a,
+.services-hero-banner .breadcrumb-item a,
+.about-hero .breadcrumb-item a,
+.gallery-hero .breadcrumb-item a {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.service-hero .breadcrumb-item.active,
+.services-hero-banner .breadcrumb-item.active,
+.about-hero .breadcrumb-item.active,
+.gallery-hero .breadcrumb-item.active {
+  color: #FBBF24 !important; /* Gold */
+  font-weight: 700 !important;
 }
 
 /* Standard Section Headings & Subtitles */
