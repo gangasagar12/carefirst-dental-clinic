@@ -118,13 +118,13 @@
       <ol class="breadcrumb justify-content-center mb-0">
         <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-white text-decoration-none opacity-75">{% trans "Home" %}</a></li>
         <li class="breadcrumb-item"><a href="{% url 'main:services_list' %}" class="text-white text-decoration-none opacity-75">{% trans "Services" %}</a></li>
-        <li class="breadcrumb-item active text-warning">Scaling & Polishing</li>
+        <li class="breadcrumb-item active text-warning">{% trans "Scaling & Polishing" %}</li>
       </ol>
     </nav>
-    <h1 class="fw-bold">Scaling & Polishing</h1>
+    <h1 class="fw-bold">{% trans "Scaling & Polishing" %}</h1>
     <p class="hero-sub mx-auto">{% trans "Professional deep cleaning to remove plaque, tartar, and surface stains." %}</p>
     <div class="mt-4">
-      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">Book a Professional Clean from {{ service.starting_price }}</a>
+      <a href="{% url 'main:contact' %}#book" class="btn btn-warning text-dark py-2 px-4 rounded-pill fw-bold">{% trans "Book a Professional Clean from" %} {{ service.starting_price }}</a>
     </div>
   </div>
 </section>
@@ -170,7 +170,7 @@
         <ul class="symptom-list mb-0">
           <li> <span>{% trans "Gums that bleed easily when brushing or flossing." %}</span></li>
           <li> <span>{% trans "Yellow or brown hard deposits along the gumline." %}</span></li>
-          <li><span style="color:#0284C7; font-size:1.2rem; margin-right:8px; line-height:1;">•</span> <span>{% blocktrans %}Persistent bad breath that won't go away.{% endblocktrans %}</span></li>
+          <li> <span>{% trans "Persistent bad breath that won't go away." %}</span></li>
           <li> <span>{% trans "Visible tea, coffee, or tobacco stains on the teeth." %}</span></li>
           <li> <span>{% trans "It has been more than 6 months since your last cleaning." %}</span></li>
         </ul>
@@ -178,7 +178,7 @@
       <!-- Benefits -->
       <div class="col-lg-7">
         <div class="bg-white p-5 rounded-4 h-100 shadow-sm border" style="border-color: rgba(14,90,79,0.08)!important;">
-          <h4 class="cf-section-title mb-4">Benefits of Scaling & Polishing</h4>
+          <h4 class="cf-section-title mb-4">{% trans "Benefits of Scaling & Polishing" %}</h4>
           <div class="row g-4">
             <div class="col-md-6">
               <div class="sp-card border-0 shadow-none p-0 bg-transparent">
@@ -322,15 +322,15 @@
         <!-- Before & After -->
         <div class="mb-5">
           <div class="cf-eyebrow-badge">{% trans "Results" %}</div>
-          <h3 class="cf-section-title mb-4">Before & After Treatment</h3>
+          <h3 class="cf-section-title mb-4">{% trans "Before & After Treatment" %}</h3>
           <div class="d-flex flex-column gap-3">
             <div class="sp-gallery-img">
               <img loading="lazy" src="{% static 'images/scaling_before.png' %}" alt="Teeth Before Scaling">
-              <div class="position-absolute bottom-0 start-0 w-100 p-2 bg-dark bg-opacity-75 text-white text-center small fw-bold">Before: Tartar & Stains</div>
+              <div class="position-absolute bottom-0 start-0 w-100 p-2 bg-dark bg-opacity-75 text-white text-center small fw-bold">{% trans "Before: Tartar & Stains" %}</div>
             </div>
             <div class="sp-gallery-img">
               <img loading="lazy" src="{% static 'images/scaling_after.png' %}" alt="Teeth After Polishing">
-              <div class="position-absolute bottom-0 start-0 w-100 p-2 bg-success bg-opacity-75 text-white text-center small fw-bold">After: Clean & Polished</div>
+              <div class="position-absolute bottom-0 start-0 w-100 p-2 bg-success bg-opacity-75 text-white text-center small fw-bold">{% trans "After: Clean & Polished" %}</div>
             </div>
           </div>
         </div>
@@ -339,15 +339,15 @@
         <div>
           <h4 class="cf-section-title mb-3">{% trans "Aftercare Tips" %}</h4>
           <div class="sp-tip-card">
-            <h6 class="fw-bold"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Mild Sensitivity is Normal" %}</h6>
+            <h6 class="fw-bold">{% trans "Mild Sensitivity is Normal" %}</h6>
             <p class="small text-muted mb-0">{% trans "Your teeth may feel slightly sensitive for a day or two, especially if you had heavy tartar buildup. Use a sensitivity toothpaste if needed." %}</p>
           </div>
           <div class="sp-tip-card">
-            <h6 class="fw-bold"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Avoid Staining Foods" %}</h6>
+            <h6 class="fw-bold">{% trans "Avoid Staining Foods" %}</h6>
             <p class="small text-muted mb-0">{% trans "Try to avoid dark coffee, tea, red wine, and smoking for at least 24 hours to let the freshly polished enamel settle." %}</p>
           </div>
           <div class="sp-tip-card border-success">
-            <h6 class="fw-bold"><span style="color:#0284C7; margin-right:8px;">•</span> {% trans "Maintain the Routine" %}</h6>
+            <h6 class="fw-bold">{% trans "Maintain the Routine" %}</h6>
             <p class="small text-muted mb-0">{% trans "Brush twice daily and floss once a day to prevent the tartar from returning quickly." %}</p>
           </div>
         </div>

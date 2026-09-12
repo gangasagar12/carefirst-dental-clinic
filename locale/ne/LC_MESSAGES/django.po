@@ -8506,7 +8506,7 @@ msgid "Saves the Natural Tooth"
 msgstr "प्राकृतिक दाँत बचाउँछ"
 
 msgid "Scaling & Polishing"
-msgstr "दाँत सफा गर्ने (स्केलिङ र पोलिसिङ)"
+msgstr "दाँत सफाइ र पोलिसिङ (स्केलिङ)"
 
 msgid "Scaling and Polishing"
 msgstr "दाँत सफा गर्ने (स्केलिङ र पोलिसिङ)"
@@ -12667,3 +12667,18 @@ msgstr "\"%(value)s\" मान या त True वा False हुनुपर�
 
 msgid "“%%(value)s” value must be either True, False, or None."
 msgstr "\"%(value)s\" मान या त True, False, वा None हुनुपर्छ।"
+
+msgid "Benefits of Scaling & Polishing"
+msgstr "दाँत सफाइ र पोलिसिङका फाइदाहरू"
+
+msgid "Book a Professional Clean from"
+msgstr "सुरुवाती शुल्कमा दाँत सफाइ बुक गर्नुहोस्:"
+
+msgid "Before & After Treatment"
+msgstr "उपचार अघि र पछिको नतिजा"
+
+msgid "Before: Tartar & Stains"
+msgstr "पहिले: फोहोर र पहेँलोपन"
+
+msgid "After: Clean & Polished"
+msgstr "पछि: सफा र चम्किलो"
