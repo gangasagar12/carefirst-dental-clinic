@@ -101,13 +101,14 @@
 
   @media (max-width: 768px) {
     .cf-global-floating-widget {
-      bottom: 20px;
-      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      right: 12px;
       gap: 10px;
+      z-index: 1030;
     }
     .cf-global-float-btn {
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       font-size: 1.15rem;
     }
     .cf-global-float-btn .cf-float-tooltip {

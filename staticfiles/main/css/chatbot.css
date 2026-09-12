@@ -849,21 +849,27 @@
 /* ── Mobile Responsive Overlay ── */
 @media (max-width: 576px) {
   .cf-chat-launcher-container {
-    bottom: 20px;
-    left: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    left: 14px;
+    z-index: 1030;
   }
   .cf-chat-panel {
     bottom: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     max-width: 100vw;
-    max-height: 100vh;
+    max-height: 100dvh;
     border-radius: 0;
     transform-origin: center;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   .cf-chat-launcher {
     padding: 8px 14px 8px 10px;
     font-size: 0.84rem;
+  }
+  .cf-chat-input {
+    font-size: 16px !important; /* Prevent iOS Safari auto-zoom */
   }
 }
