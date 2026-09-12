@@ -129,8 +129,7 @@
         <input type="hidden" name="status" value="{{ status_filter }}">
         <div class="col-md-8">
           <div class="input-group">
-            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
-            <input type="text" name="q" value="{{ q }}" class="form-control border-start-0" placeholder="{% trans 'Search by patient name, phone number, appointment # or service...' %}">
+            <input type="text" name="q" value="{{ q }}" class="form-control" placeholder="{% trans 'Search by patient name, phone number, appointment # or service...' %}">
             {% if q %}
               <a href="?status={{ status_filter }}" class="btn btn-outline-secondary">{% trans "Clear" %}</a>
             {% endif %}
@@ -320,17 +319,17 @@
                   </button>
                 </div>
               {% else %}
-                <div class="d-inline-flex gap-1">
-                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-outline-secondary btn-sm rounded-pill px-2.5" title="View Details">
-                    <i class="bi bi-eye"></i>
+                <div class="d-inline-flex gap-1.5 align-items-center">
+                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-outline-secondary btn-sm rounded-pill px-2.5 py-1 fw-semibold" title="View Details">
+                    View
                   </a>
                   <!-- Re-evaluate / Override Button for staff -->
                   <button type="button" 
-                          class="btn btn-outline-primary btn-sm rounded-pill px-2"
+                          class="btn btn-outline-primary btn-sm rounded-pill px-2.5 py-1 fw-semibold"
                           data-bs-toggle="modal" 
                           data-bs-target="#modalApprove{{ app.id }}"
                           title="{% trans 'Re-evaluate or Grant' %}">
-                    <i class="bi bi-arrow-repeat"></i>
+                    Review
                   </button>
                 </div>
               {% endif %}

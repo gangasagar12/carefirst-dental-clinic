@@ -49,8 +49,8 @@
             Filter Ledger
           </button>
           {% if q or status_filter %}
-          <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-light rounded-pill px-3 d-inline-flex align-items-center justify-content-center" title="Clear Filters">
-            <i class="bi bi-x-lg"></i>
+          <a href="{% url 'dashboard:loyalty_rewards' %}" class="btn btn-light rounded-pill px-3 d-inline-flex align-items-center justify-content-center fw-semibold" title="Clear Filters">
+            Clear
           </a>
           {% endif %}
         </div>
@@ -124,12 +124,12 @@
             </td>
             <td class="text-end pe-4">
               {% if reward.status == 'available' %}
-              <div class="btn-group">
-                <a href="{% url 'dashboard:loyalty_reception' %}?q={{ reward.patient.phone }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 me-1">
+              <div class="d-inline-flex gap-1.5 align-items-center">
+                <a href="{% url 'dashboard:loyalty_reception' %}?q={{ reward.patient.phone }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold">
                   Redeem
                 </a>
-                <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-2 d-inline-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#cancelRewardModal{{ reward.id }}" title="Cancel Reward">
-                  <i class="bi bi-trash3"></i>
+                <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" data-bs-toggle="modal" data-bs-target="#cancelRewardModal{{ reward.id }}" title="Cancel Reward">
+                  Cancel
                 </button>
               </div>
 
