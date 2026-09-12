@@ -449,31 +449,36 @@
     }
   }
 
+  function isNepali() {
+    return window.location.pathname.startsWith('/ne/') || window.location.pathname === '/ne' || document.documentElement.lang === 'ne';
+  }
+
   // Appointment Modal Helper
   function startAppointmentModal(treatmentName) {
-    const defaultTreatment = treatmentName || document.body.getAttribute('data-treatment-slug') || 'General Check-up';
+    const isNe = isNepali();
+    const defaultTreatment = treatmentName || document.body.getAttribute('data-treatment-slug') || (isNe ? 'सामान्य दन्त परीक्षण' : 'General Check-up');
     const formHtml = `
       <div class="p-3 bg-white rounded-3 border">
-        <h6 class="fw-bold mb-2 text-primary"><i class="bi bi-calendar-check me-1"></i> Quick Appointment Request</h6>
+        <h6 class="fw-bold mb-2 text-primary"><i class="bi bi-calendar-check me-1"></i> ${isNe ? 'छिटो अपोइन्टमेन्ट अनुरोध' : 'Quick Appointment Request'}</h6>
         <div class="mb-2">
-          <input type="text" id="cfQuickName" class="form-control form-control-sm" placeholder="Your Full Name *" required>
+          <input type="text" id="cfQuickName" class="form-control form-control-sm" placeholder="${isNe ? 'तपाईंको पूरा नाम *' : 'Your Full Name *'}" required>
         </div>
         <div class="mb-2">
-          <input type="tel" id="cfQuickPhone" class="form-control form-control-sm" placeholder="Phone Number (e.g. 98XXXXXXXX) *" required>
+          <input type="tel" id="cfQuickPhone" class="form-control form-control-sm" placeholder="${isNe ? 'फोन नम्बर (जस्तै ९८XXXXXXXX) *' : 'Phone Number (e.g. 98XXXXXXXX) *'}" required>
         </div>
         <div class="mb-2">
           <input type="date" id="cfQuickDate" class="form-control form-control-sm" value="${new Date(Date.now() + 86400000).toISOString().split('T')[0]}">
         </div>
-        <button class="btn btn-primary btn-sm w-100 fw-bold" onclick="window.careFirstChat.submitAppointmentForm('${defaultTreatment}')">Submit Appointment Request</button>
+        <button class="btn btn-primary btn-sm w-100 fw-bold" onclick="window.careFirstChat.submitAppointmentForm('${defaultTreatment}')">${isNe ? 'अपोइन्टमेन्ट अनुरोध पठाउनुहोस्' : 'Submit Appointment Request'}</button>
         <div class="text-center mt-2">
-          <a href="/appointment/?treatment=${encodeURIComponent(defaultTreatment)}&source=chatbot" class="small text-decoration-none text-primary fw-bold" style="font-size:0.75rem;">
-            Open Full Interactive Booking Funnel →
+          <a href="${isNe ? '/ne/appointment/' : '/appointment/'}?treatment=${encodeURIComponent(defaultTreatment)}&source=chatbot" class="small text-decoration-none text-primary fw-bold" style="font-size:0.75rem;">
+            ${isNe ? 'सम्पूर्ण बुकिङ फारम खोल्नुहोस् →' : 'Open Full Interactive Booking Funnel →'}
           </a>
         </div>
       </div>
     `;
 
-    appendMessage('assistant', `Please fill out your preferred details below to book for **${defaultTreatment}**:`, null, null, []);
+    appendMessage('assistant', isNe ? `कृपया **${defaultTreatment}** का लागि आफ्नो विवरण भर्नुहोस्:` : `Please fill out your preferred details below to book for **${defaultTreatment}**:`, null, null, []);
     const row = document.createElement('div');
     row.className = 'cf-chat-msg-row assistant';
     const bubble = document.createElement('div');
@@ -511,33 +516,40 @@
 
   function getPageContextMessage() {
     const path = window.location.pathname.toLowerCase();
+    const isNe = isNepali();
+    const subText = isNe ? 'केयरफर्स्ट AI • अनलाइन' : 'CareFirst AI • Online';
 
     // Treatment Pages (e.g. /en/services/root-canal/, /services/, /treatments/)
     if (path.includes('/services') || path.includes('/treatments')) {
       const parts = path.split('/').filter(Boolean);
       // If viewing a specific treatment detail
       if (parts.length >= 2 && !['services', 'treatments', 'en', 'ne'].includes(parts[parts.length - 1])) {
-        return { emoji: '🦷', title: 'Questions about this treatment?', sub: 'CareFirst AI • Online' };
+        return { emoji: '🦷', title: isNe ? 'यस उपचारबारे प्रश्न छ?' : 'Questions about this treatment?', sub: subText };
       }
-      return { emoji: '🦷', title: 'Questions about treatments?', sub: 'CareFirst AI • Online' };
+      return { emoji: '🦷', title: isNe ? 'दन्त सेवाबारे सोध्नुहोस्?' : 'Questions about treatments?', sub: subText };
     }
 
     // Pricing Page (e.g. /pricing/, /en/pricing/)
     if (path.includes('/pricing')) {
-      return { emoji: '💰', title: 'Need help with pricing?', sub: 'CareFirst AI • Online' };
+      return { emoji: '💰', title: isNe ? 'शुल्क विवरणबारे बुझ्न?' : 'Need help with pricing?', sub: subText };
     }
 
     // Appointment / Booking Page (e.g. /appointment/, /en/appointment/, /contact/#book)
     if (path.includes('/appointment') || path.includes('/book')) {
-      return { emoji: '📅', title: 'Need help booking?', sub: 'CareFirst AI • Online' };
+      return { emoji: '📅', title: isNe ? 'अपोइन्टमेन्ट बुक गर्न सहयोग?' : 'Need help booking?', sub: subText };
     }
 
     // Default / Homepage / Other Pages
-    return { emoji: '👋', title: 'Need dental help?', sub: 'CareFirst AI • Online' };
+    return { emoji: '👋', title: isNe ? 'दन्त सल्लाह वा सहयोग?' : 'Need dental help?', sub: subText };
   }
 
   function getInactivityMessage() {
-    return { emoji: '💬', title: 'Have a question?', sub: 'CareFirst AI • Online' };
+    const isNe = isNepali();
+    return { 
+      emoji: '💬', 
+      title: isNe ? 'केही जिज्ञासा वा प्रश्न छ?' : 'Have a question?', 
+      sub: isNe ? 'केयरफर्स्ट AI • अनलाइन' : 'CareFirst AI • Online' 
+    };
   }
 
   function updateLauncherBadge(emoji, title, sub, force = false) {

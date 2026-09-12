@@ -350,7 +350,7 @@
       <!-- Text Left -->
       <div class="col-lg-7">
         <div class="nd-eyebrow mb-3">
-          <i class="bi bi-stars"></i>
+          
           {% trans "BEFORE & AFTER GALLERY" %}
         </div>
         <h2 class="section-heading mb-4">
@@ -364,10 +364,10 @@
         </p>
         <div class="d-flex gap-3 flex-wrap pt-1">
           <a href="{% url 'main:contact' %}#appointment" class="cf-btn-primary">
-            <i class="bi bi-calendar2-check-fill me-1"></i> {% trans "Start Your Smile Journey" %}
+             {% trans "Start Your Smile Journey" %}
           </a>
           <a href="{% url 'main:why_choose' %}" class="cf-btn-secondary">
-            <i class="bi bi-shield-check me-1"></i> {% blocktrans %}Why Choose CareFirst{% endblocktrans %}
+             {% blocktrans %}Why Choose CareFirst{% endblocktrans %}
           </a>
         </div>
       </div>
@@ -409,7 +409,8 @@
   <div class="container">
     <div class="text-center mx-auto mb-5" style="max-width: 680px;">
       <div class="cf-eyebrow-badge">
-        <i class="bi bi-stars"></i>
+       
+
         {% trans "AESTHETIC WORKFLOW" %}
       </div>
       <h2 class="cf-section-title mb-3">{% trans "How We Plan Your Smile" %}</h2>
@@ -478,19 +479,19 @@
         <div class="row align-items-center g-4">
           <div class="col-lg-8">
             <div class="d-flex align-items-center gap-2 text-info fw-bold text-uppercase small mb-2">
-              <i class="bi bi-award-fill"></i> {% trans "CLINICAL DIRECTOR & LEAD SURGEON" %}
+              {% trans "CLINICAL DIRECTOR & LEAD SURGEON" %}
             </div>
             <h3 class="fw-bold mb-3 text-white" style="font-family: var(--cf-font-head, 'Outfit', sans-serif);">Dr. Subash Banjade & Specialist Team</h3>
             <blockquote class="fs-5 text-white-50 fst-italic mb-3" style="line-height: 1.7; border-left: 3px solid #0284C7; padding-left: 16px;">
               “{% trans "Every smile is unique. We focus on ethical, minimally invasive cosmetic dentistry that preserves your natural tooth structure while achieving optimal aesthetic harmony." %}”
             </blockquote>
             <p class="text-white-50 small mb-0">
-              <i class="bi bi-geo-alt-fill text-info me-1"></i> Pragatinagar Road, Shankhamul-31, Kathmandu &bull; <i class="bi bi-clock-fill text-info ms-2 me-1"></i> Daily 7:30 AM – 7:30 PM
+           {% trans "Pragatinagar Road, Shankhamul-31, Kathmandu" %}
             </p>
           </div>
           <div class="col-lg-4 text-lg-end">
             <a href="{% url 'main:contact' %}#appointment" class="btn btn-light btn-lg rounded-pill px-4 py-3 fw-bold text-dark shadow d-inline-flex align-items-center gap-2">
-              <i class="bi bi-calendar-check-fill text-primary"></i>
+              
               <span>{% trans "Book Smile Consultation" %}</span>
             </a>
           </div>

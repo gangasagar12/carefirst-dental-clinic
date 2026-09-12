@@ -170,14 +170,14 @@
     <!-- Qualifications -->
     {% if doc.qualifications %}
     <div class="cf-doc-quals-tag">
-      <i class="bi bi-mortarboard-fill me-1 text-primary"></i>{{ doc.qualifications }}
+      {{ doc.qualifications }}
     </div>
     {% endif %}
 
     <!-- Experience (Dynamic) -->
     {% if doc.experience_years and doc.experience_years > 0 %}
     <div class="cf-doc-exp-badge">
-      <i class="bi bi-clock-history"></i>
+     
       <span>{{ doc.experience_years }}+ {% trans "Years Clinical Experience" %}</span>
     </div>
     {% endif %}
