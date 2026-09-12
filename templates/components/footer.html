@@ -41,7 +41,7 @@
           <div class="row g-3">
             <div class="col-6 col-lg-12">
               <h5 class="text-white fw-bold mb-3" style="font-size: 1rem; font-family: var(--cf-font-head, 'Outfit', sans-serif); letter-spacing: 0.5px; text-transform: uppercase;">
-                <i class="bi bi-patch-check-fill text-warning me-1"></i>{% trans "Treatments" %}
+                <i class="bi bi-tooth text-white"></i>{% trans "Treatments" %}
               </h5>
               <ul class="list-unstyled footer-links mb-4">
                 <li><a href="{% url 'main:services_list' %}">{% trans "Dental Implants" %}</a></li>
@@ -52,7 +52,6 @@
                 <li><a href="{% url 'main:services_list' %}">{% trans "Tooth Extraction" %}</a></li>
                 <li><a href="{% url 'main:services_list' %}">{% trans "Digital RVG X-Ray" %}</a></li>
                 <a href="{% url 'dashboard:home' %}" class="btn btn-sm d-inline-flex align-items-center gap-1 text-white-50 px-2 py-1 text-decoration-none border border-secondary border-opacity-25 rounded-pill" style="background-color: rgba(255, 255, 255, 0.06); font-size: 1.90 rem; transition: all 0.2s ease;" target="_blank" rel="noopener noreferrer" title="{% trans "Staff & Doctor Portal" %}">
-          <i class="bi bi-shield-lock text-warning"></i>
           <span>{% trans "Staff Portal" %}</span>
         </a>
                 <li><a href="{% url 'main:services_list' %}" class="fw-bold text-warning">{% trans "All 11 Treatments →" %}</a></li>
@@ -61,7 +60,7 @@
 
             <div class="col-6 col-lg-12">
               <h5 class="text-white fw-bold mb-2" style="font-size: 0.95rem; font-family: var(--cf-font-head, 'Outfit', sans-serif); letter-spacing: 0.5px; text-transform: uppercase;">
-                <i class="bi bi-translate text-warning me-1"></i>{% trans "Language" %}
+                {% trans "Language" %}
               </h5>
               <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center mb-0">
                 {% csrf_token %}
@@ -95,7 +94,7 @@
             <div class="row g-2 mb-3 text-white">
               <div class="col-sm-7">
                 <div class="d-flex align-items-start gap-2">
-                  <i class="bi bi-pin-map-fill text-warning mt-1"></i>
+                 
                   <span style="font-size: 0.88rem; line-height: 1.5;">
                     Pragatinagar Road, Shankhamul-31, Kathmandu 44600<br>
                     <small class="text-white-50">Near New Baneshwor Junction</small>

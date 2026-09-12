@@ -376,7 +376,7 @@ class Testimonial(models.Model):
             return '/static/main/img/clinic/whitening_story.jpg'
         elif 'veneer' in t_lower or 'makeover' in t_lower or 'rehab' in t_lower:
             return '/static/main/img/clinic/smile_makeover_story.jpg'
-        return '/static/images/hero_section1.jpeg'
+        return '/static/images/carefirst_clinic_operatory_treatment.jpg'
 
 
 class ClinicGallery(models.Model):

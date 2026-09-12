@@ -170,7 +170,7 @@
         <div class="row g-4 align-items-center">
           <div class="col-md-5">
             <div class="rounded-3 overflow-hidden shadow-sm">
-              <img id="modalStoryImg" src="{% static 'images/hero_section1.jpeg' %}" alt="Treatment Transformation" class="img-fluid w-100" style="height: 240px; object-fit: cover;">
+              <img id="modalStoryImg" src="{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}" alt="Treatment Transformation" class="img-fluid w-100" style="height: 240px; object-fit: cover;">
             </div>
             <div class="mt-3 p-3 bg-light rounded-3">
               <p class="mb-1 text-muted small">{% trans "Treating Specialist" %}:</p>
@@ -512,7 +512,7 @@
     if (!btn) return;
     const name = btn.getAttribute("data-name") || "Patient";
     const treatment = btn.getAttribute("data-treatment") || "Treatment Journey";
-    const img = btn.getAttribute("data-img") || "{% static 'images/hero_section1.jpeg' %}";
+    const img = btn.getAttribute("data-img") || "{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}";
     const concern = btn.getAttribute("data-concern") || "";
     const journey = btn.getAttribute("data-journey") || "";
     const outcome = btn.getAttribute("data-outcome") || "";
@@ -522,7 +522,7 @@
     document.getElementById("modalStoryBadge").textContent = treatment;
     const imgEl = document.getElementById("modalStoryImg");
     imgEl.src = img;
-    imgEl.onerror = function() { this.src = "{% static 'images/hero_section1.jpeg' %}"; };
+    imgEl.onerror = function() { this.src = "{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}"; };
     document.getElementById("modalStoryConcern").textContent = concern;
     document.getElementById("modalStoryJourney").textContent = journey;
     document.getElementById("modalStoryOutcome").textContent = outcome;
