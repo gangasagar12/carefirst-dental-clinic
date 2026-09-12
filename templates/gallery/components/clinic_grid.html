@@ -27,61 +27,68 @@
     </a>
     {% endfor %}
   {% else %}
-    <!-- Authentic Clinical Gallery Items (First 6 in 2 Rows) -->
-    <a class="g-item" data-caption="{% trans 'Main Dental Operatory Suite & Computerized Treatment Chair — Shankhamul, Kathmandu' %}" data-src="{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}" data-filter="treatment">
-      <img src="{% static 'images/carefirst_clinic_operatory_treatment.jpg' %}" alt="CareFirst Treatment Operatory" loading="lazy">
+    <!-- Authentic Clinical Gallery Items -->
+    <a class="g-item" data-caption="{% trans 'CareFirst Reception Lounge & Patient Welcome Desk — Shankhamul, Kathmandu' %}" data-src="{% static 'carefirst-gallery/clinic-gallery1.jpeg' %}" data-filter="reception">
+      <img src="{% static 'carefirst-gallery/clinic-gallery1.jpeg' %}" alt="CareFirst Reception & Lounge" loading="lazy">
       <div class="g-item-overlay">
-        <span class="g-item-caption"><i class="bi bi-geo-alt-fill me-1 text-warning"></i> {% trans "Main Dental Operatory Suite" %}</span>
+        <span class="g-item-caption"><i class="bi bi-geo-alt-fill me-1 text-warning"></i> {% trans "Reception Lounge & Welcome Area" %}</span>
       </div>
     </a>
 
-    <a class="g-item" data-caption="{% trans 'Digital Panoramic OPG & Cephalometric Imaging Diagnostic Center' %}" data-src="{% static 'images/digital_panoramic_opg.jpg' %}" data-filter="equipment">
+    <a class="g-item" data-caption="{% trans 'Advanced Dental Operatory Suite with Ergonomic Treatment Chair' %}" data-src="{% static 'carefirst-gallery/clinic-gallery2.jpeg' %}" data-filter="treatment">
+      <img src="{% static 'carefirst-gallery/clinic-gallery2.jpeg' %}" alt="CareFirst Dental Operatory Suite" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-heart-pulse-fill me-1 text-info"></i> {% trans "Advanced Operatory Suite" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'Modern Chairside Diagnostic & Ultrasonic Instrumentation System' %}" data-src="{% static 'carefirst-gallery/clinic-gallery3.jpeg' %}" data-filter="equipment">
+      <img src="{% static 'carefirst-gallery/clinic-gallery3.jpeg' %}" alt="Modern Chairside Equipment" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-cpu-fill me-1 text-warning"></i> {% trans "Chairside Clinical Systems" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'Private Patient Consultation & Digital Treatment Planning Suite' %}" data-src="{% static 'carefirst-gallery/clinic-gallery4.jpeg' %}" data-filter="reception">
+      <img src="{% static 'carefirst-gallery/clinic-gallery4.jpeg' %}" alt="Private Consultation Room" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-chat-heart-fill me-1 text-primary"></i> {% trans "Consultation & Planning Room" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'Comprehensive Clinical Operatory & Precision Dental Workstation' %}" data-src="{% static 'carefirst-gallery/clinic-gallery5.jpeg' %}" data-filter="treatment">
+      <img src="{% static 'carefirst-gallery/clinic-gallery5.jpeg' %}" alt="Comprehensive Operatory Workstation" loading="lazy">
+      <div class="g-item-overlay">
+        <span class="g-item-caption"><i class="bi bi-shield-check me-1 text-success"></i> {% trans "Comprehensive Clinical Setup" %}</span>
+      </div>
+    </a>
+
+    <a class="g-item" data-caption="{% trans 'Digital Panoramic OPG & Low-Radiation Diagnostic Imaging' %}" data-src="{% static 'images/digital_panoramic_opg.jpg' %}" data-filter="equipment">
       <img src="{% static 'images/digital_panoramic_opg.jpg' %}" alt="Digital Panoramic OPG" loading="lazy">
       <div class="g-item-overlay">
-        <span class="g-item-caption"><i class="bi bi-cpu-fill me-1 text-info"></i> {% trans "Digital Panoramic OPG Imaging" %}</span>
+        <span class="g-item-caption"><i class="bi bi-broadcast-pin me-1 text-info"></i> {% trans "Digital Panoramic Imaging" %}</span>
       </div>
     </a>
 
-    <a class="g-item" data-caption="{% trans 'Private Doctor Consultation & Digital Treatment Planning Room' %}" data-src="{% static 'images/digital_xray_consultation.jpg' %}" data-filter="reception">
-      <img src="{% static 'images/digital_xray_consultation.jpg' %}" alt="Doctor Consultation Room" loading="lazy">
-      <div class="g-item-overlay">
-        <span class="g-item-caption"><i class="bi bi-chat-heart-fill me-1 text-warning"></i> {% trans "Consultation & Treatment Planning" %}</span>
-      </div>
-    </a>
-
-    <a class="g-item" data-caption="{% trans 'High-Precision RVG Digital Sensor for Instant Low-Radiation X-Rays' %}" data-src="{% static 'images/digital_xray_sensor.jpg' %}" data-filter="equipment">
+    <!-- Extra Items (Expandable via 'View More') -->
+    <a class="g-item cf-extra-gallery-item d-none" data-caption="{% trans 'High-Precision RVG Digital Sensor for Instant Low-Radiation X-Rays' %}" data-src="{% static 'images/digital_xray_sensor.jpg' %}" data-filter="equipment">
       <img src="{% static 'images/digital_xray_sensor.jpg' %}" alt="RVG Digital Sensor" loading="lazy">
       <div class="g-item-overlay">
-        <span class="g-item-caption"><i class="bi bi-broadcast-pin me-1 text-primary"></i> {% trans "Low-Dose Digital RVG Sensor" %}</span>
+        <span class="g-item-caption"><i class="bi bi-cpu-fill me-1 text-primary"></i> {% trans "Digital RVG Sensor" %}</span>
       </div>
     </a>
 
-    <a class="g-item" data-caption="{% trans 'Precision Rotary Endodontics & Microscopic Root Canal Equipment' %}" data-src="{% static 'images/rct_gallery_microscope.jpg' %}" data-filter="treatment">
-      <img src="{% static 'images/rct_gallery_microscope.jpg' %}" alt="Rotary Endodontics Workstation" loading="lazy">
-      <div class="g-item-overlay">
-        <span class="g-item-caption"><i class="bi bi-search me-1 text-info"></i> {% trans "Rotary Endodontics Workstation" %}</span>
-      </div>
-    </a>
-
-    <a class="g-item" data-caption="{% trans 'Strict Rubber Dam Isolation & Hospital-Grade Autoclave Sterilization' %}" data-src="{% static 'images/rct_gallery_isolation.jpg' %}" data-filter="treatment">
+    <a class="g-item cf-extra-gallery-item d-none" data-caption="{% trans 'Strict Rubber Dam Isolation & Hospital-Grade Autoclave Sterilization' %}" data-src="{% static 'images/rct_gallery_isolation.jpg' %}" data-filter="treatment">
       <img src="{% static 'images/rct_gallery_isolation.jpg' %}" alt="Sterilization & Isolation" loading="lazy">
       <div class="g-item-overlay">
         <span class="g-item-caption"><i class="bi bi-shield-check me-1 text-success"></i> {% trans "Sterilization & Infection Control" %}</span>
       </div>
     </a>
 
-    <!-- Extra Items (Hidden initially for 2-row layout) -->
     <a class="g-item cf-extra-gallery-item d-none" data-caption="{% trans 'High-Intensity LED Curing & Aesthetic Composite Dental Restorations' %}" data-src="{% static 'images/fill_procedure_curing.jpg' %}" data-filter="equipment">
       <img src="{% static 'images/fill_procedure_curing.jpg' %}" alt="Aesthetic Restorative Equipment" loading="lazy">
       <div class="g-item-overlay">
         <span class="g-item-caption"><i class="bi bi-lightning-charge-fill me-1 text-warning"></i> {% trans "Aesthetic Curing & Restorations" %}</span>
-      </div>
-    </a>
-
-    <a class="g-item cf-extra-gallery-item d-none" data-caption="{% trans 'Welcoming Reception Desk & Patient Waiting Area — Pragatinagar Road, Shankhamul' %}" data-src="{% static 'images/appointment_hero_consultation.jpg' %}" data-filter="reception">
-      <img src="{% static 'images/appointment_hero_consultation.jpg' %}" alt="CareFirst Reception & Lounge" loading="lazy">
-      <div class="g-item-overlay">
-        <span class="g-item-caption"><i class="bi bi-building me-1 text-primary"></i> {% trans "Reception Desk & Lounge" %}</span>
       </div>
     </a>
   {% endif %}

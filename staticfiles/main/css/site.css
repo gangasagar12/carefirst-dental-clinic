@@ -442,7 +442,7 @@ a {
   padding: calc(var(--cf-nav-h) + 72px) 0 96px;
   background:
     linear-gradient(135deg, rgba(9, 63, 55, 0.96), rgba(14, 90, 79, 0.9)),
-    url('/static/images/carefirst_clinic_operatory_treatment.jpg') center/cover;
+    url('/static/carefirst-gallery/clinic-gallery1.jpeg') center/cover;
   color: #fff;
 }
 
