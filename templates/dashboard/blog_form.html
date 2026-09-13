@@ -1,0 +1,219 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="mb-3 d-flex justify-content-between align-items-center">
+  <a href="{% url 'dashboard:blogs' %}" class="btn btn-light border btn-sm rounded-pill px-3 fw-semibold">
+    &larr; Back to Articles
+  </a>
+  {% if is_edit and post.slug %}
+  <a href="{% url 'blogs:blog_detail' post.slug %}" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold">
+    View Live Article &nearr;
+  </a>
+  {% endif %}
+</div>
+
+<form method="post" enctype="multipart/form-data" id="blogPostForm">
+  {% csrf_token %}
+  
+  <div class="row g-4">
+    <!-- Left Column: Main Editor & Multilingual Tabs -->
+    <div class="col-lg-8">
+      <div class="cf-dash-card mb-4">
+        <div class="cf-dash-card-header pb-0 border-0">
+          <ul class="nav nav-tabs border-bottom w-100" id="blogLangTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active fw-bold text-dark" id="english-tab" data-bs-toggle="tab" data-bs-target="#english-content" type="button" role="tab">
+                English Content
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link fw-bold text-dark" id="nepali-tab" data-bs-toggle="tab" data-bs-target="#nepali-content" type="button" role="tab">
+                नेपाली सामग्री (Nepali)
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link fw-bold text-dark" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo-content" type="button" role="tab">
+                Search Engine SEO
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-4">
+          <div class="tab-content" id="blogLangTabsContent">
+            <!-- English Tab -->
+            <div class="tab-pane fade show active" id="english-content" role="tabpanel">
+              <div class="mb-3">
+                <label class="form-label fw-bold small text-dark">Article Title <span class="text-danger">*</span></label>
+                {{ form.title }}
+                {% if form.title.errors %}<div class="text-danger small mt-1">{{ form.title.errors }}</div>{% endif %}
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold small text-dark">Short Excerpt / Summary <span class="text-danger">*</span></label>
+                {{ form.excerpt }}
+                <div class="form-text small">A concise summary shown on blog cards and Google snippets.</div>
+                {% if form.excerpt.errors %}<div class="text-danger small mt-1">{{ form.excerpt.errors }}</div>{% endif %}
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold small text-dark">Full Article Content <span class="text-danger">*</span></label>
+                {{ form.content }}
+                <div class="form-text small">Write your clinical guide or patient article. Standard HTML formatting (paragraphs, headings, lists) is supported.</div>
+                {% if form.content.errors %}<div class="text-danger small mt-1">{{ form.content.errors }}</div>{% endif %}
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-bold small text-dark">Estimated Read Time</label>
+                  {{ form.reading_time }}
+                  <div class="form-text small">e.g., 5 min read</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nepali Tab -->
+            <div class="tab-pane fade" id="nepali-content" role="tabpanel">
+              <div class="alert alert-info border-0 rounded-3 py-2 px-3 small mb-3">
+                नेपाली भाषामा लेखिएको शीर्षक र सामग्री साइटलाई <strong>नेपाली</strong> भाषामा हेर्दा प्रदर्शित हुनेछ।
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold small text-dark">लेखको शीर्षक (Nepali Title)</label>
+                {{ form.title_ne }}
+                {% if form.title_ne.errors %}<div class="text-danger small mt-1">{{ form.title_ne.errors }}</div>{% endif %}
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold small text-dark">संक्षिप्त विवरण (Nepali Excerpt)</label>
+                {{ form.excerpt_ne }}
+                {% if form.excerpt_ne.errors %}<div class="text-danger small mt-1">{{ form.excerpt_ne.errors }}</div>{% endif %}
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold small text-dark">पूरा लेख सामग्री (Nepali Content)</label>
+                {{ form.content_ne }}
+                {% if form.content_ne.errors %}<div class="text-danger small mt-1">{{ form.content_ne.errors }}</div>{% endif %}
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-bold small text-dark">पढ्ने समय (Reading Time)</label>
+                  {{ form.reading_time_ne }}
+                  <div class="form-text small">उदा: ५ मिनेट पढाइ</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SEO Tab -->
+            <div class="tab-pane fade" id="seo-content" role="tabpanel">
+              <div class="mb-3">
+                <label class="form-label fw-bold small text-dark">URL Slug</label>
+                {{ form.slug }}
+                <div class="form-text small">Leave blank to auto-generate from the English title (e.g. <code>painless-root-canal-treatment</code>).</div>
+                {% if form.slug.errors %}<div class="text-danger small mt-1">{{ form.slug.errors }}</div>{% endif %}
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold small text-dark">SEO Meta Title</label>
+                {{ form.meta_title }}
+                <div class="form-text small">Custom browser tab and Google title tag (recommended 50-60 characters).</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold small text-dark">SEO Meta Description</label>
+                {{ form.meta_description }}
+                <div class="form-text small">Brief summary snippet shown in Google Search results (recommended 140-160 characters).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Publishing Controls & Media -->
+    <div class="col-lg-4">
+      <!-- Publish Card -->
+      <div class="card border rounded-4 shadow-sm bg-white mb-4">
+        <div class="card-header bg-white border-bottom py-3 px-4">
+          <h6 class="fw-bold mb-0 text-dark">Publish Settings</h6>
+        </div>
+        <div class="card-body p-4">
+          <div class="form-check form-switch mb-3">
+            {{ form.is_published }}
+            <label class="form-check-label fw-semibold text-dark ms-2" for="{{ form.is_published.id_for_label }}">
+              Published (Visible to Patients)
+            </label>
+          </div>
+
+          <div class="form-check form-switch mb-3">
+            {{ form.is_featured }}
+            <label class="form-check-label fw-semibold text-dark ms-2" for="{{ form.is_featured.id_for_label }}">
+              Featured Main Article
+            </label>
+          </div>
+
+          <div class="form-check form-switch mb-4">
+            {{ form.is_popular }}
+            <label class="form-check-label fw-semibold text-dark ms-2" for="{{ form.is_popular.id_for_label }}">
+              Popular Article Spotlight
+            </label>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-cf-primary rounded-pill py-2.5 fw-bold">
+              {% if is_edit %}Update Article{% else %}Save & Publish Article{% endif %}
+            </button>
+            <a href="{% url 'dashboard:blogs' %}" class="btn btn-light border rounded-pill py-2 fw-semibold text-dark">
+              Cancel
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metadata Card -->
+      <div class="card border rounded-4 shadow-sm bg-white mb-4">
+        <div class="card-header bg-white border-bottom py-3 px-4">
+          <h6 class="fw-bold mb-0 text-dark">Category & Author</h6>
+        </div>
+        <div class="card-body p-4">
+          <div class="mb-3">
+            <label class="form-label fw-bold small text-dark">Category <span class="text-danger">*</span></label>
+            {{ form.category }}
+            {% if form.category.errors %}<div class="text-danger small mt-1">{{ form.category.errors }}</div>{% endif %}
+          </div>
+
+          <div class="mb-0">
+            <label class="form-label fw-bold small text-dark">Author Credit</label>
+            {{ form.author }}
+            {% if form.author.errors %}<div class="text-danger small mt-1">{{ form.author.errors }}</div>{% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Image Card -->
+      <div class="card border rounded-4 shadow-sm bg-white">
+        <div class="card-header bg-white border-bottom py-3 px-4">
+          <h6 class="fw-bold mb-0 text-dark">Featured Cover Image</h6>
+        </div>
+        <div class="card-body p-4">
+          {% if is_edit and post.featured_image %}
+          <div class="mb-3">
+            <label class="form-label small text-muted">Current Cover Image:</label>
+            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="w-100 rounded-3 border shadow-sm" style="max-height: 180px; object-fit: cover;">
+          </div>
+          {% endif %}
+
+          <div class="mb-2">
+            <label class="form-label small fw-semibold text-dark">Upload Image</label>
+            {{ form.featured_image }}
+            <div class="form-text small">Recommended: 1200 x 630px JPG or WebP image.</div>
+            {% if form.featured_image.errors %}<div class="text-danger small mt-1">{{ form.featured_image.errors }}</div>{% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}
