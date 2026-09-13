@@ -88,6 +88,15 @@ urlpatterns = [
     path('loyalty/program/', views.loyalty_program_settings, name='loyalty_program'),
     path('loyalty/transactions/', views.loyalty_transactions_list, name='loyalty_transactions'),
 
+    # Articles & Blog Management
+    path('blogs/', views.blogs_list, name='blogs'),
+    path('blogs/new/', views.blog_create, name='blog_create'),
+    path('blogs/<int:pk>/edit/', views.blog_edit, name='blog_edit'),
+    path('blogs/<int:pk>/toggle-published/', views.blog_toggle_published, name='blog_toggle_published'),
+    path('blogs/<int:pk>/delete/', views.blog_delete, name='blog_delete'),
+    path('blogs/categories/new/', views.blog_category_create, name='blog_category_create'),
+    path('blogs/categories/<int:pk>/delete/', views.blog_category_delete, name='blog_category_delete'),
+
     # Settings
     path('settings/', views.settings_view, name='settings'),
 ]

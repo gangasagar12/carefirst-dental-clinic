@@ -17,10 +17,11 @@ from main.models import Service, Doctor, PricingCategory, PricingItem, SpecialOf
 from media_center.models import Video
 from loyalty.models import PatientLoyaltyProfile, LoyaltyReward, normalize_phone
 from loyalty.services import record_treatment_completion, apply_reward_to_bill
+from blogs.models import Category, Post
 from .forms import (
     AppointmentForm, ServiceForm, DoctorForm, PricingCategoryForm,
     PricingItemForm, SpecialOfferForm, TestimonialForm, VideoForm, SiteSettingsForm,
-    HeroSlideForm, ClinicGalleryForm
+    HeroSlideForm, ClinicGalleryForm, BlogPostForm, BlogCategoryForm
 )
 
 
@@ -1406,6 +1407,152 @@ def loyalty_verification_logs(request):
         'decision_filter': decision_filter,
     }
     return render(request, 'dashboard/loyalty_verification_logs.html', context)
+
+
+# ── Blog & Articles Management ────────────────────────────────────────────────
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def blogs_list(request):
+    """List all blog posts with category filtering, search, and pagination."""
+    q = request.GET.get('q', '').strip()
+    category_slug = request.GET.get('category', '').strip()
+    status_filter = request.GET.get('status', '').strip()
+
+    queryset = Post.objects.select_related('category').order_by('-published_date', '-id')
+
+    if q:
+        queryset = queryset.filter(
+            Q(title__icontains=q) |
+            Q(title_ne__icontains=q) |
+            Q(excerpt__icontains=q) |
+            Q(content__icontains=q) |
+            Q(author__icontains=q)
+        )
+
+    if category_slug:
+        queryset = queryset.filter(category__slug=category_slug)
+
+    if status_filter == 'published':
+        queryset = queryset.filter(is_published=True)
+    elif status_filter == 'draft':
+        queryset = queryset.filter(is_published=False)
+    elif status_filter == 'featured':
+        queryset = queryset.filter(is_featured=True)
+    elif status_filter == 'popular':
+        queryset = queryset.filter(is_popular=True)
+
+    # Metrics
+    total_posts = Post.objects.count()
+    published_posts = Post.objects.filter(is_published=True).count()
+    draft_posts = Post.objects.filter(is_published=False).count()
+    categories = Category.objects.annotate(post_count=Count('posts')).order_by('name')
+
+    paginator = Paginator(queryset, 15)
+    page_number = request.GET.get('page', 1)
+    posts = paginator.get_page(page_number)
+
+    category_form = BlogCategoryForm()
+
+    return render(request, 'dashboard/blogs.html', {
+        'title': 'Articles & Blog Management',
+        'active_page': 'blogs',
+        'posts': posts,
+        'categories': categories,
+        'category_form': category_form,
+        'q': q,
+        'selected_category': category_slug,
+        'status_filter': status_filter,
+        'total_posts': total_posts,
+        'published_posts': published_posts,
+        'draft_posts': draft_posts,
+        'categories_count': categories.count(),
+    })
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def blog_create(request):
+    """Create a new blog post."""
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            messages.success(request, f"Article '{post.title}' successfully created!")
+            return redirect('dashboard:blogs')
+    else:
+        form = BlogPostForm()
+
+    return render(request, 'dashboard/blog_form.html', {
+        'title': 'Write New Article',
+        'active_page': 'blogs',
+        'form': form,
+        'is_edit': False,
+    })
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def blog_edit(request, pk):
+    """Edit an existing blog post."""
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save()
+            messages.success(request, f"Article '{post.title}' successfully updated!")
+            return redirect('dashboard:blogs')
+    else:
+        form = BlogPostForm(instance=post)
+
+    return render(request, 'dashboard/blog_form.html', {
+        'title': f"Edit Article: {post.title}",
+        'active_page': 'blogs',
+        'form': form,
+        'post': post,
+        'is_edit': True,
+    })
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def blog_delete(request, pk):
+    """Delete a blog post."""
+    post = get_object_or_404(Post, pk=pk)
+    title = post.title
+    post.delete()
+    messages.success(request, f"Article '{title}' deleted successfully.")
+    return redirect('dashboard:blogs')
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def blog_toggle_published(request, pk):
+    """Quick toggle publish status of a blog post."""
+    post = get_object_or_404(Post, pk=pk)
+    post.is_published = not post.is_published
+    post.save(update_fields=['is_published'])
+    status_label = "published" if post.is_published else "set to draft"
+    messages.success(request, f"Article '{post.title}' is now {status_label}.")
+    return redirect(request.META.get('HTTP_REFERER', 'dashboard:blogs'))
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def blog_category_create(request):
+    """Create a new blog category."""
+    if request.method == 'POST':
+        form = BlogCategoryForm(request.POST)
+        if form.is_valid():
+            cat = form.save()
+            messages.success(request, f"Category '{cat.name}' created.")
+        else:
+            messages.error(request, "Failed to create category. Please check your inputs.")
+    return redirect('dashboard:blogs')
+
+
+@user_passes_test(is_staff_user, login_url='/dashboard/login/')
+def blog_category_delete(request, pk):
+    """Delete a blog category."""
+    cat = get_object_or_404(Category, pk=pk)
+    name = cat.name
+    cat.delete()
+    messages.success(request, f"Category '{name}' deleted.")
+    return redirect('dashboard:blogs')
 
 
 
