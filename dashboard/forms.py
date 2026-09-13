@@ -3,6 +3,7 @@ from appointments.models import Appointment
 from main.models import Service, Doctor, PricingCategory, PricingItem, SpecialOffer, Testimonial, SiteSettings, ContactMessage, HeroSlide, ClinicGallery
 from media_center.models import Video
 from loyalty.models import LoyaltyProgram
+from blogs.models import Category, Post
 
 
 class BootstrapFormMixin:
@@ -157,5 +158,34 @@ class LoyaltyProgramForm(BootstrapFormMixin, forms.ModelForm):
             'description': forms.Textarea(attrs={'rows': 3}),
             'eligible_services': forms.SelectMultiple(attrs={'class': 'form-select', 'size': 5}),
             'excluded_services': forms.SelectMultiple(attrs={'class': 'form-select', 'size': 5}),
+        }
+
+
+class BlogPostForm(BootstrapFormMixin, forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = [
+            'title', 'title_ne', 'slug', 'category', 'author', 'featured_image',
+            'excerpt', 'excerpt_ne', 'content', 'content_ne', 'reading_time', 'reading_time_ne',
+            'is_published', 'is_featured', 'is_popular', 'meta_title', 'meta_description'
+        ]
+        widgets = {
+            'excerpt': forms.Textarea(attrs={'rows': 3, 'placeholder': 'A short summary of the article...'}),
+            'excerpt_ne': forms.Textarea(attrs={'rows': 3, 'placeholder': 'लेखको संक्षिप्त विवरण...'}),
+            'content': forms.Textarea(attrs={'rows': 10, 'placeholder': 'Write your full article content here (HTML supported)...'}),
+            'content_ne': forms.Textarea(attrs={'rows': 10, 'placeholder': 'नेपालीमा पूरा लेख (HTML समर्थित)...'}),
+            'meta_title': forms.TextInput(attrs={'placeholder': 'SEO Title (defaults to title if blank)'}),
+            'meta_description': forms.Textarea(attrs={'rows': 2, 'placeholder': 'SEO Meta Description for search engines...'}),
+        }
+
+
+class BlogCategoryForm(BootstrapFormMixin, forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', 'name_ne', 'slug']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Category Name (e.g. Oral Health, Orthodontics)'}),
+            'name_ne': forms.TextInput(attrs={'placeholder': 'नेपालीमा वर्गको नाम (उदा. मुखको स्वास्थ्य)'}),
+            'slug': forms.TextInput(attrs={'placeholder': 'category-slug (auto-generated if blank)'}),
         }
 
