@@ -1,0 +1,257 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Top Metrics Row -->
+<div class="row g-3 mb-4">
+  <div class="col-6 col-md-3">
+    <div class="p-3 bg-white border rounded-4 shadow-sm">
+      <div class="small text-muted fw-semibold">Total Articles</div>
+      <div class="fs-3 fw-bold text-dark mt-1">{{ total_posts }}</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="p-3 bg-white border rounded-4 shadow-sm">
+      <div class="small text-muted fw-semibold">Published</div>
+      <div class="fs-3 fw-bold text-success mt-1">{{ published_posts }}</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="p-3 bg-white border rounded-4 shadow-sm">
+      <div class="small text-muted fw-semibold">Drafts</div>
+      <div class="fs-3 fw-bold text-warning mt-1">{{ draft_posts }}</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="p-3 bg-white border rounded-4 shadow-sm">
+      <div class="small text-muted fw-semibold">Categories</div>
+      <div class="fs-3 fw-bold text-primary mt-1">{{ categories_count }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="cf-dash-card">
+  <div class="cf-dash-card-header flex-wrap gap-3">
+    <div>
+      <h3 class="cf-card-title">Articles & Dental Health Blog</h3>
+      <p class="small text-muted mb-0">Publish patient education articles, dental health tips, and clinic news.</p>
+    </div>
+    <div class="d-flex flex-wrap gap-2">
+      <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#categoryModal">
+        Categories
+      </button>
+      <a href="{% url 'blogs:blog_list' %}" target="_blank" class="btn btn-light border btn-sm rounded-pill px-3 fw-semibold text-primary">
+        Live Blog
+      </a>
+      <a href="{% url 'dashboard:blog_create' %}" class="btn btn-cf-primary btn-sm rounded-pill px-3.5">
+        Add New Article
+      </a>
+    </div>
+  </div>
+
+  <!-- Search & Filter Controls -->
+  <div class="p-3 bg-light border-bottom">
+    <form method="get" class="row g-2 align-items-center">
+      <div class="col-md-5">
+        <div class="input-group input-group-sm">
+          <input type="text" name="q" value="{{ q }}" class="form-control rounded-pill-start bg-white" placeholder="Search by title, author, or keyword...">
+          <button class="btn btn-primary rounded-pill-end px-3" type="submit">Search</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <select name="category" class="form-select form-select-sm rounded-pill bg-white" onchange="this.form.submit()">
+          <option value="">All Categories ({{ total_posts }})</option>
+          {% for cat in categories %}
+          <option value="{{ cat.slug }}" {% if selected_category == cat.slug %}selected{% endif %}>
+            {{ cat.name }} ({{ cat.post_count }})
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select name="status" class="form-select form-select-sm rounded-pill bg-white" onchange="this.form.submit()">
+          <option value="" {% if not status_filter %}selected{% endif %}>All Statuses</option>
+          <option value="published" {% if status_filter == 'published' %}selected{% endif %}>Published Only</option>
+          <option value="draft" {% if status_filter == 'draft' %}selected{% endif %}>Drafts Only</option>
+          <option value="featured" {% if status_filter == 'featured' %}selected{% endif %}>Featured Articles</option>
+          <option value="popular" {% if status_filter == 'popular' %}selected{% endif %}>Popular Articles</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <!-- Articles Table -->
+  <div class="cf-table-responsive">
+    <table class="cf-dash-table">
+      <thead>
+        <tr>
+          <th style="width: 70px;">Cover</th>
+          <th>Article Details</th>
+          <th>Category</th>
+          <th>Author & Read Time</th>
+          <th>Published Date</th>
+          <th>Status</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in posts %}
+        <tr>
+          <td>
+            {% if p.featured_image %}
+            <img src="{{ p.featured_image.url }}" alt="{{ p.title }}" class="rounded-3 border" style="width: 54px; height: 42px; object-fit: cover;">
+            {% else %}
+            <div class="rounded-3 bg-light border d-flex align-items-center justify-content-center text-muted fw-bold" style="width: 54px; height: 42px; font-size: 0.75rem;">
+              BLOG
+            </div>
+            {% endif %}
+          </td>
+          <td>
+            <div class="fw-bold text-dark mb-0.5">{{ p.title }}</div>
+            {% if p.title_ne %}
+            <div class="small text-muted" style="font-size: 0.8rem;">{{ p.title_ne|truncatechars:45 }}</div>
+            {% endif %}
+            <div class="d-flex gap-1.5 mt-1">
+              {% if p.is_featured %}
+              <span class="badge bg-primary text-white" style="font-size: 0.68rem;">Featured</span>
+              {% endif %}
+              {% if p.is_popular %}
+              <span class="badge bg-warning text-dark" style="font-size: 0.68rem;">Popular</span>
+              {% endif %}
+            </div>
+          </td>
+          <td>
+            <span class="badge bg-light text-primary border">{{ p.category.name }}</span>
+          </td>
+          <td>
+            <div class="small fw-semibold text-dark">{{ p.author }}</div>
+            <div class="small text-muted" style="font-size: 0.75rem;">{{ p.reading_time }}</div>
+          </td>
+          <td>
+            <div class="small text-dark">{{ p.published_date|date:"M d, Y" }}</div>
+            <div class="small text-muted" style="font-size: 0.72rem;">{{ p.published_date|time:"g:i A" }}</div>
+          </td>
+          <td>
+            <a href="{% url 'dashboard:blog_toggle_published' p.id %}" class="btn btn-sm {% if p.is_published %}btn-success{% else %}btn-secondary{% endif %} py-0.5 px-2.5" style="font-size: 0.75rem; border-radius: 20px;" title="Click to Toggle Status">
+              {% if p.is_published %}Published{% else %}Draft{% endif %}
+            </a>
+          </td>
+          <td class="text-end text-nowrap">
+            <div class="d-inline-flex gap-1.5 align-items-center">
+              <a href="{% url 'blogs:blog_detail' p.slug %}" target="_blank" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary" title="Preview on Website">
+                Preview
+              </a>
+              <a href="{% url 'dashboard:blog_edit' p.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="Edit Article">
+                Edit
+              </a>
+              <a href="{% url 'dashboard:blog_delete' p.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" onclick="return confirm('Are you sure you want to delete this article?');" title="Delete Article">
+                Delete
+              </a>
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" class="text-center py-5 text-muted">
+            <h6 class="fw-bold mb-1">No Articles Found</h6>
+            <p class="small mb-3">Get started by creating your first dental health article or tip.</p>
+            <a href="{% url 'dashboard:blog_create' %}" class="btn btn-cf-primary btn-sm rounded-pill px-3">
+              Create First Article
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  {% if posts.has_other_pages %}
+  <div class="p-3 border-top d-flex justify-content-between align-items-center">
+    <div class="small text-muted">
+      Showing {{ posts.start_index }} - {{ posts.end_index }} of {{ posts.paginator.count }} articles
+    </div>
+    <ul class="pagination pagination-sm mb-0">
+      {% if posts.has_previous %}
+      <li class="page-item">
+        <a class="page-link rounded-pill-start" href="?page={{ posts.previous_page_number }}{% if q %}&q={{ q }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}">Previous</a>
+      </li>
+      {% endif %}
+      
+      <li class="page-item active">
+        <span class="page-link">{{ posts.number }} / {{ posts.paginator.num_pages }}</span>
+      </li>
+
+      {% if posts.has_next %}
+      <li class="page-item">
+        <a class="page-link rounded-pill-end" href="?page={{ posts.next_page_number }}{% if q %}&q={{ q }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Category Management Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 border-0 shadow">
+      <div class="modal-header border-bottom px-4 py-3">
+        <h5 class="modal-title fw-bold" id="categoryModalLabel">Blog Categories</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <!-- New Category Form -->
+        <form method="post" action="{% url 'dashboard:blog_category_create' %}" class="mb-4">
+          {% csrf_token %}
+          <h6 class="fw-bold mb-2">Add New Category</h6>
+          <div class="row g-2">
+            <div class="col-12">
+              <label class="form-label small fw-semibold">Category Name (English)</label>
+              {{ category_form.name }}
+            </div>
+            <div class="col-12">
+              <label class="form-label small fw-semibold">वर्गको नाम (Nepali)</label>
+              {{ category_form.name_ne }}
+            </div>
+            <div class="col-12">
+              <label class="form-label small fw-semibold">URL Slug (Optional)</label>
+              {{ category_form.slug }}
+            </div>
+            <div class="col-12 mt-3">
+              <button type="submit" class="btn btn-cf-primary btn-sm w-100 rounded-pill py-2">
+                Save Category
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <hr class="my-3">
+
+        <!-- Existing Categories List -->
+        <h6 class="fw-bold mb-2">Existing Categories ({{ categories.count }})</h6>
+        <div class="list-group list-group-flush border rounded-3 overflow-hidden">
+          {% for cat in categories %}
+          <div class="list-group-item d-flex justify-content-between align-items-center py-2.5 px-3">
+            <div>
+              <span class="fw-bold text-dark">{{ cat.name }}</span>
+              {% if cat.name_ne %}
+              <span class="text-muted small ms-1">({{ cat.name_ne }})</span>
+              {% endif %}
+              <span class="badge bg-light text-muted border ms-2">{{ cat.post_count }} posts</span>
+            </div>
+            {% if cat.post_count == 0 %}
+            <a href="{% url 'dashboard:blog_category_delete' cat.id %}" class="btn btn-sm btn-outline-danger py-0.5 px-2 rounded-pill" onclick="return confirm('Delete category {{ cat.name }}?');" style="font-size: 0.72rem;">
+              Delete
+            </a>
+            {% endif %}
+          </div>
+          {% empty %}
+          <div class="text-center py-3 text-muted small">No categories found.</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
