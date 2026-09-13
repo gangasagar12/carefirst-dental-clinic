@@ -79,6 +79,7 @@ def dashboard_home(request):
     total_services = Service.objects.count()
     total_doctors = Doctor.objects.count()
     active_offers = SpecialOffer.objects.filter(is_active=True).count()
+    total_blogs = Post.objects.count()
     
     # Recent appointments
     recent_appointments = Appointment.objects.select_related('doctor', 'service', 'branch').order_by('-id')[:10]
@@ -102,6 +103,7 @@ def dashboard_home(request):
             'total_services': total_services,
             'total_doctors': total_doctors,
             'active_offers': active_offers,
+            'total_blogs': total_blogs,
         },
         'recent_appointments': recent_appointments,
         'recent_messages': recent_messages,
