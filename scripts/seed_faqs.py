@@ -116,25 +116,73 @@ def seed_faqs():
         # LOCAL SEO
         {
             "category_slug": "local-seo",
-            "question": "Where is the best dental clinic in Kathmandu located?",
-            "answer": "Carefirst Dental Clinic is conveniently located in Koteshwor-32, Kathmandu, exactly in front of Sanima Bank and 200m ahead of the Police Office towards Mahadevsthan. We are easily accessible and provide a comfortable, state-of-the-art environment for all your dental needs.",
+            "question": "Where is CareFirst Dental Clinic located in Kathmandu?",
+            "answer": "CareFirst Dental Clinic is conveniently located in Shankhamul-31 (Pragati Nagar Road), Kathmandu, directly in front of Sanima Bank and 200 meters ahead of the Police Office towards Mahadevsthan. We offer ample parking, wheelchair accessibility, and a modern, hygienic clinical environment.",
             "primary_keyword": "best dental clinic in Kathmandu",
             "search_intent": "Local",
             "order": 1
         },
         {
             "category_slug": "local-seo",
-            "question": "Do you offer emergency dental services in Kathmandu?",
-            "answer": "Yes, we provide emergency dental care in Kathmandu for severe toothaches, knocked-out teeth, broken crowns, and dental trauma. If you are experiencing a dental emergency, please call our clinic immediately at 984-8631371 for prompt assistance.",
-            "primary_keyword": "emergency dentist in Kathmandu",
+            "question": "Who is the lead dental surgeon at CareFirst Dental Clinic?",
+            "answer": "CareFirst Dental Clinic is led by Dr. Subash Banjade (BDS, Senior Dental Surgeon, Nepal Medical Council Registration #31229) alongside a dedicated team of certified specialists in orthodontics, oral surgery, and endodontics.",
+            "primary_keyword": "best dentist in Kathmandu",
             "search_intent": "Local",
             "order": 2
+        },
+        {
+            "category_slug": "local-seo",
+            "question": "What are your clinic opening hours and do you open on weekends?",
+            "answer": "Our clinic is open 7 days a week from 7:30 AM to 7:30 PM, including Saturdays and public holidays, to ensure you receive timely dental care whenever you need it.",
+            "primary_keyword": "dental clinic open on Saturday Kathmandu",
+            "search_intent": "Local",
+            "order": 3
+        },
+        {
+            "category_slug": "local-seo",
+            "question": "How do I book an appointment or emergency consultation?",
+            "answer": "You can easily book an appointment online through our website, or call / WhatsApp us directly at +977 980-7464136 for immediate scheduling.",
+            "primary_keyword": "dental appointment Kathmandu",
+            "search_intent": "Commercial",
+            "order": 4
+        },
+        {
+            "category_slug": "local-seo",
+            "question": "Are treatments at CareFirst Dental Clinic really painless?",
+            "answer": "Yes! We specialize in pain-free dentistry using advanced local anesthesia techniques, computerized delivery systems, and gentle clinical methods to ensure maximum comfort even for patients with dental anxiety.",
+            "primary_keyword": "painless dentistry Kathmandu",
+            "search_intent": "Informational",
+            "order": 5
+        },
+        {
+            "category_slug": "local-seo",
+            "question": "What payment options and installment (EMI) plans do you offer?",
+            "answer": "We accept cash, all major debit/credit cards, Fonepay, eSewa, and Khalti digital wallets. We also provide flexible 0% interest installment (EMI) options for high-tier treatments such as dental implants and braces.",
+            "primary_keyword": "affordable dental clinic Kathmandu",
+            "search_intent": "Commercial",
+            "order": 6
+        },
+        {
+            "category_slug": "local-seo",
+            "question": "What hygiene and sterilization standards do you follow?",
+            "answer": "We adhere to international hospital-grade infection control protocols. All reusable instruments undergo a rigorous 6-step sterilization process using Class-B autoclaves, and single-use disposable barriers are used for every patient.",
+            "primary_keyword": "safe dental clinic Kathmandu",
+            "search_intent": "Informational",
+            "order": 7
+        },
+        {
+            "category_slug": "local-seo",
+            "question": "Do you offer emergency dental services in Kathmandu?",
+            "answer": "Yes, we provide emergency dental care for acute toothaches, dental trauma, knocked-out teeth, broken crowns, and facial swelling. Please contact our emergency hotline immediately at +977 980-7464136.",
+            "primary_keyword": "emergency dentist Kathmandu",
+            "search_intent": "Local",
+            "order": 8
         },
     ]
 
     for f_data in faqs:
         category = SEOFAQCategory.objects.get(slug=f_data['category_slug'])
-        faq, created = SEOFAQ.objects.get_or_create(
+        faq, created = SEOFAQ.objects.update_or_create(
             category=category,
             question=f_data['question'],
             defaults={
@@ -144,8 +192,9 @@ def seed_faqs():
                 'order': f_data['order']
             }
         )
-        print(f"[{'Added' if created else 'Exists'}] {faq.question}")
+        print(f"[{'Added' if created else 'Updated'}] {faq.question}")
 
 if __name__ == '__main__':
     seed_faqs()
     print("Database seeding completed.")
+
