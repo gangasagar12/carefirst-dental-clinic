@@ -42,7 +42,7 @@
               </div>
               {% endif %}
               <div>
-                <div class="fw-bold text-dark">Dr. {{ doc.name }}</div>
+                <div class="fw-bold text-dark">{{ doc.display_name|default:doc.name }}</div>
                 <div class="small text-muted">{{ doc.designation }}</div>
               </div>
             </div>
@@ -68,7 +68,7 @@
               <a href="{% url 'dashboard:doctor_edit' doc.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="Edit Doctor Profile">
                 Edit
               </a>
-              <a href="{% url 'dashboard:doctor_delete' doc.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" onclick="return confirm('Are you sure you want to remove Dr. {{ doc.name }}?');" title="Delete Specialist">
+              <a href="{% url 'dashboard:doctor_delete' doc.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" onclick="return confirm('Are you sure you want to remove {{ doc.display_name|default:doc.name }}?');" title="Delete Specialist">
                 Delete
               </a>
             </div>

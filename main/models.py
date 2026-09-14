@@ -155,8 +155,34 @@ class Doctor(models.Model):
         verbose_name = "Doctor"
         verbose_name_plural = "Doctors"
 
+    @property
+    def clean_name(self):
+        """Returns doctor name without redundant leading 'Dr.' or 'Dr ' prefix."""
+        if not self.name:
+            return ""
+        val = self.name.strip()
+        for prefix in ["Dr. ", "Dr.", "Dr ", "dr. ", "dr.", "dr ", "डा. ", "डा.", "डा "]:
+            if val.startswith(prefix):
+                val = val[len(prefix):].strip()
+        return val
+
+    @property
+    def display_name(self):
+        """Always safely returns 'Dr. Name' without duplication."""
+        clean = self.clean_name
+        return f"Dr. {clean}" if clean else ""
+
+    def save(self, *args, **kwargs):
+        if self.name:
+            name = self.name.strip()
+            for prefix in ["Dr. ", "Dr.", "Dr ", "dr. ", "dr.", "dr ", "डा. ", "डा.", "डा "]:
+                if name.startswith(prefix):
+                    name = name[len(prefix):].strip()
+            self.name = name
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f"Dr. {self.name} — {self.get_specialty_display()}"
+        return f"{self.display_name} — {self.get_specialty_display()}"
 
     def get_certifications_list(self):
         """Returns certifications as a Python list."""

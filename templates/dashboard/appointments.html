@@ -61,7 +61,7 @@
       <select name="doctor" class="form-select">
         <option value="">All Doctors</option>
         {% for doc in doctors %}
-        <option value="{{ doc.id }}" {% if doctor_filter == doc.id|stringformat:"i" %}selected{% endif %}>Dr. {{ doc.name }}</option>
+        <option value="{{ doc.id }}" {% if doctor_filter == doc.id|stringformat:"i" %}selected{% endif %}>{{ doc.display_name|default:doc.name }}</option>
         {% endfor %}
       </select>
     </div>
@@ -108,7 +108,7 @@
           <td>
             <div class="fw-semibold text-dark">{{ app.service.title|default:app.get_treatment_display }}</div>
             {% if app.doctor %}
-            <div class="small text-muted">Dr. {{ app.doctor.name }}</div>
+            <div class="small text-muted">{{ app.doctor.display_name|default:app.doctor.name }}</div>
             {% endif %}
           </td>
           <td>

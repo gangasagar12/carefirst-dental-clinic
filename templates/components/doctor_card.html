@@ -137,9 +137,9 @@
   <!-- Photo & Badges -->
   <div class="cf-doc-photo-box">
     {% if doc.photo %}
-      <img loading="lazy" src="{{ doc.photo.url }}" alt="Dr. {{ doc.name }}">
+      <img loading="lazy" src="{{ doc.photo.url }}" alt="{{ doc.display_name|default:doc.name }}">
     {% elif "subash" in doc.name.lower %}
-      <img loading="lazy" src="{% static 'main/img/subash.jpeg' %}" alt="Dr. {{ doc.name }}">
+      <img loading="lazy" src="{% static 'main/img/subash.jpeg' %}" alt="{{ doc.display_name|default:doc.name }}">
     {% else %}
       <div class="cf-doc-avatar-empty">
         <i class="bi bi-person-fill"></i>
@@ -164,7 +164,7 @@
   <!-- Body Content -->
   <div class="cf-doc-content">
     <!-- Name & Designation -->
-    <h3 class="cf-doc-name-title">Dr. {{ doc.name }}</h3>
+    <h3 class="cf-doc-name-title">{{ doc.display_name|default:doc.name }}</h3>
     <div class="cf-doc-role">{{ doc.designation }}</div>
 
     <!-- Qualifications -->

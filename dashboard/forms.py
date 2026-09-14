@@ -66,6 +66,13 @@ class DoctorForm(BootstrapFormMixin, forms.ModelForm):
             'certifications': forms.Textarea(attrs={'rows': 3, 'placeholder': 'One certification per line'}),
         }
 
+    def clean_name(self):
+        name = self.cleaned_data.get('name', '').strip()
+        for prefix in ["Dr. ", "Dr.", "Dr ", "dr. ", "dr.", "dr ", "डा. ", "डा.", "डा "]:
+            if name.startswith(prefix):
+                name = name[len(prefix):].strip()
+        return name
+
 
 class PricingCategoryForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:

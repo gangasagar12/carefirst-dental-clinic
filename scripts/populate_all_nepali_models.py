@@ -107,16 +107,74 @@ def populate_all():
             print(f"  [Service Skipped] {title_en}")
 
     print("\n--- 2. Updating Doctors ---")
+    doctors_translations = {
+        "subash": {
+            "designation_en": "Clinical Director & Senior Dental Surgeon",
+            "designation_ne": "क्लिनिकल निर्देशक तथा वरिष्ठ दन्त शल्यचिकित्सक",
+            "qualifications_en": "BDS (KU), NMC #31229, Fellow in Advanced Endodontics",
+            "qualifications_ne": "बीडीएस (केयू), एनएमसी #३१२२९, एडभान्स्ड इन्डोडोन्टिक्स फेलो",
+            "bio_en": "Dr. Subash Banjade is a senior dental surgeon with extensive clinical expertise in painless root canal therapy, digital cosmetic smile design, and modern oral surgery. He leads CareFirst Dental Clinic with strict adherence to hospital-grade sterilization and patient-centric care.",
+            "bio_ne": "डा. सुभाष बन्जाडे दुखाइरहित रूट क्यानल उपचार, डिजिटल कस्मेटिक स्माइल डिजाइन र आधुनिक दन्त शल्यक्रियामा विशेष दक्षता हासिल गर्नुभएका वरिष्ठ दन्त चिकित्सक हुनुहुन्छ। उहाँले उच्च अस्पताल मापदण्डको स्टेरिलाइजेसन र बिरामीमैत्री सेवाका साथ केयरफर्स्ट डेन्टल क्लिनिकको नेतृत्व गरिरहनुभएको छ।"
+        },
+        "bijaya": {
+            "designation_en": "Dental Surgeon & General Practitioner",
+            "designation_ne": "दन्त सर्जन",
+            "qualifications_en": "BDS (KU)",
+            "qualifications_ne": "बीडीएस (केयू)",
+            "bio_en": "Dr. Bijaya Acharya focuses on patient comfort and comprehensive preventive dentistry, routine check-ups, aesthetic restorations, and gentle dental care.",
+            "bio_ne": "डा. विजया आचार्यले रोगीको आराममा ध्यान केन्द्रित गरी रोकथाम, पुनर्स्थापना, र कस्मेटिक दन्त उपचार सहित व्यापक दन्त उपचार प्रदान गर्नुहुन्छ।"
+        },
+        "sudeep": {
+            "designation_en": "Consultant Prosthodontist & Implantologist",
+            "designation_ne": "परामर्शदाता प्रोस्थोडोन्टिस्ट",
+            "qualifications_en": "MDS (BPKIHS, Dharan), BDS",
+            "qualifications_ne": "एमडीएस (बीपीकेआईएचएस, धरान)",
+            "bio_en": "Dr. Sudeep Subedi is a Consultant Prosthodontist dedicated to restoring oral function, aesthetics, and confidence through advanced crowns, bridges, dentures, and dental implant restorations.",
+            "bio_ne": "डा. सुदीप सुवेदी आधुनिक क्राउन, ब्रिज, डेन्चर तथा डेन्टल इम्प्लान्टको माध्यमबाट बिरामीको दाँतको कार्यक्षमता, प्राकृतिक सौन्दर्य र आत्मविश्वास पुनर्स्थापना गर्न समर्पित विशेषज्ञ प्रोस्थोडोन्टिस्ट हुनुहुन्छ।"
+        },
+        "aarati": {
+            "designation_en": "Senior Orthodontic Consultant",
+            "designation_ne": "वरिष्ठ अर्थोडन्टिक परामर्शदाता",
+            "qualifications_en": "BDS, MDS (Orthodontics & Dentofacial Orthopedics)",
+            "qualifications_ne": "बीडीएस, एमडीएस (अर्थोडन्टिक्स)",
+            "bio_en": "Dr. Aarati Sharma specializes in correcting crooked teeth, severe bite misalignments, and invisible smile transformations utilizing modern self-ligating ceramic braces and digital clear aligner systems.",
+            "bio_ne": "डा. आरती शर्माले आधुनिक सेल्फ-लिगेटिङ सिरेमिक ब्रेसेस र डिजिटल क्लियर एलाइनर प्रणालीहरूको प्रयोग गरी दाँत मिलाउने, बाङ्गो-टिङ्गो दाँतको उपचार र मुस्कान सुधारमा विशेषज्ञता हासिल गर्नुभएको छ।"
+        },
+        "pratik": {
+            "designation_en": "Periodontist & Implant Surgeon",
+            "designation_ne": "पेरियोडोन्टिस्ट तथा इम्प्लान्ट सर्जन",
+            "qualifications_en": "BDS, MDS (Periodontology & Oral Implantology)",
+            "qualifications_ne": "बीडीएस, एमडीएस (पेरियोडोन्टोलोजी र इम्प्लान्टोलोजी)",
+            "bio_en": "Dr. Pratik Adhikari is an experienced periodontist and implantologist specializing in computer-guided titanium dental implants, sinus lift bone grafting, and advanced laser periodontal therapies.",
+            "bio_ne": "डा. प्रतीक अधिकारी कम्प्यूटर निर्देशित टाइटेनियम डेन्टल इम्प्लान्ट, साइनस लिफ्ट बोन ग्राफ्टिङ र उन्नत लेजर गिजा उपचारमा अनुभवी विशेषज्ञ पेरियोडोन्टिस्ट हुनुहुन्छ।"
+        },
+        "sneha": {
+            "designation_en": "Pediatric & Preventive Dental Surgeon",
+            "designation_ne": "बाल दन्तरोग तथा रोकथाम विशेषज्ञ",
+            "qualifications_en": "BDS (Dental Surgeon)",
+            "qualifications_ne": "बीडीएस (दन्त शल्यचिकित्सक)",
+            "bio_en": "Dr. Sneha Shrestha creates a fun, anxiety-free dental experience for children and teenagers. She focuses on pediatric preventive care, pit & fissure sealants, gentle fillings, and fluoride enamel therapies.",
+            "bio_ne": "डा. स्नेहा श्रेष्ठले बालबालिका र किशोरकिशोरीहरूका लागि रमाइलो र डररहित दन्त उपचार वातावरण सिर्जना गर्नुहुन्छ। उहाँ बाल दन्त रोकथाम, सिल्यान्ट, कोमल फिलिङ र फ्लोराइड उपचारमा केन्द्रित हुनुहुन्छ।"
+        }
+    }
+
     for doc in Doctor.objects.all():
-        if "Subash" in doc.name or "सुभाष" in doc.name:
-            doc.designation_en = "Clinical Director & Senior Dental Surgeon"
-            doc.designation_ne = "क्लिनिकल निर्देशक तथा वरिष्ठ दन्त शल्यचिकित्सक"
-            doc.qualifications_en = "BDS (KU), NMC #31229, Fellow in Advanced Endodontics"
-            doc.qualifications_ne = "बीडीएस (केयू), एनएमसी #३१२२९, एडभान्स्ड इन्डोडोन्टिक्स फेलो"
-            doc.bio_en = "Dr. Subash Banjade is a senior dental surgeon with extensive clinical expertise in painless root canal therapy, digital cosmetic smile design, and modern oral surgery. He leads CareFirst Dental Clinic with strict adherence to hospital-grade sterilization and patient-centric care."
-            doc.bio_ne = "डा. सुभाष बन्जाडे दुखाइरहित रूट क्यानल उपचार, डिजिटल कस्मेटिक स्माइल डिजाइन र आधुनिक दन्त शल्यक्रियामा विशेष दक्षता हासिल गर्नुभएका वरिष्ठ दन्त चिकित्सक हुनुहुन्छ। उहाँले उच्च अस्पताल मापदण्डको स्टेरिलाइजेसन र बिरामीमैत्री सेवाका साथ केयरफर्स्ट डेन्टल क्लिनिकको नेतृत्व गरिरहनुभएको छ।"
-            doc.save()
-            print(f"  [Doctor] Dr. Subash Banjade updated in Nepali & English")
+        name_lower = doc.name.lower()
+        matched = False
+        for key, trans in doctors_translations.items():
+            if key in name_lower:
+                doc.designation_en = trans["designation_en"]
+                doc.designation_ne = trans["designation_ne"]
+                doc.qualifications_en = trans["qualifications_en"]
+                doc.qualifications_ne = trans["qualifications_ne"]
+                doc.bio_en = trans["bio_en"]
+                doc.bio_ne = trans["bio_ne"]
+                doc.save()
+                print(f"  [Doctor] Dr. {doc.name} updated in Nepali & English")
+                matched = True
+                break
+        if not matched:
+            print(f"  [Doctor Skipped/Unchanged] Dr. {doc.name}")
 
     print("\n--- 3. Updating Core Values & Clinic Features ---")
     core_values_ne = {
