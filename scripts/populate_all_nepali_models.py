@@ -15,6 +15,8 @@ from main.models import (
     AboutPageSettings, Branch, CoreValue, Technology, Testimonial,
     ClinicGallery, SEOFAQCategory, SEOFAQ
 )
+from media_center.models import Video, VideoCategory
+from blogs.models import Category as BlogCategory, Post as BlogPost
 from django.db import connection
 
 SERVICES_DATA = {
@@ -202,8 +204,87 @@ def populate_all():
         if t.review and not t.review_ne:
             t.review_en = t.review
             t.treatment_en = t.treatment or "Dental Care"
-            # Keep authentic review translation
             t.save()
+
+    print("\n--- 5. Updating Educational Videos & Video Categories ---")
+    video_cat_trans = {
+        "Patient Education & Guides": "बिरामी शिक्षा तथा गाइडहरू",
+        "Treatment Walkthroughs": "उपचार प्रक्रिया थ्रीडी भिडियोहरू",
+        "Cosmetic & Smile Makeovers": "कस्मेटिक तथा मुस्कान सुधार",
+        "Dental Implants & Surgery": "डेन्टल इम्प्लान्ट तथा शल्यक्रिया"
+    }
+    for vc in VideoCategory.objects.all():
+        for k, v_ne in video_cat_trans.items():
+            if k.lower() in vc.name.lower():
+                vc.name_en = vc.name
+                vc.name_ne = v_ne
+                vc.save()
+                print(f"  [VideoCategory] {vc.name} -> {v_ne}")
+                break
+
+    videos_translations = {
+        "root canal": {
+            "title_ne": "रूट क्यानल उपचारको क्रममा के हुन्छ? (3D प्रक्रिया गाइड)",
+            "short_desc_ne": "केयरफर्स्ट डेन्टल क्लिनिकमा माइक्रोस्कोपिक दुखाइरहित रूट क्यानल थेरापीको चरणबद्ध थ्रीडी प्रक्रिया।"
+        },
+        "implants": {
+            "title_ne": "डेन्टल इम्प्लान्टको सम्पूर्ण जानकारी: एउटा दाँतदेखि पूरै मुखसम्म",
+            "short_desc_ne": "हराएको दाँतको ठाउँमा आधुनिक थ्रीडी टाइटेनियम डेन्टल इम्प्लान्टले कसरी प्राकृतिक र स्थायी समाधान दिन्छ जान्नुहोस्।"
+        },
+        "aligners": {
+            "title_ne": "क्लियर एलाइनर र परम्परागत ब्रेसेस: तपाईंको लागि कुन उपयुक्त छ?",
+            "short_desc_ne": "बाङ्गो दाँत मिलाउन अदृश्य क्लियर एलाइनर र आधुनिक मेटल/सिरेमिक ब्रेसेस बीचको तुलना।"
+        },
+        "scaling": {
+            "title_ne": "दाँत सफा (स्केलिङ) गर्दा दाँत कमजोर किन हुँदैन? भ्रम र यथार्थ",
+            "short_desc_ne": "अल्ट्रासोनिक दाँत सफाइबारे गलत भ्रमहरू र नियमित स्केलिङले कसरी गिजाको रोग र मुखको दुर्गन्ध रोक्छ।"
+        },
+        "composite": {
+            "title_ne": "कम्पोजिट डेन्टल फिलिङ: दाँतकै रङको प्राकृतिक दन्त पुनर्स्थापना",
+            "short_desc_ne": "दाँतकै रङको कम्पोजिट रेजिन फिलिङले प्राकृतिक इनामेलसँग मिलेर किराले खाएको दाँत कसरी मर्मत गर्छ हेर्नुहोस्।"
+        },
+        "x-ray": {
+            "title_ne": "डिजिटल डेन्टल एक्स-रे र ओपिजी: सुरक्षित र न्यून-रेडिएसन निदान",
+            "short_desc_ne": "डिजिटल सेन्सर र प्यानोरामिक आरभीजीले फिल्मभन्दा ९०% कम रेडिएसनमा कसरी तत्काल उच्च गुणस्तरको स्क्यान दिन्छ।"
+        },
+        "brush": {
+            "title_ne": "दाँत माझ्ने र फ्लस गर्ने सही तरिका: डाक्टरको दैनिक हेरचाह गाइड",
+            "short_desc_ne": "दैनिक २ मिनेट दाँत माझ्ने वैज्ञानिक तरिका र डा. सुभाष बन्जाडेद्वारा सिफारिस गरिएको फ्लसिङ सल्लाह।"
+        },
+        "wisdom": {
+            "title_ne": "अक्कल दाँत (Wisdom Tooth) निकाल्ने कहिले आवश्यक हुन्छ र निको पार्ने सुझावहरू",
+            "short_desc_ne": "फसेको अक्कल दाँतका लक्षणहरू, दुखाइरहित निकाल्ने तरिका र छिटो निको हुने दिशानिर्देशहरू जान्नुहोस्।"
+        }
+    }
+    for vid in Video.objects.all():
+        title_lower = vid.title.lower()
+        for k, vdata in videos_translations.items():
+            if k in title_lower:
+                vid.title_en = vid.title
+                vid.title_ne = vdata["title_ne"]
+                vid.short_description_en = vid.short_description or vid.title
+                vid.short_description_ne = vdata["short_desc_ne"]
+                vid.save()
+                print(f"  [Video] {vid.title} -> {vdata['title_ne']}")
+                break
+
+    print("\n--- 6. Updating Blog Categories & Articles ---")
+    blog_cat_trans = {
+        "General Dentistry": "साधारण दन्त चिकित्सा",
+        "Dental Implants": "डेन्टल इम्प्लान्ट",
+        "Root Canal Treatment": "रूट क्यानल उपचार",
+        "Orthodontics": "तार बाँध्ने उपचार (ब्रेसेस)",
+        "Gum Treatment": "गिजाको उपचार",
+        "Oral Hygiene": "मुखको सरसफाइ"
+    }
+    for bcat in BlogCategory.objects.all():
+        for k, b_ne in blog_cat_trans.items():
+            if k.lower() in bcat.name.lower():
+                bcat.name_en = bcat.name
+                bcat.name_ne = b_ne
+                bcat.save()
+                print(f"  [BlogCategory] {bcat.name} -> {b_ne}")
+                break
 
     print("\nAll database model translations successfully synchronized!")
 
