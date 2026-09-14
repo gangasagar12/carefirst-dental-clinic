@@ -447,6 +447,8 @@ body.cf-dashboard-body {
   border-bottom: 1px solid var(--cf-dash-border);
   vertical-align: middle;
   background: #FFFFFF;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .cf-dash-table tr:last-child td {
