@@ -7,7 +7,7 @@
     &larr; Back to Articles
   </a>
   {% if is_edit and post.slug %}
-  <a href="{% url 'blogs:blog_detail' post.slug %}" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold">
+  <a href="{% url 'blogs:post_detail' post.slug %}" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold">
     View Live Article &nearr;
   </a>
   {% endif %}

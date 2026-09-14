@@ -138,7 +138,7 @@
           </td>
           <td class="text-end text-nowrap">
             <div class="d-inline-flex gap-1.5 align-items-center">
-              <a href="{% url 'blogs:blog_detail' p.slug %}" target="_blank" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary" title="Preview on Website">
+              <a href="{% url 'blogs:post_detail' p.slug %}" target="_blank" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary" title="Preview on Website">
                 Preview
               </a>
               <a href="{% url 'dashboard:blog_edit' p.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="Edit Article">
