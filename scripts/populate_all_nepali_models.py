@@ -286,6 +286,72 @@ def populate_all():
                 print(f"  [BlogCategory] {bcat.name} -> {b_ne}")
                 break
 
+    print("\n--- 7. Updating Pricing Categories & Items ---")
+    pricing_cat_trans = {
+        "General Dentistry": "साधारण दन्त चिकित्सा",
+        "Root Canal": "रूट क्यानल उपचार (RCT)",
+        "Crowns & Bridges": "दाँतको क्याप तथा ब्रिज",
+        "Tooth Extraction": "दाँत निकाल्ने सेवा",
+        "Dentures": "नक्कली दाँत (डेन्चर)",
+        "Orthodontic": "तार बाँध्ने उपचार (अर्थोडोन्टिक्स / ब्रेसेस)",
+        "Periodontal": "गिजा रोगको विशेष उपचार",
+        "Dental Implants": "डेन्टल इम्प्लान्ट (दाँत प्रत्यारोपण)"
+    }
+    for pcat in PricingCategory.objects.all():
+        name_en = pcat.name_en or pcat.name
+        for k, c_ne in pricing_cat_trans.items():
+            if k.lower() in name_en.lower():
+                pcat.name_en = name_en
+                pcat.name_ne = c_ne
+                pcat.save()
+                print(f"  [PricingCategory] {name_en} -> {c_ne}")
+                break
+
+    pricing_item_trans = {
+        "Registration & Check-up": "दर्ता तथा सम्पूर्ण दाँत परीक्षण",
+        "Digital Dental X-Ray": "डिजिटल दाँतको एक्स-रे (RVG)",
+        "Specialist Consultation": "विशेषज्ञ दन्त परामर्श",
+        "Dental Filling": "दाँत भर्ने (कम्पोजिट लाइट क्योर फिलिङ)",
+        "Scaling & Polishing": "दाँत सफाइ र पोलिसिङ (स्केलिङ)",
+        "Curettage": "क्युटेज (गिजाको भित्री सफाइ)",
+        "Child RCT": "बालबालिकाको रूट क्यानल (पल्पेक्टोमी)",
+        "Adult RCT": "वयस्क रूट क्यानल (प्रति दाँत)",
+        "Single-Sitting RCT": "एकै बसाइमा गरिने रूट क्यानल (Single Sitting RCT)",
+        "All Metal": "मेटल क्याप (All Metal Crown)",
+        "Metal Ceramic": "मेटल सिरामिक क्याप (PFM Crown)",
+        "E-max": "ई-म्याक्स अल-सिरामिक क्याप (E-max Crown)",
+        "Zirconia": "प्रिमियम जिर्कोनिया क्याप (Zirconia Crown)",
+        "Child Extraction": "बालबालिकाको दाँत निकाल्ने",
+        "Adult Extraction": "सामान्य दाँत निकाल्ने (वयस्क)",
+        "Wisdom Tooth": "बुद्धि बंगारा निकाल्ने (Wisdom Tooth)",
+        "Surgical Extraction": "शल्यक्रियाद्वारा बंगारा निकाल्ने (Surgical Extraction)",
+        "Removable Partial Denture": "निकाल्न मिल्ने आंशिक नक्कली दाँत (RPD)",
+        "Complete Denture": "पूरै मुखको नक्कली दाँत सेट (Complete Denture)",
+        "Braces Treatment": "तार बाँध्ने उपचार (मेटल / सिरेमिक / क्लियर अलाइनर)",
+        "Deep Cleaning": "गहिरो जरा सफाइ (Root Planing / Deep Cleaning)",
+        "Flap Surgery": "गिजाको शल्यक्रिया (Flap Surgery)",
+        "Splinting": "हल्लिरहेको दाँत बाँध्ने (Splinting)",
+        "Dental Implant": "टाइटेनियम डेन्टल इम्प्लान्ट (Fixture Only)",
+        "Bone Grafting": "हड्डी थप्ने प्रक्रिया (Bone Grafting)"
+    }
+    for pitem in PricingItem.objects.all():
+        name_en = pitem.name_en or pitem.name
+        matched = False
+        for k, i_ne in pricing_item_trans.items():
+            if k.lower() in name_en.lower():
+                pitem.name_en = name_en
+                pitem.name_ne = i_ne
+                pitem.price_en = pitem.price
+                pitem.price_ne = pitem.price
+                pitem.save()
+                print(f"  [PricingItem] {name_en} -> {i_ne}")
+                matched = True
+                break
+        if not matched and not pitem.name_ne:
+            pitem.name_en = name_en
+            pitem.name_ne = name_en
+            pitem.save()
+
     print("\nAll database model translations successfully synchronized!")
 
 if __name__ == '__main__':
