@@ -1,8 +1,9 @@
 import logging
 import os
+import re
 from functools import lru_cache
-from typing import Optional, Dict
-from deep_translator import GoogleTranslator
+from typing import Optional, Dict, List
+from deep_translator import GoogleTranslator, MyMemoryTranslator
 from django.core.cache import cache
 
 logger = logging.getLogger(__name__)
@@ -64,28 +65,90 @@ DENTAL_NEPALI_GLOSSARY: Dict[str, str] = {
     "Open Daily": "दैनिक खुला",
     "Open Daily (Mon–Sun): 7:30 AM – 7:30 PM": "दैनिक खुला (सोम–आइत): बिहान ७:३० देखि साँझ ७:३० सम्म",
     "Pragatinagar Road, Shankhamul-31, Kathmandu (Shankhamul / New Baneshwor)": "प्रगतिनगर मार्ग, शंखमूल-३१, काठमाडौँ (शंखमूल / नयाँ बानेश्वर)",
+    "5 min read": "५ मिनेटको पढाइ",
+    "6 min read": "६ मिनेटको पढाइ",
+    "7 min read": "७ मिनेटको पढाइ",
+    "8 min read": "८ मिनेटको पढाइ",
+    "10 min read": "१० मिनेटको पढाइ",
 }
 
 
 class TranslationService:
     """
     High-performance translation service powered by Deep Translator.
-    Features in-memory dictionary priority, Redis/Django caching, and automatic fallback.
+    Features:
+    - In-memory glossary priority
+    - Redis / Django caching
+    - Primary Google Translator engine
+    - Automatic secondary fallback to MyMemory Translator
+    - Smart HTML and multi-paragraph chunking
     """
 
     def __init__(self, source: str = 'en', target: str = 'ne'):
         self.source = source
         self.target = target
         try:
-            self._translator = GoogleTranslator(source=source, target=target)
+            self._google_translator = GoogleTranslator(source=source, target=target)
+        except Exception:
+            self._google_translator = None
+
+        try:
+            self._mymemory_translator = MyMemoryTranslator(source='en-US', target='ne-NP')
+        except Exception:
+            self._mymemory_translator = None
+
+    def _translate_raw_chunk(self, chunk: str) -> str:
+        """Helper to translate a single chunk (<1500 chars) with fallback and caching."""
+        clean = chunk.strip()
+        if not clean:
+            return chunk
+
+        if clean in DENTAL_NEPALI_GLOSSARY:
+            return DENTAL_NEPALI_GLOSSARY[clean]
+
+        cache_key = f"dt_trans_{self.source}_{self.target}_{hash(clean)}"
+        try:
+            cached = cache.get(cache_key)
+            if cached:
+                return cached
+        except Exception:
+            pass
+
+        # Attempt 1: Google Translator
+        try:
+            if not self._google_translator:
+                self._google_translator = GoogleTranslator(source=self.source, target=self.target)
+            translated = self._google_translator.translate(clean)
+            if translated and translated.strip():
+                try:
+                    cache.set(cache_key, translated, timeout=86400 * 30)
+                except Exception:
+                    pass
+                return translated
         except Exception as e:
-            logger.warning(f"DeepTranslator initialization warning: {e}")
-            self._translator = None
+            logger.warning(f"GoogleTranslator rate-limited/failed for '{clean[:40]}...': {e}. Trying fallback...")
+
+        # Attempt 2: MyMemory Translator Fallback
+        try:
+            if not self._mymemory_translator:
+                self._mymemory_translator = MyMemoryTranslator(source='en-US', target='ne-NP')
+            translated = self._mymemory_translator.translate(clean)
+            if translated and translated.strip() and not translated.startswith("MYMEMORY WARNING"):
+                try:
+                    cache.set(cache_key, translated, timeout=86400 * 30)
+                except Exception:
+                    pass
+                return translated
+        except Exception as e:
+            logger.error(f"MyMemoryTranslator fallback also failed for '{clean[:40]}...': {e}")
+
+        # Fallback to original text if both services fail
+        return chunk
 
     def translate(self, text: str) -> str:
         """
         Translates a given string into Nepali.
-        Checks glossary first, then Django cache, then calls Deep Translator.
+        Handles short strings, long articles, and HTML content transparently.
         """
         if not text or not isinstance(text, str):
             return text
@@ -98,26 +161,27 @@ class TranslationService:
         if clean_text in DENTAL_NEPALI_GLOSSARY:
             return DENTAL_NEPALI_GLOSSARY[clean_text]
 
-        # 2. Cache Lookup
-        cache_key = f"dt_trans_{self.source}_{self.target}_{hash(clean_text)}"
-        cached = cache.get(cache_key)
-        if cached:
-            return cached
+        # 2. Short string (<1500 chars, no HTML tags)
+        if len(clean_text) <= 1500 and not ('<' in clean_text and '>' in clean_text):
+            return self._translate_raw_chunk(clean_text)
 
-        # 3. Deep Translator API call
-        try:
-            if not self._translator:
-                self._translator = GoogleTranslator(source=self.source, target=self.target)
-            
-            translated = self._translator.translate(clean_text)
-            if translated:
-                cache.set(cache_key, translated, timeout=86400 * 30)  # Cache for 30 days
-                return translated
-        except Exception as e:
-            logger.error(f"DeepTranslator translation error for '{clean_text}': {e}")
+        # 3. HTML / Multi-paragraph text chunking
+        if '<p>' in clean_text or '<h3>' in clean_text or '<div>' in clean_text or '<br>' in clean_text:
+            parts = re.split(r'(</?(?:p|h[1-6]|div|li|ul|ol|blockquote|section|br\s*/?|hr\s*/?)>)', clean_text)
+            translated_parts = []
+            for part in parts:
+                if part.startswith('<') and part.endswith('>'):
+                    translated_parts.append(part)
+                elif part.strip():
+                    translated_parts.append(self._translate_raw_chunk(part))
+                else:
+                    translated_parts.append(part)
+            return "".join(translated_parts)
 
-        # Fallback to original text if translation fails
-        return text
+        # 4. Long plain text: split by double newlines
+        paragraphs = clean_text.split('\n\n')
+        translated_paragraphs = [self._translate_raw_chunk(p) for p in paragraphs]
+        return '\n\n'.join(translated_paragraphs)
 
 
 # Global instance
