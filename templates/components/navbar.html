@@ -93,6 +93,7 @@
 
   .cf-social-whatsapp { background: #25D366 !important; }
   .cf-social-facebook { background: #1877F2 !important; }
+  .cf-social-tiktok { background: #000000 !important; }
   .cf-social-instagram { background: linear-gradient(45deg, #F09433 0%, #E6683C 25%, #DC2743 50%, #CC2366 75%, #BC1888 100%) !important; }
 
   /* Book Appointment CTA Pill */
@@ -657,13 +658,15 @@
         <a href="https://wa.me/9779807464136" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="cf-social-link cf-social-whatsapp" title="WhatsApp">
           <i class="bi bi-whatsapp"></i>
         </a>
-        <a href="https://facebook.com" target="_blank" rel="noopener" class="cf-social-link cf-social-facebook" aria-label="Facebook">
+        <a href="{{ site_settings.facebook_url|default:'https://www.facebook.com/profile.php?id=100093190502452' }}" target="_blank" rel="noopener noreferrer" class="cf-social-link cf-social-facebook" aria-label="Facebook" title="Facebook">
           <i class="bi bi-facebook"></i>
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener" class="cf-social-link cf-social-instagram" aria-label="Instagram">
+        <a href="{{ site_settings.tiktok_url|default:'https://www.tiktok.com/@carefirstdentalclinic' }}" target="_blank" rel="noopener noreferrer" class="cf-social-link cf-social-tiktok" aria-label="TikTok" title="TikTok">
+          <i class="bi bi-tiktok"></i>
+        </a>
+        <a href="{{ site_settings.instagram_url|default:'https://instagram.com' }}" target="_blank" rel="noopener noreferrer" class="cf-social-link cf-social-instagram" aria-label="Instagram" title="Instagram">
           <i class="bi bi-instagram"></i>
         </a>
-         
       </div>
 
       <a href="{% url 'appointments:book' %}" class="cf-row2-btn">

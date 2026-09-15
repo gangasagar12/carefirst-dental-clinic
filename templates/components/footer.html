@@ -29,10 +29,10 @@
           <h6 class="text-white fw-bold mb-3" style="font-size: 0.9rem; letter-spacing: 0.5px; text-transform: uppercase;">{% trans "Connect With Us" %}</h6>
           <div class="footer-social mb-3 d-flex align-items-center flex-wrap gap-2">
             <a href="https://wa.me/9779807464136" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="cf-foot-social cf-social-wa" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="cf-foot-social cf-social-fb" title="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="cf-foot-social cf-social-ig" title="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="cf-foot-social cf-social-tt" title="TikTok"><i class="bi bi-tiktok"></i></a>
-            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="cf-foot-social cf-social-yt" title="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="{{ site_settings.facebook_url|default:'https://www.facebook.com/profile.php?id=100093190502452' }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="cf-foot-social cf-social-fb" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="{{ site_settings.tiktok_url|default:'https://www.tiktok.com/@carefirstdentalclinic' }}" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="cf-foot-social cf-social-tt" title="TikTok"><i class="bi bi-tiktok"></i></a>
+            <a href="{{ site_settings.instagram_url|default:'https://www.instagram.com/' }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="cf-foot-social cf-social-ig" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="{{ site_settings.youtube_url|default:'https://www.youtube.com/' }}" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="cf-foot-social cf-social-yt" title="YouTube"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
 

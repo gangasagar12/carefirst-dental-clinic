@@ -131,7 +131,7 @@ class SiteSettingsForm(BootstrapFormMixin, forms.ModelForm):
         fields = [
             'primary_phone', 'secondary_phone', 'whatsapp_number', 'email',
             'address', 'landmark', 'working_hours_weekdays', 'working_hours_weekend',
-            'google_maps_iframe_url', 'facebook_url', 'instagram_url', 'youtube_url', 'twitter_url'
+            'google_maps_iframe_url', 'facebook_url', 'tiktok_url', 'instagram_url', 'youtube_url', 'twitter_url'
         ]
         widgets = {
             'landmark': forms.Textarea(attrs={'rows': 2}),

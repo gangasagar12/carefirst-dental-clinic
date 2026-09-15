@@ -494,6 +494,7 @@ class SiteSettings(models.Model):
     
     # Social Media
     facebook_url = models.URLField(blank=True)
+    tiktok_url = models.URLField(blank=True)
     instagram_url = models.URLField(blank=True)
     youtube_url = models.URLField(blank=True)
     twitter_url = models.URLField(blank=True)
