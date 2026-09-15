@@ -63,3 +63,10 @@ class SEOFAQCategoryTranslationOptions(TranslationOptions):
 @register(SEOFAQ)
 class SEOFAQTranslationOptions(TranslationOptions):
     fields = ('question', 'answer')
+
+from .models import HeroSlide
+
+@register(HeroSlide)
+class HeroSlideTranslationOptions(TranslationOptions):
+    fields = ('title', 'subtitle')
+
