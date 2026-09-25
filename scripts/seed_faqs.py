@@ -1,13 +1,24 @@
 import os
 import sys
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
+sys.stdout.reconfigure(encoding='utf-8')
+
 import django
-
-# Add the project root to the Python path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# Setup django environment
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
+
+from django.db import connection
+if connection.vendor == 'sqlite':
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("PRAGMA busy_timeout = 60000;")
+            cursor.execute("PRAGMA journal_mode = WAL;")
+            cursor.execute("PRAGMA synchronous = NORMAL;")
+    except Exception:
+        pass
 
 from main.models import SEOFAQCategory, SEOFAQ
 

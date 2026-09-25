@@ -10,6 +10,16 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
 
+from django.db import connection
+if connection.vendor == 'sqlite':
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("PRAGMA busy_timeout = 60000;")
+            cursor.execute("PRAGMA journal_mode = WAL;")
+            cursor.execute("PRAGMA synchronous = NORMAL;")
+    except Exception:
+        pass
+
 from main.models import PricingCategory, PricingItem
 
 PRICING_DATA = [

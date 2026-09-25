@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,8 +11,17 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
 
-from main.models import SEOFAQCategory, SEOFAQ
 from django.db import connection
+if connection.vendor == 'sqlite':
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("PRAGMA busy_timeout = 60000;")
+            cursor.execute("PRAGMA journal_mode = WAL;")
+            cursor.execute("PRAGMA synchronous = NORMAL;")
+    except Exception:
+        pass
+
+from main.models import SEOFAQCategory, SEOFAQ
 
 # Accurate, natural, medically precise Nepali FAQ Dictionary
 FAQ_TRANSLATIONS = {
@@ -114,8 +124,14 @@ def update_faqs():
             if not faq.answer_en:
                 faq.answer_en = faq.answer
             faq.answer_ne = t["a_ne"]
-            faq.save()
-            print(f"Updated FAQ ID {faq.id}: {q_en} -> {t['q_ne']}")
+            
+            for attempt in range(5):
+                try:
+                    faq.save()
+                    print(f"Updated FAQ ID {faq.id}: {q_en} -> {t['q_ne']}")
+                    break
+                except Exception as e:
+                    time.sleep(0.5)
         else:
             print(f"No custom translation for: {q_en}")
 
@@ -134,8 +150,14 @@ def update_faqs():
             cat.name_ne = name_ne
             cat.description_en = cat.description or ""
             cat.description_ne = desc_ne
-            cat.save()
-            print(f"Updated Category: {cat.slug} -> {name_ne}")
+            for attempt in range(5):
+                try:
+                    cat.save()
+                    print(f"Updated Category: {cat.slug} -> {name_ne}")
+                    break
+                except Exception as e:
+                    time.sleep(0.5)
 
 if __name__ == '__main__':
     update_faqs()
+

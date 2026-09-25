@@ -10,6 +10,16 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
 
+from django.db import connection
+if connection.vendor == 'sqlite':
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("PRAGMA busy_timeout = 60000;")
+            cursor.execute("PRAGMA journal_mode = WAL;")
+            cursor.execute("PRAGMA synchronous = NORMAL;")
+    except Exception:
+        pass
+
 from main.models import (
     Service, Doctor, PricingCategory, PricingItem, SpecialOffer,
     AboutPageSettings, Branch, CoreValue, Technology, Testimonial,
@@ -17,7 +27,6 @@ from main.models import (
 )
 from media_center.models import Video, VideoCategory
 from blogs.models import Category as BlogCategory, Post as BlogPost
-from django.db import connection
 
 SERVICES_DATA = {
     "General Dentistry": {
