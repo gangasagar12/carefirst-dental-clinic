@@ -198,35 +198,48 @@ PRICING_DATA = [
     },
 ]
 
+import time
+
+def safe_execute(func):
+    for attempt in range(10):
+        try:
+            return func()
+        except Exception as e:
+            if 'locked' in str(e).lower() and attempt < 9:
+                connection.close()
+                time.sleep(1)
+            else:
+                raise e
+
 def run():
     print("Clearing and re-populating pricing categories and items with English & Nepali translations...")
-    PricingItem.objects.all().delete()
-    PricingCategory.objects.all().delete()
+    safe_execute(lambda: PricingItem.objects.all().delete())
+    safe_execute(lambda: PricingCategory.objects.all().delete())
 
     cat_order = 1
     item_order = 1
 
     for block in PRICING_DATA:
-        cat = PricingCategory.objects.create(
-            name=block["category_en"],
-            name_en=block["category_en"],
-            name_ne=block["category_ne"],
-            order=cat_order
-        )
+        cat = safe_execute(lambda b=block, co=cat_order: PricingCategory.objects.create(
+            name=b["category_en"],
+            name_en=b["category_en"],
+            name_ne=b["category_ne"],
+            order=co
+        ))
         cat_order += 1
         print(f"[Category] {cat.name_en} -> {cat.name_ne}")
 
         for item_data in block["items"]:
-            item = PricingItem.objects.create(
-                category=cat,
-                name=item_data["name_en"],
-                name_en=item_data["name_en"],
-                name_ne=item_data["name_ne"],
-                price=item_data["price"],
-                price_en=item_data["price"],
-                price_ne=item_data["price"],
-                order=item_order
-            )
+            item = safe_execute(lambda c=cat, idata=item_data, io=item_order: PricingItem.objects.create(
+                category=c,
+                name=idata["name_en"],
+                name_en=idata["name_en"],
+                name_ne=idata["name_ne"],
+                price=idata["price"],
+                price_en=idata["price"],
+                price_ne=idata["price"],
+                order=io
+            ))
             item_order += 1
             print(f"   [Item] {item.name_en} -> {item.name_ne} ({item.price})")
 

@@ -110,28 +110,31 @@ FAQ_TRANSLATIONS = {
     }
 }
 
+def safe_update_model(queryset, **kwargs):
+    for attempt in range(10):
+        try:
+            return queryset.update(**kwargs)
+        except Exception as e:
+            if 'locked' in str(e).lower() and attempt < 9:
+                connection.close()
+                time.sleep(1)
+            else:
+                raise e
+
 def update_faqs():
     for faq in SEOFAQ.objects.all():
         q_en = faq.question_en or faq.question
-        if not faq.question_en:
-            faq.question_en = faq.question
-        if not faq.answer_en:
-            faq.answer_en = faq.answer
+        a_en = faq.answer_en or faq.answer
         if q_en in FAQ_TRANSLATIONS:
             t = FAQ_TRANSLATIONS[q_en]
-            faq.question_en = q_en
-            faq.question_ne = t["q_ne"]
-            if not faq.answer_en:
-                faq.answer_en = faq.answer
-            faq.answer_ne = t["a_ne"]
-            
-            for attempt in range(5):
-                try:
-                    faq.save()
-                    print(f"Updated FAQ ID {faq.id}: {q_en} -> {t['q_ne']}")
-                    break
-                except Exception as e:
-                    time.sleep(0.5)
+            safe_update_model(
+                SEOFAQ.objects.filter(id=faq.id),
+                question_en=q_en,
+                question_ne=t["q_ne"],
+                answer_en=a_en,
+                answer_ne=t["a_ne"]
+            )
+            print(f"Updated FAQ ID {faq.id}: {q_en} -> {t['q_ne']}")
         else:
             print(f"No custom translation for: {q_en}")
 
@@ -146,17 +149,14 @@ def update_faqs():
     for cat in SEOFAQCategory.objects.all():
         if cat.slug in cat_translations:
             name_ne, desc_ne = cat_translations[cat.slug]
-            cat.name_en = cat.name
-            cat.name_ne = name_ne
-            cat.description_en = cat.description or ""
-            cat.description_ne = desc_ne
-            for attempt in range(5):
-                try:
-                    cat.save()
-                    print(f"Updated Category: {cat.slug} -> {name_ne}")
-                    break
-                except Exception as e:
-                    time.sleep(0.5)
+            safe_update_model(
+                SEOFAQCategory.objects.filter(id=cat.id),
+                name_en=cat.name,
+                name_ne=name_ne,
+                description_en=cat.description or "",
+                description_ne=desc_ne
+            )
+            print(f"Updated Category: {cat.slug} -> {name_ne}")
 
 if __name__ == '__main__':
     update_faqs()

@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,6 +12,18 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
 
 from django.db import connection
+
+def safe_update_model(queryset, **kwargs):
+    for attempt in range(10):
+        try:
+            return queryset.update(**kwargs)
+        except Exception as e:
+            if 'locked' in str(e).lower() and attempt < 9:
+                connection.close()
+                time.sleep(1)
+            else:
+                raise e
+
 if connection.vendor == 'sqlite':
     try:
         with connection.cursor() as cursor:
@@ -59,34 +72,34 @@ SERVICES_DATA = {
         "short_desc_ne": "दाँतको भित्री नसाको संक्रमण हटाई प्राकृतिक दाँत जोगाउने आधुनिक र दुखाइरहित उपचार।",
         "features_ne": "दुखाइरहित आधुनिक विधि\nप्राकृतिक दाँतको संरक्षण\nरोटरी प्रविधिद्वारा उपचार"
     },
-    "Tooth Extraction": {
-        "title_ne": "दाँत निकाल्ने सेवा",
-        "category_label_ne": "शल्यक्रिया",
-        "short_desc_ne": "सडेको वा समस्याग्रस्त बुद्धि बंगारा (Wisdom Tooth) बिना दुखाइ सहजै निकाल्ने सेवा।",
-        "features_ne": "कोमल तथा दुखाइरहित विधि\nबुद्धि बंगारा निकाल्ने\nद्रुत निको हुने प्रविधि"
-    },
     "Crowns & Bridges": {
         "title_ne": "दाँतको क्याप तथा ब्रिज",
         "category_label_ne": "प्रोस्थोडोन्टिक्स",
-        "short_desc_ne": "कमजोर दाँतलाई बलियो बनाउन र हराएको दाँत भर्न प्रिमियम जिर्कोनिया तथा सिरामिक क्याप।",
-        "features_ne": "प्रिमियम जिर्कोनिया क्याप\nदाँतको प्राकृतिक लुक\nदीर्घकालीन मजबुती"
+        "short_desc_ne": "कमजोर वा हराएको दाँतलाई बलियो बनाउन प्रिमियम जिर्कोनिया र सिरेमिक क्याप तथा ब्रिज।",
+        "features_ne": "प्रिमियम जिर्कोनिया तथा सिरामिक\nप्राकृतिक दाँत जस्तै मजबुत\nदाँतको आकार र सौन्दर्य पुनर्स्थापना"
+    },
+    "Tooth Extraction": {
+        "title_ne": "दाँत निकाल्ने सेवा",
+        "category_label_ne": "शल्यक्रिया",
+        "short_desc_ne": "निको हुन नसक्ने वा बुद्धि बंगाराको दुखाइरहित र सुरक्षित शल्यक्रिया तथा निकाल्ने सेवा।",
+        "features_ne": "सुरक्षित तथा कोमल विधि\nबुद्धि बंगारा (Wisdom Tooth) निकाल्ने\nन्यूनतम असुविधा र छिटो निको हुने"
     },
     "Dentures": {
         "title_ne": "नक्कली दाँत (डेन्चर)",
-        "category_label_ne": "दाँत पुनर्स्थापना",
-        "short_desc_ne": "खाना खान र बोल्न सहज बनाउने आधुनिक, आरामदायी तथा निकाल्न मिल्ने नक्कली दाँत।",
-        "features_ne": "पूर्ण तथा आंशिक डेन्चर\nआरामदायी र प्राकृतिक बनावट\nचपाउन सहज र टिकाउ"
+        "category_label_ne": "प्रोस्थोडोन्टिक्स",
+        "short_desc_ne": "आरामदायी, प्राकृतिक देखिने र चपाउन सजिलो हुने पूर्ण तथा आंशिक नक्कली दाँत।",
+        "features_ne": "पूर्ण तथा आंशिक डेन्चर\nप्राकृतिक देखिने र आरामदायी\nसजिलै सफा गर्न मिल्ने"
     },
-    "Orthodontic Treatment (Braces)": {
-        "title_ne": "तार बाँध्ने उपचार (ब्रेसेस)",
+    "Orthodontic Treatment": {
+        "title_ne": "तार बाँध्ने उपचार (अर्थोडोन्टिक्स / ब्रेसेस)",
         "category_label_ne": "अर्थोडोन्टिक्स",
-        "short_desc_ne": "बाङ्गो-टिङ्गो वा मिलेको नभएको दाँतलाई सीधा र सुन्दर बनाउन आधुनिक ब्रेसेस र अलाइनर।",
-        "features_ne": "मेटल तथा सिरामिक ब्रेसेस\nअदृश्य क्लियर अलाइनर\nआकर्षक मुस्कान निर्माण"
+        "short_desc_ne": "बाङ्गो-टिङ्गो दाँत मिलाउन आधुनिक मेटल/सिरेमिक ब्रेसेस र अदृश्य क्लियर अलाइनर उपचार।",
+        "features_ne": "मेटल तथा सिरेमिक ब्रेसेस\nअदृश्य क्लियर अलाइनर (Clear Aligners)\nसुन्दर मुस्कान र मिलेको दाँत"
     },
-    "Periodontal Treatment (Gum)": {
-        "title_ne": "गिजाको विशेष उपचार",
+    "Periodontal Treatment": {
+        "title_ne": "गिजा रोगको उपचार",
         "category_label_ne": "पेरियोडोन्टिक्स",
-        "short_desc_ne": "गिजाबाट रगत आउने, सुन्निने र पाक्ने समस्याको उपचार गरी दाँतको जग बलियो बनाउने सेवा।",
+        "short_desc_ne": "गिजाबाट रगत आउने, सुन्निने र गिजाका अन्य समस्याहरूको विशेषज्ञ तथा लेजर उपचार।",
         "features_ne": "गिजा रोगको उपचार\nगहिरो जरा सफाइ (Root Planing)\nगिजाबाट रगत आउन रोक्ने"
     },
     "Dental Implants": {
@@ -104,13 +117,15 @@ def populate_all():
         matched = False
         for k, data in SERVICES_DATA.items():
             if k.lower() in title_en.lower() or title_en.lower() in k.lower():
-                s.title_en = title_en
-                s.title_ne = data["title_ne"]
-                s.category_label_ne = data["category_label_ne"]
-                s.short_description_en = s.short_description or title_en
-                s.short_description_ne = data["short_desc_ne"]
-                s.features_ne = data["features_ne"]
-                s.save()
+                safe_update_model(
+                    Service.objects.filter(id=s.id),
+                    title_en=title_en,
+                    title_ne=data["title_ne"],
+                    category_label_ne=data["category_label_ne"],
+                    short_description_en=s.short_description or title_en,
+                    short_description_ne=data["short_desc_ne"],
+                    features_ne=data["features_ne"]
+                )
                 print(f"  [Service] {title_en} -> {data['title_ne']}")
                 matched = True
                 break
@@ -148,8 +163,8 @@ def populate_all():
             "designation_ne": "वरिष्ठ अर्थोडन्टिक परामर्शदाता",
             "qualifications_en": "BDS, MDS (Orthodontics & Dentofacial Orthopedics)",
             "qualifications_ne": "बीडीएस, एमडीएस (अर्थोडन्टिक्स)",
-            "bio_en": "Dr. Aarati Sharma specializes in correcting crooked teeth, severe bite misalignments, and invisible smile transformations utilizing modern self-ligating ceramic braces and digital clear aligner systems.",
-            "bio_ne": "डा. आरती शर्माले आधुनिक सेल्फ-लिगेटिङ सिरेमिक ब्रेसेस र डिजिटल क्लियर एलाइनर प्रणालीहरूको प्रयोग गरी दाँत मिलाउने, बाङ्गो-टिङ्गो दाँतको उपचार र मुस्कान सुधारमा विशेषज्ञता हासिल गर्नुभएको छ।"
+            "bio_en": "Dr. Aarati Sharma specializes in interceptive and comprehensive orthodontics, fixed metal & ceramic braces, clear aligners, and bite correction.",
+            "bio_ne": "डा. आरती शर्मा बालबालिका तथा वयस्कहरूका लागि दाँत सिधा बनाउने, मेटल तथा सिरेमिक ब्रेसेस, क्लियर अलाइनर र बाङ्गाटिङ्गा दाँतको उपचारमा विशेषज्ञ हुनुहुन्छ।"
         },
         "pratik": {
             "designation_en": "Periodontist & Implant Surgeon",
@@ -174,13 +189,15 @@ def populate_all():
         matched = False
         for key, trans in doctors_translations.items():
             if key in name_lower:
-                doc.designation_en = trans["designation_en"]
-                doc.designation_ne = trans["designation_ne"]
-                doc.qualifications_en = trans["qualifications_en"]
-                doc.qualifications_ne = trans["qualifications_ne"]
-                doc.bio_en = trans["bio_en"]
-                doc.bio_ne = trans["bio_ne"]
-                doc.save()
+                safe_update_model(
+                    Doctor.objects.filter(id=doc.id),
+                    designation_en=trans["designation_en"],
+                    designation_ne=trans["designation_ne"],
+                    qualifications_en=trans["qualifications_en"],
+                    qualifications_ne=trans["qualifications_ne"],
+                    bio_en=trans["bio_en"],
+                    bio_ne=trans["bio_ne"]
+                )
                 print(f"  [Doctor] Dr. {doc.name} updated in Nepali & English")
                 matched = True
                 break
@@ -200,20 +217,24 @@ def populate_all():
         title_en = cv.title_en or cv.title
         for k, (t_ne, d_ne) in core_values_ne.items():
             if k.lower() in title_en.lower():
-                cv.title_en = title_en
-                cv.title_ne = t_ne
-                cv.description_en = cv.description or ""
-                cv.description_ne = d_ne
-                cv.save()
+                safe_update_model(
+                    CoreValue.objects.filter(id=cv.id),
+                    title_en=title_en,
+                    title_ne=t_ne,
+                    description_en=cv.description or "",
+                    description_ne=d_ne
+                )
                 print(f"  [CoreValue] {title_en} -> {t_ne}")
                 break
 
     print("\n--- 4. Updating Testimonials ---")
     for t in Testimonial.objects.all():
         if t.review and not t.review_ne:
-            t.review_en = t.review
-            t.treatment_en = t.treatment or "Dental Care"
-            t.save()
+            safe_update_model(
+                Testimonial.objects.filter(id=t.id),
+                review_en=t.review,
+                treatment_en=t.treatment or "Dental Care"
+            )
 
     print("\n--- 5. Updating Educational Videos & Video Categories ---")
     video_cat_trans = {
@@ -225,9 +246,11 @@ def populate_all():
     for vc in VideoCategory.objects.all():
         for k, v_ne in video_cat_trans.items():
             if k.lower() in vc.name.lower():
-                vc.name_en = vc.name
-                vc.name_ne = v_ne
-                vc.save()
+                safe_update_model(
+                    VideoCategory.objects.filter(id=vc.id),
+                    name_en=vc.name,
+                    name_ne=v_ne
+                )
                 print(f"  [VideoCategory] {vc.name} -> {v_ne}")
                 break
 
@@ -269,11 +292,13 @@ def populate_all():
         title_lower = vid.title.lower()
         for k, vdata in videos_translations.items():
             if k in title_lower:
-                vid.title_en = vid.title
-                vid.title_ne = vdata["title_ne"]
-                vid.short_description_en = vid.short_description or vid.title
-                vid.short_description_ne = vdata["short_desc_ne"]
-                vid.save()
+                safe_update_model(
+                    Video.objects.filter(id=vid.id),
+                    title_en=vid.title,
+                    title_ne=vdata["title_ne"],
+                    short_description_en=vid.short_description or vid.title,
+                    short_description_ne=vdata["short_desc_ne"]
+                )
                 print(f"  [Video] {vid.title} -> {vdata['title_ne']}")
                 break
 
@@ -289,9 +314,11 @@ def populate_all():
     for bcat in BlogCategory.objects.all():
         for k, b_ne in blog_cat_trans.items():
             if k.lower() in bcat.name.lower():
-                bcat.name_en = bcat.name
-                bcat.name_ne = b_ne
-                bcat.save()
+                safe_update_model(
+                    BlogCategory.objects.filter(id=bcat.id),
+                    name_en=bcat.name,
+                    name_ne=b_ne
+                )
                 print(f"  [BlogCategory] {bcat.name} -> {b_ne}")
                 break
 
@@ -310,9 +337,11 @@ def populate_all():
         name_en = pcat.name_en or pcat.name
         for k, c_ne in pricing_cat_trans.items():
             if k.lower() in name_en.lower():
-                pcat.name_en = name_en
-                pcat.name_ne = c_ne
-                pcat.save()
+                safe_update_model(
+                    PricingCategory.objects.filter(id=pcat.id),
+                    name_en=name_en,
+                    name_ne=c_ne
+                )
                 print(f"  [PricingCategory] {name_en} -> {c_ne}")
                 break
 
@@ -348,18 +377,22 @@ def populate_all():
         matched = False
         for k, i_ne in pricing_item_trans.items():
             if k.lower() in name_en.lower():
-                pitem.name_en = name_en
-                pitem.name_ne = i_ne
-                pitem.price_en = pitem.price
-                pitem.price_ne = pitem.price
-                pitem.save()
+                safe_update_model(
+                    PricingItem.objects.filter(id=pitem.id),
+                    name_en=name_en,
+                    name_ne=i_ne,
+                    price_en=pitem.price,
+                    price_ne=pitem.price
+                )
                 print(f"  [PricingItem] {name_en} -> {i_ne}")
                 matched = True
                 break
         if not matched and not pitem.name_ne:
-            pitem.name_en = name_en
-            pitem.name_ne = name_en
-            pitem.save()
+            safe_update_model(
+                PricingItem.objects.filter(id=pitem.id),
+                name_en=name_en,
+                name_ne=name_en
+            )
 
     print("\nAll database model translations successfully synchronized!")
 

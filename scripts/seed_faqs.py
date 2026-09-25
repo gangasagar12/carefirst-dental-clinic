@@ -191,18 +191,30 @@ def seed_faqs():
         },
     ]
 
+    import time
+    def safe_execute(func):
+        for attempt in range(10):
+            try:
+                return func()
+            except Exception as e:
+                if 'locked' in str(e).lower() and attempt < 9:
+                    connection.close()
+                    time.sleep(1)
+                else:
+                    raise e
+
     for f_data in faqs:
-        category = SEOFAQCategory.objects.get(slug=f_data['category_slug'])
-        faq, created = SEOFAQ.objects.update_or_create(
-            category=category,
-            question=f_data['question'],
+        category = safe_execute(lambda s=f_data['category_slug']: SEOFAQCategory.objects.get(slug=s))
+        faq, created = safe_execute(lambda c=category, fd=f_data: SEOFAQ.objects.update_or_create(
+            category=c,
+            question=fd['question'],
             defaults={
-                'answer': f_data['answer'],
-                'primary_keyword': f_data['primary_keyword'],
-                'search_intent': f_data['search_intent'],
-                'order': f_data['order']
+                'answer': fd['answer'],
+                'primary_keyword': fd['primary_keyword'],
+                'search_intent': fd['search_intent'],
+                'order': fd['order']
             }
-        )
+        ))
         print(f"[{'Added' if created else 'Updated'}] {faq.question}")
 
 if __name__ == '__main__':
