@@ -101,13 +101,12 @@ FAQ_TRANSLATIONS = {
 }
 
 def update_faqs():
-    with connection.cursor() as cursor:
-        # First ensure question_en and answer_en have base values if empty
-        cursor.execute("UPDATE main_seofaq SET question_en = question WHERE question_en IS NULL OR question_en = ''")
-        cursor.execute("UPDATE main_seofaq SET answer_en = answer WHERE answer_en IS NULL OR answer_en = ''")
-    
     for faq in SEOFAQ.objects.all():
         q_en = faq.question_en or faq.question
+        if not faq.question_en:
+            faq.question_en = faq.question
+        if not faq.answer_en:
+            faq.answer_en = faq.answer
         if q_en in FAQ_TRANSLATIONS:
             t = FAQ_TRANSLATIONS[q_en]
             faq.question_en = q_en
