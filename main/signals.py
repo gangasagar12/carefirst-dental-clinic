@@ -1,10 +1,28 @@
 from django.db.models.signals import pre_save
+from django.db.backends.signals import connection_created
 from django.dispatch import receiver
 from modeltranslation.translator import translator
 import logging
 from main.services.translation_service import translate_to_nepali
 
 logger = logging.getLogger(__name__)
+
+
+@receiver(connection_created)
+def configure_sqlite_wal(sender, connection, **kwargs):
+    """
+    Enables Write-Ahead Logging (WAL) and 60-second busy timeout for SQLite
+    to prevent 'database is locked' errors under concurrent web server traffic.
+    """
+    if connection.vendor == 'sqlite':
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute('PRAGMA journal_mode = WAL;')
+                cursor.execute('PRAGMA busy_timeout = 60000;')
+                cursor.execute('PRAGMA synchronous = NORMAL;')
+        except Exception:
+            pass
+
 
 
 @receiver(pre_save)
