@@ -37,7 +37,7 @@
           </td>
           <td><span class="badge bg-light text-primary border text-capitalize">{{ s.get_category_display }}</span></td>
           <td>
-            <span class="fw-bold text-success">NPR {{ s.starting_price|default:"1,000" }}</span>
+            <span class="fw-bold text-success">NPR {{ s.starting_price|default:"1,00" }}</span>
           </td>
           <td>
             <a href="{% url 'dashboard:service_toggle_active' s.id %}" class="btn btn-sm {% if s.is_active %}btn-success{% else %}btn-secondary{% endif %} py-0 px-2" style="font-size: 0.75rem; border-radius: 20px;" title="Click to Toggle Active">

@@ -4,6 +4,7 @@ import django
 
 # Add root project path to resolve core settings
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.stdout.reconfigure(encoding='utf-8')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 django.setup()
 
@@ -155,14 +156,20 @@ def seed_videos():
     ]
 
     for item in videos_data:
+        t_ne = item.get("title_ne") or item["title"]
+        d_ne = item.get("short_description_ne") or item["short_description"]
         v, created = Video.objects.update_or_create(
             title=item["title"],
             defaults={
+                "title_en": item["title"],
+                "title_ne": t_ne,
                 "video_url": item["video_url"],
                 "platform": "youtube",
                 "category": item["category"],
                 "related_service": item["related_service"],
                 "short_description": item["short_description"],
+                "short_description_en": item["short_description"],
+                "short_description_ne": d_ne,
                 "is_featured": item["is_featured"],
                 "thumbnail_url": item["thumbnail_url"],
                 "is_published": True,
@@ -170,7 +177,7 @@ def seed_videos():
             }
         )
         status = "Created" if created else "Updated"
-        print(f"  {status} Video: {v.title}")
+        print(f"  {status} Video: {v.title} -> {t_ne}")
 
     print(f"Successfully seeded {Video.objects.count()} videos into the database!")
 

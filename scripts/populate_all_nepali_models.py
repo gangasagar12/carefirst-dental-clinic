@@ -303,24 +303,8 @@ def populate_all():
                 break
 
     print("\n--- 6. Updating Blog Categories & Articles ---")
-    blog_cat_trans = {
-        "General Dentistry": "साधारण दन्त चिकित्सा",
-        "Dental Implants": "डेन्टल इम्प्लान्ट",
-        "Root Canal Treatment": "रूट क्यानल उपचार",
-        "Orthodontics": "तार बाँध्ने उपचार (ब्रेसेस)",
-        "Gum Treatment": "गिजाको उपचार",
-        "Oral Hygiene": "मुखको सरसफाइ"
-    }
-    for bcat in BlogCategory.objects.all():
-        for k, b_ne in blog_cat_trans.items():
-            if k.lower() in bcat.name.lower():
-                safe_update_model(
-                    BlogCategory.objects.filter(id=bcat.id),
-                    name_en=bcat.name,
-                    name_ne=b_ne
-                )
-                print(f"  [BlogCategory] {bcat.name} -> {b_ne}")
-                break
+    from scripts.seed_blogs_nepali import seed_all_nepali_blogs
+    seed_all_nepali_blogs()
 
     print("\n--- 7. Updating Pricing Categories & Items ---")
     pricing_cat_trans = {
