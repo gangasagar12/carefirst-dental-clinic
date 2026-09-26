@@ -98,7 +98,7 @@ class TranslationService:
             self._mymemory_translator = None
 
     def _translate_raw_chunk(self, chunk: str) -> str:
-        """Helper to translate a single chunk (<1500 chars) with fallback and caching."""
+        """Helper to translate a single chunk (<1500 chars) with fallback, pacing, and caching."""
         clean = chunk.strip()
         if not clean:
             return chunk
@@ -114,6 +114,8 @@ class TranslationService:
         except Exception:
             pass
 
+        import time
+
         # Attempt 1: Google Translator
         try:
             if not self._google_translator:
@@ -124,6 +126,7 @@ class TranslationService:
                     cache.set(cache_key, translated, timeout=86400 * 30)
                 except Exception:
                     pass
+                time.sleep(0.15)  # Respect rate limit
                 return translated
         except Exception as e:
             logger.warning(f"GoogleTranslator rate-limited/failed for '{clean[:40]}...': {e}. Trying fallback...")
@@ -138,6 +141,7 @@ class TranslationService:
                     cache.set(cache_key, translated, timeout=86400 * 30)
                 except Exception:
                     pass
+                time.sleep(0.15)
                 return translated
         except Exception as e:
             logger.error(f"MyMemoryTranslator fallback also failed for '{clean[:40]}...': {e}")
@@ -161,13 +165,9 @@ class TranslationService:
         if clean_text in DENTAL_NEPALI_GLOSSARY:
             return DENTAL_NEPALI_GLOSSARY[clean_text]
 
-        # 2. Short string (<1500 chars, no HTML tags)
-        if len(clean_text) <= 1500 and not ('<' in clean_text and '>' in clean_text):
-            return self._translate_raw_chunk(clean_text)
-
-        # 3. HTML / Multi-paragraph text chunking
-        if '<p>' in clean_text or '<h3>' in clean_text or '<div>' in clean_text or '<br>' in clean_text:
-            parts = re.split(r'(</?(?:p|h[1-6]|div|li|ul|ol|blockquote|section|br\s*/?|hr\s*/?)>)', clean_text)
+        # 2. HTML Tag Preservation Chunking
+        if '<' in clean_text and '>' in clean_text:
+            parts = re.split(r'(<[^>]+>)', clean_text)
             translated_parts = []
             for part in parts:
                 if part.startswith('<') and part.endswith('>'):
@@ -177,6 +177,10 @@ class TranslationService:
                 else:
                     translated_parts.append(part)
             return "".join(translated_parts)
+
+        # 3. Short string (<1500 chars, no HTML)
+        if len(clean_text) <= 1500:
+            return self._translate_raw_chunk(clean_text)
 
         # 4. Long plain text: split by double newlines
         paragraphs = clean_text.split('\n\n')
