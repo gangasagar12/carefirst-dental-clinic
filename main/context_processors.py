@@ -74,4 +74,12 @@ def google_reviews_context(request):
     return cached_data
 
 
-
+def recaptcha_keys(request):
+    """
+    Exposes anti-bot public site keys to templates.
+    """
+    from django.conf import settings
+    return {
+        'RECAPTCHA_SITE_KEY': getattr(settings, 'RECAPTCHA_SITE_KEY', ''),
+        'CLOUDFLARE_TURNSTILE_SITE_KEY': getattr(settings, 'CLOUDFLARE_TURNSTILE_SITE_KEY', ''),
+    }

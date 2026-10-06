@@ -682,6 +682,21 @@
             {% csrf_token %}
             <input type="hidden" name="form_type" value="contact">
 
+            <!-- 1. Honeypot Field (Invisible to human users, traps automated bots) -->
+            <div style="position: absolute; left: -9999px; top: -9999px; height: 0; width: 0; overflow: hidden; opacity: 0; pointer-events: none;" aria-hidden="true">
+              <label for="contactWebsiteCheck">Do not fill this field</label>
+              <input type="text" name="website_url_check" id="contactWebsiteCheck" tabindex="-1" autocomplete="off" value="">
+            </div>
+
+            <!-- 2. reCAPTCHA v3 / Security Token Carrier -->
+            <input type="hidden" name="g-recaptcha-response" id="gRecaptchaResponseContact" value="">
+
+            {% if CLOUDFLARE_TURNSTILE_SITE_KEY %}
+            <div class="col-12 mb-2">
+              <div class="cf-turnstile" data-sitekey="{{ CLOUDFLARE_TURNSTILE_SITE_KEY }}" data-theme="light"></div>
+            </div>
+            {% endif %}
+
             <div class="row g-3">
               
               <!-- Row 1: Name & Email -->
@@ -714,12 +729,12 @@
                 <input type="text" name="subject" id="contactSubject" class="cf-cform-input" placeholder="{% trans 'e.g. Treatment Inquiry' %}">
               </div>
 
-              <!-- Row 3: Message -->
+              <!-- Row 3: Message (Renamed Anti-Bot Payload Key) -->
               <div class="col-12">
                 <label class="cf-cform-label" for="contactMessage">
                   {% trans "Your Message" %} <span class="required-star">*</span>
                 </label>
-                <textarea name="message" id="contactMessage" class="cf-cform-input" rows="3" placeholder="{% trans 'Tell us how we can help you...' %}" required></textarea>
+                <textarea name="patient_message_content" id="contactMessage" class="cf-cform-input" rows="3" placeholder="{% trans 'Tell us how we can help you...' %}" required></textarea>
               </div>
 
               <!-- Row 4: Action Button -->
@@ -830,4 +845,33 @@
 {% block extra_scripts %}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="{% static 'main/js/appointment_funnel.js' %}?v=8.0"></script>
+
+{% if CLOUDFLARE_TURNSTILE_SITE_KEY %}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{% endif %}
+
+{% if RECAPTCHA_SITE_KEY %}
+<script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('cfDirectContactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        const tokenField = document.getElementById('gRecaptchaResponseContact');
+        if (tokenField && !tokenField.value && typeof grecaptcha !== 'undefined') {
+          e.preventDefault();
+          grecaptcha.ready(function() {
+            grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', {action: 'contact_submit'}).then(function(token) {
+              tokenField.value = token;
+              contactForm.submit();
+            }).catch(function() {
+              contactForm.submit();
+            });
+          });
+        }
+      });
+    }
+  });
+</script>
+{% endif %}
 {% endblock %}

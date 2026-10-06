@@ -969,9 +969,24 @@
             <p class="text-muted mb-0" style="font-size: 0.78rem;">{% trans "Send a quick message to our clinic reception" %}</p>
           </div>
 
-          <form method="POST" action="{% url 'main:home' %}">
+          <form method="POST" action="{% url 'main:home' %}" id="cfHomeQuickInquiryForm">
             {% csrf_token %}
             <input type="hidden" name="form_type" value="contact">
+
+            <!-- 1. Honeypot Field (Invisible to human users, traps automated bots) -->
+            <div style="position: absolute; left: -9999px; top: -9999px; height: 0; width: 0; overflow: hidden; opacity: 0; pointer-events: none;" aria-hidden="true">
+              <label for="homeWebsiteCheck">Do not fill this field</label>
+              <input type="text" name="website_url_check" id="homeWebsiteCheck" tabindex="-1" autocomplete="off" value="">
+            </div>
+
+            <!-- 2. reCAPTCHA v3 / Security Token Carrier -->
+            <input type="hidden" name="g-recaptcha-response" id="gRecaptchaResponseHome" value="">
+
+            {% if CLOUDFLARE_TURNSTILE_SITE_KEY %}
+            <div class="mb-2">
+              <div class="cf-turnstile" data-sitekey="{{ CLOUDFLARE_TURNSTILE_SITE_KEY }}" data-theme="light"></div>
+            </div>
+            {% endif %}
             
             <div class="mb-2">
               <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.76rem;">{% trans "Your Name *" %}</label>
@@ -983,12 +998,13 @@
               <input type="email" name="email" class="form-control rounded-3 py-1.5 px-3" style="font-size: 0.85rem;" placeholder="name@example.com" required>
             </div>
 
+            <!-- Anti-Bot Renamed Payload Field -->
             <div class="mb-2">
               <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.76rem;">{% trans "Your Question / Symptoms *" %}</label>
-              <textarea name="message" class="form-control rounded-3 py-1.5 px-3" style="font-size: 0.85rem;" rows="2" placeholder="{% trans "Ask about treatment cost, tooth pain, doctor availability..." %}" required></textarea>
+              <textarea name="patient_message_content" class="form-control rounded-3 py-1.5 px-3" style="font-size: 0.85rem;" rows="2" placeholder="{% trans "Ask about treatment cost, tooth pain, doctor availability..." %}" required></textarea>
             </div>
 
-            <button type="submit" class="cf-btn-primary w-100 justify-content-center py-2 shadow-sm" style="font-size: 0.88rem;">
+            <button type="submit" class="cf-btn-primary w-100 justify-content-center py-2 shadow-sm" style="font-size: 0.88rem;" id="cfHomeSubmitBtn">
               <i class="bi bi-send-fill me-1.5"></i> {% trans "Send Message" %}
             </button>
 
@@ -1825,4 +1841,33 @@
 <script src="{% static 'main/js/appointment_funnel.js' %}?v=1.0"></script>
 <script src="{% static 'main/js/google_reviews.js' %}"></script>
 <script src="{% static 'main/js/pricing_toggle.js' %}"></script>
+
+{% if CLOUDFLARE_TURNSTILE_SITE_KEY %}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{% endif %}
+
+{% if RECAPTCHA_SITE_KEY %}
+<script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const homeForm = document.getElementById('cfHomeQuickInquiryForm');
+    if (homeForm) {
+      homeForm.addEventListener('submit', function(e) {
+        const tokenField = document.getElementById('gRecaptchaResponseHome');
+        if (tokenField && !tokenField.value && typeof grecaptcha !== 'undefined') {
+          e.preventDefault();
+          grecaptcha.ready(function() {
+            grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', {action: 'inquiry_submit'}).then(function(token) {
+              tokenField.value = token;
+              homeForm.submit();
+            }).catch(function() {
+              homeForm.submit();
+            });
+          });
+        }
+      });
+    }
+  });
+</script>
+{% endif %}
 {% endblock %}

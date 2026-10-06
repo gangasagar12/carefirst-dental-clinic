@@ -8,15 +8,17 @@ from django.views.decorators.http import require_POST, require_GET
 from django.utils import timezone
 from django.urls import reverse
 
+from django.contrib import messages
+from django_ratelimit.decorators import ratelimit
+from main.services.recaptcha import verify_recaptcha_token, get_client_ip
+
 from .models import Appointment, AppointmentFunnelEvent
 from main.models import Service, Doctor, SiteSettings
 from main.services.whatsapp import queue_whatsapp_confirmation
 from main.services.email import queue_email_confirmation
 
 def validate_nepal_phone(phone: str) -> bool:
-    """
-    Validates Nepali mobile (98XXXXXXXX, 97XXXXXXXX) and standard landline numbers.
-    """
+  
     cleaned = re.sub(r'[\s\-\(\)\+]', '', phone)
     # Starts with 977 or directly 98/97/01
     if cleaned.startswith('977'):
@@ -34,19 +36,31 @@ def validate_nepal_phone(phone: str) -> bool:
     return len(cleaned) >= 7 and len(cleaned) <= 15 and cleaned.isdigit()
 
 
+@ratelimit(key='ip', rate='3/m', method='POST', block=True)
 def appointment_funnel_view(request):
     """
     Primary Appointment view: /appointment/
     Handles both standard form submissions and query parameters.
     """
     if request.method == 'POST':
+        # 1. Honeypot Trap Check: Drop automated spam
+        if request.POST.get('website_url_check', '').strip():
+            messages.success(request, 'Your appointment request has been submitted.')
+            return redirect('appointments:book')
+
+        # 2. Captcha Token Verification
+        captcha_token = request.POST.get('g-recaptcha-response', '') or request.POST.get('cf-turnstile-response', '')
+        if not verify_recaptcha_token(captcha_token, remote_ip=get_client_ip(request)):
+            messages.error(request, 'Security verification failed. Please try again.')
+            return redirect('appointments:book')
+
         full_name = request.POST.get('full_name', '').strip()
         phone = request.POST.get('phone', '').strip()
         email = request.POST.get('email', '').strip() or None
         treatment_val = request.POST.get('treatment', 'general-consultation').strip()
         preferred_date_str = request.POST.get('preferred_date', '').strip()
         preferred_time = request.POST.get('preferred_time', 'morning').strip()
-        message = request.POST.get('message', '').strip()
+        message = request.POST.get('patient_message_content', '').strip() or request.POST.get('message', '').strip()
 
         if full_name and phone:
             preferred_date = timezone.now().date() + datetime.timedelta(days=1)
@@ -125,6 +139,7 @@ def appointment_funnel_view(request):
     return render(request, 'appointments/book.html', context)
 
 
+@ratelimit(key='ip', rate='3/m', method='POST', block=True)
 def submit_appointment_ajax(request):
     """
     Secure AJAX endpoint to validate & create appointment request.
@@ -138,6 +153,15 @@ def submit_appointment_ajax(request):
     except Exception:
         return JsonResponse({'success': False, 'error': 'Invalid JSON request payload.'}, status=400)
 
+    # 1. Honeypot Check: Trap automated bots
+    if data.get('website_url_check', '').strip():
+        return JsonResponse({'success': True, 'booking_id': 'CF-SEC000', 'redirect_url': '/'})
+
+    # 2. Captcha Token Verification
+    captcha_token = data.get('g-recaptcha-response', '') or data.get('cf-turnstile-response', '')
+    if not verify_recaptcha_token(captcha_token, remote_ip=get_client_ip(request)):
+        return JsonResponse({'success': False, 'error': 'Security verification failed. Please refresh and try again.'}, status=400)
+
     full_name = data.get('full_name', '').strip()
     phone = data.get('phone', '').strip()
     email = data.get('email', '').strip() or None
@@ -146,7 +170,7 @@ def submit_appointment_ajax(request):
     preferred_date_str = data.get('preferred_date', '').strip()
     preferred_time = data.get('preferred_time', '').strip()
     doctor_id = data.get('doctor_id')
-    message = data.get('message', '').strip()
+    message = data.get('patient_message_content', '').strip() or data.get('message', '').strip()
     pricing_option = data.get('pricing_option', '').strip()
     quantity_str = data.get('quantity', '1')
     estimated_amount = data.get('estimated_amount', '').strip()

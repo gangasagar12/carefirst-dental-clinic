@@ -65,3 +65,4 @@ else:
     ]
 
 handler404 = 'main.views.custom_404'
+handler403 = 'main.views.custom_403'

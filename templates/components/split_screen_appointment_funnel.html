@@ -188,6 +188,21 @@
             <input type="hidden" name="form_type" value="appointment">
             <input type="hidden" name="appointment_type" value="consultation">
 
+            <!-- 1. Honeypot Field (Invisible to human users, traps automated bots) -->
+            <div style="position: absolute; left: -9999px; top: -9999px; height: 0; width: 0; overflow: hidden; opacity: 0; pointer-events: none;" aria-hidden="true">
+              <label for="appWebsiteCheck">Do not fill this field</label>
+              <input type="text" name="website_url_check" id="appWebsiteCheck" tabindex="-1" autocomplete="off" value="">
+            </div>
+
+            <!-- 2. reCAPTCHA v3 / Security Token Carrier -->
+            <input type="hidden" name="g-recaptcha-response" id="gRecaptchaResponseApp" value="">
+
+            {% if CLOUDFLARE_TURNSTILE_SITE_KEY %}
+            <div class="col-12 mb-2">
+              <div class="cf-turnstile" data-sitekey="{{ CLOUDFLARE_TURNSTILE_SITE_KEY }}" data-theme="light"></div>
+            </div>
+            {% endif %}
+
             <div class="row g-3">
               
               <!-- Row 1: Name & Email -->
@@ -253,12 +268,12 @@
                 </select>
               </div>
 
-              <!-- Row 4: Message -->
+              <!-- Row 4: Message (Renamed Anti-Bot Payload Key) -->
               <div class="col-12">
                 <label class="cf-app-label" for="appMessage">
                   {% trans "Message" %}
                 </label>
-                <textarea name="message" id="appMessage" class="cf-app-input" rows="3" placeholder="{% trans 'Your message' %}"></textarea>
+                <textarea name="patient_message_content" id="appMessage" class="cf-app-input" rows="3" placeholder="{% trans 'Your message' %}"></textarea>
               </div>
 
               <!-- Row 5: Action Button -->

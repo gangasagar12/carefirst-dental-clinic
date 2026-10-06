@@ -1,7 +1,4 @@
-/**
- * CareFirst Dental Clinic — Smart Appointment & Patient Conversion Funnel
- * Multi-Step Frontend Controller & Attribution Engine
- */
+
 
 (function () {
   'use strict';

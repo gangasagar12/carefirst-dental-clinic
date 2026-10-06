@@ -5,13 +5,30 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
 from django.templatetags.static import static
+from django.http import HttpResponse
+from django_ratelimit.decorators import ratelimit
+from django_ratelimit.exceptions import Ratelimited
 from appointments.forms import AppointmentForm
 from .forms import ContactMessageForm
 from .models import Doctor, Service, PricingCategory, AboutPageSettings, Branch, CoreValue, Technology, Testimonial, ClinicGallery, FAQ, GoogleBusiness, GoogleReview
 from blogs.models import Post
+from .services.recaptcha import verify_recaptcha_token, get_client_ip
 
 def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
+
+def custom_403(request, exception=None):
+    if isinstance(exception, Ratelimited):
+        return HttpResponse(
+            "<!DOCTYPE html><html><head><title>Too Many Requests</title></head>"
+            "<body style='font-family:sans-serif;text-align:center;padding:50px;'>"
+            "<h2>429 Too Many Submissions</h2>"
+            "<p>Rate limit exceeded (maximum 3 requests per minute). Please wait a moment and try again.</p>"
+            "<a href='/'>Return to Homepage</a>"
+            "</body></html>",
+            status=429
+        )
+    return render(request, '403.html', status=403)
 
 
 def send_notification_email(instance, form_type):
@@ -51,8 +68,20 @@ def send_notification_email(instance, form_type):
     except Exception:
         pass
 
+@ratelimit(key='ip', rate='3/m', method='POST', block=True)
 def home(request):
     if request.method == 'POST':
+        # 1. Honeypot check: trap automated spam bots
+        if request.POST.get('website_url_check', '').strip():
+            messages.success(request, 'Thank you! Your message has been sent to our clinical desk.')
+            return redirect('main:home')
+
+        # 2. Invisible reCAPTCHA / Cloudflare Turnstile verification
+        captcha_token = request.POST.get('g-recaptcha-response', '') or request.POST.get('cf-turnstile-response', '')
+        if not verify_recaptcha_token(captcha_token, remote_ip=get_client_ip(request)):
+            messages.error(request, 'Security verification failed. Please refresh and try again.')
+            return redirect('main:home')
+
         form_type = request.POST.get('form_type')
         if form_type == 'appointment':
             form = AppointmentForm(request.POST)
@@ -252,8 +281,20 @@ def pricing(request):
     return render(request, 'pricing.html', {'categories': categories})
 
 # ── Contact Section ───────────────────────────────────────────
+@ratelimit(key='ip', rate='3/m', method='POST', block=True)
 def contact(request):
     if request.method == 'POST':
+        # 1. Honeypot check: trap automated spam bots
+        if request.POST.get('website_url_check', '').strip():
+            messages.success(request, 'Thank you! Your request has been received. We will contact you soon.')
+            return redirect('main:contact')
+
+        # 2. Invisible reCAPTCHA / Cloudflare Turnstile verification
+        captcha_token = request.POST.get('g-recaptcha-response', '') or request.POST.get('cf-turnstile-response', '')
+        if not verify_recaptcha_token(captcha_token, remote_ip=get_client_ip(request)):
+            messages.error(request, 'Security verification failed. Please refresh and try again.')
+            return redirect('main:contact')
+
         form_type = request.POST.get('form_type')
         if form_type == 'appointment':
             form = AppointmentForm(request.POST)
