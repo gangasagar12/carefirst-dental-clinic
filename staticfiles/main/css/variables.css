@@ -1,13 +1,5 @@
 :root {
-  /* ==========================================================================
-     CareFirst Dental Clinic - Official Logo Design System
-     Palette extracted from CareFirst Logo:
-     - Circular Dental Azure Blue: #0284C7 / #0091D5 / #0284C7
-     - Outer Stethoscope Deep Navy: #0B2545 / #081C33
-     - Toothbrush Crimson Red Accent: #EF4444 / #E11D48
-     - Medicine Capsule Gold/Amber: #F59E0B / #FBBF24
-     - Clean Ice Blue Tint: #F0F9FF / #E0F2FE
-     ========================================================================== */
+
 
   /* 1. Primary Colors - Dental Sky/Azure Blue */
   --cf-primary: #0284C7;
