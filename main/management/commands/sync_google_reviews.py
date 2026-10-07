@@ -67,9 +67,17 @@ class Command(BaseCommand):
                 GoogleReview.objects.filter(business=business).exclude(
                     google_review_id__in=synced_ids
                 ).update(is_active=False)
+            else:
+                # If Google Places API returned live rating/count but no text reviews,
+                # ensure all active verified reviews remain linked to this business
+                GoogleReview.objects.filter(is_active=True).update(business=business)
+
+        from django.core.cache import cache
+        cache.delete('google_reviews_context_data')
 
         if not quiet:
             self.stdout.write(self.style.SUCCESS(
                 f"Google reviews synced: {business.business_name}, "
                 f"{business.google_rating} rating, {business.review_count} reviews."
             ))
+

@@ -54,10 +54,17 @@ def google_reviews_context(request):
 
     cached_data = cache.get('google_reviews_context_data')
     if cached_data is None:
-        business = GoogleBusiness.objects.order_by('-last_synced', '-updated_at').first()
+        target_place_id = os.getenv('GOOGLE_PLACE_ID', 'ChIJceVAcnkZ6zkRnzVbFnqrn3Q')
+        business = GoogleBusiness.objects.filter(place_id=target_place_id).first()
+        if not business:
+            business = GoogleBusiness.objects.order_by('-last_synced', '-updated_at').first()
+
         reviews = []
         if business:
             reviews = list(GoogleReview.objects.filter(business=business, is_active=True).order_by('-publish_time', '-created_at')[:10])
+        if not reviews:
+            reviews = list(GoogleReview.objects.filter(is_active=True).order_by('-publish_time', '-created_at')[:10])
+
         
         patient_stories = list(Testimonial.objects.filter(is_active=True).order_by('order', '-id')[:10])
         cached_data = {

@@ -32,7 +32,8 @@ for gb in GoogleBusiness.objects.all():
 
 print(f"\nGoogleReview records: {GoogleReview.objects.count()}")
 for gr in GoogleReview.objects.all():
-    print(f"  [{gr.id}] {gr.author_name} ({gr.rating}★) active={gr.is_active}: {gr.review_text[:60]}...")
+    print(f"  [{gr.id}] business_id={gr.business_id} {gr.author_name} ({gr.rating}★) active={gr.is_active}: {gr.review_text[:60]}...")
+
 
 print("\nAttempting GoogleReviewsClient sync test...")
 try:

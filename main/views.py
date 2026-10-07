@@ -148,7 +148,11 @@ def home(request):
     from .models import ClinicGallery
     clinic_gallery_images = ClinicGallery.objects.all()
 
-    google_business = GoogleBusiness.objects.order_by('-last_synced', '-updated_at').first()
+    target_place_id = os.getenv('GOOGLE_PLACE_ID', 'ChIJceVAcnkZ6zkRnzVbFnqrn3Q')
+    google_business = GoogleBusiness.objects.filter(place_id=target_place_id).first()
+    if not google_business:
+        google_business = GoogleBusiness.objects.order_by('-last_synced', '-updated_at').first()
+
     google_reviews = []
     google_reviews_schema = None
 
@@ -157,6 +161,11 @@ def home(request):
             GoogleReview.objects.filter(business=google_business, is_active=True)
             .order_by('-publish_time', '-created_at')[:10]
         )
+        if not google_reviews:
+            google_reviews = list(
+                GoogleReview.objects.filter(is_active=True)
+                .order_by('-publish_time', '-created_at')[:10]
+            )
         google_reviews_schema = build_google_reviews_schema(request, google_business, google_reviews)
     
     testimonials = Testimonial.objects.filter(is_active=True)
