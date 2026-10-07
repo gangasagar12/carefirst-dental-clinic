@@ -141,7 +141,7 @@ class Doctor(models.Model):
     photo = models.ImageField(upload_to='doctors/', blank=True, null=True)
     bio = models.TextField(blank=True)
     qualifications = models.CharField(max_length=255, help_text="e.g. BDS, MDS, FICOI", blank=True)
-    nmc_number = models.CharField(max_length=50, blank=True, null=True, help_text="Nepal Medical Council Number (e.g. 31229)")
+    nmc_number = models.CharField(max_length=50, blank=True, null=True, help_text="Nepal Medical Council Number (e.g. 32524)")
     experience_years = models.PositiveSmallIntegerField(default=0)
     certifications = models.TextField(blank=True, help_text="One per line")
     languages = models.CharField(max_length=120, blank=True, help_text="e.g. English, Nepali, Hindi")
@@ -401,7 +401,7 @@ class Testimonial(models.Model):
     def get_journey(self):
         if self.clinical_journey:
             return self.clinical_journey
-        return f"Comprehensive digital evaluation followed by painless, state-of-the-art procedure performed by Dr. Subash Banjade (BDS, NMC #31229)."
+        return f"Comprehensive digital evaluation followed by painless, state-of-the-art procedure performed by Dr. Subash Banjade (BDS, NMC #32524)."
 
     def get_outcome(self):
         if self.outcome:

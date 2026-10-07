@@ -136,7 +136,7 @@ def seed_faqs():
         {
             "category_slug": "local-seo",
             "question": "Who is the lead dental surgeon at CareFirst Dental Clinic?",
-            "answer": "CareFirst Dental Clinic is led by Dr. Subash Banjade (BDS, Senior Dental Surgeon, Nepal Medical Council Registration #31229) alongside a dedicated team of certified specialists in orthodontics, oral surgery, and endodontics.",
+            "answer": "CareFirst Dental Clinic is led by Dr. Subash Banjade (BDS, Senior Dental Surgeon, Nepal Medical Council Registration #32524) alongside a dedicated team of certified specialists in orthodontics, oral surgery, and endodontics.",
             "primary_keyword": "best dentist in Kathmandu",
             "search_intent": "Local",
             "order": 2

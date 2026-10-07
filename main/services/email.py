@@ -243,7 +243,7 @@ def get_email_html_template(patient_name, inquiry_type='contact', details=None):
     <!-- Footer -->
     <div style="background: #F1F5F9; padding: 20px 24px; text-align: center; font-size: 12px; color: #64748B; border-top: 1px solid #E2E8F0;">
       <p style="margin: 0 0 4px 0; font-weight: 700; color: #081C33;">CareFirst Dental Clinic</p>
-      <p style="margin: 0 0 6px 0;">{contact['address']} • NMC Reg. #31229</p>
+      <p style="margin: 0 0 6px 0;">{contact['address']} • NMC Reg. #32524</p>
       <p style="margin: 0;"><a href="https://carefirstdental.com.np" style="color: #0284C7; text-decoration: none;">www.carefirstdental.com.np</a></p>
     </div>
 

@@ -17,7 +17,7 @@ def get_clinic_information() -> Dict[str, Any]:
     landmark = settings.landmark if settings and settings.landmark else "Near Shankhamul / New Baneshwor Junction"
     hours = settings.working_hours_weekdays if settings and settings.working_hours_weekdays else "Monday to Sunday (Open 7 Days): 7:30 AM to 7:30 PM"
 
-    director_str = f"Dr. {director.name} ({director.designation}, {director.qualifications}, NMC #{director.nmc_number})" if director else "Dr. Subash Banjade (Clinical Director & Senior Dental Surgeon, BDS, NMC #31229)"
+    director_str = f"Dr. {director.name} ({director.designation}, {director.qualifications}, NMC #{director.nmc_number})" if director else "Dr. Subash Banjade (Clinical Director & Senior Dental Surgeon, BDS, NMC #32524)"
 
     return {
         'clinic_name': "CareFirst Dental Clinic",

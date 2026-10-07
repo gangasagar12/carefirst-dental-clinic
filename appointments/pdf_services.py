@@ -224,7 +224,7 @@ def generate_appointment_confirmation_pdf(appointment, request=None) -> bytes:
 
     # 5. FOOTER COMPLIANCE
     footer_text = (
-        f"<font color='#64748B'>CareFirst Dental Clinic • Clinical Director: Dr. Subash Banjade (NMC #31229) • "
+        f"<font color='#64748B'>CareFirst Dental Clinic • Clinical Director: Dr. Subash Banjade (NMC #32524) • "
         f"Generated on {timezone.now().strftime('%Y-%m-%d %H:%M:%S')} NPT</font>"
     )
     story.append(Paragraph(footer_text, ParagraphStyle('Foot', parent=styles['Normal'], alignment=1, fontSize=7.5, leading=10)))

@@ -19,7 +19,7 @@ class BusinessToolsTest(TestCase):
             designation="Chief Dental Surgeon",
             specialty="general",
             qualifications="BDS",
-            nmc_number="31229",
+            nmc_number="32524",
             is_active=True
         )
         self.faq = FAQ.objects.create(
@@ -41,7 +41,7 @@ class BusinessToolsTest(TestCase):
     def test_get_doctor_information(self):
         doctors = get_doctor_information("Subash")
         self.assertEqual(len(doctors), 1)
-        self.assertEqual(doctors[0]['nmc_number'], "31229")
+        self.assertEqual(doctors[0]['nmc_number'], "32524")
 
     def test_get_clinic_information(self):
         clinic = get_clinic_information()

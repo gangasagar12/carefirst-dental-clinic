@@ -137,8 +137,8 @@ def populate_all():
         "subash": {
             "designation_en": "Clinical Director & Senior Dental Surgeon",
             "designation_ne": "क्लिनिकल निर्देशक तथा वरिष्ठ दन्त शल्यचिकित्सक",
-            "qualifications_en": "BDS (KU), NMC #31229, Fellow in Advanced Endodontics",
-            "qualifications_ne": "बीडीएस (केयू), एनएमसी #३१२२९, एडभान्स्ड इन्डोडोन्टिक्स फेलो",
+            "qualifications_en": "BDS (KU), NMC #32524, Fellow in Advanced Endodontics",
+            "qualifications_ne": "बीडीएस (केयू), एनएमसी #३२५२४, एडभान्स्ड इन्डोडोन्टिक्स फेलो",
             "bio_en": "Dr. Subash Banjade is a senior dental surgeon with extensive clinical expertise in painless root canal therapy, digital cosmetic smile design, and modern oral surgery. He leads CareFirst Dental Clinic with strict adherence to hospital-grade sterilization and patient-centric care.",
             "bio_ne": "डा. सुभाष बन्जाडे दुखाइरहित रूट क्यानल उपचार, डिजिटल कस्मेटिक स्माइल डिजाइन र आधुनिक दन्त शल्यक्रियामा विशेष दक्षता हासिल गर्नुभएका वरिष्ठ दन्त चिकित्सक हुनुहुन्छ। उहाँले उच्च अस्पताल मापदण्डको स्टेरिलाइजेसन र बिरामीमैत्री सेवाका साथ केयरफर्स्ट डेन्टल क्लिनिकको नेतृत्व गरिरहनुभएको छ।"
         },
@@ -261,15 +261,17 @@ def populate_all():
         matched = False
         for key, trans in doctors_translations.items():
             if key in name_lower:
-                safe_update_model(
-                    Doctor.objects.filter(id=doc.id),
-                    designation_en=trans["designation_en"],
-                    designation_ne=trans["designation_ne"],
-                    qualifications_en=trans["qualifications_en"],
-                    qualifications_ne=trans["qualifications_ne"],
-                    bio_en=trans["bio_en"],
-                    bio_ne=trans["bio_ne"]
-                )
+                update_kwargs = {
+                    "designation_en": trans["designation_en"],
+                    "designation_ne": trans["designation_ne"],
+                    "qualifications_en": trans["qualifications_en"],
+                    "qualifications_ne": trans["qualifications_ne"],
+                    "bio_en": trans["bio_en"],
+                    "bio_ne": trans["bio_ne"]
+                }
+                if key == "subash":
+                    update_kwargs["nmc_number"] = "32524"
+                safe_update_model(Doctor.objects.filter(id=doc.id), **update_kwargs)
                 print(f"  [Doctor] Dr. {doc.name} updated in Nepali & English")
                 matched = True
                 break
