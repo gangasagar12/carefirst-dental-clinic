@@ -16,3 +16,4 @@ python scripts/seed_faqs.py
 python scripts/seed_testimonials.py
 python scripts/seed_videos.py
 python scripts/seed_doctors.py
+python scripts/fix_clinic_location_shankhamul.py

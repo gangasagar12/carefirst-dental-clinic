@@ -378,6 +378,13 @@ def populate_all():
                 name_ne=name_en
             )
 
+    # 8. Ensure Accurate Shankhamul-31 Clinic Location
+    try:
+        from scripts.fix_clinic_location_shankhamul import fix_locations
+        fix_locations()
+    except Exception as e:
+        print(f"Location sync notice: {e}")
+
     print("\nAll database model translations successfully synchronized!")
 
 if __name__ == '__main__':

@@ -294,8 +294,8 @@ class AboutPageSettings(models.Model):
         return "About Page Settings"
 
 class Branch(models.Model):
-    name = models.CharField(max_length=150, help_text="e.g. Koteshwor Branch")
-    location = models.CharField(max_length=200, help_text="e.g. Koteshwor, Kathmandu")
+    name = models.CharField(max_length=150, help_text="e.g. Shankhamul Central Clinic")
+    location = models.CharField(max_length=200, help_text="e.g. Shankhamul-31, Kathmandu")
     image = models.ImageField(upload_to='branches/', blank=True, null=True)
     short_description = models.TextField(blank=True)
     map_url = models.URLField(blank=True)

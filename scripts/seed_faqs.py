@@ -128,7 +128,7 @@ def seed_faqs():
         {
             "category_slug": "local-seo",
             "question": "Where is CareFirst Dental Clinic located in Kathmandu?",
-            "answer": "CareFirst Dental Clinic is conveniently located in Shankhamul-31 (Pragati Nagar Road), Kathmandu, directly in front of Sanima Bank and 200 meters ahead of the Police Office towards Mahadevsthan. We offer ample parking, wheelchair accessibility, and a modern, hygienic clinical environment.",
+            "answer": "CareFirst Dental Clinic is conveniently located at Pragatinagar Road, Shankhamul-31, Kathmandu (in the peaceful Shankhamul / New Baneshwor area, near Shankhamul Bridge). We offer ample parking, wheelchair accessibility, and a modern, hygienic clinical environment.",
             "primary_keyword": "best dental clinic in Kathmandu",
             "search_intent": "Local",
             "order": 1
