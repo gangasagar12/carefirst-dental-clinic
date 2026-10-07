@@ -1,5 +1,6 @@
 from django import forms
 from .models import ContactMessage
+from main.services.spam_filter import is_spam_submission
 
 class ContactMessageForm(forms.ModelForm):
     # 1. Honeypot Field (Invisible to human users, traps automated bots)
@@ -26,25 +27,48 @@ class ContactMessageForm(forms.ModelForm):
         model = ContactMessage
         fields = ['name', 'email', 'subject']
 
+    def clean_name(self):
+        name = self.cleaned_data.get('name', '').strip()
+        is_spam, reason = is_spam_submission(name=name)
+        if is_spam:
+            raise forms.ValidationError("Invalid name format. Please enter a valid name.")
+        return name
+
     def clean(self):
         cleaned_data = super().clean()
         
-        # Honeypot validation: Any content in this field indicates an automated scraper/bot
+        # 1. Honeypot check: Any content traps bots
         honeypot = cleaned_data.get('website_url_check', '').strip()
         if honeypot:
-            raise forms.ValidationError("Automated submission detected. Your request was rejected.")
+            raise forms.ValidationError("Automated submission detected.")
 
-        # Anti-bot field mapping: Resolve patient_message_content into message
+        # 2. Resolve message content
         message_body = (
             cleaned_data.get('patient_message_content', '').strip() or
-            self.data.get('patient_message_content', '').strip() or
-            self.data.get('message', '').strip()
+            self.data.get('patient_message_content', '').strip()
         )
+        # If renamed field is empty but bot submitted legacy 'message' field
+        if not message_body and self.data.get('message', '').strip():
+            # Bot bypass attempt targeting raw 'message'
+            legacy_msg = self.data.get('message', '').strip()
+            is_spam, _ = is_spam_submission(message=legacy_msg)
+            if is_spam:
+                raise forms.ValidationError("Invalid message content.")
+            message_body = legacy_msg
+
         if not message_body:
             self.add_error('patient_message_content', 'Please enter your message.')
-        else:
-            cleaned_data['message'] = message_body
+            return cleaned_data
 
+        # 3. Comprehensive content spam validation
+        name = cleaned_data.get('name', '')
+        email = cleaned_data.get('email', '')
+        subject = cleaned_data.get('subject', '')
+        is_spam, reason = is_spam_submission(name=name, email=email, message=message_body, subject=subject)
+        if is_spam:
+            raise forms.ValidationError(f"Your message could not be processed: {reason}")
+
+        cleaned_data['message'] = message_body
         return cleaned_data
 
     def save(self, commit=True):

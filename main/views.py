@@ -71,6 +71,24 @@ def send_notification_email(instance, form_type):
 @ratelimit(key='ip', rate='3/m', method='POST', block=True)
 def home(request):
     if request.method == 'POST':
+        # 0. Global Bot & Content Spam Interceptor
+        from main.services.spam_filter import is_spam_submission
+        raw_name = request.POST.get('name') or request.POST.get('full_name') or ''
+        raw_msg = request.POST.get('patient_message_content') or request.POST.get('message') or ''
+        raw_email = request.POST.get('email') or ''
+        raw_subject = request.POST.get('subject') or ''
+        
+        is_spam, reason = is_spam_submission(
+            name=raw_name,
+            email=raw_email,
+            message=raw_msg,
+            subject=raw_subject,
+            ip=get_client_ip(request)
+        )
+        if is_spam:
+            messages.success(request, 'Thank you! Your message has been sent to our clinical desk.')
+            return redirect('main:home')
+
         # 1. Honeypot check: trap automated spam bots
         if request.POST.get('website_url_check', '').strip():
             messages.success(request, 'Thank you! Your message has been sent to our clinical desk.')
@@ -290,6 +308,24 @@ def pricing(request):
 @ratelimit(key='ip', rate='3/m', method='POST', block=True)
 def contact(request):
     if request.method == 'POST':
+        # 0. Global Bot & Content Spam Interceptor
+        from main.services.spam_filter import is_spam_submission
+        raw_name = request.POST.get('name') or request.POST.get('full_name') or ''
+        raw_msg = request.POST.get('patient_message_content') or request.POST.get('message') or ''
+        raw_email = request.POST.get('email') or ''
+        raw_subject = request.POST.get('subject') or ''
+        
+        is_spam, reason = is_spam_submission(
+            name=raw_name,
+            email=raw_email,
+            message=raw_msg,
+            subject=raw_subject,
+            ip=get_client_ip(request)
+        )
+        if is_spam:
+            messages.success(request, 'Thank you! Your request has been received. We will contact you soon.')
+            return redirect('main:contact')
+
         # 1. Honeypot check: trap automated spam bots
         if request.POST.get('website_url_check', '').strip():
             messages.success(request, 'Thank you! Your request has been received. We will contact you soon.')
