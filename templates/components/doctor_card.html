@@ -147,9 +147,9 @@
     {% endif %}
 
     <!-- Specialty Badge (Dynamic) -->
-    {% if doc.get_specialty_display %}
+    {% if doc.display_specialty or doc.get_specialty_display %}
     <span class="cf-doc-spec-badge">
-      {{ doc.get_specialty_display }}
+      {{ doc.display_specialty|default:doc.get_specialty_display }}
     </span>
     {% endif %}
 

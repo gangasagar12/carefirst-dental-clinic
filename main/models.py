@@ -156,6 +156,25 @@ class Doctor(models.Model):
         verbose_name_plural = "Doctors"
 
     @property
+    def display_specialty(self):
+        """Returns localized specialty name in Nepali or English based on active language."""
+        from django.utils.translation import get_language
+        lang = get_language() or 'en'
+        specialty_map_ne = {
+            'general': 'साधारण दन्त चिकित्सा',
+            'cosmetic': 'कस्मेटिक दन्त चिकित्सा',
+            'orthodontics': 'अर्थोडोन्टिक्स (तार बाँध्ने)',
+            'implants': 'डेन्टल इम्प्लान्ट',
+            'endodontics': 'इन्डोडोन्टिक्स / रूट क्यानल',
+            'pediatric': 'बाल दन्त चिकित्सा',
+            'oral_surgery': 'मुख तथा दन्त शल्यक्रिया',
+            'periodontics': 'पेरियोडोन्टिक्स (गिजा उपचार)',
+        }
+        if lang.startswith('ne'):
+            return specialty_map_ne.get(self.specialty, self.get_specialty_display())
+        return self.get_specialty_display()
+
+    @property
     def clean_name(self):
         """Returns doctor name without redundant leading 'Dr.' or 'Dr ' prefix."""
         if not self.name:

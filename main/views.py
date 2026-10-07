@@ -160,7 +160,13 @@ def home(request):
 
 
 def build_google_reviews_schema(request, business, reviews):
-    logo_url = request.build_absolute_uri(static('main/img/logo.jpg'))
+    try:
+        logo_url = request.build_absolute_uri(static('main/img/logo.jpg'))
+    except Exception:
+        try:
+            logo_url = request.build_absolute_uri(static('main/img/care-first-logo.jpeg'))
+        except Exception:
+            logo_url = request.build_absolute_uri('/static/main/img/logo.jpg')
     schema = {
         "@context": "https://schema.org",
         "@type": "Dentist",

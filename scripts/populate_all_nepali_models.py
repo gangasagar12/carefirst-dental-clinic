@@ -181,6 +181,78 @@ def populate_all():
             "qualifications_ne": "बीडीएस (दन्त शल्यचिकित्सक)",
             "bio_en": "Dr. Sneha Shrestha creates a fun, anxiety-free dental experience for children and teenagers. She focuses on pediatric preventive care, pit & fissure sealants, gentle fillings, and fluoride enamel therapies.",
             "bio_ne": "डा. स्नेहा श्रेष्ठले बालबालिका र किशोरकिशोरीहरूका लागि रमाइलो र डररहित दन्त उपचार वातावरण सिर्जना गर्नुहुन्छ। उहाँ बाल दन्त रोकथाम, सिल्यान्ट, कोमल फिलिङ र फ्लोराइड उपचारमा केन्द्रित हुनुहुन्छ।"
+        },
+        "ashwin": {
+            "designation_en": "Consultant Oral & Maxillofacial Prosthetics",
+            "designation_ne": "कन्सल्टेन्ट ओरल तथा म्याक्सिलोफेसियल प्रोस्थेटिक्स",
+            "qualifications_en": "BDS, MDS (KU), NMC #11438",
+            "qualifications_ne": "बीडीएस, एमडीएस (केयू), एनएमसी #११४३८",
+            "bio_en": "Dr. Ashwin Shrestha is a Consultant Oral & Maxillofacial Prosthetist holding BDS and MDS degrees with Nepal Medical Council Registration No. 11438. He specializes in advanced prosthetic rehabilitation and complex facial and dental restorations, committed to restoring both function and aesthetics with precision care.",
+            "bio_ne": "डा. अश्विन श्रेष्ठ नेपाल मेडिकल काउन्सिल दर्ता नं. ११४३८ प्राप्त कन्सल्टेन्ट ओरल तथा म्याक्सिलोफेसियल प्रोस्थेटिस्ट हुनुहुन्छ। उहाँ एडभान्स्ड प्रोस्थेटिक पुनर्स्थापना, जटिल फेसियल तथा दन्त पुनर्निर्माणमा विशेषज्ञ हुनुहुन्छ र बिरामीको सौन्दर्य तथा कार्यक्षमता पुनर्स्थापना गर्न समर्पित हुनुहुन्छ।"
+        },
+        "tekendra": {
+            "designation_en": "Consultant Orthodontist",
+            "designation_ne": "कन्सल्टेन्ट अर्थोडोन्टिक्स (दाँत मिलाउने विशेषज्ञ)",
+            "qualifications_en": "BDS, MDS (Orthodontics)",
+            "qualifications_ne": "बीडीएस, एमडीएस (अर्थोडोन्टिक्स)",
+            "bio_en": "Dr. Tekendra Chaulagain specializes in advanced orthodontic treatments, metal and ceramic braces, and clear aligners to create perfect smiles.",
+            "bio_ne": "डा. टेकेन्द्र चौलागाईं बाङ्गाटिङ्गा दाँत मिलाउने, आधुनिक मेटल/सिरेमिक ब्रेसेस र क्लियर अलाइनर उपचारका अनुभवी कन्सल्टेन्ट अर्थोडोन्टिस्ट हुनुहुन्छ।"
+        },
+        "barun": {
+            "designation_en": "Consultant Pedodontist",
+            "designation_ne": "कन्सल्टेन्ट बाल दन्तरोग विशेषज्ञ",
+            "qualifications_en": "BDS, MDS (Pediatric Dentistry)",
+            "qualifications_ne": "बीडीएस, एमडीएस (बाल दन्त चिकित्सा)",
+            "bio_en": "Dr. Barun Shah is dedicated to children's dental care, offering preventive, restorative, and friendly treatments in a comfortable atmosphere.",
+            "bio_ne": "डा. बरुण शाह बालबालिकाहरूको दाँतको हेरचाह, रोकथाम र उपचारमा विशेष दक्षता हासिल गर्नुभएका विशेषज्ञ बाल दन्त चिकित्सक हुनुहुन्छ।"
+        },
+        "kamal": {
+            "designation_en": "Periodontist & Oral Implantologist",
+            "designation_ne": "पेरियोडोन्टिस्ट तथा ओरल इम्प्लान्टोलोजिस्ट",
+            "qualifications_en": "BDS, MDS (Periodontics & Implantology)",
+            "qualifications_ne": "बीडीएस, एमडीएस (गिजा तथा इम्प्लान्ट विशेषज्ञ)",
+            "bio_en": "Dr. Kamal Pandey specializes in periodontal health, laser gum therapies, and state-of-the-art dental implant surgeries.",
+            "bio_ne": "डा. कमल पाण्डे गिजा रोगको उपचार, लेजर प्रविधि तथा आधुनिक टाइटेनियम दाँत प्रत्यारोपण (इम्प्लान्ट) का वरिष्ठ विशेषज्ञ हुनुहुन्छ।"
+        },
+        "gyanendra": {
+            "designation_en": "Consultant Endodontist",
+            "designation_ne": "कन्सल्टेन्ट इन्डोडोन्टिक्स (रूट क्यानल विशेषज्ञ)",
+            "qualifications_en": "BDS, MDS (Conservative Dentistry & Endodontics)",
+            "qualifications_ne": "बीडीएस, एमडीएस (इन्डोडोन्टिक्स)",
+            "bio_en": "Dr. Gyanendra Chaudhary specializes in microscopic endodontics, pain-free single-visit root canal treatments, and tooth-saving procedures.",
+            "bio_ne": "डा. ज्ञानेन्द्र चौधरी आधुनिक रोटरी प्रविधिद्वारा दुखाइरहित रूट क्यानल उपचार तथा प्राकृतिक दाँत संरक्षणका विशेषज्ञ हुनुहुन्छ।"
+        },
+        "susmita": {
+            "designation_en": "Dental Surgeon",
+            "designation_ne": "दन्त सर्जन",
+            "qualifications_en": "BDS",
+            "qualifications_ne": "बीडीएस",
+            "bio_en": "Dr. Susmita Shah provides gentle and comprehensive dental care including fillings, scaling, and routine patient checkups.",
+            "bio_ne": "डा. सुस्मिता शाह बिरामी-केन्द्रित र कोमल दन्त परीक्षण, दाँत सफाइ, फिलिङ र रोकथाम सेवा प्रदान गर्नुहुन्छ।"
+        },
+        "suraj": {
+            "designation_en": "Consultant Endodontist",
+            "designation_ne": "कन्सल्टेन्ट इन्डोडोन्टिक्स",
+            "qualifications_en": "BDS, MDS",
+            "qualifications_ne": "बीडीएस, एमडीएस",
+            "bio_en": "Dr. Suraj Shrestha focuses on precision root canal therapy and aesthetic tooth preservation.",
+            "bio_ne": "डा. सुरज श्रेष्ठ आधुनिक प्रविधिबाट दुखाइरहित रूट क्यानल उपचार र दाँत सौन्दर्य संरक्षणका विशेषज्ञ हुनुहुन्छ।"
+        },
+        "sanjay": {
+            "designation_en": "Consultant Endodontist",
+            "designation_ne": "कन्सल्टेन्ट इन्डोडोन्टिक्स",
+            "qualifications_en": "BDS, MDS",
+            "qualifications_ne": "बीडीएस, एमडीएस",
+            "bio_en": "Dr. Sanjay Ranjit brings extensive clinical experience in endodontic treatments and restorative dentistry.",
+            "bio_ne": "डा. सञ्जय रञ्जित वरिष्ठ इन्डोडोन्टिक्स तथा जटिल दन्त पुनर्स्थापना उपचारका विशेषज्ञ हुनुहुन्छ।"
+        },
+        "sunaina": {
+            "designation_en": "Dental Surgeon",
+            "designation_ne": "दन्त सर्जन",
+            "qualifications_en": "BDS",
+            "qualifications_ne": "बीडीएस",
+            "bio_en": "Dr. Sunaina Manandhar delivers thorough and friendly general dental care and hygiene education.",
+            "bio_ne": "डा. सुनैना मानन्धर नियमित दन्त हेरचाह, सफाइ र कस्मेटिक उपचार सेवा प्रदान गर्नुहुन्छ।"
         }
     }
 
