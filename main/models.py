@@ -389,24 +389,37 @@ class Testimonial(models.Model):
         return f"{self.patient_name} — {self.treatment or 'Patient Story'}"
 
     def get_headline(self):
+        from django.utils.translation import get_language
+        if get_language() == 'ne':
+            return "स्वस्थ र चम्किलो मुस्कान पुनः स्थापित।"
         if self.headline:
             return self.headline
         return f"A healthier, radiant smile restored."
 
     def get_concern(self):
+        from django.utils.translation import get_language
+        if get_language() == 'ne':
+            return f"बिरामीले सहजता र मुखको स्वास्थ्य पुनः प्राप्त गर्न {self.treatment or 'दन्त उपचार'} को लागि विशेषज्ञ दन्त सेवा लिनुभयो।"
         if self.initial_concern:
             return self.initial_concern
         return f"Patient sought expert clinical care for {self.treatment or 'dental rehabilitation'} to regain comfort and oral health."
 
     def get_journey(self):
+        from django.utils.translation import get_language
+        if get_language() == 'ne':
+            return "विस्तृत डिजिटल परीक्षण पश्चात् डा. सुवास बन्जाडे (BDS, NMC #३२५२४) र स्वास्थ्य टोलीद्वारा आधुनिक तथा दुखाइरहित उपचार सम्पन्न गरियो।"
         if self.clinical_journey:
             return self.clinical_journey
         return f"Comprehensive digital evaluation followed by painless, state-of-the-art procedure performed by Dr. Subash Banjade (BDS, NMC #32524)."
 
     def get_outcome(self):
+        from django.utils.translation import get_language
+        if get_language() == 'ne':
+            return "सफल कार्यात्मक पुनर्स्थापना र प्राकृतिक, आकर्षक सुन्दर मुस्कान प्राप्त भयो।"
         if self.outcome:
             return self.outcome
         return f"Successful functional restoration and harmonious natural aesthetics achieved."
+
 
     def get_image_url(self):
         if self.photo:

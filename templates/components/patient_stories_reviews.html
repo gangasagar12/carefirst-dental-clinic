@@ -53,7 +53,7 @@
       </div>
 
       <p class="psr-clinic-loc text-secondary mb-4">
-        <i class="bi bi-geo-alt-fill text-danger me-1"></i> Carefirst Dental Clinic · Shankhamul, Kathmandu
+        <i class="bi bi-geo-alt-fill text-danger me-1"></i> {% trans "Carefirst Dental Clinic · Shankhamul, Kathmandu" %}
       </p>
 
       <!-- Direct Google Actions -->
@@ -174,7 +174,7 @@
             </div>
             <div class="mt-3 p-3 bg-light rounded-3">
               <p class="mb-1 text-muted small">{% trans "Treating Specialist" %}:</p>
-              <h6 class="mb-0 text-dark fw-bold">Dr. Subash Banjade <span class="badge bg-success small">BDS, NMC #32524</span></h6>
+              <h6 class="mb-0 text-dark fw-bold">{% if LANGUAGE_CODE == 'ne' %}डा. सुवास बन्जाडे <span class="badge bg-success small">BDS, NMC #३२५२४</span>{% else %}Dr. Subash Banjade <span class="badge bg-success small">BDS, NMC #32524</span>{% endif %}</h6>
             </div>
           </div>
           <div class="col-md-7">
