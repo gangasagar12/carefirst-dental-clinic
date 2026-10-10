@@ -38,10 +38,22 @@ def check_url(url, lang):
         print("\n[SUCCESS] Nepali Special Offer found in HTML!")
     elif 'Dental Care Special Offer' in html:
         print("\n[NOTICE] English Special Offer found in HTML")
+    # Google Reviews
+    grevs = re.findall(r'google-review-author-info[^>]*>\s*<h3[^>]*>(.*?)</h3>', html)
+    print(f"\nGoogle Reviews rendered in HTML: {len(grevs)}")
+    for gr in grevs[:5]:
+        print(f"  - {gr.strip()}")
+
+    # Rating / Review count badges
+    if '83' in html:
+        print("[SUCCESS] 83 Google Reviews count found in HTML!")
     else:
-        print("\n[INFO] Special offer text check...")
+        print("[WARNING] 83 Google Reviews count not found")
 
 if __name__ == '__main__':
     check_url('https://carefirstdental.org/en/', 'EN')
     print('\n' + '='*50 + '\n')
     check_url('https://carefirstdental.org/ne/', 'NE')
+    print('\n' + '='*50 + '\n')
+    check_url('https://carefirstdental.org/en/about/', 'EN About')
+

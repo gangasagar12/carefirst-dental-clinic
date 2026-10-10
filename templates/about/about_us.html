@@ -1046,7 +1046,10 @@
             </div>
             
             <h2 class="cf-section-title mb-1">{% trans "Dr. Subash Banjade" %}</h2>
-            <p class="fw-bold text-primary mb-3" style="font-size: 1.15rem;">{% trans "Dental Surgeon & Clinical Director" %}</p>
+            <p class="fw-bold text-primary mb-3" style="font-size: 1.15rem;">
+              {% trans "Dental Surgeon & Clinical Director" %}
+              <span class="badge bg-success ms-2 small">{% if LANGUAGE_CODE == 'ne' %}BDS, NMC #३२५२४{% else %}BDS, NMC #32524{% endif %}</span>
+            </p>
             
             <p class="cf-body-text mb-4" style="color: #334155; line-height: 1.8;">
               {% trans "Dr. Subash Banjade leads CareFirst Dental Clinic with a deep commitment to ethical dentistry, patient education, and clinical precision. Supported by a team of senior consultant doctors across different dental specialties, Dr. Subash ensures every patient receives attentive, comfortable, and personalized care." %}
