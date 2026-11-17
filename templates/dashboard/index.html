@@ -107,49 +107,47 @@
           <thead>
             <tr>
               <th>Patient</th>
+              <th>Phone</th>
               <th>Service / Treatment</th>
               <th>Date & Time</th>
               <th>Status</th>
-              <th>Actions</th>
+              <th class="text-end">Actions</th>
             </tr>
           </thead>
           <tbody>
             {% for app in recent_appointments %}
             <tr>
               <td>
-                <div class="fw-bold text-dark">{{ app.full_name }}</div>
-                <div class="small text-muted">{{ app.phone }}</div>
-                {% if app.message %}
-                <div class="small text-primary mt-1" style="max-width: 220px; font-size: 0.76rem; line-height: 1.25;" title="{{ app.message }}">
-                  "{{ app.message|truncatewords:6 }}"
-                </div>
-                {% endif %}
+                <div class="fw-bold text-dark text-nowrap">{{ app.full_name }}</div>
+              </td>
+              <td>
+                <div class="text-dark fw-semibold text-nowrap">{{ app.phone }}</div>
               </td>
               <td>
                 <span class="badge bg-light text-dark border">{{ app.service.title|default:app.get_treatment_display }}</span>
                 {% if app.doctor %}
-                <div class="small text-muted mt-1">Dr. {{ app.doctor.name }}</div>
+                <div class="small text-muted mt-0.5 text-nowrap">Dr. {{ app.doctor.name }}</div>
                 {% endif %}
               </td>
               <td>
-                <div class="fw-semibold text-dark">{{ app.preferred_date|date:"M d, Y" }}</div>
-                <div class="small text-muted">{{ app.get_preferred_time_display|default:"Flexible" }}</div>
+                <div class="fw-semibold text-dark text-nowrap">{{ app.preferred_date|date:"M d, Y" }}</div>
+                <div class="small text-muted text-nowrap">{{ app.get_preferred_time_display|default:"Flexible" }}</div>
               </td>
               <td>
                 <span class="cf-badge-status status-{{ app.status }}">
                   {{ app.get_status_display }}
                 </span>
               </td>
-              <td>
-                <div class="d-flex gap-1.5 align-items-center">
-                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark d-inline-flex align-items-center gap-1" title="Inspect Appointment">
+              <td class="text-end">
+                <div class="d-inline-flex gap-1.5 align-items-center">
+                  <!-- View (Icon-only) -->
+                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border cf-action-icon-btn" title="Inspect Appointment" aria-label="View Details">
                     <i class="bi bi-eye"></i>
-                    <span>View</span>
                   </a>
+                  <!-- WhatsApp (Icon-only) -->
                   {% if app.phone %}
-                  <a href="https://wa.me/{{ app.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ app.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic%20regarding%20your%20appointment." target="_blank" class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fw-semibold d-inline-flex align-items-center gap-1" title="WhatsApp Patient">
+                  <a href="https://wa.me/{{ app.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ app.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic%20regarding%20your%20appointment." target="_blank" class="btn btn-sm btn-outline-success cf-action-icon-btn" title="WhatsApp Patient" aria-label="WhatsApp">
                     <i class="bi bi-whatsapp"></i>
-                    <span>WhatsApp</span>
                   </a>
                   {% endif %}
                 </div>
@@ -157,7 +155,7 @@
             </tr>
             {% empty %}
             <tr>
-              <td colspan="5" class="text-center py-4 text-muted">
+              <td colspan="6" class="text-center py-4 text-muted">
                 No appointment requests logged yet.
               </td>
             </tr>

@@ -507,6 +507,18 @@ body.cf-dashboard-body {
   border-color: #0284C7 !important;
 }
 
+.cf-action-icon-btn.btn-outline-success {
+  color: #10B981 !important;
+  border-color: #A7F3D0 !important;
+  background-color: #ECFDF5;
+}
+
+.cf-action-icon-btn.btn-outline-success:hover {
+  background-color: #10B981 !important;
+  color: #FFFFFF !important;
+  border-color: #10B981 !important;
+}
+
 /* ── Status Pills & Interactive Dropdowns ── */
 .cf-badge-status,
 .cf-status-select {
