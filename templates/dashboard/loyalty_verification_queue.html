@@ -299,37 +299,42 @@
             </td>
 
             <!-- Action Column -->
-            <td class="text-end pe-4">
+            <td class="text-end pe-4 text-nowrap">
               {% if app.loyalty_status == 'awaiting_verification' %}
-                <div class="d-inline-flex gap-1">
-                  <!-- Approve Button -->
+                <div class="d-inline-flex gap-1.5 align-items-center">
+                  <!-- Approve Button (Main) -->
                   <button type="button" 
-                          class="btn btn-success btn-sm rounded-pill px-3 fw-bold"
+                          class="btn btn-success btn-sm rounded-pill px-3 fw-bold d-inline-flex align-items-center gap-1"
                           data-bs-toggle="modal" 
                           data-bs-target="#modalApprove{{ app.id }}">
-                    {% trans "Verify & Add" %}
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>{% trans "Verify & Add" %}</span>
                   </button>
 
-                  <!-- Reject Button -->
+                  <!-- Reject Button (Icon-only) -->
                   <button type="button" 
-                          class="btn btn-outline-danger btn-sm rounded-pill px-2.5"
+                          class="btn btn-outline-danger cf-action-icon-btn"
                           data-bs-toggle="modal" 
-                          data-bs-target="#modalReject{{ app.id }}">
-                    {% trans "Not Eligible" %}
+                          data-bs-target="#modalReject{{ app.id }}"
+                          title="{% trans 'Not Eligible' %}"
+                          aria-label="{% trans 'Not Eligible' %}">
+                    <i class="bi bi-x-circle"></i>
                   </button>
                 </div>
               {% else %}
                 <div class="d-inline-flex gap-1.5 align-items-center">
-                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-outline-secondary btn-sm rounded-pill px-2.5 py-1 fw-semibold" title="View Details">
-                    View
+                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-outline-secondary btn-sm rounded-pill px-2.5 py-1 fw-semibold d-inline-flex align-items-center gap-1" title="View Details">
+                    <i class="bi bi-eye"></i>
+                    <span>View</span>
                   </a>
                   <!-- Re-evaluate / Override Button for staff -->
                   <button type="button" 
-                          class="btn btn-outline-primary btn-sm rounded-pill px-2.5 py-1 fw-semibold"
+                          class="btn btn-outline-primary btn-sm rounded-pill px-2.5 py-1 fw-semibold d-inline-flex align-items-center gap-1"
                           data-bs-toggle="modal" 
                           data-bs-target="#modalApprove{{ app.id }}"
                           title="{% trans 'Re-evaluate or Grant' %}">
-                    Review
+                    <i class="bi bi-arrow-repeat"></i>
+                    <span>Review</span>
                   </button>
                 </div>
               {% endif %}

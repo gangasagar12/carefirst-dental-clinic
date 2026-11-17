@@ -138,14 +138,16 @@
           </td>
           <td class="text-end text-nowrap">
             <div class="d-inline-flex gap-1.5 align-items-center">
-              <a href="{% url 'blogs:post_detail' p.slug %}" target="_blank" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary" title="Preview on Website">
-                Preview
+              <a href="{% url 'blogs:post_detail' p.slug %}" target="_blank" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary d-inline-flex align-items-center gap-1" title="Preview on Website">
+                <i class="bi bi-box-arrow-up-right"></i>
+                <span>Preview</span>
               </a>
-              <a href="{% url 'dashboard:blog_edit' p.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="Edit Article">
-                Edit
+              <a href="{% url 'dashboard:blog_edit' p.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark d-inline-flex align-items-center gap-1" title="Edit Article">
+                <i class="bi bi-pencil-square"></i>
+                <span>Edit</span>
               </a>
-              <a href="{% url 'dashboard:blog_delete' p.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" onclick="return confirm('Are you sure you want to delete this article?');" title="Delete Article">
-                Delete
+              <a href="{% url 'dashboard:blog_delete' p.id %}" class="btn btn-sm btn-outline-danger cf-action-icon-btn" onclick="return confirm('Are you sure you want to delete this article?');" title="Delete Article" aria-label="Delete">
+                <i class="bi bi-trash3"></i>
               </a>
             </div>
           </td>
@@ -241,8 +243,8 @@
               <span class="badge bg-light text-muted border ms-2">{{ cat.post_count }} posts</span>
             </div>
             {% if cat.post_count == 0 %}
-            <a href="{% url 'dashboard:blog_category_delete' cat.id %}" class="btn btn-sm btn-outline-danger py-0.5 px-2 rounded-pill" onclick="return confirm('Delete category {{ cat.name }}?');" style="font-size: 0.72rem;">
-              Delete
+            <a href="{% url 'dashboard:blog_category_delete' cat.id %}" class="btn btn-sm btn-outline-danger cf-action-icon-btn" onclick="return confirm('Delete category {{ cat.name }}?');" title="Delete category" aria-label="Delete">
+              <i class="bi bi-trash3"></i>
             </a>
             {% endif %}
           </div>

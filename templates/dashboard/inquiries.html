@@ -75,11 +75,12 @@
           </td>
           <td class="text-end text-nowrap">
             <div class="d-inline-flex gap-1.5 align-items-center">
-              <a href="mailto:{{ msg.email }}?subject=Re:%20{{ msg.subject|default:'Your Inquiry at CareFirst Dental Clinic'|urlencode }}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary" title="Reply via Email">
-                Reply
+              <a href="mailto:{{ msg.email }}?subject=Re:%20{{ msg.subject|default:'Your Inquiry at CareFirst Dental Clinic'|urlencode }}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary d-inline-flex align-items-center gap-1" title="Reply via Email">
+                <i class="bi bi-reply-fill"></i>
+                <span>Reply</span>
               </a>
-              <a href="{% url 'dashboard:inquiry_delete' msg.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" onclick="return confirm('Are you sure you want to delete this message?');" title="Delete Inquiry">
-                Delete
+              <a href="{% url 'dashboard:inquiry_delete' msg.id %}" class="btn btn-sm btn-outline-danger cf-action-icon-btn" onclick="return confirm('Are you sure you want to delete this message?');" title="Delete Inquiry" aria-label="Delete">
+                <i class="bi bi-trash3"></i>
               </a>
             </div>
           </td>

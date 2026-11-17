@@ -27,14 +27,16 @@
             <h5 class="fw-bold text-dark mb-0">{{ cat.name }}</h5>
           </div>
           <div class="d-flex gap-1.5 align-items-center">
-            <a href="{% url 'dashboard:pricing_item_create' %}?category={{ cat.id }}" class="btn btn-sm btn-outline-primary rounded-pill px-2.5 py-0.5 fw-semibold" title="Add item to this category">
-              + Item
+            <a href="{% url 'dashboard:pricing_item_create' %}?category={{ cat.id }}" class="btn btn-sm btn-outline-primary rounded-pill px-2.5 py-1 fw-semibold d-inline-flex align-items-center gap-1" title="Add item to this category">
+              <i class="bi bi-plus-lg"></i>
+              <span>Item</span>
             </a>
-            <a href="{% url 'dashboard:pricing_category_edit' cat.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-0.5 fw-semibold text-dark" title="Edit Category">
-              Edit
+            <a href="{% url 'dashboard:pricing_category_edit' cat.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark d-inline-flex align-items-center gap-1" title="Edit Category">
+              <i class="bi bi-pencil-square"></i>
+              <span>Edit</span>
             </a>
-            <a href="{% url 'dashboard:pricing_category_delete' cat.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-0.5 fw-semibold" onclick="return confirm('Delete category {{ cat.name }} and all its items?');" title="Delete Category">
-              Delete
+            <a href="{% url 'dashboard:pricing_category_delete' cat.id %}" class="btn btn-sm btn-outline-danger cf-action-icon-btn" onclick="return confirm('Delete category {{ cat.name }} and all its items?');" title="Delete Category" aria-label="Delete">
+              <i class="bi bi-trash3"></i>
             </a>
           </div>
         </div>
@@ -42,18 +44,19 @@
         <div class="card-body p-0">
           <ul class="list-group list-group-flush rounded-bottom-4">
             {% for item in cat.items.all %}
-            <li class="list-group-item d-flex align-items-center justify-content-between py-3 px-4">
+            <li class="list-group-item d-flex align-items-center justify-content-between py-3 px-3 px-md-4">
               <div>
                 <span class="fw-semibold text-dark">{{ item.name }}</span>
               </div>
-              <div class="d-flex align-items-center gap-3">
-                <span class="badge bg-light text-success border fs-6 fw-bold">NPR {{ item.price }}</span>
+              <div class="d-flex align-items-center gap-2 gap-md-3">
+                <span class="badge bg-light text-success border fs-6 fw-bold text-nowrap">NPR {{ item.price }}</span>
                 <div class="d-flex gap-1.5 align-items-center">
-                  <a href="{% url 'dashboard:pricing_item_edit' item.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-0.5 fw-semibold text-dark" title="Edit Item">
-                    Edit
+                  <a href="{% url 'dashboard:pricing_item_edit' item.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark d-inline-flex align-items-center gap-1" title="Edit Item">
+                    <i class="bi bi-pencil-square"></i>
+                    <span>Edit</span>
                   </a>
-                  <a href="{% url 'dashboard:pricing_item_delete' item.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-0.5 fw-semibold" onclick="return confirm('Delete {{ item.name }}?');" title="Delete Item">
-                    Delete
+                  <a href="{% url 'dashboard:pricing_item_delete' item.id %}" class="btn btn-sm btn-outline-danger cf-action-icon-btn" onclick="return confirm('Delete {{ item.name }}?');" title="Delete Item" aria-label="Delete">
+                    <i class="bi bi-trash3"></i>
                   </a>
                 </div>
               </div>

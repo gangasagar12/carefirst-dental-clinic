@@ -65,11 +65,12 @@
           </td>
           <td class="text-end text-nowrap">
             <div class="d-inline-flex gap-1.5 align-items-center">
-              <a href="{% url 'dashboard:doctor_edit' doc.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="Edit Doctor Profile">
-                Edit
+              <a href="{% url 'dashboard:doctor_edit' doc.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark d-inline-flex align-items-center gap-1" title="Edit Doctor Profile">
+                <i class="bi bi-pencil-square"></i>
+                <span>Edit</span>
               </a>
-              <a href="{% url 'dashboard:doctor_delete' doc.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" onclick="return confirm('Are you sure you want to remove {{ doc.display_name|default:doc.name }}?');" title="Delete Specialist">
-                Delete
+              <a href="{% url 'dashboard:doctor_delete' doc.id %}" class="btn btn-sm btn-outline-danger cf-action-icon-btn" onclick="return confirm('Are you sure you want to remove {{ doc.display_name|default:doc.name }}?');" title="Delete Specialist" aria-label="Delete">
+                <i class="bi bi-trash3"></i>
               </a>
             </div>
           </td>

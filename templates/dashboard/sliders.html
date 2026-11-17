@@ -47,12 +47,13 @@
               {% if slide.is_active %}Deactivate{% else %}Activate{% endif %}
             </a>
 
-            <div class="d-flex gap-1.5 align-items-center">
-              <a href="{% url 'dashboard:slide_edit' slide.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="Edit Slide">
-                Edit
+            <div class="d-inline-flex gap-1.5 align-items-center">
+              <a href="{% url 'dashboard:slide_edit' slide.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark d-inline-flex align-items-center gap-1" title="Edit Slide">
+                <i class="bi bi-pencil-square"></i>
+                <span>Edit</span>
               </a>
-              <a href="{% url 'dashboard:slide_delete' slide.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" onclick="return confirm('Delete this hero slide?');" title="Delete Slide">
-                Delete
+              <a href="{% url 'dashboard:slide_delete' slide.id %}" class="btn btn-sm btn-outline-danger cf-action-icon-btn" onclick="return confirm('Delete this hero slide?');" title="Delete Slide" aria-label="Delete">
+                <i class="bi bi-trash3"></i>
               </a>
             </div>
           </div>
@@ -91,8 +92,8 @@
         </div>
         <div class="p-2 d-flex justify-content-between align-items-center">
           <span class="small text-truncate fw-semibold text-dark" style="max-width: 140px;" title="{{ g.caption }}">{{ g.caption|default:"Facility Photo" }}</span>
-          <a href="{% url 'dashboard:gallery_delete' g.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-0.5 fw-semibold" onclick="return confirm('Remove this gallery photo?');" title="Delete Photo">
-            Delete
+          <a href="{% url 'dashboard:gallery_delete' g.id %}" class="btn btn-sm btn-outline-danger cf-action-icon-btn" onclick="return confirm('Remove this gallery photo?');" title="Delete Photo" aria-label="Delete">
+            <i class="bi bi-trash3"></i>
           </a>
         </div>
       </div>

@@ -125,11 +125,12 @@
             <td class="text-end pe-4">
               {% if reward.status == 'available' %}
               <div class="d-inline-flex gap-1.5 align-items-center">
-                <a href="{% url 'dashboard:loyalty_reception' %}?q={{ reward.patient.phone }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold">
-                  Redeem
+                <a href="{% url 'dashboard:loyalty_reception' %}?q={{ reward.patient.phone }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold d-inline-flex align-items-center gap-1">
+                  <i class="bi bi-gift"></i>
+                  <span>Redeem</span>
                 </a>
-                <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" data-bs-toggle="modal" data-bs-target="#cancelRewardModal{{ reward.id }}" title="Cancel Reward">
-                  Cancel
+                <button type="button" class="btn btn-sm btn-outline-danger cf-action-icon-btn" data-bs-toggle="modal" data-bs-target="#cancelRewardModal{{ reward.id }}" title="Cancel Reward" aria-label="Cancel">
+                  <i class="bi bi-x-circle"></i>
                 </button>
               </div>
 

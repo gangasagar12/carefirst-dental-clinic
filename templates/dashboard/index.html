@@ -142,9 +142,15 @@
               </td>
               <td>
                 <div class="d-flex gap-1.5 align-items-center">
-                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="Inspect Appointment">View</a>
+                  <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark d-inline-flex align-items-center gap-1" title="Inspect Appointment">
+                    <i class="bi bi-eye"></i>
+                    <span>View</span>
+                  </a>
                   {% if app.phone %}
-                  <a href="https://wa.me/{{ app.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ app.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic%20regarding%20your%20appointment." target="_blank" class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fw-semibold" title="WhatsApp Patient">WhatsApp</a>
+                  <a href="https://wa.me/{{ app.phone|cut:'+'|cut:' '|cut:'-' }}?text=Hello%20{{ app.full_name|urlencode }}%2C%20greeting%20from%20CareFirst%20Dental%20Clinic%20regarding%20your%20appointment." target="_blank" class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fw-semibold d-inline-flex align-items-center gap-1" title="WhatsApp Patient">
+                    <i class="bi bi-whatsapp"></i>
+                    <span>WhatsApp</span>
+                  </a>
                   {% endif %}
                 </div>
               </td>

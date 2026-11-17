@@ -419,12 +419,16 @@ body.cf-dashboard-body {
 
 /* ── Modern Data Table ── */
 .cf-table-responsive {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: 12px;
+  position: relative;
 }
 
 .cf-dash-table {
   width: 100%;
+  min-width: 820px;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.88rem;
@@ -437,18 +441,29 @@ body.cf-dashboard-body {
   text-transform: uppercase;
   font-size: 0.74rem;
   letter-spacing: 0.5px;
-  padding: 14px 16px;
+  padding: 13px 15px;
   border-bottom: 1.5px solid var(--cf-dash-border);
   white-space: nowrap;
 }
 
 .cf-dash-table td {
-  padding: 14px 16px;
+  padding: 13px 15px;
   border-bottom: 1px solid var(--cf-dash-border);
   vertical-align: middle;
   background: #FFFFFF;
-  word-break: break-word;
-  overflow-wrap: anywhere;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.cf-dash-table td.text-end,
+.cf-dash-table .cf-actions-cell {
+  white-space: nowrap !important;
+}
+
+.cf-dash-table .cf-actions-cell .btn,
+.cf-dash-table td .btn {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
 }
 
 .cf-dash-table tr:last-child td {
@@ -457,6 +472,39 @@ body.cf-dashboard-body {
 
 .cf-dash-table tr:hover td {
   background-color: #F8FAFC;
+}
+
+/* ── Standardized Action Buttons & Icon-only Buttons ── */
+.cf-action-icon-btn {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  font-size: 0.88rem;
+  line-height: 1;
+  transition: all 0.15s ease-in-out;
+}
+
+.cf-action-icon-btn:hover {
+  transform: translateY(-1px);
+}
+
+.cf-action-icon-btn.btn-outline-danger:hover {
+  background-color: #EF4444 !important;
+  color: #FFFFFF !important;
+  border-color: #EF4444 !important;
+}
+
+.cf-action-icon-btn.btn-outline-primary:hover {
+  background-color: #0284C7 !important;
+  color: #FFFFFF !important;
+  border-color: #0284C7 !important;
 }
 
 /* ── Status Pills & Interactive Dropdowns ── */
@@ -709,6 +757,16 @@ body.cf-dashboard-body {
     font-size: 0.7rem;
   }
 
+  .cf-table-responsive {
+    border-radius: 10px;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: inset -6px 0 8px -6px rgba(0, 0, 0, 0.15);
+  }
+
+  .cf-dash-table {
+    min-width: 780px !important;
+  }
+
   .cf-dash-table th,
   .cf-dash-table td {
     padding: 10px 12px;
@@ -716,8 +774,21 @@ body.cf-dashboard-body {
   }
 
   .cf-dash-table .btn-sm {
-    padding: 4px 9px;
+    padding: 4px 8px;
     font-size: 0.76rem;
+  }
+
+  .cf-status-select {
+    min-width: 135px;
+    padding: 5px 22px 5px 10px;
+    font-size: 0.74rem;
+  }
+
+  .cf-action-icon-btn {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    font-size: 0.82rem;
   }
 
   .modal-dialog {
@@ -730,4 +801,11 @@ body.cf-dashboard-body {
     max-width: 130px;
     font-size: 0.95rem !important;
   }
+  .cf-dash-content {
+    padding: 10px 8px;
+  }
+  .cf-dash-card {
+    padding: 14px 10px;
+  }
+}
 }

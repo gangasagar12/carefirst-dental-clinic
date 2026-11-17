@@ -46,10 +46,10 @@
 
   <!-- FILTERS BAR -->
   <form method="get" class="row g-2 mb-4 align-items-center">
-    <div class="col-md-4">
+    <div class="col-12 col-md-4">
       <input type="text" name="q" value="{{ q }}" class="form-control" placeholder="Search by name, phone, email, Booking ID...">
     </div>
-    <div class="col-sm-6 col-md-2">
+    <div class="col-6 col-md-2">
       <select name="status" class="form-select">
         <option value="">All Statuses</option>
         {% for val, label in status_choices %}
@@ -57,7 +57,7 @@
         {% endfor %}
       </select>
     </div>
-    <div class="col-sm-6 col-md-2">
+    <div class="col-6 col-md-2">
       <select name="doctor" class="form-select">
         <option value="">All Doctors</option>
         {% for doc in doctors %}
@@ -65,10 +65,10 @@
         {% endfor %}
       </select>
     </div>
-    <div class="col-sm-6 col-md-2">
+    <div class="col-6 col-md-2">
       <input type="date" name="date" value="{{ date_filter }}" class="form-control" title="Filter by preferred date">
     </div>
-    <div class="col-sm-6 col-md-2 d-flex gap-2">
+    <div class="col-6 col-md-2 d-flex gap-2">
       <button type="submit" class="btn btn-cf-primary flex-grow-1">Filter</button>
       {% if q or status_filter or date_filter or doctor_filter %}
       <a href="{% url 'dashboard:appointments' %}" class="btn btn-light border rounded-pill px-3 fw-semibold" title="Clear Filters">Clear</a>
@@ -93,17 +93,17 @@
         {% for app in appointments %}
         <tr>
           <td>
-            <div class="fw-bold text-dark fs-6 text-break">{{ app.full_name }}</div>
+            <div class="fw-bold text-dark fs-6">{{ app.full_name }}</div>
             <div class="small text-muted">{{ app.get_appointment_type_display }}</div>
             {% if app.message %}
-            <div class="small text-primary mt-1 text-break" style="max-width: 220px; word-break: break-word; overflow-wrap: anywhere; font-size: 0.76rem; line-height: 1.3;" title="{{ app.message }}">
+            <div class="small text-primary mt-1" style="max-width: 240px; font-size: 0.76rem; line-height: 1.3;" title="{{ app.message }}">
               "{{ app.message|truncatechars:45 }}"
             </div>
             {% endif %}
           </td>
           <td>
-            <div class="text-dark fw-semibold">{{ app.phone }}</div>
-            {% if app.email %}<div class="small text-muted">{{ app.email }}</div>{% endif %}
+            <div class="text-dark fw-semibold text-nowrap">{{ app.phone }}</div>
+            {% if app.email %}<div class="small text-muted text-break" style="max-width: 200px;">{{ app.email }}</div>{% endif %}
           </td>
           <td>
             <div class="fw-semibold text-dark">{{ app.service.title|default:app.get_treatment_display }}</div>
@@ -112,8 +112,8 @@
             {% endif %}
           </td>
           <td>
-            <div class="fw-bold text-dark">{{ app.preferred_date|date:"M d, Y" }}</div>
-            <div class="small text-muted">{{ app.get_preferred_time_display|default:"Flexible Slot" }}</div>
+            <div class="fw-bold text-dark text-nowrap">{{ app.preferred_date|date:"M d, Y" }}</div>
+            <div class="small text-muted text-nowrap">{{ app.get_preferred_time_display|default:"Flexible Slot" }}</div>
           </td>
           <td>
             <form method="post" action="{% url 'dashboard:appointment_update_status' app.id %}" class="d-inline position-relative">
@@ -127,24 +127,26 @@
           </td>
           <td class="text-end">
             <div class="d-inline-flex gap-1.5 align-items-center">
-              <!-- View Detail -->
-              <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="View Full Details">
-                View
+              <!-- View Detail (Main Button) -->
+              <a href="{% url 'dashboard:appointment_detail' app.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark d-inline-flex align-items-center gap-1" title="View Full Details">
+                <i class="bi bi-eye"></i>
+                <span>View</span>
               </a>
-              <!-- Patient Pass -->
-              <a href="{{ app.get_manage_url }}" target="_blank" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary" title="Open Digital Pass & QR">
-                Pass
-              </a>
-              <!-- PDF -->
-              <a href="{{ app.get_pdf_url }}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-danger" title="Download PDF Confirmation">
-                PDF
-              </a>
-              <!-- 1-Click WhatsApp Dispatch Modal Button -->
+              <!-- 1-Click WhatsApp Dispatch (Main Button) -->
               {% if app.phone %}
-              <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fw-semibold" onclick="openWhatsAppModal('{{ app.id }}')" title="1-Click WhatsApp Quick Dispatch">
-                WhatsApp
+              <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fw-semibold d-inline-flex align-items-center gap-1" onclick="openWhatsAppModal('{{ app.id }}')" title="1-Click WhatsApp Quick Dispatch">
+                <i class="bi bi-whatsapp"></i>
+                <span>WhatsApp</span>
               </button>
               {% endif %}
+              <!-- Patient Pass (Icon-only) -->
+              <a href="{{ app.get_manage_url }}" target="_blank" class="btn btn-sm btn-light border text-primary cf-action-icon-btn" title="Open Digital Pass & QR" aria-label="Digital Pass">
+                <i class="bi bi-qr-code"></i>
+              </a>
+              <!-- PDF (Icon-only) -->
+              <a href="{{ app.get_pdf_url }}" class="btn btn-sm btn-light border text-danger cf-action-icon-btn" title="Download PDF Confirmation" aria-label="PDF">
+                <i class="bi bi-file-earmark-pdf"></i>
+              </a>
             </div>
           </td>
         </tr>

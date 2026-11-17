@@ -53,14 +53,16 @@
           </td>
           <td class="text-end text-nowrap">
             <div class="d-inline-flex gap-1.5 align-items-center">
-              <a href="{% url 'main:service_detail' s.slug %}" target="_blank" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary" title="Preview on Website">
-                Preview
+              <a href="{% url 'main:service_detail' s.slug %}" target="_blank" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-primary d-inline-flex align-items-center gap-1" title="Preview on Website">
+                <i class="bi bi-box-arrow-up-right"></i>
+                <span>Preview</span>
               </a>
-              <a href="{% url 'dashboard:service_edit' s.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark" title="Edit Service">
-                Edit
+              <a href="{% url 'dashboard:service_edit' s.id %}" class="btn btn-sm btn-light border rounded-pill px-2.5 py-1 fw-semibold text-dark d-inline-flex align-items-center gap-1" title="Edit Service">
+                <i class="bi bi-pencil-square"></i>
+                <span>Edit</span>
               </a>
-              <a href="{% url 'dashboard:service_delete' s.id %}" class="btn btn-sm btn-outline-danger rounded-pill px-2.5 py-1 fw-semibold" onclick="return confirm('Are you sure you want to delete this service?');" title="Delete Service">
-                Delete
+              <a href="{% url 'dashboard:service_delete' s.id %}" class="btn btn-sm btn-outline-danger cf-action-icon-btn" onclick="return confirm('Are you sure you want to delete this service?');" title="Delete Service" aria-label="Delete">
+                <i class="bi bi-trash3"></i>
               </a>
             </div>
           </td>
